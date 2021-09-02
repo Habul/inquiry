@@ -1,6 +1,5 @@
 <?php 
 
-// WWW.MALASNGODING.COM === Author : Diki Alfarabi Hadi
 // Model yang terstruktur. agar bisa digunakan berulang kali untuk membuat CRUD. 
 // Sehingga proses pembuatan CRUD menjadi lebih cepat dan efisien.
 
@@ -36,14 +35,15 @@ class M_data extends CI_Model{
 	function delete_data($where,$table){
 		$this->db->delete($table,$where);
 	}
+	// AKHIR FUNGSI CRUD
+
+	//pagination
 	function data($number,$offset){
 		return $query = $this->db->get('inquiry',$number,$offset)->result();
 	}
 	function jumlah_data(){
 		return $this->db->get('inquiry')->num_rows();
 	}
-
-	// AKHIR FUNGSI CRUD
 }
 
 ?>

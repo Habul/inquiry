@@ -798,7 +798,7 @@ class Dashboard extends CI_Controller {
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'/dashboard/inquiry';
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 10;
+		$config['per_page'] = 8;
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);
 		$data['inquiry'] = $this->m_data->data($config['per_page'],$from);
@@ -879,6 +879,10 @@ class Dashboard extends CI_Controller {
 	{
 		// Wajib isi
 		$this->form_validation->set_rules('cek','Check','required');
+		$this->form_validation->set_rules('fu1','Fu1','required');
+		$this->form_validation->set_rules('fu2','Fu2','required');
+		$this->form_validation->set_rules('fu3','Fu3','required');
+		$this->form_validation->set_rules('ket_fu','Ket FU','required');
 		$this->form_validation->set_rules('cogs','COGS','required');
 		$this->form_validation->set_rules('kurs','Kurs','required');
 		$this->form_validation->set_rules('cogs_idr','COGS IDR','required');
@@ -891,9 +895,13 @@ class Dashboard extends CI_Controller {
 
 		if($this->form_validation->run() != false){
 
-			$id = $this->input->post('inquiry_id');
+			$id = $this->input->post('id');
 
 			$cek = $this->input->post('cek');
+			$fu1 = $this->input->post('fu1');
+			$fu2 = $this->input->post('fu2');
+			$fu3 = $this->input->post('fu3');
+			$ket_fu = $this->input->post('ket_fu');
 			$cogs = $this->input->post('cogs');
 			$kurs = $this->input->post('kurs');
 			$cogs_idr = $this->input->post('cogs_idr');
@@ -903,10 +911,13 @@ class Dashboard extends CI_Controller {
 			$delivery = $this->input->post('delivery');
 			$ket_purch = $this->input->post('ket_purch');
 
-
 			if($this->form_validation->run() != false){
 				$data = array(
 					'cek' => $cek,
+					'fu1' => $fu1,
+					'fu2' => $fu2,
+					'fu3' => $fu3,
+					'ket_fu' => $ket_fu, 
 					'cogs' => $cogs,
 					'kurs' => $kurs,
 					'cogs_idr' => $cogs_idr,
@@ -925,12 +936,16 @@ class Dashboard extends CI_Controller {
 			$this->m_data->update_data($where,$data,'inquiry');
 
 			redirect(base_url().'dashboard/inquiry');
-		}else{
+
+		}
+		else
+		{
 			$id = $this->input->post('id');
 			$where = array(
 				'inquiry_id' => $id
 			);
 			$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+
 			$this->load->view('dashboard/v_header');
 			$this->load->view('dashboard/v_inquiry_edit',$data);
 			$this->load->view('dashboard/v_footer');

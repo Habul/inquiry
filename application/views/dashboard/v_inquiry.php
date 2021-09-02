@@ -2,7 +2,7 @@
 	<section class="content-header">
 		<h1>
 			Inquiry
-			<small>Input Inquiry</small>
+			<small>Inquiry Marketing - Purchasing</small>
 		</h1>
 	</section>
 
@@ -10,21 +10,15 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				
+				<?php if($this->session->userdata('level') != "purchase"){	?>
 				<a href="<?php echo base_url().'dashboard/inquiry_tambah'; ?>" class="btn btn-sm btn-primary">Buat Inquiry baru</a>
-
+				<?php }	?>
 				<br/>
 				<br/>
 
 				<div class="box box-primary">
 					<div class="box-header">
-						
-					</div>
-					<div class="input-group">
-						<input type="text" name="q" class="form-control" placeholder="Search...">
-						<span class="input-group-btn">
-						<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-						</span>												         
+						<h3 class="box-title">List Inquiry</h3>						
 					</div>
 					<div class="box-body">
 						<table class="table table-bordered">
@@ -62,9 +56,12 @@
 										<td><?php echo $p->keter; ?></td>
 										<td><?php echo $p->request; ?></td>
 										<?php if($this->session->userdata('level') != "sales"){	?>
-										<td>
-											<a href="<?php echo base_url().'dashboard/inquiry_edit/'.$p->inquiry_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
-											<a href="<?php echo base_url().'dashboard/inquiry_hapus/'.$p->inquiry_id; ?>" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
+										<td style="text-align:center" width="140px">
+											<?php 
+											echo anchor(site_url('dashboard/inquiry_edit/'.$p->inquiry_id),'<i class="fa fa-edit"></i>',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
+											echo '  '; 
+											echo anchor(site_url('dashboard/inquiry_hapus/'.$p->inquiry_id),'<i class="fa fa-trash"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+											?>
 										</td>
 									</tr>
 										<?php }	?>
