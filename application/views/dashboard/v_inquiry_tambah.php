@@ -257,7 +257,7 @@
 								</div>
 									<div class="form-group">
 									<label>Quantity</label>
-									<input type="text" name="qty" class="form-control" placeholder="input qty...">
+									<input type="number" name="qty" class="form-control" placeholder="input qty...">
 									<?php echo form_error('qty'); ?>
 								</div>
 								<div class="form-group">
@@ -267,7 +267,7 @@
 								</div>
 								<div class="form-group">
 									<label>Note</label>
-									<input type="text" name="keter" class="form-control" placeholder="input  ..">
+									<textarea name="keter" class="form-control" rows="3" placeholder="input  .."></textarea>
 									<?php echo form_error('keter'); ?>
 								</div>
 								<div class="form-group">
