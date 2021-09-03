@@ -23,12 +23,12 @@ class Dashboard extends CI_Controller {
 	{
 		// hitung jumlah artikel
 		$data['jumlah_artikel'] = $this->m_data->get_data('artikel')->num_rows();
-		// hitung jumlah kategori
-		$data['jumlah_kategori'] = $this->m_data->get_data('kategori')->num_rows();
 		// hitung jumlah pengguna
 		$data['jumlah_pengguna'] = $this->m_data->get_data('pengguna')->num_rows();
-		// hitung jumlah halaman
+		// hitung jumlah inquiry belum terjawab
 		$data['jumlah_inquiry'] = $this->m_data->get_data('inquiry')->num_rows();
+		// hitung jumlah inquiry sudah terjawab
+		$data['total_inquiry'] = $this->m_data->get_data('inquiry')->num_rows();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index',$data);
 		$this->load->view('dashboard/v_footer');
@@ -793,15 +793,7 @@ class Dashboard extends CI_Controller {
 	
 	public function inquiry()
 	{
-		$this->load->database();
-		$jumlah_data = $this->m_data->jumlah_data();
-		$this->load->library('pagination');
-		$config['base_url'] = base_url().'/dashboard/inquiry';
-		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 8;
-		$from = $this->uri->segment(3);
-		$this->pagination->initialize($config);
-		$data['inquiry'] = $this->m_data->data($config['per_page'],$from);
+		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_inquiry',$data);
 		$this->load->view('dashboard/v_footer');
@@ -970,5 +962,52 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/v_inquiry_view',$data);
 		$this->load->view('dashboard/v_footer');
 	}
+
+	public function inquiry_export()
+        {
+            $this->load->helper('exportexcel');
+            $namaFile = "Data Inquiry.xls";
+            $judul = "Data Inquiry";
+            $tablehead = 0;
+            $tablebody = 1;
+            $nourut = 1;
+            //penulisan header
+            header("Pragma: public");
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+            header("Content-Type: application/force-download");
+            header("Content-Type: application/octet-stream");
+            header("Content-Type: application/download");
+            header("Content-Disposition: attachment;filename=" . $namaFile . "");
+            header("Content-Transfer-Encoding: binary ");
+
+            xlsBOF();
+
+            $kolomhead = 0;
+            xlsWriteLabel($tablehead, $kolomhead++, "No");
+			xlsWriteLabel($tablehead, $kolomhead++, "Nim");
+			xlsWriteLabel($tablehead, $kolomhead++, "Nama");
+			xlsWriteLabel($tablehead, $kolomhead++, "Gender");
+			xlsWriteLabel($tablehead, $kolomhead++, "Tempat Lahir");
+			xlsWriteLabel($tablehead, $kolomhead++, "Tanggal Lahir");
+
+    	foreach ($this->m_data->get_data() as $data) {
+                $kolombody = 0;
+
+                //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
+                xlsWriteNumber($tablebody, $kolombody++, $nourut);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->nim);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->nama);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->gender);
+    	    xlsWriteNumber($tablebody, $kolombody++, $data->tempat_lahir);
+    	    xlsWriteNumber($tablebody, $kolombody++, $data->tanggal_lahir);
+
+    	    $tablebody++;
+                $nourut++;
+            }
+
+            xlsEOF();
+            exit();
+        }
 	//END Crud inquiry
 }

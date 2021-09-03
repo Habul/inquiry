@@ -11,17 +11,17 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<?php if($this->session->userdata('level') != "purchase"){	?>
-				<a href="<?php echo base_url().'dashboard/inquiry_tambah'; ?>" class="btn btn-sm btn-primary">Buat Inquiry baru</a>
+				<?php echo anchor(site_url('dashboard/inquiry_tambah'), ' <i class="fa fa-file-text-o"></i> Buat Inquiry baru', 'class="btn btn-primary btn-sm"'); ?>
 				<?php }	?>
 				<br/>
 				<br/>
-
-				<div class="box box-primary">
+				<div class="box">
 					<div class="box-header">
-						<h3 class="box-title">List Inquiry</h3>						
+						<center><h3 class="box-title">Inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>VIEW INQUIRY</b></h3></center>						
 					</div>
+					<!-- /.box-header -->
 					<div class="box-body">
-						<table class="table table-bordered">
+						<table id="example2" class="table table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th width="1%">NO</th>
@@ -40,8 +40,8 @@
 								<?php }	?>
 							</thead>
 							<tbody>
-								<?php 
-								$no = $this->uri->segment('3') + 1;
+								<?php
+								$no = $this->uri->segment('3') + 1; 
 								foreach($inquiry as $p){ 
 									?>
 									<tr>
@@ -66,17 +66,15 @@
 									</tr>
 										<?php }	?>
 								<?php } ?>
-							</tbody>
-						</table>
-						<div class="box-footer clearfix">
-							<ul class="pagination pagination-sm no-margin pull-right">
-								<li><?php echo $this->pagination->create_links()?></li>
-							</ul>
-				    </div>
-					</div>
-					
-			</div>
-		</div>
-	</div>
-	</section>
-</div>
+				 </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>

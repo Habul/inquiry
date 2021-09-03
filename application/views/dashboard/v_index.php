@@ -28,7 +28,7 @@
 					<div class="inner">
 						<h3><?php echo $jumlah_inquiry ?></h3>
 
-						<p>Jumlah Inquiry</p>
+						<p>Inquiry Belum Terjawab</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-android-document"></i>
@@ -39,9 +39,9 @@
 			<div class="col-lg-3 col-xs-6">
 				<div class="small-box bg-red">
 					<div class="inner">
-						<h3><?php echo $jumlah_kategori ?></h3>
+						<h3><?php echo $total_inquiry ?></h3>
 
-						<p>Jumlah Kategori</p>
+						<p>Inquiry Sudah Terjawab</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-pie-graph"></i>

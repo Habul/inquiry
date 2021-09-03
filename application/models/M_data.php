@@ -8,6 +8,12 @@ class M_data extends CI_Model{
 	function cek_login($table,$where){
 		return $this->db->get_where($table,$where);
 	}
+
+	function rows_null(){
+		$this->db->select('*');
+		$this->db->from('inquiry');
+		return $this->db->where('fu1 !=', null);
+	}
 	
 	// FUNGSI CRUD
 	// fungsi untuk mengambil data dari database
@@ -45,5 +51,4 @@ class M_data extends CI_Model{
 		return $this->db->get('inquiry')->num_rows();
 	}
 }
-
 ?>

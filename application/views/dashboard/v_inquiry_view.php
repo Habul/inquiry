@@ -8,9 +8,14 @@
 	<section class="content">
 		<div class="row">
 			<div class="col-lg-12">
+				<?php if($this->session->userdata('level') != "sales"){	?>
+				<?php echo anchor(site_url('dashboard/inquiry_export'), ' <i class="fa fa-file-excel-o"></i> Export to Excel', 'class="btn btn-primary btn-sm"'); ?>
+				<?php }	?>
+				<br/>
+				<br/>
+				
 				<div class="box">
 					<div class="box-header">
-						<h3 class="box-title">List Inquiry</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -49,11 +54,7 @@
 										<td style="text-align:center" width="140px">
 											<?php
 											echo anchor(site_url('dashboard/inquiry_view/'.$p->inquiry_id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-primary btn-sm')); 
-                    						echo '  ';  
-											echo anchor(site_url('dashboard/inquiry_edit/'.$p->inquiry_id),'<i class="fa fa-edit"></i>',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
-											echo '  '; 
-											echo anchor(site_url('dashboard/inquiry_hapus/'.$p->inquiry_id),'<i class="fa fa-trash"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-											?></td>
+                    						?></td>
 									</tr>
 								<?php } ?>
 						</tbody>

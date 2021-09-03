@@ -49,6 +49,21 @@
 									<?php echo form_error('tanggal'); ?>
 								</div>
 								<div class="form-group">
+									<label>Request</label>
+									<select class="form-control" name="request">
+										<option value="">- Pilih Request -</option>
+										<option value="PRICE+LT">PRICE+LT</option>
+										<option value="PRICE">PRICE</option>
+										<option value="LT">LT</option>
+										<option value="STOCK">STOCK</option>
+										<option value="PRICE+LT+STOCK">PRICE+LT+STOCK</option>
+										<option value="COO">COO</option>
+										<option value="CATALOGUE">CATALOGUE</option>
+										<option value="DESIGN">DESIGN</option>
+									</select>
+									<?php echo form_error('request'); ?>
+								</div>
+								<div class="form-group">
 									<label>Brand Produk</label>
 									<select class="form-control" name="brand">
 										<option value="">- Pilih Brand -</option>
@@ -270,21 +285,7 @@
 									<textarea name="keter" class="form-control" rows="3" placeholder="input  .."></textarea>
 									<?php echo form_error('keter'); ?>
 								</div>
-								<div class="form-group">
-									<label>Request</label>
-									<select class="form-control" name="request">
-										<option value="">- Pilih Request -</option>
-										<option value="PRICE+LT">PRICE+LT</option>
-										<option value="PRICE">PRICE</option>
-										<option value="LT">LT</option>
-										<option value="STOCK">STOCK</option>
-										<option value="PRICE+LT+STOCK">PRICE+LT+STOCK</option>
-										<option value="COO">COO</option>
-										<option value="CATALOGUE">CATALOGUE</option>
-										<option value="DESIGN">DESIGN</option>
-									</select>
-									<?php echo form_error('request'); ?>
-								</div>
+								
 							</div>
 							<div class="box-footer">
 								<input type="submit" class="btn btn-success" value="Simpan">
