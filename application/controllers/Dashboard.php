@@ -962,5 +962,13 @@ class Dashboard extends CI_Controller {
 
 		redirect(base_url().'dashboard/inquiry');
 	}
+
+	public function inquiry_view()
+	{
+		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_inquiry_view',$data);
+		$this->load->view('dashboard/v_footer');
+	}
 	//END Crud inquiry
 }

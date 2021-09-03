@@ -23,11 +23,11 @@
 								<div class="box-body">
 									<div class="form-group">
 										<input type="hidden" name="id" value="<?php echo $p->inquiry_id; ?>">
-										No Inquiry &nbsp;:&nbsp;<b><?php echo $p->inquiry_id; ?></b><br>
-										Nama Sales &nbsp;:&nbsp;<b><?php echo $p->sales; ?></b><br>
+										No &nbsp;:&nbsp;<b><?php echo $p->inquiry_id; ?></b><br>
+										Nama &nbsp;:&nbsp;<b><?php echo $p->sales; ?></b><br>
 										Brand &nbsp;:&nbsp;<b><?php echo $p->brand; ?></b><br>
-										Desc &nbsp;:&nbsp;<b><?php echo $p->desc; ?></b><br>
-										Qty &nbsp;:&nbsp;<b><?php echo $p->qty; ?></b><br>
+										Descript &nbsp;:&nbsp;<b><?php echo $p->desc; ?></b><br>
+										Quantity &nbsp;:&nbsp;<b><?php echo $p->qty; ?></b><br>
 										Deadline &nbsp;:&nbsp;<b><?php echo $p->deadline; ?></b><br>
 										Keterangan &nbsp;:&nbsp;<b><?php echo $p->keter; ?></b><br>
 										Request &nbsp;:&nbsp;<b><?php echo $p->request; ?></b><br>

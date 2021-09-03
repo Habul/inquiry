@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/morris.js/morris.css">
@@ -121,27 +122,34 @@
 							<span>PENGATURAN WEBSITE</span>
 						</a>
 					</li>
+					<li>
+						<a href="<?php echo base_url().'dashboard/' ?>">
+							<i class="fa fa-sticky-note"></i>
+							<span>TEST</span>
+						</a>
+					</li>
 					<?php
 					} 
 					?>
-					<li>
-						<a href="<?php echo base_url().'dashboard/inquiry' ?>">
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-book"></i>
+							<span>INQUIRY</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="<?php echo base_url().'dashboard/inquiry' ?>">
 							<i class="fa fa-sticky-note-o"></i>
-							<span>INPUT INQUIRY</span>
-						</a>
-					</li>
-					<li>
-						<a href="<?php echo base_url().'dashboard/inquiry_edit' ?>">
-							<i class="fa fa-sticky-note"></i>
-							<span>EDIT INQUIRY</span>
-						</a>
-					</li>
-					<li>
-						<a href="<?php echo base_url().'dashboard/inquiry_view' ?>">
+							<span>INPUT INQUIRY</span></a>
+						</li>
+						<li><a href="<?php echo base_url().'dashboard/inquiry_view' ?>">
 							<i class="fa fa-archive"></i>
-							<span>VIEW INQUIRY</span>
-						</a>
-					</li>
+							<span>VIEW INQUIRY</span></a>
+						</li>
+						</ul>
+						</li>
 					<li>
 						<a href="<?php echo base_url().'dashboard/profil' ?>">
 							<i class="fa fa-user"></i>
