@@ -36,7 +36,7 @@
 											$id_user = $this->session->userdata('id');
 											$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
 										?>
-									<input type="text" name="sales" readonly class="form-control" value=<?php echo $sales->pengguna_nama ?> >
+									<input type="text" name="sales" readonly class="form-control" value="<?php echo $sales->pengguna_nama; ?> ">
 									<?php echo form_error('sales'); ?>
 								</div>
 								<div class="form-group">

@@ -48,11 +48,12 @@
 										<small>Kosongkan jika tidak ingin mengubah password</small>
 									</div>
 									<div class="form-group">
-										<label>Level</label>
+										<label>Divisi</label>
 										<select class="form-control" name="level">
 											<option value="">- Pilih Level -</option>
 											<option <?php if($p->pengguna_level == "admin"){ echo "selected='selected'";} ?> value="admin">Admin</option>
-											<option <?php if($p->pengguna_level == "penulis"){ echo "selected='selected'";} ?> value="penulis">Penulis</option>
+											<option <?php if($p->pengguna_level == "purchase"){ echo "selected='selected'";} ?> value="purchase">Purchase</option>
+											<option <?php if($p->pengguna_level == "sales"){ echo "selected='selected'";} ?> value="sales">Sales</option>
 										</select>
 										<?php echo form_error('level'); ?>
 									</div>

@@ -50,10 +50,10 @@
 										<td><?php echo $p->qty; ?></td>
 										<td><?php echo $p->deadline; ?></td>
 										<td><?php echo $p->keter; ?></td>
-										<td><?php echo $p->request; ?></td>
-										<td style="text-align:center" width="140px">
+										<td><?php echo $p->request; ?></td>	
+										<td style="text-align:center">
 											<?php
-											echo anchor(site_url('dashboard/inquiry_view/'.$p->inquiry_id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-primary btn-sm')); 
+											echo anchor(site_url('dashboard/inquiry_detail/'.$p->inquiry_id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-primary btn-sm')); 
                     						?></td>
 									</tr>
 								<?php } ?>

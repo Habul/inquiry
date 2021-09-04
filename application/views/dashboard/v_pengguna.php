@@ -16,12 +16,12 @@
 				<br/>
 				<br/>
 
-				<div class="box box-primary">
+				<div class="box">
 					<div class="box-header">
-						<h3 class="box-title">Pengguna</h3>
 					</div>
+					<!-- /.box-header -->
 					<div class="box-body">
-						<table class="table table-bordered">
+						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th width="1%">NO</th>
@@ -54,21 +54,27 @@
 											?>
 										</td>
 										<td>
-											<a href="<?php echo base_url().'dashboard/pengguna_edit/'.$p->pengguna_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
-											<a href="<?php echo base_url().'dashboard/pengguna_hapus/'.$p->pengguna_id; ?>" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
+											<?php 
+											echo anchor(site_url('dashboard/pengguna_edit/'.$p->pengguna_id),'<i class="fa fa-edit"></i>',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
+											echo '  '; 
+											echo anchor(site_url('dashboard/pengguna_hapus/'.$p->pengguna_id),'<i class="fa fa-trash"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+											?>
 										</td>
 									</tr>
 								<?php } ?>
-							</tbody>
-						</table>
-						
-
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-	</section>
-
-</div>
+								</tbody>
+					<tfoot>
+						<tr></tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>

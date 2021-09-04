@@ -26,10 +26,9 @@ class Dashboard extends CI_Controller {
 		// hitung jumlah pengguna
 		$data['jumlah_pengguna'] = $this->m_data->get_data('pengguna')->num_rows();
 		// hitung jumlah inquiry belum terjawab
-		$data['jumlah_inquiry'] = $this->m_data->get_data('inquiry')->num_rows();
+		$data['jumlah_inquiry'] = $this->m_data->select_null();
 		// hitung jumlah inquiry sudah terjawab
-		//$notnull = $this->m_data->select_not_null();
-		$data['total_inquiry'] = $this->m_data->get_data('inquiry')->num_rows();
+		$data['total_inquiry'] = $this->m_data->select_not_null();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index',$data);
 		$this->load->view('dashboard/v_footer');
@@ -1024,4 +1023,6 @@ class Dashboard extends CI_Controller {
 		force_download('./assets/excel/Data Inquiry.xlsx', NULL);
         }
 	//END Crud inquiry
+
+	
 }

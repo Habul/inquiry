@@ -8,12 +8,6 @@ class M_data extends CI_Model{
 	function cek_login($table,$where){
 		return $this->db->get_where($table,$where);
 	}
-
-	function rows_null(){
-		$this->db->select('*');
-		$this->db->from('inquiry');
-		return $this->db->where('fu1 !=', null);
-	}
 	
 	// FUNGSI CRUD
 	// fungsi untuk mengambil data dari database
@@ -48,15 +42,15 @@ class M_data extends CI_Model{
 
 		$data = $this->db->query($sql);
 
-		return $data->row();
+		return $data->num_rows();
 	}
 
 	public function select_not_null() {
-		$sql = "SELECT * FROM inquiry where fu1 is not null";
+		$sql = "SELECT * FROM inquiry WHERE fu1 IS NOT NULL";
 
 		$data = $this->db->query($sql);
 
-		return $data->row();
+		return $data->num_rows();
 	}
 
 	public function select_all_inquiry() {
