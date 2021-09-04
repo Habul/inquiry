@@ -42,13 +42,5 @@ class M_data extends CI_Model{
 		$this->db->delete($table,$where);
 	}
 	// AKHIR FUNGSI CRUD
-
-	//pagination
-	function data($number,$offset){
-		return $query = $this->db->get('inquiry',$number,$offset)->result();
-	}
-	function jumlah_data(){
-		return $this->db->get('inquiry')->num_rows();
-	}
 }
 ?>

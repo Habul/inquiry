@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<?php if($this->session->userdata('level') != "sales"){	?>
-				<?php echo anchor(site_url('dashboard/inquiry_export'), ' <i class="fa fa-file-excel-o"></i> Export to Excel', 'class="btn btn-primary btn-sm"'); ?>
+				<?php echo anchor(site_url('dashboard/inquiry_export'), ' <i class="fa fa-file-excel-o"></i> &nbsp; Export to Excel', 'class="btn btn-primary btn-sm"'); ?>
 				<?php }	?>
 				<br/>
 				<br/>

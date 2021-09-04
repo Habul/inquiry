@@ -29,32 +29,25 @@
 										Descript &nbsp;:&nbsp;<b><?php echo $p->desc; ?></b><br>
 										Quantity &nbsp;:&nbsp;<b><?php echo $p->qty; ?></b><br>
 										Deadline &nbsp;:&nbsp;<b><?php echo $p->deadline; ?></b><br>
-										Keterangan &nbsp;:&nbsp;<b><?php echo $p->keter; ?></b><br>
 										Request &nbsp;:&nbsp;<b><?php echo $p->request; ?></b><br>
+										Keterangan &nbsp;:&nbsp;<b><?php echo $p->keter; ?></b><br>										
+										Tanggal Buat &nbsp;:&nbsp;<b><?php echo $p->tanggal; ?></b><br>
+									</div>
+									<div class="form-group">
+										<label>Follow UP</label>
+										<?php 
+										$now = $this->load->helper('date');
+										$format = "%Y-%m-%d %H:%i:%s";
+										?>
+										<input type="datetime" name="fu1" readonly class="form-control" value="<?php echo mdate($format); ?>">
+										<?php echo form_error('fu1'); ?>
 									</div>
 									<div class="form-group">
 										<label>Check</label>
-										<input type="text" name="cek" class="form-control" value="<?php echo $p->cek; ?>" placeholder="Cek..">
+										<input type="number" name="cek" class="form-control" value="<?php echo $p->cek; ?>" placeholder="Cek..">
 										<?php echo form_error('cek'); ?>
 									</div>
-									<div class="form-group">
-										<label>Follow Up1</label>
-										<input type="date" name="fu1" class="form-control" value="<?php echo $p->fu1; ?>" placeholder="Fu1..">
-										<?php echo form_error('fu1'); ?>
-										<small>Kosongkan jika tidak di perlukan</small>
-									</div>
-									<div class="form-group">
-										<label>Follow Up2</label>
-										<input type="date" name="fu2" class="form-control" value="<?php echo $p->fu2; ?>" placeholder="Fu2..">
-										<?php echo form_error('fu2'); ?>
-										<small>Kosongkan jika tidak di perlukan</small>
-									</div>
-									<div class="form-group">
-										<label>Follow Up3</label>
-										<input type="date" name="fu3" class="form-control" value="<?php echo $p->fu3; ?>" placeholder="Fu3..">
-										<?php echo form_error('fu3'); ?>
-										<small>Kosongkan jika tidak di perlukan</small>
-									</div>
+									
 									<div class="form-group">
 										<label>Keterangan Fu</label>
 										<input type="text" name="ket_fu" class="form-control" value="<?php echo $p->ket_fu; ?>" placeholder="Keterangan Fu..">

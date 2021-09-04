@@ -815,7 +815,7 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_rules('brand','Brand Produk','required');
 		$this->form_validation->set_rules('desc','Description Produk','required');
 		$this->form_validation->set_rules('qty','Quantity','required');
-		$this->form_validation->set_rules('deadline','DeadLine','required');
+		$this->form_validation->set_rules('deadline','Deadline','required');
 		$this->form_validation->set_rules('keter','Keterangan','required');
 		$this->form_validation->set_rules('request','Request','required');		
 
@@ -872,8 +872,6 @@ class Dashboard extends CI_Controller {
 		// Wajib isi
 		$this->form_validation->set_rules('cek','Check','required');
 		$this->form_validation->set_rules('fu1','Fu1','required');
-		$this->form_validation->set_rules('fu2','Fu2','required');
-		$this->form_validation->set_rules('fu3','Fu3','required');
 		$this->form_validation->set_rules('ket_fu','Ket FU','required');
 		$this->form_validation->set_rules('cogs','COGS','required');
 		$this->form_validation->set_rules('kurs','Kurs','required');
@@ -891,8 +889,6 @@ class Dashboard extends CI_Controller {
 
 			$cek = $this->input->post('cek');
 			$fu1 = $this->input->post('fu1');
-			$fu2 = $this->input->post('fu2');
-			$fu3 = $this->input->post('fu3');
 			$ket_fu = $this->input->post('ket_fu');
 			$cogs = $this->input->post('cogs');
 			$kurs = $this->input->post('kurs');
@@ -907,8 +903,6 @@ class Dashboard extends CI_Controller {
 				$data = array(
 					'cek' => $cek,
 					'fu1' => $fu1,
-					'fu2' => $fu2,
-					'fu3' => $fu3,
 					'ket_fu' => $ket_fu, 
 					'cogs' => $cogs,
 					'kurs' => $kurs,
@@ -965,49 +959,42 @@ class Dashboard extends CI_Controller {
 
 	public function inquiry_export()
         {
-            $this->load->helper('exportexcel');
-            $namaFile = "Data Inquiry.xls";
-            $judul = "Data Inquiry";
-            $tablehead = 0;
-            $tablebody = 1;
-            $nourut = 1;
-            //penulisan header
-            header("Pragma: public");
-            header("Expires: 0");
-            header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
-            header("Content-Type: application/force-download");
-            header("Content-Type: application/octet-stream");
-            header("Content-Type: application/download");
-            header("Content-Disposition: attachment;filename=" . $namaFile . "");
-            header("Content-Transfer-Encoding: binary ");
+            error_reporting(E_ALL);
+    
+		include_once './assets/phpexcel/Classes/PHPExcel.php';
+		$objPHPExcel = new PHPExcel();
 
-            xlsBOF();
+		$data = $this->M_pegawai->select_all_pegawai();
 
-            $kolomhead = 0;
-            xlsWriteLabel($tablehead, $kolomhead++, "No");
-			xlsWriteLabel($tablehead, $kolomhead++, "Nim");
-			xlsWriteLabel($tablehead, $kolomhead++, "Nama");
-			xlsWriteLabel($tablehead, $kolomhead++, "Gender");
-			xlsWriteLabel($tablehead, $kolomhead++, "Tempat Lahir");
-			xlsWriteLabel($tablehead, $kolomhead++, "Tanggal Lahir");
+		$objPHPExcel = new PHPExcel(); 
+		$objPHPExcel->setActiveSheetIndex(0); 
+		$rowCount = 1; 
 
-    	foreach ($this->m_data->get_data() as $data) {
-                $kolombody = 0;
+		$objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, "ID");
+		$objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, "Nama");
+		$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, "Nomor Telepon");
+		$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, "ID Kota");
+		$objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, "ID Kelamin");
+		$objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, "ID Posisi");
+		$objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, "Status");
+		$rowCount++;
 
-                //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
-                xlsWriteNumber($tablebody, $kolombody++, $nourut);
-    	    xlsWriteLabel($tablebody, $kolombody++, $data->nim);
-    	    xlsWriteLabel($tablebody, $kolombody++, $data->nama);
-    	    xlsWriteLabel($tablebody, $kolombody++, $data->gender);
-    	    xlsWriteNumber($tablebody, $kolombody++, $data->tempat_lahir);
-    	    xlsWriteNumber($tablebody, $kolombody++, $data->tanggal_lahir);
+		foreach($data as $value){
+		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->id); 
+		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->nama); 
+		    $objPHPExcel->getActiveSheet()->setCellValueExplicit('C'.$rowCount, $value->telp, PHPExcel_Cell_DataType::TYPE_STRING);
+		    $objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->id_kota); 
+		    $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $value->id_kelamin); 
+		    $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $value->id_posisi); 
+		    $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $value->status); 
+		    $rowCount++; 
+		} 
 
-    	    $tablebody++;
-                $nourut++;
-            }
+		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
+		$objWriter->save('./assets/excel/Data Pegawai.xlsx'); 
 
-            xlsEOF();
-            exit();
+		$this->load->helper('download');
+		force_download('./assets/excel/Data Pegawai.xlsx', NULL);
         }
 	//END Crud inquiry
 }

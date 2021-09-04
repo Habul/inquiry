@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<?php if($this->session->userdata('level') != "purchase"){	?>
-				<?php echo anchor(site_url('dashboard/inquiry_tambah'), ' <i class="fa fa-file-text-o"></i> Buat Inquiry baru', 'class="btn btn-primary btn-sm"'); ?>
+				<?php echo anchor(site_url('dashboard/inquiry_tambah'), ' <i class="fa fa-file-text-o"></i> &nbsp; Buat Inquiry baru', 'class="btn btn-primary btn-sm"'); ?>
 				<?php }	?>
 				<br/>
 				<br/>
