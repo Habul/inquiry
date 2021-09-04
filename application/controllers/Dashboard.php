@@ -28,6 +28,7 @@ class Dashboard extends CI_Controller {
 		// hitung jumlah inquiry belum terjawab
 		$data['jumlah_inquiry'] = $this->m_data->get_data('inquiry')->num_rows();
 		// hitung jumlah inquiry sudah terjawab
+		//$notnull = $this->m_data->select_not_null();
 		$data['total_inquiry'] = $this->m_data->get_data('inquiry')->num_rows();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index',$data);
@@ -958,13 +959,13 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function inquiry_export()
-        {
+    {
         error_reporting(E_ALL);
     
 		include_once './assets/phpexcel/Classes/PHPExcel.php';
 		$objPHPExcel = new PHPExcel();
 
-		$data = $this->m_data->get_data('inquiry');
+		$data = $this->m_data->select_all_inquiry();
 
 		$objPHPExcel = new PHPExcel(); 
 		$objPHPExcel->setActiveSheetIndex(0); 
@@ -983,12 +984,13 @@ class Dashboard extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, "Follow Up");
 		$objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, "Keter FU");
 		$objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, "COGS");
-		$objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, "COGS IDR");
-		$objPHPExcel->getActiveSheet()->SetCellValue('O'.$rowCount, "Reseller");
-		$objPHPExcel->getActiveSheet()->SetCellValue('P'.$rowCount, "New Seller");
-		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, "User");
-		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, "Delivery");
-		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, "Keter Purchase");
+		$objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, "KURS");
+		$objPHPExcel->getActiveSheet()->SetCellValue('O'.$rowCount, "COGS IDR");
+		$objPHPExcel->getActiveSheet()->SetCellValue('P'.$rowCount, "Reseller");
+		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, "New Seller");
+		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, "User");
+		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, "Delivery");
+		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, "Keter Purchase");
 		$rowCount++;
 
 		foreach($data as $value){
@@ -1004,13 +1006,14 @@ class Dashboard extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, $value->cek); 
 		$objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, $value->fu1); 
 		$objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, $value->ket_fu);
-		$objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, $value->cogs); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, $value->cogs_idr); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('O'.$rowCount, $value->reseller); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('P'.$rowCount, $value->new_seller);
-		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, $value->user); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, $value->delivery);
-		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, $value->ket_purch);    
+		$objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, $value->cogs);
+		$objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, $value->kurs); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('O'.$rowCount, $value->cogs_idr); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('P'.$rowCount, $value->reseller); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, $value->new_seller);
+		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, $value->user); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, $value->delivery);
+		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, $value->ket_purch);    
 		$rowCount++; 
 		} 
 
