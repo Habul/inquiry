@@ -959,42 +959,66 @@ class Dashboard extends CI_Controller {
 
 	public function inquiry_export()
         {
-            error_reporting(E_ALL);
+        error_reporting(E_ALL);
     
 		include_once './assets/phpexcel/Classes/PHPExcel.php';
 		$objPHPExcel = new PHPExcel();
 
-		$data = $this->M_pegawai->select_all_pegawai();
+		$data = $this->m_data->get_data('inquiry');
 
 		$objPHPExcel = new PHPExcel(); 
 		$objPHPExcel->setActiveSheetIndex(0); 
 		$rowCount = 1; 
 
-		$objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, "ID");
-		$objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, "Nama");
-		$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, "Nomor Telepon");
-		$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, "ID Kota");
-		$objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, "ID Kelamin");
-		$objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, "ID Posisi");
-		$objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, "Status");
+		$objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, "ID Inquiry");
+		$objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, "Nama Sales");
+		$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, "Tanggal");
+		$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, "Brand Produk");
+		$objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, "Desc");
+		$objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, "Qty");
+		$objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, "Deadline");
+		$objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount, "Keter Sales");
+		$objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount, "Request");
+		$objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, "Check");
+		$objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, "Follow Up");
+		$objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, "Keter FU");
+		$objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, "COGS");
+		$objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, "COGS IDR");
+		$objPHPExcel->getActiveSheet()->SetCellValue('O'.$rowCount, "Reseller");
+		$objPHPExcel->getActiveSheet()->SetCellValue('P'.$rowCount, "New Seller");
+		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, "User");
+		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, "Delivery");
+		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, "Keter Purchase");
 		$rowCount++;
 
 		foreach($data as $value){
-		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->id); 
-		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->nama); 
-		    $objPHPExcel->getActiveSheet()->setCellValueExplicit('C'.$rowCount, $value->telp, PHPExcel_Cell_DataType::TYPE_STRING);
-		    $objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->id_kota); 
-		    $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $value->id_kelamin); 
-		    $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $value->id_posisi); 
-		    $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $value->status); 
-		    $rowCount++; 
+		$objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->inquiry_id); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->sales); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->tanggal);
+		$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->brand); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $value->desc); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $value->qty); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $value->deadline);
+		$objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount, $value->keter); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount, $value->request);
+		$objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, $value->cek); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, $value->fu1); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, $value->ket_fu);
+		$objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, $value->cogs); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, $value->cogs_idr); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('O'.$rowCount, $value->reseller); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('P'.$rowCount, $value->new_seller);
+		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, $value->user); 
+		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, $value->delivery);
+		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, $value->ket_purch);    
+		$rowCount++; 
 		} 
 
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
-		$objWriter->save('./assets/excel/Data Pegawai.xlsx'); 
+		$objWriter->save('./assets/excel/Data Inquiry.xlsx'); 
 
 		$this->load->helper('download');
-		force_download('./assets/excel/Data Pegawai.xlsx', NULL);
+		force_download('./assets/excel/Data Inquiry.xlsx', NULL);
         }
 	//END Crud inquiry
 }
