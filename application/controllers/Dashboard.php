@@ -979,8 +979,7 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_rules('qty','Quantity','required');
 		$this->form_validation->set_rules('deadline','Deadline','required');
 		$this->form_validation->set_rules('keter','Keterangan','required');
-		$this->form_validation->set_rules('request','Requesst','required');
-
+		
 		if($this->form_validation->run() != false){
 
 			$id = $this->input->post('id');
@@ -991,8 +990,7 @@ class Dashboard extends CI_Controller {
 			$qty = $this->input->post('qty');
 			$deadline = $this->input->post('deadline');
 			$keter = $this->input->post('keter');
-			$request = $this->input->post('request');
-			
+						
 			if($this->form_validation->run() != false){
 				$data = array(
 					'tanggal' => $tanggal,
@@ -1001,7 +999,7 @@ class Dashboard extends CI_Controller {
 					'qty' => $qty,
 					'deadline' => $deadline,
 					'keter' => $keter,
-					'request' => $request
+					
 				);
 			}
 			

@@ -1,8 +1,8 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
-			Edit Sales
-			<small>Sales Edit</small>
+			Edit Inquiry
+			<small>Sales</small>
 		</h1>
 	</section>
 
@@ -15,7 +15,7 @@
 				<br/>
 				<div class="box box-primary">
 					<div class="box-header">
-						<h3 class="box-title">Inquiry</h3>
+						<h3 class="box-title">Edit Inquiry</h3>
 					</div>
 					<div class="box-body">
 						<?php foreach($inquiry as $p){ ?>
@@ -26,10 +26,10 @@
 									<label>Nama sales</label>
 										<?php 
 											$id_user = $this->session->userdata('id');
-											$purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
+											$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
 										?>
-									<input type="text" name="name_purch" readonly class="form-control" value="<?php echo $purchase->pengguna_nama; ?> ">
-									<?php echo form_error('name_purch'); ?>
+									<input type="text" name="sales" readonly class="form-control" value="<?php echo $sales->pengguna_nama; ?> ">
+									<?php echo form_error('sales'); ?>
 									</div>
 									<div class="form-group">
 										<label>Tanggal</label>
@@ -39,21 +39,6 @@
 										?>
 										<input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
 										<?php echo form_error('tanggal'); ?>
-									</div>
-									<div class="form-group">
-										<label>Request</label>
-										<select class="form-control" name="request" value="<?php echo $p->request; ?>">
-											<option value="">- Pilih Request -</option>
-											<option value="PRICE+LT">PRICE+LT</option>
-											<option value="PRICE">PRICE</option>
-											<option value="LT">LT</option>
-											<option value="STOCK">STOCK</option>
-											<option value="PRICE+LT+STOCK">PRICE+LT+STOCK</option>
-											<option value="COO">COO</option>
-											<option value="CATALOGUE">CATALOGUE</option>
-											<option value="DESIGN">DESIGN</option>
-										</select>
-										<?php echo form_error('request'); ?>
 									</div>
 									<div class="form-group">
 										<label>Brand Produk</label>
@@ -72,7 +57,7 @@
 									</div>
 									<div class="form-group">
 										<label>Keterangan</label>
-										<textarea name="keter" class="form-control" value="<?php echo $p->keter; ?>"></textarea>
+										<input type='text' name="keter" class="form-control" value="<?php echo $p->keter; ?>">
 										<?php echo form_error('keter'); ?>
 									</div>
 								</div>

@@ -15,7 +15,7 @@
 				<br/>
 				<div class="box box-primary">
 					<div class="box-header">
-						<h3 class="box-title">Inquiry</h3>
+						<h3 class="box-title">Edit Inquiry</h3>
 					</div>
 					<div class="box-body">
 						<?php foreach($inquiry as $p){ ?>
