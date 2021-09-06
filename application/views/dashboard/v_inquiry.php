@@ -34,15 +34,15 @@
 									<th>Deadline</th>
 									<th>Keterangan</th>
 									<th>Request</th>
-									<?php if($this->session->userdata('level') != "sales"){	?>
 									<th width="10%">Action</th>
 								</tr>
-								<?php }	?>
+								
 							</thead>
 							<tbody>
 								<?php
-								$no = $this->uri->segment('3') + 1; 
-								foreach($inquiry as $p){ 
+								$no = $this->uri->segment('3') + 1;
+								$query = $this->db->query("select * from inquiry where fu1 is NULL order by tanggal desc");
+								foreach ($query->result() as $p){ 
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
@@ -55,8 +55,11 @@
 										<td><?php echo $p->deadline; ?></td>
 										<td><?php echo $p->keter; ?></td>
 										<td><?php echo $p->request; ?></td>
+										<td style="text-align:center">
+										<?php if($this->session->userdata('level') != "purchase"){	?>
+										<a href="<?php echo base_url().'dashboard/inquiry_edit_sales/'.$p->inquiry_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
+										<?php }	?>
 										<?php if($this->session->userdata('level') != "sales"){	?>
-										<td style="text-align:center" width="140px">
 											<?php 
 											echo anchor(site_url('dashboard/inquiry_edit/'.$p->inquiry_id),'<i class="fa fa-edit"></i>',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
 											echo '  '; 

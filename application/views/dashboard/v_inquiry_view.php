@@ -38,7 +38,8 @@
 							<tbody>
 								<?php 
 								$no = $this->uri->segment('3') + 1;
-								foreach($inquiry as $p){ 
+								$query = $this->db->query("select * from inquiry where fu1 is not NULL");
+								foreach ($query->result() as $p){ 
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>

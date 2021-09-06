@@ -54,9 +54,23 @@ class M_data extends CI_Model{
 	}
 
 	public function select_all_inquiry() {
-		$sql = "SELECT * FROM inquiry";
+		$sql = "SELECT * FROM inquiry where fu1 is NOT NULL";
 
 		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
+	public function select_by_inquiry($id) {
+		$sql = "SELECT COUNT(*) AS jml FROM inquiry WHERE sales = {$id}";
+
+		$data = $this->db->query($sql);
+		
+		return $data->row();
+	}
+
+	public function select_all() {
+		$data = $this->db->get('pengguna');
 
 		return $data->result();
 	}

@@ -20,6 +20,7 @@
 					<div class="icon">
 						<i class="ion ion-android-list"></i>
 					</div>
+					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 			
@@ -33,6 +34,7 @@
 					<div class="icon">
 						<i class="ion ion-android-document"></i>
 					</div>
+					<a href="<?php echo base_url('dashboard/inquiry') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 			
@@ -46,6 +48,7 @@
 					<div class="icon">
 						<i class="ion ion-pie-graph"></i>
 					</div>
+					<a href="<?php echo base_url('dashboard/inquiry_view') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 
@@ -59,21 +62,17 @@
 					<div class="icon">
 						<i class="ion ion-person-add"></i>
 					</div>
+					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 			
 		</div>
 
 		<div class="row">
-			<div class="col-lg-6">
-				
+			<div class="col-md-6">
 				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Dashboard</h3>
-					</div>
 					<div class="box-body">
 						<h3>Selamat Datang !</h3>
-
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">
 								<tr>
@@ -102,14 +101,60 @@
 									<th width="1px">:</th>
 									<td>Aktif</td>
 								</tr>
+								<tr>
+									<th width="20%"></th>
+									<th width="1px"></th>
+									<td></td>
+								</tr>
+								<tr>
+									<th width="20%"></th>
+									<th width="1px"></th>
+									<td></td>
+								</tr>
+								<tr>
+									<th width="20%"></th>
+									<th width="1px"></th>
+									<td></td>
+								</tr>
 							</table>
 						</div>
 					</div>
 				</div>
 
 			</div>
-		</div>
-
-	</section>
-
+			 <div class="col-md-6">
+    			<div class="box box-primary">
+     			<div class="box-header with-border">
+       			<h3 class="box-title">Statistik <small>Sales</small></h3>
+     			<div class="box-body">
+        	<canvas id="data-inquiry" style="height:250px"></canvas>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+</section>
+</div>
+<script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
+  <script>
+  //data inquiry
+  var pieChartCanvas = $("#data-inquiry").get(0).getContext("2d");
+  var pieChart = new Chart(pieChartCanvas);
+  var PieData = <?php echo $data_inquiry; ?>;
+
+  var pieOptions = {
+    segmentShowStroke: true,
+    segmentStrokeColor: "#fff",
+    segmentStrokeWidth: 2,
+    percentageInnerCutout: 50,
+    animationSteps: 100,
+    animationEasing: "easeOutBounce",
+    animateRotate: true,
+    animateScale: false,
+    responsive: true,
+    maintainAspectRatio: true,
+    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+  };
+
+  pieChart.Doughnut(PieData, pieOptions);
+  </script>

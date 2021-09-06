@@ -34,6 +34,15 @@
 										Tanggal Buat &nbsp;:&nbsp;<b><?php echo $p->tanggal; ?></b><br>
 									</div>
 									<div class="form-group">
+									<label>Nama Purchase</label>
+										<?php 
+											$id_user = $this->session->userdata('id');
+											$purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
+										?>
+									<input type="text" name="name_purch" readonly class="form-control" value="<?php echo $purchase->pengguna_nama; ?> ">
+									<?php echo form_error('name_purch'); ?>
+									</div>
+									<div class="form-group">
 										<label>Follow UP</label>
 										<?php 
 										$now = $this->load->helper('date');

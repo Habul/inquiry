@@ -32,8 +32,25 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index',$data);
 		$this->load->view('dashboard/v_footer');
-	}
 
+		//$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+		
+		//$user 		= $this->m_data->select_all();
+		//$index = 0;
+		//foreach ($user as $u) {
+		   //$color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
+
+			//$pegawai_by_inquiry = $this->m_data->select_by_inquiry($u->pengguna_id);
+			//$data_inquiry[$index]['value'] = $pegawai_by_inquiry->jml;
+			//$data_inquiry[$index]['color'] = $color;
+			//$data_inquiry[$index]['highlight'] = $color;
+			//$data_inquiry[$index]['label'] = $u->id_sales;	
+			
+			//$index++;
+		//$data['data_inquiry'] = json_encode($data_inquiry);
+	}
+		
+	
 	public function keluar()
 	{
 		$this->session->sess_destroy();
@@ -881,6 +898,7 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_rules('user','User','required');
 		$this->form_validation->set_rules('delivery','Delivery','required');
 		$this->form_validation->set_rules('ket_purch','Keterangan purchase','required');
+		$this->form_validation->set_rules('name_purch','Nama purchase','required');
 
 
 		if($this->form_validation->run() != false){
@@ -898,6 +916,7 @@ class Dashboard extends CI_Controller {
 			$user = $this->input->post('user');
 			$delivery = $this->input->post('delivery');
 			$ket_purch = $this->input->post('ket_purch');
+			$name_purch = $this->input->post('name_purch');
 
 			if($this->form_validation->run() != false){
 				$data = array(
@@ -911,7 +930,8 @@ class Dashboard extends CI_Controller {
 					'new_seller' => $new_seller,
 					'user' => $user,
 					'delivery' => $delivery,
-					'ket_purch' => $ket_purch
+					'ket_purch' => $ket_purch,
+					'name_purch' => $name_purch,
 				);
 			}
 			
@@ -938,6 +958,75 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
+	public function inquiry_edit_sales($id)
+	{
+		$where = array(
+			'inquiry_id' => $id
+		);
+		$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_inquiry_edit_sales',$data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+
+	public function inquiry_update_sales()
+	{
+		// Wajib isi
+		$this->form_validation->set_rules('tanggal','Tanggal','required');
+		$this->form_validation->set_rules('brand','Brand Produk','required');
+		$this->form_validation->set_rules('desc','Description Product','required');
+		$this->form_validation->set_rules('qty','Quantity','required');
+		$this->form_validation->set_rules('deadline','Deadline','required');
+		$this->form_validation->set_rules('keter','Keterangan','required');
+		$this->form_validation->set_rules('request','Requesst','required');
+
+		if($this->form_validation->run() != false){
+
+			$id = $this->input->post('id');
+
+			$tanggal = $this->input->post('tanggal');
+			$brand = $this->input->post('brand');
+			$desc = $this->input->post('desc');
+			$qty = $this->input->post('qty');
+			$deadline = $this->input->post('deadline');
+			$keter = $this->input->post('keter');
+			$request = $this->input->post('request');
+			
+			if($this->form_validation->run() != false){
+				$data = array(
+					'tanggal' => $tanggal,
+					'brand' => $brand,
+					'desc' => $desc, 
+					'qty' => $qty,
+					'deadline' => $deadline,
+					'keter' => $keter,
+					'request' => $request
+				);
+			}
+			
+			$where = array(
+				'inquiry_id' => $id
+			);
+
+			$this->m_data->update_data($where,$data,'inquiry');
+
+			redirect(base_url().'dashboard/inquiry');
+		}
+		else
+		{
+			$id = $this->input->post('id');
+			$where = array(
+				'inquiry_id' => $id
+			);
+			$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+
+			$this->load->view('dashboard/v_header');
+			$this->load->view('dashboard/v_inquiry_edit_sales',$data);
+			$this->load->view('dashboard/v_footer');
+		}
+	}
+
 	public function inquiry_hapus($id)
 	{
 			$where = array(
@@ -952,6 +1041,7 @@ class Dashboard extends CI_Controller {
 	public function inquiry_view()
 	{
 		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
+		//$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_inquiry_view',$data);
 		$this->load->view('dashboard/v_footer');
@@ -990,6 +1080,7 @@ class Dashboard extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, "User");
 		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, "Delivery");
 		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, "Keter Purchase");
+		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, "Nama Purchase");
 		$rowCount++;
 
 		foreach($data as $value){
@@ -1012,7 +1103,8 @@ class Dashboard extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, $value->new_seller);
 		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, $value->user); 
 		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, $value->delivery);
-		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, $value->ket_purch);    
+		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, $value->ket_purch);
+		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, $value->name_purch);    
 		$rowCount++; 
 		} 
 
@@ -1023,6 +1115,17 @@ class Dashboard extends CI_Controller {
 		force_download('./assets/excel/Data Inquiry.xlsx', NULL);
         }
 	//END Crud inquiry
+
+	public function inquiry_detail($id) 
+        {
+          $where = array(
+			'inquiry_id' => $id
+		);
+		$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_inquiry_detail',$data);
+		$this->load->view('dashboard/v_footer');
+        }
 
 	
 }

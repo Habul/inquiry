@@ -31,7 +31,7 @@
 									<?php echo form_error('inquiry_id'); ?>
 								</div>
 								<div class="form-group">
-									<label>Nama</label>
+									<label>Nama Sales</label>
 										<?php 
 											$id_user = $this->session->userdata('id');
 											$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
