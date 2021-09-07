@@ -10,15 +10,15 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<a href="<?php echo base_url().'dashboard/inquiry'; ?>" class="btn btn-sm btn-primary">Kembali</a>
-				<br/>
-				<br/>
+				<a href="<?php echo base_url() . 'dashboard/inquiry'; ?>" class="btn btn-sm btn-primary">Kembali</a>
+				<br />
+				<br />
 				<div class="box box-primary">
 					<div class="box-header">
 						<h3 class="box-title">Edit Inquiry</h3>
 					</div>
 					<div class="box-body">
-						<?php foreach($inquiry as $p){ ?>
+						<?php foreach ($inquiry as $p) { ?>
 							<form method="post" action="<?php echo base_url('dashboard/inquiry_update') ?>">
 								<div class="box-body">
 									<div class="form-group">
@@ -30,21 +30,21 @@
 										Quantity &nbsp;:&nbsp;<b><?php echo $p->qty; ?></b><br>
 										Deadline &nbsp;:&nbsp;<b><?php echo $p->deadline; ?></b><br>
 										Request &nbsp;:&nbsp;<b><?php echo $p->request; ?></b><br>
-										Keterangan &nbsp;:&nbsp;<b><?php echo $p->keter; ?></b><br>										
+										Keterangan &nbsp;:&nbsp;<b><?php echo $p->keter; ?></b><br>
 										Tanggal Buat &nbsp;:&nbsp;<b><?php echo $p->tanggal; ?></b><br>
 									</div>
 									<div class="form-group">
-									<label>Nama Purchase</label>
-										<?php 
-											$id_user = $this->session->userdata('id');
-											$purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
+										<label>Nama Purchase</label>
+										<?php
+										$id_user = $this->session->userdata('id');
+										$purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
 										?>
-									<input type="text" name="name_purch" readonly class="form-control" value="<?php echo $purchase->pengguna_nama; ?> ">
-									<?php echo form_error('name_purch'); ?>
+										<input type="text" name="name_purch" readonly class="form-control" value="<?php echo $purchase->pengguna_nama; ?> ">
+										<?php echo form_error('name_purch'); ?>
 									</div>
 									<div class="form-group">
 										<label>Follow UP</label>
-										<?php 
+										<?php
 										$now = $this->load->helper('date');
 										$format = "%Y-%m-%d %H:%i:%s";
 										?>
@@ -56,7 +56,7 @@
 										<input type="number" name="cek" class="form-control" value="<?php echo $p->cek; ?>" placeholder="Cek..">
 										<?php echo form_error('cek'); ?>
 									</div>
-									
+
 									<div class="form-group">
 										<label>Keterangan Fu</label>
 										<input type="text" name="ket_fu" class="form-control" value="<?php echo $p->ket_fu; ?>" placeholder="Keterangan Fu..">
@@ -74,32 +74,32 @@
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
-										<input type="number" name="cogs_idr" class="form-control" value="<?php echo $p->cogs_idr; ?>" placeholder="Cogs Idr..">
+										<input type="text" name="cogs_idr" onkeyup="convertToRupiah(this);" class="form-control" value="<?php echo $p->cogs_idr; ?>" placeholder="Cogs Idr..">
 										<?php echo form_error('cogs_idr'); ?>
 									</div>
 									<div class="form-group">
 										<label>Reseller</label>
-										<input type="number" name="reseller" class="form-control"  value="<?php echo $p->reseller; ?>" placeholder="Rp..">
+										<input type="number" name="reseller" class="form-control" value="<?php echo $p->reseller; ?>" placeholder="Rp..">
 										<?php echo form_error('reseller'); ?>
 									</div>
 									<div class="form-group">
 										<label>New Seller</label>
-										<input type="number" name="new_seller" class="form-control"  value="<?php echo $p->new_seller; ?>" placeholder="Rp..">
+										<input type="number" name="new_seller" class="form-control" value="<?php echo $p->new_seller; ?>" placeholder="Rp..">
 										<?php echo form_error('new_seller'); ?>
 									</div>
 									<div class="form-group">
 										<label>User</label>
-										<input type="number" name="user" class="form-control"  value="<?php echo $p->user; ?>" placeholder="Rp..">
+										<input type="number" name="user" class="form-control" value="<?php echo $p->user; ?>" placeholder="Rp..">
 										<?php echo form_error('user'); ?>
 									</div>
 									<div class="form-group">
 										<label>Delivery</label>
-										<input type="text" name="delivery" class="form-control"  value="<?php echo $p->delivery; ?>" placeholder="Delivery..">
+										<input type="text" name="delivery" class="form-control" value="<?php echo $p->delivery; ?>" placeholder="Delivery..">
 										<?php echo form_error('delivery'); ?>
 									</div>
 									<div class="form-group">
 										<label>Ket Purchase</label>
-										<textarea name="ket_purch" class="form-control"  rows="3" value="<?php echo $p->ket_purch; ?>" placeholder="Keterangan..."></textarea>
+										<textarea name="ket_purch" class="form-control" rows="3" value="<?php echo $p->ket_purch; ?>" placeholder="Keterangan..."></textarea>
 										<?php echo form_error('ket_purch'); ?>
 									</div>
 								</div>
