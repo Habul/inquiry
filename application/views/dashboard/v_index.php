@@ -122,16 +122,16 @@
 				</div>
 
 			</div>
-			 <div class="col-md-6">
+			 <!--div class="col-md-6">
     			<div class="box box-primary">
      			<div class="box-header with-border">
        			<h3 class="box-title">Statistik <small>Sales</small></h3>
      			<div class="box-body">
         	<canvas id="data-inquiry" style="height:250px"></canvas>
-      </div>
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
+</div!-->
 </div>
 </section>
 </div>

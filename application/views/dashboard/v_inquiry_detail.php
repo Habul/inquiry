@@ -8,7 +8,7 @@
             <!-- form start -->
             <form class="form-horizontal">
               <div class="box-body">
-				<?php foreach($inquiry as $p){ ?>
+					<?php foreach($inquiry as $p){ ?>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">No Inquiry</label>
                   <div class="col-sm-10">
@@ -84,19 +84,19 @@
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Reseller</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" readonly value="<?php echo $p->reseller; ?>" >
+                    <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->reseller, 0, '.', '.'); ?>,-" >
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">New Seller</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" readonly value="<?php echo $p->new_seller; ?>" >
+                    <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->new_seller, 0, '.', '.'); ?>,-" >
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">User</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" readonly value="<?php echo $p->user; ?>" >
+                    <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->user, 0, '.', '.'); ?>,-" >
                   </div>
                 </div>
 				<div class="form-group">

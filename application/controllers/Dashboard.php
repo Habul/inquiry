@@ -973,6 +973,7 @@ class Dashboard extends CI_Controller {
 	public function inquiry_update_sales()
 	{
 		// Wajib isi
+		$this->form_validation->set_rules('sales','Tanggal','required');
 		$this->form_validation->set_rules('tanggal','Tanggal','required');
 		$this->form_validation->set_rules('brand','Brand Produk','required');
 		$this->form_validation->set_rules('desc','Description Product','required');
@@ -984,6 +985,7 @@ class Dashboard extends CI_Controller {
 
 			$id = $this->input->post('id');
 
+			$sales = $this->input->post('sales');
 			$tanggal = $this->input->post('tanggal');
 			$brand = $this->input->post('brand');
 			$desc = $this->input->post('desc');
@@ -993,6 +995,7 @@ class Dashboard extends CI_Controller {
 						
 			if($this->form_validation->run() != false){
 				$data = array(
+					'sales' => $sales,
 					'tanggal' => $tanggal,
 					'brand' => $brand,
 					'desc' => $desc, 

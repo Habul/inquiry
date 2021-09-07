@@ -22,7 +22,10 @@
 							<form method="post" action="<?php echo base_url('dashboard/inquiry_update_sales') ?>">
 								<div class="box-body">
 									<div class="form-group">
-									<input type="hidden" name="id" value="<?php echo $p->inquiry_id; ?>">
+										<label>No Inquiry</label>
+										<input type="text" name="id" readonly class="form-control" value="<?php echo $p->inquiry_id; ?>">
+									</div>
+									<div class="form-group">
 									<label>Nama sales</label>
 										<?php 
 											$id_user = $this->session->userdata('id');
@@ -42,13 +45,18 @@
 									</div>
 									<div class="form-group">
 										<label>Brand Produk</label>
-										<input type="text" name="brand" class="form-control" value="<?php echo $p->brand; ?>">
+										<input type="text" name="brand" readonly class="form-control" value="<?php echo $p->brand; ?>">
 										<?php echo form_error('brand'); ?>
 									</div>
 									<div class="form-group">
 										<label>Deskripsi</label>
 										<input type="text" name="desc" class="form-control" value="<?php echo $p->desc; ?>">
 										<?php echo form_error('desc'); ?>
+									</div>
+									<div class="form-group">
+										<label>Quantity</label>
+										<input type="text" name="qty" class="form-control" value="<?php echo $p->qty; ?>">
+										<?php echo form_error('qty'); ?>
 									</div>
 									<div class="form-group">
 										<label>Deadline</label>

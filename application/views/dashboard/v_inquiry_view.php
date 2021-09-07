@@ -38,7 +38,7 @@
 							<tbody>
 								<?php 
 								$no = $this->uri->segment('3') + 1;
-								$query = $this->db->query("select * from inquiry where fu1 is not NULL");
+								$query = $this->db->query("select * from inquiry where fu1 is not NULL order by tanggal desc");
 								foreach ($query->result() as $p){ 
 									?>
 									<tr>
