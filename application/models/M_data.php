@@ -69,6 +69,13 @@ class M_data extends CI_Model{
 		return $data->row();
 	}
 
+	public function total_rows($q = NULL) {
+		$this->db->like('fu1', $q);
+		$this->db->from('inquiry');
+		return $this->db->count_all_results();
+		
+	}
+
 	public function select_all() {
 		$data = $this->db->get('pengguna');
 

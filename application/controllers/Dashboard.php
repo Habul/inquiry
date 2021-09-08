@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+		$data['tot'] = $this->m_data->total_rows();
 		// hitung jumlah artikel
 		$data['jumlah_artikel'] = $this->m_data->get_data('artikel')->num_rows();
 		// hitung jumlah pengguna
@@ -29,6 +30,8 @@ class Dashboard extends CI_Controller {
 		$data['jumlah_inquiry'] = $this->m_data->select_null();
 		// hitung jumlah inquiry sudah terjawab
 		$data['total_inquiry'] = $this->m_data->select_not_null();
+		// count inquiry belum terjawab
+
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index',$data);
 		$this->load->view('dashboard/v_footer');

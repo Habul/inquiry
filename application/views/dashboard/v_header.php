@@ -34,9 +34,34 @@
 				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
 					<span class="sr-only">Toggle navigation</span>
 				</a>
-
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
+					<?php if($this->session->userdata('level') != "sales"){	?>
+					<?php
+					$this->load->model('m_data');
+					$jml_null=$this->m_data->total_rows(); ?>
+				<!-- Notifications: style can be found in dropdown.less -->
+         		 <li class="dropdown notifications-menu">
+           		 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-bell-o"></i>
+						<span class="label label-warning"><?=$jml_null; ?></span>
+						</a>
+				<ul class="dropdown-menu">
+					<li>
+					<!-- inner menu: contains the actual data -->
+               		 <ul class="menu">
+                 	 <li>
+                    <a href="<?php echo base_url('dashboard/inquiry') ?>">
+                    <i class="fa fa-warning text-yellow"></i>
+					You have <?=$jml_null; ?> Inquiry
+                    </a>
+				</li>
+                	</ul>
+				</li>
+			</ul>
+		</li>
+		<?php } ?>
+          <!-- Tasks: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="<?php echo base_url(); ?>assets/dist/img/user.png" class="user-image" alt="User Image">

@@ -74,7 +74,7 @@
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
-										<input type="text" name="cogs_idr" onkeyup="convertToRupiah(this);" class="form-control" value="<?php echo $p->cogs_idr; ?>" placeholder="Cogs Idr..">
+										<input type="text" name="cogs_idr" class="form-control" value="<?php echo $p->cogs_idr; ?>" placeholder="Cogs Idr..">
 										<?php echo form_error('cogs_idr'); ?>
 									</div>
 									<div class="form-group">
