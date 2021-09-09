@@ -47,7 +47,7 @@
 						<span class="label label-warning"><?=$jml_null; ?></span>
 						</a>
 				<ul class="dropdown-menu">
-					<li class="header">You have 1 notifications</li>
+					<li class="header">You have <?=$jml_null; ?> notifications</li>
 					<li>
 					<!-- inner menu: contains the actual data -->
                		 <ul class="menu">
@@ -64,13 +64,15 @@
 		<?php } ?>
           <!-- Tasks: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu">
+							<?php $id_user = $this->session->userdata('id'); 
+							$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="<?php echo base_url(); ?>assets/dist/img/user.png" class="user-image" alt="User Image">
+								<img src="<?php echo base_url().'/gambar/profile/'.$user->foto; ?>" class="user-image" alt="User Image">
 								<span class="hidden-xs"><b><?php echo $this->session->userdata('username') ?></b></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="user-header">
-									<img src="<?php echo base_url(); ?>assets/dist/img/user.png" class="img-circle" alt="User Image">
+									<img src="<?php echo base_url().'/gambar/profile/'.$user->foto; ?>" class="img-circle" alt="User Image">
 									<p>
 										<?php echo $this->session->userdata('username') ?>
 										<small><?php echo $this->session->userdata('level') ?></small>
@@ -96,7 +98,9 @@
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="<?php echo base_url(); ?>assets/dist/img/user.png" class="img-circle" alt="User Image">
+						<?php $id_user = $this->session->userdata('id'); 
+						$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
+						<img src="<?php echo base_url().'/gambar/profile/'.$user->foto; ?>" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<?php 
@@ -167,7 +171,11 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="<?php echo base_url().'dashboard/inquiry' ?>">
+						<li><a href="<?php echo base_url().'dashboard/inquiry_kurs' ?>">
+							<i class="fa fa-file-text"></i>
+							<span>UPDATE KURS</span></a>
+						</li>
+						<li><a href="<?php echo base_url().'dashboard/inquiry' ?>">
 							<i class="fa fa-sticky-note-o"></i>
 							<span>INPUT INQUIRY</span></a>
 						</li>
@@ -175,14 +183,9 @@
 							<i class="fa fa-archive"></i>
 							<span>VIEW INQUIRY</span></a>
 						</li>
+						
 						</ul>
 						</li>
-					<li>
-						<a href="<?php echo base_url().'dashboard/profil' ?>">
-							<i class="fa fa-user"></i>
-							<span>PROFIL</span>
-						</a>
-					</li>
 					<li>
 						<a href="<?php echo base_url().'dashboard/ganti_password' ?>">
 							<i class="fa fa-lock"></i>

@@ -70,7 +70,7 @@ class M_data extends CI_Model{
 	}
 
 	public function total_rows($q = NULL) {
-		$this->db->like('fu1', $q);
+		$this->db->where('fu1', $q);
 		$this->db->from('inquiry');
 		return $this->db->count_all_results();
 		
@@ -80,6 +80,20 @@ class M_data extends CI_Model{
 		$data = $this->db->get('pengguna');
 
 		return $data->result();
+	}
+
+	function update_data($data,$table){
+		$this->db->update($table,$data);
+	}
+
+	public function select($id = '') {
+		if ($id != '') {
+			$this->db->where('pengguna_id', $id);
+		}
+
+		$data = $this->db->get('pengguna');
+
+		return $data->row();
 	}
 }
 ?>

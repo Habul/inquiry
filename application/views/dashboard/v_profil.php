@@ -40,8 +40,13 @@
 										<input type="text" name="email" class="form-control" placeholder="Masukkan email .." value="<?php echo $p->pengguna_email; ?>">
 										<?php echo form_error('email'); ?>
 									</div>
+									<!--div class="form-group">
+										<label>Foto</label>
+										<input type="file" name="foto" class="form-control" >
+										
+									</-div-->
+									
 								</div>
-
 								<div class="box-footer">
 									<input type="submit" class="btn btn-success" value="Update">
 								</div>

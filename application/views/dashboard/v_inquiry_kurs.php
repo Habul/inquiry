@@ -78,6 +78,7 @@
 										<option value="MYR">MYR</option>
 										<option value="JPY">JPY</option>
 										<option value="GBP">GBP</option>
+										<option value="NZD">NZD</option>
 									</select>
 										<?php echo form_error('kurs'); ?>
 									</div>

@@ -538,25 +538,33 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_rules('nama','Nama','required');
 		$this->form_validation->set_rules('email','Email','required');
 		
-		if($this->form_validation->run() != false){
-
+		//$data = $this->input->post();
+		if($this->form_validation->run() != false){	
+			//$config['upload_path'] = './assets/img/';
+			//$config['allowed_types'] = 'jpg|png';
+			
+			//$this->load->library('upload', $config);
+			//$data_foto = $this->upload->data();
+			//$foto = $data_foto['file_name'];
+			
 			$id = $this->session->userdata('id');
-
+			
 			$nama = $this->input->post('nama');
 			$email = $this->input->post('email');
-			
+
 			$where = array(
 				'pengguna_id' => $id
 			);
 
 			$data = array(
 				'pengguna_nama' => $nama,
-				'pengguna_email' => $email
+				'pengguna_email' => $email,
+				'foto' => $foto
+
 			);
 
 			$this->m_data->update_data($where,$data,'pengguna');
 
-			redirect(base_url().'dashboard/profil/?alert=sukses');
 		}else{
 			// id pengguna yang sedang login
 			$id_pengguna = $this->session->userdata('id');
@@ -1131,5 +1139,67 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/v_footer');
         }
 
-	
+	public function inquiry_kurs()
+	{
+		// Wajib isi
+		$this->form_validation->set_rules('AUD','AUD','required');
+		$this->form_validation->set_rules('EUR','EUR','required');
+		$this->form_validation->set_rules('GBP','GBP','required');
+		$this->form_validation->set_rules('IDR','IDR','required');
+		$this->form_validation->set_rules('JPY','JPY','required');
+		$this->form_validation->set_rules('MYR','MYR','required');
+		$this->form_validation->set_rules('SGD','SGD','required');
+		$this->form_validation->set_rules('USD','USD','required');
+		$this->form_validation->set_rules('NZD','NZD','required');
+
+		if($this->form_validation->run() != false){
+
+			$id = $this->input->post('id');
+
+			$AUD = $this->input->post('AUD');
+			$EUR = $this->input->post('EUR');
+			$GBP = $this->input->post('GBP');
+			$IDR = $this->input->post('IDR');
+			$JPY = $this->input->post('JPY');
+			$MYR = $this->input->post('MYR');
+			$SGD = $this->input->post('SGD');
+			$USD = $this->input->post('USD');
+			$NZD = $this->input->post('NZD');
+
+			if($this->form_validation->run() != false){
+				$data = array(
+					'AUD' => $AUD,
+					'EUR' => $EUR,
+					'GBP' => $GBP, 
+					'IDR' => $IDR,
+					'JPY' => $JPY,
+					'MYR' => $MYR,
+					'SGD' => $SGD,
+					'USD' => $USD,
+					'NZD' => $NZD
+				);
+			}
+			
+			$where = array(
+				'inquiry_id' => $id
+			);
+
+			$this->m_data->update_data($where,$data,'kurs');
+
+			redirect(base_url().'dashboard/inquiry');
+
+		}
+		else
+		{
+			$id = $this->input->post('id');
+			$where = array(
+				'inquiry_id' => $id
+			);
+			$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+
+			$this->load->view('dashboard/v_header');
+			$this->load->view('dashboard/v_inquiry_kurs',$data);
+			$this->load->view('dashboard/v_footer');
+		}
+	}
 }
