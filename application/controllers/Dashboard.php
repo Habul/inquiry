@@ -823,14 +823,14 @@ class Dashboard extends CI_Controller {
 	{
 		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_inquiry',$data);
+		$this->load->view('inquiry/v_inquiry',$data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_tambah()
 	{	
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_inquiry_tambah');
+		$this->load->view('inquiry/v_inquiry_tambah');
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -878,7 +878,7 @@ class Dashboard extends CI_Controller {
 
 		}else{
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_inquiry_tambah');
+			$this->load->view('inquiry/v_inquiry_tambah');
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -890,7 +890,7 @@ class Dashboard extends CI_Controller {
 		);
 		$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_inquiry_edit',$data);
+		$this->load->view('inquiry/v_inquiry_edit',$data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -964,7 +964,7 @@ class Dashboard extends CI_Controller {
 			$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_inquiry_edit',$data);
+			$this->load->view('inquiry/v_inquiry_edit',$data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -976,7 +976,7 @@ class Dashboard extends CI_Controller {
 		);
 		$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_inquiry_edit_sales',$data);
+		$this->load->view('inquiry/v_inquiry_edit_sales',$data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -1034,7 +1034,7 @@ class Dashboard extends CI_Controller {
 			$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_inquiry_edit_sales',$data);
+			$this->load->view('inquiry/v_inquiry_edit_sales',$data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -1055,7 +1055,7 @@ class Dashboard extends CI_Controller {
 		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
 		//$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_inquiry_view',$data);
+		$this->load->view('inquiry/v_inquiry_view',$data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -1126,7 +1126,6 @@ class Dashboard extends CI_Controller {
 		$this->load->helper('download');
 		force_download('./assets/excel/Data Inquiry.xlsx', NULL);
         }
-	//END Crud inquiry
 
 	public function inquiry_detail($id) 
         {
@@ -1135,71 +1134,131 @@ class Dashboard extends CI_Controller {
 		);
 		$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_inquiry_detail',$data);
+		$this->load->view('inquiry/v_inquiry_detail',$data);
 		$this->load->view('dashboard/v_footer');
         }
 
-	public function inquiry_kurs()
+	public function inquiry_master()
+	{
+		$data['master'] = $this->m_data->get_data('master')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('inquiry/v_inquiry_master',$data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+	public function inquiry_master_tambah()
+	{	
+		$this->load->view('dashboard/v_header');
+		$this->load->view('inquiry/v_inquiry_master_tambah');
+		$this->load->view('dashboard/v_footer');
+	}	
+
+	public function inquiry_master_aksi()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('AUD','AUD','required');
-		$this->form_validation->set_rules('EUR','EUR','required');
-		$this->form_validation->set_rules('GBP','GBP','required');
-		$this->form_validation->set_rules('IDR','IDR','required');
-		$this->form_validation->set_rules('JPY','JPY','required');
-		$this->form_validation->set_rules('MYR','MYR','required');
-		$this->form_validation->set_rules('SGD','SGD','required');
-		$this->form_validation->set_rules('USD','USD','required');
-		$this->form_validation->set_rules('NZD','NZD','required');
+		$this->form_validation->set_rules('brand','Brand Produk','required');
+		$this->form_validation->set_rules('d1','D1','required');
+		$this->form_validation->set_rules('d2','D2','required');
+		$this->form_validation->set_rules('user','USER','required');
+		$this->form_validation->set_rules('distributor','DISTRIBUTOR','required');		
 
 		if($this->form_validation->run() != false){
 
-			$id = $this->input->post('id');
+			$brand = $this->input->post('brand');
+			$d1 = $this->input->post('d1');
+			$d2 = $this->input->post('d2');
+			$user = $this->input->post('user');
+			$distributor = $this->input->post('distributor');
 
-			$AUD = $this->input->post('AUD');
-			$EUR = $this->input->post('EUR');
-			$GBP = $this->input->post('GBP');
-			$IDR = $this->input->post('IDR');
-			$JPY = $this->input->post('JPY');
-			$MYR = $this->input->post('MYR');
-			$SGD = $this->input->post('SGD');
-			$USD = $this->input->post('USD');
-			$NZD = $this->input->post('NZD');
+			$data = array(
+				'brand' => $brand,
+				'd1' => $d1,
+				'd2' => $d2,
+				'user' => $user,
+				'distributor' => $distributor
+			);
+
+
+			$this->m_data->insert_data($data,'master');
+
+			redirect(base_url().'dashboard/inquiry_master');	
+
+		}else{
+			$this->load->view('dashboard/v_header');
+			$this->load->view('inquiry/v_inquiry_master_tambah');
+			$this->load->view('dashboard/v_footer');
+		}
+	}
+
+	public function inquiry_master_hapus($id)
+	{
+			$where = array(
+			'id_master' => $id
+		);
+
+		$this->m_data->delete_data($where,'master');
+
+		redirect(base_url().'dashboard/inquiry_master');
+	}
+
+	public function inquiry_master_edit($id)
+	{
+		$where = array(
+			'id_master' => $id
+		);
+		$data['master'] = $this->m_data->edit_data($where,'master')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('inquiry/v_inquiry_master_edit',$data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+
+	public function inquiry_master_update()
+	{
+		// Wajib isi
+		$this->form_validation->set_rules('d1','D1','required');
+		$this->form_validation->set_rules('d2','D2','required');
+		$this->form_validation->set_rules('user','USER','required');
+		$this->form_validation->set_rules('distributor','Manufacture/Distributor','required');
+
+		if($this->form_validation->run() != false){
+			$id = $this->input->post('id_master');
+
+			$brand = $this->input->post('brand');
+			$d1 = $this->input->post('d1');
+			$d2 = $this->input->post('d2');
+			$user = $this->input->post('user');
+			$distributor = $this->input->post('distributor');
 
 			if($this->form_validation->run() != false){
 				$data = array(
-					'AUD' => $AUD,
-					'EUR' => $EUR,
-					'GBP' => $GBP, 
-					'IDR' => $IDR,
-					'JPY' => $JPY,
-					'MYR' => $MYR,
-					'SGD' => $SGD,
-					'USD' => $USD,
-					'NZD' => $NZD
+					'brand' => $brand,
+					'd1' => $d1, 
+					'd2' => $d2,
+					'user' => $user,
+					'distributor' => $distributor
 				);
 			}
 			
 			$where = array(
-				'inquiry_id' => $id
+				'id_master' => $id
 			);
 
-			$this->m_data->update_data($where,$data,'kurs');
+			$this->m_data->update_data($where,$data,'master');
 
-			redirect(base_url().'dashboard/inquiry');
-
+			redirect(base_url().'dashboard/inquiry_master');
 		}
 		else
 		{
 			$id = $this->input->post('id');
 			$where = array(
-				'inquiry_id' => $id
+				'id_master' => $id
 			);
-			$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+			$data['master'] = $this->m_data->edit_data($where,'master')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_inquiry_kurs',$data);
+			$this->load->view('inquiry/v_inquiry_master_edit',$data);
 			$this->load->view('dashboard/v_footer');
 		}
-	}
+	}	
 }

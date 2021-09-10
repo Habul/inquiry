@@ -82,9 +82,6 @@ class M_data extends CI_Model{
 		return $data->result();
 	}
 
-	function update_data($data,$table){
-		$this->db->update($table,$data);
-	}
 
 	public function select($id = '') {
 		if ($id != '') {

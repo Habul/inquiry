@@ -171,10 +171,14 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-						<li><a href="<?php echo base_url().'dashboard/inquiry_kurs' ?>">
+						<?php 
+						if($this->session->userdata('level') != "sales"){ ?>
+						<li><a href="<?php echo base_url().'dashboard/inquiry_master' ?>">
 							<i class="fa fa-file-text"></i>
-							<span>UPDATE KURS</span></a>
+							<span>MASTER & KURS </span></a>
 						</li>
+						<?php
+						} ?>
 						<li><a href="<?php echo base_url().'dashboard/inquiry' ?>">
 							<i class="fa fa-sticky-note-o"></i>
 							<span>INPUT INQUIRY</span></a>
