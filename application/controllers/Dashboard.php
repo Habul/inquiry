@@ -1053,7 +1053,7 @@ class Dashboard extends CI_Controller {
 	public function inquiry_view()
 	{
 		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
-		//$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
+		
 		$this->load->view('dashboard/v_header');
 		$this->load->view('inquiry/v_inquiry_view',$data);
 		$this->load->view('dashboard/v_footer');
@@ -1156,6 +1156,7 @@ class Dashboard extends CI_Controller {
 	public function inquiry_master_aksi()
 	{
 		// Wajib isi
+		$this->form_validation->set_rules('id_master','Master Inquiry','required');
 		$this->form_validation->set_rules('brand','Brand Produk','required');
 		$this->form_validation->set_rules('d1','D1','required');
 		$this->form_validation->set_rules('d2','D2','required');
@@ -1164,6 +1165,7 @@ class Dashboard extends CI_Controller {
 
 		if($this->form_validation->run() != false){
 
+			$id_master = $this->input->post('id_master');
 			$brand = $this->input->post('brand');
 			$d1 = $this->input->post('d1');
 			$d2 = $this->input->post('d2');
@@ -1171,6 +1173,7 @@ class Dashboard extends CI_Controller {
 			$distributor = $this->input->post('distributor');
 
 			$data = array(
+				'id_master' => $id_master,
 				'brand' => $brand,
 				'd1' => $d1,
 				'd2' => $d2,
@@ -1222,7 +1225,7 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_rules('distributor','Manufacture/Distributor','required');
 
 		if($this->form_validation->run() != false){
-			$id = $this->input->post('id_master');
+			$id = $this->input->post('id');
 
 			$brand = $this->input->post('brand');
 			$d1 = $this->input->post('d1');
@@ -1260,5 +1263,114 @@ class Dashboard extends CI_Controller {
 			$this->load->view('inquiry/v_inquiry_master_edit',$data);
 			$this->load->view('dashboard/v_footer');
 		}
+	}
+	
+	public function inquiry_kurs()
+	{
+		$data['kurs'] = $this->m_data->get_data('kurs')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('inquiry/v_inquiry_kurs',$data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+	public function inquiry_kurs_tambah()
+	{	
+		$this->load->view('dashboard/v_header');
+		$this->load->view('inquiry/v_inquiry_kurs_tambah');
+		$this->load->view('dashboard/v_footer');
 	}	
+
+	public function inquiry_kurs_aksi()
+	{
+		// Wajib isi
+		$this->form_validation->set_rules('id_kurs','ID Kurs','required');
+		$this->form_validation->set_rules('currency','Currency','required');
+		$this->form_validation->set_rules('amount','Amount','required');	
+
+		if($this->form_validation->run() != false){
+
+			$id_kurs = $this->input->post('id_kurs');
+			$currency = $this->input->post('currency');
+			$amount = $this->input->post('amount');
+
+			$data = array(
+				'id_kurs' => $id_kurs,
+				'currency' => $currency,
+				'amount' => $amount
+			);
+
+			$this->m_data->insert_data($data,'kurs');
+
+			redirect(base_url().'dashboard/inquiry_kurs');	
+
+		}else{
+			$this->load->view('dashboard/v_header');
+			$this->load->view('inquiry/v_inquiry_kurs_tambah');
+			$this->load->view('dashboard/v_footer');
+		}
+	}
+
+	public function inquiry_kurs_edit($id)
+	{
+		$where = array(
+			'id_kurs' => $id
+		);
+		$data['kurs'] = $this->m_data->edit_data($where,'kurs')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('inquiry/v_inquiry_kurs_edit',$data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+
+	public function inquiry_kurs_update()
+	{
+		// Wajib isi
+		$this->form_validation->set_rules('currency','Currency','required');
+		$this->form_validation->set_rules('amount','Amount','required');
+
+		if($this->form_validation->run() != false){
+			$id = $this->input->post('id');
+
+			$currency = $this->input->post('currency');
+			$amount = $this->input->post('amount');
+
+			if($this->form_validation->run() != false){
+				$data = array(
+					'currency' => $currency,
+					'amount' => $amount
+				);
+			}
+			
+			$where = array(
+				'id_kurs' => $id
+			);
+
+			$this->m_data->update_data($where,$data,'kurs');
+			
+			redirect(base_url().'dashboard/inquiry_kurs');
+		}
+		else
+		{
+			$id = $this->input->post('id');
+			$where = array(
+				'id_kurs' => $id
+			);
+			$data['kurs'] = $this->m_data->edit_data($where,'kurs')->result();
+
+			$this->load->view('dashboard/v_header');
+			$this->load->view('inquiry/v_inquiry_kurs_edit',$data);
+			$this->load->view('dashboard/v_footer');
+		}
+	}
+
+	public function inquiry_kurs_hapus($id)
+	{
+			$where = array(
+			'id_kurs' => $id
+		);
+
+		$this->m_data->delete_data($where,'kurs');
+
+		redirect(base_url().'dashboard/inquiry_kurs');
+	}
 }

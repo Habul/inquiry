@@ -83,6 +83,7 @@ class M_data extends CI_Model{
 	}
 
 
+
 	public function select($id = '') {
 		if ($id != '') {
 			$this->db->where('pengguna_id', $id);

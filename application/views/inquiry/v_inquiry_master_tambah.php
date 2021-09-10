@@ -21,6 +21,13 @@
 						<form method="post" action="<?php echo base_url('dashboard/inquiry_master_aksi') ?>">
 							<div class="box-body">
 								<div class="form-group">
+										<?php 
+											$id_master=$this->db->select('id_master')->order_by('id_master',"desc")->limit(1)->get('master')->row();
+										?>
+									<input type="hidden" name="id_master" class="form-control" value=<?php echo $id_master->id_master+1 ?> >
+									<?php echo form_error('id_master'); ?>
+								</div>
+								<div class="form-group">
 									<label>Brand Produk</label>
 									<input type="text" name="brand" class="form-control" placeholder="input brand..">
 									<?php echo form_error('brand'); ?>

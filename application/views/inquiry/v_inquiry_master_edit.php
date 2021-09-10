@@ -15,7 +15,7 @@
 				<br />
 				<div class="box box-primary">
 					<div class="box-header">
-						<h3 class="box-title">Edit Inquiry</h3>
+						
 					</div>
 					<div class="box-body">
 						<?php foreach ($master as $p) { ?>
@@ -23,13 +23,13 @@
 								<div class="box-body">
 									<div class="form-group">
 										<label>Brand Produk</label>
-										<input type="hidden" readonly name="id" value="<?php echo $p->id_master; ?>">
+										<input type="hidden" name="id" value="<?php echo $p->id_master; ?>">
 										<input type="text" readonly name="brand" class="form-control" value="<?php echo $p->brand; ?>">
 										<?php echo form_error('brand'); ?>
 									</div>
 									<div class="form-group">
 										<label>D1</label>
-										<input type="number" min="0.1" step="0.1" name="d1" class="form-control" value="<?php echo $p->d1; ?> ">
+										<input type="number" min="0.1" step="0.1" name="d1" class="form-control" value="<?php echo $p->d1; ?>">
 										<?php echo form_error('d1'); ?>
 									</div>
 									<div class="form-group">
@@ -47,6 +47,7 @@
 										<input type="text" name="distributor" class="form-control" value="<?php echo $p->distributor; ?>">
 										<?php echo form_error('distributor'); ?>
 									</div>
+								</div>
 								<div class="box-footer">
 									<input type="submit" class="btn btn-success" value="Simpan">
 								</div>

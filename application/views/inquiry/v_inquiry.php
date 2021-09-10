@@ -2,7 +2,7 @@
 	<section class="content-header">
 		<h1>
 			Inquiry
-			<small>Inquiry Marketing - Purchasing</small>
+			<small>inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>VIEW INQUIRY</b></small>
 		</h1>
 	</section>
 
@@ -10,14 +10,14 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				<?php if($this->session->userdata('level') != "purchase"){	?>
-				<?php echo anchor(site_url('dashboard/inquiry_tambah'), ' <i class="fa fa-file-text-o"></i> &nbsp; Buat Inquiry baru', 'class="btn btn-primary btn-sm"'); ?>
-				<?php }	?>
-				<br/>
-				<br/>
 				<div class="box">
 					<div class="box-header">
-						<center><h3 class="box-title">Inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>VIEW INQUIRY</b></h3></center>						
+					<?php if($this->session->userdata('level') != "purchase"){	?>
+					<div class="col-md-6" style="padding: 0;">
+               			<a href="<?php echo base_url('dashboard/inquiry_tambah'); ?>" class="form-control btn btn-success" ><i
+                        class="glyphicon glyphicon-plus-sign"></i> Tambah Data Inquiry</a>
+					</div>
+					 <?php }	?>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -34,7 +34,7 @@
 									<th>Deadline</th>
 									<th>Keterangan</th>
 									<th>Request</th>
-									<th width="10%">Action</th>
+									<th width="12%">Action</th>
 								</tr>
 								
 							</thead>
@@ -57,13 +57,13 @@
 										<td><?php echo $p->request; ?></td>
 										<td style="text-align:center">
 										<?php if($this->session->userdata('level') != "purchase"){	?>
-										<a href="<?php echo base_url().'dashboard/inquiry_edit_sales/'.$p->inquiry_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
+										<a href="<?php echo base_url().'dashboard/inquiry_edit_sales/'.$p->inquiry_id; ?>" class="btn btn-warning btn-sm" title="Edit Sales"><i class="fa fa-pencil"></i></a>
 										<?php }	?>
 										<?php if($this->session->userdata('level') != "sales"){	?>
 											<?php 
-											echo anchor(site_url('dashboard/inquiry_edit/'.$p->inquiry_id),'<i class="fa fa-edit"></i>',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
+											echo anchor(site_url('dashboard/inquiry_edit/'.$p->inquiry_id),'<i class="fa fa-edit"></i>&nbsp;Edit',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
 											echo '  '; 
-											echo anchor(site_url('dashboard/inquiry_hapus/'.$p->inquiry_id),'<i class="fa fa-trash"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+											echo anchor(site_url('dashboard/inquiry_hapus/'.$p->inquiry_id),'<i class="fa fa-trash"></i>&nbsp;Del','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 											?>
 										</td>
 									</tr>

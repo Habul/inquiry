@@ -175,7 +175,11 @@
 						if($this->session->userdata('level') != "sales"){ ?>
 						<li><a href="<?php echo base_url().'dashboard/inquiry_master' ?>">
 							<i class="fa fa-file-text"></i>
-							<span>MASTER & KURS </span></a>
+							<span>MASTER INQUIRY </span></a>
+						</li>
+						<li><a href="<?php echo base_url().'dashboard/inquiry_kurs' ?>">
+							<i class="fa fa-money"></i>
+							<span>KURS INQUIRY</span></a>
 						</li>
 						<?php
 						} ?>
