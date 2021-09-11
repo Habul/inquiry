@@ -54,7 +54,7 @@
 										<td><?php echo $p->request; ?></td>	
 										<td style="text-align:center">
 											<?php
-											echo anchor(site_url('dashboard/inquiry_detail/'.$p->inquiry_id),'<i class="fa fa-eye"></i>&nbsp;View',array('title'=>'detail','class'=>'btn btn-primary btn-sm')); 
+											echo anchor(site_url('dashboard/inquiry_detail/'.$p->inquiry_id),'<i class="fa fa-eye"></i>&nbsp;Detail',array('title'=>'detail','class'=>'btn btn-primary btn-sm')); 
                     						?></td>
 									</tr>
 								<?php } ?>

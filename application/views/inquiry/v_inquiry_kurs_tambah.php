@@ -10,13 +10,7 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<a href="<?php echo base_url().'dashboard/inquiry_kurs'; ?>" class="btn btn-sm btn-primary">Kembali</a>
-				<br/>
-				<br/>
 				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Kurs Inquiry</h3>
-					</div>
 					<div class="box-body">
 						<form method="post" action="<?php echo base_url('dashboard/inquiry_kurs_aksi') ?>">
 							<div class="box-body">
@@ -39,7 +33,8 @@
 								</div>
 							</div>
 							<div class="box-footer">
-								<input type="submit" class="btn btn-success" value="Simpan">
+								<a href="<?php echo base_url().'dashboard/inquiry_kurs'; ?>" class="btn btn-default">Kembali</a>
+								<input type="submit" class="btn btn-info pull-right" value="Simpan">
 							</div>
 						</form>
 					</div>

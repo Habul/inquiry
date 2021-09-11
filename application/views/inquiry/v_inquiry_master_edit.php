@@ -5,18 +5,10 @@
 			<small>Purchasing</small>
 		</h1>
 	</section>
-
 	<section class="content">
-
 		<div class="row">
 			<div class="col-lg-6">
-				<a href="<?php echo base_url() . 'dashboard/inquiry_master'; ?>" class="btn btn-sm btn-primary">Kembali</a>
-				<br />
-				<br />
 				<div class="box box-primary">
-					<div class="box-header">
-						
-					</div>
 					<div class="box-body">
 						<?php foreach ($master as $p) { ?>
 							<form method="post" action="<?php echo base_url('dashboard/inquiry_master_update') ?>">
@@ -49,7 +41,8 @@
 									</div>
 								</div>
 								<div class="box-footer">
-									<input type="submit" class="btn btn-success" value="Simpan">
+									<a href="<?php echo base_url(). 'dashboard/inquiry_master'; ?>" class="btn btn-default">Kembali</a>
+									<button type="submit" class="btn btn-info pull-right">Simpan</button>
 								</div>
 							</form>
 						<?php } ?>

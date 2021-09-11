@@ -76,7 +76,7 @@
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">
 								<tr>
-									<th width="%">Nama</th>
+									<th width="20%">Nama</th>
 									<th width="1px">:</th>
 									<td>
 											<?php 
@@ -87,11 +87,6 @@
 									</td>
 								</tr>
 								<tr>
-									<th width="20%">Username</th>
-									<th width="1px">:</th>
-									<td><?php echo $this->session->userdata('username') ?></td>
-								</tr>
-								<tr>
 									<th width="20%">Divisi</th>
 									<th width="1px">:</th>
 									<td><?php echo $this->session->userdata('level') ?></td>
@@ -100,21 +95,6 @@
 									<th width="20%">Status</th>
 									<th width="1px">:</th>
 									<td>Aktif</td>
-								</tr>
-								<tr>
-									<th width="20%"></th>
-									<th width="1px"></th>
-									<td></td>
-								</tr>
-								<tr>
-									<th width="20%"></th>
-									<th width="1px"></th>
-									<td></td>
-								</tr>
-								<tr>
-									<th width="20%"></th>
-									<th width="1px"></th>
-									<td></td>
 								</tr>
 							</table>
 						</div>

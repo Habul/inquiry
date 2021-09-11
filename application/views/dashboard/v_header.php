@@ -47,7 +47,7 @@
 						<span class="label label-warning"><?=$jml_null; ?></span>
 						</a>
 				<ul class="dropdown-menu">
-					<li class="header">You have <?=$jml_null; ?> notifications</li>
+					<li class="header">You have notifications</li>
 					<li>
 					<!-- inner menu: contains the actual data -->
                		 <ul class="menu">

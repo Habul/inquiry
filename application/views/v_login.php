@@ -23,7 +23,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="<?php echo base_url(); ?>assets/index2.html"><b>Intisera </b>Group</a>
+      <a href="<?php echo base_url(); ?>assets/index2.html"><b>Intisera</b> Login</a>
     </div>
     <!-- /.login-logo -->
 
@@ -40,7 +40,7 @@
     ?>
 
     <div class="login-box-body">
-      <p class="login-box-msg">IT-DIV</p>
+      <p class="login-box-msg">Log in to start your session</p>
 
       <form action="<?php echo base_url().'login/aksi' ?>" method="post">
 
@@ -60,7 +60,7 @@
           <div class="col-xs-8">
             <div class="checkbox icheck">
               <label>
-                 <a href="<?php echo base_url(); ?>">Kembali</a>
+                 <a href="<?php echo base_url(); ?>">Back</a>
               </label>
             </div>
           </div>

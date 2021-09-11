@@ -10,15 +10,7 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<a href="<?php echo base_url().'dashboard/inquiry_master'; ?>" class="btn btn-sm btn-primary">Kembali</a>
-				<br/>
-				<br/>
 				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Master Inquiry</h3>
-					</div>
-					<div class="box-body">
-						<form method="post" action="<?php echo base_url('dashboard/inquiry_master_aksi') ?>">
 							<div class="box-body">
 								<div class="form-group">
 										<?php 
@@ -52,15 +44,14 @@
 									<input type='text' name="distributor" class="form-control" placeholder="input .."></input>
 									<?php echo form_error('distributor'); ?>
 								</div>
-								
 							</div>
 							<div class="box-footer">
-								<input type="submit" class="btn btn-success" value="Simpan">
+								<a href="<?php echo base_url().'dashboard/inquiry_master'; ?>" class="btn btn-default">Kembali</a>
+								<input type="submit" class="btn btn-info pull-right" value="Simpan">
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 </div>

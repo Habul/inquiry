@@ -16,10 +16,6 @@
                			<a href="<?php echo base_url('dashboard/inquiry_kurs_tambah'); ?>" class="form-control btn btn-success" ><i
                         class="glyphicon glyphicon-plus-sign"></i> Tambah Data Kurs</a>
 						</div>
-						<div class="col-md-3">
-             			<a href="<?php echo base_url('dashboard/import_kurs'); ?>" class="form-control btn btn-default"><i
-                        class="glyphicon glyphicon glyphicon-floppy-save"></i> Import Data Csv</a>
-         				</div>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -44,7 +40,7 @@
 										<td><?php echo number_format($p->amount, 0, '.', '.'); ?></td>
 										<td style="text-align:center">
 											<?php 
-											echo anchor(site_url('dashboard/inquiry_kurs_edit/'.$p->id_kurs),'<i class="fa fa-edit"></i> &nbsp; Edit',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
+											echo anchor(site_url('dashboard/inquiry_kurs_edit/'.$p->id_kurs),'<i class="fa fa-edit"></i> &nbsp; Edt',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
 											echo '  '; 
 											echo anchor(site_url('dashboard/inquiry_kurs_hapus/'.$p->id_kurs),'<i class="fa fa-trash"></i>&nbsp; Del','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 											?>

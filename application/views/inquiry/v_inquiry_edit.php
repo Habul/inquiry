@@ -10,13 +10,7 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<a href="<?php echo base_url() . 'dashboard/inquiry'; ?>" class="btn btn-sm btn-primary">Kembali</a>
-				<br />
-				<br />
 				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Edit Inquiry</h3>
-					</div>
 					<div class="box-body">
 						<?php foreach ($inquiry as $p) { ?>
 							<form method="post" action="<?php echo base_url('dashboard/inquiry_update') ?>">
@@ -59,27 +53,29 @@
 									<div class="form-group">
 										<label>Keterangan Fu</label>
 										<input type="text" name="ket_fu" class="form-control" value="<?php echo $p->ket_fu; ?>" placeholder="Keterangan Fu..">
+										<smal>Kosongkan jika tidak di perlukan</smal>
 										<?php echo form_error('ket_fu'); ?>
+									</div>
+									<div class="form-group">
+									<label>Kurs</label>
+									<select class="form-control" name="kurs">
+										<option value="">- Pilih Kurs -</option>
+										<option value="1">AUD</option>
+										<option value="2">EUR</option>
+										<option value="3">GBP</option>
+										<option value="4">IDR</option>
+										<option value="5">JPY</option>
+										<option value="6">MYR</option>
+										<option value="7">SGD</option>
+										<option value="8">USD</option>
+										<option value="9">NZD</option>
+									</select>
+										<?php echo form_error('kurs'); ?>
 									</div>
 									<div class="form-group">
 										<label>Cogs</label>
 										<input type="number" min="0.001" step="0.001" name="cogs" class="form-control" value="<?php echo $p->cogs; ?>" placeholder="Isi Cogs..">
 										<?php echo form_error('cogs'); ?>
-									</div>
-									<div class="form-group">
-										<label>Kurs</label>
-										<select class="form-control" name="kurs">
-										<option value="">- Pilih Kurs -</option>
-										<option value="SGD">SGD</option>
-										<option value="IDR">IDR</option>
-										<option value="AUD">AUD</option>
-										<option value="USD">USD</option>
-										<option value="EUR">EUR</option>
-										<option value="MYR">MYR</option>
-										<option value="JPY">JPY</option>
-										<option value="GBP">GBP</option>
-									</select>
-										<?php echo form_error('kurs'); ?>
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
@@ -113,7 +109,8 @@
 									</div>
 								</div>
 								<div class="box-footer">
-									<input type="submit" class="btn btn-success" value="Simpan">
+									<a href="<?php echo base_url() . 'dashboard/inquiry'; ?>" class="btn btn-default">Kembali</a>
+									<input type="submit" class="btn btn-info pull-right" value="Simpan">
 								</div>
 							</form>
 						<?php } ?>

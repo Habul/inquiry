@@ -15,6 +15,15 @@ class M_data extends CI_Model{
 		return $this->db->get($table);
 	}
 
+	public function select_inquiry() {
+		$sql = "SELECT a.sales,a.tanggal,a.inquiry_id,b.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,a.ket_fu,a.cogs,c.currency,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch FROM inquiry a,MASTER b, kurs c 
+		WHERE a.brand=b.id_master AND a.kurs=c.id_kurs";
+
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
 	// fungsi untuk menginput data ke database
 	function insert_data($data,$table){
 		$this->db->insert($table,$data);
@@ -54,7 +63,8 @@ class M_data extends CI_Model{
 	}
 
 	public function select_all_inquiry() {
-		$sql = "SELECT * FROM inquiry where fu1 is NOT NULL";
+		$sql = "SELECT a.sales,a.tanggal,a.inquiry_id,b.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,a.ket_fu,a.cogs,c.currency as kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch FROM inquiry a,MASTER b, kurs c 
+		WHERE a.brand=b.id_master AND a.kurs=c.id_kurs";
 
 		$data = $this->db->query($sql);
 

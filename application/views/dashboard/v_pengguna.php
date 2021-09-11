@@ -10,14 +10,12 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				
-				<a href="<?php echo base_url().'dashboard/pengguna_tambah'; ?>" class="btn btn-sm btn-primary">Buat pengguna baru</a>
-
-				<br/>
-				<br/>
-
 				<div class="box">
 					<div class="box-header">
+						<div class="col-md-6" style="padding: 0;">
+               			<a href="<?php echo base_url('dashboard/pengguna_tambah'); ?>" class="form-control btn btn-success" ><i
+                        class="glyphicon glyphicon-plus-sign"></i> Tambah Pengguna</a>
+					</div>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">

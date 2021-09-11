@@ -900,7 +900,7 @@ class Dashboard extends CI_Controller {
 		// Wajib isi
 		$this->form_validation->set_rules('cek','Check','required');
 		$this->form_validation->set_rules('fu1','Fu1','required');
-		$this->form_validation->set_rules('ket_fu','Ket FU','required');
+		//$this->form_validation->set_rules('ket_fu','Ket FU','required');
 		$this->form_validation->set_rules('cogs','COGS','required');
 		$this->form_validation->set_rules('kurs','Kurs','required');
 		$this->form_validation->set_rules('cogs_idr','COGS IDR','required');
@@ -1052,7 +1052,7 @@ class Dashboard extends CI_Controller {
 
 	public function inquiry_view()
 	{
-		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
+		$data['inquiry'] = $this->m_data->select_inquiry();
 		
 		$this->load->view('dashboard/v_header');
 		$this->load->view('inquiry/v_inquiry_view',$data);
