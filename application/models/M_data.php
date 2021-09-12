@@ -104,4 +104,3 @@ class M_data extends CI_Model{
 		return $data->row();
 	}
 }
-?>

@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard extends CI_Controller
+{
 
 	function __construct()
 	{
@@ -9,13 +10,14 @@ class Dashboard extends CI_Controller {
 
 		date_default_timezone_set('Asia/Jakarta');
 
+		$this->load->helper(array('form', 'url'));
 		$this->load->model('m_data');
 
 		// cek session yang login, 
 		// jika session status tidak sama dengan session telah_login, berarti pengguna belum login
 		// maka halaman akan di alihkan kembali ke halaman login.
-		if($this->session->userdata('status')!="telah_login"){
-			redirect(base_url().'login?alert=belum_login');
+		if ($this->session->userdata('status') != "telah_login") {
+			redirect(base_url() . 'login?alert=belum_login');
 		}
 	}
 
@@ -33,27 +35,27 @@ class Dashboard extends CI_Controller {
 		// count inquiry belum terjawab
 
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_index',$data);
+		$this->load->view('dashboard/v_index', $data);
 		$this->load->view('dashboard/v_footer');
 
 		//$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-		
+
 		//$user 		= $this->m_data->select_all();
 		//$index = 0;
 		//foreach ($user as $u) {
-		   //$color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
+		//$color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
 
-			//$pegawai_by_inquiry = $this->m_data->select_by_inquiry($u->pengguna_id);
-			//$data_inquiry[$index]['value'] = $pegawai_by_inquiry->jml;
-			//$data_inquiry[$index]['color'] = $color;
-			//$data_inquiry[$index]['highlight'] = $color;
-			//$data_inquiry[$index]['label'] = $u->id_sales;	
-			
-			//$index++;
+		//$pegawai_by_inquiry = $this->m_data->select_by_inquiry($u->pengguna_id);
+		//$data_inquiry[$index]['value'] = $pegawai_by_inquiry->jml;
+		//$data_inquiry[$index]['color'] = $color;
+		//$data_inquiry[$index]['highlight'] = $color;
+		//$data_inquiry[$index]['label'] = $u->id_sales;	
+
+		//$index++;
 		//$data['data_inquiry'] = json_encode($data_inquiry);
 	}
-		
-	
+
+
 	public function keluar()
 	{
 		$this->session->sess_destroy();
@@ -71,12 +73,12 @@ class Dashboard extends CI_Controller {
 	{
 
 		// form validasi
-		$this->form_validation->set_rules('password_lama','Password Lama','required');
-		$this->form_validation->set_rules('password_baru','Password Baru','required|min_length[6]');
-		$this->form_validation->set_rules('konfirmasi_password','Konfirmasi Password Baru','required|matches[password_baru]');
+		$this->form_validation->set_rules('password_lama', 'Password Lama', 'required');
+		$this->form_validation->set_rules('password_baru', 'Password Baru', 'required|min_length[6]');
+		$this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password Baru', 'required|matches[password_baru]');
 
 		// cek validasi
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			// menangkap data dari form
 			$password_lama = $this->input->post('password_lama');
@@ -91,7 +93,7 @@ class Dashboard extends CI_Controller {
 			$cek = $this->m_data->cek_login('pengguna', $where)->num_rows();
 
 			// cek kesesuaikan password lama
-			if($cek > 0){
+			if ($cek > 0) {
 
 				// update data password pengguna
 				$w = array(
@@ -104,17 +106,15 @@ class Dashboard extends CI_Controller {
 
 				// alihkan halaman kembali ke halaman ganti password
 				redirect('dashboard/ganti_password?alert=sukses');
-			}else{
+			} else {
 				// alihkan halaman kembali ke halaman ganti password
 				redirect('dashboard/ganti_password?alert=gagal');
 			}
-
-		}else{
+		} else {
 			$this->load->view('dashboard/v_header');
 			$this->load->view('dashboard/v_ganti_password');
 			$this->load->view('dashboard/v_footer');
 		}
-
 	}
 
 	// CRUD KATEGORI
@@ -122,7 +122,7 @@ class Dashboard extends CI_Controller {
 	{
 		$data['kategori'] = $this->m_data->get_data('kategori')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_kategori',$data);
+		$this->load->view('dashboard/v_kategori', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -135,9 +135,9 @@ class Dashboard extends CI_Controller {
 
 	public function kategori_aksi()
 	{
-		$this->form_validation->set_rules('kategori','Kategori','required');
+		$this->form_validation->set_rules('kategori', 'Kategori', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$kategori = $this->input->post('kategori');
 
@@ -146,11 +146,10 @@ class Dashboard extends CI_Controller {
 				'kategori_slug' => strtolower(url_title($kategori))
 			);
 
-			$this->m_data->insert_data($data,'kategori');
+			$this->m_data->insert_data($data, 'kategori');
 
-			redirect(base_url().'dashboard/kategori');
-			
-		}else{
+			redirect(base_url() . 'dashboard/kategori');
+		} else {
 			$this->load->view('dashboard/v_header');
 			$this->load->view('dashboard/v_kategori_tambah');
 			$this->load->view('dashboard/v_footer');
@@ -162,17 +161,17 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'kategori_id' => $id
 		);
-		$data['kategori'] = $this->m_data->edit_data($where,'kategori')->result();
+		$data['kategori'] = $this->m_data->edit_data($where, 'kategori')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_kategori_edit',$data);
+		$this->load->view('dashboard/v_kategori_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function kategori_update()
 	{
-		$this->form_validation->set_rules('kategori','Kategori','required');
+		$this->form_validation->set_rules('kategori', 'Kategori', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$id = $this->input->post('id');
 			$kategori = $this->input->post('kategori');
@@ -186,19 +185,18 @@ class Dashboard extends CI_Controller {
 				'kategori_slug' => strtolower(url_title($kategori))
 			);
 
-			$this->m_data->update_data($where, $data,'kategori');
+			$this->m_data->update_data($where, $data, 'kategori');
 
-			redirect(base_url().'dashboard/kategori');
-			
-		}else{
+			redirect(base_url() . 'dashboard/kategori');
+		} else {
 
 			$id = $this->input->post('id');
 			$where = array(
 				'kategori_id' => $id
 			);
-			$data['kategori'] = $this->m_data->edit_data($where,'kategori')->result();
+			$data['kategori'] = $this->m_data->edit_data($where, 'kategori')->result();
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_kategori_edit',$data);
+			$this->load->view('dashboard/v_kategori_edit', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -210,18 +208,18 @@ class Dashboard extends CI_Controller {
 			'kategori_id' => $id
 		);
 
-		$this->m_data->delete_data($where,'kategori');
+		$this->m_data->delete_data($where, 'kategori');
 
-		redirect(base_url().'dashboard/kategori');
-		}
+		redirect(base_url() . 'dashboard/kategori');
+	}
 	// END CRUD KATEGORI
 
 	// CRUD ARTIKEL
 	public function artikel()
 	{
-		$data['artikel'] = $this->db->query("SELECT * FROM artikel,kategori,pengguna WHERE artikel_kategori=kategori_id and artikel_author=pengguna_id order by artikel_id desc")->result();	
+		$data['artikel'] = $this->db->query("SELECT * FROM artikel,kategori,pengguna WHERE artikel_kategori=kategori_id and artikel_author=pengguna_id order by artikel_id desc")->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_artikel',$data);
+		$this->load->view('dashboard/v_artikel', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -229,23 +227,23 @@ class Dashboard extends CI_Controller {
 	{
 		$data['kategori'] = $this->m_data->get_data('kategori')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_artikel_tambah',$data);
+		$this->load->view('dashboard/v_artikel_tambah', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function artikel_aksi()
 	{
 		// Wajib isi judul,konten dan kategori
-		$this->form_validation->set_rules('judul','Judul','required|is_unique[artikel.artikel_judul]');
-		$this->form_validation->set_rules('konten','Konten','required');
-		$this->form_validation->set_rules('kategori','Kategori','required');
+		$this->form_validation->set_rules('judul', 'Judul', 'required|is_unique[artikel.artikel_judul]');
+		$this->form_validation->set_rules('konten', 'Konten', 'required');
+		$this->form_validation->set_rules('kategori', 'Kategori', 'required');
 
 		// Membuat gambar wajib di isi
-		if (empty($_FILES['sampul']['name'])){
+		if (empty($_FILES['sampul']['name'])) {
 			$this->form_validation->set_rules('sampul', 'Gambar Sampul', 'required');
 		}
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$config['upload_path']   = './gambar/artikel/';
 			$config['allowed_types'] = 'gif|jpg|png';
@@ -277,24 +275,22 @@ class Dashboard extends CI_Controller {
 					'artikel_status' => $status,
 				);
 
-				$this->m_data->insert_data($data,'artikel');
+				$this->m_data->insert_data($data, 'artikel');
 
-				redirect(base_url().'dashboard/artikel');	
-				
+				redirect(base_url() . 'dashboard/artikel');
 			} else {
 
 				$this->form_validation->set_message('sampul', $data['gambar_error'] = $this->upload->display_errors());
 
 				$data['kategori'] = $this->m_data->get_data('kategori')->result();
 				$this->load->view('dashboard/v_header');
-				$this->load->view('dashboard/v_artikel_tambah',$data);
+				$this->load->view('dashboard/v_artikel_tambah', $data);
 				$this->load->view('dashboard/v_footer');
 			}
-
-		}else{
+		} else {
 			$data['kategori'] = $this->m_data->get_data('kategori')->result();
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_artikel_tambah',$data);
+			$this->load->view('dashboard/v_artikel_tambah', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -305,10 +301,10 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'artikel_id' => $id
 		);
-		$data['artikel'] = $this->m_data->edit_data($where,'artikel')->result();
+		$data['artikel'] = $this->m_data->edit_data($where, 'artikel')->result();
 		$data['kategori'] = $this->m_data->get_data('kategori')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_artikel_edit',$data);
+		$this->load->view('dashboard/v_artikel_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -316,11 +312,11 @@ class Dashboard extends CI_Controller {
 	public function artikel_update()
 	{
 		// Wajib isi judul,konten dan kategori
-		$this->form_validation->set_rules('judul','Judul','required');
-		$this->form_validation->set_rules('konten','Konten','required');
-		$this->form_validation->set_rules('kategori','Kategori','required');
-		
-		if($this->form_validation->run() != false){
+		$this->form_validation->set_rules('judul', 'Judul', 'required');
+		$this->form_validation->set_rules('konten', 'Konten', 'required');
+		$this->form_validation->set_rules('kategori', 'Kategori', 'required');
+
+		if ($this->form_validation->run() != false) {
 
 			$id = $this->input->post('id');
 
@@ -342,10 +338,10 @@ class Dashboard extends CI_Controller {
 				'artikel_status' => $status,
 			);
 
-			$this->m_data->update_data($where,$data,'artikel');
+			$this->m_data->update_data($where, $data, 'artikel');
 
 
-			if (!empty($_FILES['sampul']['name'])){
+			if (!empty($_FILES['sampul']['name'])) {
 				$config['upload_path']   = './gambar/artikel/';
 				$config['allowed_types'] = 'gif|jpg|png';
 
@@ -360,35 +356,33 @@ class Dashboard extends CI_Controller {
 						'artikel_sampul' => $gambar['file_name'],
 					);
 
-					$this->m_data->update_data($where,$data,'artikel');
+					$this->m_data->update_data($where, $data, 'artikel');
 
-					redirect(base_url().'dashboard/artikel');	
-
+					redirect(base_url() . 'dashboard/artikel');
 				} else {
 					$this->form_validation->set_message('sampul', $data['gambar_error'] = $this->upload->display_errors());
-					
+
 					$where = array(
 						'artikel_id' => $id
 					);
-					$data['artikel'] = $this->m_data->edit_data($where,'artikel')->result();
+					$data['artikel'] = $this->m_data->edit_data($where, 'artikel')->result();
 					$data['kategori'] = $this->m_data->get_data('kategori')->result();
 					$this->load->view('dashboard/v_header');
-					$this->load->view('dashboard/v_artikel_edit',$data);
+					$this->load->view('dashboard/v_artikel_edit', $data);
 					$this->load->view('dashboard/v_footer');
 				}
-			}else{
-				redirect(base_url().'dashboard/artikel');	
+			} else {
+				redirect(base_url() . 'dashboard/artikel');
 			}
-
-		}else{
+		} else {
 			$id = $this->input->post('id');
 			$where = array(
 				'artikel_id' => $id
 			);
-			$data['artikel'] = $this->m_data->edit_data($where,'artikel')->result();
+			$data['artikel'] = $this->m_data->edit_data($where, 'artikel')->result();
 			$data['kategori'] = $this->m_data->get_data('kategori')->result();
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_artikel_edit',$data);
+			$this->load->view('dashboard/v_artikel_edit', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -399,9 +393,9 @@ class Dashboard extends CI_Controller {
 			'artikel_id' => $id
 		);
 
-		$this->m_data->delete_data($where,'artikel');
+		$this->m_data->delete_data($where, 'artikel');
 
-		redirect(base_url().'dashboard/artikel');
+		redirect(base_url() . 'dashboard/artikel');
 	}
 	// end crud artikel
 
@@ -409,9 +403,9 @@ class Dashboard extends CI_Controller {
 	// CRUD PAGES
 	public function pages()
 	{
-		$data['halaman'] = $this->m_data->get_data('halaman')->result();	
+		$data['halaman'] = $this->m_data->get_data('halaman')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_pages',$data);
+		$this->load->view('dashboard/v_pages', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -425,10 +419,10 @@ class Dashboard extends CI_Controller {
 	public function pages_aksi()
 	{
 		// Wajib isi judul,konten
-		$this->form_validation->set_rules('judul','Judul','required|is_unique[halaman.halaman_judul]');
-		$this->form_validation->set_rules('konten','Konten','required');
+		$this->form_validation->set_rules('judul', 'Judul', 'required|is_unique[halaman.halaman_judul]');
+		$this->form_validation->set_rules('konten', 'Konten', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$judul = $this->input->post('judul');
 			$slug = strtolower(url_title($judul));
@@ -440,12 +434,11 @@ class Dashboard extends CI_Controller {
 				'halaman_konten' => $konten
 			);
 
-			$this->m_data->insert_data($data,'halaman');
+			$this->m_data->insert_data($data, 'halaman');
 
 			// alihkan kembali ke method pages
-			redirect(base_url().'dashboard/pages');	
-
-		}else{
+			redirect(base_url() . 'dashboard/pages');
+		} else {
 			$this->load->view('dashboard/v_header');
 			$this->load->view('dashboard/v_pages_tambah');
 			$this->load->view('dashboard/v_footer');
@@ -457,9 +450,9 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'halaman_id' => $id
 		);
-		$data['halaman'] = $this->m_data->edit_data($where,'halaman')->result();
+		$data['halaman'] = $this->m_data->edit_data($where, 'halaman')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_pages_edit',$data);
+		$this->load->view('dashboard/v_pages_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -467,17 +460,17 @@ class Dashboard extends CI_Controller {
 	public function pages_update()
 	{
 		// Wajib isi judul,konten 
-		$this->form_validation->set_rules('judul','Judul','required');
-		$this->form_validation->set_rules('konten','Konten','required');
-		
-		if($this->form_validation->run() != false){
+		$this->form_validation->set_rules('judul', 'Judul', 'required');
+		$this->form_validation->set_rules('konten', 'Konten', 'required');
+
+		if ($this->form_validation->run() != false) {
 
 			$id = $this->input->post('id');
 
 			$judul = $this->input->post('judul');
 			$slug = strtolower(url_title($judul));
 			$konten = $this->input->post('konten');
-			
+
 			$where = array(
 				'halaman_id' => $id
 			);
@@ -488,17 +481,17 @@ class Dashboard extends CI_Controller {
 				'halaman_konten' => $konten
 			);
 
-			$this->m_data->update_data($where,$data,'halaman');
+			$this->m_data->update_data($where, $data, 'halaman');
 
-			redirect(base_url().'dashboard/pages');
-		}else{
+			redirect(base_url() . 'dashboard/pages');
+		} else {
 			$id = $this->input->post('id');
 			$where = array(
 				'halaman_id' => $id
 			);
-			$data['halaman'] = $this->m_data->edit_data($where,'halaman')->result();
+			$data['halaman'] = $this->m_data->edit_data($where, 'halaman')->result();
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_pages_edit',$data);
+			$this->load->view('dashboard/v_pages_edit', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -508,10 +501,10 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'halaman_id' => $id
 		);
-		
-		$this->m_data->delete_data($where,'halaman');
 
-		redirect(base_url().'dashboard/pages');
+		$this->m_data->delete_data($where, 'halaman');
+
+		redirect(base_url() . 'dashboard/pages');
 	}
 	// end crud pages
 
@@ -525,69 +518,66 @@ class Dashboard extends CI_Controller {
 			'pengguna_id' => $id_pengguna
 		);
 
-		$data['profil'] = $this->m_data->edit_data($where,'pengguna')->result();
+		$data['profil'] = $this->m_data->edit_data($where, 'pengguna')->result();
 
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_profil',$data);
+		$this->load->view('dashboard/v_profil', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function profil_update()
 	{
 		// Wajib isi nama dan email
-		$this->form_validation->set_rules('nama','Nama','required');
-		$this->form_validation->set_rules('email','Email','required');
-		
-		//$data = $this->input->post();
-		if($this->form_validation->run() != false){	
-			//$config['upload_path'] = './assets/img/';
-			//$config['allowed_types'] = 'jpg|png';
-			
-			//$this->load->library('upload', $config);
-			//$data_foto = $this->upload->data();
-			//$foto = $data_foto['file_name'];
-			
-			$id = $this->session->userdata('id');
-			
-			$nama = $this->input->post('nama');
-			$email = $this->input->post('email');
 
-			$where = array(
-				'pengguna_id' => $id
-			);
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
 
-			$data = array(
-				'pengguna_nama' => $nama,
-				'pengguna_email' => $email,
-				'foto' => $foto
+		if ($this->form_validation->run() != false) {
 
-			);
+			$config['upload_path']   = './gambar/profile/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['overwrite']	= true;
+			$config['max_size']     = 1024;
 
-			$this->m_data->update_data($where,$data,'pengguna');
+			$this->load->library('upload', $config);
 
-		}else{
-			// id pengguna yang sedang login
-			$id_pengguna = $this->session->userdata('id');
+			if ($this->upload->do_upload('foto')) {
 
-			$where = array(
-				'pengguna_id' => $id_pengguna
-			);
+				// mengambil data tentang gambar
+				$gambar = $this->upload->data();
 
-			$data['profil'] = $this->m_data->edit_data($where,'pengguna')->result();
+				$id = $this->session->userdata('id');
+				$nama = $this->input->post('nama');
+				$email = $this->input->post('email');
+				$foto = $gambar['file_name'];
 
-			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_profil',$data);
-			$this->load->view('dashboard/v_footer');
+
+				$where = array(
+					'pengguna_id' => $id
+				);
+
+				$data = array(
+					'pengguna_nama' => $nama,
+					'pengguna_email' => $email,
+					'foto' => $foto
+
+				);
+
+				$this->m_data->update_data($where, $data, 'pengguna');
+
+				redirect('dashboard');
+			} else {
+				redirect('dashboard/profil');
+			}
 		}
 	}
-
 
 	public function pengaturan()
 	{
 		$data['pengaturan'] = $this->m_data->get_data('pengaturan')->result();
 
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_pengaturan',$data);
+		$this->load->view('dashboard/v_pengaturan', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -595,10 +585,10 @@ class Dashboard extends CI_Controller {
 	public function pengaturan_update()
 	{
 		// Wajib isi nama dan deskripsi website
-		$this->form_validation->set_rules('nama','Nama Website','required');
-		$this->form_validation->set_rules('deskripsi','Deskripsi Website','required');
-		
-		if($this->form_validation->run() != false){
+		$this->form_validation->set_rules('nama', 'Nama Website', 'required');
+		$this->form_validation->set_rules('deskripsi', 'Deskripsi Website', 'required');
+
+		if ($this->form_validation->run() != false) {
 
 			$nama = $this->input->post('nama');
 			$deskripsi = $this->input->post('deskripsi');
@@ -607,9 +597,7 @@ class Dashboard extends CI_Controller {
 			$link_instagram = $this->input->post('link_instagram');
 			$link_github = $this->input->post('link_github');
 
-			$where = array(
-
-			);
+			$where = array();
 
 			$data = array(
 				'nama' => $nama,
@@ -621,11 +609,11 @@ class Dashboard extends CI_Controller {
 			);
 
 			// update pengaturan
-			$this->m_data->update_data($where,$data,'pengaturan');
+			$this->m_data->update_data($where, $data, 'pengaturan');
 
 			// Periksa apakah ada gambar logo yang diupload
-			if (!empty($_FILES['logo']['name'])){
-				
+			if (!empty($_FILES['logo']['name'])) {
+
 				$config['upload_path']   = './gambar/website/';
 				$config['allowed_types'] = 'jpg|png|gif';
 
@@ -636,18 +624,17 @@ class Dashboard extends CI_Controller {
 					$gambar = $this->upload->data();
 
 					$logo = $gambar['file_name'];
-					
+
 					$this->db->query("UPDATE pengaturan SET logo='$logo'");
 				}
 			}
 
-			redirect(base_url().'dashboard/pengaturan/?alert=sukses');
-
-		}else{
+			redirect(base_url() . 'dashboard/pengaturan/?alert=sukses');
+		} else {
 			$data['pengaturan'] = $this->m_data->get_data('pengaturan')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_pengaturan',$data);
+			$this->load->view('dashboard/v_pengaturan', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -655,9 +642,9 @@ class Dashboard extends CI_Controller {
 	// CRUD PENGGUNA
 	public function pengguna()
 	{
-		$data['pengguna'] = $this->m_data->get_data('pengguna')->result();	
+		$data['pengguna'] = $this->m_data->get_data('pengguna')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_pengguna',$data);
+		$this->load->view('dashboard/v_pengguna', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -671,14 +658,14 @@ class Dashboard extends CI_Controller {
 	public function pengguna_aksi()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('nama','Nama Pengguna','required');
-		$this->form_validation->set_rules('email','Email Pengguna','required');
-		$this->form_validation->set_rules('username','Username Pengguna','required');
-		$this->form_validation->set_rules('password','Password Pengguna','required|min_length[8]');
-		$this->form_validation->set_rules('level','Level Pengguna','required');
-		$this->form_validation->set_rules('status','Status Pengguna','required');
+		$this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
+		$this->form_validation->set_rules('email', 'Email Pengguna', 'required');
+		$this->form_validation->set_rules('username', 'Username Pengguna', 'required');
+		$this->form_validation->set_rules('password', 'Password Pengguna', 'required|min_length[8]');
+		$this->form_validation->set_rules('level', 'Level Pengguna', 'required');
+		$this->form_validation->set_rules('status', 'Status Pengguna', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$nama = $this->input->post('nama');
 			$email = $this->input->post('email');
@@ -697,11 +684,10 @@ class Dashboard extends CI_Controller {
 			);
 
 
-			$this->m_data->insert_data($data,'pengguna');
+			$this->m_data->insert_data($data, 'pengguna');
 
-			redirect(base_url().'dashboard/pengguna');	
-
-		}else{
+			redirect(base_url() . 'dashboard/pengguna');
+		} else {
 			$this->load->view('dashboard/v_header');
 			$this->load->view('dashboard/v_pengguna_tambah');
 			$this->load->view('dashboard/v_footer');
@@ -713,9 +699,9 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'pengguna_id' => $id
 		);
-		$data['pengguna'] = $this->m_data->edit_data($where,'pengguna')->result();
+		$data['pengguna'] = $this->m_data->edit_data($where, 'pengguna')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_pengguna_edit',$data);
+		$this->load->view('dashboard/v_pengguna_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -723,13 +709,13 @@ class Dashboard extends CI_Controller {
 	public function pengguna_update()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('nama','Nama Pengguna','required');
-		$this->form_validation->set_rules('email','Email Pengguna','required');
-		$this->form_validation->set_rules('username','Username Pengguna','required');
-		$this->form_validation->set_rules('level','Level Pengguna','required');
-		$this->form_validation->set_rules('status','Status Pengguna','required');
+		$this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
+		$this->form_validation->set_rules('email', 'Email Pengguna', 'required');
+		$this->form_validation->set_rules('username', 'Username Pengguna', 'required');
+		$this->form_validation->set_rules('level', 'Level Pengguna', 'required');
+		$this->form_validation->set_rules('status', 'Status Pengguna', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$id = $this->input->post('id');
 
@@ -740,7 +726,7 @@ class Dashboard extends CI_Controller {
 			$level = $this->input->post('level');
 			$status = $this->input->post('status');
 
-			if($this->input->post('password') == ""){
+			if ($this->input->post('password') == "") {
 				$data = array(
 					'pengguna_nama' => $nama,
 					'pengguna_email' => $email,
@@ -748,7 +734,7 @@ class Dashboard extends CI_Controller {
 					'pengguna_level' => $level,
 					'pengguna_status' => $status
 				);
-			}else{
+			} else {
 				$data = array(
 					'pengguna_nama' => $nama,
 					'pengguna_email' => $email,
@@ -758,22 +744,22 @@ class Dashboard extends CI_Controller {
 					'pengguna_status' => $status
 				);
 			}
-			
+
 			$where = array(
 				'pengguna_id' => $id
 			);
 
-			$this->m_data->update_data($where,$data,'pengguna');
+			$this->m_data->update_data($where, $data, 'pengguna');
 
-			redirect(base_url().'dashboard/pengguna');
-		}else{
+			redirect(base_url() . 'dashboard/pengguna');
+		} else {
 			$id = $this->input->post('id');
 			$where = array(
 				'pengguna_id' => $id
 			);
-			$data['pengguna'] = $this->m_data->edit_data($where,'pengguna')->result();
+			$data['pengguna'] = $this->m_data->edit_data($where, 'pengguna')->result();
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_pengguna_edit',$data);
+			$this->load->view('dashboard/v_pengguna_edit', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -783,10 +769,10 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'pengguna_id' => $id
 		);
-		$data['pengguna_hapus'] = $this->m_data->edit_data($where,'pengguna')->row();
+		$data['pengguna_hapus'] = $this->m_data->edit_data($where, 'pengguna')->row();
 		$data['pengguna_lain'] = $this->db->query("SELECT * FROM pengguna WHERE pengguna_id != $id")->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_pengguna_hapus',$data);
+		$this->load->view('dashboard/v_pengguna_hapus', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -800,7 +786,7 @@ class Dashboard extends CI_Controller {
 			'pengguna_id' => $pengguna_hapus
 		);
 
-		$this->m_data->delete_data($where,'pengguna');
+		$this->m_data->delete_data($where, 'pengguna');
 
 		// pindahkan semua artikel pengguna yang dihapus ke pengguna yang dipilih
 		$w = array(
@@ -811,24 +797,24 @@ class Dashboard extends CI_Controller {
 			'artikel_author' => $pengguna_tujuan
 		);
 
-		$this->m_data->update_data($w,$d,'artikel');
+		$this->m_data->update_data($w, $d, 'artikel');
 
-		redirect(base_url().'dashboard/pengguna');
+		redirect(base_url() . 'dashboard/pengguna');
 	}
 	//END Crud pengguna
 
 	// CRUD Inquiry
-	
+
 	public function inquiry()
 	{
 		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry',$data);
+		$this->load->view('inquiry/v_inquiry', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_tambah()
-	{	
+	{
 		$this->load->view('dashboard/v_header');
 		$this->load->view('inquiry/v_inquiry_tambah');
 		$this->load->view('dashboard/v_footer');
@@ -837,17 +823,17 @@ class Dashboard extends CI_Controller {
 	public function inquiry_aksi()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('inquiry_id','No Inquiry','required');
-		$this->form_validation->set_rules('sales','Nama Sales','required');
-		$this->form_validation->set_rules('tanggal','Tanggal','required');
-		$this->form_validation->set_rules('brand','Brand Produk','required');
-		$this->form_validation->set_rules('desc','Description Produk','required');
-		$this->form_validation->set_rules('qty','Quantity','required');
-		$this->form_validation->set_rules('deadline','Deadline','required');
-		$this->form_validation->set_rules('keter','Keterangan','required');
-		$this->form_validation->set_rules('request','Request','required');		
+		$this->form_validation->set_rules('inquiry_id', 'No Inquiry', 'required');
+		$this->form_validation->set_rules('sales', 'Nama Sales', 'required');
+		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
+		$this->form_validation->set_rules('desc', 'Description Produk', 'required');
+		$this->form_validation->set_rules('qty', 'Quantity', 'required');
+		$this->form_validation->set_rules('deadline', 'Deadline', 'required');
+		$this->form_validation->set_rules('keter', 'Keterangan', 'required');
+		$this->form_validation->set_rules('request', 'Request', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$inquiry_id = $this->input->post('inquiry_id');
 			$sales = $this->input->post('sales');
@@ -872,11 +858,10 @@ class Dashboard extends CI_Controller {
 			);
 
 
-			$this->m_data->insert_data($data,'inquiry');
+			$this->m_data->insert_data($data, 'inquiry');
 
-			redirect(base_url().'dashboard/inquiry');	
-
-		}else{
+			redirect(base_url() . 'dashboard/inquiry');
+		} else {
 			$this->load->view('dashboard/v_header');
 			$this->load->view('inquiry/v_inquiry_tambah');
 			$this->load->view('dashboard/v_footer');
@@ -888,9 +873,9 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'inquiry_id' => $id
 		);
-		$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+		$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_edit',$data);
+		$this->load->view('inquiry/v_inquiry_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -898,21 +883,21 @@ class Dashboard extends CI_Controller {
 	public function inquiry_update()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('cek','Check','required');
-		$this->form_validation->set_rules('fu1','Fu1','required');
+		$this->form_validation->set_rules('cek', 'Check', 'required');
+		$this->form_validation->set_rules('fu1', 'Fu1', 'required');
 		//$this->form_validation->set_rules('ket_fu','Ket FU','required');
-		$this->form_validation->set_rules('cogs','COGS','required');
-		$this->form_validation->set_rules('kurs','Kurs','required');
-		$this->form_validation->set_rules('cogs_idr','COGS IDR','required');
-		$this->form_validation->set_rules('reseller','Reseller','required');
-		$this->form_validation->set_rules('new_seller','New Reseller','required');
-		$this->form_validation->set_rules('user','User','required');
-		$this->form_validation->set_rules('delivery','Delivery','required');
-		$this->form_validation->set_rules('ket_purch','Keterangan purchase','required');
-		$this->form_validation->set_rules('name_purch','Nama purchase','required');
+		$this->form_validation->set_rules('cogs', 'COGS', 'required');
+		$this->form_validation->set_rules('kurs', 'Kurs', 'required');
+		$this->form_validation->set_rules('cogs_idr', 'COGS IDR', 'required');
+		$this->form_validation->set_rules('reseller', 'Reseller', 'required');
+		$this->form_validation->set_rules('new_seller', 'New Reseller', 'required');
+		$this->form_validation->set_rules('user', 'User', 'required');
+		$this->form_validation->set_rules('delivery', 'Delivery', 'required');
+		$this->form_validation->set_rules('ket_purch', 'Keterangan purchase', 'required');
+		$this->form_validation->set_rules('name_purch', 'Nama purchase', 'required');
 
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$id = $this->input->post('id');
 
@@ -929,11 +914,11 @@ class Dashboard extends CI_Controller {
 			$ket_purch = $this->input->post('ket_purch');
 			$name_purch = $this->input->post('name_purch');
 
-			if($this->form_validation->run() != false){
+			if ($this->form_validation->run() != false) {
 				$data = array(
 					'cek' => $cek,
 					'fu1' => $fu1,
-					'ket_fu' => $ket_fu, 
+					'ket_fu' => $ket_fu,
 					'cogs' => $cogs,
 					'kurs' => $kurs,
 					'cogs_idr' => $cogs_idr,
@@ -945,26 +930,23 @@ class Dashboard extends CI_Controller {
 					'name_purch' => $name_purch,
 				);
 			}
-			
+
 			$where = array(
 				'inquiry_id' => $id
 			);
 
-			$this->m_data->update_data($where,$data,'inquiry');
+			$this->m_data->update_data($where, $data, 'inquiry');
 
-			redirect(base_url().'dashboard/inquiry');
-
-		}
-		else
-		{
+			redirect(base_url() . 'dashboard/inquiry');
+		} else {
 			$id = $this->input->post('id');
 			$where = array(
 				'inquiry_id' => $id
 			);
-			$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+			$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_edit',$data);
+			$this->load->view('inquiry/v_inquiry_edit', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -974,9 +956,9 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'inquiry_id' => $id
 		);
-		$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+		$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_edit_sales',$data);
+		$this->load->view('inquiry/v_inquiry_edit_sales', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -984,15 +966,15 @@ class Dashboard extends CI_Controller {
 	public function inquiry_update_sales()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('sales','Tanggal','required');
-		$this->form_validation->set_rules('tanggal','Tanggal','required');
-		$this->form_validation->set_rules('brand','Brand Produk','required');
-		$this->form_validation->set_rules('desc','Description Product','required');
-		$this->form_validation->set_rules('qty','Quantity','required');
-		$this->form_validation->set_rules('deadline','Deadline','required');
-		$this->form_validation->set_rules('keter','Keterangan','required');
-		
-		if($this->form_validation->run() != false){
+		$this->form_validation->set_rules('sales', 'Tanggal', 'required');
+		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
+		$this->form_validation->set_rules('desc', 'Description Product', 'required');
+		$this->form_validation->set_rules('qty', 'Quantity', 'required');
+		$this->form_validation->set_rules('deadline', 'Deadline', 'required');
+		$this->form_validation->set_rules('keter', 'Keterangan', 'required');
+
+		if ($this->form_validation->run() != false) {
 
 			$id = $this->input->post('id');
 
@@ -1003,167 +985,165 @@ class Dashboard extends CI_Controller {
 			$qty = $this->input->post('qty');
 			$deadline = $this->input->post('deadline');
 			$keter = $this->input->post('keter');
-						
-			if($this->form_validation->run() != false){
+
+			if ($this->form_validation->run() != false) {
 				$data = array(
 					'sales' => $sales,
 					'tanggal' => $tanggal,
 					'brand' => $brand,
-					'desc' => $desc, 
+					'desc' => $desc,
 					'qty' => $qty,
 					'deadline' => $deadline,
 					'keter' => $keter,
-					
+
 				);
 			}
-			
+
 			$where = array(
 				'inquiry_id' => $id
 			);
 
-			$this->m_data->update_data($where,$data,'inquiry');
+			$this->m_data->update_data($where, $data, 'inquiry');
 
-			redirect(base_url().'dashboard/inquiry');
-		}
-		else
-		{
+			redirect(base_url() . 'dashboard/inquiry');
+		} else {
 			$id = $this->input->post('id');
 			$where = array(
 				'inquiry_id' => $id
 			);
-			$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+			$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_edit_sales',$data);
+			$this->load->view('inquiry/v_inquiry_edit_sales', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
 
 	public function inquiry_hapus($id)
 	{
-			$where = array(
+		$where = array(
 			'inquiry_id' => $id
 		);
 
-		$this->m_data->delete_data($where,'inquiry');
+		$this->m_data->delete_data($where, 'inquiry');
 
-		redirect(base_url().'dashboard/inquiry');
+		redirect(base_url() . 'dashboard/inquiry');
 	}
 
 	public function inquiry_view()
 	{
 		$data['inquiry'] = $this->m_data->select_inquiry();
-		
+
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_view',$data);
+		$this->load->view('inquiry/v_inquiry_view', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_export()
-    {
-        error_reporting(E_ALL);
-    
+	{
+		error_reporting(E_ALL);
+
 		include_once './assets/phpexcel/Classes/PHPExcel.php';
 		$objPHPExcel = new PHPExcel();
 
 		$data = $this->m_data->select_all_inquiry();
 
-		$objPHPExcel = new PHPExcel(); 
-		$objPHPExcel->setActiveSheetIndex(0); 
-		$rowCount = 1; 
+		$objPHPExcel = new PHPExcel();
+		$objPHPExcel->setActiveSheetIndex(0);
+		$rowCount = 1;
 
-		$objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, "ID Inquiry");
-		$objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, "Nama Sales");
-		$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, "Tanggal");
-		$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, "Brand Produk");
-		$objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, "Desc");
-		$objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, "Qty");
-		$objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, "Deadline");
-		$objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount, "Keter Sales");
-		$objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount, "Request");
-		$objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, "Check");
-		$objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, "Follow Up");
-		$objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, "Keter FU");
-		$objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, "COGS");
-		$objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, "KURS");
-		$objPHPExcel->getActiveSheet()->SetCellValue('O'.$rowCount, "COGS IDR");
-		$objPHPExcel->getActiveSheet()->SetCellValue('P'.$rowCount, "Reseller");
-		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, "New Seller");
-		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, "User");
-		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, "Delivery");
-		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, "Keter Purchase");
-		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, "Nama Purchase");
+		$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, "ID Inquiry");
+		$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, "Nama Sales");
+		$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, "Tanggal");
+		$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, "Brand Produk");
+		$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Desc");
+		$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, "Qty");
+		$objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, "Deadline");
+		$objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, "Keter Sales");
+		$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, "Request");
+		$objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, "Check");
+		$objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, "Follow Up");
+		$objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, "Keter FU");
+		$objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, "COGS");
+		$objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, "KURS");
+		$objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, "COGS IDR");
+		$objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, "Reseller");
+		$objPHPExcel->getActiveSheet()->SetCellValue('Q' . $rowCount, "New Seller");
+		$objPHPExcel->getActiveSheet()->SetCellValue('R' . $rowCount, "User");
+		$objPHPExcel->getActiveSheet()->SetCellValue('S' . $rowCount, "Delivery");
+		$objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, "Keter Purchase");
+		$objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, "Nama Purchase");
 		$rowCount++;
 
-		foreach($data as $value){
-		$objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->inquiry_id); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->sales); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->tanggal);
-		$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->brand); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $value->desc); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $value->qty); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $value->deadline);
-		$objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount, $value->keter); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount, $value->request);
-		$objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, $value->cek); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, $value->fu1); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, $value->ket_fu);
-		$objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, $value->cogs);
-		$objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, $value->kurs); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('O'.$rowCount, $value->cogs_idr); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('P'.$rowCount, $value->reseller); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('Q'.$rowCount, $value->new_seller);
-		$objPHPExcel->getActiveSheet()->SetCellValue('R'.$rowCount, $value->user); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('S'.$rowCount, $value->delivery);
-		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, $value->ket_purch);
-		$objPHPExcel->getActiveSheet()->SetCellValue('T'.$rowCount, $value->name_purch);    
-		$rowCount++; 
-		} 
+		foreach ($data as $value) {
+			$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->inquiry_id);
+			$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->sales);
+			$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $value->tanggal);
+			$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $value->brand);
+			$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $value->desc);
+			$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $value->qty);
+			$objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $value->deadline);
+			$objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $value->keter);
+			$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $value->request);
+			$objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $value->cek);
+			$objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $value->fu1);
+			$objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $value->ket_fu);
+			$objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, $value->cogs);
+			$objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, $value->kurs);
+			$objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, $value->cogs_idr);
+			$objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, $value->reseller);
+			$objPHPExcel->getActiveSheet()->SetCellValue('Q' . $rowCount, $value->new_seller);
+			$objPHPExcel->getActiveSheet()->SetCellValue('R' . $rowCount, $value->user);
+			$objPHPExcel->getActiveSheet()->SetCellValue('S' . $rowCount, $value->delivery);
+			$objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, $value->ket_purch);
+			$objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, $value->name_purch);
+			$rowCount++;
+		}
 
-		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
-		$objWriter->save('./assets/excel/Data Inquiry.xlsx'); 
+		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+		$objWriter->save('./assets/excel/Data Inquiry.xlsx');
 
 		$this->load->helper('download');
 		force_download('./assets/excel/Data Inquiry.xlsx', NULL);
-        }
+	}
 
-	public function inquiry_detail($id) 
-        {
-          $where = array(
+	public function inquiry_detail($id)
+	{
+		$where = array(
 			'inquiry_id' => $id
 		);
-		$data['inquiry'] = $this->m_data->edit_data($where,'inquiry')->result();
+		$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_detail',$data);
+		$this->load->view('inquiry/v_inquiry_detail', $data);
 		$this->load->view('dashboard/v_footer');
-        }
+	}
 
 	public function inquiry_master()
 	{
 		$data['master'] = $this->m_data->get_data('master')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_master',$data);
+		$this->load->view('inquiry/v_inquiry_master', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_master_tambah()
-	{	
+	{
 		$this->load->view('dashboard/v_header');
 		$this->load->view('inquiry/v_inquiry_master_tambah');
 		$this->load->view('dashboard/v_footer');
-	}	
+	}
 
 	public function inquiry_master_aksi()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('id_master','Master Inquiry','required');
-		$this->form_validation->set_rules('brand','Brand Produk','required');
-		$this->form_validation->set_rules('d1','D1','required');
-		$this->form_validation->set_rules('d2','D2','required');
-		$this->form_validation->set_rules('user','USER','required');
-		$this->form_validation->set_rules('distributor','DISTRIBUTOR','required');		
+		$this->form_validation->set_rules('id_master', 'Master Inquiry', 'required');
+		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
+		$this->form_validation->set_rules('d1', 'D1', 'required');
+		$this->form_validation->set_rules('d2', 'D2', 'required');
+		$this->form_validation->set_rules('user', 'USER', 'required');
+		$this->form_validation->set_rules('distributor', 'DISTRIBUTOR', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$id_master = $this->input->post('id_master');
 			$brand = $this->input->post('brand');
@@ -1182,11 +1162,10 @@ class Dashboard extends CI_Controller {
 			);
 
 
-			$this->m_data->insert_data($data,'master');
+			$this->m_data->insert_data($data, 'master');
 
-			redirect(base_url().'dashboard/inquiry_master');	
-
-		}else{
+			redirect(base_url() . 'dashboard/inquiry_master');
+		} else {
 			$this->load->view('dashboard/v_header');
 			$this->load->view('inquiry/v_inquiry_master_tambah');
 			$this->load->view('dashboard/v_footer');
@@ -1195,13 +1174,13 @@ class Dashboard extends CI_Controller {
 
 	public function inquiry_master_hapus($id)
 	{
-			$where = array(
+		$where = array(
 			'id_master' => $id
 		);
 
-		$this->m_data->delete_data($where,'master');
+		$this->m_data->delete_data($where, 'master');
 
-		redirect(base_url().'dashboard/inquiry_master');
+		redirect(base_url() . 'dashboard/inquiry_master');
 	}
 
 	public function inquiry_master_edit($id)
@@ -1209,9 +1188,9 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'id_master' => $id
 		);
-		$data['master'] = $this->m_data->edit_data($where,'master')->result();
+		$data['master'] = $this->m_data->edit_data($where, 'master')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_master_edit',$data);
+		$this->load->view('inquiry/v_inquiry_master_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -1219,12 +1198,12 @@ class Dashboard extends CI_Controller {
 	public function inquiry_master_update()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('d1','D1','required');
-		$this->form_validation->set_rules('d2','D2','required');
-		$this->form_validation->set_rules('user','USER','required');
-		$this->form_validation->set_rules('distributor','Manufacture/Distributor','required');
+		$this->form_validation->set_rules('d1', 'D1', 'required');
+		$this->form_validation->set_rules('d2', 'D2', 'required');
+		$this->form_validation->set_rules('user', 'USER', 'required');
+		$this->form_validation->set_rules('distributor', 'Manufacture/Distributor', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 			$id = $this->input->post('id');
 
 			$brand = $this->input->post('brand');
@@ -1233,61 +1212,59 @@ class Dashboard extends CI_Controller {
 			$user = $this->input->post('user');
 			$distributor = $this->input->post('distributor');
 
-			if($this->form_validation->run() != false){
+			if ($this->form_validation->run() != false) {
 				$data = array(
 					'brand' => $brand,
-					'd1' => $d1, 
+					'd1' => $d1,
 					'd2' => $d2,
 					'user' => $user,
 					'distributor' => $distributor
 				);
 			}
-			
+
 			$where = array(
 				'id_master' => $id
 			);
 
-			$this->m_data->update_data($where,$data,'master');
+			$this->m_data->update_data($where, $data, 'master');
 
-			redirect(base_url().'dashboard/inquiry_master');
-		}
-		else
-		{
+			redirect(base_url() . 'dashboard/inquiry_master');
+		} else {
 			$id = $this->input->post('id');
 			$where = array(
 				'id_master' => $id
 			);
-			$data['master'] = $this->m_data->edit_data($where,'master')->result();
+			$data['master'] = $this->m_data->edit_data($where, 'master')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_master_edit',$data);
+			$this->load->view('inquiry/v_inquiry_master_edit', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
-	
+
 	public function inquiry_kurs()
 	{
 		$data['kurs'] = $this->m_data->get_data('kurs')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_kurs',$data);
+		$this->load->view('inquiry/v_inquiry_kurs', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_kurs_tambah()
-	{	
+	{
 		$this->load->view('dashboard/v_header');
 		$this->load->view('inquiry/v_inquiry_kurs_tambah');
 		$this->load->view('dashboard/v_footer');
-	}	
+	}
 
 	public function inquiry_kurs_aksi()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('id_kurs','ID Kurs','required');
-		$this->form_validation->set_rules('currency','Currency','required');
-		$this->form_validation->set_rules('amount','Amount','required');	
+		$this->form_validation->set_rules('id_kurs', 'ID Kurs', 'required');
+		$this->form_validation->set_rules('currency', 'Currency', 'required');
+		$this->form_validation->set_rules('amount', 'Amount', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 
 			$id_kurs = $this->input->post('id_kurs');
 			$currency = $this->input->post('currency');
@@ -1299,11 +1276,10 @@ class Dashboard extends CI_Controller {
 				'amount' => $amount
 			);
 
-			$this->m_data->insert_data($data,'kurs');
+			$this->m_data->insert_data($data, 'kurs');
 
-			redirect(base_url().'dashboard/inquiry_kurs');	
-
-		}else{
+			redirect(base_url() . 'dashboard/inquiry_kurs');
+		} else {
 			$this->load->view('dashboard/v_header');
 			$this->load->view('inquiry/v_inquiry_kurs_tambah');
 			$this->load->view('dashboard/v_footer');
@@ -1315,9 +1291,9 @@ class Dashboard extends CI_Controller {
 		$where = array(
 			'id_kurs' => $id
 		);
-		$data['kurs'] = $this->m_data->edit_data($where,'kurs')->result();
+		$data['kurs'] = $this->m_data->edit_data($where, 'kurs')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_kurs_edit',$data);
+		$this->load->view('inquiry/v_inquiry_kurs_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -1325,52 +1301,50 @@ class Dashboard extends CI_Controller {
 	public function inquiry_kurs_update()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('currency','Currency','required');
-		$this->form_validation->set_rules('amount','Amount','required');
+		$this->form_validation->set_rules('currency', 'Currency', 'required');
+		$this->form_validation->set_rules('amount', 'Amount', 'required');
 
-		if($this->form_validation->run() != false){
+		if ($this->form_validation->run() != false) {
 			$id = $this->input->post('id');
 
 			$currency = $this->input->post('currency');
 			$amount = $this->input->post('amount');
 
-			if($this->form_validation->run() != false){
+			if ($this->form_validation->run() != false) {
 				$data = array(
 					'currency' => $currency,
 					'amount' => $amount
 				);
 			}
-			
+
 			$where = array(
 				'id_kurs' => $id
 			);
 
-			$this->m_data->update_data($where,$data,'kurs');
-			
-			redirect(base_url().'dashboard/inquiry_kurs');
-		}
-		else
-		{
+			$this->m_data->update_data($where, $data, 'kurs');
+
+			redirect(base_url() . 'dashboard/inquiry_kurs');
+		} else {
 			$id = $this->input->post('id');
 			$where = array(
 				'id_kurs' => $id
 			);
-			$data['kurs'] = $this->m_data->edit_data($where,'kurs')->result();
+			$data['kurs'] = $this->m_data->edit_data($where, 'kurs')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_kurs_edit',$data);
+			$this->load->view('inquiry/v_inquiry_kurs_edit', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
 
 	public function inquiry_kurs_hapus($id)
 	{
-			$where = array(
+		$where = array(
 			'id_kurs' => $id
 		);
 
-		$this->m_data->delete_data($where,'kurs');
+		$this->m_data->delete_data($where, 'kurs');
 
-		redirect(base_url().'dashboard/inquiry_kurs');
+		redirect(base_url() . 'dashboard/inquiry_kurs');
 	}
 }

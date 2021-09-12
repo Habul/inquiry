@@ -57,24 +57,24 @@
 										<?php echo form_error('ket_fu'); ?>
 									</div>
 									<div class="form-group">
-									<label>Kurs</label>
-									<select class="form-control" name="kurs">
-										<option value="">- Pilih Kurs -</option>
-										<option value="1">AUD</option>
-										<option value="2">EUR</option>
-										<option value="3">GBP</option>
-										<option value="4">IDR</option>
-										<option value="5">JPY</option>
-										<option value="6">MYR</option>
-										<option value="7">SGD</option>
-										<option value="8">USD</option>
-										<option value="9">NZD</option>
-									</select>
+										<label>Kurs</label>
+										<select class="form-control" name="kurs">
+											<option value="">- Pilih Kurs -</option>
+											<option value="1">AUD</option>
+											<option value="2">EUR</option>
+											<option value="3">GBP</option>
+											<option value="4">IDR</option>
+											<option value="5">JPY</option>
+											<option value="6">MYR</option>
+											<option value="7">SGD</option>
+											<option value="8">USD</option>
+											<option value="9">NZD</option>
+										</select>
 										<?php echo form_error('kurs'); ?>
 									</div>
 									<div class="form-group">
 										<label>Cogs</label>
-										<input type="number" min="0.001" step="0.001" name="cogs" class="form-control" value="<?php echo $p->cogs; ?>" placeholder="Isi Cogs..">
+										<input type="number" min="0.001" step="0.001" name="cogs" class="form-control" onchange="cogsidr();" value="<?php echo $p->cogs; ?>" placeholder="Isi Cogs..">
 										<?php echo form_error('cogs'); ?>
 									</div>
 									<div class="form-group">
@@ -120,3 +120,5 @@
 		</div>
 	</section>
 </div>
+
+java
