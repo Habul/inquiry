@@ -33,28 +33,45 @@ class Dashboard extends CI_Controller
 		// hitung jumlah inquiry sudah terjawab
 		$data['total_inquiry'] = $this->m_data->select_not_null();
 		// count inquiry belum terjawab
+		
+		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+		
+		$sales 				= $this->m_data->select_all_inquiry();
+		$index = 0;
+		foreach ($sales as $value) {
+		    $color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
 
+			$pengguna_sales = $this->m_data->select_by_posisi($value->sales);
+
+			$data_sales[$index]['value'] = $pengguna_sales->jml;
+			$data_sales[$index]['color'] = $color;
+			$data_sales[$index]['highlight'] = $color;
+			$data_sales[$index]['label'] = $value->sales;	
+			
+			$index++;
+		}
+
+		$brand 				= $this->m_data->select_all_inquiry();
+		$index = 0;
+		foreach ($brand as $value) {
+		    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+
+			$pengguna_brand = $this->m_data->select_by_posisi($value->brand);
+
+			$data_brand[$index]['value'] = $pengguna_brand->jml;
+			$data_brand[$index]['color'] = $color;
+			$data_brand[$index]['highlight'] = $color;
+			$data_brand[$index]['label'] = $value->brand;
+			
+			$index++;
+		}
+
+		$data['data_sales'] = json_encode($data_sales);
+		$data['data_brand'] = json_encode($data_brand);
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index', $data);
 		$this->load->view('dashboard/v_footer');
-
-		//$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-
-		//$user 		= $this->m_data->select_all();
-		//$index = 0;
-		//foreach ($user as $u) {
-		//$color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
-
-		//$pegawai_by_inquiry = $this->m_data->select_by_inquiry($u->pengguna_id);
-		//$data_inquiry[$index]['value'] = $pegawai_by_inquiry->jml;
-		//$data_inquiry[$index]['color'] = $color;
-		//$data_inquiry[$index]['highlight'] = $color;
-		//$data_inquiry[$index]['label'] = $u->id_sales;	
-
-		//$index++;
-		//$data['data_inquiry'] = json_encode($data_inquiry);
 	}
-
 
 	public function keluar()
 	{
@@ -1046,7 +1063,7 @@ class Dashboard extends CI_Controller
 		include_once './assets/phpexcel/Classes/PHPExcel.php';
 		$objPHPExcel = new PHPExcel();
 
-		$data = $this->m_data->select_all_inquiry();
+		$data = $this->m_data->select_inquiry();
 
 		$objPHPExcel = new PHPExcel();
 		$objPHPExcel->setActiveSheetIndex(0);

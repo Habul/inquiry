@@ -70,71 +70,100 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<div class="box box-primary">
-					<div class="box-body">
-						<h3>Selamat Datang !</h3>
-						<div class="table-responsive">
-							<table class="table table-bordered table-hover">
-								<tr>
-									<th width="20%">Nama</th>
-									<th width="1px">:</th>
-									<td>
-											<?php 
-											$id_user = $this->session->userdata('id');
-											$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-											?>
-										<p><?php echo $user->pengguna_nama; ?></p>
-									</td>
-								</tr>
-								<tr>
-									<th width="20%">Divisi</th>
-									<th width="1px">:</th>
-									<td><?php echo $this->session->userdata('level') ?></td>
-								</tr>
-								<tr>
-									<th width="20%">Status</th>
-									<th width="1px">:</th>
-									<td>Aktif</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-
-			</div>
-			 <!--div class="col-md-6">
+    			<div class="box box-primary">
+     			<div class="box-header with-border">
+       			<h3 class="box-title">Statistik <small>Brand Produk</small></h3>
+     			<div class="box-body">
+        	<canvas id="pieChart1" style="height:250px"></canvas>
+		</div>
+	</div>
+	</div>
+	</div>
+			 <div class="col-md-6">
     			<div class="box box-primary">
      			<div class="box-header with-border">
        			<h3 class="box-title">Statistik <small>Sales</small></h3>
      			<div class="box-body">
-        	<canvas id="data-inquiry" style="height:250px"></canvas>
+        	<canvas id="pieChart2" style="height:250px"></canvas>
 		</div>
 	</div>
-</div>
-</div!-->
-</div>
+	</div>
+	</div>
+	</div>
 </section>
 </div>
-<script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
-  <script>
-  //data inquiry
-  var pieChartCanvas = $("#data-inquiry").get(0).getContext("2d");
-  var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo $data_inquiry; ?>;
-
-  var pieOptions = {
-    segmentShowStroke: true,
-    segmentStrokeColor: "#fff",
-    segmentStrokeWidth: 2,
-    percentageInnerCutout: 50,
-    animationSteps: 100,
-    animationEasing: "easeOutBounce",
-    animateRotate: true,
-    animateScale: false,
-    responsive: true,
-    maintainAspectRatio: true,
-    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-  };
-
-  pieChart.Doughnut(PieData, pieOptions);
-  </script>
+<!-- ChartJS -->
+<script src="<?php echo base_url(); ?>assets/bower_components/chart.js/Chart.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
+<script>
+//-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#data_sales').get(0).getContext('2d')
+    var pieChart       = new Chart(pieChartCanvas)
+    var PieData        =  <?php echo $data_sales; ?>;
+    var pieOptions     = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke    : true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor   : '#fff',
+      //Number - The width of each segment stroke
+      segmentStrokeWidth   : 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps       : 100,
+      //String - Animation easing effect
+      animationEasing      : 'easeOutBounce',
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate        : true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale         : false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive           : true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio  : true,
+      //String - A legend template
+      legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions)
+	</script>
+	<script>
+//-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart2').get(0).getContext('2d')
+    var pieChart       = new Chart(pieChartCanvas)
+    var PieData        = <?php echo $data_brand; ?>;
+    var pieOptions     = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke    : true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor   : '#fff',
+      //Number - The width of each segment stroke
+      segmentStrokeWidth   : 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps       : 100,
+      //String - Animation easing effect
+      animationEasing      : 'easeOutBounce',
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate        : true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale         : false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive           : true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio  : true,
+      //String - A legend template
+      legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions)
+	</script>

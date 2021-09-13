@@ -1,4 +1,4 @@
-	<footer class="main-footer">
+<footer class="main-footer">
 		<div class="pull-right hidden-xs">
 			<b>Dashboard</b> IT - Intinusa Sejahtera International 
 		</div>
@@ -6,9 +6,6 @@
 	</footer>
 	</div>
 
-	<script src="<?php echo base_url(); ?>assets/jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/rupiah.js"></script>
-	<script src="<?php echo base_url(); ?>assets/main.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
 	<script>
@@ -19,6 +16,7 @@
 	<script src="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/raphael/raphael.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/morris.js/morris.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/bower_components/chart.js/Chart.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -52,6 +50,7 @@
 	    	CKEDITOR.replace('editor')
 	  });
 	</script>
+	
 	
 </body>
 </html>

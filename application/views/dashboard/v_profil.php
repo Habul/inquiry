@@ -42,6 +42,7 @@
 									<div class="form-group">
 										<label>Foto</label>
 										<input type="file" name="foto" class="form-control">
+										<small>* Max size 1 Mb</small>
 										<?php echo form_error('foto'); ?>
 									</div>
 								</div>

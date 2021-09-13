@@ -23,6 +23,8 @@
 	<script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/libs/modernizr.js"></script>
+	<!-- My Ajax -->
+	<?php include './assets/js/ajax.php'; ?>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">

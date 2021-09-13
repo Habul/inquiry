@@ -16,8 +16,8 @@ class M_data extends CI_Model{
 	}
 
 	public function select_inquiry() {
-		$sql = "SELECT a.sales,a.tanggal,a.inquiry_id,b.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,a.ket_fu,a.cogs,c.currency,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch FROM inquiry a,MASTER b, kurs c 
-		WHERE a.brand=b.id_master AND a.kurs=c.id_kurs";
+		$sql = "SELECT a.sales,a.tanggal,a.inquiry_id,a.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,a.ket_fu,a.cogs,b.currency as kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch 
+		FROM inquiry a, kurs b WHERE a.kurs=b.id_kurs";
 
 		$data = $this->db->query($sql);
 
@@ -71,8 +71,16 @@ class M_data extends CI_Model{
 		return $data->result();
 	}
 
-	public function select_by_inquiry($id) {
-		$sql = "SELECT COUNT(*) AS jml FROM inquiry WHERE sales = {$id}";
+	public function select_by_sales() {
+		$sql = "SELECT sales,COUNT(sales) AS jml FROM inquiry GROUP BY sales";
+
+		$data = $this->db->query($sql);
+		
+		return $data->row();
+	}
+
+		public function select_by_brand() {
+		$sql = "SELECT brand,COUNT(brand) AS jml FROM inquiry GROUP BY brand";
 
 		$data = $this->db->query($sql);
 		
@@ -87,12 +95,10 @@ class M_data extends CI_Model{
 	}
 
 	public function select_all() {
-		$data = $this->db->get('pengguna');
+		$data = $this->db->get('inquiry');
 
 		return $data->result();
 	}
-
-
 
 	public function select($id = '') {
 		if ($id != '') {
