@@ -73,27 +73,27 @@
 									</div>
 									<div class="form-group">
 										<label>Cogs</label>
-										<input type="number" min="0.001" step="0.001" name="cogs" class="form-control" onchange="cogsidr();" value="<?php echo $p->cogs; ?>" placeholder="Isi Cogs..">
+										<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="cogsidr();" value="<?php echo $p->cogs; ?>" placeholder="Isi Cogs..">
 										<?php echo form_error('cogs'); ?>
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
-										<input type="number" name="cogs_idr" class="form-control" value="<?php echo $p->cogs_idr; ?>" placeholder="Cogs Idr..">
+										<input type="number" id="cogs_idr" name="cogs_idr" class="form-control" value="<?php echo $p->cogs_idr; ?>" placeholder="Cogs Idr..">
 										<?php echo form_error('cogs_idr'); ?>
 									</div>
 									<div class="form-group">
 										<label>Reseller</label>
-										<input type="number" name="reseller" class="form-control" value="<?php echo $p->reseller; ?>" placeholder="Rp..">
+										<input type="number" id="reseller" name="reseller" class="form-control" value="<?php echo $p->reseller; ?>" placeholder="Rp..">
 										<?php echo form_error('reseller'); ?>
 									</div>
 									<div class="form-group">
 										<label>New Seller</label>
-										<input type="number" name="new_seller" class="form-control" value="<?php echo $p->new_seller; ?>" placeholder="Rp..">
+										<input type="number" id="new_seller" name="new_seller" class="form-control" value="<?php echo $p->new_seller; ?>" placeholder="Rp..">
 										<?php echo form_error('new_seller'); ?>
 									</div>
 									<div class="form-group">
 										<label>User</label>
-										<input type="number" name="user" class="form-control" value="<?php echo $p->user; ?>" placeholder="Rp..">
+										<input type="number" id="user" name="user" class="form-control" value="<?php echo $p->user; ?>" placeholder="Rp..">
 										<?php echo form_error('user'); ?>
 									</div>
 									<div class="form-group">
@@ -111,13 +111,17 @@
 									<a href="<?php echo base_url() . 'dashboard/inquiry'; ?>" class="btn btn-default">Kembali</a>
 									<input type="submit" class="btn btn-info pull-right" value="Simpan">
 								</div>
+								</div>
 							</form>
 						<?php } ?>
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 </div>
 
-java
+<script type="text/javascript">
+
+						</script>
+
+

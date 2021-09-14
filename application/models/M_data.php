@@ -71,16 +71,16 @@ class M_data extends CI_Model{
 		return $data->result();
 	}
 
-	public function select_by_sales() {
-		$sql = "SELECT sales,COUNT(sales) AS jml FROM inquiry GROUP BY sales";
+	public function select_by_sales($id) {
+		$sql = "SELECT COUNT(sales) AS jmlh FROM inquiry where sales = '{$id}'";
 
 		$data = $this->db->query($sql);
 		
 		return $data->row();
 	}
 
-		public function select_by_brand() {
-		$sql = "SELECT brand,COUNT(brand) AS jml FROM inquiry GROUP BY brand";
+		public function select_by_brand($id) {
+		$sql = "SELECT COUNT(brand) AS jmlh FROM inquiry where brand = '{$id}'";
 
 		$data = $this->db->query($sql);
 		
@@ -94,9 +94,13 @@ class M_data extends CI_Model{
 		
 	}
 
-	public function select_all() {
-		$data = $this->db->get('inquiry');
+	public function select_pengguna() {
+		$data = $this->db->get('pengguna');
+		return $data->result();
+	}
 
+	public function select_master() {
+		$data = $this->db->get('master');
 		return $data->result();
 	}
 
