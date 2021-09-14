@@ -5,7 +5,6 @@
 			<small>Control panel</small>
 		</h1>
 	</section>
-
 	<section class="content">
 
 		<div class="row">

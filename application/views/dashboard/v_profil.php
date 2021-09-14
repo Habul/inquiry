@@ -42,7 +42,9 @@
 									<div class="form-group">
 										<label>Foto</label>
 										<input type="file" name="foto" class="form-control">
-										<small>* Max size 1 Mb</small>
+										<small>* Max size 1 Mb</small><br/>
+										<small>* Max file name image 10 character</small><br/>
+										<small>* File type Jpg, Png & Gif</small>
 										<?php echo form_error('foto'); ?>
 									</div>
 								</div>

@@ -108,9 +108,36 @@ class M_data extends CI_Model{
 		if ($id != '') {
 			$this->db->where('pengguna_id', $id);
 		}
-
 		$data = $this->db->get('pengguna');
-
 		return $data->row();
 	}
+
+	function get_data_kurs($kurs){
+        $hsl=$this->db->query("SELECT * FROM kurs WHERE id_kurs='$kurs'");
+        if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil=array(
+                    'amount' => $data->amount
+                    );
+				
+            }
+        }
+        return $hasil;
+    }
+
+	function get_data_master($kode){
+        $hsl=$this->db->query("SELECT * FROM master WHERE id_master='$kode'");
+        if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil=array(
+                    'brand' => $data->brand,
+					'd1' => $data->d1,
+					'd2' => $data->$d2,
+					'user' => $data->user
+                    );
+				
+            }
+        }
+        return $hasil;
+    }
 }

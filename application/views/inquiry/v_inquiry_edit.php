@@ -46,18 +46,18 @@
 									</div>
 									<div class="form-group">
 										<label>Check</label>
-										<input type="number" name="cek" class="form-control" value="<?php echo $p->cek; ?>" placeholder="Cek..">
+										<input type="number" name="cek" class="form-control" placeholder="Cek..">
 										<?php echo form_error('cek'); ?>
 									</div>
 									<div class="form-group">
 										<label>Keterangan Fu</label>
-										<input type="text" name="ket_fu" class="form-control" value="<?php echo $p->ket_fu; ?>" placeholder="Keterangan Fu..">
+										<input type="text" name="ket_fu" class="form-control" placeholder="Keterangan Fu..">
 										<smal>*Kosongkan jika tidak di perlukan</smal>
 										<?php echo form_error('ket_fu'); ?>
 									</div>
 									<div class="form-group">
 										<label>Kurs</label>
-										<select class="form-control" name="kurs">
+										<select class="form-control" id="kurs" name="kurs" onchange="changeTipe();" >
 											<option value="">- Pilih Kurs -</option>
 											<option value="1">AUD</option>
 											<option value="2">EUR</option>
@@ -73,37 +73,37 @@
 									</div>
 									<div class="form-group">
 										<label>Cogs</label>
-										<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="cogsidr();" value="<?php echo $p->cogs; ?>" placeholder="Isi Cogs..">
+										<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" placeholder="Isi Cogs..">
 										<?php echo form_error('cogs'); ?>
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
-										<input type="number" id="cogs_idr" name="cogs_idr" class="form-control" value="<?php echo $p->cogs_idr; ?>" placeholder="Cogs Idr..">
+										<input type="number" id="cogs_idr" readonly name="cogs_idr" class="form-control" placeholder="Cogs Idr..">
 										<?php echo form_error('cogs_idr'); ?>
 									</div>
 									<div class="form-group">
 										<label>Reseller</label>
-										<input type="number" id="reseller" name="reseller" class="form-control" value="<?php echo $p->reseller; ?>" placeholder="Rp..">
+										<input type="number" id="reseller" readonly name="reseller" class="form-control" placeholder="Rp..">
 										<?php echo form_error('reseller'); ?>
 									</div>
 									<div class="form-group">
 										<label>New Seller</label>
-										<input type="number" id="new_seller" name="new_seller" class="form-control" value="<?php echo $p->new_seller; ?>" placeholder="Rp..">
+										<input type="number" id="new_seller" readonly name="new_seller" class="form-control" placeholder="Rp..">
 										<?php echo form_error('new_seller'); ?>
 									</div>
 									<div class="form-group">
 										<label>User</label>
-										<input type="number" id="user" name="user" class="form-control" value="<?php echo $p->user; ?>" placeholder="Rp..">
+										<input type="number" id="user" readonly name="user" class="form-control" placeholder="Rp..">
 										<?php echo form_error('user'); ?>
 									</div>
 									<div class="form-group">
 										<label>Delivery</label>
-										<input type="text" name="delivery" class="form-control" value="<?php echo $p->delivery; ?>" placeholder="Delivery..">
+										<input type="text" name="delivery" class="form-control" placeholder="Delivery..">
 										<?php echo form_error('delivery'); ?>
 									</div>
 									<div class="form-group">
 										<label>Ket Purchase</label>
-										<textarea name="ket_purch" class="form-control" rows="3" value="<?php echo $p->ket_purch; ?>" placeholder="Keterangan..."></textarea>
+										<textarea name="ket_purch" class="form-control" rows="3" placeholder="Keterangan..."></textarea>
 										<?php echo form_error('ket_purch'); ?>
 									</div>
 								
@@ -119,9 +119,29 @@
 			</div>
 	</section>
 </div>
-
+<script type="text/javascript" src="<?php echo base_url().'assets/js2/jquery.js'?>"></script>
 <script type="text/javascript">
+        $(document).ready(function(){
+             $('#kurs').on('input',function(){
+                var kode=$(this).val();
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url('dashboard/get_data_kurs')?>",
+                    dataType : "JSON",
+                    data : {kurs: kurs},
+                    cache:false,
+                    success: function(data){
+                        $.each(data,function(kode, nama_barang, harga, satuan){
+                            $('[name="cogs_idr"]').val(data.amount);
+                        });
+                    }
+                });
+                return false;
+           });
+        });
+</script>
 
-						</script>
+
+
 
 

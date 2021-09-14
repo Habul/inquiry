@@ -15,13 +15,13 @@
                     <input type="text" class="form-control" name="id" readonly value="<?php echo $p->inquiry_id; ?> ">
                   </div>
                 </div>				
-                <div class="form-group">
+        <div class="form-group">
                   <label class="col-sm-2 control-label">Nama Sales</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" readonly value="<?php echo $p->sales; ?>" >
                   </div>
                 </div>
-                <div class="form-group">
+        <div class="form-group">
                   <label class="col-sm-2 control-label">Tanggal</label>
                   <div class="col-sm-10">
                     <input type="datetime" class="form-control" readonly value="<?php echo $p->tanggal; ?>" >
@@ -111,7 +111,6 @@
                     <input type="text" class="form-control" readonly value="<?php echo $p->ket_purch; ?>" >
                   </div>
                 </div>
-
         </div>
 		<div class="box-footer">
                 <a href="<?php echo base_url().'dashboard/inquiry_view'; ?>" class="btn btn-primary">Kembali</a>
