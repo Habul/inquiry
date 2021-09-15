@@ -1365,10 +1365,11 @@ class Dashboard extends CI_Controller
 		redirect(base_url() . 'dashboard/inquiry_kurs');
 	}
 	
-	function get_inquiry()
-	{
-        $kode=$this->input->post('kurs');
-        $data=$this->m_pos->get_data_barang_bykode($kurs);
-        echo json_encode($data);
+	function get_kurs(){
+		$data['category'] = $this->m_data->select_kurs();
+		
+			$this->load->view('dashboard/v_header');
+			$this->load->view('inquiry/v_inquiry_edit', $data);
+			$this->load->view('dashboard/v_footer');
 	}
 }

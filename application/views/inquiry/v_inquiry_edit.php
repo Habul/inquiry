@@ -73,27 +73,27 @@
 									</div>
 									<div class="form-group">
 										<label>Cogs</label>
-										<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" placeholder="Isi Cogs..">
+										<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="changeTipe();" placeholder="Isi Cogs..">
 										<?php echo form_error('cogs'); ?>
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
-										<input type="number" id="cogs_idr" readonly name="cogs_idr" class="form-control" placeholder="Cogs Idr..">
+										<input type="number" readonly name="cogs_idr" class="form-control" placeholder="Cogs Idr..">
 										<?php echo form_error('cogs_idr'); ?>
 									</div>
 									<div class="form-group">
 										<label>Reseller</label>
-										<input type="number" id="reseller" readonly name="reseller" class="form-control" placeholder="Rp..">
+										<input type="number" readonly name="reseller" class="form-control" placeholder="Rp..">
 										<?php echo form_error('reseller'); ?>
 									</div>
 									<div class="form-group">
 										<label>New Seller</label>
-										<input type="number" id="new_seller" readonly name="new_seller" class="form-control" placeholder="Rp..">
+										<input type="number" readonly name="new_seller" class="form-control" placeholder="Rp..">
 										<?php echo form_error('new_seller'); ?>
 									</div>
 									<div class="form-group">
 										<label>User</label>
-										<input type="number" id="user" readonly name="user" class="form-control" placeholder="Rp..">
+										<input type="number" readonly name="user" class="form-control" placeholder="Rp..">
 										<?php echo form_error('user'); ?>
 									</div>
 									<div class="form-group">
@@ -119,29 +119,29 @@
 			</div>
 	</section>
 </div>
-<script type="text/javascript" src="<?php echo base_url().'assets/js2/jquery.js'?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
 <script type="text/javascript">
-        $(document).ready(function(){
-             $('#kurs').on('input',function(){
-                var kode=$(this).val();
+		$(document).ready(function(){
+			$('#category').change(function(){ 
+                var id=$(this).val();
                 $.ajax({
-                    type : "POST",
-                    url  : "<?php echo base_url('dashboard/get_data_kurs')?>",
-                    dataType : "JSON",
-                    data : {kurs: kurs},
-                    cache:false,
+                    url : "<?php echo site_url('dashboard/get_sub_kurs');?>",
+                    method : "POST",
+                    data : {id: id},
+                    async : true,
+                    dataType : 'json',
                     success: function(data){
-                        $.each(data,function(kode, nama_barang, harga, satuan){
-                            $('[name="cogs_idr"]').val(data.amount);
-                        });
+                        var html = '';
+                        var i;
+                        for(i=0; i<data.length; i++){
+                            html += '<option value='+data[i].id_kurs+'>'+data[i].amount+'</option>';
+                        }
+                        $('#sub_category').html(html);
                     }
                 });
                 return false;
-           });
-        });
+            }); 
+		});
+	</script>
 </script>
-
-
-
-
-

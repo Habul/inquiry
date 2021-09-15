@@ -104,6 +104,16 @@ class M_data extends CI_Model{
 		return $data->result();
 	}
 
+	public function select_kurs() {
+		$data = $this->db->get('kurs');
+		return $data->result();
+	}
+
+	public function get_sub_kurs($id_kurs){
+		$query = $this->db->get_where('kurs', array('kurs' => $id_kurs));
+		return $query;
+	}
+
 	public function select($id = '') {
 		if ($id != '') {
 			$this->db->where('pengguna_id', $id);
@@ -117,6 +127,8 @@ class M_data extends CI_Model{
         if($hsl->num_rows()>0){
             foreach ($hsl->result() as $data) {
                 $hasil=array(
+					'id_kurs' => $data->id_kurs,
+					'currency' => $data->currency,
                     'amount' => $data->amount
                     );
 				
@@ -132,7 +144,7 @@ class M_data extends CI_Model{
                 $hasil=array(
                     'brand' => $data->brand,
 					'd1' => $data->d1,
-					'd2' => $data->$d2,
+					'd2' => $data->d2,
 					'user' => $data->user
                     );
 				
