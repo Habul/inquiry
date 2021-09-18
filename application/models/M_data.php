@@ -123,7 +123,7 @@ class M_data extends CI_Model{
 	}
 
 	function get_data_kurs($kurs){
-        $hsl=$this->db->query("SELECT * FROM kurs WHERE id_kurs='$kurs'");
+        $hsl=$this->db->query("SELECT * FROM kurs WHERE id_kurs=$kurs");
         if($hsl->num_rows()>0){
             foreach ($hsl->result() as $data) {
                 $hasil=array(

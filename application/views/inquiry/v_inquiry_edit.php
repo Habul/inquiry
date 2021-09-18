@@ -78,22 +78,23 @@
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
-										<input type="number" readonly name="cogs_idr" class="form-control" placeholder="Cogs Idr..">
+										<input type="text" readonly name="amount">
+										<input type="number" id="cogs_idr" readonly name="cogs_idr" class="form-control" placeholder="Cogs Idr..">
 										<?php echo form_error('cogs_idr'); ?>
 									</div>
 									<div class="form-group">
 										<label>Reseller</label>
-										<input type="number" readonly name="reseller" class="form-control" placeholder="Rp..">
+										<input type="number" id="reseller" readonly name="reseller" class="form-control" placeholder="Rp..">
 										<?php echo form_error('reseller'); ?>
 									</div>
 									<div class="form-group">
 										<label>New Seller</label>
-										<input type="number" readonly name="new_seller" class="form-control" placeholder="Rp..">
+										<input type="number" id="new_seller" readonly name="new_seller" class="form-control" placeholder="Rp..">
 										<?php echo form_error('new_seller'); ?>
 									</div>
 									<div class="form-group">
 										<label>User</label>
-										<input type="number" readonly name="user" class="form-control" placeholder="Rp..">
+										<input type="number" id="user " readonly name="user" class="form-control" placeholder="Rp..">
 										<?php echo form_error('user'); ?>
 									</div>
 									<div class="form-group">
@@ -119,29 +120,67 @@
 			</div>
 	</section>
 </div>
-<script type="text/javascript" src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>"></script>
-<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
 <script type="text/javascript">
 		$(document).ready(function(){
-			$('#category').change(function(){ 
-                var id=$(this).val();
+             $('#kurs').on('input',function(){
+                 
+                var kode=$(this).val();
                 $.ajax({
-                    url : "<?php echo site_url('dashboard/get_sub_kurs');?>",
-                    method : "POST",
-                    data : {id: id},
-                    async : true,
-                    dataType : 'json',
+                    type : "POST",
+                    url  : "<?php echo base_url('dashboard/get_kurs')?>",
+                    dataType : "JSON",
+                    data : {kurs: kurs},
+                    cache:false,
                     success: function(data){
-                        var html = '';
-                        var i;
-                        for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].id_kurs+'>'+data[i].amount+'</option>';
-                        }
-                        $('#sub_category').html(html);
+                        $.each(data,function(id_kurs, amount){
+                            $('[name="amount"]').val(data.amount);
+                        });
+                         
                     }
                 });
                 return false;
-            }); 
-		});
+           });
+ 
+        });
 	</script>
-</script>
+	<script>
+	  $(function(){
+            $('#cogs_idr').on("input",function(){
+                var d1=$('#d1').val();
+                var kurs=$('#kurs').val();
+				var cogs_idr=$('#cogs_idr').val();
+                $('#kurs').val(kurs);
+				$('#cogs_idr').val(cogs_idr);
+                $('#d1').val(kurs*cogs_idr);
+            })
+			
+        });
+    </script>
+	<script type="text/javascript">
+        $(function(){
+            $('.jml_uang').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ','
+            });
+            $('#amount').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ''
+            });
+            $('#cogs_idr').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ','
+            });
+            $('.harjul').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ','
+            });
+        });
+    </script>

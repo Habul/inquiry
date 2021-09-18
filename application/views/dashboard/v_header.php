@@ -20,11 +20,8 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/select2/dist/css/select2.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	<script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/libs/modernizr.js"></script>
-	<!-- My Ajax -->
-	<?php include './assets/js/ajax.php'; ?>
+	<script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
