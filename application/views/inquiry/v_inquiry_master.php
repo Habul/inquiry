@@ -13,7 +13,7 @@
 				<div class="box">
 					<div class="box-header">
 					<div class="col-md-6" style="padding: 0;">
-               			<a href="<?php echo base_url('dashboard//inquiry_master_tambah'); ?>" class="form-control btn btn-success" ><i
+               			<a href="<?php echo base_url('dashboard/inquiry_master_tambah'); ?>" class="form-control btn btn-success" ><i
                         class="glyphicon glyphicon-plus-sign"></i> Tambah Data Master</a>
 						</div>
 					</div>

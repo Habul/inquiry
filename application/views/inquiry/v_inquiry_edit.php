@@ -34,6 +34,7 @@
 										?>
 										<input type="text" name="name_purch" readonly class="form-control" value="<?php echo $purchase->pengguna_nama; ?> ">
 										<?php echo form_error('name_purch'); ?>
+										<?php } ?>
 									</div>
 									<div class="form-group">
 										<label>Follow UP</label>
@@ -59,26 +60,20 @@
 										<label>Kurs</label>
 										<select class="form-control" id="kurs" name="kurs" onchange="changeTipe();" >
 											<option value="">- Pilih Kurs -</option>
-											<option value="1">AUD</option>
-											<option value="2">EUR</option>
-											<option value="3">GBP</option>
-											<option value="4">IDR</option>
-											<option value="5">JPY</option>
-											<option value="6">MYR</option>
-											<option value="7">SGD</option>
-											<option value="8">USD</option>
-											<option value="9">NZD</option>
-										</select>
-										<?php echo form_error('kurs'); ?>
+											<?php foreach($kurs as $row):?>
+				    						<option value="<?php echo $row->id_kurs;?>"><?php echo $row->currency;?></option>
+											<?php endforeach; ?>
+				    					</select>							
+										<?php echo form_error('kurs'); ?>										
 									</div>
 									<div class="form-group">
 										<label>Cogs</label>
+										<input type="number" id="amount" readonly name="amount" class="form-control">
 										<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="changeTipe();" placeholder="Isi Cogs..">
 										<?php echo form_error('cogs'); ?>
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
-										<input type="text" readonly name="amount">
 										<input type="number" id="cogs_idr" readonly name="cogs_idr" class="form-control" placeholder="Cogs Idr..">
 										<?php echo form_error('cogs_idr'); ?>
 									</div>
@@ -114,7 +109,7 @@
 								</div>
 								</div>
 							</form>
-						<?php } ?>
+						
 					</div>
 				</div>
 			</div>
@@ -122,26 +117,27 @@
 </div>
 <script type="text/javascript">
 		$(document).ready(function(){
-             $('#kurs').on('input',function(){
-                 
-                var kode=$(this).val();
+			$('#kurs').change(function(){ 
+                var id=$(this).val();
                 $.ajax({
-                    type : "POST",
-                    url  : "<?php echo base_url('dashboard/get_kurs')?>",
-                    dataType : "JSON",
-                    data : {kurs: kurs},
-                    cache:false,
+                    url : "<?php echo site_url('dashboard/get_kurs');?>",
+                    method : "POST",
+                    data : {id: id},
+                    async : true,
+                    dataType : 'json',
                     success: function(data){
-                        $.each(data,function(id_kurs, amount){
-                            $('[name="amount"]').val(data.amount);
-                        });
-                         
+                        
+                        var html = '';
+                        var i;
+                        
+                        $('#amount').html(html);
+
                     }
                 });
                 return false;
-           });
- 
-        });
+            }); 
+            
+		});
 	</script>
 	<script>
 	  $(function(){

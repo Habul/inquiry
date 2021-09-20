@@ -122,34 +122,18 @@ class M_data extends CI_Model{
 		return $data->row();
 	}
 
-	function get_data_kurs($kurs){
-        $hsl=$this->db->query("SELECT * FROM kurs WHERE id_kurs=$kurs");
-        if($hsl->num_rows()>0){
-            foreach ($hsl->result() as $data) {
-                $hasil=array(
-					'id_kurs' => $data->id_kurs,
-					'currency' => $data->currency,
-                    'amount' => $data->amount
-                    );
-				
-            }
-        }
-        return $hasil;
-    }
+	function get_kurs(){
+		$this->db->select('id_kurs,currency,amount');
+		$this->db->from('kurs');
+		$query = $this->db->get();
+		return $query;
+	}
 
-	function get_data_master($kode){
-        $hsl=$this->db->query("SELECT * FROM master WHERE id_master='$kode'");
-        if($hsl->num_rows()>0){
-            foreach ($hsl->result() as $data) {
-                $hasil=array(
-                    'brand' => $data->brand,
-					'd1' => $data->d1,
-					'd2' => $data->d2,
-					'user' => $data->user
-                    );
-				
-            }
-        }
-        return $hasil;
-    }
+	function get_master(){
+		$this->db->select('id_master,brand,d1,d2,user');
+		$this->db->from('master');
+		$this->db->order_by('brand',"ASC");
+		$query = $this->db->get();
+		return $query;
+	}
 }

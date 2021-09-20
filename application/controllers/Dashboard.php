@@ -832,8 +832,9 @@ class Dashboard extends CI_Controller
 
 	public function inquiry_tambah()
 	{
+		$data['master'] = $this->m_data->get_master()->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_tambah');
+		$this->load->view('inquiry/v_inquiry_tambah',$data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -879,8 +880,9 @@ class Dashboard extends CI_Controller
 
 			redirect(base_url() . 'dashboard/inquiry');
 		} else {
+			$data['master'] = $this->m_data->get_master()->result();
 			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_tambah');
+			$this->load->view('inquiry/v_inquiry_tambah',$data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -890,7 +892,7 @@ class Dashboard extends CI_Controller
 		$where = array(
 			'inquiry_id' => $id
 		);
-		$data['kurs'] = $this->m_data->select_kurs();
+		$data['kurs'] = $this->m_data->get_kurs()->result();
 		$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('inquiry/v_inquiry_edit', $data);
@@ -899,7 +901,7 @@ class Dashboard extends CI_Controller
 
 	public function get_kurs(){
         $kode=$this->input->post('kurs');
-        $data=$this->m_pos->get_data_kurs($kurs);
+        $data=$this->m_pos->get_data_kurs($kode);
         echo json_encode($data);
     }
 
