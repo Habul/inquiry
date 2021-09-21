@@ -195,9 +195,9 @@
 									<i class="fa fa-archive"></i>
 									<span>VIEW INQUIRY</span></a>
 							</li>
-
 						</ul>
 					</li>
+					
 					<li>
 						<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>">
 							<i class="fa fa-lock"></i>
@@ -211,5 +211,5 @@
 						</a>
 					</li>
 				</ul>
-			</section>
-		</aside>
+		</section>
+</aside>

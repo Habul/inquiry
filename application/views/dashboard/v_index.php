@@ -64,9 +64,6 @@
 					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			
-		</div>
-
 		<div class="row">
 			<div class="col-md-6">
     			<div class="box box-primary">
@@ -76,9 +73,9 @@
      			<div class="box-body">
         	<canvas id="pieChart1" style="height:250px"></canvas>
 		</div>
-	</div>
-	</div>
-	</div>
+		</div>
+		</div>
+		</div>
 			 <div class="col-md-6">
     			<div class="box box-primary">
      			<div class="box-header with-border">
@@ -87,10 +84,11 @@
      			<div class="box-body">
         	<canvas id="pieChart2" style="height:250px"></canvas>
 		</div>
+		</div>
+		</div>
+		</div>
 	</div>
-	</div>
-	</div>
-	</div>
+</div>
 </section>
 </div>
 <!-- ChartJS -->

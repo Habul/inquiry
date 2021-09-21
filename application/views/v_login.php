@@ -40,7 +40,7 @@
     ?>
 
     <div class="login-box-body">
-      <p class="login-box-msg">Log in to start your session</p>
+      <p class="login-box-msg">Login to your account</p>
 
       <form action="<?php echo base_url().'login/aksi' ?>" method="post">
 
@@ -57,6 +57,13 @@
         <?php echo form_error('password'); ?>
 
         <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox" name="remember"> Remember Me
+            </label>
+          </div>
+        </div>
           <div class="col-xs-8">
             <div class="checkbox icheck">
               <label>
