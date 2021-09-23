@@ -5,16 +5,22 @@
 			<small>Inquiry Marketing - Purchasing</small>
 		</h1>
 	</section>
-
 	<section class="content">
-
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="box">
 					<div class="box-header">
 						<div class="col-md-6" style="padding: 0;">
-               			<a href="<?php echo base_url('dashboard/inquiry_kurs_tambah'); ?>" class="form-control btn btn-success" ><i
-                        class="glyphicon glyphicon-plus-sign"></i> Tambah Data Kurs</a>
+               			<a href="<?php echo base_url('dashboard/inquiry_kurs_tambah'); ?>" class="form-control btn btn-success"><i
+                        	class="glyphicon glyphicon-plus-sign"></i> Tambah Data Kurs</a>
+						</div>
+						<div class="col-md-3">
+							<a href="<?php echo base_url('dashboard/inquiry_kurs_export'); ?>" class="form-control btn btn-default"><i
+							class="glyphicon glyphicon glyphicon-floppy-open"></i> Export Data Excel</a>
+						</div>
+						<div class="col-md-3">
+							<a href="<?php echo base_url('dashboard/inquiry_kurs_import'); ?>" class="form-control btn btn-default"><i
+							class="glyphicon glyphicon glyphicon-floppy-save"></i> Import Data Excel</a>
 						</div>
 					</div>
 					<!-- /.box-header -->

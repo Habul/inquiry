@@ -118,7 +118,7 @@
 <script type="text/javascript">
 		$(document).ready(function(){
 			$('#kurs').change(function(){ 
-                $('.box').toggle();
+                var kurs = $('#kurs').val();
                 $.ajax({
                     url : "<?php echo site_url('dashboard/get_kurs');?>",
                     method : "POST",

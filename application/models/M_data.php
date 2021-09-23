@@ -136,4 +136,16 @@ class M_data extends CI_Model{
 		$query = $this->db->get();
 		return $query;
 	}
+
+	public function insert_kurs($data) {
+		$this->db->insert_batch('kurs', $data);
+		
+		return $this->db->affected_rows();
+	}
+
+	public function insert_master($data) {
+		$this->db->insert_batch('master', $data);
+		
+		return $this->db->affected_rows();
+	}
 }

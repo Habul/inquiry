@@ -311,8 +311,7 @@ class Dashboard extends CI_Controller
 			$this->load->view('dashboard/v_footer');
 		}
 	}
-
-
+	
 	public function artikel_edit($id)
 	{
 		$where = array(
@@ -1220,7 +1219,6 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard/v_footer');
 	}
 
-
 	public function inquiry_master_update()
 	{
 		// Wajib isi
@@ -1266,6 +1264,45 @@ class Dashboard extends CI_Controller
 			$this->load->view('inquiry/v_inquiry_master_edit', $data);
 			$this->load->view('dashboard/v_footer');
 		}
+	}
+
+	public function inquiry_master_export()
+	{
+		error_reporting(E_ALL);
+
+		include_once './assets/phpexcel/Classes/PHPExcel.php';
+		$objPHPExcel = new PHPExcel();
+
+		$data = $this->m_data->select_master();
+
+		$objPHPExcel = new PHPExcel();
+		$objPHPExcel->setActiveSheetIndex(0);
+		$rowCount = 1;
+
+		$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, "ID Master");
+		$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, "Brand Product");
+		$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, "D1");
+		$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, "D2");
+		$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "User");
+		$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, "Distributor");
+		$rowCount++;
+
+		foreach ($data as $value) {
+			$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->id_master);
+			$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->brand);
+			$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $value->d1);
+			$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $value->d2);
+			$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $value->user);
+			$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $value->distributor);
+		
+			$rowCount++;
+		}
+
+		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+		$objWriter->save('./assets/excel/Data Master.xlsx');
+
+		$this->load->helper('download');
+		force_download('./assets/excel/Data Master.xlsx', NULL);
 	}
 
 	public function inquiry_kurs()
@@ -1372,6 +1409,100 @@ class Dashboard extends CI_Controller
 		$this->m_data->delete_data($where, 'kurs');
 
 		redirect(base_url() . 'dashboard/inquiry_kurs');
+	}
+
+	public function inquiry_kurs_export()
+	{
+		error_reporting(E_ALL);
+
+		include_once './assets/phpexcel/Classes/PHPExcel.php';
+		$objPHPExcel = new PHPExcel();
+
+		$data = $this->m_data->select_kurs();
+
+		$objPHPExcel = new PHPExcel();
+		$objPHPExcel->setActiveSheetIndex(0);
+		$rowCount = 1;
+
+		$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, "ID Kurs");
+		$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, "Currency");
+		$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, "Amount");
+		$rowCount++;
+
+		foreach ($data as $value) {
+			$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->id_kurs);
+			$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->currency);
+			$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $value->amount);
+			$rowCount++;
+		}
+
+		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+		$objWriter->save('./assets/excel/Data Kurs.xlsx');
+
+		$this->load->helper('download');
+		force_download('./assets/excel/Data Kurs.xlsx', NULL);
+	}
+
+	public function inquiry_kurs_import() {
+		$this->form_validation->set_rules('excel', 'File', 'trim|required');
+
+		if ($_FILES['excel']['name'] == '') {
+			$this->session->set_flashdata('msg', 'File harus diisi');
+		} else {
+			$config['upload_path'] = './assets/excel/';
+			$config['allowed_types'] = 'xls|xlsx';
+			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload('excel')){
+				$error = array('error' => $this->upload->display_errors());
+			}
+			else{
+				$data = $this->upload->data();
+				
+				error_reporting(E_ALL);
+				date_default_timezone_set('Asia/Jakarta');
+
+				include './assets/phpexcel/Classes/PHPExcel/IOFactory.php';
+
+				$inputFileName = './assets/excel/' .$data['file_name'];
+				$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
+				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+				$index = 0;
+				foreach ($sheetData as $key => $value) {
+					if ($key != 1) {
+						$id = md5(DATE('ymdhms').rand());
+						$check = $this->M_pegawai->check_nama($value['B']);
+
+						if ($check != 1) {
+							$resultData[$index]['id'] = $id;
+							$resultData[$index]['nama'] = ucwords($value['B']);
+							$resultData[$index]['telp'] = $value['C'];
+							$resultData[$index]['id_kota'] = $value['D'];
+							$resultData[$index]['id_kelamin'] = $value['E'];
+							$resultData[$index]['id_posisi'] = $value['F'];
+							$resultData[$index]['status'] = $value['G'];
+						}
+					}
+					$index++;
+				}
+
+				unlink('./assets/excel/' .$data['file_name']);
+
+				if (count($resultData) != 0) {
+					$result = $this->M_pegawai->insert_batch($resultData);
+					if ($result > 0) {
+						$this->session->set_flashdata('msg', show_succ_msg('Data Pegawai Berhasil diimport ke database'));
+						redirect('Pegawai');
+					}
+				} else {
+					$this->session->set_flashdata('msg', show_msg('Data Pegawai Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
+					redirect('Pegawai');
+				}
+
+			}
+		}
 	}
 	
 }

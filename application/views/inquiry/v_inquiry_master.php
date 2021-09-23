@@ -16,6 +16,14 @@
                			<a href="<?php echo base_url('dashboard/inquiry_master_tambah'); ?>" class="form-control btn btn-success" ><i
                         class="glyphicon glyphicon-plus-sign"></i> Tambah Data Master</a>
 						</div>
+						<div class="col-md-3">
+							<a href="<?php echo base_url('dashboard/inquiry_master_export'); ?>" class="form-control btn btn-default"><i
+							class="glyphicon glyphicon glyphicon-floppy-open"></i> Export Data Excel</a>
+						</div>
+						<div class="col-md-3">
+						<a href="<?php echo base_url('dashboard/inquiry_master_import'); ?>" class="form-control btn btn-default"><i
+							class="glyphicon glyphicon glyphicon-floppy-save"></i> Import Data Excel</a>
+						</div>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
