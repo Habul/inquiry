@@ -33,28 +33,28 @@ class Dashboard extends CI_Controller
 		// hitung jumlah inquiry sudah terjawab
 		$data['total_inquiry'] = $this->m_data->select_not_null();
 		// count inquiry belum terjawab
-		
+
 		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-		
+
 		$sales 				= $this->m_data->select_pengguna();
 		$index = 0;
 		foreach ($sales as $value) {
-		    $color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
+			$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
 			$pengguna_sales = $this->m_data->select_by_sales($value->pengguna_nama);
 
 			$data_sales[$index]['value'] = $pengguna_sales->jmlh;
 			$data_sales[$index]['color'] = $color;
 			$data_sales[$index]['highlight'] = $color;
-			$data_sales[$index]['label'] = $value->pengguna_nama;	
-			
+			$data_sales[$index]['label'] = $value->pengguna_nama;
+
 			$index++;
 		}
 
 		$brand 				= $this->m_data->select_master();
 		$index = 0;
 		foreach ($brand as $value) {
-		    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+			$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
 			$pengguna_brand = $this->m_data->select_by_brand($value->brand);
 
@@ -62,7 +62,7 @@ class Dashboard extends CI_Controller
 			$data_brand[$index]['color'] = $color;
 			$data_brand[$index]['highlight'] = $color;
 			$data_brand[$index]['label'] = $value->brand;
-			
+
 			$index++;
 		}
 
@@ -311,7 +311,7 @@ class Dashboard extends CI_Controller
 			$this->load->view('dashboard/v_footer');
 		}
 	}
-	
+
 	public function artikel_edit($id)
 	{
 		$where = array(
@@ -874,7 +874,7 @@ class Dashboard extends CI_Controller
 		} else {
 			$data['master'] = $this->m_data->get_master()->result();
 			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_tambah',$data);
+			$this->load->view('inquiry/v_inquiry_tambah', $data);
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -891,11 +891,12 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard/v_footer');
 	}
 
-	public function get_kurs(){
-        $kode=$this->input->post('kurs');
-        $data=$this->m_pos->get_data_kurs($kode);
-        echo json_encode($data);
-    }
+	public function get_kurs()
+	{
+		$kode = $this->input->post('kurs');
+		$data = $this->m_pos->get_data_kurs($kode);
+		echo json_encode($data);
+	}
 
 
 	public function inquiry_update()
@@ -1280,7 +1281,7 @@ class Dashboard extends CI_Controller
 			$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $value->d2);
 			$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $value->user);
 			$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $value->distributor);
-		
+
 			$rowCount++;
 		}
 
@@ -1422,7 +1423,8 @@ class Dashboard extends CI_Controller
 		force_download('./assets/excel/Data Kurs.xlsx', NULL);
 	}
 
-	public function inquiry_kurs_import() {
+	public function inquiry_kurs_import()
+	{
 		$this->form_validation->set_rules('excel', 'File', 'trim|required');
 
 		if ($_FILES['excel']['name'] == '') {
@@ -1430,28 +1432,27 @@ class Dashboard extends CI_Controller
 		} else {
 			$config['upload_path'] = './assets/excel/';
 			$config['allowed_types'] = 'xls|xlsx';
-			
+
 			$this->load->library('upload', $config);
-			
-			if ( ! $this->upload->do_upload('excel')){
+
+			if (!$this->upload->do_upload('excel')) {
 				$error = array('error' => $this->upload->display_errors());
-			}
-			else{
+			} else {
 				$data = $this->upload->data();
-				
+
 				error_reporting(E_ALL);
 				date_default_timezone_set('Asia/Jakarta');
 
 				include './assets/phpexcel/Classes/PHPExcel/IOFactory.php';
 
-				$inputFileName = './assets/excel/' .$data['file_name'];
+				$inputFileName = './assets/excel/' . $data['file_name'];
 				$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
-				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
-						$id = md5(DATE('ymdhms').rand());
+						$id = md5(DATE('ymdhms') . rand());
 						$check = $this->M_pegawai->check_nama($value['B']);
 
 						if ($check != 1) {
@@ -1467,7 +1468,7 @@ class Dashboard extends CI_Controller
 					$index++;
 				}
 
-				unlink('./assets/excel/' .$data['file_name']);
+				unlink('./assets/excel/' . $data['file_name']);
 
 				if (count($resultData) != 0) {
 					$result = $this->M_pegawai->insert_batch($resultData);
@@ -1479,9 +1480,7 @@ class Dashboard extends CI_Controller
 					$this->session->set_flashdata('msg', show_msg('Data Pegawai Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
 					redirect('Pegawai');
 				}
-
 			}
 		}
 	}
-	
 }
