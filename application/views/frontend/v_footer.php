@@ -33,13 +33,14 @@
 <!-- JavaScript Libraries -->
 <script src="<?php echo base_url(); ?>assets_frontend/lib/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets_frontend/lib/jquery/jquery-migrate.min.js"></script>
-<script src="<?php echo base_url(); ?>assets_frontend/lib/popper/popper.min.js"></script>
 <script src="<?php echo base_url(); ?>assets_frontend/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets_frontend/lib/easing/easing.min.js"></script>
 <script src="<?php echo base_url(); ?>assets_frontend/lib/counterup/jquery.waypoints.min.js"></script>
 <script src="<?php echo base_url(); ?>assets_frontend/lib/counterup/jquery.counterup.js"></script>
 <script src="<?php echo base_url(); ?>assets_frontend/lib/owlcarousel/owl.carousel.min.js"></script>
+<!--script src="<?php echo base_url(); ?>assets_frontend/lib/popper/popper.min.js"></script>
 <script src="<?php echo base_url(); ?>assets_frontend/lib/lightbox/js/lightbox.min.js"></script>
+<script src="<?php echo base_url(); ?>assets_frontend/lib/popper/popper.min.js"></script!-->
 <script src="<?php echo base_url(); ?>assets_frontend/lib/typed/typed.min.js"></script>
 <!-- Contact Form JavaScript File -->
 <script src="<?php echo base_url(); ?>assets_frontend/contactform/contactform.js"></script>

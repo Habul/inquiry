@@ -11,8 +11,8 @@
 				<div class="box">
 					<div class="box-header">
 					<?php if($this->session->userdata('level') != "sales"){	?>
-					<div class="col-md-3">
-						<a href="<?php echo base_url('dashboard/inquiry_export'); ?>" class="form-control btn btn-default"><i
+					<div class="col-md-6" style="padding: 0;">
+						<a href="<?php echo base_url('dashboard/inquiry_export'); ?>" class="form-control btn btn-success"><i
                          class="glyphicon glyphicon glyphicon-floppy-open"></i> Export To Excel </a>
           				</div>
 					</div>
@@ -55,7 +55,9 @@
 										<td style="text-align:center">
 											<?php
 											echo anchor(site_url('dashboard/inquiry_detail/'.$p->inquiry_id),'<i class="fa fa-eye"></i>&nbsp;Detail',array('title'=>'detail','class'=>'btn btn-primary btn-sm')); 
-                    						?></td>
+                    						?>
+											<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_add_new"> Add New</a>
+										  </td>
 									</tr>
 								<?php } ?>
 						</tbody>

@@ -823,17 +823,10 @@ class Dashboard extends CI_Controller
 
 	public function inquiry()
 	{
+		$data['master'] = $this->m_data->get_master()->result();
 		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('inquiry/v_inquiry', $data);
-		$this->load->view('dashboard/v_footer');
-	}
-
-	public function inquiry_tambah()
-	{
-		$data['master'] = $this->m_data->get_master()->result();
-		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_tambah',$data);
 		$this->load->view('dashboard/v_footer');
 	}
 
@@ -1151,13 +1144,6 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard/v_footer');
 	}
 
-	public function inquiry_master_tambah()
-	{
-		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_master_tambah');
-		$this->load->view('dashboard/v_footer');
-	}
-
 	public function inquiry_master_aksi()
 	{
 		// Wajib isi
@@ -1313,12 +1299,6 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard/v_footer');
 	}
 
-	public function inquiry_kurs_tambah()
-	{
-		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_kurs_tambah');
-		$this->load->view('dashboard/v_footer');
-	}
 
 	public function inquiry_kurs_aksi()
 	{
@@ -1359,7 +1339,6 @@ class Dashboard extends CI_Controller
 		$this->load->view('inquiry/v_inquiry_kurs_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
-
 
 	public function inquiry_kurs_update()
 	{

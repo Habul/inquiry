@@ -44,7 +44,15 @@ class M_data extends CI_Model{
 	function delete_data($where,$table){
 		$this->db->delete($table,$where);
 	}
-	// AKHIR FUNGSI CRUD
+	
+	public function get_by_id($id)
+	{
+		$this->db->from($this->table);
+		$this->db->where('id',$id);
+		$query = $this->db->get();
+
+		return $query->row();
+	}
 
 	public function select_null() {
 		$sql = "SELECT * FROM inquiry where fu1 is null";

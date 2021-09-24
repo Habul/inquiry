@@ -1,17 +1,8 @@
 <script type="text/javascript">
-	var MyTable = $('#list-data').dataTable({
-		  "paging": true,
-		  "lengthChange": true,
-		  "searching": true,
-		  "ordering": true,
-		  "info": true,
-		  "autoWidth": false
-		});
-
 	window.onload = function() {
 		tampilPegawai();
 		tampilPosisi();
-		tampilinquiry();
+		tampilKota();
 		tampilPotongan();
 		<?php
 			if ($this->session->flashdata('msg') != '') {
@@ -181,18 +172,25 @@
 		})
 	})
 
-	//view inquiry
-	$(document).on("click", ".detail-inquiryview", function() {
+	$(document).on("click", ".detail-dataKota", function() {
 		var id = $(this).attr("data-id");
 		
 		$.ajax({
 			method: "POST",
-			url: "<?php echo base_url('dashboard/inquiry_detail'); ?>",
+			url: "<?php echo base_url('Kota/detail'); ?>",
 			data: "id=" +id
 		})
 		.done(function(data) {
 			$('#tempat-modal').html(data);
-			$('#detail-inquiry').modal('show');
+			$('#tabel-detail').dataTable({
+				  "paging": true,
+				  "lengthChange": false,
+				  "searching": true,
+				  "ordering": true,
+				  "info": true,
+				  "autoWidth": false
+				});
+			$('#detail-kota').modal('show');
 		})
 	})
 
