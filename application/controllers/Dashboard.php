@@ -823,6 +823,7 @@ class Dashboard extends CI_Controller
 
 	public function inquiry()
 	{
+		$data['kurs'] = $this->m_data->get_kurs()->result();
 		$data['master'] = $this->m_data->get_master()->result();
 		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
 		$this->load->view('dashboard/v_header');
@@ -870,7 +871,7 @@ class Dashboard extends CI_Controller
 			$this->m_data->insert_data($data, 'inquiry');
 
 			redirect(base_url() . 'dashboard/inquiry');
-		} 
+		}
 	}
 
 	public function inquiry_edit($id)
@@ -898,7 +899,7 @@ class Dashboard extends CI_Controller
 		$this->form_validation->set_rules('new_seller', 'New Reseller', 'required');
 		$this->form_validation->set_rules('user', 'User', 'required');
 		$this->form_validation->set_rules('delivery', 'Delivery', 'required');
-		$this->form_validation->set_rules('ket_purch', 'Keterangan purchase', 'required');
+		//$this->form_validation->set_rules('ket_purch', 'Keterangan purchase', 'required');
 		$this->form_validation->set_rules('name_purch', 'Nama purchase', 'required');
 
 
@@ -943,30 +944,8 @@ class Dashboard extends CI_Controller
 			$this->m_data->update_data($where, $data, 'inquiry');
 
 			redirect(base_url() . 'dashboard/inquiry');
-		} else {
-			$id = $this->input->post('id');
-			$where = array(
-				'inquiry_id' => $id
-			);
-			$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
-
-			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_edit', $data);
-			$this->load->view('dashboard/v_footer');
 		}
 	}
-
-	public function inquiry_edit_sales($id)
-	{
-		$where = array(
-			'inquiry_id' => $id
-		);
-		$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
-		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_edit_sales', $data);
-		$this->load->view('dashboard/v_footer');
-	}
-
 
 	public function inquiry_update_sales()
 	{

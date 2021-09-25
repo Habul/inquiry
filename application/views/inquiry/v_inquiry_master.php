@@ -47,7 +47,7 @@
 									<td><?php echo $p->user; ?></td>
 									<td><?php echo $p->distributor; ?></td>
 									<td style="text-align:center">
-									<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_master;?>"><i class="fa fa-pencil"></i> Edit</a>
+										<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_master; ?>"><i class="fa fa-pencil"></i> Edit</a>
 										<?php
 										echo anchor(site_url('dashboard/inquiry_master_hapus/' . $p->id_master), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 										?>
@@ -131,60 +131,60 @@
 <!--End Modals Master-->
 
 <!-- ============ MODAL EDIT MASTER =============== -->
-<?php foreach($master as $p): ?>
-    <div class="modal fade" id="modal_edit<?php echo $p->id_master;?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h3 class="modal-title" id="myModalLabel">Edit Master</h3>
-            </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_master_update') ?>">
-                <div class="modal-body">
-									<div class="form-group">
-										<label class="control-label col-xs-3">Brand Produk</label>
-										<div class="col-xs-9">
-										<input type="hidden" name="id" value="<?php echo $p->id_master; ?>">
-										<input type="text" readonly name="brand" class="form-control" value="<?php echo $p->brand; ?>">
-										<?php echo form_error('brand'); ?>
-									</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-xs-3">D1</label>
-										<div class="col-xs-9">
-										<input type="number" min="0.1" step="0.1" name="d1" class="form-control" value="<?php echo $p->d1; ?>">
-										<?php echo form_error('d1'); ?>
-									</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-xs-3">D2</label>
-										<div class="col-xs-9">
-										<input type="number" min="0.1" step="0.1" name="d2" class="form-control" value="<?php echo $p->d2; ?>">
-										<?php echo form_error('d2'); ?>
-									</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-xs-3">User</label>
-										<div class="col-xs-9">
-										<input type="number" min="0.1" step="0.1" name="user" class="form-control" value="<?php echo $p->user; ?>">
-										<?php echo form_error('user'); ?>
-									</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-xs-3">Manufac/Distrib</label>
-										<div class="col-xs-9">
-										<input type="text" name="distributor" class="form-control" value="<?php echo $p->distributor; ?>">
-										<?php echo form_error('distributor'); ?>
-									</div>
-									</div>               
-                </div>
-                <div class="modal-footer">
-					<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-					<button class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-	<?php endforeach;?>
-    <!--END MODAL EDIT MASTER-->
+<?php foreach ($master as $p) : ?>
+	<div class="modal fade" id="modal_edit<?php echo $p->id_master; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+					<h3 class="modal-title" id="myModalLabel" align="center">Edit Master</h3>
+				</div>
+				<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_master_update') ?>">
+					<div class="modal-body">
+						<div class="form-group">
+							<label class="control-label col-xs-3">Brand Produk</label>
+							<div class="col-xs-9">
+								<input type="hidden" name="id" value="<?php echo $p->id_master; ?>">
+								<input type="text" readonly name="brand" class="form-control" value="<?php echo $p->brand; ?>">
+								<?php echo form_error('brand'); ?>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">D1</label>
+							<div class="col-xs-9">
+								<input type="number" min="0.1" step="0.1" name="d1" class="form-control" value="<?php echo $p->d1; ?>">
+								<?php echo form_error('d1'); ?>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">D2</label>
+							<div class="col-xs-9">
+								<input type="number" min="0.1" step="0.1" name="d2" class="form-control" value="<?php echo $p->d2; ?>">
+								<?php echo form_error('d2'); ?>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">User</label>
+							<div class="col-xs-9">
+								<input type="number" min="0.1" step="0.1" name="user" class="form-control" value="<?php echo $p->user; ?>">
+								<?php echo form_error('user'); ?>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">Manufac/Distrib</label>
+							<div class="col-xs-9">
+								<input type="text" name="distributor" class="form-control" value="<?php echo $p->distributor; ?>">
+								<?php echo form_error('distributor'); ?>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
+						<button class="btn btn-primary">Simpan</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<?php endforeach; ?>
+<!--END MODAL EDIT MASTER-->
