@@ -867,16 +867,10 @@ class Dashboard extends CI_Controller
 				'request' => $request
 			);
 
-
 			$this->m_data->insert_data($data, 'inquiry');
 
 			redirect(base_url() . 'dashboard/inquiry');
-		} else {
-			$data['master'] = $this->m_data->get_master()->result();
-			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_tambah', $data);
-			$this->load->view('dashboard/v_footer');
-		}
+		} 
 	}
 
 	public function inquiry_edit($id)
@@ -890,14 +884,6 @@ class Dashboard extends CI_Controller
 		$this->load->view('inquiry/v_inquiry_edit', $data);
 		$this->load->view('dashboard/v_footer');
 	}
-
-	public function get_kurs()
-	{
-		$kode = $this->input->post('kurs');
-		$data = $this->m_pos->get_data_kurs($kode);
-		echo json_encode($data);
-	}
-
 
 	public function inquiry_update()
 	{
@@ -1177,10 +1163,6 @@ class Dashboard extends CI_Controller
 			$this->m_data->insert_data($data, 'master');
 
 			redirect(base_url() . 'dashboard/inquiry_master');
-		} else {
-			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_master_tambah');
-			$this->load->view('dashboard/v_footer');
 		}
 	}
 
@@ -1299,7 +1281,6 @@ class Dashboard extends CI_Controller
 		$this->load->view('inquiry/v_inquiry_kurs', $data);
 		$this->load->view('dashboard/v_footer');
 	}
-
 
 	public function inquiry_kurs_aksi()
 	{
@@ -1469,17 +1450,6 @@ class Dashboard extends CI_Controller
 				}
 
 				unlink('./assets/excel/' . $data['file_name']);
-
-				if (count($resultData) != 0) {
-					$result = $this->M_pegawai->insert_batch($resultData);
-					if ($result > 0) {
-						$this->session->set_flashdata('msg', show_succ_msg('Data Pegawai Berhasil diimport ke database'));
-						redirect('Pegawai');
-					}
-				} else {
-					$this->session->set_flashdata('msg', show_msg('Data Pegawai Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
-					redirect('Pegawai');
-				}
 			}
 		}
 	}

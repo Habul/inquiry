@@ -45,9 +45,8 @@
 										<td><?php echo $p->currency; ?></td>
 										<td><?php echo number_format($p->amount, 0, '.', '.'); ?></td>
 										<td style="text-align:center">
+										<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_kurs;?>"><i class="fa fa-pencil"></i> Edit</a>
 											<?php 
-											echo anchor(site_url('dashboard/inquiry_kurs_edit/'.$p->id_kurs),'<i class="fa fa-edit"></i> &nbsp; Edt',array('title'=>'edit','class'=>'btn btn-warning btn-sm')); 
-											echo '  '; 
 											echo anchor(site_url('dashboard/inquiry_kurs_hapus/'.$p->id_kurs),'<i class="fa fa-trash"></i>&nbsp; Del','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 											?>
 										</td>
@@ -99,11 +98,49 @@
 								</div>
                			</div>
 				<div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
+                <button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
+                <button class="btn btn-primary">Simpan</button>
               </div>
             </form>
         </div>
     </div>
 </div>
  <!--End Modals kurs-->
+
+ <!-- ============ MODAL EDIT KURS =============== -->
+<?php foreach($kurs as $p): ?>
+    <div class="modal fade" id="modal_edit<?php echo $p->id_kurs;?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h3 class="modal-title" id="myModalLabel">Edit Master</h3>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_kurs_update') ?>">
+                <div class="modal-body">
+									<div class="form-group">
+										<label class="control-label col-xs-3">Brand Produk</label>
+										<div class="col-xs-8">
+										<input type="hidden" name="id" value="<?php echo $p->id_kurs; ?>">
+										<input type="text" readonly name="currency" class="form-control" value="<?php echo $p->currency; ?>">
+										<?php echo form_error('currency'); ?>
+									</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-xs-3">Amount</label>
+										<div class="col-xs-8">
+										<input type="number" name="amount" class="form-control" value="<?php echo $p->amount; ?>">
+										<?php echo form_error('amount'); ?>
+									</div>
+									</div>             
+                </div>
+                <div class="modal-footer">
+					<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
+					<button class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach;?>
+<!--END MODAL EDIT KURS-->

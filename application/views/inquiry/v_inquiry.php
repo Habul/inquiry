@@ -1,4 +1,5 @@
-<div class="content-wrapper">
+
+  <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
 			Inquiry
@@ -15,7 +16,7 @@
 						<?php if ($this->session->userdata('level') != "purchase") {	?>
 							<div class="col-md-6" style="padding: 0;">
 								<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_inquiry">
-								<i class="glyphicon glyphicon-plus-sign"></i> Tambah Data Inquiry</a>
+								<i class="glyphicon glyphicon-plus-sign"></i> Tambah Inquiry</a>
 							</div>
 						<?php }	?>
 					</div>
@@ -32,7 +33,6 @@
 									<th>Description</th>
 									<th>Qty</th>
 									<th>Deadline</th>
-									<th>Keterangan</th>
 									<th>Request</th>
 									<th width="12%">Action</th>
 								</tr>
@@ -52,11 +52,10 @@
 										<td><?php echo $p->desc; ?></td>
 										<td><?php echo $p->qty; ?></td>
 										<td><?php echo $p->deadline; ?></td>
-										<td><?php echo $p->keter; ?></td>
 										<td><?php echo $p->request; ?></td>
 										<td style="text-align:center">
 											<?php if ($this->session->userdata('level') != "purchase") {	?>
-												<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id;?>"><i class="fa fa-pencil"></i></a>
+												<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id;?>"><i class="fa fa-pencil"></i> Edit</a>
 											<?php }	?>
 											<?php if ($this->session->userdata('level') != "sales") {	?>
 												<?php
@@ -94,17 +93,17 @@
                 <div class="modal-body">
 								<div class="form-group">							
 									<label class="control-label col-xs-3">No Inquiry</label>
-									<div class="col-xs-8">
+									<div class="col-xs-9">
 										<?php 
 											$inquiry_id=$this->db->select('inquiry_id')->order_by('inquiry_id',"desc")->limit(1)->get('inquiry')->row();
 										?>
-									<input type="text" name="inquiry_id" readonly class="form-control" value=<?php echo $inquiry_id->inquiry_id+1 ?> >
+									<input type="text" name="inquiry_id" readonly class="form-control" value="<?php echo $inquiry_id->inquiry_id+1 ?>">
 									<?php echo form_error('inquiry_id'); ?>
 								</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-xs-3">Nama Sales</label>
-									<div class="col-xs-8">
+									<div class="col-xs-9">
 										<?php 
 											$id_user = $this->session->userdata('id');
 											$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
@@ -115,7 +114,7 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label col-xs-3">Tanggal</label>
-									<div class="col-xs-8">
+									<div class="col-xs-9">
 									<?php 
 										$now = $this->load->helper('date');
 										$format = "%Y-%m-%d %H:%i:%s";
@@ -126,7 +125,7 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label col-xs-3">Request</label>
-									<div class="col-xs-8">
+									<div class="col-xs-9">
 									<select class="form-control" name="request">
 										<option value="">- Pilih Request -</option>
 										<option value="PRICE+LT">PRICE+LT</option>
@@ -143,7 +142,7 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label col-xs-3">Brand Produk</label>
-									<div class="col-xs-8">
+									<div class="col-xs-9">
 									<select class="form-control" name="brand">
 										<option value="">- Pilih Brand -</option>
 										<?php foreach($master as $row):?>
@@ -155,63 +154,63 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label col-xs-3">Deskripsi</label>
-									<div class="col-xs-8">
-									<input type="text" name="desc" class="form-control" placeholder="input Desc..">
+									<div class="col-xs-9">
+									<textarea name="desc" class="form-control" placeholder="input Desc.."></textarea>
 									<?php echo form_error('desc'); ?>
 								</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-xs-3">Quantity</label>
-									<div class="col-xs-8">
+									<div class="col-xs-9">
 									<input type="number" name="qty" class="form-control" placeholder="input qty...">
 									<?php echo form_error('qty'); ?>
 								</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-xs-3">Deadline</label>
-									<div class="col-xs-8">
+									<div class="col-xs-9">
 									<input type="date" name="deadline" class="form-control" placeholder="input deadline ..">
 									<?php echo form_error('deadline'); ?>
 								</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-xs-3">Note</label>
-									<div class="col-xs-8">
-									<textarea name="keter" class="form-control" rows="3" placeholder="input  .."></textarea>
+									<label class="control-label col-xs-3">Keterangan</label>
+									<div class="col-xs-9">
+									<textarea name="keter" class="form-control" placeholder="input  .."></textarea>
 									<?php echo form_error('keter'); ?>
 								</div>
 								</div>
                 </div>
 				<div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
+                <button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
+                <button class="btn btn-primary">Simpan</button>
               </div>
             </form>
         </div>
     </div>
 </div>
  <!-- end modal add inquiry -->
-
+ 
   <!-- ============ MODAL EDIT BARANG =============== -->
-  <?php foreach($inquiry as $p){ ?>
+  <?php foreach($inquiry as $p): ?>
     <div class="modal fade" id="modal_edit<?php echo $p->inquiry_id;?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Edit Barang</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h3 class="modal-title" id="myModalLabel">Edit Inquiry</h3>
             </div>
             <form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_update_sales') ?>">
                 <div class="modal-body">
 									<div class="form-group">
 									<label class="control-label col-xs-3">No Inquiry</label>
-									<div class="col-xs-8">
+									<div class="col-xs-9">
 										<input type="text" name="id" readonly class="form-control" value="<?php echo $p->inquiry_id; ?>">
 									</div>
 									</div>
 									<div class="form-group">
 									<label class="control-label col-xs-3">Nama sales</label>
-									<div class="col-xs-8">								
+									<div class="col-xs-9">								
 										<?php 
 											$id_user = $this->session->userdata('id');
 											$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
@@ -222,7 +221,7 @@
 										</div>
 									<div class="form-group">
 										<label class="control-label col-xs-3">Tanggal</label>
-										<div class="col-xs-8">
+										<div class="col-xs-9">
 										<?php 
 										$now = $this->load->helper('date');
 										$format = "%Y-%m-%d %H:%i:%s";
@@ -233,48 +232,48 @@
 										</div>
 									<div class="form-group">
 										<label class="control-label col-xs-3">Brand Produk</label>
-										<div class="col-xs-8">
+										<div class="col-xs-9">
 										<input type="text" name="brand" readonly class="form-control" value="<?php echo $p->brand; ?>">
 										<?php echo form_error('brand'); ?>
 									</div>
 										</div>
 									<div class="form-group">
 										<label class="control-label col-xs-3">Deskripsi</label>
-										<div class="col-xs-8">
-										<input type="text" name="desc" class="form-control" value="<?php echo $p->desc; ?>">
+										<div class="col-xs-9">
+										<textarea name="desc" class="form-control"><?php echo $p->desc; ?></textarea>
 										<?php echo form_error('desc'); ?>
 									</div>
 										</div>
 									<div class="form-group">
 										<label class="control-label col-xs-3">Quantity</label>
-										<div class="col-xs-8">
+										<div class="col-xs-9">
 										<input type="text" name="qty" class="form-control" value="<?php echo $p->qty; ?>">
 										<?php echo form_error('qty'); ?>
 									</div>
 										</div>
 									<div class="form-group">
 										<label class="control-label col-xs-3">Deadline</label>
-										<div class="col-xs-8">
+										<div class="col-xs-9">
 										<input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>">
 										<?php echo form_error('deadline'); ?>
 									</div>
 										</div>
 									<div class="form-group">
 										<label class="control-label col-xs-3">Keterangan</label>
-										<div class="col-xs-8">
-										<input type='text' name="keter" class="form-control" value="<?php echo $p->keter; ?>">
+										<div class="col-xs-9">
+										<textarea name="keter" class="form-control"><?php echo $p->keter; ?></textarea>
 										<?php echo form_error('keter'); ?>
 									</div>
 										</div>
                    
                 </div>
                 <div class="modal-footer">
-					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-					<button type="button" class="btn btn-primary">Simpan</button>
+					<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
+					<button class="btn btn-primary">Simpan</button>
                 </div>
             </form>
-			<?php } ?>
             </div>
-            </div>
+        </div>
     </div>
+	<?php endforeach;?>
     <!--END MODAL EDIT BARANG-->

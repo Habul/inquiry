@@ -67,29 +67,28 @@
 										<?php echo form_error('kurs'); ?>										
 									</div>
 									<div class="form-group">
-										<label>Cogs</label>
-										<input type="number" id="amount" readonly name="amount" class="form-control">
+										<label>Cogs</label>					
 										<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="changeTipe();" placeholder="Isi Cogs..">
 										<?php echo form_error('cogs'); ?>
 									</div>
 									<div class="form-group">
 										<label>Cogs IDR</label>
-										<input type="number" id="cogs_idr" readonly name="cogs_idr" class="form-control" placeholder="Cogs Idr..">
+										<input type="number" id="cogs_idr" name="cogs_idr" class="form-control" placeholder="Cogs Idr..">
 										<?php echo form_error('cogs_idr'); ?>
 									</div>
 									<div class="form-group">
 										<label>Reseller</label>
-										<input type="number" id="reseller" readonly name="reseller" class="form-control" placeholder="Rp..">
+										<input type="number" id="reseller" name="reseller" class="form-control" placeholder="Rp..">
 										<?php echo form_error('reseller'); ?>
 									</div>
 									<div class="form-group">
 										<label>New Seller</label>
-										<input type="number" id="new_seller" readonly name="new_seller" class="form-control" placeholder="Rp..">
+										<input type="number" id="new_seller" name="new_seller" class="form-control" placeholder="Rp..">
 										<?php echo form_error('new_seller'); ?>
 									</div>
 									<div class="form-group">
 										<label>User</label>
-										<input type="number" id="user " readonly name="user" class="form-control" placeholder="Rp..">
+										<input type="number" id="user " name="user" class="form-control" placeholder="Rp..">
 										<?php echo form_error('user'); ?>
 									</div>
 									<div class="form-group">
@@ -107,9 +106,8 @@
 									<a href="<?php echo base_url() . 'dashboard/inquiry'; ?>" class="btn btn-default">Kembali</a>
 									<input type="submit" class="btn btn-info pull-right" value="Simpan">
 								</div>
-								</div>
-							</form>
-						
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
