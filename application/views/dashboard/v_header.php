@@ -118,7 +118,7 @@
 				</div>
 
 				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">MAIN NAVIGATION</li>
+					<li class="header">LIST MENU</li>
 					<li>
 						<a href="<?php echo base_url() . 'dashboard' ?>">
 							<i class="fa fa-dashboard"></i>

@@ -12,7 +12,7 @@
 					<div class="box-header">
 						<?php if ($this->session->userdata('level') != "sales") {	?>
 							<div class="col-md-6" style="padding: 0;">
-								<a href="<?php echo base_url('dashboard/inquiry_export'); ?>" class="form-control btn btn-success"><i class="glyphicon glyphicon glyphicon-floppy-open"></i> Export To Excel </a>
+								<a href="<?php echo base_url('dashboard/inquiry_export'); ?>" class="form-control btn btn-success"><i class="glyphicon glyphicon glyphicon-open-file"></i></i> Export To Excel </a>
 							</div>
 					</div>
 				<?php }	?>

@@ -1412,23 +1412,25 @@ class Dashboard extends CI_Controller
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
-						$id = md5(DATE('ymdhms') . rand());
-						$check = $this->M_pegawai->check_nama($value['B']);
-
+						$check = $this->m_data->check_kurs($value['B']);
 						if ($check != 1) {
-							$resultData[$index]['id'] = $id;
-							$resultData[$index]['nama'] = ucwords($value['B']);
-							$resultData[$index]['telp'] = $value['C'];
-							$resultData[$index]['id_kota'] = $value['D'];
-							$resultData[$index]['id_kelamin'] = $value['E'];
-							$resultData[$index]['id_posisi'] = $value['F'];
-							$resultData[$index]['status'] = $value['G'];
+							$resultData[$index]['id_kurs'] = $value['A'];
+							$resultData[$index]['currency'] = ucwords($value['B']);
+							$resultData[$index]['amount'] = $value['C'];
 						}
 					}
 					$index++;
 				}
 
 				unlink('./assets/excel/' . $data['file_name']);
+
+				if (count($resultData) != 0) {
+					$result = $this->m_data->insert_kurs($resultData);
+					if ($result > 0) {
+						$this->session->set_flashdata('msg', ('Data Pegawai Berhasil diimport ke database'));
+						redirect('dashboard/inquiry_kurs');
+					}
+				}
 			}
 		}
 	}

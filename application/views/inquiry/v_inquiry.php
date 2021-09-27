@@ -176,8 +176,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-					<button class="btn btn-primary">Simpan</button>
+					<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
+					<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
 				</div>
 			</form>
 		</div>
@@ -261,8 +261,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-						<button class="btn btn-primary">Simpan</button>
+						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
+						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
 					</div>
 				</form>
 			</div>
@@ -429,8 +429,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-						<button class="btn btn-primary">Simpan</button>
+						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
+						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
 					</div>
 				</form>
 			</div>

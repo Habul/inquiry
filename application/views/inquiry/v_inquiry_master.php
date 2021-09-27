@@ -14,10 +14,10 @@
 							<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_master"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data Master</a>
 						</div>
 						<div class="col-md-3">
-							<a href="<?php echo base_url('dashboard/inquiry_master_export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-floppy-open"></i> Export Data Excel</a>
+							<a href="<?php echo base_url('dashboard/inquiry_master_export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-open-file"></i> Export Data Excel</a>
 						</div>
 						<div class="col-md-3">
-							<a href="<?php echo base_url('dashboard/inquiry_master_import'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-floppy-save"></i> Import Data Excel</a>
+						<a class="form-control btn btn-default" data-toggle="modal" data-target="#modal_import_master"><i class="glyphicon glyphicon glyphicon-save-file"></i> Import Data Excel</a>
 						</div>
 					</div>
 					<!-- /.box-header -->
@@ -121,8 +121,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-					<button class="btn btn-primary">Simpan</button>
+					<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
+					<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
 				</div>
 			</form>
 		</div>
@@ -179,8 +179,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
-						<button class="btn btn-primary">Simpan</button>
+						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
+						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
 					</div>
 				</form>
 			</div>
@@ -188,3 +188,30 @@
 	</div>
 <?php endforeach; ?>
 <!--END MODAL EDIT MASTER-->
+
+<!--add MODAL import-->
+<div class="modal fade" id="modal_import_master" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h3 class="modal-title" id="myModalLabel" align="center">Import Master</h3>
+			</div>
+			<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_kurs_import') ?>">
+			<div class="modal-body">
+				<div class="form-group">
+				<div class="col-xs-12">	
+					<input type="file" class="form-control" name="excel">
+					<small>&nbsp; * Extensi file xls atau xlsx</small><br/>
+					<small>&nbsp; * File yang di import akan me replace data yang sudah ada</small><br/>
+				</div>
+			</div>
+			</div>
+				<div class="modal-footer">
+					<button type="submit" class="form-control btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Import Data</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--END MODAL import KURS-->
