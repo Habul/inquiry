@@ -14,7 +14,7 @@
 							<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_kurs"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data Kurs</a>
 						</div>
 						<div class="col-md-3">
-							<a href="<?php echo base_url('dashboard/inquiry_kurs_export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-open-file"></i> Export Data Excel</a>
+							<a href="<?php echo base_url('inquiry/inquiry_kurs_export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-open-file"></i> Export Data Excel</a>
 						</div>
 						<div class="col-md-3">
 							<a class="form-control btn btn-default" data-toggle="modal" data-target="#modal_import_kurs"><i class="glyphicon glyphicon glyphicon-save-file"></i> Import Data Excel</a>
@@ -43,7 +43,7 @@
 									<td style="text-align:center">
 										<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_kurs; ?>"><i class="fa fa-pencil"></i> Edit</a>
 										<?php
-										echo anchor(site_url('dashboard/inquiry_kurs_hapus/' . $p->id_kurs), '<i class="fa fa-trash"></i>&nbsp; Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+										echo anchor(site_url('inquiry/inquiry_kurs_hapus/' . $p->id_kurs), '<i class="fa fa-trash"></i>&nbsp; Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 										?>
 									</td>
 								</tr>
@@ -68,7 +68,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Tambah Kurs</h3>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_kurs_aksi') ?>">
+			<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<?php
@@ -111,7 +111,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 					<h3 class="modal-title" id="myModalLabel" align="center">Edit Master</h3>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_kurs_update') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Brand Produk *</label>
@@ -148,7 +148,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Import Kurs</h3>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_kurs_import') ?>" enctype="multipart/form-data">
+			<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_import') ?>" enctype="multipart/form-data">
 			<div class="modal-body">
 				<div class="form-group">
 				<div class="col-xs-12">	

@@ -56,7 +56,7 @@
 										<?php if ($this->session->userdata('level') != "sales") { ?>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->inquiry_id; ?>"><i class="fa fa-edit"></i> Edit</a>
 											<?php
-											echo anchor(site_url('dashboard/inquiry_hapus/' . $p->inquiry_id), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+											echo anchor(site_url('inquiry/inquiry_hapus/' . $p->inquiry_id), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 											?>
 									</td>
 								</tr>
@@ -83,7 +83,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Tambah Inquiry</h3>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_aksi') ?>">
+			<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Inquiry</label>
@@ -191,10 +191,10 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 					<h3 class="modal-title" id="myModalLabel" align="center">Edit Inquiry</h3>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_update_sales') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Inquiry</label>
@@ -277,10 +277,10 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 					<h3 class="modal-title" id="myModalLabel" align="center">Edit Inquiry (Purchase)</h3>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_update') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Inquiry</label>
@@ -297,7 +297,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Brand</label>
 							<div class="col-xs-9">
-								<input type="text" name="brand" class="form-control" readonly value="<?php echo $p->brand; ?>">
+								<input type="text" class="form-control" readonly value="<?php echo $p->brand; ?>">
 							</div>
 						</div>
 						<div class="form-group">

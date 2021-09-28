@@ -26,28 +26,28 @@
 			<div class="col-lg-3 col-xs-6">
 				<div class="small-box bg-green">
 					<div class="inner">
-						<h3><?php echo $jumlah_inquiry ?></h3>
+						<h3><?php echo $total_inquiry ?></h3>
 
-						<p>Inquiry Belum Terjawab</p>
+						<p>Jumlah Inquiry</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-android-document"></i>
 					</div>
-					<a href="<?php echo base_url('dashboard/inquiry') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="<?php echo base_url('inquiry/inquiry') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-xs-6">
 				<div class="small-box bg-red">
 					<div class="inner">
-						<h3><?php echo $total_inquiry ?></h3>
+						<h3><?php echo $total_buffer ?></h3>
 
-						<p>Inquiry Sudah Terjawab</p>
+						<p>Jumlah Buffer</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-pie-graph"></i>
 					</div>
-					<a href="<?php echo base_url('dashboard/inquiry_view') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="<?php echo base_url('buffer/buffer') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 

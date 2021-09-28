@@ -178,27 +178,45 @@
 						<ul class="treeview-menu">
 							<?php
 							if ($this->session->userdata('level') != "sales") { ?>
-								<li><a href="<?php echo base_url() . 'dashboard/inquiry_master' ?>">
+								<li><a href="<?php echo base_url() . 'inquiry/inquiry_master' ?>">
 										<i class="fa fa-file-text"></i>
 										<span>MASTER INQUIRY </span></a>
 								</li>
-								<li><a href="<?php echo base_url() . 'dashboard/inquiry_kurs' ?>">
+								<li><a href="<?php echo base_url() . 'inquiry/inquiry_kurs' ?>">
 										<i class="fa fa-money"></i>
 										<span>KURS INQUIRY</span></a>
 								</li>
 							<?php
 							} ?>
-							<li><a href="<?php echo base_url() . 'dashboard/inquiry' ?>">
+							<li><a href="<?php echo base_url() . 'inquiry/inquiry' ?>">
 									<i class="fa fa-sticky-note-o"></i>
 									<span>INPUT INQUIRY</span></a>
 							</li>
-							<li><a href="<?php echo base_url() . 'dashboard/inquiry_view' ?>">
-									<i class="fa fa-archive"></i>
+							<li><a href="<?php echo base_url() . 'inquiry/inquiry_view' ?>">
+									<i class="fa fa-sticky-note"></i>
 									<span>VIEW INQUIRY</span></a>
 							</li>
 						</ul>
 					</li>
-					
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-pie-chart"></i>
+							<span>BUFFER</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="<?php echo base_url() . 'buffer/buffer' ?>">
+									<i class="fa fa-file-o"></i>
+									<span>INPUT BUFFER</span></a>
+							</li>
+							<li><a href="<?php echo base_url() . 'buffer/buffer_view' ?>">
+									<i class="fa fa-file"></i>
+									<span>VIEW BUFFER</span></a>
+							</li>
+						</ul>
+					</li>	
 					<li>
 						<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>">
 							<i class="fa fa-lock"></i>

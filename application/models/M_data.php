@@ -24,6 +24,14 @@ class M_data extends CI_Model{
 		return $data->result();
 	}
 
+	public function select_buffer() {
+		$sql = "SELECT * FROM `buffer` where approve='finish'";
+
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
 	// fungsi untuk menginput data ke database
 	function insert_data($data,$table){
 		$this->db->insert($table,$data);
@@ -54,16 +62,16 @@ class M_data extends CI_Model{
 		return $query->row();
 	}
 
-	public function select_null() {
-		$sql = "SELECT * FROM inquiry where fu1 is null";
+	public function tot_inquiry() {
+		$sql = "SELECT * FROM inquiry";
 
 		$data = $this->db->query($sql);
 
 		return $data->num_rows();
 	}
 
-	public function select_not_null() {
-		$sql = "SELECT * FROM inquiry WHERE fu1 IS NOT NULL";
+	public function tot_buffer() {
+		$sql = "SELECT * FROM `buffer`";
 
 		$data = $this->db->query($sql);
 

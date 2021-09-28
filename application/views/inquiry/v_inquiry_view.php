@@ -12,7 +12,7 @@
 					<div class="box-header">
 						<?php if ($this->session->userdata('level') != "sales") {	?>
 							<div class="col-md-6" style="padding: 0;">
-								<a href="<?php echo base_url('dashboard/inquiry_export'); ?>" class="form-control btn btn-success"><i class="glyphicon glyphicon glyphicon-open-file"></i></i> Export To Excel </a>
+								<a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="form-control btn btn-success"><i class="glyphicon glyphicon glyphicon-open-file"></i></i> Export To Excel </a>
 							</div>
 					</div>
 				<?php }	?>
@@ -75,7 +75,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <h3 class="modal-title" id="myModalLabel" align="center">Detail Inquiry</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/inquiry_detail') ?>">
+            <form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_detail') ?>">
                 <div class="modal-body">
 				<div class="form-group">
                   <label class="col-sm-2 control-label">No Inquiry</label>
