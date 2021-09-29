@@ -101,6 +101,7 @@
 	</section>
 </div>
 <!-- ChartJS -->
+
 <script src="<?php echo base_url(); ?>assets/bower_components/chart.js/Chart.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 <script>

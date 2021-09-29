@@ -25,7 +25,7 @@ class M_data extends CI_Model{
 	}
 
 	public function select_buffer() {
-		$sql = "SELECT * FROM `buffer` where approve='finish'";
+		$sql = "SELECT * FROM `buffer` where `status`='approve'";
 
 		$data = $this->db->query($sql);
 

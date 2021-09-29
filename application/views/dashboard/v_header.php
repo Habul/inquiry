@@ -22,14 +22,15 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 	<script src="<?php echo base_url(); ?>assets/libs/modernizr.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
+	<script> $.widget.bridge('uibutton', $.ui.button);</script>
 	<!--script src="<?php echo base_url(); ?>assets/js/ajax.js"></script!-->
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-
 		<header class="main-header">
-			<a href="<?php echo base_url(); ?>" class="logo">
+		<a href="<?php echo base_url() . 'dashboard' ?>" class="logo">
 				<span class="logo-mini"><b>IG</b></span>
 				<span class="logo-lg"><b>Intisera </b>Group</span>
 			</a>
@@ -83,7 +84,6 @@
 										<small><?php echo $this->session->userdata('level') ?></small>
 									</p>
 								</li>
-
 								<li class="user-footer">
 									<div class="pull-left">
 										<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default btn-flat">Profil</a>
@@ -94,7 +94,6 @@
 								</li>
 							</ul>
 						</li>
-
 					</ul>
 				</div>
 			</nav>

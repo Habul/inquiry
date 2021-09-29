@@ -2,7 +2,7 @@
 	<section class="content-header">
 		<h1>
 			Buffer Stock
-			<small>Data yang sudah di jawab Warehouse tidak di munculkan, di pindahkan ke menu <b>VIEW BUFFER</b></small>
+			<small>Data yang sudah di <b>APPROVE</b> di pindahkan ke menu <b>VIEW BUFFER</b></small>
 		</h1>
 	</section>
 	<section class="content">
@@ -19,7 +19,7 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						<table id="example2" class="table table table-bordered table-hover">
+						<table id="example1" class="table table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th width="1%">NO</th>
@@ -29,7 +29,7 @@
 									<th>Brand Produk</th>
 									<th>Description</th>
 									<th>Qty</th>
-									<th>Keterangan</th>
+									<th>Status</th>
 									<th width="12%">Action</th>
 								</tr>
 							</thead>
@@ -46,7 +46,7 @@
 									<td><?php echo $p->brand; ?></td>
 									<td><?php echo $p->deskripsi; ?></td>
 									<td><?php echo $p->qty; ?></td>
-									<td><?php echo $p->keter; ?></td>
+									<td><?php echo $p->status; ?></td>
 									<td style="text-align:center">
 										<?php if ($this->session->userdata('level') != "warehouse") { ?>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>"><i class="fa fa-pencil"></i> Edit</a>
@@ -315,10 +315,10 @@
 							<div class="col-xs-9">
                             <select class="form-control" name="status">
 								<option value="">- Pilih Request -</option>
-								<option value="approve">APPROVE</option>
-								<option value="reject">REJECT</option>
-								<option value="on progress">ON PROGRESS</option>
-								<option value="finish">FINISH</option>									
+								<option <?php if($p->status == "approve"){ echo "selected='selected'";} ?> value="approve">APPROVE</option>
+								<option <?php if($p->status == "reject"){ echo "selected='selected'";} ?> value="reject">REJECT</option>
+								<option <?php if($p->status == "on progress"){ echo "selected='selected'";} ?> value="on progress">ON PROGRESS</option>
+								<option <?php if($p->status == "finish"){ echo "selected='selected'";} ?> value="finish">FINISH</option>
 							</select>
 							<?php echo form_error('status'); ?>
 							</div>

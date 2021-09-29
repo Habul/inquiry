@@ -182,7 +182,7 @@ class Buffer extends CI_Controller
 
 	public function buffer_view()
 	{
-		$data['inquiry'] = $this->m_data->select_buffer();
+		$data['buffer'] = $this->m_data->select_buffer();
 
 		$this->load->view('dashboard/v_header');
 		$this->load->view('buffer/v_buffer_view', $data);
