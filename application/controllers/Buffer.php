@@ -12,7 +12,6 @@ class Buffer extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('m_data');
-	
 	}
 
 	public function buffer()
@@ -34,7 +33,7 @@ class Buffer extends CI_Controller
 		$this->form_validation->set_rules('deskripsi', 'Description Produk', 'required');
 		$this->form_validation->set_rules('qty', 'Quantity', 'required');
 		$this->form_validation->set_rules('keter', 'Keterangan', 'required');
-		
+
 		if ($this->form_validation->run() != false) {
 
 			$id_buffer = $this->input->post('id_buffer');
@@ -44,7 +43,7 @@ class Buffer extends CI_Controller
 			$deskripsi = $this->input->post('deskripsi');
 			$qty = $this->input->post('qty');
 			$keter = $this->input->post('keter');
-			
+
 			$data = array(
 				'id_buffer' => $id_buffer,
 				'sales' => $sales,
@@ -79,7 +78,7 @@ class Buffer extends CI_Controller
 			$status = $this->input->post('status');
 			$pr_no = $this->input->post('pr_no');
 			$ket_wh = $this->input->post('ket_wh');
-			
+
 
 			if ($this->form_validation->run() != false) {
 				$data = array(
@@ -88,7 +87,7 @@ class Buffer extends CI_Controller
 					'status' => $status,
 					'pr_no' => $pr_no,
 					'ket_wh' => $ket_wh
-					
+
 				);
 			}
 
@@ -98,23 +97,20 @@ class Buffer extends CI_Controller
 
 			$this->m_data->update_data($where, $data, 'buffer');
 			$message = array(
-				'message'=>'<div class="alert alert-success">Data berhasil di update</div>'
+				'message' => '<div class="alert alert-success">Data berhasil di update</div>'
 			);
-			
+
 			$this->session->set_flashdata($message);
-			redirect(base_url() . 'buffer/buffer');	
-		}
-		else
-		{
-			 $message = array(
-				'message'=>'<div class="alert alert-danger">Update data gagal, silahkan coba lagi</div>'
+			redirect(base_url() . 'buffer/buffer');
+		} else {
+			$message = array(
+				'message' => '<div class="alert alert-danger">Update data gagal, silahkan coba lagi</div>'
 			);
-			
+
 			$this->session->set_flashdata($message);
 			redirect(base_url() . 'buffer/buffer');
 		}
-
-}
+	}
 
 	public function buffer_edit()
 	{
@@ -139,7 +135,7 @@ class Buffer extends CI_Controller
 
 			if ($this->form_validation->run() != false) {
 				$data = array(
-					
+
 					'sales' => $sales,
 					'tanggal' => $tanggal,
 					'brand' => $brand,
@@ -213,6 +209,7 @@ class Buffer extends CI_Controller
 		$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, "PR No");
 		$objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, "Nama WH");
 		$objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, "Follow Up");
+		$objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, "Keter(WH)");
 		$rowCount++;
 
 		foreach ($data as $value) {
@@ -227,6 +224,7 @@ class Buffer extends CI_Controller
 			$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $value->pr_no);
 			$objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $value->wh);
 			$objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $value->fu);
+			$objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $value->ket_wh);
 			$rowCount++;
 		}
 
@@ -236,5 +234,4 @@ class Buffer extends CI_Controller
 		$this->load->helper('download');
 		force_download('./assets/excel/Data Buffer.xlsx', NULL);
 	}
-
 }

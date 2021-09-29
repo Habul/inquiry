@@ -45,7 +45,7 @@
 						<p>Jumlah Buffer</p>
 					</div>
 					<div class="icon">
-						<i class="ion ion-pie-graph"></i>
+						<i class="ion ion-ios-briefcase-outline"></i>
 					</div>
 					<a href="<?php echo base_url('buffer/buffer') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>

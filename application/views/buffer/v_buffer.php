@@ -258,7 +258,7 @@
 								<input type="text" class="form-control" readonly value="<?php echo $p->sales; ?>">
 							</div>
 						</div>
-                        <div class="form-group">
+						<div class="form-group">
 							<label class="control-label col-xs-3">Tanggal</label>
 							<div class="col-xs-9">
 								<input type="text" class="form-control" readonly value="<?php echo $p->tanggal; ?>">
@@ -273,7 +273,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Desc Produk</label>
 							<div class="col-xs-9">
-                            <input type="text" class="form-control" readonly value="<?php echo $p->deskripsi; ?>">
+								<input type="text" class="form-control" readonly value="<?php echo $p->deskripsi; ?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -285,7 +285,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Keter(Sales)</label>
 							<div class="col-xs-9">
-                            <textarea class="form-control" readonly><?php echo $p->keter; ?></textarea>
+								<textarea class="form-control" readonly><?php echo $p->keter; ?></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -313,14 +313,22 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Status</label>
 							<div class="col-xs-9">
-                            <select class="form-control" name="status">
-								<option value="">- Pilih Request -</option>
-								<option <?php if($p->status == "approve"){ echo "selected='selected'";} ?> value="approve">APPROVE</option>
-								<option <?php if($p->status == "reject"){ echo "selected='selected'";} ?> value="reject">REJECT</option>
-								<option <?php if($p->status == "on progress"){ echo "selected='selected'";} ?> value="on progress">ON PROGRESS</option>
-								<option <?php if($p->status == "finish"){ echo "selected='selected'";} ?> value="finish">FINISH</option>
-							</select>
-							<?php echo form_error('status'); ?>
+								<select class="form-control" name="status">
+									<option value="">- Pilih Request -</option>
+									<option <?php if ($p->status == "approve") {
+												echo "selected='selected'";
+											} ?> value="approve">APPROVE</option>
+									<option <?php if ($p->status == "reject") {
+												echo "selected='selected'";
+											} ?> value="reject">REJECT</option>
+									<option <?php if ($p->status == "on progress") {
+												echo "selected='selected'";
+											} ?> value="on progress">ON PROGRESS</option>
+									<option <?php if ($p->status == "finish") {
+												echo "selected='selected'";
+											} ?> value="finish">FINISH</option>
+								</select>
+								<?php echo form_error('status'); ?>
 							</div>
 						</div>
 						<div class="form-group">

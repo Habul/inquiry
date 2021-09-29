@@ -23,14 +23,16 @@
 	<script src="<?php echo base_url(); ?>assets/libs/modernizr.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
-	<script> $.widget.bridge('uibutton', $.ui.button);</script>
+	<script>
+		$.widget.bridge('uibutton', $.ui.button);
+	</script>
 	<!--script src="<?php echo base_url(); ?>assets/js/ajax.js"></script!-->
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<header class="main-header">
-		<a href="<?php echo base_url() . 'dashboard' ?>" class="logo">
+			<a href="<?php echo base_url() . 'dashboard' ?>" class="logo">
 				<span class="logo-mini"><b>IG</b></span>
 				<span class="logo-lg"><b>Intisera </b>Group</span>
 			</a>
@@ -157,12 +159,6 @@
 								<span>PENGATURAN WEBSITE</span>
 							</a>
 						</li>
-						<li>
-							<a href="<?php echo base_url() . 'dashboard/' ?>">
-								<i class="fa fa-sticky-note"></i>
-								<span>TEST</span>
-							</a>
-						</li>
 					<?php
 					}
 					?>
@@ -199,7 +195,7 @@
 					</li>
 					<li class="treeview">
 						<a href="#">
-							<i class="fa fa-pie-chart"></i>
+							<i class="fa fa-database"></i>
 							<span>BUFFER</span>
 							<span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
@@ -215,7 +211,7 @@
 									<span>VIEW BUFFER</span></a>
 							</li>
 						</ul>
-					</li>	
+					</li>
 					<li>
 						<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>">
 							<i class="fa fa-lock"></i>
@@ -229,5 +225,5 @@
 						</a>
 					</li>
 				</ul>
-		</section>
-</aside>
+			</section>
+		</aside>
