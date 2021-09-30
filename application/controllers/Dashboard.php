@@ -23,7 +23,6 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		$data['tot'] = $this->m_data->total_rows();
 		// hitung jumlah artikel
 		$data['jumlah_artikel'] = $this->m_data->get_data('artikel')->num_rows();
 		// hitung jumlah pengguna

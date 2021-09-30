@@ -47,12 +47,14 @@
 						<?php if ($this->session->userdata('level') != "sales") {	?>
 							<?php
 							$this->load->model('m_data');
-							$jml_null = $this->m_data->total_rows(); ?>
+							$jml_inquiry = $this->m_data->total_inquiry();
+							$jml_buffer = $this->m_data->total_buffer();
+							$total = $jml_inquiry + $jml_buffer;  ?>
 							<!-- Notifications: style can be found in dropdown.less -->
 							<li class="dropdown notifications-menu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<i class="fa fa-bell-o"></i>
-									<span class="label label-warning"><?= $jml_null; ?></span>
+									<span class="label label-warning"><?= $total; ?></span>
 								</a>
 								<ul class="dropdown-menu">
 									<li class="header">You have notifications</li>
@@ -60,9 +62,15 @@
 										<!-- inner menu: contains the actual data -->
 										<ul class="menu">
 											<li>
-												<a href="<?php echo base_url('dashboard/inquiry') ?>">
+												<a href="<?php echo base_url('inquiry/inquiry') ?>">
 													<i class="fa fa-warning text-yellow"></i>
-													You have <?= $jml_null; ?> Inquiry
+													You have <?= $jml_inquiry; ?> Inquiry
+												</a>
+											</li>
+											<li>
+												<a href="<?php echo base_url('buffer/buffer') ?>">
+													<i class="fa fa-info-circle text-red"></i>
+													You have <?= $jml_buffer; ?> Buffer
 												</a>
 											</li>
 										</ul>
@@ -162,37 +170,39 @@
 					<?php
 					}
 					?>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-book"></i>
-							<span>INQUIRY</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<?php
-							if ($this->session->userdata('level') != "sales") { ?>
-								<li><a href="<?php echo base_url() . 'inquiry/inquiry_master' ?>">
-										<i class="fa fa-file-text"></i>
-										<span>MASTER INQUIRY </span></a>
+					<?php
+					if ($this->session->userdata('level') != "warehouse") { ?>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-book"></i>
+								<span>INQUIRY</span>
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+							<ul class="treeview-menu">
+								<?php
+								if ($this->session->userdata('level') != "sales") { ?>
+									<li><a href="<?php echo base_url() . 'inquiry/inquiry_master' ?>">
+											<i class="fa fa-file-text"></i>
+											<span>MASTER INQUIRY </span></a>
+									</li>
+									<li><a href="<?php echo base_url() . 'inquiry/inquiry_kurs' ?>">
+											<i class="fa fa-money"></i>
+											<span>KURS INQUIRY</span></a>
+									</li>
+								<?php } ?>
+								<li><a href="<?php echo base_url() . 'inquiry/inquiry' ?>">
+										<i class="fa fa-sticky-note-o"></i>
+										<span>INPUT INQUIRY</span></a>
 								</li>
-								<li><a href="<?php echo base_url() . 'inquiry/inquiry_kurs' ?>">
-										<i class="fa fa-money"></i>
-										<span>KURS INQUIRY</span></a>
+								<li><a href="<?php echo base_url() . 'inquiry/inquiry_view' ?>">
+										<i class="fa fa-sticky-note"></i>
+										<span>VIEW INQUIRY</span></a>
 								</li>
-							<?php
-							} ?>
-							<li><a href="<?php echo base_url() . 'inquiry/inquiry' ?>">
-									<i class="fa fa-sticky-note-o"></i>
-									<span>INPUT INQUIRY</span></a>
-							</li>
-							<li><a href="<?php echo base_url() . 'inquiry/inquiry_view' ?>">
-									<i class="fa fa-sticky-note"></i>
-									<span>VIEW INQUIRY</span></a>
-							</li>
-						</ul>
-					</li>
+							</ul>
+						</li>
+					<?php } ?>
 					<li class="treeview">
 						<a href="#">
 							<i class="fa fa-database"></i>
