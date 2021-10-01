@@ -18,6 +18,7 @@
         <?php }  ?>
         <!-- /.box-header -->
         <div class="box-body">
+        <div class="table-responsive-lg">
           <table id="example1" class="table table-bordered table-hover">
             <thead>
               <tr>
@@ -50,6 +51,7 @@
               </tr>
             <?php } ?>
           </table>
+            </div>
         </div>
         <!-- /.box-body -->
         </div>

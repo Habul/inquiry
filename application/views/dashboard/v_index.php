@@ -5,15 +5,14 @@
 			<small>Control panel</small>
 		</h1>
 	</section>
+
 	<section class="content">
 
-		<div class="row">
-
+	<div class="row">
 			<div class="col-lg-3 col-xs-6">
 				<div class="small-box bg-aqua">
 					<div class="inner">
 						<h3><?php echo $jumlah_artikel ?></h3>
-
 						<p>Jumlah Artikel</p>
 					</div>
 					<div class="icon">
@@ -27,13 +26,12 @@
 				<div class="small-box bg-green">
 					<div class="inner">
 						<h3><?php echo $total_inquiry ?></h3>
-
 						<p>Jumlah Inquiry</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-android-document"></i>
 					</div>
-					<a href="<?php echo base_url('inquiry/inquiry') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 
@@ -47,7 +45,7 @@
 					<div class="icon">
 						<i class="ion ion-ios-briefcase-outline"></i>
 					</div>
-					<a href="<?php echo base_url('buffer/buffer') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 
@@ -55,7 +53,6 @@
 				<div class="small-box bg-yellow">
 					<div class="inner">
 						<h3><?php echo $jumlah_pengguna ?></h3>
-
 						<p>Jumlah Pengguna</p>
 					</div>
 					<div class="icon">
@@ -71,8 +68,7 @@
 						<i class="fa fa-briefcase"></i>
 						<h3 class="box-title">Statistik <small>Sales</small></h3>
 						<div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 						</div>
 					</div>
@@ -87,8 +83,7 @@
 						<i class="fa fa-briefcase"></i>
 						<h3 class="box-title">Statistik <small>Brand</small></h3>
 						<div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 						</div>
 					</div>
@@ -100,10 +95,8 @@
 		</div>
 	</section>
 </div>
-<!-- ChartJS -->
 
-<script src="<?php echo base_url(); ?>assets/bower_components/chart.js/Chart.js"></script>
-<script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
+<!-- ChartJS -->
 <script>
 	//-------------
 	//- PIE CHART 1 -

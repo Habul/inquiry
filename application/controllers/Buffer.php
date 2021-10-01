@@ -55,7 +55,10 @@ class Buffer extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'buffer');
-
+			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Tambah No ID : '.$this->input->post('id_buffer',TRUE).' !');
+			redirect(base_url() . 'buffer/buffer');
+		} else {
+			$this->session->set_flashdata('gagal', 'Buffer Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'buffer/buffer');
 		}
 	}
@@ -78,8 +81,6 @@ class Buffer extends CI_Controller
 			$status = $this->input->post('status');
 			$pr_no = $this->input->post('pr_no');
 			$ket_wh = $this->input->post('ket_wh');
-
-
 			if ($this->form_validation->run() != false) {
 				$data = array(
 					'wh' => $wh,
@@ -87,27 +88,17 @@ class Buffer extends CI_Controller
 					'status' => $status,
 					'pr_no' => $pr_no,
 					'ket_wh' => $ket_wh
-
 				);
 			}
-
 			$where = array(
 				'id_buffer' => $id
 			);
-
 			$this->m_data->update_data($where, $data, 'buffer');
-			$message = array(
-				'message' => '<div class="alert alert-success">Data berhasil di update</div>'
-			);
-
-			$this->session->set_flashdata($message);
+			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Update No ID : '.$this->input->post('id',TRUE).' !');
 			redirect(base_url() . 'buffer/buffer');
-		} else {
-			$message = array(
-				'message' => '<div class="alert alert-danger">Update data gagal, silahkan coba lagi</div>'
-			);
-
-			$this->session->set_flashdata($message);
+		}
+		else {
+			$this->session->set_flashdata('gagal', 'Buffer Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'buffer/buffer');
 		}
 	}
@@ -148,20 +139,12 @@ class Buffer extends CI_Controller
 			$where = array(
 				'id_buffer' => $id
 			);
-
 			$this->m_data->update_data($where, $data, 'buffer');
-
+			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Edit No ID : '.$this->input->post('id',TRUE).' !');
 			redirect(base_url() . 'buffer/buffer');
 		} else {
-			$id = $this->input->post('id');
-			$where = array(
-				'id_buffer' => $id
-			);
-			$data['buffer'] = $this->m_data->edit_data($where, 'buffer')->result();
-
-			$this->load->view('dashboard/v_header');
-			$this->load->view('buffer/v_buffer', $data);
-			$this->load->view('dashboard/v_footer');
+			$this->session->set_flashdata('gagal', 'Buffer Gagal di Edit, ada form yang belum terisi, silahkan cek kembali !!!');
+			redirect(base_url() . 'buffer/buffer');
 		}
 	}
 
@@ -170,9 +153,8 @@ class Buffer extends CI_Controller
 		$where = array(
 			'id_buffer' => $id
 		);
-
 		$this->m_data->delete_data($where, 'buffer');
-
+		$this->session->set_flashdata('message', 'Buffer berhasil di Hapus !');
 		redirect(base_url() . 'buffer/buffer');
 	}
 

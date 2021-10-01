@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
+<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Intisera | Dashboard</title>
 	<link rel='icon' href="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" type="image/gif">
@@ -23,14 +23,14 @@
 	<script src="<?php echo base_url(); ?>assets/libs/modernizr.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
-	<script>
-		$.widget.bridge('uibutton', $.ui.button);
-	</script>
+	<script> $.widget.bridge('uibutton', $.ui.button);</script>
+	<script src="<?php echo base_url(); ?>assets/bower_components/chart.js/Chart.js"></script>
 	<!--script src="<?php echo base_url(); ?>assets/js/ajax.js"></script!-->
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
+
 		<header class="main-header">
 			<a href="<?php echo base_url() . 'dashboard' ?>" class="logo">
 				<span class="logo-mini"><b>IG</b></span>
@@ -94,6 +94,7 @@
 										<small><?php echo $this->session->userdata('level') ?></small>
 									</p>
 								</li>
+
 								<li class="user-footer">
 									<div class="pull-left">
 										<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default btn-flat">Profil</a>
@@ -104,6 +105,7 @@
 								</li>
 							</ul>
 						</li>
+
 					</ul>
 				</div>
 			</nav>
@@ -128,12 +130,14 @@
 
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">LIST MENU</li>
+					<li class="active treeview">
 					<li>
 						<a href="<?php echo base_url() . 'dashboard' ?>">
 							<i class="fa fa-dashboard"></i>
 							<span>DASHBOARD</span>
 						</a>
 					</li>
+						</li>
 					<?php
 					if ($this->session->userdata('level') == "admin") {
 					?>
@@ -167,6 +171,7 @@
 								<span>PENGATURAN WEBSITE</span>
 							</a>
 						</li>
+						
 					<?php
 					}
 					?>
@@ -203,6 +208,8 @@
 							</ul>
 						</li>
 					<?php } ?>
+					<?php
+					if ($this->session->userdata('level') != "purchase") { ?>
 					<li class="treeview">
 						<a href="#">
 							<i class="fa fa-database"></i>
@@ -222,6 +229,7 @@
 							</li>
 						</ul>
 					</li>
+					<?php } ?>	
 					<li>
 						<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>">
 							<i class="fa fa-lock"></i>
@@ -235,5 +243,5 @@
 						</a>
 					</li>
 				</ul>
-			</section>
-		</aside>
+		</section>
+</aside>

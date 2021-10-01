@@ -63,7 +63,11 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'inquiry');
-
+			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Tambah No ID : '.$this->input->post('inquiry_id',TRUE).' !');
+			redirect(base_url() . 'inquiry/inquiry');
+		}
+		else {			
+			$this->session->set_flashdata('gagal', 'Inquiry Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'inquiry/inquiry');
 		}
 	}
@@ -124,7 +128,11 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'inquiry');
-
+			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Update No ID : '.$this->input->post('id',TRUE).' !');
+			redirect(base_url() . 'inquiry/inquiry');
+		}
+		else {			
+			$this->session->set_flashdata('gagal', 'Inquiry Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'inquiry/inquiry');
 		}
 	}
@@ -170,20 +178,12 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'inquiry');
-
+			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Edit No ID : '.$this->input->post('id',TRUE).' !');
 			redirect(base_url() . 'inquiry/inquiry');
 
-		} else {
-			
-			$id = $this->input->post('id');
-			$where = array(
-				'inquiry_id' => $id
-			);
-			$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
-
-			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry', $data);
-			$this->load->view('dashboard/v_footer');
+		} else {			
+			$this->session->set_flashdata('gagal', 'Buffer Gagal di Edit, ada form yang belum terisi, silahkan cek kembali !!!');
+			redirect(base_url() . 'inquiry/inquiry');
 		}
 	}
 
@@ -194,7 +194,7 @@ class Inquiry extends CI_Controller
 		);
 
 		$this->m_data->delete_data($where, 'inquiry');
-
+		$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Hapus !');
 		redirect(base_url() . 'inquiry/inquiry');
 	}
 
@@ -311,9 +311,12 @@ class Inquiry extends CI_Controller
 				'distributor' => $distributor
 			);
 
-
 			$this->m_data->insert_data($data, 'master');
-
+			$this->session->set_flashdata('berhasil', 'Master berhasil di Tambah dengan nama Brand : '.$this->input->post('brand',TRUE).' !');
+			redirect(base_url() . 'inquiry/inquiry_master');
+		}
+		else {
+			$this->session->set_flashdata('gagal', 'Master Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'inquiry/inquiry_master');
 		}
 	}
@@ -325,19 +328,8 @@ class Inquiry extends CI_Controller
 		);
 
 		$this->m_data->delete_data($where, 'master');
-
+		$this->session->set_flashdata('berhasil', 'Master berhasil di Hapus !');
 		redirect(base_url() . 'inquiry/inquiry_master');
-	}
-
-	public function inquiry_master_edit($id)
-	{
-		$where = array(
-			'id_master' => $id
-		);
-		$data['master'] = $this->m_data->edit_data($where, 'master')->result();
-		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_master_edit', $data);
-		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_master_update()
@@ -372,18 +364,11 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'master');
-
+			$this->session->set_flashdata('berhasil', 'Master berhasil di Update dengan nama Brand '.$this->input->post('brand',TRUE).' !');
 			redirect(base_url() . 'inquiry/inquiry_master');
 		} else {
-			$id = $this->input->post('id');
-			$where = array(
-				'id_master' => $id
-			);
-			$data['master'] = $this->m_data->edit_data($where, 'master')->result();
-
-			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_master_edit', $data);
-			$this->load->view('dashboard/v_footer');
+			$this->session->set_flashdata('gagal', 'Master Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
+			redirect(base_url() . 'inquiry/inquiry_master');
 		}
 	}
 
@@ -454,24 +439,13 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'kurs');
-
+			$this->session->set_flashdata('berhasil', 'Kurs '.$this->input->post('currency',TRUE).' Berhasil di Tambah !' );
 			redirect(base_url() . 'inquiry/inquiry_kurs');
-		} else {
-			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_kurs_tambah');
-			$this->load->view('dashboard/v_footer');
+		} 
+		else {
+			$this->session->set_flashdata('gagal', 'Kurs Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
+			redirect(base_url() . 'inquiry/inquiry_kurs');
 		}
-	}
-
-	public function inquiry_kurs_edit($id)
-	{
-		$where = array(
-			'id_kurs' => $id
-		);
-		$data['kurs'] = $this->m_data->edit_data($where, 'kurs')->result();
-		$this->load->view('dashboard/v_header');
-		$this->load->view('inquiry/v_inquiry_kurs_edit', $data);
-		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_kurs_update()
@@ -498,18 +472,11 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'kurs');
-
+			$this->session->set_flashdata('berhasil', 'Kurs '.$this->input->post('currency',TRUE).' Berhasil di Update !' );
 			redirect(base_url() . 'inquiry/inquiry_kurs');
 		} else {
-			$id = $this->input->post('id');
-			$where = array(
-				'id_kurs' => $id
-			);
-			$data['kurs'] = $this->m_data->edit_data($where, 'kurs')->result();
-
-			$this->load->view('dashboard/v_header');
-			$this->load->view('inquiry/v_inquiry_kurs_edit', $data);
-			$this->load->view('dashboard/v_footer');
+			$this->session->set_flashdata('gagal', 'Kurs Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
+			redirect(base_url() . 'inquiry/inquiry_kurs');
 		}
 	}
 
@@ -520,7 +487,7 @@ class Inquiry extends CI_Controller
 		);
 
 		$this->m_data->delete_data($where, 'kurs');
-
+		$this->session->set_flashdata('berhasil', 'Kurs '.$this->input->post('currency',TRUE).' Berhasil di Hapus !' );
 		redirect(base_url() . 'inquiry/inquiry_kurs');
 	}
 
@@ -600,7 +567,7 @@ class Inquiry extends CI_Controller
 				if (count($resultData) != 0) {
 					$result = $this->m_data->insert_kurs($resultData);
 					if ($result > 0) {
-						$this->session->set_flashdata('msg', ('Data Pegawai Berhasil diimport ke database'));
+						$this->session->set_flashdata('berhasil', 'Kurs Berhasil di Import !' );
 						redirect('inquiry_kurs');
 					}
 				}

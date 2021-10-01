@@ -6,20 +6,35 @@
 		</h1>
 	</section>
 	<section class="content">
+	<?php if ($this->session->flashdata('berhasil')) { ?>
+    <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+    <h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h4>
+    </div>
+    <?php } ?>
+	<?php if ($this->session->flashdata('gagal')) { ?>
+    <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+    <h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+    </div>
+    <?php } ?>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="box">
 					<div class="box-header">
+						<?php if ($this->session->userdata('level') != "purchase") {	?>					
 						<?php if ($this->session->userdata('level') != "warehouse") {	?>
 							<div class="col-md-6" style="padding: 0;">
 								<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_buffer">
 									<i class="glyphicon glyphicon-plus-sign"></i> Tambah buffer stock</a>
 							</div>
 						<?php }	?>
+						<?php }	?>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						<table id="example1" class="table table table-bordered table-hover">
+					<div class="table-responsive-lg">
+						<table id="example2" class="table table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th width="1%">NO</th>
@@ -30,12 +45,14 @@
 									<th>Description</th>
 									<th>Qty</th>
 									<th>Status</th>
+									<?php if ($this->session->userdata('level') != "purchase") {	?>	
 									<th width="12%">Action</th>
+									<?php }	?>
 								</tr>
 							</thead>
 							<?php
 							$no = $this->uri->segment('3') + 1;
-							$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve'");
+							$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve' ORDER BY tanggal DESC");
 							foreach ($query->result() as $p) {
 							?>
 								<tr>
@@ -47,6 +64,7 @@
 									<td><?php echo $p->deskripsi; ?></td>
 									<td><?php echo $p->qty; ?></td>
 									<td><?php echo $p->status; ?></td>
+									<?php if ($this->session->userdata('level') != "purchase") { ?>
 									<td style="text-align:center">
 										<?php if ($this->session->userdata('level') != "warehouse") { ?>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>"><i class="fa fa-pencil"></i> Edit</a>
@@ -54,25 +72,26 @@
 										<?php if ($this->session->userdata('level') != "sales") { ?>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-edit"></i> Edit</a>
 											<?php
-											echo anchor(site_url('buffer/buffer_hapus' . $p->id_buffer), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+											echo anchor(site_url('buffer/buffer_hapus/' . $p->id_buffer), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 											?>
 									</td>
 								</tr>
+								<?php }	?>
 							<?php }	?>
 						<?php } ?>
 						</table>
+						</div>
 					</div>
 					<!-- /.box-body -->
 				</div>
 				<!-- /.box -->
 			</div>
 			<!-- /.col -->
-		</div>
+		</div>						
 		<!-- /.row -->
 	</section>
 	<!-- /.content -->
 </div>
-
 <!-- modal add buffer -->
 <div class="modal fade" id="modal_add_buffer" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -311,7 +330,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">Status</label>
+							<label class="control-label col-xs-3">Status *</label>
 							<div class="col-xs-9">
 								<select class="form-control" name="status">
 									<option value="">- Pilih Request -</option>
@@ -332,7 +351,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">PR No</label>
+							<label class="control-label col-xs-3">PR No *</label>
 							<div class="col-xs-9">
 								<input type="text" name="pr_no" class="form-control" value="<?php echo $p->pr_no; ?>">
 								<?php echo form_error('pr_no'); ?>

@@ -6,6 +6,18 @@
 		</h1>
 	</section>
 	<section class="content">
+		<?php if ($this->session->flashdata('berhasil')) { ?>
+		<div class="alert alert-success alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+		<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
+		</div>
+		<?php } ?>
+		<?php if ($this->session->flashdata('gagal')) { ?>
+		<div class="alert alert-warning alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+		<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+		</div>
+		<?php } ?>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="box">
@@ -22,6 +34,7 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
+					<div class="table-responsive-lg">
 						<table id="example1" class="table table table-bordered table-hover">
 							<thead>
 								<tr>
@@ -55,6 +68,7 @@
 								</tr>
 							<?php }	?>
 						</table>
+						</div>
 					</div>
 					<!-- /.box-body -->
 				</div>

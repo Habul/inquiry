@@ -6,19 +6,34 @@
 		</h1>
 	</section>
 	<section class="content">
+		<?php if ($this->session->flashdata('berhasil')) { ?>
+		<div class="alert alert-success alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+		<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
+		</div>
+		<?php } ?>
+		<?php if ($this->session->flashdata('gagal')) { ?>
+		<div class="alert alert-warning alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+		<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+		</div>
+		<?php } ?>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="box">
 					<div class="box-header">
+						<?php if ($this->session->userdata('level') != "warehouse") {	?>
 						<?php if ($this->session->userdata('level') != "purchase") {	?>
 							<div class="col-md-6" style="padding: 0;">
 								<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_inquiry">
 									<i class="glyphicon glyphicon-plus-sign"></i> Tambah Inquiry</a>
 							</div>
 						<?php }	?>
+						<?php }	?>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
+					<div class="table-responsive-lg">
 						<table id="example2" class="table table table-bordered table-hover">
 							<thead>
 								<tr>
@@ -31,7 +46,9 @@
 									<th>Qty</th>
 									<th>Deadline</th>
 									<th>Request</th>
+									<?php if ($this->session->userdata('level') != "warehouse") { ?>
 									<th width="12%">Action</th>
+									<?php }	?>
 								</tr>
 							</thead>
 							<?php
@@ -49,6 +66,7 @@
 									<td><?php echo $p->qty; ?></td>
 									<td><?php echo $p->deadline; ?></td>
 									<td><?php echo $p->request; ?></td>
+									<?php if ($this->session->userdata('level') != "warehouse") { ?>
 									<td style="text-align:center">
 										<?php if ($this->session->userdata('level') != "purchase") { ?>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>"><i class="fa fa-pencil"></i> Edit</a>
@@ -61,8 +79,10 @@
 									</td>
 								</tr>
 							<?php }	?>
+							<?php }	?>
 						<?php } ?>
 						</table>
+						</div>
 					</div>
 					<!-- /.box-body -->
 				</div>

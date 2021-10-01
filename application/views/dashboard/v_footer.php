@@ -1,3 +1,4 @@
+
 <footer class="main-footer">
 	<div class="pull-right hidden-xs">
 		<b>Dashboard</b> IT - Intinusa Sejahtera International
@@ -10,7 +11,6 @@
 <script src="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bower_components/raphael/raphael.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bower_components/morris.js/morris.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/bower_components/chart.js/Chart.js"></script>
 <script src="<?php echo base_url(); ?>assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -37,6 +37,6 @@
 	})
 </script>
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 </body>
-
 </html>

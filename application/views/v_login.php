@@ -57,13 +57,7 @@
         <?php echo form_error('password'); ?>
 
         <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox" name="remember"> Remember Me
-            </label>
-          </div>
-        </div>
+        
           <div class="col-xs-8">
             <div class="checkbox icheck">
               <label>
