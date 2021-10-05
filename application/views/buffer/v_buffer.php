@@ -70,7 +70,7 @@
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>"><i class="fa fa-pencil"></i> Edit</a>
 										<?php }	?>
 										<?php if ($this->session->userdata('level') != "sales") { ?>
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-edit"></i> Edit</a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-edit"></i> Upd</a>
 											<?php
 											echo anchor(site_url('buffer/buffer_hapus/' . $p->id_buffer), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 											?>
@@ -137,7 +137,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Brand Produk *</label>
 						<div class="col-xs-9">
-							<select class="form-control" name="brand">
+							<select class="form-control" name="brand" required>
 								<option value="">- Pilih Brand -</option>
 								<?php foreach ($master as $row) : ?>
 									<option value="<?php echo $row->brand; ?>"><?php echo $row->brand; ?></option>
@@ -149,21 +149,21 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Deskripsi *</label>
 						<div class="col-xs-9">
-							<textarea name="deskripsi" class="form-control" placeholder="input Desc.."></textarea>
+							<textarea name="deskripsi" class="form-control" placeholder="input Desc.." required></textarea>
 							<?php echo form_error('deskripsi'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Quantity *</label>
 						<div class="col-xs-9">
-							<input type="number" name="qty" class="form-control" placeholder="input qty...">
+							<input type="number" name="qty" class="form-control" placeholder="input qty..." required>
 							<?php echo form_error('qty'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Keterangan *</label>
 						<div class="col-xs-9">
-							<textarea name="keter" class="form-control" placeholder="input  .."></textarea>
+							<textarea name="keter" class="form-control" placeholder="input  .." required></textarea>
 							<?php echo form_error('keter'); ?>
 						</div>
 					</div>
@@ -224,21 +224,21 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Deskripsi *</label>
 							<div class="col-xs-9">
-								<textarea name="deskripsi" class="form-control"><?php echo $p->deskripsi; ?></textarea>
+								<textarea name="deskripsi" class="form-control" required><?php echo $p->deskripsi; ?></textarea>
 								<?php echo form_error('deskripsi'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Quantity *</label>
 							<div class="col-xs-9">
-								<input type="number" name="qty" class="form-control" value="<?php echo $p->qty; ?>">
+								<input type="number" name="qty" class="form-control" value="<?php echo $p->qty; ?>" required>
 								<?php echo form_error('qty'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Keterangan *</label>
 							<div class="col-xs-9">
-								<textarea name="keter" class="form-control"><?php echo $p->keter; ?></textarea>
+								<textarea name="keter" class="form-control" required><?php echo $p->keter; ?></textarea>
 								<?php echo form_error('keter'); ?>
 							</div>
 						</div>
@@ -332,7 +332,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Status *</label>
 							<div class="col-xs-9">
-								<select class="form-control" name="status">
+								<select class="form-control" name="status" required>
 									<option value="">- Pilih Request -</option>
 									<option <?php if ($p->status == "approve") {
 												echo "selected='selected'";
@@ -353,14 +353,14 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">PR No *</label>
 							<div class="col-xs-9">
-								<input type="text" name="pr_no" class="form-control" value="<?php echo $p->pr_no; ?>">
+								<input type="text" name="pr_no" class="form-control" value="<?php echo $p->pr_no; ?>" required>
 								<?php echo form_error('pr_no'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Ket(warehouse)</label>
 							<div class="col-xs-9">
-								<textarea name="ket_wh" class="form-control"><?php echo $p->ket_wh; ?></textarea>
+								<textarea name="ket_wh" class="form-control" required><?php echo $p->ket_wh; ?></textarea>
 								<?php echo form_error('ket_wh'); ?>
 							</div>
 						</div>

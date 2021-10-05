@@ -72,6 +72,9 @@
 	</section>
 	<!-- /.content -->
 </div>
+
+<script>
+</script>
 <!-- Bootstrap modal kurs -->
 <div class="modal fade" id="modal_add_kurs" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -80,7 +83,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Tambah Kurs</h3>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>">
+			<form class="form-horizontal" id="form-modal-tambah" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<?php
@@ -90,16 +93,16 @@
 						<?php echo form_error('id_kurs'); ?>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Currency</label>
+						<label class="control-label col-xs-3">Currency *</label>
 						<div class="col-xs-9">
-							<input type="text" name="currency" class="form-control" placeholder="input currency..">
+							<input type="text" name="currency" class="form-control" placeholder="input currency.." required>
 							<?php echo form_error('currency'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Amount</label>
+						<label class="control-label col-xs-3">Amount *</label>
 						<div class="col-xs-9">
-							<input type="number" name="amount" class="form-control" placeholder="input amount...">
+							<input type="number" name="amount" class="form-control" placeholder="input amount..." required>
 							<?php echo form_error('amount'); ?>
 						</div>
 					</div>
@@ -123,20 +126,20 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 					<h3 class="modal-title" id="myModalLabel" align="center">Edit Master</h3>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_update') ?>">
+				<form class="form-horizontal" id="form-modal-tambah" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Brand Produk *</label>
 							<div class="col-xs-9">
 								<input type="hidden" name="id" value="<?php echo $p->id_kurs; ?>">
-								<input type="text" readonly name="currency" class="form-control" value="<?php echo $p->currency; ?>">
+								<input type="text" readonly name="currency" class="form-control" value="<?php echo $p->currency; ?>" required>
 								<?php echo form_error('currency'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Amount *</label>
 							<div class="col-xs-9">
-								<input type="number" name="amount" class="form-control" value="<?php echo $p->amount; ?>">
+								<input type="number" name="amount" class="form-control" value="<?php echo $p->amount; ?>" required>
 								<?php echo form_error('amount'); ?>
 							</div>
 						</div>
@@ -164,7 +167,7 @@
 			<div class="modal-body">
 				<div class="form-group">
 				<div class="col-xs-12">	
-					<input type="file" name="excel"  class="form-control" aria-describedby="sizing-addon2">
+					<input type="file" name="excel"  class="form-control" aria-describedby="sizing-addon2" required>
 					<?php echo form_error('excel'); ?>
 					<small>&nbsp; * Extensi file xls atau xlsx</small><br/>
 					<small>&nbsp; * File yang di import akan me replace data yang sudah ada</small><br/>

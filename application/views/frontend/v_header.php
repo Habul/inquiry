@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <title><?php echo $pengaturan->nama ?> - <?php echo $pengaturan->deskripsi ?></title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="<?php echo $meta_keyword ?>" name="keywords">
   <meta content="<?php echo $meta_description ?>" name="description">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- Favicons -->
   <link href="<?php echo base_url().'/gambar/website/'.$pengaturan->logo; ?>" rel="icon" type="image/gif">

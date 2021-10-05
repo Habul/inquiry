@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,11 +20,10 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/select2/dist/css/select2.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 	<script src="<?php echo base_url(); ?>assets/libs/modernizr.js"></script>
-	<script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
 	<script> $.widget.bridge('uibutton', $.ui.button);</script>
 	<script src="<?php echo base_url(); ?>assets/bower_components/chart.js/Chart.js"></script>
-	<!--script src="<?php echo base_url(); ?>assets/js/ajax.js"></script!-->
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">

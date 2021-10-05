@@ -72,7 +72,7 @@
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>"><i class="fa fa-pencil"></i> Edit</a>
 										<?php }	?>
 										<?php if ($this->session->userdata('level') != "sales") { ?>
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->inquiry_id; ?>"><i class="fa fa-edit"></i> Edit</a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->inquiry_id; ?>"><i class="fa fa-edit"></i> Upd</a>
 											<?php
 											echo anchor(site_url('inquiry/inquiry_hapus/' . $p->inquiry_id), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 											?>
@@ -103,7 +103,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Tambah Inquiry</h3>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
+			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Inquiry</label>
@@ -140,7 +140,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Request *</label>
 						<div class="col-xs-9">
-							<select class="form-control" name="request">
+							<select class="form-control" name="request" required> 
 								<option value="">- Pilih Request -</option>
 								<option value="PRICE+LT">PRICE+LT</option>
 								<option value="PRICE">PRICE</option>
@@ -157,7 +157,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Brand Produk *</label>
 						<div class="col-xs-9">
-							<select class="form-control" name="brand">
+							<select class="form-control" name="brand" required>
 								<option value="">- Pilih Brand -</option>
 								<?php foreach ($master as $row) : ?>
 									<option value="<?php echo $row->brand; ?>"><?php echo $row->brand; ?></option>
@@ -169,28 +169,28 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Deskripsi *</label>
 						<div class="col-xs-9">
-							<textarea name="desc" class="form-control" placeholder="input Desc.."></textarea>
+							<textarea name="desc" class="form-control" placeholder="input Desc.." required></textarea>
 							<?php echo form_error('desc'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Quantity *</label>
 						<div class="col-xs-9">
-							<input type="number" name="qty" class="form-control" placeholder="input qty...">
+							<input type="number" name="qty" class="form-control" placeholder="input qty..." required>
 							<?php echo form_error('qty'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Deadline *</label>
 						<div class="col-xs-9">
-							<input type="date" name="deadline" class="form-control" placeholder="input deadline ..">
+							<input type="date" name="deadline" class="form-control" placeholder="input deadline .." required>
 							<?php echo form_error('deadline'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Keterangan *</label>
 						<div class="col-xs-9">
-							<textarea name="keter" class="form-control" placeholder="input  .."></textarea>
+							<textarea name="keter" class="form-control" placeholder="input  .." required></textarea>
 							<?php echo form_error('keter'); ?>
 						</div>
 					</div>
@@ -214,7 +214,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 					<h3 class="modal-title" id="myModalLabel" align="center">Edit Inquiry</h3>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
+				<form class="form-horizontal" id="form-edit-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Inquiry</label>
@@ -254,28 +254,28 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Deskripsi *</label>
 							<div class="col-xs-9">
-								<textarea name="desc" class="form-control"><?php echo $p->desc; ?></textarea>
+								<textarea name="desc" class="form-control" required><?php echo $p->desc; ?></textarea>
 								<?php echo form_error('desc'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Quantity *</label>
 							<div class="col-xs-9">
-								<input type="text" name="qty" class="form-control" value="<?php echo $p->qty; ?>">
+								<input type="text" name="qty" class="form-control" value="<?php echo $p->qty; ?>" required>
 								<?php echo form_error('qty'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Deadline *</label>
 							<div class="col-xs-9">
-								<input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>">
+								<input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>" required>
 								<?php echo form_error('deadline'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Keterangan *</label>
 							<div class="col-xs-9">
-								<textarea name="keter" class="form-control"><?php echo $p->keter; ?></textarea>
+								<textarea name="keter" class="form-control" required><?php echo $p->keter; ?></textarea>
 								<?php echo form_error('keter'); ?>
 							</div>
 						</div>
@@ -300,7 +300,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 					<h3 class="modal-title" id="myModalLabel" align="center">Edit Inquiry (Purchase)</h3>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_update') ?>">
+				<form class="form-horizontal" id="form-update-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Inquiry</label>
@@ -375,7 +375,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Check *</label>
 							<div class="col-xs-9">
-								<input type="number" name="cek" class="form-control" placeholder="Cek..">
+								<input type="number" name="cek" class="form-control" placeholder="Cek.." required>
 								<?php echo form_error('cek'); ?>
 							</div>
 						</div>
@@ -389,7 +389,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Kurs *</label>
 							<div class="col-xs-9">
-								<select class="form-control" id="kurs" name="kurs" onchange="changeTipe();">
+								<select class="form-control" id="kurs" name="kurs" onchange="changeTipe();" required>
 									<option value="">- Pilih Kurs -</option>
 									<?php foreach ($kurs as $row) : ?>
 										<option value="<?php echo $row->id_kurs; ?>"><?php echo $row->currency; ?></option>
@@ -401,7 +401,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Cogs *</label>
 							<div class="col-xs-9">
-								<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="changeTipe();" placeholder="Isi Cogs..">
+								<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="changeTipe();" placeholder="Isi Cogs.." required>
 								<?php echo form_error('cogs'); ?>
 							</div>
 						</div>
@@ -436,14 +436,14 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Delivery *</label>
 							<div class="col-xs-9">
-								<input type="text" name="delivery" class="form-control" placeholder="Delivery..">
+								<input type="text" name="delivery" class="form-control" placeholder="Delivery.." required>
 								<?php echo form_error('delivery'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Ket Purchase</label>
 							<div class="col-xs-9">
-								<textarea name="ket_purch" class="form-control" placeholder="Keterangan..."></textarea>
+								<textarea name="ket_purch" class="form-control" placeholder="Keterangan..." required></textarea>
 								<?php echo form_error('ket_purch'); ?>
 							</div>
 						</div>

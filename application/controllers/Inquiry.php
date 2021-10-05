@@ -568,7 +568,7 @@ class Inquiry extends CI_Controller
 					$result = $this->m_data->insert_kurs($resultData);
 					if ($result > 0) {
 						$this->session->set_flashdata('berhasil', 'Kurs Berhasil di Import !' );
-						redirect('inquiry_kurs');
+						redirect('inquiry/inquiry_kurs');
 					}
 				}
 			}

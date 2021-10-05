@@ -31,7 +31,7 @@
 					<div class="icon">
 						<i class="ion ion-android-document"></i>
 					</div>
-					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="<?php echo base_url('inquiry/inquiry') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 
@@ -45,7 +45,7 @@
 					<div class="icon">
 						<i class="ion ion-ios-briefcase-outline"></i>
 					</div>
-					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="<?php echo base_url('buffer/buffer') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 

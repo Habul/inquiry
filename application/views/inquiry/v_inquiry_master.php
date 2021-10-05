@@ -99,35 +99,35 @@
 						<?php echo form_error('id_master'); ?>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Brand Produk</label>
+						<label class="control-label col-xs-3">Brand Produk *</label>
 						<div class="col-xs-8">
-							<input type="text" name="brand" class="form-control" placeholder="input brand..">
+							<input type="text" name="brand" class="form-control" placeholder="input brand.." required>
 							<?php echo form_error('brand'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">D1</label>
+						<label class="control-label col-xs-3">D1 *</label>
 						<div class="col-xs-8">
-							<input type="number" min="0.01" step="0.01" name="d1" class="form-control" placeholder="input d1...">
+							<input type="number" min="0.01" step="0.01" name="d1" class="form-control" placeholder="input d1..." required>
 							<?php echo form_error('d1'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">D2</label>
+						<label class="control-label col-xs-3">D2 *</label>
 						<div class="col-xs-8">
-							<input type="number" min="0.01" step="0.01" name="d2" class="form-control" placeholder="input d2 ..">
+							<input type="number" min="0.01" step="0.01" name="d2" class="form-control" placeholder="input d2 .." required>
 							<?php echo form_error('d2'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">User</label>
+						<label class="control-label col-xs-3">User *</label>
 						<div class="col-xs-8">
-							<input type="number" min="0.01" step="0.01" name="user" class="form-control" placeholder="input user ..">
+							<input type="number" min="0.01" step="0.01" name="user" class="form-control" placeholder="input user .." required>
 							<?php echo form_error('user'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Keterangan</label>
+						<label class="control-label col-xs-3">Manufac/Distrib</label>
 						<div class="col-xs-8">
 							<input type='text' name="distributor" class="form-control" placeholder="input .."></input>
 							<?php echo form_error('distributor'); ?>
@@ -164,23 +164,23 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">D1</label>
+							<label class="control-label col-xs-3">D1 *</label>
 							<div class="col-xs-9">
-								<input type="number" min="0.1" step="0.1" name="d1" class="form-control" value="<?php echo $p->d1; ?>">
+								<input type="number" min="0.1" step="0.1" name="d1" class="form-control" value="<?php echo $p->d1; ?>" required>
 								<?php echo form_error('d1'); ?>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">D2</label>
+							<label class="control-label col-xs-3">D2 *</label>
 							<div class="col-xs-9">
-								<input type="number" min="0.1" step="0.1" name="d2" class="form-control" value="<?php echo $p->d2; ?>">
+								<input type="number" min="0.1" step="0.1" name="d2" class="form-control" value="<?php echo $p->d2; ?>" required>
 								<?php echo form_error('d2'); ?>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">User</label>
+							<label class="control-label col-xs-3">User *</label>
 							<div class="col-xs-9">
-								<input type="number" min="0.1" step="0.1" name="user" class="form-control" value="<?php echo $p->user; ?>">
+								<input type="number" min="0.1" step="0.1" name="user" class="form-control" value="<?php echo $p->user; ?>" required>
 								<?php echo form_error('user'); ?>
 							</div>
 						</div>
@@ -215,7 +215,7 @@
 			<div class="modal-body">
 				<div class="form-group">
 				<div class="col-xs-12">	
-					<input type="file" class="form-control" name="excel">
+					<input type="file" class="form-control" name="excel" required>
 					<small>&nbsp; * Extensi file xls atau xlsx</small><br/>
 					<small>&nbsp; * File yang di import akan me replace data yang sudah ada</small><br/>
 				</div>

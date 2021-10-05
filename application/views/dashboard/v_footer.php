@@ -5,7 +5,6 @@
 	</div>
 	<strong>Copyright © 2021 <a href="https://wa.me/6287771911287">Habul</a></strong> . All rights reserved.
 </footer>
-
 <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -36,6 +35,7 @@
 		})
 	})
 </script>
+<!--script src="<?php echo base_url(); ?>assets/js/ajax.js"></script-->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 </body>
