@@ -411,6 +411,62 @@ class Inquiry extends CI_Controller
 		force_download('./assets/excel/Data Master.xlsx', NULL);
 	}
 
+	public function inquiry_master_import()
+	{
+		$this->form_validation->set_rules('excel', 'File', 'trim|required');
+
+		if ($_FILES['excel']['name'] != '') {
+			$config['upload_path'] = './assets/excel/';
+			$config['allowed_types'] = 'xls|xlsx';
+			$config['overwrite']	= true;
+			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload('excel')){
+			$this->upload->display_errors();
+			}
+			else{
+				$data = $this->upload->data();
+				$this->db->empty_table('master');
+
+				error_reporting(E_ALL);
+				date_default_timezone_set('Asia/Jakarta');
+				include './assets/phpexcel/Classes/PHPExcel/IOFactory.php';
+				$inputFileName = './assets/excel/' .$data['file_name'];
+				$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
+				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+				$index = 0;
+				foreach ($sheetData as $key => $value) {
+					if ($key != 1) {
+						 {
+							$resultData[$index]['id_master'] = $value['A'];
+							$resultData[$index]['brand'] = $value['B'];
+							$resultData[$index]['d1'] = $value['C'];
+							$resultData[$index]['d2'] = $value['D'];
+							$resultData[$index]['user'] = $value['E'];
+							$resultData[$index]['distributor'] = $value['F'];
+						}
+					}
+					$index++;
+				}
+
+				unlink('./assets/excel/' .$data['file_name']);
+
+				if (count($resultData) != 0) {
+					$result = $this->m_data->insert_master($resultData);
+					if ($result > 0) {
+						$this->session->set_flashdata('berhasil','Data Master Berhasil diimport ke database');
+						redirect('inquiry/inquiry_master');
+					}
+				} else {
+					$this->session->set_flashdata('gagal','Data Master Gagal diimport ke database');
+					redirect('inquiry/inquiry_master');
+				}
+			}
+		}
+	}	
+
 	public function inquiry_kurs()
 	{
 		$data['kurs'] = $this->m_data->get_data('kurs')->result();
@@ -527,51 +583,52 @@ class Inquiry extends CI_Controller
 	{
 		$this->form_validation->set_rules('excel', 'File', 'trim|required');
 
-		if ($_FILES['excel']['name'] == '') {
-			$this->session->set_flashdata('msg', 'File harus diisi');
-		} else {
+		if ($_FILES['excel']['name'] != '') {
 			$config['upload_path'] = './assets/excel/';
 			$config['allowed_types'] = 'xls|xlsx';
-
+			$config['overwrite']	= true;
+			
 			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload('excel')) {
-				$error = array('error' => $this->upload->display_errors());
-			} else {
+			
+			if ( ! $this->upload->do_upload('excel')){
+			$this->upload->display_errors();
+			}
+			else{
 				$data = $this->upload->data();
+				$this->db->empty_table('kurs');
 
 				error_reporting(E_ALL);
 				date_default_timezone_set('Asia/Jakarta');
-
 				include './assets/phpexcel/Classes/PHPExcel/IOFactory.php';
-
-				$inputFileName = './assets/excel/' . $data['file_name'];
+				$inputFileName = './assets/excel/' .$data['file_name'];
 				$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
-				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
 
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
-						$check = $this->m_data->check_kurs($value['B']);
-						if ($check != 1) {
+						 {
 							$resultData[$index]['id_kurs'] = $value['A'];
-							$resultData[$index]['currency'] = ucwords($value['B']);
+							$resultData[$index]['currency'] = $value['B'];
 							$resultData[$index]['amount'] = $value['C'];
 						}
 					}
 					$index++;
 				}
 
-				unlink('./assets/excel/' . $data['file_name']);
+				unlink('./assets/excel/' .$data['file_name']);
 
 				if (count($resultData) != 0) {
 					$result = $this->m_data->insert_kurs($resultData);
 					if ($result > 0) {
-						$this->session->set_flashdata('berhasil', 'Kurs Berhasil di Import !' );
+						$this->session->set_flashdata('berhasil','Data Kurs Berhasil diimport ke database');
 						redirect('inquiry/inquiry_kurs');
 					}
+				} else {
+					$this->session->set_flashdata('gagal','Data Kurs Gagal diimport ke database');
+					redirect('inquiry/inquiry_kurs');
 				}
 			}
 		}
-	}
+	}		
 }

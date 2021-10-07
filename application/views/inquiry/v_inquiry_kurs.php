@@ -74,7 +74,28 @@
 </div>
 
 <script>
+function save()
+{
+    $('#btnSave').text('saving...'); //change button text
+    $('#btnSave').attr('disabled',true); //set button disable 
+
+    var url;
+     // ajax adding data to database
+    $.ajax({
+        url : url,
+        type: "POST",
+        data: $('#form-modal-tambah').serialize(),
+        dataType: "JSON",
+        success: function(data)
+        { 
+           if(data.status) //if success close modal and reload ajax table
+           $('#btnSave').text('save'); //change button text
+           $('#btnSave').attr('disabled',false); //set button enable   
+        }       
+    });
+}
 </script>
+
 <!-- Bootstrap modal kurs -->
 <div class="modal fade" id="modal_add_kurs" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -83,7 +104,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Tambah Kurs</h3>
 			</div>
-			<form class="form-horizontal" id="form-modal-tambah" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>">
+			<form class="form-horizontal" id="form-modal-tambah" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>" >
 				<div class="modal-body">
 					<div class="form-group">
 						<?php
@@ -109,7 +130,7 @@
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
-					<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
+					<button class="btn btn-primary" id="btnSave" onclick="save()"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
 				</div>
 			</form>
 		</div>
@@ -146,7 +167,7 @@
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
-						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
+						<button class="btn btn-primary" id="edtSave" onclick="save()" ><i class="glyphicon glyphicon-ok"></i> Simpan</button>
 					</div>
 				</form>
 			</div>
@@ -163,17 +184,13 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Import Kurs</h3>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_import') ?>" enctype="multipart/form-data">
-			<div class="modal-body">
-				<div class="form-group">
-				<div class="col-xs-12">	
-					<input type="file" name="excel"  class="form-control" aria-describedby="sizing-addon2" required>
+			<form method="post" action="<?php echo base_url('inquiry/inquiry_kurs_import') ?>" enctype="multipart/form-data">
+				<div class="modal-body">								
+					<input type="file" name="excel"  class="form-control" required>
 					<?php echo form_error('excel'); ?>
-					<small>&nbsp; * Extensi file xls atau xlsx</small><br/>
-					<small>&nbsp; * File yang di import akan me replace data yang sudah ada</small><br/>
+					<small>* Extensi file xls atau xlsx</small><br/>
+					<small>* File yang di import akan me replace data yang sudah ada</small>						
 				</div>
-			</div>
-			</div>
 				<div class="modal-footer">
 					<button type="submit" class="form-control btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Import Data</button>
 				</div>

@@ -211,16 +211,12 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Import Master</h3>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_import') ?>">
-			<div class="modal-body">
-				<div class="form-group">
-				<div class="col-xs-12">	
-					<input type="file" class="form-control" name="excel" required>
+			<form method="post" action="<?php echo base_url('inquiry/inquiry_master_import') ?>" enctype="multipart/form-data">
+				<div class="modal-body">
+					<input type="file" name="excel"  class="form-control" required>
 					<small>&nbsp; * Extensi file xls atau xlsx</small><br/>
-					<small>&nbsp; * File yang di import akan me replace data yang sudah ada</small><br/>
+					<small>&nbsp; * File yang di import akan me replace data yang sudah ada</small>
 				</div>
-			</div>
-			</div>
 				<div class="modal-footer">
 					<button type="submit" class="form-control btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Import Data</button>
 				</div>
@@ -228,4 +224,4 @@
 		</div>
 	</div>
 </div>
-<!--END MODAL import KURS-->
+<!--END MODAL import MASTER-->

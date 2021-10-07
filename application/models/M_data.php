@@ -183,22 +183,22 @@ class M_data extends CI_Model
 
 	public function insert_kurs($data)
 	{
-		$this->db->replace('kurs', $data);
+		$this->db->insert_batch('kurs', $data);
 
 		return $this->db->affected_rows();
 	}
 
-	public function check_kurs($nama)
+	public function check_kurs($currency)
 	{
-		$this->db->where('currency', $nama);
+		$this->db->where('currency', $currency);
 		$data = $this->db->get('kurs');
 
 		return $data->num_rows();
 	}
 
-	public function check_master($nama)
+	public function check_master($brand)
 	{
-		$this->db->where('brand', $nama);
+		$this->db->where('brand', $brand);
 		$data = $this->db->get('master');
 
 		return $data->num_rows();
@@ -206,7 +206,7 @@ class M_data extends CI_Model
 
 	public function insert_master($data)
 	{
-		$this->db->replace('master', $data);
+		$this->db->insert_batch('master', $data);
 
 		return $this->db->affected_rows();
 	}
