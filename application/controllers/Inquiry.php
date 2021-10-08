@@ -187,8 +187,10 @@ class Inquiry extends CI_Controller
 		}
 	}
 
-	public function inquiry_hapus($id)
+	public function inquiry_hapus()
 	{
+		$id = $this->input->post('inquiry_id');
+		{
 		$where = array(
 			'inquiry_id' => $id
 		);
@@ -196,6 +198,7 @@ class Inquiry extends CI_Controller
 		$this->m_data->delete_data($where, 'inquiry');
 		$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Hapus !');
 		redirect(base_url() . 'inquiry/inquiry');
+		}
 	}
 
 	public function inquiry_view()
@@ -321,8 +324,10 @@ class Inquiry extends CI_Controller
 		}
 	}
 
-	public function inquiry_master_hapus($id)
+	public function inquiry_master_hapus()
 	{
+		$id = $this->input->post('id_master');
+		{
 		$where = array(
 			'id_master' => $id
 		);
@@ -330,6 +335,7 @@ class Inquiry extends CI_Controller
 		$this->m_data->delete_data($where, 'master');
 		$this->session->set_flashdata('berhasil', 'Master berhasil di Hapus !');
 		redirect(base_url() . 'inquiry/inquiry_master');
+		}
 	}
 
 	public function inquiry_master_update()
@@ -536,15 +542,17 @@ class Inquiry extends CI_Controller
 		}
 	}
 
-	public function inquiry_kurs_hapus($id)
+	public function inquiry_kurs_hapus()	
 	{
+		$id = $this->input->post('id_kurs');
+		{
 		$where = array(
 			'id_kurs' => $id
 		);
-
 		$this->m_data->delete_data($where, 'kurs');
-		$this->session->set_flashdata('berhasil', 'Kurs '.$this->input->post('currency',TRUE).' Berhasil di Hapus !' );
+		$this->session->set_flashdata('berhasil', 'Kurs Berhasil di Hapus !' );
 		redirect(base_url() . 'inquiry/inquiry_kurs');
+		}
 	}
 
 	public function inquiry_kurs_export()

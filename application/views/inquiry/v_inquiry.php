@@ -73,9 +73,7 @@
 										<?php }	?>
 										<?php if ($this->session->userdata('level') != "sales") { ?>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->inquiry_id; ?>"><i class="fa fa-edit"></i> Upd</a>
-											<?php
-											echo anchor(site_url('inquiry/inquiry_hapus/' . $p->inquiry_id), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-											?>
+											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->inquiry_id; ?>"><i class="fa fa-trash"></i> Del</a>
 									</td>
 								</tr>
 							<?php }	?>
@@ -458,3 +456,29 @@
 	</div>
 <?php endforeach; ?>
 <!--END MODAL EDIT PURC-->
+
+
+<!--MODAL HAPUS-->
+<?php foreach ($inquiry as $p) : ?>
+<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                        <h3 class="modal-title" id="myModalLabel" align="center">Hapus Inquiry</h3>
+                    </div>
+                    <form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
+                    <div class="modal-body">                                          
+					<input type="hidden" name="inquiry_id" value="<?php echo $p->inquiry_id; ?>">
+                    <div class="alert alert-success"><p>Apakah Anda yakin mau memhapus Inquiry ini?</p></div>                                        
+                    </div>
+                    <div class="modal-footer">
+					<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
+						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
+					</div>
+                    </form>
+                </div>
+	         </div>
+</div>
+<?php endforeach; ?>
+<!--END MODAL HAPUS-->

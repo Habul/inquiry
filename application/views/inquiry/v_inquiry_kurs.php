@@ -54,9 +54,7 @@
 									<td><?php echo number_format($p->amount, 0, '.', '.'); ?></td>
 									<td style="text-align:center">
 										<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_kurs; ?>"><i class="fa fa-pencil"></i> Edit</a>
-										<?php
-										echo anchor(site_url('inquiry/inquiry_kurs_hapus/' . $p->id_kurs), '<i class="fa fa-trash"></i>&nbsp; Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-										?>
+										<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_kurs; ?>"><i class="fa fa-trash"></i> Del</a>							
 									</td>
 								</tr>
 							<?php }	?>
@@ -76,23 +74,11 @@
 <script>
 function save()
 {
-    $('#btnSave').text('saving...'); //change button text
-    $('#btnSave').attr('disabled',true); //set button disable 
-
-    var url;
-     // ajax adding data to database
-    $.ajax({
-        url : url,
-        type: "POST",
-        data: $('#form-modal-tambah').serialize(),
-        dataType: "JSON",
-        success: function(data)
-        { 
-           if(data.status) //if success close modal and reload ajax table
-           $('#btnSave').text('save'); //change button text
-           $('#btnSave').attr('disabled',false); //set button enable   
-        }       
-    });
+    $('#btnSave').on('click',function(e){
+     e.preventDefault();
+     //Add a code to show your loader.
+     $('form-modal-tambah').submit();
+});
 }
 </script>
 
@@ -189,7 +175,8 @@ function save()
 					<input type="file" name="excel"  class="form-control" required>
 					<?php echo form_error('excel'); ?>
 					<small>* Extensi file xls atau xlsx</small><br/>
-					<small>* File yang di import akan me replace data yang sudah ada</small>						
+					<small>* File yang di import akan me replace data yang sudah ada</small><br/>
+					<small>* Format file harus sesuai dengan file excel export</small>						
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="form-control btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Import Data</button>
@@ -199,3 +186,28 @@ function save()
 	</div>
 </div>
 <!--END MODAL import KURS-->
+
+<!--MODAL HAPUS-->
+<?php foreach ($kurs as $p) : ?>
+<div class="modal fade" id="modal_hapus<?php echo $p->id_kurs; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                        <h3 class="modal-title" id="myModalLabel" align="center">Hapus Kurs</h3>
+                    </div>
+                    <form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_hapus') ?>">
+                    <div class="modal-body">                                          
+					<input type="hidden" name="id_kurs" value="<?php echo $p->id_kurs; ?>">
+                    <div class="alert alert-success"><p>Apakah Anda yakin mau memhapus Kurs <?php echo $p->currency; ?> ini?</p></div>                                        
+                    </div>
+                    <div class="modal-footer">
+						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
+						<button class="btn btn-primary" ><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
+					</div>
+                    </form>
+                </div>
+	         </div>
+</div>
+<?php endforeach; ?>
+<!--END MODAL HAPUS-->

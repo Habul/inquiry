@@ -148,14 +148,17 @@ class Buffer extends CI_Controller
 		}
 	}
 
-	public function buffer_hapus($id)
+	public function buffer_hapus()
 	{
+	$id = $this->input->post('id_buffer');
+		{
 		$where = array(
 			'id_buffer' => $id
 		);
 		$this->m_data->delete_data($where, 'buffer');
 		$this->session->set_flashdata('message', 'Buffer berhasil di Hapus !');
 		redirect(base_url() . 'buffer/buffer');
+		}
 	}
 
 	public function buffer_view()

@@ -61,9 +61,7 @@
 									<td><?php echo $p->distributor; ?></td>
 									<td style="text-align:center">
 										<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_master; ?>"><i class="fa fa-pencil"></i> Edit</a>
-										<?php
-										echo anchor(site_url('inquiry/inquiry_master_hapus/' . $p->id_master), '<i class="fa fa-trash"></i>&nbsp;Del', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-										?>
+										<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_master; ?>"><i class="fa fa-trash"></i> Del</a>
 									</td>
 								</tr>
 							<?php }	?>
@@ -214,8 +212,9 @@
 			<form method="post" action="<?php echo base_url('inquiry/inquiry_master_import') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
 					<input type="file" name="excel"  class="form-control" required>
-					<small>&nbsp; * Extensi file xls atau xlsx</small><br/>
-					<small>&nbsp; * File yang di import akan me replace data yang sudah ada</small>
+					<small>* Extensi file xls atau xlsx</small><br/>
+					<small>* File yang di import akan me replace data yang sudah ada</small><br/>
+					<small>* Format file harus sesuai dengan file excel export</small>
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="form-control btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Import Data</button>
@@ -225,3 +224,28 @@
 	</div>
 </div>
 <!--END MODAL import MASTER-->
+
+<!--MODAL HAPUS-->
+<?php foreach ($master as $p) : ?>
+<div class="modal fade" id="modal_hapus<?php echo $p->id_master; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                        <h3 class="modal-title" id="myModalLabel" align="center">Hapus Master</h3>
+                    </div>
+                    <form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_master_hapus') ?>">
+                    <div class="modal-body">                                          
+					<input type="hidden" name="id_master" value="<?php echo $p->id_master; ?>">
+                    <div class="alert alert-success"><p>Apakah Anda yakin mau memhapus Master ini?</p></div>                                        
+                    </div>
+                    <div class="modal-footer">
+					<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
+						<button class="btn btn-primary" ><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
+					</div>
+                    </form>
+                </div>
+	         </div>
+</div>
+<?php endforeach; ?>
+<!--END MODAL HAPUS-->
