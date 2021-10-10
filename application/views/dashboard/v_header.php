@@ -1,245 +1,247 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Intisera | Dashboard</title>
 	<link rel='icon' href="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" type="image/gif">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/morris.js/morris.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/jvectormap/jquery-jvectormap.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/select2/dist/css/select2.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	<script src="<?php echo base_url(); ?>assets/libs/modernizr.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
-	<script> $.widget.bridge('uibutton', $.ui.button);</script>
-	<script src="<?php echo base_url(); ?>assets/bower_components/chart.js/Chart.js"></script>
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+	<!-- SweetAlert2 -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+	<!-- Toastr -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- Tempusdominus Bootstrap 4 -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+	<!-- iCheck -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+	<!-- JQVMap -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jqvmap/jqvmap.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
+	<!-- overlayScrollbars -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+	<!-- Daterange picker -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
+	<!-- summernote -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.css">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 
-		<header class="main-header">
-			<a href="<?php echo base_url() . 'dashboard' ?>" class="logo">
-				<span class="logo-mini"><b>IG</b></span>
-				<span class="logo-lg"><b>Intisera </b>Group</span>
+		<!-- Navbar -->
+		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+			<!-- Left navbar links -->
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+				</li>
+				<li class="nav-item d-none d-sm-inline-block">
+					<a href="<?php echo base_url() . 'dashboard' ?>" class="nav-link">Home</a>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto">
+				<!-- Notifications Dropdown Menu -->
+				<li class="nav-item dropdown">
+					<?php if ($this->session->userdata('level') != "sales") {	?>
+						<?php
+						$this->load->model('m_data');
+						$jml_inquiry = $this->m_data->total_inquiry();
+						$jml_buffer = $this->m_data->total_buffer();
+						$total = $jml_inquiry + $jml_buffer;  ?>
+						<a class="nav-link" data-toggle="dropdown" href="#">
+							<i class="far fa-bell"></i>
+							<span class="badge badge-warning navbar-badge"><?= $total; ?></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+							<span class="dropdown-item dropdown-header">You have notifications</span>
+							<div class="dropdown-divider"></div>
+							<a href="<?php echo base_url('inquiry/inquiry') ?>" class="dropdown-item">
+								<i class="fas fa-file mr-2"></i> You have <?= $jml_inquiry; ?> Inquiry
+							</a>
+							<div class="dropdown-divider"></div>
+							<a href="<?php echo base_url('buffer/buffer') ?>" class="dropdown-item">
+								<i class="fas fa-file mr-2"></i> You have <?= $jml_buffer; ?> Buffer
+							</a>
+						</div>
+				</li>
+			<?php } ?>
+			<li class="nav-item">
+				<a class="nav-link" data-widget="fullscreen" href="#" role="button">
+					<i class="fas fa-expand-arrows-alt"></i>
+				</a>
+			</li>
+			</ul>
+		</nav>
+		<!-- /.navbar -->
+		<!-- Main Sidebar Container -->
+
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			<!-- Brand Logo -->
+			<a href="#" class="brand-link">
+				<img src="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<span class="brand-text font-weight-light">INTISERA</span>
 			</a>
 
-			<nav class="navbar navbar-static-top">
-
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-					<span class="sr-only">Toggle navigation</span>
-				</a>
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<?php if ($this->session->userdata('level') != "sales") {	?>
-							<?php
-							$this->load->model('m_data');
-							$jml_inquiry = $this->m_data->total_inquiry();
-							$jml_buffer = $this->m_data->total_buffer();
-							$total = $jml_inquiry + $jml_buffer;  ?>
-							<!-- Notifications: style can be found in dropdown.less -->
-							<li class="dropdown notifications-menu">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-bell-o"></i>
-									<span class="label label-warning"><?= $total; ?></span>
-								</a>
-								<ul class="dropdown-menu">
-									<li class="header">You have notifications</li>
-									<li>
-										<!-- inner menu: contains the actual data -->
-										<ul class="menu">
-											<li>
-												<a href="<?php echo base_url('inquiry/inquiry') ?>">
-													<i class="fa fa-warning text-yellow"></i>
-													You have <?= $jml_inquiry; ?> Inquiry
-												</a>
-											</li>
-											<li>
-												<a href="<?php echo base_url('buffer/buffer') ?>">
-													<i class="fa fa-info-circle text-red"></i>
-													You have <?= $jml_buffer; ?> Buffer
-												</a>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						<?php } ?>
-						<!-- Tasks: style can be found in dropdown.less -->
-						<li class="dropdown user user-menu">
-							<?php $id_user = $this->session->userdata('id');
-							$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="user-image" alt="User Image">
-								<span class="hidden-xs"><b><?php echo $this->session->userdata('username') ?></b></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="user-header">
-									<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="img-circle" alt="User Image">
-									<p>
-										<?php echo $this->session->userdata('username') ?>
-										<small><?php echo $this->session->userdata('level') ?></small>
-									</p>
-								</li>
-
-								<li class="user-footer">
-									<div class="pull-left">
-										<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default btn-flat">Profil</a>
-									</div>
-									<div class="pull-right">
-										<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-default btn-flat">Keluar</a>
-									</div>
-								</li>
-							</ul>
-						</li>
-
-					</ul>
-				</div>
-			</nav>
-		</header>
-		<aside class="main-sidebar">
-			<section class="sidebar">
-				<div class="user-panel">
-					<div class="pull-left image">
+			<!-- Sidebar -->
+			<div class="sidebar">
+				<!-- Sidebar user panel (optional) -->
+				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+					<div class="image">
 						<?php $id_user = $this->session->userdata('id');
 						$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
-						<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="img-circle" alt="User Image">
+						<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
 					</div>
-					<div class="pull-left info">
-						<?php
-						$id_user = $this->session->userdata('id');
-						$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-						?>
-						<p><?php echo $user->pengguna_nama; ?></p>
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					<div class="info">
+						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="d-block"><?php echo $user->pengguna_nama; ?></a>
 					</div>
 				</div>
 
-				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">LIST MENU</li>
-					<li class="active treeview">
-					<li>
-						<a href="<?php echo base_url() . 'dashboard' ?>">
-							<i class="fa fa-dashboard"></i>
-							<span>DASHBOARD</span>
-						</a>
-					</li>
-						</li>
-					<?php
-					if ($this->session->userdata('level') == "admin") {
-					?>
-						<li>
-							<a href="<?php echo base_url() . 'dashboard/kategori' ?>">
-								<i class="fa fa-th"></i>
-								<span>KATEGORI</span>
+				<!-- SidebarSearch Form -->
+				<div class="form-inline">
+					<div class="input-group" data-widget="sidebar-search">
+						<input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+						<div class="input-group-append">
+							<button class="btn btn-sidebar">
+								<i class="fas fa-search fa-fw"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+						<li class="nav-item">
+							<a href="<?php echo base_url() . 'dashboard' ?>" class="nav-link">
+								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<p>Dashboard</p>
 							</a>
 						</li>
-						<li>
-							<a href="<?php echo base_url() . 'dashboard/artikel' ?>">
-								<i class="fa fa-pencil"></i>
-								<span>ARTIKEL</span>
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo base_url() . 'dashboard/pages' ?>">
-								<i class="fa fa-files-o"></i>
-								<span>PAGES</span>
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo base_url() . 'dashboard/pengguna' ?>">
-								<i class="fa fa-users"></i>
-								<span>PENGGUNA & HAK AKSES</span>
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>">
-								<i class="fa fa-edit"></i>
-								<span>PENGATURAN WEBSITE</span>
-							</a>
-						</li>
-						
-					<?php
-					}
-					?>
-					<?php
-					if ($this->session->userdata('level') != "warehouse") { ?>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-book"></i>
-								<span>INQUIRY</span>
-								<span class="pull-right-container">
-									<i class="fa fa-angle-left pull-right"></i>
-								</span>
-							</a>
-							<ul class="treeview-menu">
+						<?php
+						if ($this->session->userdata('level') == "admin") {
+						?>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/kategori' ?>" class="nav-link">
+									<i class="nav-icon fas fa-th"></i>
+									<p>Kategori</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/artikel' ?>" class="nav-link">
+									<i class="nav-icon fas fa-copy"></i>
+									<p>Artikel</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/pages' ?>" class="nav-link">
+									<i class="nav-icon fas fa-copy"></i>
+									<p>Pages</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>" class="nav-link">
+									<i class="nav-icon fas fa-copy"></i>
+									<p>Pengguna & Hak Akses</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>" class="nav-link">
+									<i class="nav-icon fas fa-copy"></i>
+									<p>Pengaturan Website</p>
+								</a>
+							</li>
+						<?php
+						}
+						?>
+						<?php
+						if ($this->session->userdata('level') != "warehouse") { ?>
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-edit"></i>
+									<p>Inquiry
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
 								<?php
 								if ($this->session->userdata('level') != "sales") { ?>
-									<li><a href="<?php echo base_url() . 'inquiry/inquiry_master' ?>">
-											<i class="fa fa-file-text"></i>
-											<span>MASTER INQUIRY </span></a>
+									<ul class="nav nav-treeview">
+										<li class="nav-item">
+											<a href="<?php echo base_url() . 'inquiry/inquiry_master' ?>" class="nav-link active">
+												<i class="far fa-circle nav-icon"></i>
+												<p>Master Inquiry</p>
+											</a>
+										</li>
+										<li class="nav-item">
+											<a href="<?php echo base_url() . 'inquiry/inquiry_kurs' ?>" class="nav-link">
+												<i class="far fa-circle nav-icon"></i>
+												<p>Kurs Inquiry</p>
+											</a>
+										</li>
+									<?php } ?>
+									<li class="nav-item">
+										<a href="<?php echo base_url() . 'inquiry/inquiry' ?>" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>Input Inquiry</p>
+										</a>
 									</li>
-									<li><a href="<?php echo base_url() . 'inquiry/inquiry_kurs' ?>">
-											<i class="fa fa-money"></i>
-											<span>KURS INQUIRY</span></a>
+									<li class="nav-item">
+										<a href="<?php echo base_url() . 'inquiry/inquiry_view' ?>" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>View Inquiry</p>
+										</a>
+									</li>
+									</ul>
+							</li>
+						<?php } ?>
+						<?php
+						if ($this->session->userdata('level') != "purchase") { ?>
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-edit"></i>
+									<p>Buffer
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="<?php echo base_url() . 'buffer/buffer' ?>" class="nav-link active">
+											<i class="far fa-circle nav-icon"></i>
+											<p>Input Buffer</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="<?php echo base_url() . 'buffer/buffer_view' ?>" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>View Buffer</p>
+										</a>
 									</li>
 								<?php } ?>
-								<li><a href="<?php echo base_url() . 'inquiry/inquiry' ?>">
-										<i class="fa fa-sticky-note-o"></i>
-										<span>INPUT INQUIRY</span></a>
-								</li>
-								<li><a href="<?php echo base_url() . 'inquiry/inquiry_view' ?>">
-										<i class="fa fa-sticky-note"></i>
-										<span>VIEW INQUIRY</span></a>
-								</li>
-							</ul>
-						</li>
-					<?php } ?>
-					<?php
-					if ($this->session->userdata('level') != "purchase") { ?>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-database"></i>
-							<span>BUFFER</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="<?php echo base_url() . 'buffer/buffer' ?>">
-									<i class="fa fa-file-o"></i>
-									<span>INPUT BUFFER</span></a>
+								</ul>
 							</li>
-							<li><a href="<?php echo base_url() . 'buffer/buffer_view' ?>">
-									<i class="fa fa-file"></i>
-									<span>VIEW BUFFER</span></a>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>" class="nav-link">
+									<i class="nav-icon fas fa-copy"></i>
+									<p>Ganti Password</p>
+								</a>
 							</li>
-						</ul>
-					</li>
-					<?php } ?>	
-					<li>
-						<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>">
-							<i class="fa fa-lock"></i>
-							<span>GANTI PASSWORD</span>
-						</a>
-					</li>
-					<li>
-						<a href="<?php echo base_url() . 'dashboard/keluar' ?>">
-							<i class="fa fa-share"></i>
-							<span>KELUAR</span>
-						</a>
-					</li>
-				</ul>
-		</section>
-</aside>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="nav-link">
+									<i class="nav-icon fas fa-share"></i>
+									<p>Keluar</p>
+								</a>
+							</li>
+			</div>
+		</aside>
