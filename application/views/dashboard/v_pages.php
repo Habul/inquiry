@@ -7,15 +7,13 @@
 	</section>
 
 	<section class="content">
-
-		<div class="row">
-			<div class="col-lg-12">
-				
+	<div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
 				<a href="<?php echo base_url().'dashboard/pages_tambah'; ?>" class="btn btn-sm btn-primary">Buat halaman baru</a>
-
-				<br/>
-				<br/>
-
 				<div class="box box-primary">
 					<div class="box-header">
 						<h3 class="box-title">Halaman</h3>
@@ -48,14 +46,9 @@
 								<?php } ?>
 							</tbody>
 						</table>
-						
-
 					</div>
 				</div>
-
 			</div>
 		</div>
-
 	</section>
-
 </div>

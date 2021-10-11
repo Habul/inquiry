@@ -1,28 +1,22 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
-			Artikel
-			<small>Edit Artikel Baru</small>
+			Edit Artikel
 		</h1>
 	</section>
-
 	<section class="content">
-
-		<a href="<?php echo base_url().'dashboard/artikel'; ?>" class="btn btn-sm btn-primary">Kembali</a>
-
-		<br/>
-		<br/>
-
+	<div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
 		<?php foreach($artikel as $a){ ?>
-
 		<form method="post" action="<?php echo base_url('dashboard/artikel_update') ?>" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-lg-9">
-
 					<div class="box box-primary">
 						<div class="box-body">
-
-
 							<div class="box-body">
 								<div class="form-group">
 									<label>Judul</label>
@@ -32,22 +26,17 @@
 									<?php echo form_error('judul'); ?>
 								</div>
 							</div>
-
 							<div class="box-body">
 								<div class="form-group">
 									<label>Konten</label>
 									<?php echo form_error('konten'); ?>
 									<br/>
-									<textarea class="form-control" id="editor" name="konten"> <?php echo $a->artikel_konten; ?> </textarea>
+									<textarea class="form-control" id="summernote" name="konten"> <?php echo $a->artikel_konten; ?> </textarea>
 								</div>
 							</div>
-
-
 						</div>
 					</div>
-
 				</div>
-
 				<div class="col-lg-3">
 					<div class="box box-primary">
 						<div class="box-body">
@@ -78,20 +67,14 @@
 								?>
 								<?php echo form_error('sampul'); ?>
 							</div>
-
-							<br/><br/>
-
+							<br/>
 							<input type="submit" name="status" value="Draft" class="btn btn-warning btn-block">
 							<input type="submit" name="status" value="Publish" class="btn btn-success btn-block">
-
 						</div>
 					</div>
-
 				</div>
-			</div>
+			</div>							
 		</form>
 		<?php } ?>
-
 	</section>
-
 </div>

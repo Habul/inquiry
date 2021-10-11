@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<title>Intisera | Dashboard</title>
 	<link rel='icon' href="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" type="image/gif">
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
-	<!-- DataTables -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 	<!-- SweetAlert2 -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 	<!-- Toastr -->
@@ -35,13 +30,23 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
 	<!-- summernote -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.css">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 
+	  <!-- Preloader -->
+	  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" alt="AdminLTELogo" height="60" width="60">
+ 		 </div>
+
 		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+		<nav class="main-header navbar navbar-expand navbar-lightblue navbar-dark">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -69,11 +74,11 @@
 							<span class="dropdown-item dropdown-header">You have notifications</span>
 							<div class="dropdown-divider"></div>
 							<a href="<?php echo base_url('inquiry/inquiry') ?>" class="dropdown-item">
-								<i class="fas fa-file mr-2"></i> You have <?= $jml_inquiry; ?> Inquiry
+								<i class="fas fa-book"></i> You have <?= $jml_inquiry; ?> Inquiry
 							</a>
 							<div class="dropdown-divider"></div>
 							<a href="<?php echo base_url('buffer/buffer') ?>" class="dropdown-item">
-								<i class="fas fa-file mr-2"></i> You have <?= $jml_buffer; ?> Buffer
+								<i class="fas fa-database"></i> You have <?= $jml_buffer; ?> Buffer
 							</a>
 						</div>
 				</li>
@@ -126,8 +131,8 @@
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard' ?>" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
-								<p>Dashboard</p>
+								<i class="nav-icon fas fa-home"></i>
+								<p>Home</p>
 							</a>
 						</li>
 						<?php
@@ -141,25 +146,25 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/artikel' ?>" class="nav-link">
-									<i class="nav-icon fas fa-copy"></i>
+									<i class="nav-icon fas fa-table"></i>
 									<p>Artikel</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pages' ?>" class="nav-link">
-									<i class="nav-icon fas fa-copy"></i>
+									<i class="nav-icon fas fa-tags"></i>
 									<p>Pages</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>" class="nav-link">
-									<i class="nav-icon fas fa-copy"></i>
+									<i class="nav-icon fas fa-users"></i>
 									<p>Pengguna & Hak Akses</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>" class="nav-link">
-									<i class="nav-icon fas fa-copy"></i>
+									<i class="nav-icon fas fa-cogs"></i>
 									<p>Pengaturan Website</p>
 								</a>
 							</li>
@@ -170,7 +175,7 @@
 						if ($this->session->userdata('level') != "warehouse") { ?>
 							<li class="nav-item">
 								<a href="#" class="nav-link">
-									<i class="nav-icon fas fa-edit"></i>
+									<i class="nav-icon fas fa-book"></i>
 									<p>Inquiry
 										<i class="fas fa-angle-left right"></i>
 									</p>
@@ -210,7 +215,7 @@
 						if ($this->session->userdata('level') != "purchase") { ?>
 							<li class="nav-item">
 								<a href="#" class="nav-link">
-									<i class="nav-icon fas fa-edit"></i>
+									<i class="nav-icon fas fa-database"></i>
 									<p>Buffer
 										<i class="fas fa-angle-left right"></i>
 									</p>
@@ -233,13 +238,13 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>" class="nav-link">
-									<i class="nav-icon fas fa-copy"></i>
+									<i class="nav-icon fas fa-lock"></i>
 									<p>Ganti Password</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="nav-link">
-									<i class="nav-icon fas fa-share"></i>
+									<i class="nav-icon fas fa-power-off"></i>
 									<p>Keluar</p>
 								</a>
 							</li>

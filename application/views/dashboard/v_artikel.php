@@ -2,28 +2,19 @@
 	<section class="content-header">
 		<h1>
 			Artikel
-			<small>Manajemen Artikel</small>
 		</h1>
 	</section>
 
 	<section class="content">
 
-		<div class="row">
-			<div class="col-lg-12">
-				
+	<div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">				
 				<a href="<?php echo base_url().'dashboard/artikel_tambah'; ?>" class="btn btn-sm btn-primary">Buat artikel baru</a>
-
-				<br/>
-				<br/>
-
-				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Artikel</h3>
-					</div>
-					<div class="box-body">
-
-						<div class="table-responsive">
-							<table class="table table-bordered">
+						<table id="example2" class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th width="1%">NO</th>
@@ -62,7 +53,6 @@
 													echo "<span class='label label-danger'>Draft</span>"; 
 												}
 												?>
-
 											</td>
 											<td>
 												<a target="_blank" href="<?php echo base_url().$a->artikel_slug; ?>" class="btn btn-success btn-sm"> <i class="fa fa-eye"></i> </a>
@@ -72,14 +62,14 @@
 												// jika penulis, maka cek apakah penulis artikel ini adalah si pengguna atau bukan
 													if($this->session->userdata('id') == $a->artikel_author){
 														?>
-														<a href="<?php echo base_url().'dashboard/artikel_edit/'.$a->artikel_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
+														<a href="<?php echo base_url().'dashboard/artikel_edit/'.$a->artikel_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
 														<a href="<?php echo base_url().'dashboard/artikel_hapus/'.$a->artikel_id; ?>" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
 														<?php
 													}
 												}else{
 												// jika yang login adalah admin
 													?>
-													<a href="<?php echo base_url().'dashboard/artikel_edit/'.$a->artikel_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
+													<a href="<?php echo base_url().'dashboard/artikel_edit/'.$a->artikel_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
 													<a href="<?php echo base_url().'dashboard/artikel_hapus/'.$a->artikel_id; ?>" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
 													<?php
 												}
@@ -90,13 +80,10 @@
 								</tbody>
 							</table>
 						</div>
-
 					</div>
 				</div>
-
 			</div>
 		</div>
-
 	</section>
 
 </div>

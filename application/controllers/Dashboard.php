@@ -323,7 +323,6 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard/v_footer');
 	}
 
-
 	public function artikel_update()
 	{
 		// Wajib isi judul,konten dan kategori
@@ -354,7 +353,6 @@ class Dashboard extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'artikel');
-
 
 			if (!empty($_FILES['sampul']['name'])) {
 				$config['upload_path']   = './gambar/artikel/';

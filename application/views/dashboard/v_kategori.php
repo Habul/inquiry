@@ -40,7 +40,7 @@
 										<td><?php echo $k->kategori_nama; ?></td>
 										<td><?php echo $k->kategori_slug; ?></td>
 										<td>
-											<a href="<?php echo base_url().'dashboard/kategori_edit/'.$k->kategori_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
+											<a href="<?php echo base_url().'dashboard/kategori_edit/'.$k->kategori_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
 											<a href="<?php echo base_url().'dashboard/kategori_hapus/'.$k->kategori_id; ?>" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
 										</td>
 									</tr>

@@ -18,23 +18,23 @@
 		<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
 		</div>
 		<?php } ?>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="box">
-					<div class="box-header">
+		<div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
 						<?php if ($this->session->userdata('level') != "warehouse") {	?>
 						<?php if ($this->session->userdata('level') != "purchase") {	?>
 							<div class="col-md-6" style="padding: 0;">
 								<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_inquiry">
 									<i class="glyphicon glyphicon-plus-sign"></i> Tambah Inquiry</a>
 							</div>
+						</br>
 						<?php }	?>
-						<?php }	?>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-					<div class="table-responsive-lg">
-						<table id="example2" class="table table table-bordered table-hover">
+						<?php }	?>			
+					<!-- /.box-header -->		
+						<table id="example2" class="table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th width="1%">NO</th>
@@ -81,17 +81,17 @@
 						<?php } ?>
 						</table>
 						</div>
+						</div>
 					</div>
 					<!-- /.box-body -->
 				</div>
 				<!-- /.box -->
 			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</section>
-	<!-- /.content -->
+		</section>
+		<!-- /.col -->
 </div>
+<!-- /.row -->
+	
 
 <!-- modal add inquiry -->
 <div class="modal fade" id="modal_add_inquiry" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
