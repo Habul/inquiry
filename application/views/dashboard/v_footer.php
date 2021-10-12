@@ -21,7 +21,7 @@
 	$.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- ChartJS -->
-<script src="<?php echo base_url(); ?>assets/plugins/chart.js/Chart.min.js"></script>	
+<script src="<?php echo base_url(); ?>assets/plugins/chart.js/Chart.min.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -39,27 +39,13 @@
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script>
-	$(function () {
-		$("#example1").DataTable({
-		"responsive": true, "lengthChange": false, "autoWidth": false,
-		"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-		$('#example2').DataTable({
-		"paging": true,
-		"lengthChange": false,
-		"searching": false,
-		"ordering": true,
-		"info": true,
-		"autoWidth": false,
-		"responsive": true,
-		});
-	});
-</script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
 <script src="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
+<!-- Summernote -->
+<script src="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="<?php echo base_url(); ?>assets/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -75,16 +61,81 @@
 <!-- overlayScrollbars -->
 <script src="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo base_url(); ?>assets/dist/js/adminlte.js"></script>
-<!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
-<!-- Summernote -->
-<script src="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 <script>
-  $(function () {
-    // Summernote
-    $('#summernote').summernote()
-  })
+	$(function() {
+		$("#example1").DataTable({
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false,
+			"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+		$('#example2').DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+		});
+	});
+</script>
+<!-- ChartJS -->
+<script>
+	//-------------
+	//- PIE CHART 1 -
+	//-------------
+	// Get context with jQuery - using jQuery's .get() method.
+	var pieChartCanvas = $('#pieChart1').get(0).getContext('2d')
+	var pieChart = new Chart(pieChartCanvas)
+	var PieData = <?php echo $data_sales; ?>;
+	var pieOptions = {
+
+		segmentShowStroke: true,
+		segmentStrokeColor: '#fff',
+		segmentStrokeWidth: 2,
+		percentageInnerCutout: 50,
+		animationSteps: 100,
+		animationEasing: 'easeOutBounce',
+		animateRotate: true,
+		animateScale: false,
+		responsive: true,
+		maintainAspectRatio: true,
+		legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+	}
+	pieChart.Doughnut(PieData, pieOptions)
+</script>
+<script>
+	//-------------
+	//- PIE CHART 2 -
+	//-------------
+	var pieChartCanvas = $('#pieChart2').get(0).getContext('2d')
+	var pieChart = new Chart(pieChartCanvas)
+	var PieData = <?php echo $data_brand; ?>;
+	var pieOptions = {
+		segmentShowStroke: true,
+		segmentStrokeColor: '#fff',
+		segmentStrokeWidth: 2,
+		percentageInnerCutout: 50,
+		animationSteps: 100,
+		animationEasing: 'easeOutBounce',
+		animateRotate: true,
+		animateScale: false,
+		responsive: true,
+		maintainAspectRatio: true,
+		legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+	}
+	pieChart.Doughnut(PieData, pieOptions)
+</script>
+<script>
+	$(function() {
+		// Summernote
+		$('#summernote').summernote()
+	})
 </script>
 </body>
+
 </html>
