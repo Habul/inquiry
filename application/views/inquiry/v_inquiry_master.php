@@ -2,7 +2,6 @@
 	<section class="content-header">
 		<h1>
 			Master Inquiry
-			<small>Inquiry Marketing - Purchasing</small>
 		</h1>
 	</section>
 	<section class="content">
@@ -18,24 +17,22 @@
 		<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
 		</div>
 		<?php } ?>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="box">
-					<div class="box-header">
-						<div class="col-md-6" style="padding: 0;">
+		<div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              		<div class="card-body">
+					 	<div class="col-sm-6" style="padding: 0;">
 							<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_master"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data Master</a>
 						</div>
-						<div class="col-md-3">
+						<div class="col-sm-6"">
 							<a href="<?php echo base_url('inquiry/inquiry_master_export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-open-file"></i> Export Data Excel</a>
 						</div>
-						<div class="col-md-3">
+						<div class="col-sm-6">
 						<a class="form-control btn btn-default" data-toggle="modal" data-target="#modal_import_master"><i class="glyphicon glyphicon glyphicon-save-file"></i> Import Data Excel</a>
-						</div>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-					<div class="table-responsive-lg">
-						<table id="example1" class="table table table-bordered table-hover">
+						</div>					
+						<table id="example2" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th width="1%">NO</th>
@@ -60,12 +57,13 @@
 									<td><?php echo $p->user; ?></td>
 									<td><?php echo $p->distributor; ?></td>
 									<td style="text-align:center">
-										<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_master; ?>"><i class="fa fa-pencil"></i> Edit</a>
+										<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_master; ?>"><i class="fa fa-edit"></i> Edit</a>
 										<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_master; ?>"><i class="fa fa-trash"></i> Del</a>
 									</td>
 								</tr>
 							<?php }	?>
 						</table>
+							</div>
 						</div>
 					</div>
 					<!-- /.box-body -->
@@ -73,7 +71,6 @@
 				<!-- /.box -->
 			</div>
 			<!-- /.col -->
-		</div>
 		<!-- /.row -->
 	</section>
 	<!-- /.content -->
