@@ -26,25 +26,21 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
 	<!-- overlayScrollbars -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 	<!-- Daterange picker -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
 	<!-- summernote -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
+
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
-
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" src="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" alt="AdminLTELogo" height="60" width="60">
-		</div>
-
+	
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
 			<!-- Left navbar links -->
@@ -166,6 +162,12 @@
 								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>" class="nav-link">
 									<i class="nav-icon fas fa-cogs"></i>
 									<p>Pengaturan Website</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'sj/sj' ?>" class="nav-link">
+									<i class="nav-icon fas fa-edit"></i>
+									<p>Surat Jalan</p>
 								</a>
 							</li>
 						<?php

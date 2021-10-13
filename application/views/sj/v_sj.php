@@ -3,13 +3,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Inquiry</h1>
-					<small>Inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>View Inquiry</b></small>
+					<h1 class="m-0">Surat Jalan</h1>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
-						<li class="breadcrumb-item active">Inquiry</li>
+                        <li class="breadcrumb-item active">Surat Jalan</li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -33,61 +32,49 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<?php if ($this->session->userdata('level') != "warehouse") {	?>
-								<?php if ($this->session->userdata('level') != "purchase") {	?>
 									<div class="col-md-6" style="padding: 0;">
 										<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_inquiry">
-											<i class="fa fa-plus-square"></i> Tambah Inquiry</a>
+											<i class="fa fa-plus-square"></i> Add SJ</a>
 									</div>
 									</br>
-								<?php }	?>
-							<?php }	?>
 							<!-- /.box-header -->
-							<table id="example2" class="table table-bordered table-hover">
+							<table id="example2" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th width="1%">NO</th>
-										<th>Nama</th>
-										<th>Tanggal</th>
-										<th>No Inquiry</th>
-										<th>Brand Produk</th>
-										<th>Description</th>
-										<th>Qty</th>
-										<th>Deadline</th>
-										<th>Request</th>
-										<?php if ($this->session->userdata('level') != "warehouse") { ?>
-											<th width="12%">Action</th>
-										<?php }	?>
+										<th>Do No</th>
+										<th>Do Date</th>
+										<th>Due Date</th>
+										<th>No PO</th>
+										<th>Cust Name</th>
+                                        <th>Address</th>
+										<th>City</th>
+										<th>Phone</th>										
+										<th width="12%">Action</th>
 									</tr>
 								</thead>
 								<?php
 								$no = $this->uri->segment('3') + 1;
-								$query = $this->db->query("select * from inquiry where fu1 is NULL order by tanggal desc");
+								$query = $this->db->query("select * from sj_user order by addtime desc");
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $p->sales; ?></td>
-										<td><?php echo $p->tanggal; ?></td>
-										<td><?php echo $p->inquiry_id; ?></td>
-										<td><?php echo $p->brand; ?></td>
-										<td><?php echo $p->desc; ?></td>
-										<td><?php echo $p->qty; ?></td>
-										<td><?php echo $p->deadline; ?></td>
-										<td><?php echo $p->request; ?></td>
-										<?php if ($this->session->userdata('level') != "warehouse") { ?>
+										<td><?php echo $p->no_delivery; ?></td>
+										<td><?php echo $p->date_delivery; ?></td>
+										<td><?php echo $p->due_date; ?></td>
+										<td><?php echo $p->no_po; ?></td>
+										<td><?php echo $p->cust_name; ?></td>
+										<td><?php echo $p->address; ?></td>
+										<td><?php echo $p->city; ?></td>
+										<td><?php echo $p->phone; ?></td>									
 											<td style="text-align:center">
-												<?php if ($this->session->userdata('level') != "purchase") { ?>
-													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>"><i class="fa fa-edit"></i> Edit</a>
-												<?php }	?>
-												<?php if ($this->session->userdata('level') != "sales") { ?>
-													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->inquiry_id; ?>"><i class="fa fa-plus-square"></i> Upd</a>
-													<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->inquiry_id; ?>"><i class="fa fa-trash"></i> Del</a>
+												<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_po; ?>"><i class="fa fa-edit"></i></a>
+												<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->no_po; ?>"><i class="fa fa-plus-square"></i></a>
+												<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>"><i class="fa fa-trash"></i></a>
 											</td>
 									</tr>
-								<?php }	?>
-							<?php }	?>
-						<?php } ?>
+                                    <?php } ?>
 							</table>
 						</div>
 					</div>
@@ -101,47 +88,40 @@
 </div>
 <!-- /.row -->
 
-
 <!-- modal add inquiry -->
 <div class="modal fade" id="modal_add_inquiry" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h3 class="modal-title" id="myModalLabel" align="center">Tambah Inquiry</h3>
+				<h3 class="modal-title" id="myModalLabel">Add Sj </h3>
 			</div>
-			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
+			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('sj_aksi/sj_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="control-label col-xs-3">No Inquiry</label>
+						<label class="control-label col-xs-3">No Delivery Order</label>
 						<div class="col-xs-9">
-							<?php
-							$inquiry_id = $this->db->select('inquiry_id')->order_by('inquiry_id', "desc")->limit(1)->get('inquiry')->row();
-							?>
-							<input type="text" name="inquiry_id" readonly class="form-control" value="<?php echo $inquiry_id->inquiry_id + 1 ?>">
-							<?php echo form_error('inquiry_id'); ?>
+							<?php $sj_cek = $this->db->select('no_delivery')->order_by('no_delivery', "desc")->limit(1)->get('sj_user')->row();	?>
+							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo $sj_cek->no_delivery + 1 ?>">
+							<?php echo form_error('no_delivery'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Nama Sales</label>
-						<div class="col-xs-9">
-							<?php
-							$id_user = $this->session->userdata('id');
-							$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-							?>
-							<input type="text" name="sales" readonly class="form-control" value="<?php echo $sales->pengguna_nama; ?> ">
-							<?php echo form_error('sales'); ?>
+						<label class="control-label col-xs-3">Date Delivery</label>
+						<div class="col-xs-9">							
+							<input type="date" name="date_delivery" class="form-control">
+							<?php echo form_error('date_delivery'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Tanggal</label>
+						<label class="control-label col-xs-3">Due Date</label>
 						<div class="col-xs-9">
 							<?php
 							$now = $this->load->helper('date');
 							$format = "%Y-%m-%d %H:%i:%s";
 							?>
-							<input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
-							<?php echo form_error('tanggal'); ?>
+							<input type="datetime" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
+							<?php echo form_error('addtime'); ?>
 						</div>
 					</div>
 					<div class="form-group">
@@ -212,9 +192,9 @@
 </div>
 <!-- end modal add inquiry -->
 
-<!-- ============ MODAL EDIT SALES =============== -->
-<?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_edit<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<!-- ============ MODAL EDIT SJ =============== -->
+<?php foreach ($sj_user as $p) : ?>
+	<div class="modal fade" id="modal_edit<?php echo $p->no_po; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -299,8 +279,8 @@
 <!--END MODAL EDIT SALES-->
 
 <!-- ============ MODAL EDIT PURC =============== -->
-<?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_edit_purch<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<?php foreach ($sj_hs as $p) : ?>
+	<div class="modal fade" id="modal_edit_purch<?php echo $p->no_po; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -468,8 +448,8 @@
 
 
 <!--MODAL HAPUS-->
-<?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<?php foreach ($sj_user as $p) : ?>
+	<div class="modal fade" id="modal_hapus<?php echo $p->no_po; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -480,7 +460,7 @@
 					<div class="modal-body">
 						<input type="hidden" name="inquiry_id" value="<?php echo $p->inquiry_id; ?>">
 						<div class="alert alert-success">
-							<p>Apakah Anda yakin mau memhapus Inquiry ini?</p>
+							<p>Apakah Anda yakin mau memhapus Surat jalan ini?</p>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -492,4 +472,3 @@
 		</div>
 	</div>
 <?php endforeach; ?>
-<!--END MODAL HAPUS-->

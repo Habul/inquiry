@@ -1,11 +1,21 @@
 <div class="content-wrapper">
-  <section class="content-header">
-    <h1>
-      Inquiry
-      <small>Inquiry Marketing - Purchasing</small>
-    </h1>
-  </section>
-  <section class="content">
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">Inquiry</h1>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">inquiry</a></li>
+            <li class="breadcrumb-item active">inquiry view</li>
+					</ol>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div>
+
+  <section class="content">    
     <?php if ($this->session->userdata('level') != "sales") {  ?>
       <div class="col-md-6" style="padding: 0;">
         <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="form-control btn btn-success"><i class="glyphicon glyphicon glyphicon-open-file"></i></i> Export To Excel </a>

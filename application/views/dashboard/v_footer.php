@@ -83,7 +83,6 @@
 		});
 	});
 </script>
-<!-- ChartJS -->
 <script>
 	//-------------
 	//- PIE CHART 1 -
@@ -137,5 +136,4 @@
 	})
 </script>
 </body>
-
 </html>
