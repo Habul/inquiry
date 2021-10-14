@@ -24,21 +24,21 @@
 		<?php } ?>
 		<div class="col-md-3">
 			<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_desc">
-			<i class="fa fa-plus-square"></i>&nbsp; Add Desc</a>
+				<i class="fa fa-plus-square"></i>&nbsp; Add Desc</a>
 		</div>
-		<br/>
-			<div class="container-fluid">
+		<br />
+		<div class="container-fluid">
 			<div class="row">
-			<div class="col-md-12">
-			<div class="card card-success card-outline">								
-				  <div class="card-body">
+				<div class="col-md-12">
+					<div class="card card-success card-outline">
+						<div class="card-body">
 							<table id="example2" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th width="1%">NO</th>
 										<th>No Po</th>
-										<th>Description</th>	
-                                        <th>Qty</th>																			
+										<th>Description</th>
+										<th>Qty</th>
 										<th width="12%">Action</th>
 									</tr>
 								</thead>
@@ -48,23 +48,23 @@
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $no++; ?></td>                                        
+										<td><?php echo $no++; ?></td>
 										<td><?php echo $p->no_po; ?></td>
-                                       	<td><?php echo $p->descript; ?></td>
-										<td><?php echo $p->qty; ?></td>																			
+										<td><?php echo $p->descript; ?></td>
+										<td><?php echo $p->qty; ?></td>
 										<td style="text-align:center">
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_po; ?>"><i class="fa fa-edit"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
-                                <?php } ?>
+								<?php } ?>
 							</table>
 						</div>
 					</div>
 				</div>
 				<!-- /.box-body -->
 			</div>
-			<!-- /.box -->		
+			<!-- /.box -->
 	</section>
 	<!-- /.col -->
 </div>
@@ -72,20 +72,20 @@
 
 <!-- modal add inquiry -->
 <div class="modal fade" id="modal_add_sj">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="col-12 modal-title text-center">Add Surat Jalan
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-			</h4>
-            </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="col-12 modal-title text-center">Add Surat Jalan
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h4>
+			</div>
 			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('sj/sj_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Delivery Order *</label>
-						<div class="col-xs-9">	
+						<div class="col-xs-9">
 							<?php $sj_cek = $this->db->select('no_delivery')->order_by('no_delivery', "desc")->limit(1)->get('sj_user')->row();	?>
 							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo $sj_cek->no_delivery + 1 ?>">
 							<?php echo form_error('no_delivery'); ?>
@@ -93,8 +93,8 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Date Delivery *</label>
-						<div class="col-xs-9">							
-							<input type="date" name="date_delivery" class="form-control" required> 
+						<div class="col-xs-9">
+							<input type="date" name="date_delivery" class="form-control" required>
 							<?php echo form_error('date_delivery'); ?>
 						</div>
 					</div>
@@ -113,15 +113,15 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">No PO *</label>
 						<div class="col-xs-9">
-						<input type="number" name="no_po" class="form-control" placeholder="Input No Po..." required>
+							<input type="number" name="no_po" class="form-control" placeholder="Input No Po..." required>
 							<?php echo form_error('no_po'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Cust Name *</label>
 						<div class="col-xs-9">
-						<input type="text" name="cust_name" class="form-control" placeholder="Input Cust Name..." required>
-						<?php echo form_error('cust_name'); ?>
+							<input type="text" name="cust_name" class="form-control" placeholder="Input Cust Name..." required>
+							<?php echo form_error('cust_name'); ?>
 						</div>
 					</div>
 					<div class="form-group">
@@ -414,19 +414,19 @@
 <!--MODAL HAPUS-->
 <?php foreach ($sj_user as $p) : ?>
 	<div class="modal fade" id="modal_hapus<?php echo $p->no_po; ?>">
-        <div class="modal-dialog">
-          <div class="modal-content bg-danger">
-            <div class="modal-header">
-              <h4 class="col-12 modal-title text-center">Delete Surat Jalan
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-			</h4>
-            </div>
+		<div class="modal-dialog">
+			<div class="modal-content bg-danger">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">Delete Surat Jalan
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
 				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_hapus') ?>">
 					<div class="modal-body">
-						<input type="hidden" name="no_po" value="<?php echo $p->no_po; ?>">						
-							<p text-center>Are you sure delete this ?</p>						
+						<input type="hidden" name="no_po" value="<?php echo $p->no_po; ?>">
+						<p text-center>Are you sure delete this ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button type="button" class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>

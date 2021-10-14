@@ -18,31 +18,30 @@
 	<section class="content">
 		<?php if ($this->session->flashdata('berhasil')) { ?>
 			<div class="alert alert-success alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
 				<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
 			</div>
 		<?php } ?>
 		<?php if ($this->session->flashdata('gagal')) { ?>
 			<div class="alert alert-warning alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
 				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
 			</div>
 		<?php } ?>
 		<div class="container-fluid">
+			<?php if ($this->session->userdata('level') != "warehouse") {	?>
+				<?php if ($this->session->userdata('level') != "purchase") {	?>
+					<div class="col-md-3" style="padding: 0;">
+						<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_inquiry">
+							<i class="fa fa-plus-square"></i>&nbsp; Tambah Inquiry</a>
+					</div>
+					</br>
+				<?php }	?>
+			<?php }	?>
 			<div class="row">
-				<div class="col-12">
-					<div class="card">
+				<div class="col-md-12">
+					<div class="card card-success card-outline">
 						<div class="card-body">
-							<?php if ($this->session->userdata('level') != "warehouse") {	?>
-								<?php if ($this->session->userdata('level') != "purchase") {	?>
-									<div class="col-md-6" style="padding: 0;">
-										<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_inquiry">
-											<i class="fa fa-plus-square"></i> Tambah Inquiry</a>
-									</div>
-									</br>
-								<?php }	?>
-							<?php }	?>
-							<!-- /.box-header -->
 							<table id="example2" class="table table-bordered table-hover">
 								<thead>
 									<tr>
@@ -78,11 +77,11 @@
 										<?php if ($this->session->userdata('level') != "warehouse") { ?>
 											<td style="text-align:center">
 												<?php if ($this->session->userdata('level') != "purchase") { ?>
-													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>"><i class="fa fa-edit"></i> Edit</a>
+													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
 												<?php }	?>
 												<?php if ($this->session->userdata('level') != "sales") { ?>
-													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->inquiry_id; ?>"><i class="fa fa-plus-square"></i> Upd</a>
-													<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->inquiry_id; ?>"><i class="fa fa-trash"></i> Del</a>
+													<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->inquiry_id; ?>" title="Update"><i class="fa fa-plus-square"></i></a>
+													<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->inquiry_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 											</td>
 									</tr>
 								<?php }	?>
@@ -107,7 +106,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<button class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 class="modal-title" id="myModalLabel" align="center">Tambah Inquiry</h3>
 			</div>
 			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
@@ -471,10 +470,10 @@
 <?php foreach ($inquiry as $p) : ?>
 	<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
-			<div class="modal-content">
+			<div class="modal-content bg-danger">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-					<h3 class="modal-title" id="myModalLabel" align="center">Hapus Inquiry</h3>
+					<button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+					<h3 class="modal-title" id="myModalLabel">Hapus Inquiry</h3>
 				</div>
 				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
 					<div class="modal-body">
@@ -483,8 +482,8 @@
 							<p>Apakah Anda yakin mau memhapus Inquiry ini?</p>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
 						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
 					</div>
 				</form>

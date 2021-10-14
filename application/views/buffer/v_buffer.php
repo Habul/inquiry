@@ -6,78 +6,78 @@
 		</h1>
 	</section>
 	<section class="content">
-	<?php if ($this->session->flashdata('berhasil')) { ?>
-    <div class="alert alert-success alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-    <h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h4>
-    </div>
-    <?php } ?>
-	<?php if ($this->session->flashdata('gagal')) { ?>
-    <div class="alert alert-warning alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-    <h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
-    </div>
-    <?php } ?>
+		<?php if ($this->session->flashdata('berhasil')) { ?>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+				<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h4>
+			</div>
+		<?php } ?>
+		<?php if ($this->session->flashdata('gagal')) { ?>
+			<div class="alert alert-warning alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+			</div>
+		<?php } ?>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="box">
 					<div class="box-header">
-						<?php if ($this->session->userdata('level') != "purchase") {	?>					
-						<?php if ($this->session->userdata('level') != "warehouse") {	?>
-							<div class="col-md-6" style="padding: 0;">
-								<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_buffer">
-									<i class="glyphicon glyphicon-plus-sign"></i> Tambah buffer stock</a>
-							</div>
-						<?php }	?>
+						<?php if ($this->session->userdata('level') != "purchase") {	?>
+							<?php if ($this->session->userdata('level') != "warehouse") {	?>
+								<div class="col-md-6" style="padding: 0;">
+									<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_buffer">
+										<i class="glyphicon glyphicon-plus-sign"></i> Tambah buffer stock</a>
+								</div>
+							<?php }	?>
 						<?php }	?>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-					<div class="table-responsive-lg">
-						<table id="example2" class="table table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th width="1%">NO</th>
-									<th>Nama</th>
-									<th>Tanggal</th>
-									<th>Id Buffer</th>
-									<th>Brand Produk</th>
-									<th>Description</th>
-									<th>Qty</th>
-									<th>Status</th>
-									<?php if ($this->session->userdata('level') != "purchase") {	?>	
-									<th width="12%">Action</th>
-									<?php }	?>
-								</tr>
-							</thead>
-							<?php
-							$no = $this->uri->segment('3') + 1;
-							$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve' ORDER BY tanggal DESC");
-							foreach ($query->result() as $p) {
-							?>
-								<tr>
-									<td><?php echo $no++; ?></td>
-									<td><?php echo $p->sales; ?></td>
-									<td><?php echo $p->tanggal; ?></td>
-									<td><?php echo $p->id_buffer; ?></td>
-									<td><?php echo $p->brand; ?></td>
-									<td><?php echo $p->deskripsi; ?></td>
-									<td><?php echo $p->qty; ?></td>
-									<td><?php echo $p->status; ?></td>
-									<?php if ($this->session->userdata('level') != "purchase") { ?>
-									<td style="text-align:center">
-										<?php if ($this->session->userdata('level') != "warehouse") { ?>
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>"><i class="fa fa-pencil"></i> Edit</a>
+						<div class="table-responsive-lg">
+							<table id="example2" class="table table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th width="1%">NO</th>
+										<th>Nama</th>
+										<th>Tanggal</th>
+										<th>Id Buffer</th>
+										<th>Brand Produk</th>
+										<th>Description</th>
+										<th>Qty</th>
+										<th>Status</th>
+										<?php if ($this->session->userdata('level') != "purchase") {	?>
+											<th width="12%">Action</th>
 										<?php }	?>
-										<?php if ($this->session->userdata('level') != "sales") { ?>
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-edit"></i> Upd</a>
-											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_buffer; ?>"><i class="fa fa-trash"></i> Del</a>
-									</td>
-								</tr>
+									</tr>
+								</thead>
+								<?php
+								$no = $this->uri->segment('3') + 1;
+								$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve' ORDER BY tanggal DESC");
+								foreach ($query->result() as $p) {
+								?>
+									<tr>
+										<td><?php echo $no++; ?></td>
+										<td><?php echo $p->sales; ?></td>
+										<td><?php echo $p->tanggal; ?></td>
+										<td><?php echo $p->id_buffer; ?></td>
+										<td><?php echo $p->brand; ?></td>
+										<td><?php echo $p->deskripsi; ?></td>
+										<td><?php echo $p->qty; ?></td>
+										<td><?php echo $p->status; ?></td>
+										<?php if ($this->session->userdata('level') != "purchase") { ?>
+											<td style="text-align:center">
+												<?php if ($this->session->userdata('level') != "warehouse") { ?>
+													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>"><i class="fa fa-pencil"></i> Edit</a>
+												<?php }	?>
+												<?php if ($this->session->userdata('level') != "sales") { ?>
+													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-edit"></i> Upd</a>
+													<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_buffer; ?>"><i class="fa fa-trash"></i> Del</a>
+											</td>
+									</tr>
 								<?php }	?>
 							<?php }	?>
 						<?php } ?>
-						</table>
+							</table>
 						</div>
 					</div>
 					<!-- /.box-body -->
@@ -85,7 +85,7 @@
 				<!-- /.box -->
 			</div>
 			<!-- /.col -->
-		</div>						
+		</div>
 		<!-- /.row -->
 	</section>
 	<!-- /.content -->
@@ -376,25 +376,27 @@
 
 <!--MODAL HAPUS-->
 <?php foreach ($buffer as $p) : ?>
-<div class="modal fade" id="modal_hapus<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-                        <h3 class="modal-title" id="myModalLabel" align="center">Hapus Buffer</h3>
-                    </div>
-                    <form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_hapus') ?>">
-                    <div class="modal-body">                                          
-					<input type="hidden" name="id" value="<?php echo $p->id_buffer; ?>">
-                    <div class="alert alert-success"><p>Apakah Anda yakin mau memhapus Master ini?</p></div>                                        
-                    </div>
-                    <div class="modal-footer">
-					<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
-						<button class="btn btn-primary" ><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
+	<div class="modal fade" id="modal_hapus<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+					<h3 class="modal-title" id="myModalLabel" align="center">Hapus Buffer</h3>
+				</div>
+				<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_hapus') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="id" value="<?php echo $p->id_buffer; ?>">
+						<div class="alert alert-success">
+							<p>Apakah Anda yakin mau memhapus Master ini?</p>
+						</div>
 					</div>
-                    </form>
-                </div>
-	         </div>
-</div>
+					<div class="modal-footer">
+						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
+						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 <?php endforeach; ?>
 <!--END MODAL HAPUS-->

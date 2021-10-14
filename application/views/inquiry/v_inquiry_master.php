@@ -1,76 +1,83 @@
 <div class="content-wrapper">
-	<section class="content-header">
-		<h1>
-			Master Inquiry
-		</h1>
-	</section>
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">Master Inquiry</h1>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
+						<li class="breadcrumb-item active">Master Inquiry</li>
+					</ol>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div>
 	<section class="content">
 		<?php if ($this->session->flashdata('berhasil')) { ?>
-		<div class="alert alert-success alert-dismissible">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-		<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
-		</div>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+				<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
+			</div>
 		<?php } ?>
 		<?php if ($this->session->flashdata('gagal')) { ?>
-		<div class="alert alert-warning alert-dismissible">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-		<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
-		</div>
+			<div class="alert alert-warning alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+			</div>
 		<?php } ?>
 		<div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <!-- /.card-header -->
-              		<div class="card-body">
-					 	<div class="col-sm-6" style="padding: 0;">
-							<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_master"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data Master</a>
-						</div>
-						<div class="col-sm-6"">
-							<a href="<?php echo base_url('inquiry/inquiry_master_export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-open-file"></i> Export Data Excel</a>
-						</div>
-						<div class="col-sm-6">
-						<a class="form-control btn btn-default" data-toggle="modal" data-target="#modal_import_master"><i class="glyphicon glyphicon glyphicon-save-file"></i> Import Data Excel</a>
-						</div>					
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th width="1%">NO</th>
-									<th>Brand Produk</th>
-									<th>D1</th>
-									<th>D2</th>
-									<th>User</th>
-									<th>Manufacture/Distributor</th>
-									<th width="12%">Action</th>
-								</tr>
-							</thead>
-							<?php
-							$no = $this->uri->segment('3') + 1;
-							$query = $this->db->query("select * from master");
-							foreach ($query->result() as $p) {
-							?>
-								<tr>
-									<td><?php echo $no++; ?></td>
-									<td><?php echo $p->brand; ?></td>
-									<td><?php echo $p->d1; ?></td>
-									<td><?php echo $p->d2; ?></td>
-									<td><?php echo $p->user; ?></td>
-									<td><?php echo $p->distributor; ?></td>
-									<td style="text-align:center">
-										<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_master; ?>"><i class="fa fa-edit"></i> Edit</a>
-										<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_master; ?>"><i class="fa fa-trash"></i> Del</a>
-									</td>
-								</tr>
-							<?php }	?>
-						</table>
-							</div>
+			<div class="col-sm-3" style="padding: 0;">
+				<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_master"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data Master</a>
+			</div>
+			<div class="col-sm-3">
+				<a class="form-control btn btn-default" data-toggle="modal" data-target="#modal_import_master"><i class="glyphicon glyphicon glyphicon-save-file"></i> Import Data Excel</a>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card card-success card-outline">
+						<div class="card-body">
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th width="1%">NO</th>
+										<th>Brand Produk</th>
+										<th>D1</th>
+										<th>D2</th>
+										<th>User</th>
+										<th>Manufacture/Distributor</th>
+										<th width="12%">Action</th>
+									</tr>
+								</thead>
+								<?php
+								$no = $this->uri->segment('3') + 1;
+								$query = $this->db->query("select * from master");
+								foreach ($query->result() as $p) {
+								?>
+									<tr>
+										<td><?php echo $no++; ?></td>
+										<td><?php echo $p->brand; ?></td>
+										<td><?php echo $p->d1; ?></td>
+										<td><?php echo $p->d2; ?></td>
+										<td><?php echo $p->user; ?></td>
+										<td><?php echo $p->distributor; ?></td>
+										<td style="text-align:center">
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_master; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_master; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+								<?php }	?>
+							</table>
 						</div>
 					</div>
-					<!-- /.box-body -->
 				</div>
-				<!-- /.box -->
+				<!-- /.box-body -->
 			</div>
-			<!-- /.col -->
+			<!-- /.box -->
+		</div>
+		<!-- /.col -->
 		<!-- /.row -->
 	</section>
 	<!-- /.content -->
@@ -208,9 +215,9 @@
 			</div>
 			<form method="post" action="<?php echo base_url('inquiry/inquiry_master_import') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
-					<input type="file" name="excel"  class="form-control" required>
-					<small>* Extensi file xls atau xlsx</small><br/>
-					<small>* File yang di import akan me replace data yang sudah ada</small><br/>
+					<input type="file" name="excel" class="form-control" required>
+					<small>* Extensi file xls atau xlsx</small><br />
+					<small>* File yang di import akan me replace data yang sudah ada</small><br />
 					<small>* Format file harus sesuai dengan file excel export</small>
 				</div>
 				<div class="modal-footer">
@@ -224,25 +231,27 @@
 
 <!--MODAL HAPUS-->
 <?php foreach ($master as $p) : ?>
-<div class="modal fade" id="modal_hapus<?php echo $p->id_master; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-                        <h3 class="modal-title" id="myModalLabel" align="center">Hapus Master</h3>
-                    </div>
-                    <form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_master_hapus') ?>">
-                    <div class="modal-body">                                          
-					<input type="hidden" name="id_master" value="<?php echo $p->id_master; ?>">
-                    <div class="alert alert-success"><p>Apakah Anda yakin mau memhapus Master ini?</p></div>                                        
-                    </div>
-                    <div class="modal-footer">
-					<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
-						<button class="btn btn-primary" ><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
+	<div class="modal fade" id="modal_hapus<?php echo $p->id_master; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+					<h3 class="modal-title" id="myModalLabel" align="center">Hapus Master</h3>
+				</div>
+				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_master_hapus') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="id_master" value="<?php echo $p->id_master; ?>">
+						<div class="alert alert-success">
+							<p>Apakah Anda yakin mau memhapus Master ini?</p>
+						</div>
 					</div>
-                    </form>
-                </div>
-	         </div>
-</div>
+					<div class="modal-footer">
+						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
+						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 <?php endforeach; ?>
 <!--END MODAL HAPUS-->

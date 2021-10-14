@@ -61,10 +61,10 @@ class Sj extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'sj_user');
-			$this->session->set_flashdata('berhasil', 'Surat jalan berhasil di Tambah No  : '.$this->input->post('no_delivery',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('no_po', TRUE) . ' !');
 			redirect(base_url() . 'sj/sj');
 		} else {
-			$this->session->set_flashdata('gagal', 'SJ Gagal di Tambah, Silahkan input ulang!!');
+			$this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
 			redirect(base_url() . 'sj/sj');
 		}
 	}
@@ -74,7 +74,7 @@ class Sj extends CI_Controller
 		$where = array(
 			'no_po' => $id
 		);
-		
+
 		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
 		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
 		$this->load->view('dashboard/v_header');
@@ -104,11 +104,10 @@ class Sj extends CI_Controller
 				'no_po' => $id
 			);
 			$this->m_data->update_data($where, $data, 'sj_hs');
-			$this->session->set_flashdata('berhasil', 'Surat jalan berhasil di Buat No Po : '.$this->input->post('id',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('id', TRUE) . ' !');
 			redirect(base_url() . 'sj/sj');
-		}
-		else {
-			$this->session->set_flashdata('gagal', 'Sj Gagal di Buat, silahkan di buat kembali !');
+		} else {
+			$this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
 			redirect(base_url() . 'sj/sj');
 		}
 	}
@@ -152,26 +151,23 @@ class Sj extends CI_Controller
 				'no_po' => $id
 			);
 			$this->m_data->update_data($where, $data, 'sj_user');
-			$this->session->set_flashdata('berhasil', 'Surat jalan berhasil di Edit No po : '.$this->input->post('po_no',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('po_no', TRUE) . ' !');
 			redirect(base_url() . 'sj/sj');
 		} else {
-			$this->session->set_flashdata('gagal', 'Surat jalan Gagal di Edit, silahkan di ulang!');
+			$this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
 			redirect(base_url() . 'sj/sj');
 		}
 	}
 
 	public function sj_hapus()
 	{
-	$id = $this->input->post('no_po');
-		{
-		$where = array(
-			'no_po' => $id
-		);
-		$this->m_data->delete_data($where, 'sj_hs');
-		$this->m_data->delete_data($where, 'sj_user');
-		$this->session->set_flashdata('message', 'Sj berhasil di Hapus !');
-		redirect(base_url() . 'sj/sj');
+		$id = $this->input->post('no_po'); {
+			$where = array(
+				'no_po' => $id
+			);
+			$this->m_data->delete_data($where, 'sj_user');
+			$this->session->set_flashdata('berhasil', 'SJ has been deleted !');
+			redirect(base_url() . 'sj/sj');
 		}
 	}
-
 }

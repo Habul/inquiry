@@ -12,10 +12,9 @@ class Inquiry extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('m_data');
-        
 	}
 
-    public function inquiry()
+	public function inquiry()
 	{
 		$data['kurs'] = $this->m_data->get_kurs()->result();
 		$data['master'] = $this->m_data->get_master()->result();
@@ -63,10 +62,9 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'inquiry');
-			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Tambah No ID : '.$this->input->post('inquiry_id',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Tambah No ID : ' . $this->input->post('inquiry_id', TRUE) . ' !');
 			redirect(base_url() . 'inquiry/inquiry');
-		}
-		else {			
+		} else {
 			$this->session->set_flashdata('gagal', 'Inquiry Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'inquiry/inquiry');
 		}
@@ -128,10 +126,9 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'inquiry');
-			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Update No ID : '.$this->input->post('id',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Update No ID : ' . $this->input->post('id', TRUE) . ' !');
 			redirect(base_url() . 'inquiry/inquiry');
-		}
-		else {			
+		} else {
 			$this->session->set_flashdata('gagal', 'Inquiry Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'inquiry/inquiry');
 		}
@@ -178,10 +175,9 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'inquiry');
-			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Edit No ID : '.$this->input->post('id',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Edit No ID : ' . $this->input->post('id', TRUE) . ' !');
 			redirect(base_url() . 'inquiry/inquiry');
-
-		} else {			
+		} else {
 			$this->session->set_flashdata('gagal', 'Buffer Gagal di Edit, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'inquiry/inquiry');
 		}
@@ -189,15 +185,14 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_hapus()
 	{
-		$id = $this->input->post('inquiry_id');
-		{
-		$where = array(
-			'inquiry_id' => $id
-		);
+		$id = $this->input->post('inquiry_id'); {
+			$where = array(
+				'inquiry_id' => $id
+			);
 
-		$this->m_data->delete_data($where, 'inquiry');
-		$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Hapus !');
-		redirect(base_url() . 'inquiry/inquiry');
+			$this->m_data->delete_data($where, 'inquiry');
+			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Hapus !');
+			redirect(base_url() . 'inquiry/inquiry');
 		}
 	}
 
@@ -315,10 +310,9 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'master');
-			$this->session->set_flashdata('berhasil', 'Master berhasil di Tambah dengan nama Brand : '.$this->input->post('brand',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'Master berhasil di Tambah dengan nama Brand : ' . $this->input->post('brand', TRUE) . ' !');
 			redirect(base_url() . 'inquiry/inquiry_master');
-		}
-		else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Master Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'inquiry/inquiry_master');
 		}
@@ -326,15 +320,14 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_master_hapus()
 	{
-		$id = $this->input->post('id_master');
-		{
-		$where = array(
-			'id_master' => $id
-		);
+		$id = $this->input->post('id_master'); {
+			$where = array(
+				'id_master' => $id
+			);
 
-		$this->m_data->delete_data($where, 'master');
-		$this->session->set_flashdata('berhasil', 'Master berhasil di Hapus !');
-		redirect(base_url() . 'inquiry/inquiry_master');
+			$this->m_data->delete_data($where, 'master');
+			$this->session->set_flashdata('berhasil', 'Master berhasil di Hapus !');
+			redirect(base_url() . 'inquiry/inquiry_master');
 		}
 	}
 
@@ -370,7 +363,7 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'master');
-			$this->session->set_flashdata('berhasil', 'Master berhasil di Update dengan nama Brand '.$this->input->post('brand',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'Master berhasil di Update dengan nama Brand ' . $this->input->post('brand', TRUE) . ' !');
 			redirect(base_url() . 'inquiry/inquiry_master');
 		} else {
 			$this->session->set_flashdata('gagal', 'Master Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
@@ -425,27 +418,25 @@ class Inquiry extends CI_Controller
 			$config['upload_path'] = './assets/excel/';
 			$config['allowed_types'] = 'xls|xlsx';
 			$config['overwrite']	= true;
-			
+
 			$this->load->library('upload', $config);
-			
-			if ( ! $this->upload->do_upload('excel')){
-			$this->upload->display_errors();
-			}
-			else{
+
+			if (!$this->upload->do_upload('excel')) {
+				$this->upload->display_errors();
+			} else {
 				$data = $this->upload->data();
 				$this->db->empty_table('master');
 
 				error_reporting(E_ALL);
 				date_default_timezone_set('Asia/Jakarta');
 				include './assets/phpexcel/Classes/PHPExcel/IOFactory.php';
-				$inputFileName = './assets/excel/' .$data['file_name'];
+				$inputFileName = './assets/excel/' . $data['file_name'];
 				$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
-				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
-					if ($key != 1) {
-						 {
+					if ($key != 1) { {
 							$resultData[$index]['id_master'] = $value['A'];
 							$resultData[$index]['brand'] = $value['B'];
 							$resultData[$index]['d1'] = $value['C'];
@@ -457,21 +448,21 @@ class Inquiry extends CI_Controller
 					$index++;
 				}
 
-				unlink('./assets/excel/' .$data['file_name']);
+				unlink('./assets/excel/' . $data['file_name']);
 
 				if (count($resultData) != 0) {
 					$result = $this->m_data->insert_master($resultData);
 					if ($result > 0) {
-						$this->session->set_flashdata('berhasil','Data Master Berhasil diimport ke database');
+						$this->session->set_flashdata('berhasil', 'Data Master Berhasil diimport ke database');
 						redirect('inquiry/inquiry_master');
 					}
 				} else {
-					$this->session->set_flashdata('gagal','Data Master Gagal diimport ke database');
+					$this->session->set_flashdata('gagal', 'Data Master Gagal diimport ke database');
 					redirect('inquiry/inquiry_master');
 				}
 			}
 		}
-	}	
+	}
 
 	public function inquiry_kurs()
 	{
@@ -501,10 +492,9 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'kurs');
-			$this->session->set_flashdata('berhasil', 'Kurs '.$this->input->post('currency',TRUE).' Berhasil di Tambah !' );
+			$this->session->set_flashdata('berhasil', 'Kurs ' . $this->input->post('currency', TRUE) . ' Berhasil di Tambah !');
 			redirect(base_url() . 'inquiry/inquiry_kurs');
-		} 
-		else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Kurs Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'inquiry/inquiry_kurs');
 		}
@@ -534,7 +524,7 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'kurs');
-			$this->session->set_flashdata('berhasil', 'Kurs '.$this->input->post('currency',TRUE).' Berhasil di Update !' );
+			$this->session->set_flashdata('berhasil', 'Kurs ' . $this->input->post('currency', TRUE) . ' Berhasil di Update !');
 			redirect(base_url() . 'inquiry/inquiry_kurs');
 		} else {
 			$this->session->set_flashdata('gagal', 'Kurs Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
@@ -542,16 +532,15 @@ class Inquiry extends CI_Controller
 		}
 	}
 
-	public function inquiry_kurs_hapus()	
+	public function inquiry_kurs_hapus()
 	{
-		$id = $this->input->post('id_kurs');
-		{
-		$where = array(
-			'id_kurs' => $id
-		);
-		$this->m_data->delete_data($where, 'kurs');
-		$this->session->set_flashdata('berhasil', 'Kurs Berhasil di Hapus !' );
-		redirect(base_url() . 'inquiry/inquiry_kurs');
+		$id = $this->input->post('id_kurs'); {
+			$where = array(
+				'id_kurs' => $id
+			);
+			$this->m_data->delete_data($where, 'kurs');
+			$this->session->set_flashdata('berhasil', 'Kurs Berhasil di Hapus !');
+			redirect(base_url() . 'inquiry/inquiry_kurs');
 		}
 	}
 
@@ -595,27 +584,25 @@ class Inquiry extends CI_Controller
 			$config['upload_path'] = './assets/excel/';
 			$config['allowed_types'] = 'xls|xlsx';
 			$config['overwrite']	= true;
-			
+
 			$this->load->library('upload', $config);
-			
-			if ( ! $this->upload->do_upload('excel')){
-			$this->upload->display_errors();
-			}
-			else{
+
+			if (!$this->upload->do_upload('excel')) {
+				$this->upload->display_errors();
+			} else {
 				$data = $this->upload->data();
 				$this->db->empty_table('kurs');
 
 				error_reporting(E_ALL);
 				date_default_timezone_set('Asia/Jakarta');
 				include './assets/phpexcel/Classes/PHPExcel/IOFactory.php';
-				$inputFileName = './assets/excel/' .$data['file_name'];
+				$inputFileName = './assets/excel/' . $data['file_name'];
 				$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
-				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+				$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
-					if ($key != 1) {
-						 {
+					if ($key != 1) { {
 							$resultData[$index]['id_kurs'] = $value['A'];
 							$resultData[$index]['currency'] = $value['B'];
 							$resultData[$index]['amount'] = $value['C'];
@@ -624,19 +611,19 @@ class Inquiry extends CI_Controller
 					$index++;
 				}
 
-				unlink('./assets/excel/' .$data['file_name']);
+				unlink('./assets/excel/' . $data['file_name']);
 
 				if (count($resultData) != 0) {
 					$result = $this->m_data->insert_kurs($resultData);
 					if ($result > 0) {
-						$this->session->set_flashdata('berhasil','Data Kurs Berhasil diimport ke database');
+						$this->session->set_flashdata('berhasil', 'Data Kurs Berhasil diimport ke database');
 						redirect('inquiry/inquiry_kurs');
 					}
 				} else {
-					$this->session->set_flashdata('gagal','Data Kurs Gagal diimport ke database');
+					$this->session->set_flashdata('gagal', 'Data Kurs Gagal diimport ke database');
 					redirect('inquiry/inquiry_kurs');
 				}
 			}
 		}
-	}		
+	}
 }

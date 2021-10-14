@@ -84,8 +84,9 @@
 		$('#example3').DataTable({
 			"paging": true,
 			"responsive": true,
-			"lengthChange": false,
-			"autoWidth": false
+			"lengthChange": true,
+			"autoWidth": false,
+			"ordering ": true
 		});
 	});
 </script>
@@ -142,29 +143,30 @@
 	})
 </script>
 <script>
-  $(function() {
-    var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
+	$(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 3000
+		});
 
-    $('.inquiryok').click(function() {
-      Toast.fire({
-        icon: 'success',
-        title: 'Inquiry successfully added'
-      })
-    });
+		$('.inquiryok').click(function() {
+			Toast.fire({
+				icon: 'success',
+				title: 'Inquiry successfully added'
+			})
+		});
 
-	$('.sjok').click(function() {
-      Toast.fire({
-        icon: 'success',
-        title: 'SJ successfully added'
-      })
-    });
-})
+		$('.sjok').click(function() {
+			Toast.fire({
+				icon: 'success',
+				title: 'SJ successfully added'
+			})
+		});
+	})
 </script>
 
 </body>
+
 </html>

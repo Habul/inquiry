@@ -55,7 +55,7 @@ class Buffer extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'buffer');
-			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Tambah No ID : '.$this->input->post('id_buffer',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Tambah No ID : ' . $this->input->post('id_buffer', TRUE) . ' !');
 			redirect(base_url() . 'buffer/buffer');
 		} else {
 			$this->session->set_flashdata('gagal', 'Buffer Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
@@ -94,10 +94,9 @@ class Buffer extends CI_Controller
 				'id_buffer' => $id
 			);
 			$this->m_data->update_data($where, $data, 'buffer');
-			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Update No ID : '.$this->input->post('id',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Update No ID : ' . $this->input->post('id', TRUE) . ' !');
 			redirect(base_url() . 'buffer/buffer');
-		}
-		else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Buffer Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'buffer/buffer');
 		}
@@ -140,7 +139,7 @@ class Buffer extends CI_Controller
 				'id_buffer' => $id
 			);
 			$this->m_data->update_data($where, $data, 'buffer');
-			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Edit No ID : '.$this->input->post('id',TRUE).' !');
+			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Edit No ID : ' . $this->input->post('id', TRUE) . ' !');
 			redirect(base_url() . 'buffer/buffer');
 		} else {
 			$this->session->set_flashdata('gagal', 'Buffer Gagal di Edit, ada form yang belum terisi, silahkan cek kembali !!!');
@@ -150,14 +149,13 @@ class Buffer extends CI_Controller
 
 	public function buffer_hapus()
 	{
-	$id = $this->input->post('id_buffer');
-		{
-		$where = array(
-			'id_buffer' => $id
-		);
-		$this->m_data->delete_data($where, 'buffer');
-		$this->session->set_flashdata('message', 'Buffer berhasil di Hapus !');
-		redirect(base_url() . 'buffer/buffer');
+		$id = $this->input->post('id_buffer'); {
+			$where = array(
+				'id_buffer' => $id
+			);
+			$this->m_data->delete_data($where, 'buffer');
+			$this->session->set_flashdata('message', 'Buffer berhasil di Hapus !');
+			redirect(base_url() . 'buffer/buffer');
 		}
 	}
 
