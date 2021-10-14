@@ -81,6 +81,12 @@
 			"autoWidth": false,
 			"responsive": true,
 		});
+		$('#example3').DataTable({
+			"paging": true,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+		});
 	});
 </script>
 <script>
@@ -135,5 +141,30 @@
 		$('#summernote').summernote()
 	})
 </script>
+<script>
+  $(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.inquiryok').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'Inquiry successfully added'
+      })
+    });
+
+	$('.sjok').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'SJ successfully added'
+      })
+    });
+})
+</script>
+
 </body>
 </html>

@@ -41,7 +41,7 @@ class Sj extends CI_Controller
 			$no_delivery = $this->input->post('no_delivery');
 			$date_delivery = $this->input->post('date_delivery');
 			$due_date = $this->input->post('due_date');
-			$po_no = $this->input->post('po_no');
+			$no_po = $this->input->post('no_po');
 			$cust_name = $this->input->post('cust_name');
 			$address = $this->input->post('address');
 			$city = $this->input->post('city');
@@ -52,7 +52,7 @@ class Sj extends CI_Controller
 				'no_delivery' => $no_delivery,
 				'date_delivery' => $date_delivery,
 				'due_date' => $due_date,
-				'po_no' => $po_no,
+				'no_po' => $no_po,
 				'cust_name' => $cust_name,
 				'address' => $address,
 				'city' => $city,
@@ -68,6 +68,20 @@ class Sj extends CI_Controller
 			redirect(base_url() . 'sj/sj');
 		}
 	}
+
+	public function sj_isi($id)
+	{
+		$where = array(
+			'no_po' => $id
+		);
+		
+		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
+		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('sj/v_sj_isi', $data);
+		$this->load->view('dashboard/v_footer');
+	}
+
 
 	public function sj_update()
 	{

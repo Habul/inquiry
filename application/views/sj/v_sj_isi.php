@@ -3,14 +3,9 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Surat Jalan</h1>
+					<h1 class="m-0">Add Desc</h1>
 				</div><!-- /.col -->
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
-                        <li class="breadcrumb-item active">Surat Jalan</li>
-					</ol>
-				</div><!-- /.col -->
+				<!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container-fluid -->
 	</div>
@@ -28,8 +23,8 @@
 			</div>
 		<?php } ?>
 		<div class="col-md-3">
-			<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_sj">
-			<i class="fa fa-plus-square"></i>&nbsp; Add SJ</a>
+			<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_desc">
+			<i class="fa fa-plus-square"></i>&nbsp; Add Desc</a>
 		</div>
 		<br/>
 			<div class="container-fluid">
@@ -37,43 +32,32 @@
 			<div class="col-md-12">
 			<div class="card card-success card-outline">								
 				  <div class="card-body">
-							<table id="example3" class="table table-bordered table-striped">
+							<table id="example2" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th width="1%">NO</th>
-										<th>Do No</th>
-										<th>Do Date</th>
-										<th>Due Date</th>
-										<th>No PO</th>
-										<th>Cust Name</th>
-                                        <th>Address</th>
-										<th>City</th>
-										<th>Phone</th>										
+										<th>No Po</th>
+										<th>Description</th>	
+                                        <th>Qty</th>																			
 										<th width="12%">Action</th>
 									</tr>
 								</thead>
 								<?php
 								$no = $this->uri->segment('3') + 1;
-								$query = $this->db->query("select * from sj_user order by addtime desc");
+								$query = $this->db->query("select * from sj_hs");
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $no++; ?></td>
-										<td><?php echo $p->no_delivery; ?></td>
-										<td><?php echo $p->date_delivery; ?></td>
-										<td><?php echo $p->due_date; ?></td>
+										<td><?php echo $no++; ?></td>                                        
 										<td><?php echo $p->no_po; ?></td>
-										<td><?php echo $p->cust_name; ?></td>
-										<td><?php echo $p->address; ?></td>
-										<td><?php echo $p->city; ?></td>
-										<td><?php echo $p->phone; ?></td>									
-											<td style="text-align:center">
-											<a href="<?php echo base_url().'sj/sj_isi/'.$p->no_po; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-plus-square"></i> </a>
-											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>"><i class="fa fa-print"></i></a>
+                                       	<td><?php echo $p->descript; ?></td>
+										<td><?php echo $p->qty; ?></td>																			
+										<td style="text-align:center">
+											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_po; ?>"><i class="fa fa-edit"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>"><i class="fa fa-trash"></i></a>
-											</td>
+										</td>
 									</tr>
-                                    <?php } ?>
+                                <?php } ?>
 							</table>
 						</div>
 					</div>
