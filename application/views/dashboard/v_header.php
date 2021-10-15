@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Intinusa Sejahtera International</title>
-	<link rel='icon' href="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" type="image/gif">
+	<link rel='icon' href="<?php echo base_url(); ?>gambar/website/Untitled-1-02.PNG" type="image/gif">
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
@@ -16,10 +16,20 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.css">
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- Tempusdominus Bootstrap 4 -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 	<!-- iCheck -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+	<!-- Bootstrap Color Picker -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+	<!-- Tempusdominus Bootstrap 4 -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/css/select2.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+	<!-- Bootstrap4 Duallistbox -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+	<!-- BS Stepper -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bs-stepper/css/bs-stepper.min.css">
+	<!-- dropzonejs -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/dropzone/min/dropzone.min.css">
 	<!-- JQVMap -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jqvmap/jqvmap.min.css">
 	<!-- DataTables -->
@@ -92,7 +102,7 @@
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="#" class="brand-link">
-				<img src="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<img src="<?php echo base_url(); ?>gambar/website/Untitled-1-02.PNG" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">INTISERA</span>
 			</a>
 
@@ -126,7 +136,8 @@
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item">
-							<a href="<?php echo base_url() . 'dashboard' ?>" class="nav-link">
+							<a href="<?php echo base_url() . 'dashboard' ?>" 
+							<?=$this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-home"></i>
 								<p>Home</p>
 							</a>
@@ -135,37 +146,43 @@
 						if ($this->session->userdata('level') == "admin") {
 						?>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/kategori' ?>" class="nav-link">
+								<a href="<?php echo base_url() . 'dashboard/kategori' ?>"
+								<?=$this->uri->uri_string() == 'dashboard/kategori' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-th"></i>
 									<p>Kategori</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/artikel' ?>" class="nav-link">
+								<a href="<?php echo base_url() . 'dashboard/artikel' ?>"
+								<?=$this->uri->uri_string() == 'dashboard/artikel' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-table"></i>
 									<p>Artikel</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/pages' ?>" class="nav-link">
-									<i class="nav-icon fas fa-tags"></i>
+								<a href="<?php echo base_url() . 'dashboard/pages' ?>"
+								<?=$this->uri->uri_string() == 'dashboard/pages' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+								<i class="nav-icon fas fa-tags"></i>
 									<p>Pages</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>" class="nav-link">
+								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>"
+								<?=$this->uri->uri_string() == 'dashboard/pengguna' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-users"></i>
 									<p>Pengguna & Hak Akses</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>" class="nav-link">
+								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>"
+								<?=$this->uri->uri_string() == 'dashboard/pengaturan' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-cogs"></i>
 									<p>Pengaturan Website</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'sj/sj' ?>" class="nav-link">
+								<a href="<?php echo base_url() . 'sj/sj' ?>"
+								<?=$this->uri->uri_string() == 'sj/sj' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-edit"></i>
 									<p>Surat Jalan</p>
 								</a>
@@ -176,7 +193,7 @@
 						<?php
 						if ($this->session->userdata('level') != "warehouse") { ?>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="#" <?=$this->uri->uri_string() == 'sj/sj' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-book"></i>
 									<p>Inquiry
 										<i class="fas fa-angle-left right"></i>
@@ -186,26 +203,30 @@
 								if ($this->session->userdata('level') != "sales") { ?>
 									<ul class="nav nav-treeview">
 										<li class="nav-item">
-											<a href="<?php echo base_url() . 'inquiry/inquiry_master' ?>" class="nav-link active">
+											<a href="<?php echo base_url() . 'inquiry/inquiry_master' ?>"
+											<?=$this->uri->uri_string() == 'inquiry/inquiry_master' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 												<i class="far fa-circle nav-icon"></i>
 												<p>Master Inquiry</p>
 											</a>
 										</li>
 										<li class="nav-item">
-											<a href="<?php echo base_url() . 'inquiry/inquiry_kurs' ?>" class="nav-link">
+											<a href="<?php echo base_url() . 'inquiry/inquiry_kurs' ?>" 
+											<?=$this->uri->uri_string() == 'inquiry/inquiry_kurs' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 												<i class="far fa-circle nav-icon"></i>
 												<p>Kurs Inquiry</p>
 											</a>
 										</li>
 									<?php } ?>
 									<li class="nav-item">
-										<a href="<?php echo base_url() . 'inquiry/inquiry' ?>" class="nav-link">
+										<a href="<?php echo base_url() . 'inquiry/inquiry' ?>" 
+										<?=$this->uri->uri_string() == 'inquiry/inquiry' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 											<i class="far fa-circle nav-icon"></i>
 											<p>Input Inquiry</p>
 										</a>
 									</li>
 									<li class="nav-item">
-										<a href="<?php echo base_url() . 'inquiry/inquiry_view' ?>" class="nav-link">
+										<a href="<?php echo base_url() . 'inquiry/inquiry_view' ?>" 
+										<?=$this->uri->uri_string() == 'inquiry/inquiry_view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 											<i class="far fa-circle nav-icon"></i>
 											<p>View Inquiry</p>
 										</a>
@@ -224,13 +245,15 @@
 								</a>
 								<ul class="nav nav-treeview">
 									<li class="nav-item">
-										<a href="<?php echo base_url() . 'buffer/buffer' ?>" class="nav-link active">
+										<a href="<?php echo base_url() . 'buffer/buffer' ?>"
+										<?=$this->uri->uri_string() == 'buffer/buffer' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 											<i class="far fa-circle nav-icon"></i>
 											<p>Input Buffer</p>
 										</a>
 									</li>
 									<li class="nav-item">
-										<a href="<?php echo base_url() . 'buffer/buffer_view' ?>" class="nav-link">
+										<a href="<?php echo base_url() . 'buffer/buffer_view' ?>"
+										<?=$this->uri->uri_string() == 'buffer/buffer_view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 											<i class="far fa-circle nav-icon"></i>
 											<p>View Buffer</p>
 										</a>
@@ -239,13 +262,15 @@
 								</ul>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>" class="nav-link">
+								<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>"
+								<?=$this->uri->uri_string() == 'dashboard/ganti_password' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-lock"></i>
 									<p>Ganti Password</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="nav-link">
+								<a href="<?php echo base_url() . 'dashboard/keluar' ?>"
+								<?=$this->uri->uri_string() == 'dashboard/keluar' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-power-off"></i>
 									<p>Keluar</p>
 								</a>

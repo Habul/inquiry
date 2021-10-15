@@ -157,7 +157,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Phone *</label>
 						<div class="col-xs-9">
-							<input type="text" name="phone" class="form-control" placeholder="input phone..." required>
+							<input type="text" name="phone" class="form-control"  data-inputmask='"mask": "(999) 999-9999"' data-mask required>
 							<?php echo form_error('phone'); ?>
 						</div>
 					</div>
@@ -179,7 +179,7 @@
 			<div class="modal-content bg-danger">
 				<div class="modal-header">
 					<h4 class="col-12 modal-title text-center">Delete Surat Jalan
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</h4>

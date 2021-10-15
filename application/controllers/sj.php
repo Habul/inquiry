@@ -76,7 +76,7 @@ class Sj extends CI_Controller
 		);
 
 		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
-		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
+		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('sj/v_sj_isi', $data);
 		$this->load->view('dashboard/v_footer');
@@ -105,10 +105,10 @@ class Sj extends CI_Controller
 			);
 			$this->m_data->update_data($where, $data, 'sj_hs');
 			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('id', TRUE) . ' !');
-			redirect(base_url() . 'sj/sj');
+			redirect(base_url() . 'sj/sj_isi');
 		} else {
 			$this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
-			redirect(base_url() . 'sj/sj');
+			redirect(base_url() . 'sj/sj_isi');
 		}
 	}
 
@@ -159,13 +159,25 @@ class Sj extends CI_Controller
 		}
 	}
 
-	public function sj_hapus()
+	public function sj_user_hapus()
 	{
 		$id = $this->input->post('no_po'); {
 			$where = array(
 				'no_po' => $id
 			);
 			$this->m_data->delete_data($where, 'sj_user');
+			$this->session->set_flashdata('berhasil', 'SJ has been deleted !');
+			redirect(base_url() . 'sj/sj');
+		}
+	}
+
+	public function sj_hs_hapus()
+	{
+		$id = $this->input->post('no_po'); {
+			$where = array(
+				'no_po' => $id
+			);
+			$this->m_data->delete_data($where, 'sj_hs');
 			$this->session->set_flashdata('berhasil', 'SJ has been deleted !');
 			redirect(base_url() . 'sj/sj');
 		}

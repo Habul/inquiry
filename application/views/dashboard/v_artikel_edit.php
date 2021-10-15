@@ -51,14 +51,10 @@
 								<br/>
 								<?php echo form_error('kategori'); ?>
 							</div>
-
 							<br/><br/>
-
 							<div class="form-group">
 								<label>Gambar Sampul</label>
-
 								<input type="file" name="sampul">
-
 								<br/>
 								<?php 
 								if(isset($gambar_error)){
