@@ -192,8 +192,14 @@
 						?>
 						<?php
 						if ($this->session->userdata('level') != "warehouse") { ?>
-							<li class="nav-item">
-								<a href="#" <?=$this->uri->uri_string() == 'sj/sj' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+							<li <?=$this->uri->uri_string() == 'inquiry/inquiry_master' || 
+								$this->uri->uri_string() == 'inquiry/inquiry_kurs' || 
+								$this->uri->uri_string() == 'inquiry/inquiry' ||
+								$this->uri->uri_string() == 'inquiry/inquiry_view' || $this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
+								<a href="#" <?=$this->uri->uri_string() == 'inquiry/inquiry_master' || 
+								$this->uri->uri_string() == 'inquiry/inquiry_kurs' || 
+								$this->uri->uri_string() == 'inquiry/inquiry' ||
+								$this->uri->uri_string() == 'inquiry/inquiry_view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-book"></i>
 									<p>Inquiry
 										<i class="fas fa-angle-left right"></i>
@@ -236,8 +242,11 @@
 						<?php } ?>
 						<?php
 						if ($this->session->userdata('level') != "purchase") { ?>
-							<li class="nav-item">
-								<a href="#" class="nav-link">
+							<li <?=$this->uri->uri_string() == 'buffer/buffer' || 
+								$this->uri->uri_string() == 'buffer/buffer_view' || 	 $this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
+								<a href="#" <?=$this->uri->uri_string() == 'buffer/buffer' || 
+								$this->uri->uri_string() == 'buffer/buffer_view' || 
+								$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-database"></i>
 									<p>Buffer
 										<i class="fas fa-angle-left right"></i>

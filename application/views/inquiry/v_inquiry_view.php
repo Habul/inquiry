@@ -57,7 +57,7 @@
                     <td><?php echo $p->deadline; ?></td>
                     <td><?php echo $p->request; ?></td>
                     <td style="text-align:center">
-                      <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>"><i class="glyphicon glyphicon-info-sign"></i> Detail</a>
+                      <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="View Detail"><i class="fa fa-eye"></i></a>
                     </td>
                   </tr>
                 <?php } ?>

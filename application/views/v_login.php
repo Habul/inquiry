@@ -16,11 +16,6 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
 </head>
-
-<br />
-<br />
-
-
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
