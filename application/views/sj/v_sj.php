@@ -157,7 +157,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Phone *</label>
 						<div class="col-xs-9">
-							<input type="text" name="phone" class="form-control"  data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+							<input type="text" name="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
 							<?php echo form_error('phone'); ?>
 						</div>
 					</div>

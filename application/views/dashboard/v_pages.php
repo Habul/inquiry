@@ -1,51 +1,60 @@
 <div class="content-wrapper">
-	<section class="content-header">
-		<h1>
-			Pages
-			<small>Manajemen Halaman Website</small>
-		</h1>
-	</section>
-
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">Pages</h1>
+					<small>Manajemen Halaman Website</small>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
+						<li class="breadcrumb-item active">Pages</li>
+					</ol>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div>
 	<section class="content">
-	<div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <!-- /.card-header -->
-              <div class="card-body">
-				<a href="<?php echo base_url().'dashboard/pages_tambah'; ?>" class="btn btn-sm btn-primary">Buat halaman baru</a>
-				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Halaman</h3>
-					</div>
-					<div class="box-body">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th width="1%">NO</th>
-									<th>Judul Halaman</th>
-									<th>URL Slug</th>
-									<th width="15%">OPSI</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php 
-								$no = 1;
-								foreach($halaman as $h){ 
-									?>
+		<div class="container-fluid">
+			<a href="<?php echo base_url() . 'dashboard/pages_tambah'; ?>" class="btn btn-sm btn-primary">Buat halaman baru</a>
+			<br />
+			<br />
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card card-success card-outline">
+						<div class="card-header">
+							<h3 class="card-title">Data Pages</h3>
+						</div>
+						<div class="card-body">
+							<table id="example2" class="table table-bordered table-hover">
+								<thead>
 									<tr>
-										<td><?php echo $no++; ?></td>
-										<td><?php echo $h->halaman_judul; ?></td>
-										<td><?php echo base_url()."page/".$h->halaman_slug; ?></td>
-										<td>
-											<a target="_blank" href="<?php echo base_url()."page/".$h->halaman_slug; ?>" class="btn btn-success btn-sm"> <i class="fa fa-eye"></i> </a>
-											<a href="<?php echo base_url().'dashboard/pages_edit/'.$h->halaman_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
-											<a href="<?php echo base_url().'dashboard/pages_hapus/'.$h->halaman_id; ?>" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
-										</td>
+										<th width="1%">NO</th>
+										<th>Judul Halaman</th>
+										<th>URL Slug</th>
+										<th width="15%">OPSI</th>
 									</tr>
-								<?php } ?>
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									<?php
+									$no = 1;
+									foreach ($halaman as $h) {
+									?>
+										<tr>
+											<td><?php echo $no++; ?></td>
+											<td><?php echo $h->halaman_judul; ?></td>
+											<td><?php echo base_url() . "page/" . $h->halaman_slug; ?></td>
+											<td>
+												<a target="_blank" href="<?php echo base_url() . "page/" . $h->halaman_slug; ?>" class="btn btn-success btn-sm"> <i class="fa fa-eye"></i> </a>
+												<a href="<?php echo base_url() . 'dashboard/pages_edit/' . $h->halaman_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
+												<a href="<?php echo base_url() . 'dashboard/pages_hapus/' . $h->halaman_id; ?>" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
+											</td>
+										</tr>
+									<?php } ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

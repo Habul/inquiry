@@ -1,32 +1,32 @@
 <div class="content-wrapper">
-	<div class="content-header">
-		<div class="container-fluid">
-			<div class="row mb-2">
-				<div class="col-sm-6">
-					<h1 class="m-0">Inquiry</h1>
-				</div><!-- /.col -->
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">inquiry</a></li>
-            <li class="breadcrumb-item active">inquiry view</li>
-					</ol>
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.container-fluid -->
-	</div>
-
-  <section class="content">    
-    <?php if ($this->session->userdata('level') != "sales") {  ?>
-      <div class="col-md-6" style="padding: 0;">
-        <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="form-control btn btn-success"><i class="glyphicon glyphicon glyphicon-open-file"></i></i> Export To Excel </a>
-      </div>
-    <?php }  ?>
+  <div class="content-header">
     <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">View Inquiry</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">inquiry</a></li>
+            <li class="breadcrumb-item active">inquiry view</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <div class="container-fluid">
+    <section class="content">
+      <?php if ($this->session->userdata('level') != "sales") {  ?>
+        <div class="col-md-3" style="padding: 0;">
+          <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="form-control btn btn-success"><i class="fa fa-download"></i></i> Export To Excel </a>
+        </div>
+      <?php }  ?>
+      <br />
       <div class="row">
-        <div class="col-12">
-          <div class="card">
+        <div class="col-md-12">
+          <div class="card card-success card-outline">
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example3" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th width="1%">NO</th>
@@ -69,8 +69,8 @@
         <!-- /.box -->
       </div>
       <!-- /.col -->
-    </div>
-    <!-- /.row -->
+  </div>
+  <!-- /.row -->
   </section>
   <!-- /.content -->
 </div>
@@ -81,117 +81,120 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-          <h3 class="modal-title" id="myModalLabel" align="center">Detail Inquiry</h3>
+          <h4 class="col-12 modal-title text-center">Detail Buffer
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </h4>
         </div>
         <form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_detail') ?>">
           <div class="modal-body">
             <div class="form-group">
-              <label class="col-sm-2 control-label">No Inquiry</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">No Inquiry</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" name="id" readonly value="<?php echo $p->inquiry_id; ?> ">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Sales</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Sales</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="<?php echo $p->sales; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Tanggal</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Tanggal</label>
+              <div class="col-xs-9">
                 <input type="datetime" class="form-control" readonly value="<?php echo $p->tanggal; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Brand</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Brand</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="<?php echo $p->brand; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Deskripsi</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Deskripsi</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="<?php echo $p->desc; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Quantity</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Quantity</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="<?php echo $p->qty; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Deadline</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Deadline</label>
+              <div class="col-xs-9">
                 <input type="date" class="form-control" readonly value="<?php echo $p->deadline; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Ket(Sales)</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Ket(Sales)</label>
+              <div class="col-xs-9">
                 <textarea type="text" class="form-control" readonly><?php echo $p->keter; ?></textarea>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Request</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Request</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="<?php echo $p->request; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Check</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Check</label>
+              <div class="col-xs-9">
                 <input type="number" class="form-control" readonly value="<?php echo $p->cek; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Follow Up</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Follow Up</label>
+              <div class="col-xs-9">
                 <input type="datetime" class="form-control" readonly value="<?php echo $p->fu1; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Ket(FU)</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Ket(FU)</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="<?php echo $p->ket_fu; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Reseller</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Reseller</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->reseller, 0, '.', '.'); ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">New Seller</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">New Seller</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->new_seller, 0, '.', '.'); ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">User</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">User</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->user, 0, '.', '.'); ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Delivery</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Delivery</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="<?php echo $p->delivery; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Purchase</label>
-              <div class="col-sm-10">
+              <label class="control-label col-xs-3">Purchase</label>
+              <div class="col-xs-9">
                 <input type="text" class="form-control" readonly value="<?php echo $p->name_purch; ?>">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Ket(Purchase)</label>
-              <div class="col-sm-10">
-                <textarea type="text" class="form-control" readonly rows="3"><?php echo $p->ket_purch; ?></textarea>
+              <label class="control-label col-xs-3">Ket(Purchase)</label>
+              <div class="col-xs-9">
+                <textarea type="text" class="form-control" readonly><?php echo $p->ket_purch; ?></textarea>
               </div>
             </div>
           </div>

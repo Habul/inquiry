@@ -1,34 +1,39 @@
 <div class="content-wrapper">
-	<section class="content-header">
-		<h1>
-			Pengaturan
-			<small>Update Pengaturan Website</small>
-		</h1>
-	</section>
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">Pengaturan</h1>
+					<small>Update Pengaturan Website</small>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
+						<li class="breadcrumb-item active">Pengaturan</li>
+					</ol>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div>
 
 	<section class="content">
-
-		<div class="row">
-			<div class="col-lg-6">
-				
-				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Pengaturan</h3>
-					</div>
-					<div class="box-body">
-
-						<?php 
-						if(isset($_GET['alert'])){
-							if($_GET['alert'] == "sukses"){
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card card-success">
+						<div class="card-header">
+							<h3 class="card-title">Update Pengaturan Website</h3>
+						</div>
+						<?php
+						if (isset($_GET['alert'])) {
+							if ($_GET['alert'] == "sukses") {
 								echo "<div class='alert alert-success'>Pengaturan telah diupdate!</div>";
 							}
 						}
 						?>
-						
-						<?php foreach($pengaturan as $p){ ?>
-
+						<?php foreach ($pengaturan as $p) { ?>
 							<form method="post" action="<?php echo base_url('dashboard/pengaturan_update') ?>" enctype="multipart/form-data">
-								<div class="box-body">
+								<div class="card-body">
 									<div class="form-group">
 										<label>Nama Website</label>
 										<input type="text" name="nama" class="form-control" placeholder="Masukkan nama website.." value="<?php echo $p->nama; ?>">
@@ -76,8 +81,8 @@
 									</div>
 								</div>
 
-								<div class="box-footer">
-									<input type="submit" class="btn btn-success" value="Simpan">
+								<div class="card-footer">
+									<input type="submit" class="btn btn-info float-right" value="Simpan">
 								</div>
 							</form>
 

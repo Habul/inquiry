@@ -106,8 +106,11 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h3 class="modal-title" id="myModalLabel" align="center">Tambah Inquiry</h3>
+				<h4 class="col-12 modal-title text-center">Add Inquiry
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h4>
 			</div>
 			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
 				<div class="modal-body">
@@ -201,9 +204,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
-					<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
+				<div class="modal-footer justify-content-between">
+					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -217,8 +220,11 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-					<h3 class="modal-title" id="myModalLabel" align="center">Edit Inquiry</h3>
+					<h4 class="col-12 modal-title text-center">Edit Inquiry
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
 				</div>
 				<form class="form-horizontal" id="form-edit-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
 					<div class="modal-body">
@@ -286,9 +292,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
-						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -300,11 +306,14 @@
 <!-- ============ MODAL EDIT PURC =============== -->
 <?php foreach ($inquiry as $p) : ?>
 	<div class="modal fade" id="modal_edit_purch<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-		<div class="modal-dialog">
+		<<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-					<h3 class="modal-title" id="myModalLabel" align="center">Edit Inquiry (Purchase)</h3>
+					<h4 class="col-12 modal-title text-center">Update Inquiry
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
 				</div>
 				<form class="form-horizontal" id="form-update-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_update') ?>">
 					<div class="modal-body">
@@ -454,13 +463,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button class="btn btn-default pull-left" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Kembali</button>
-						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Simpan</button>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
-		</div>
+	</div>
 	</div>
 <?php endforeach; ?>
 <!--END MODAL EDIT PURC-->
@@ -469,22 +478,23 @@
 <!--MODAL HAPUS-->
 <?php foreach ($inquiry as $p) : ?>
 	<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">
-					<button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-					<h3 class="modal-title" id="myModalLabel">Hapus Inquiry</h3>
+					<h4 class="col-12 modal-title text-center">Delete Kurs
+						<button class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
 				</div>
 				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="inquiry_id" value="<?php echo $p->inquiry_id; ?>">
-						<div class="alert alert-success">
-							<p>Apakah Anda yakin mau memhapus Inquiry ini?</p>
-						</div>
+						<p>Apakah Anda yakin mau memhapus Inquiry ini?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
-						<button class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Tidak</button>
-						<button class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>&nbsp; Ya</button>
+						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>

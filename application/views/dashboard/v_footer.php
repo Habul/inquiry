@@ -79,7 +79,7 @@
 	$(function() {
 		$("#example1").DataTable({
 			"responsive": true,
-			"lengthChange": false,
+			"lengthChange": true,
 			"autoWidth": false,
 			"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
@@ -178,28 +178,32 @@
 	})
 </script>
 <script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
+	$(function() {
+		//Initialize Select2 Elements
+		$('.select2').select2()
 
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
+		//Initialize Select2 Elements
+		$('.select2bs4').select2({
+			theme: 'bootstrap4'
+		})
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
+		//Datemask dd/mm/yyyy
+		$('#datemask').inputmask('dd/mm/yyyy', {
+			'placeholder': 'dd/mm/yyyy'
+		})
+		//Datemask2 mm/dd/yyyy
+		$('#datemask2').inputmask('mm/dd/yyyy', {
+			'placeholder': 'mm/dd/yyyy'
+		})
+		//Money Euro
+		$('[data-mask]').inputmask()
 
-    //Date picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-})
-
-</script>	
+		//Date picker
+		$('#reservationdate').datetimepicker({
+			format: 'L'
+		});
+	})
+</script>
 </body>
+
 </html>
