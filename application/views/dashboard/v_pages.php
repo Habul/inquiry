@@ -47,7 +47,7 @@
 											<td><?php echo base_url() . "page/" . $h->halaman_slug; ?></td>
 											<td>
 												<a target="_blank" href="<?php echo base_url() . "page/" . $h->halaman_slug; ?>" class="btn btn-success btn-sm"> <i class="fa fa-eye"></i> </a>
-												<a href="<?php echo base_url() . 'dashboard/pages_edit/' . $h->halaman_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-pencil"></i> </a>
+												<a href="<?php echo base_url() . 'dashboard/pages_edit/' . $h->halaman_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
 												<a href="<?php echo base_url() . 'dashboard/pages_hapus/' . $h->halaman_id; ?>" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
 											</td>
 										</tr>

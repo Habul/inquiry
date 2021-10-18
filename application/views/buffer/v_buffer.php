@@ -4,7 +4,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0">Buffer</h1>
-					<small>Data yang sudah di <b>APPROVE</b> di pindahkan ke menu <b>VIEW BUFFER</b></small>
+					<small>Data yang sudah di <b>APPROVE / FINISH</b> di pindahkan ke menu <b>VIEW BUFFER</b></small>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -33,7 +33,7 @@
 							<?php if ($this->session->userdata('level') != "warehouse") {	?>
 								<div class="col-md-3" style="padding: 0;">
 									<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_buffer">
-										<i class="glyphicon glyphicon-plus-sign"></i> Tambah buffer stock</a>
+										<i class="fa fa-plus-square"></i> Tambah buffer stock</a>
 								</div>
 								<br/>
 							<?php }	?>
@@ -42,7 +42,7 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example2" class="table table table-bordered table-hover">
+							<table id="example3" class="table table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th width="1%">NO</th>
@@ -60,7 +60,7 @@
 								</thead>
 								<?php
 								$no = $this->uri->segment('3') + 1;
-								$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve' ORDER BY tanggal DESC");
+								$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve' AND status!='finish' ORDER BY tanggal DESC");
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
@@ -71,7 +71,7 @@
 										<td><?php echo $p->brand; ?></td>
 										<td><?php echo $p->deskripsi; ?></td>
 										<td><?php echo $p->qty; ?></td>
-										<td><?php echo $p->status; ?></td>
+										<td><?php echo strtoupper($p->status); ?></td>
 										<?php if ($this->session->userdata('level') != "purchase") { ?>
 											<td style="text-align:center">
 												<?php if ($this->session->userdata('level') != "warehouse") { ?>
@@ -375,7 +375,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Ket(warehouse)</label>
 							<div class="col-xs-9">
-								<textarea name="ket_wh" class="form-control" required><?php echo $p->ket_wh; ?></textarea>
+								<textarea name="ket_wh" class="form-control"><?php echo $p->ket_wh; ?></textarea>
 								<?php echo form_error('ket_wh'); ?>
 							</div>
 						</div>

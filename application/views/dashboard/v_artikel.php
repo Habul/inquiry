@@ -77,7 +77,7 @@
 												?>
 														<a href="<?php echo base_url() . 'dashboard/artikel_edit/' . $a->artikel_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
 														<?php
-														echo anchor(site_url('dashboard/artikel_hapus/' . $p->artikel_id), '<i class="fa fa-trash"></i>', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+														echo anchor(site_url('dashboard/artikel_hapus/' . $a->artikel_id), '<i class="fa fa-trash"></i>', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 														?>
 													<?php
 													}
@@ -86,7 +86,7 @@
 													?>
 													<a href="<?php echo base_url() . 'dashboard/artikel_edit/' . $a->artikel_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
 													<?php
-													echo anchor(site_url('dashboard/artikel_hapus/' . $p->artikel_id), '<i class="fa fa-trash"></i>', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+													echo anchor(site_url('dashboard/artikel_hapus/' . $a->artikel_id), '<i class="fa fa-trash"></i>', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 													?>
 												<?php
 												}

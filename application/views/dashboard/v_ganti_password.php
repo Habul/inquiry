@@ -1,21 +1,30 @@
 <div class="content-wrapper">
-	<section class="content-header">
-		<h1>
-			Ganti Password
-			<small>Ubah password anda</small>
-		</h1>
-	</section>
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">Ganti Password</h1>
+					<small>Ubah password anda</small>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
+						<li class="breadcrumb-item active">Ganti Password</li>
+					</ol>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div>
 
 	<section class="content">
-
-		<div class="row">
-			<div class="col-lg-6">
-				
-				<div class="box box-primary">
-					<div class="box-header">
-						<h3 class="box-title">Ganti Password</h3>
-					</div>
-					<div class="box-body">
+	<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card card-success">
+						<div class="card-header">
+							<h3 class="card-title">Ganti Password</h3>
+						</div>
+						<div class="card-body">
 
 						<?php 
 						if(isset($_GET['alert'])){
@@ -47,7 +56,7 @@
 								</div>
 							</div>
 
-							<div class="box-footer">
+							<div class="card-footer">
 								<input type="submit" class="btn btn-primary" value="Ganti Password">
 							</div>
 						</form>
@@ -57,7 +66,6 @@
 
 			</div>
 		</div>
-
+	</div>
 	</section>
-
 </div>

@@ -68,8 +68,8 @@
 										<td><?php echo $p->city; ?></td>
 										<td><?php echo $p->phone; ?></td>
 										<td style="text-align:center">
-											<a href="<?php echo base_url() . 'sj/sj_isi/' . $p->no_po; ?>" class="btn btn-warning btn-sm" title="Add Desc SJ"><i class="fa fa-plus-square"></i> </a>
-											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>" title="Print"><i class="fa fa-print"></i></a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" title="Add Desc SJ"><i class="fa fa-plus-square"></i></a>
+											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>" title="Detail & Print"><i class="fa fa-print"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
@@ -86,7 +86,7 @@
 </div>
 <!-- /.row -->
 
-<!-- modal add inquiry -->
+<!-- modal add Sj -->
 <div class="modal fade" id="modal_add_sj">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -170,7 +170,62 @@
 		</div>
 	</div>
 </div>
-<!-- end modal add inquiry -->
+<!-- end modal add Sj -->
+
+<!-- modal add Desc SJ -->
+<?php foreach ($sj_user as $p) : ?>
+<div class="modal fade" id="modal_add_desc<?php echo $p->no_po ?>">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $p->no_po; ?>)
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h4>
+			</div>
+			<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update') ?>">
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="control-label col-xs-3">No</label>
+						<div class="col-xs-9">							
+							<?php
+							$cek = $this->db->select('no_urut')->where('no_po',$p->no_po)->order_by('no_urut', "desc")->limit(1)->get('sj_hs')->row();
+							if ($cek='') {
+							$do = 0;
+							} else {
+								$do = $this->db->select('no_urut')->where('no_po',$p->no_po)->order_by('no_urut', "desc")->limit(1)->get('sj_hs')->row();
+							}
+							?>
+							<input type="number" name="no_urut" readonly class="form-control" value="<?php echo $do->no_urut + 1 ?>">
+							<?php echo form_error('no_urut'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-3">Description *</label>
+						<div class="col-xs-9">
+							<textarea name="descript" class="form-control" placeholder="Input Desc.." required></textarea>
+							<?php echo form_error('descript'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-3">Qty *</label>
+						<div class="col-xs-9">
+							<input type="number" name="qty" class="form-control" placeholder="Input Qty.." required>
+							<?php echo form_error('qty'); ?>
+						</div>
+					</div>					
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<?php endforeach; ?>
+<!-- end modal add Desc SJ -->
 
 <!--MODAL HAPUS-->
 <?php foreach ($sj_user as $p) : ?>

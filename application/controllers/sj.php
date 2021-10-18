@@ -74,8 +74,8 @@ class Sj extends CI_Controller
 		$where = array(
 			'no_po' => $id
 		);
-
-		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
+		//$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
+		$data['sj_user'] = $this->m_data->edit_data($where, 'sj_user')->result();
 		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('sj/v_sj_isi', $data);
@@ -86,16 +86,19 @@ class Sj extends CI_Controller
 	public function sj_update()
 	{
 		// Wajib isi
+		$this->form_validation->set_rules('no_urut', 'No Urut', 'required');
 		$this->form_validation->set_rules('descript', 'Deskripsi', 'required');
 		$this->form_validation->set_rules('qty', 'Qty', 'required');
 
 		if ($this->form_validation->run() != false) {
 
-			$id = $this->input->post('no_po');
+			$id = $this->input->post('id');
+			$no_urut = $this->input->post('no_urut');
 			$descript = $this->input->post('descript');
 			$qty = $this->input->post('qty');
 			if ($this->form_validation->run() != false) {
 				$data = array(
+					'no_urut' => $no_urut,
 					'descript' => $descript,
 					'qty' => $qty
 				);
@@ -104,7 +107,7 @@ class Sj extends CI_Controller
 				'no_po' => $id
 			);
 			$this->m_data->update_data($where, $data, 'sj_hs');
-			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('id', TRUE) . ' !');
+			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('no_urut', TRUE) . ' !');
 			redirect(base_url() . 'sj/sj_isi');
 		} else {
 			$this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');

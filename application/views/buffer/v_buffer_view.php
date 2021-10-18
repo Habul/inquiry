@@ -41,7 +41,7 @@
               </thead>
               <?php
               $no = $this->uri->segment('3') + 1;
-              $query = $this->db->query("SELECT * FROM `buffer` WHERE status='approve' order by fu");
+              $query = $this->db->query("SELECT * FROM `buffer` WHERE status='approve' OR status='finish' order by fu");
               foreach ($query->result() as $p) {
               ?>
                 <tr>

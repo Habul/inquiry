@@ -49,7 +49,7 @@
 											<td>
 												<a href="<?php echo base_url() . 'dashboard/kategori_edit/' . $k->kategori_id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
 												<?php
-												echo anchor(site_url('dashboard/kategori_hapus/' . $p->kategori_id), '<i class="fa fa-trash"></i>', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+												echo anchor(site_url('dashboard/kategori_hapus/' . $k->kategori_id), '<i class="fa fa-trash"></i>', 'title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 												?>
 											</td>
 										</tr>

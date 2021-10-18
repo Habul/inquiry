@@ -43,19 +43,18 @@
 									</tr>
 								</thead>
 								<?php
-								$nomor=1;
 								$no = $this->uri->segment('3');
-								$query = $this->db->query("SELECT sj_hs.no_po,sj_hs.descript,sj_hs.qty FROM sj_hs LEFT JOIN sj_user ON sj_hs.no_po=sj_user.no_po");
+								$query = $this->db->query("SELECT sj_hs.no_urut,sj_hs.no_po,sj_hs.descript,sj_hs.qty FROM sj_hs LEFT JOIN sj_user ON sj_hs.no_po=sj_user.no_po");
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $nomor++; ?></td>
-										<td><?php echo $p->no_po; ?></td>										
+										<td><?php echo $no++; ?></td>
+										<td><?php echo $p->no_urut; ?></td>										
 										<td><?php echo $p->descript; ?></td>
 										<td><?php echo $p->qty; ?></td>
 										<td style="text-align:center">
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_po; ?>"><i class="fa fa-edit"></i></a>
-											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>"><i class="fa fa-trash"></i></a>
+											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_urut; ?>"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 								<?php } ?>
@@ -87,7 +86,11 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Po</label>
 						<div class="col-xs-9">							
-							<input type="text" name="no_po" readonly class="form-control" value="<?php echo $p->no_po ?>">
+							<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po ?>">
+							<?php
+							$cek = $this->db->select('no_urut')->order_by('no_urut', "desc")->limit(1)->get('sj_hs')->row();
+							?>
+							<input type="number" name="no_urut" readonly class="form-control" value="<?php echo $cek->no_urut ?>">
 							<?php echo form_error('no_po'); ?>
 						</div>
 					</div>
