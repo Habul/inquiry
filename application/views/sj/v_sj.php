@@ -174,56 +174,97 @@
 
 <!-- modal add Desc SJ -->
 <?php foreach ($sj_user as $p) : ?>
-<div class="modal fade" id="modal_add_desc<?php echo $p->no_po ?>">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $p->no_po; ?>)
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h4>
+	<div class="modal fade" id="modal_print<?php echo $p->no_po ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $p->no_po; ?>)
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
+				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update') ?>">
+					<div class="modal-body">
+						<div class="form-group">
+							<label class="control-label col-xs-3">No</label>
+							<div class="col-xs-9">
+								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po; ?>">
+								<?php
+								$cek = $this->db->select('no_urut')->where('no_po', $p->no_po)->order_by('no_urut', "desc")->limit(1)->get('sj_hs')->row();
+								?>
+								<input type="number" name="no_urut" readonly class="form-control" value="<?php echo $cek->no_urut + 1 ?>">
+								<?php echo form_error('no_urut'); ?>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">Description *</label>
+							<div class="col-xs-9">
+								<textarea name="descript" class="form-control" placeholder="Input Desc.." required></textarea>
+								<?php echo form_error('descript'); ?>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">Qty *</label>
+							<div class="col-xs-9">
+								<input type="number" name="qty" class="form-control" placeholder="Input Qty.." required>
+								<?php echo form_error('qty'); ?>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+					</div>
+				</form>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update') ?>">
+		</div>
+	</div>
+<?php endforeach; ?>
+<!-- end modal add Desc SJ -->
+
+<!-- modal add Desc SJ -->
+<?php foreach ($sj_user as $p) : ?>
+	<div class="modal fade" id="modal_add_desc<?php echo $p->no_po ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $p->no_po; ?>)
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">No</label>
-						<div class="col-xs-9">							
-							<?php
-							$cek = $this->db->select('no_urut')->where('no_po',$p->no_po)->order_by('no_urut', "desc")->limit(1)->get('sj_hs')->row();
-							if ($cek='') {
-							$do = 0;
-							} else {
-								$do = $this->db->select('no_urut')->where('no_po',$p->no_po)->order_by('no_urut', "desc")->limit(1)->get('sj_hs')->row();
-							}
-							?>
-							<input type="number" name="no_urut" readonly class="form-control" value="<?php echo $do->no_urut + 1 ?>">
-							<?php echo form_error('no_urut'); ?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Description *</label>
-						<div class="col-xs-9">
-							<textarea name="descript" class="form-control" placeholder="Input Desc.." required></textarea>
-							<?php echo form_error('descript'); ?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Qty *</label>
-						<div class="col-xs-9">
-							<input type="number" name="qty" class="form-control" placeholder="Input Qty.." required>
-							<?php echo form_error('qty'); ?>
-						</div>
-					</div>					
+					<table id="example2" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Nama</th>
+								<th>No Telp</th>
+								<th>Jenis Kelamin</th>
+								<th>Posisi</th>
+							</tr>
+						</thead>
+						<?php
+						foreach ($dataKota as $pegawai) {
+						?>
+							<tr>
+								<td style="min-width:230px;"><?php echo $pegawai->pegawai; ?></td>
+								<td><?php echo $pegawai->telp; ?></td>
+								<td><?php echo $pegawai->kelamin; ?></td>
+								<td><?php echo $pegawai->posisi; ?></td>
+							</tr>
+						<?php
+						}
+						?>
+					</table>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
-</div>
 <?php endforeach; ?>
 <!-- end modal add Desc SJ -->
 

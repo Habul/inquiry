@@ -69,20 +69,6 @@ class Sj extends CI_Controller
 		}
 	}
 
-	public function sj_isi($id)
-	{
-		$where = array(
-			'no_po' => $id
-		);
-		//$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
-		$data['sj_user'] = $this->m_data->edit_data($where, 'sj_user')->result();
-		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
-		$this->load->view('dashboard/v_header');
-		$this->load->view('sj/v_sj_isi', $data);
-		$this->load->view('dashboard/v_footer');
-	}
-
-
 	public function sj_update()
 	{
 		// Wajib isi
@@ -96,22 +82,20 @@ class Sj extends CI_Controller
 			$no_urut = $this->input->post('no_urut');
 			$descript = $this->input->post('descript');
 			$qty = $this->input->post('qty');
-			if ($this->form_validation->run() != false) {
-				$data = array(
-					'no_urut' => $no_urut,
-					'descript' => $descript,
-					'qty' => $qty
-				);
-			}
-			$where = array(
-				'no_po' => $id
+
+			$data = array(
+				'no_po' => $id,
+				'no_urut' => $no_urut,
+				'descript' => $descript,
+				'qty' => $qty
 			);
-			$this->m_data->update_data($where, $data, 'sj_hs');
-			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('no_urut', TRUE) . ' !');
-			redirect(base_url() . 'sj/sj_isi');
+
+			$this->m_data->insert_data($data, 'sj_hs');
+			$this->session->set_flashdata('berhasil', 'No Po ' . $this->input->post('id', TRUE) . ' Successfully added Desc : ' . $this->input->post('descript', TRUE) . '  !');
+			redirect(base_url() . 'sj/sj');
 		} else {
-			$this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
-			redirect(base_url() . 'sj/sj_isi');
+			$this->session->set_flashdata('gagal', 'SJ Desc failed to add, Please repeat !');
+			redirect(base_url() . 'sj/sj');
 		}
 	}
 

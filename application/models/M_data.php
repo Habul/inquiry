@@ -43,6 +43,11 @@ class M_data extends CI_Model
 		$this->db->insert($table, $data);
 	}
 
+	function insert_where($data, $table)
+	{
+		$this->db->insert($table, $data);
+	}
+
 	// fungsi untuk mengedit data
 	function edit_data($where, $table)
 	{
