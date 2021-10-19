@@ -27,7 +27,7 @@ class Inquiry extends CI_Controller
 	public function inquiry_aksi()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('inquiry_id', 'No Inquiry', 'required');
+		//$this->form_validation->set_rules('inquiry_id', 'No Inquiry', 'required');
 		$this->form_validation->set_rules('sales', 'Nama Sales', 'required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
 		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
@@ -39,7 +39,6 @@ class Inquiry extends CI_Controller
 
 		if ($this->form_validation->run() != false) {
 
-			$inquiry_id = $this->input->post('inquiry_id');
 			$sales = $this->input->post('sales');
 			$tanggal = $this->input->post('tanggal');
 			$brand = $this->input->post('brand');
@@ -50,7 +49,7 @@ class Inquiry extends CI_Controller
 			$request = $this->input->post('request');
 
 			$data = array(
-				'inquiry_id' => $inquiry_id,
+				
 				'sales' => $sales,
 				'tanggal' => $tanggal,
 				'brand' => $brand,
@@ -62,7 +61,8 @@ class Inquiry extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'inquiry');
-			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Tambah No ID : ' . $this->input->post('inquiry_id', TRUE) . ' !');
+			$ok = $this->db->select('inquiry_id')->order_by('inquiry_id', "desc")->limit(1)->get('inquiry')->row();
+			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Tambah No ID : '.$ok.' !');
 			redirect(base_url() . 'inquiry/inquiry');
 		} else {
 			$this->session->set_flashdata('gagal', 'Inquiry Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');

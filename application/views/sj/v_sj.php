@@ -4,6 +4,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0">Surat Jalan</h1>
+					<small>Pastikan Desc SJ sudah terinput, sebelum <b>View & Print</b></small>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -53,7 +54,7 @@
 									</tr>
 								</thead>
 								<?php
-								$no = $this->uri->segment('3') + 1;
+								$no = 1;
 								$query = $this->db->query("select * from sj_user order by addtime desc");
 								foreach ($query->result() as $p) {
 								?>
@@ -68,7 +69,7 @@
 										<td><?php echo $p->city; ?></td>
 										<td><?php echo $p->phone; ?></td>
 										<td style="text-align:center">
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" title="Add Desc SJ"><i class="fa fa-plus-square"></i></a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" title="Add Desc SJ"><i class="fa fa-edit"></i></a>
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>" title="Detail & Print"><i class="fa fa-print"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
@@ -102,8 +103,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Delivery Order</label>
 						<div class="col-xs-9">
-							<?php $sj_cek = $this->db->select('no_delivery')->order_by('no_delivery', "desc")->limit(1)->get('sj_user')->row();	?>
-							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo $sj_cek->no_delivery + 1 ?>">
+							<input type="text" name="no_delivery" class="form-control" placeholder="Input No Delivery order..."required>
 							<?php echo form_error('no_delivery'); ?>
 						</div>
 					</div>
@@ -143,14 +143,14 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Address *</label>
 						<div class="col-xs-9">
-							<textarea name="address" class="form-control" placeholder="input Address.." required></textarea>
+							<textarea name="address" class="form-control" placeholder="Input Address.." required></textarea>
 							<?php echo form_error('address'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">City *</label>
 						<div class="col-xs-9">
-							<input type="text" name="city" class="form-control" placeholder="input City..." required>
+							<input type="text" name="city" class="form-control" placeholder="Input City..." required>
 							<?php echo form_error('city'); ?>
 						</div>
 					</div>
@@ -174,7 +174,7 @@
 
 <!-- modal add Desc SJ -->
 <?php foreach ($sj_user as $p) : ?>
-	<div class="modal fade" id="modal_print<?php echo $p->no_po ?>">
+	<div class="modal fade" id="modal_add_desc<?php echo $p->no_po ?>">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -187,19 +187,9 @@
 				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
-							<label class="control-label col-xs-3">No</label>
-							<div class="col-xs-9">
-								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po; ?>">
-								<?php
-								$cek = $this->db->select('no_urut')->where('no_po', $p->no_po)->order_by('no_urut', "desc")->limit(1)->get('sj_hs')->row();
-								?>
-								<input type="number" name="no_urut" readonly class="form-control" value="<?php echo $cek->no_urut + 1 ?>">
-								<?php echo form_error('no_urut'); ?>
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
+							<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po; ?>">
 								<textarea name="descript" class="form-control" placeholder="Input Desc.." required></textarea>
 								<?php echo form_error('descript'); ?>
 							</div>
@@ -223,10 +213,10 @@
 <?php endforeach; ?>
 <!-- end modal add Desc SJ -->
 
-<!-- modal add Desc SJ -->
+<!-- modal Print Desc SJ -->
 <?php foreach ($sj_user as $p) : ?>
-	<div class="modal fade" id="modal_add_desc<?php echo $p->no_po ?>">
-		<div class="modal-dialog">
+	<div class="modal fade" id="modal_print<?php echo $p->no_po ?>">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $p->no_po; ?>)
@@ -236,23 +226,29 @@
 					</h4>
 				</div>
 				<div class="modal-body">
+				<div class="row no-print">
+				<div class="col-12">
+					<a href="HS_SJ.php" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+				</div>
+				</div>
+				<br />
 					<table id="example2" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>Nama</th>
-								<th>No Telp</th>
-								<th>Jenis Kelamin</th>
-								<th>Posisi</th>
+								<th>No</th>
+								<th>Description</th>
+								<th>Qty</th>
 							</tr>
 						</thead>
 						<?php
-						foreach ($dataKota as $pegawai) {
+						$no = 1;
+						$cek = $this->db->query("SELECT sj_hs.no_po as no_po,sj_hs.descript as descript,sj_hs.qty as qty FROM sj_hs INNER JOIN sj_user ON sj_hs.no_po=sj_user.no_po WHERE sj_user.no_po=$p->no_po");
+						foreach ($cek->result() as $u) {
 						?>
 							<tr>
-								<td style="min-width:230px;"><?php echo $pegawai->pegawai; ?></td>
-								<td><?php echo $pegawai->telp; ?></td>
-								<td><?php echo $pegawai->kelamin; ?></td>
-								<td><?php echo $pegawai->posisi; ?></td>
+								<td><?php echo $no++; ?></td>
+								<td style="min-width:250px;"><?php echo $u->descript; ?></td>
+								<td><?php echo $u->qty; ?></td>								
 							</tr>
 						<?php
 						}
@@ -266,7 +262,7 @@
 		</div>
 	</div>
 <?php endforeach; ?>
-<!-- end modal add Desc SJ -->
+<!-- end modal Print Desc SJ -->
 
 <!--MODAL HAPUS-->
 <?php foreach ($sj_user as $p) : ?>

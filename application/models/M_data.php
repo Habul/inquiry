@@ -104,7 +104,16 @@ class M_data extends CI_Model
 		return $data->result();
 	}
 
-	public function select_by_sales($id)
+	public function select_sjhs($no_po)
+	{
+		$sql = "SELECT sj_hs.no_po,sj_hs.descript,sj_hs.qty FROM sj_hs INNER JOIN sj_user ON sj_hs.no_po=sj_user.no_po WHERE sj_user.no_po='{$no_po}'";
+
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
+	public function select_by_id($id)
 	{
 		$sql = "SELECT COUNT(sales) AS jmlh FROM inquiry where sales = '{$id}'";
 

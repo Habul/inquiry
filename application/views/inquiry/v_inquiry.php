@@ -115,22 +115,12 @@
 			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="control-label col-xs-3">No Inquiry</label>
-						<div class="col-xs-9">
-							<?php
-							$inquiry_id = $this->db->select('inquiry_id')->order_by('inquiry_id', "desc")->limit(1)->get('inquiry')->row();
-							?>
-							<input type="text" name="inquiry_id" readonly class="form-control" value="<?php echo $inquiry_id->inquiry_id + 1 ?>">
-							<?php echo form_error('inquiry_id'); ?>
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="control-label col-xs-3">Nama Sales</label>
 						<div class="col-xs-9">
 							<?php
 							$id_user = $this->session->userdata('id');
 							$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-							?>
+							?>							
 							<input type="text" name="sales" readonly class="form-control" value="<?php echo $sales->pengguna_nama; ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>

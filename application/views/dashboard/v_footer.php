@@ -99,6 +99,13 @@
 			"autoWidth": false,
 			"ordering ": true
 		});
+		$("#example4").DataTable({
+			"responsive": false,
+			"searching": false,
+			"lengthChange": false,
+			"autoWidth": false,
+			"buttons": ["csv", "excel", "pdf", "print"]
+		}).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
 	});
 </script>
 <script>

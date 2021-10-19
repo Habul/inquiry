@@ -15,7 +15,7 @@ class Sj extends CI_Controller
 	}
 
 	public function sj()
-	{
+	{	
 		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
 		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
 		$this->load->view('dashboard/v_header');
@@ -72,20 +72,18 @@ class Sj extends CI_Controller
 	public function sj_update()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('no_urut', 'No Urut', 'required');
+		//$this->form_validation->set_rules('no_urut', 'No Urut', 'required');
 		$this->form_validation->set_rules('descript', 'Deskripsi', 'required');
 		$this->form_validation->set_rules('qty', 'Qty', 'required');
 
 		if ($this->form_validation->run() != false) {
 
 			$id = $this->input->post('id');
-			$no_urut = $this->input->post('no_urut');
 			$descript = $this->input->post('descript');
 			$qty = $this->input->post('qty');
 
 			$data = array(
 				'no_po' => $id,
-				'no_urut' => $no_urut,
 				'descript' => $descript,
 				'qty' => $qty
 			);
@@ -146,27 +144,17 @@ class Sj extends CI_Controller
 		}
 	}
 
-	public function sj_user_hapus()
-	{
-		$id = $this->input->post('no_po'); {
-			$where = array(
-				'no_po' => $id
-			);
-			$this->m_data->delete_data($where, 'sj_user');
-			$this->session->set_flashdata('berhasil', 'SJ has been deleted !');
-			redirect(base_url() . 'sj/sj');
-		}
-	}
-
-	public function sj_hs_hapus()
+	public function sj_hapus()
 	{
 		$id = $this->input->post('no_po'); {
 			$where = array(
 				'no_po' => $id
 			);
 			$this->m_data->delete_data($where, 'sj_hs');
+			$this->m_data->delete_data($where, 'sj_user');
 			$this->session->set_flashdata('berhasil', 'SJ has been deleted !');
 			redirect(base_url() . 'sj/sj');
 		}
 	}
+
 }
