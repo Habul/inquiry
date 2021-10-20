@@ -26,7 +26,7 @@ class Buffer extends CI_Controller
 	public function buffer_aksi()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('id_buffer', 'Id Buffer', 'required');
+		//$this->form_validation->set_rules('id_buffer', 'Id Buffer', 'required');
 		$this->form_validation->set_rules('sales', 'Nama Sales', 'required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
 		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
@@ -55,7 +55,7 @@ class Buffer extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'buffer');
-			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Tambah No ID : ' . $this->input->post('id_buffer', TRUE) . ' !');
+			$this->session->set_flashdata('berhasil', 'Buffer berhasil di Tambah No Buffer : ' . $this->input->post('id_buffer', TRUE) . ' !');
 			redirect(base_url() . 'buffer/buffer');
 		} else {
 			$this->session->set_flashdata('gagal', 'Buffer Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');

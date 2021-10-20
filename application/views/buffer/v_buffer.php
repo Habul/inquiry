@@ -29,26 +29,25 @@
 			</div>
 		<?php } ?>
 		<div class="container-fluid">
-						<?php if ($this->session->userdata('level') != "purchase") {	?>
-							<?php if ($this->session->userdata('level') != "warehouse") {	?>
-								<div class="col-md-3" style="padding: 0;">
-									<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_buffer">
-										<i class="fa fa-plus-square"></i> Tambah buffer stock</a>
-								</div>
-								<br/>
-							<?php }	?>
-						<?php }	?>
-					<div class="row">
+			<?php if ($this->session->userdata('level') != "purchase") {	?>
+				<?php if ($this->session->userdata('level') != "warehouse") {	?>
+					<div class="col-md-3" style="padding: 0;">
+						<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_buffer">
+							<i class="fa fa-plus-square"></i> Tambah buffer stock</a>
+					</div>
+					<br />
+				<?php }	?>
+			<?php }	?>
+			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
 							<table id="example3" class="table table table-bordered table-hover">
 								<thead>
 									<tr>
-										<th width="1%">NO</th>
+										<th width="8%">No Buffer</th>
 										<th>Nama</th>
 										<th>Tanggal</th>
-										<th>Id Buffer</th>
 										<th>Brand Produk</th>
 										<th>Description</th>
 										<th>Qty</th>
@@ -59,15 +58,13 @@
 									</tr>
 								</thead>
 								<?php
-								$no = $this->uri->segment('3') + 1;
-								$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve' AND status!='finish' ORDER BY tanggal DESC");
+								$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve' AND status!='finish'");
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $no++; ?></td>
+										<td><?php echo $p->id_buffer; ?></td>
 										<td><?php echo $p->sales; ?></td>
 										<td><?php echo $p->tanggal; ?></td>
-										<td><?php echo $p->id_buffer; ?></td>
 										<td><?php echo $p->brand; ?></td>
 										<td><?php echo $p->deskripsi; ?></td>
 										<td><?php echo $p->qty; ?></td>
@@ -112,18 +109,12 @@
 			<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="control-label col-xs-3">Id Buffer</label>
+						<label class="control-label col-xs-3">Nama Sales</label>
 						<div class="col-xs-9">
 							<?php
 							$cek = $this->db->select('id_buffer')->order_by('id_buffer', "desc")->limit(1)->get('buffer')->row();
 							?>
-							<input type="text" name="id_buffer" readonly class="form-control" value="<?php echo $cek->id_buffer + 1 ?>">
-							<?php echo form_error('id_buffer'); ?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Nama Sales</label>
-						<div class="col-xs-9">
+							<input type="hidden" name="id_buffer" readonly class="form-control" value="<?php echo $cek->id_buffer + 1 ?>">
 							<?php
 							$id_user = $this->session->userdata('id');
 							$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
@@ -189,16 +180,16 @@
 
 <!-- ============ MODAL EDIT SALES =============== -->
 <?php foreach ($buffer as $p) : ?>
-<div class="modal fade" id="modal_editsales<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="col-12 modal-title text-center">Edit Buffer
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h4>
-			</div>
+	<div class="modal fade" id="modal_editsales<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">Edit Buffer
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
 				<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_edit') ?>">
 					<div class="modal-body">
 						<div class="form-group">
@@ -268,16 +259,16 @@
 
 <!-- ============ MODAL EDIT WH =============== -->
 <?php foreach ($buffer as $p) : ?>
-<div class="modal fade" id="modal_edit_wh<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="col-12 modal-title text-center">Update Buffer
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h4>
-			</div>
+	<div class="modal fade" id="modal_edit_wh<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">Update Buffer
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
 				<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
@@ -393,8 +384,8 @@
 
 <!--MODAL HAPUS-->
 <?php foreach ($buffer as $p) : ?>
-<div class="modal fade" id="modal_hapus<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog">
+	<div class="modal fade" id="modal_hapus<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">
 					<h4 class="col-12 modal-title text-center">Delete Surat Jalan
@@ -406,7 +397,7 @@
 				<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="id" value="<?php echo $p->id_buffer; ?>">
-							<p>Apakah Anda yakin mau memhapus Master ini?</p>						
+						<p>Apakah Anda yakin mau memhapus Master ini?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>

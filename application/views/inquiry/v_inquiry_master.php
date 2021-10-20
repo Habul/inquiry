@@ -45,7 +45,7 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example3" class="table table-bordered table-striped">
+							<table id="example5" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th width="1%">NO</th>
@@ -112,35 +112,35 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Brand Produk *</label>
 						<div class="col-xs-8">
-							<input type="text" name="brand" class="form-control" placeholder="input brand.." required>
+							<input type="text" name="brand" class="form-control" placeholder="Input Brand.." required>
 							<?php echo form_error('brand'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">D1 *</label>
 						<div class="col-xs-8">
-							<input type="number" min="0.01" step="0.01" name="d1" class="form-control" placeholder="input d1..." required>
+							<input type="number" min="0.01" step="0.01" name="d1" class="form-control" placeholder="Input d1..." required>
 							<?php echo form_error('d1'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">D2 *</label>
 						<div class="col-xs-8">
-							<input type="number" min="0.01" step="0.01" name="d2" class="form-control" placeholder="input d2 .." required>
+							<input type="number" min="0.01" step="0.01" name="d2" class="form-control" placeholder="Input d2 .." required>
 							<?php echo form_error('d2'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">User *</label>
 						<div class="col-xs-8">
-							<input type="number" min="0.01" step="0.01" name="user" class="form-control" placeholder="input user .." required>
+							<input type="number" min="0.01" step="0.01" name="user" class="form-control" placeholder="Input user .." required>
 							<?php echo form_error('user'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Manufac/Distrib</label>
 						<div class="col-xs-8">
-							<input type='text' name="distributor" class="form-control" placeholder="input .."></input>
+							<input type='text' name="distributor" class="form-control" placeholder="Input .."></input>
 							<?php echo form_error('distributor'); ?>
 						</div>
 					</div>

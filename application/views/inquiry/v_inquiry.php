@@ -45,10 +45,9 @@
 							<table id="example2" class="table table-bordered table-hover">
 								<thead>
 									<tr>
-										<th width="1%">NO</th>
+										<th width="10%">No Inquiry</th>
 										<th>Nama</th>
 										<th>Tanggal</th>
-										<th>No Inquiry</th>
 										<th>Brand Produk</th>
 										<th>Description</th>
 										<th>Qty</th>
@@ -60,15 +59,13 @@
 									</tr>
 								</thead>
 								<?php
-								$no = $this->uri->segment('3') + 1;
-								$query = $this->db->query("select * from inquiry where fu1 is NULL order by tanggal desc");
+								$query = $this->db->query("select * from inquiry where fu1 is NULL");
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $no++; ?></td>
+										<td><?php echo $p->inquiry_id; ?></td>
 										<td><?php echo $p->sales; ?></td>
 										<td><?php echo $p->tanggal; ?></td>
-										<td><?php echo $p->inquiry_id; ?></td>
 										<td><?php echo $p->brand; ?></td>
 										<td><?php echo $p->desc; ?></td>
 										<td><?php echo $p->qty; ?></td>
@@ -118,9 +115,13 @@
 						<label class="control-label col-xs-3">Nama Sales</label>
 						<div class="col-xs-9">
 							<?php
+							$cek = $this->db->select('inquiry_id')->order_by('inquiry_id', "desc")->limit(1)->get('inquiry')->row();
+							?>
+							<input type="hidden" name="inquiry_id" class="form-control" value="<?php echo $cek->inquiry_id + 1; ?> ">
+							<?php
 							$id_user = $this->session->userdata('id');
 							$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-							?>							
+							?>
 							<input type="text" name="sales" readonly class="form-control" value="<?php echo $sales->pengguna_nama; ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>
@@ -168,28 +169,28 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Deskripsi *</label>
 						<div class="col-xs-9">
-							<textarea name="desc" class="form-control" placeholder="input Desc.." required></textarea>
+							<textarea name="desc" class="form-control" placeholder="Input Desc.." required></textarea>
 							<?php echo form_error('desc'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Quantity *</label>
 						<div class="col-xs-9">
-							<input type="number" name="qty" class="form-control" placeholder="input qty..." required>
+							<input type="number" name="qty" class="form-control" placeholder="Input qty..." required>
 							<?php echo form_error('qty'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Deadline *</label>
 						<div class="col-xs-9">
-							<input type="date" name="deadline" class="form-control" placeholder="input deadline .." required>
+							<input type="date" name="deadline" class="form-control" placeholder="Input deadline .." required>
 							<?php echo form_error('deadline'); ?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Keterangan *</label>
 						<div class="col-xs-9">
-							<textarea name="keter" class="form-control" placeholder="input  .." required></textarea>
+							<textarea name="keter" class="form-control" placeholder="Input Keter .." required></textarea>
 							<?php echo form_error('keter'); ?>
 						</div>
 					</div>

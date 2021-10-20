@@ -4,10 +4,11 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0">View Inquiry</h1>
+          <small>Inquiry Sales & Purchase</small>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">inquiry</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
             <li class="breadcrumb-item active">inquiry view</li>
           </ol>
         </div><!-- /.col -->
@@ -29,10 +30,9 @@
               <table id="example3" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th width="1%">NO</th>
+                    <th width="10%">No Inquiry</th>
                     <th>Nama</th>
                     <th>Tanggal</th>
-                    <th>No Inquiry</th>
                     <th>Brand Produk</th>
                     <th>Description</th>
                     <th>Qty</th>
@@ -42,15 +42,13 @@
                   </tr>
                 </thead>
                 <?php
-                $no = $this->uri->segment('3') + 1;
-                $query = $this->db->query("SELECT * FROM inquiry WHERE fu1 IS NOT NULL ORDER BY fu1 DESC ");
+                $query = $this->db->query("SELECT * FROM inquiry WHERE fu1 IS NOT NULL");
                 foreach ($query->result() as $p) {
                 ?>
                   <tr>
-                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $p->inquiry_id; ?></td>
                     <td><?php echo $p->sales; ?></td>
                     <td><?php echo $p->tanggal; ?></td>
-                    <td><?php echo $p->inquiry_id; ?></td>
                     <td><?php echo $p->brand; ?></td>
                     <td><?php echo $p->desc; ?></td>
                     <td><?php echo $p->qty; ?></td>

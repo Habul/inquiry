@@ -99,29 +99,29 @@
 			</li>
 			<li class="nav-item dropdown user-menu">
 				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-				<?php $id_user = $this->session->userdata('id');
-				$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
-				<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="user-image img-circle elevation-2" alt="User Image">
-				<span class="d-none d-md-inline"><?php echo $user->pengguna_nama; ?></span>
+					<?php $id_user = $this->session->userdata('id');
+					$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
+					<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="user-image img-circle elevation-2" alt="User Image">
+					<span class="d-none d-md-inline"><?php echo $user->pengguna_nama; ?></span>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-				<!-- User image -->
-				<li class="user-header bg-dark">					
-					<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
-					<p>
-					<?php echo $user->pengguna_nama; ?>
-					<small><?php echo $user->pengguna_level; ?></small>
-					</p>
-				</li>
-          <!-- Menu Footer-->
-          <li class="user-footer">
-            <a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default"><i class="fa fa-user"></i> Profile</a>
-            <a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right"><i class="fa fa-power-off"></i> Sign out</a>
-          </li>
-        </ul>
-      </li>
-	</ul>
-	</nav>
+					<!-- User image -->
+					<li class="user-header bg-dark">
+						<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
+						<p>
+							<?php echo $user->pengguna_nama; ?>
+							<small><?php echo $user->pengguna_level; ?></small>
+						</p>
+					</li>
+					<!-- Menu Footer-->
+					<li class="user-footer">
+						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default"><i class="fa fa-user"></i> Profile</a>
+						<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right"><i class="fa fa-power-off"></i> Sign out</a>
+					</li>
+				</ul>
+			</li>
+			</ul>
+		</nav>
 		<!-- /.navbar -->
 		<!-- Main Sidebar Container -->
 
@@ -173,13 +173,13 @@
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/kategori' ?>" <?= $this->uri->uri_string() == 'dashboard/kategori' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-th"></i>
-									<p>Kategori</p>
+									<p>Category</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/artikel' ?>" <?= $this->uri->uri_string() == 'dashboard/artikel' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-table"></i>
-									<p>Artikel</p>
+									<p>Article</p>
 								</a>
 							</li>
 							<li class="nav-item">
@@ -191,13 +191,13 @@
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>" <?= $this->uri->uri_string() == 'dashboard/pengguna' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-users"></i>
-									<p>Pengguna & Hak Akses</p>
+									<p>User & User Access</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>" <?= $this->uri->uri_string() == 'dashboard/pengaturan' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-cogs"></i>
-									<p>Pengaturan Website</p>
+									<p>Setting Website</p>
 								</a>
 							</li>
 							<li class="nav-item">
@@ -224,9 +224,8 @@
 										<i class="fas fa-angle-left right"></i>
 									</p>
 								</a>
-								<?php
-								if ($this->session->userdata('level') != "sales") { ?>
-									<ul class="nav nav-treeview">
+								<ul class="nav nav-treeview">
+									<?php if ($this->session->userdata('level') != "sales") { ?>
 										<li class="nav-item">
 											<a href="<?php echo base_url() . 'inquiry/inquiry_master' ?>" <?= $this->uri->uri_string() == 'inquiry/inquiry_master' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 												<i class="far fa-circle nav-icon"></i>
@@ -252,13 +251,14 @@
 											<p>View Inquiry</p>
 										</a>
 									</li>
-									</ul>
+								</ul>
 							</li>
 						<?php } ?>
 						<?php
 						if ($this->session->userdata('level') != "purchase") { ?>
 							<li <?= $this->uri->uri_string() == 'buffer/buffer' ||
-									$this->uri->uri_string() == 'buffer/buffer_view' || 	 $this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
+									$this->uri->uri_string() == 'buffer/buffer_view' ||
+									$this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
 								<a href="#" <?= $this->uri->uri_string() == 'buffer/buffer' ||
 												$this->uri->uri_string() == 'buffer/buffer_view' ||
 												$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
@@ -279,16 +279,22 @@
 											<i class="far fa-circle nav-icon"></i>
 											<p>View Buffer</p>
 										</a>
-									</li>								
+									</li>
 								</ul>
 							</li>
-							<?php } ?>
-							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>" <?= $this->uri->uri_string() == 'dashboard/ganti_password' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-									<i class="nav-icon fas fa-lock"></i>
-									<p>Ganti Password</p>
-								</a>
-							</li>
+						<?php } ?>
+						<li class="nav-item">
+							<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>" <?= $this->uri->uri_string() == 'dashboard/ganti_password' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+								<i class="nav-icon fas fa-lock"></i>
+								<p>Change Password</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url() . 'dashboard/keluar' ?>" <?= $this->uri->uri_string() == 'dashboard/keluar' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+								<i class="nav-icon fas fa-power-off"></i>
+								<p>Sign out</p>
+							</a>
+						</li>
 					</ul>
 				</nav>
 			</div>

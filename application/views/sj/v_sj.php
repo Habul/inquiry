@@ -38,28 +38,26 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example3" class="table table-bordered table-striped">
+							<table id="example6" class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<th width="1%">No</th>
-										<th>Do No</th>
+										<th width="12%">Do No</th>
 										<th>Do Date</th>
 										<th>Due Date</th>
-										<th>No PO</th>
+										<th>No Po</th>
 										<th>Cust Name</th>
 										<th>Address</th>
 										<th>City</th>
 										<th>Phone</th>
+										<th>Addtime</th>
 										<th width="12%">Action</th>
 									</tr>
 								</thead>
 								<?php
-								$no = 1;
-								$query = $this->db->query("select * from sj_user order by addtime desc");
+								$query = $this->db->query("select * from sj_user");
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $no++; ?></td>
 										<td><?php echo $p->no_delivery; ?></td>
 										<td><?php echo $p->date_delivery; ?></td>
 										<td><?php echo $p->due_date; ?></td>
@@ -68,6 +66,7 @@
 										<td><?php echo $p->address; ?></td>
 										<td><?php echo $p->city; ?></td>
 										<td><?php echo $p->phone; ?></td>
+										<td><?php echo $p->addtime; ?></td>
 										<td style="text-align:center">
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" title="Add Desc SJ"><i class="fa fa-edit"></i></a>
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>" title="Detail & Print"><i class="fa fa-print"></i></a>
@@ -101,9 +100,9 @@
 			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('sj/sj_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="control-label col-xs-3">No Delivery Order</label>
+						<label class="control-label col-xs-3">No Delivery Order *</label>
 						<div class="col-xs-9">
-							<input type="text" name="no_delivery" class="form-control" placeholder="Input No Delivery order..."required>
+							<input type="text" name="no_delivery" class="form-control" placeholder="Input No Delivery order..." required>
 							<?php echo form_error('no_delivery'); ?>
 						</div>
 					</div>
@@ -127,7 +126,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">No PO *</label>
+						<label class="control-label col-xs-3">No Po *</label>
 						<div class="col-xs-9">
 							<input type="number" name="no_po" class="form-control" placeholder="Input No Po..." required>
 							<?php echo form_error('no_po'); ?>
@@ -189,7 +188,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
-							<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po; ?>">
+								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po; ?>">
 								<textarea name="descript" class="form-control" placeholder="Input Desc.." required></textarea>
 								<?php echo form_error('descript'); ?>
 							</div>
@@ -226,12 +225,12 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-				<div class="row no-print">
-				<div class="col-12">
-					<a href="HS_SJ.php" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-				</div>
-				</div>
-				<br />
+					<div class="row no-print">
+						<div class="col-12">
+							<a href="<?php echo base_url('sj/sj_print') ?>" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+						</div>
+					</div>
+					<br />
 					<table id="example2" class="table table-bordered table-striped">
 						<thead>
 							<tr>
@@ -248,7 +247,7 @@
 							<tr>
 								<td><?php echo $no++; ?></td>
 								<td style="min-width:250px;"><?php echo $u->descript; ?></td>
-								<td><?php echo $u->qty; ?></td>								
+								<td><?php echo $u->qty; ?></td>
 							</tr>
 						<?php
 						}

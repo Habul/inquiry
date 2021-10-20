@@ -15,7 +15,7 @@ class Sj extends CI_Controller
 	}
 
 	public function sj()
-	{	
+	{
 		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
 		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
 		$this->load->view('dashboard/v_header');
@@ -157,4 +157,12 @@ class Sj extends CI_Controller
 		}
 	}
 
+	public function sj_print()
+	{
+		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
+		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('sj/v_sj', $data);
+		$this->load->view('dashboard/v_footer');
+	}
 }

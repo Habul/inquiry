@@ -87,7 +87,9 @@
 			"paging": true,
 			"lengthChange": false,
 			"searching": false,
-			"ordering": true,
+			"order": [
+				[2, "desc"]
+			],
 			"info": true,
 			"autoWidth": false,
 			"responsive": true,
@@ -97,7 +99,9 @@
 			"responsive": true,
 			"lengthChange": true,
 			"autoWidth": false,
-			"ordering ": true
+			"order": [
+				[2, "desc"]
+			]
 		});
 		$("#example4").DataTable({
 			"responsive": false,
@@ -106,6 +110,22 @@
 			"autoWidth": false,
 			"buttons": ["csv", "excel", "pdf", "print"]
 		}).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
+		$('#example5').DataTable({
+			"paging": true,
+			"responsive": true,
+			"lengthChange": true,
+			"autoWidth": false,
+			"ordering": true
+		});
+		$('#example6').DataTable({
+			"paging": true,
+			"responsive": true,
+			"lengthChange": true,
+			"autoWidth": false,
+			"order": [
+				[8, "desc"]
+			]
+		});
 	});
 </script>
 <script>

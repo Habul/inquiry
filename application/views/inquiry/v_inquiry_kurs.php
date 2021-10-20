@@ -45,7 +45,7 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example3" class="table table table-bordered table-striped">
+							<table id="example5" class="table table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th width="1%">NO</th>

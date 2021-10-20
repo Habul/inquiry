@@ -113,7 +113,7 @@ class M_data extends CI_Model
 		return $data->result();
 	}
 
-	public function select_by_id($id)
+	public function select_by_sales($id)
 	{
 		$sql = "SELECT COUNT(sales) AS jmlh FROM inquiry where sales = '{$id}'";
 
@@ -121,6 +121,7 @@ class M_data extends CI_Model
 
 		return $data->row();
 	}
+
 
 	public function select_by_brand($id)
 	{
