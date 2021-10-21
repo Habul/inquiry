@@ -157,12 +157,12 @@ class Sj extends CI_Controller
 		}
 	}
 
-	public function sj_print()
+	public function sj_print($no_po)
 	{
 		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
-		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
+		$data['getSjhs'] = $this->m_data->select_sjhs($no_po)->result();	
 		$this->load->view('dashboard/v_header');
-		$this->load->view('sj/v_sj', $data);
+		$this->load->view('sj/hs_sj', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 }

@@ -123,8 +123,17 @@
 			"lengthChange": true,
 			"autoWidth": false,
 			"order": [
-				[8, "desc"]
+				[3, "desc"]
 			]
+		});
+		$('#example7').DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true, 
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
 		});
 	});
 </script>

@@ -51,7 +51,7 @@
 										<th width="1%">NO</th>
 										<th>Currency</th>
 										<th>Amount</th>
-										<th width="15%">Action</th>
+										<th width="15%" style="display:none">Action</th>
 									</tr>
 								</thead>
 								<?php

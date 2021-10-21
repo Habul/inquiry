@@ -54,7 +54,7 @@
 										<th>D2</th>
 										<th>User</th>
 										<th>Manufacture/Distributor</th>
-										<th width="12%">Action</th>
+										<th width="12%" style="display:none">Action</th>
 									</tr>
 								</thead>
 								<?php

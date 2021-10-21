@@ -106,7 +106,7 @@ class M_data extends CI_Model
 
 	public function select_sjhs($no_po)
 	{
-		$sql = "SELECT sj_hs.no_po,sj_hs.descript,sj_hs.qty FROM sj_hs INNER JOIN sj_user ON sj_hs.no_po=sj_user.no_po WHERE sj_user.no_po='{$no_po}'";
+		$sql = "SELECT sj_hs.no_po as no_po,sj_hs.descript as descript,sj_hs.qty as qty FROM sj_hs INNER JOIN sj_user ON sj_hs.no_po=sj_user.no_po WHERE sj_user.no_po='{$no_po}'";
 
 		$data = $this->db->query($sql);
 

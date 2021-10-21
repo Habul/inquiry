@@ -41,7 +41,7 @@
 							<table id="example6" class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<th width="12%">Do No</th>
+										<th width="14%">Do No</th>
 										<th>Do Date</th>
 										<th>Due Date</th>
 										<th>No Po</th>
@@ -49,7 +49,6 @@
 										<th>Address</th>
 										<th>City</th>
 										<th>Phone</th>
-										<th>Addtime</th>
 										<th width="12%">Action</th>
 									</tr>
 								</thead>
@@ -66,7 +65,6 @@
 										<td><?php echo $p->address; ?></td>
 										<td><?php echo $p->city; ?></td>
 										<td><?php echo $p->phone; ?></td>
-										<td><?php echo $p->addtime; ?></td>
 										<td style="text-align:center">
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" title="Add Desc SJ"><i class="fa fa-edit"></i></a>
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>" title="Detail & Print"><i class="fa fa-print"></i></a>
@@ -227,11 +225,11 @@
 				<div class="modal-body">
 					<div class="row no-print">
 						<div class="col-12">
-							<a href="<?php echo base_url('sj/sj_print') ?>" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+							<a href="<?php echo base_url('sj/sj_print') ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
 						</div>
 					</div>
-					<br />
-					<table id="example2" class="table table-bordered table-striped">
+					<br />				
+					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
 								<th>No</th>
@@ -254,7 +252,7 @@
 						?>
 					</table>
 				</div>
-				<div class="modal-footer justify-content-between">
+				<div class="modal-footer justify-content-center">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
 				</div>
 			</div>
