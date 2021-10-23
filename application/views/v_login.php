@@ -19,25 +19,12 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="#"><b>Intisera</b> Login</a>
+      <a href="#"><img src="<?php echo base_url(); ?>gambar/website/Intisera2.PNG" style="width:300px;height:130px;">
     </div>
     <!-- /.login-logo -->
-
-    <?php
-    if (isset($_GET['alert'])) {
-      if ($_GET['alert'] == "gagal") {
-        echo "<div class='alert alert-danger font-weight-bold text-center'>Maaf! Username & Password Salah.</div>";
-      } else if ($_GET['alert'] == "belum_login") {
-        echo "<div class='alert alert-danger font-weight-bold text-center'>Anda Harus Login Terlebih Dulu!</div>";
-      } else if ($_GET['alert'] == "logout") {
-        echo "<div class='alert alert-success font-weight-bold text-center'>Anda Telah Logout!</div>";
-      }
-    }
-    ?>
-
-    <div class="card">
+     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg"><b>Log Into Your Account</b></p>
         <form action="<?php echo base_url() . 'login/aksi' ?>" method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Username" name="username" required>
@@ -75,6 +62,18 @@
       </div>
       <!-- /.login-card-body -->
     </div>
+    <br/>
+     <?php
+    if (isset($_GET['alert'])) {
+      if ($_GET['alert'] == "gagal") {
+        echo "<div class='alert alert-danger font-weight-bold text-center'>Maaf! Username & Password Salah.</div>";
+      } else if ($_GET['alert'] == "belum_login") {
+        echo "<div class='alert alert-danger font-weight-bold text-center'>Anda Harus Login Terlebih Dulu!</div>";
+      } else if ($_GET['alert'] == "logout") {
+        echo "<div class='alert alert-success font-weight-bold text-center'>Anda Telah Logout!</div>";
+      }
+    }
+    ?>
   </div>
   <!-- /.login-box -->
   <!-- jQuery -->
