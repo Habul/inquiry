@@ -66,7 +66,7 @@
 										<td><?php echo $p->city; ?></td>
 										<td><?php echo $p->phone; ?></td>
 										<td style="text-align:center">
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" title="Add Desc SJ"><i class="fa fa-edit"></i></a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" title="Add Desc SJ"><i class="fa fa-plus-square"></i></a>
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>" title="Detail & Print"><i class="fa fa-print"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
@@ -225,10 +225,10 @@
 				<div class="modal-body">
 					<div class="row no-print">
 						<div class="col-12">
-							<a href="<?php echo base_url('sj/sj_print') ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
+							<a href="<?php echo base_url() . 'sj/sj_print/' . $p->no_po; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
 						</div>
 					</div>
-					<br />				
+					<br />
 					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>

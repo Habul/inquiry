@@ -20,8 +20,8 @@
 				<div class="col-lg-3 col-xs-6">
 					<div class="small-box bg-info">
 						<div class="inner">
-							<h3><?php echo $jumlah_artikel ?></h3>
-							<p>Jumlah Artikel</p>
+							<h3><?php echo $jumlah_SJ ?></h3>
+							<p>Jumlah Surat Jalan</p>
 						</div>
 						<div class="icon">
 							<i class="ion ion-android-list"></i>
@@ -69,8 +69,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
-					<!-- AREA CHART -->
+				<!--div class="col-md-6">
 					<div class="card card-primary">
 						<div class="card-header">
 							<h3 class="card-title">Pie Chart</h3>
@@ -86,11 +85,10 @@
 						<div class="card-body">
 							<canvas id="pieChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
 						</div>
-						<!-- /.card-body -->
 					</div>
-				</div>
+				<div>
 
-				<div class="col-md-6">
+				<div-- class="col-md-6">
 					<div class="card card-danger">
 						<div class="card-header">
 							<h3 class="card-title">Pie Chart</h3>
@@ -106,9 +104,8 @@
 						<div class="card-body">
 							<canvas id="pieChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
 						</div>
-						<!-- /.card-body -->
 					</div>
-				</div>
+				</div-->
 			</div>
 		</div>
 	</section>
