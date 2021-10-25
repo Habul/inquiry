@@ -33,40 +33,40 @@ class Dashboard extends CI_Controller
 		$data['total_buffer'] = $this->m_data->tot_buffer();
 		// count inquiry belum terjawab
 
-		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+		//$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 
-		$sales 				= $this->m_data->select_pengguna();
-		$index = 0;
-		foreach ($sales as $value) {
-			$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
+		//$sales 				= $this->m_data->select_pengguna();
+		//$index = 0;
+		//foreach ($sales as $value) {
+			//$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
-			$pengguna_sales = $this->m_data->select_by_sales($value->pengguna_nama);
+			//$pengguna_sales = $this->m_data->select_by_sales($value->pengguna_nama);
 
-			$data_sales[$index]['value'] = $pengguna_sales->jmlh;
-			$data_sales[$index]['color'] = $color;
-			$data_sales[$index]['highlight'] = $color;
-			$data_sales[$index]['label'] = $value->pengguna_nama;
+			//$data_sales[$index]['value'] = $pengguna_sales->jmlh;
+			//$data_sales[$index]['color'] = $color;
+			//$data_sales[$index]['highlight'] = $color;
+			//$data_sales[$index]['label'] = $value->pengguna_nama;
 
-			$index++;
-		}
+			//$index++;
+		//}
 
-		$brand 				= $this->m_data->select_master();
-		$index = 0;
-		foreach ($brand as $value) {
-			$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
+		//$brand 				= $this->m_data->select_master();
+		//$index = 0;
+		//foreach ($brand as $value) {
+			//$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
-			$pengguna_brand = $this->m_data->select_by_brand($value->brand);
+			//$pengguna_brand = $this->m_data->select_by_brand($value->brand);
 
-			$data_brand[$index]['value'] = $pengguna_brand->jmlh;
-			$data_brand[$index]['color'] = $color;
-			$data_brand[$index]['highlight'] = $color;
-			$data_brand[$index]['label'] = $value->brand;
+			//$data_brand[$index]['value'] = $pengguna_brand->jmlh;
+			//$data_brand[$index]['color'] = $color;
+			//$data_brand[$index]['highlight'] = $color;
+			//$data_brand[$index]['label'] = $value->brand;
 
-			$index++;
-		}
+			//$index++;
+		//}
 
-		$data['data_sales'] = json_encode($data_sales);
-		$data['data_brand'] = json_encode($data_brand);
+		//$data['data_sales'] = json_encode($data_sales);
+		//$data['data_brand'] = json_encode($data_brand);
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index', $data);
 		$this->load->view('dashboard/v_footer');

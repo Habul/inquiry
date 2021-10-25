@@ -93,7 +93,7 @@
       <!-- Table row -->
       <div class="row">
         <div class="col-12 table-responsive-sm">
-          <table class="table table-bordered table-sm">
+          <table border="1" width="100%" style="text-align:center;" class="table table-bordered table-sm">
             <thead>
               <tr style="text-align:center">
                 <th>No</th>
@@ -185,9 +185,4 @@
   <!-- ./wrapper -->
   <!-- Page specific script -->
 </body>
-
 </html>
-
-<script>
-  window.addEventListener("load", window.print());
-</script>

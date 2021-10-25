@@ -26,7 +26,7 @@
 						<div class="icon">
 							<i class="ion ion-android-list"></i>
 						</div>
-						<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="<?php echo base_url('sj/sj') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 

@@ -162,8 +162,13 @@ class Sj extends CI_Controller
 		$where = array(
 			'no_po' => $id
 		);
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "Surat Jalan.pdf";
 		$data['sj_user'] = $this->m_data->edit_data($where, 'sj_user')->result();
-		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
-		$this->load->view('sj/hs_sj', $data);
+		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();	
+		$this->pdf->load_view('sj/hs_sj', $data);
+		$this->pdf->render();
+		$this->pdf->stream("SJ.pdf");
 	}
 }
