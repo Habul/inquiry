@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Sj extends CI_Controller
+class sj extends CI_Controller
 {
 
 	function __construct()
@@ -159,16 +159,13 @@ class Sj extends CI_Controller
 
 	public function sj_print($id)
 	{
+		//$this->load->library('mypdf');
 		$where = array(
 			'no_po' => $id
-		);
-		$this->load->library('pdf');
-		$this->pdf->setPaper('A4', 'potrait');
-		$this->pdf->filename = "Surat Jalan.pdf";
+		);	
 		$data['sj_user'] = $this->m_data->edit_data($where, 'sj_user')->result();
-		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();	
-		$this->pdf->load_view('sj/hs_sj', $data);
-		$this->pdf->render();
-		$this->pdf->stream("SJ.pdf");
+		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
+		$this->load->view('sj/hs_sj', $data);			
+		//$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
 	}
 }

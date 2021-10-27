@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<style type="text/css" media="print">
+        @page 
+        {
+            size: auto;   /* auto is the current printer page size */
+            margin: 2mm;  /* this affects the margin in the printer settings */
+        }
+        body 
+        {
+            margin: 0px;  /* the margin on the content before printing */
+        }
+    </style>
+
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Google Font: Source Sans Pro -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
 </head>
 
@@ -92,50 +101,25 @@
 
       <!-- Table row -->
       <div class="row">
-        <div class="col-12 table-responsive-sm">
-          <table border="1" width="100%" style="text-align:center;" class="table table-bordered table-sm">
-            <thead>
-              <tr style="text-align:center">
-                <th>No</th>
-                <th width="80%">Description</th>
-                <th>Qty</th>
+        <div class="col-12 table-responsive-sm" >
+          <table class="table table-bordered table-sm">
+            <thead style="border: 2px solid black">
+              <tr style="text/align"> 
+                <th style="border: 2px solid black">No</th>
+                <th style="border: 2px solid black" width="80%">Description</th>
+                <th style="border: 2px solid black">Qty</th>
               </tr>
             </thead>
             <?php
             $no = 1; ?>
             <?php foreach ($sj_hs as $h) : ?>
-              <tbody>
-                <tr>
-                  <td style="text-align:center"><?php echo $no++; ?></td>
-                  <td><?php echo $h->descript; ?></td>
-                  <td style="text-align:center"><?php echo $h->qty; ?></td>
+              <tbody> 
+                <tr style="border: 2px solid black">
+                  <td style="border: 2px solid black"><?php echo $no++; ?></td>
+                  <td style="border: 2px solid black"><?php echo $h->descript; ?></td>
+                  <td style="border: 2px solid black"><?php echo $h->qty; ?></td>
                 </tr>
               <?php endforeach; ?>
-              <tr>
-                <td style="text-align:center">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td style="text-align:center">&nbsp;</td>
-              </tr>
-              <tr>
-                <td style="text-align:center">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td style="text-align:center">&nbsp;</td>
-              </tr>
-              <tr>
-                <td style="text-align:center">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td style="text-align:center">&nbsp;</td>
-              </tr>
-              <tr>
-                <td style="text-align:center">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td style="text-align:center">&nbsp;</td>
-              </tr>
-              <tr>
-                <td style="text-align:center">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td style="text-align:center">&nbsp;</td>
-              </tr>
               </tbody>
           </table>
         </div>
@@ -186,3 +170,7 @@
   <!-- Page specific script -->
 </body>
 </html>
+
+<script>
+  window.addEventListener("load", window.print());
+</script>

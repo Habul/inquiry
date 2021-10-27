@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Intinusa Sejahtera International</title>
+	<title>Intisera | Home</title>
 	<link rel='icon' href="<?php echo base_url(); ?>gambar/website/Untitled-1-02.PNG" type="image/gif">
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

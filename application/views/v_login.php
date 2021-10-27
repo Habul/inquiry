@@ -19,7 +19,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="#"><img src="<?php echo base_url(); ?>gambar/website/Intisera2.PNG" style="width:300px;height:130px;">
+      <a href="#"><img src="<?php echo base_url(); ?>gambar/website/Intisera2.PNG" style="width:250px;height:110px;">
     </div>
     <!-- /.login-logo -->
      <div class="card">

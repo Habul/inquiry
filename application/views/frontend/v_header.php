@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- Favicons -->
-  <link href="<?php echo base_url().'/gambar/website/'.$pengaturan->logo; ?>" rel="icon" type="image/gif">
+  <link rel='icon' href="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" type="image/gif">
   <link href="<?php echo base_url(); ?>assets_frontend/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap CSS File -->
@@ -39,9 +39,7 @@
   <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
 
-      <img src="<?php echo base_url().'/gambar/website/'.$pengaturan->logo; ?>" width="30px" class="mr-2">
-
-      <a class="navbar-brand js-scroll" href="#page-top"><?php echo $pengaturan->nama ?> </a>
+      <img src="<?php echo base_url().'/gambar/website/'.$pengaturan->logo; ?>" width="150px" class="mr-2">
 
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">

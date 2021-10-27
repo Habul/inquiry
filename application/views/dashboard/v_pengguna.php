@@ -35,7 +35,7 @@
 										<th>Username</th>
 										<th>Level</th>
 										<th>Status</th>
-										<th width="10%">OPSI</th>
+										<th width="10%"><i class="fa fa-gear"></i></th>
 									</tr>
 								</thead>
 								<?php

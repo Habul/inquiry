@@ -6,7 +6,7 @@
         <div class="container">
           <!--<p class="display-6 color-d">Hello, world!</p>-->
           <h1 class="intro-title mb-4"><?php echo $pengaturan->nama ?></h1>
-          <p class="intro-subtitle"><span class="text-slider-items">Web Developer,Technical Support,Photography,Network Engineer </span><strong class="text-slider"></strong></p>
+          <p class="intro-subtitle"><span class="text-slider-items">IT,Telemarketing,OEM,Finance,Purchase,HRD,Mechanical,Project & Design,GA,Photography </span><strong class="text-slider"></strong></p>
         </div>
       </div>
     </div>
