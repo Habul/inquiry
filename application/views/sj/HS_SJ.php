@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<style type="text/css" media="print">
+<style media="print">
         @page 
         {
-            size: auto;   /* auto is the current printer page size */
-            margin: 2mm;  /* this affects the margin in the printer settings */
+          size: 9.5in 5.5in ;
+          size: landscape;
         }
         body 
         {
             margin: 0px;  /* the margin on the content before printing */
         }
-    </style>
-
-
+</style>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -33,7 +31,7 @@
               <td><img src="<?php echo base_url(); ?>gambar/website/Logo-02.PNG" style="width:400px;height:75px;"></td>
               <td width="30%"></td>
               <td style="text-align:center"><br /><br />
-                <h3>SURAT JALAN</h3>
+                <h3><b>SURAT JALAN</b></h3>
               </td>
             </tr>
             </tr>
@@ -44,7 +42,7 @@
               <td width="30%"></td>
               <td style="text-align:center">
                 <h3>
-                  ( DELIVERY ORDER )</h3>
+                 <b>( DELIVERY ORDER )</b></h3>
               </td>
             </tr>
           </table>
@@ -101,26 +99,26 @@
 
       <!-- Table row -->
       <div class="row">
-        <div class="col-12 table-responsive-sm" >
-          <table class="table table-bordered table-sm">
-            <thead style="border: 2px solid black">
-              <tr style="text/align"> 
-                <th style="border: 2px solid black">No</th>
-                <th style="border: 2px solid black" width="80%">Description</th>
-                <th style="border: 2px solid black">Qty</th>
+        <div class="col-12 table-responsive-sm">
+          <table class="table table-bordered table-sm" style="border: 2px solid black">
+          <thead style="border: 2px solid black">
+              <tr style="text-align:center"> 
+                <th><b>No</b></th>
+                <th width="80%"><b>Description</b></th>
+                <th><b>Qty</b></th>
               </tr>
-            </thead>
+          </thead>
             <?php
             $no = 1; ?>
             <?php foreach ($sj_hs as $h) : ?>
-              <tbody> 
-                <tr style="border: 2px solid black">
-                  <td style="border: 2px solid black"><?php echo $no++; ?></td>
-                  <td style="border: 2px solid black"><?php echo $h->descript; ?></td>
-                  <td style="border: 2px solid black"><?php echo $h->qty; ?></td>
+              <tbody>
+                <tr>
+                  <td style="text-align:center"><?php echo $no++; ?></td>
+                  <td><?php echo $h->descript; ?></td>
+                  <td style="text-align:center"><?php echo $h->qty; ?></td>
                 </tr>
-              <?php endforeach; ?>
               </tbody>
+              <?php endforeach; ?>
           </table>
         </div>
         <!-- /.col -->
@@ -128,17 +126,14 @@
       <div class="row">
         <div class="col-12 table-responsive-sm">
           <table class="table table-borderless table-sm">
-            <thead>
               <tr style="text-align:center">
-                <th>Received By.</th>
-                <th>Delivered By.</th>
-                <th>Warehouse By.</th>
-                <th>Sign By.</th>
+                <td><b>Received By.</b></td>
+                <td><b>Delivered By.</b></td>
+                <td><b>Warehouse By.</b></td>
+                <td><b>Sign By.</b></td>
               </tr>
-            </thead>
             <?php
             $no = 1; ?>
-            <tbody>
               <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -157,7 +152,6 @@
                 <td>.....................</td>
                 <td>.....................</td>
               </tr>
-            </tbody>
           </table>
         </div>
         <!-- /.col -->

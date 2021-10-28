@@ -102,6 +102,7 @@ class sj extends CI_Controller
 		// Wajib isi
 		$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
 		$this->form_validation->set_rules('date_delivery', 'Date Delivery', 'required');
+		$this->form_validation->set_rules('no_po', 'No Po', 'required');
 		$this->form_validation->set_rules('due_date', 'Due Date', 'required');
 		$this->form_validation->set_rules('cust_name', 'Customer Name', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
@@ -114,21 +115,25 @@ class sj extends CI_Controller
 
 			$no_delivery = $this->input->post('no_delivery');
 			$date_delivery = $this->input->post('date_delivery');
+			$no_po = $this->input->post('no_po');
 			$due_date = $this->input->post('due_date');
 			$cust_name = $this->input->post('cust_name');
 			$address = $this->input->post('address');
 			$city = $this->input->post('city');
 			$phone = $this->input->post('phone');
+			$addtime2 = $this->input->post('addtime2');
 			if ($this->form_validation->run() != false) {
 				$data = array(
 
 					'no_delivery' => $no_delivery,
 					'date_delivery' => $date_delivery,
 					'due_date' => $due_date,
+					'no_po' => $no_po,
 					'cust_name' => $cust_name,
 					'address' => $address,
 					'city' => $city,
-					'phone' => $phone
+					'phone' => $phone,
+					'addtime2' => $addtime2
 				);
 			}
 
@@ -136,10 +141,10 @@ class sj extends CI_Controller
 				'no_po' => $id
 			);
 			$this->m_data->update_data($where, $data, 'sj_user');
-			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('po_no', TRUE) . ' !');
+			$this->session->set_flashdata('berhasil', 'SJ successfully Update, No Po : ' . $this->input->post('no_po', TRUE) . ' !');
 			redirect(base_url() . 'sj/sj');
 		} else {
-			$this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
+			$this->session->set_flashdata('gagal', 'SJ failed to Update, Please repeat !');
 			redirect(base_url() . 'sj/sj');
 		}
 	}

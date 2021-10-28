@@ -49,7 +49,7 @@
 										<th>Address</th>
 										<th>City</th>
 										<th>Phone</th>
-										<th width="12%">Action</th>
+										<th width="16%">Action</th>
 									</tr>
 								</thead>
 								<?php
@@ -64,9 +64,10 @@
 										<td><?php echo $p->cust_name; ?></td>
 										<td><?php echo $p->address; ?></td>
 										<td><?php echo $p->city; ?></td>
-										<td><?php echo $p->phone; ?></td>
+										<td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($p->phone)), 2); ?></td>
 										<td style="text-align:center">
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" title="Add Desc SJ"><i class="fa fa-plus-square"></i></a>
+											<a class="btn btn-dark btn-sm" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_po; ?>" title="Edit SJ"><i class="fa fa-edit"></i></a>
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>" title="Detail & Print"><i class="fa fa-print"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
@@ -150,11 +151,11 @@
 							<input type="text" name="city" class="form-control" placeholder="Input City..." required>
 							<?php echo form_error('city'); ?>
 						</div>
-					</div>
+					</div> 	
 					<div class="form-group">
 						<label class="control-label col-xs-3">Phone *</label>
 						<div class="col-xs-9">
-							<input type="text" name="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+							<input type="number" name="phone" class="form-control" placeholder="Input No Phone.." data-mask data-mask required>
 							<?php echo form_error('phone'); ?>
 						</div>
 					</div>
@@ -168,6 +169,93 @@
 	</div>
 </div>
 <!-- end modal add Sj -->
+
+<!-- Modal Edit Sj -->
+<?php foreach ($sj_user as $p) : ?>
+<div class="modal fade" id="modal_edit_sj<?php echo $p->no_po; ?>">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="col-12 modal-title text-center">Add Surat Jalan
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h4>
+			</div>
+			<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_edit') ?>">
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="control-label col-xs-3">No Delivery Order *</label>
+						<div class="col-xs-9">
+							<input type="text" name="no_delivery" class="form-control" value="<?php echo $p->no_delivery; ?>" required>
+							<?php echo form_error('no_delivery'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-3">Date Delivery *</label>
+						<div class="col-xs-9">
+							<input type="date" name="date_delivery" class="form-control" value="<?php echo $p->date_delivery; ?>" required>
+							<?php echo form_error('date_delivery'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-3">Due Date *</label>
+						<div class="col-xs-9">
+							<?php
+							$now = $this->load->helper('date');
+							$format = "%Y-%m-%d %H:%i:%s";
+							?>
+							<input type="hidden" name="addtime2" readonly class="form-control" value="<?php echo mdate($format); ?>">
+							<input type="date" name="due_date" class="form-control" value="<?php echo $p->due_date; ?>" required>
+							<?php echo form_error('due_date'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-3">No Po *</label>
+						<div class="col-xs-9">
+							<input type="number" name="no_po" class="form-control" value="<?php echo $p->no_po; ?>" required>
+							<?php echo form_error('no_po'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-3">Cust Name *</label>
+						<div class="col-xs-9">
+							<input type="text" name="cust_name" class="form-control" value="<?php echo $p->cust_name; ?>" required>
+							<?php echo form_error('cust_name'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-3">Address *</label>
+						<div class="col-xs-9">
+							<textarea name="address" class="form-control" required><?php echo $p->address; ?></textarea>
+							<?php echo form_error('address'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-3">City *</label>
+						<div class="col-xs-9">
+							<input type="text" name="city" class="form-control" value="<?php echo $p->city; ?>" required>
+							<?php echo form_error('city'); ?>
+						</div>
+					</div> 	
+					<div class="form-group">
+						<label class="control-label col-xs-3">Phone *</label>
+						<div class="col-xs-9">
+							<input type="text" name="phone" class="form-control" value="<?php echo $p->phone; ?>" required>
+							<?php echo form_error('phone'); ?>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+					<button class="btn btn-primary"><i class="fa fa-check"></i> Update</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<?php endforeach; ?>
+<!-- end modal Edit Sj -->
 
 <!-- modal add Desc SJ -->
 <?php foreach ($sj_user as $p) : ?>
@@ -226,6 +314,7 @@
 					<div class="row no-print">
 						<div class="col-12">
 							<a href="<?php echo base_url() . 'sj/sj_print/' . $p->no_po; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
+							<a data-toggle="modal" data-target="#modal_edit_desc<?php echo $p->no_po; ?>" class="btn btn-warning float-left"><i class="fas fa-edit"></i> Edit</a>
 						</div>
 					</div>
 					<br />
