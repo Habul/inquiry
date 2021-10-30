@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
 <style media="print">
-        @page 
-        {
-          size: 9.5in 5.5in ;
-          size: landscape;
-        }
-        body 
-        {
-            margin: 0px;  /* the margin on the content before printing */
-        }
+  @page {
+    size: 9.5in 5.5in;
+    size: landscape;
+  }
+
+  body {
+    margin: 0px;
+    /* the margin on the content before printing */
+  }
 </style>
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
@@ -42,7 +42,8 @@
               <td width="30%"></td>
               <td style="text-align:center">
                 <h3>
-                 <b>( DELIVERY ORDER )</b></h3>
+                  <b>( DELIVERY ORDER )</b>
+                </h3>
               </td>
             </tr>
           </table>
@@ -101,13 +102,13 @@
       <div class="row">
         <div class="col-12 table-responsive-sm">
           <table class="table table-bordered table-sm" style="border: 2px solid black">
-          <thead style="border: 2px solid black">
-              <tr style="text-align:center"> 
+            <thead style="border: 2px solid black">
+              <tr style="text-align:center">
                 <th><b>No</b></th>
                 <th width="80%"><b>Description</b></th>
                 <th><b>Qty</b></th>
               </tr>
-          </thead>
+            </thead>
             <?php
             $no = 1; ?>
             <?php foreach ($sj_hs as $h) : ?>
@@ -118,7 +119,7 @@
                   <td style="text-align:center"><?php echo $h->qty; ?></td>
                 </tr>
               </tbody>
-              <?php endforeach; ?>
+            <?php endforeach; ?>
           </table>
         </div>
         <!-- /.col -->
@@ -126,32 +127,32 @@
       <div class="row">
         <div class="col-12 table-responsive-sm">
           <table class="table table-borderless table-sm">
-              <tr style="text-align:center">
-                <td><b>Received By.</b></td>
-                <td><b>Delivered By.</b></td>
-                <td><b>Warehouse By.</b></td>
-                <td><b>Sign By.</b></td>
-              </tr>
+            <tr style="text-align:center">
+              <td><b>Received By.</b></td>
+              <td><b>Delivered By.</b></td>
+              <td><b>Warehouse By.</b></td>
+              <td><b>Sign By.</b></td>
+            </tr>
             <?php
             $no = 1; ?>
-              <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr style="text-align:center">
-                <td>.....................</td>
-                <td>.....................</td>
-                <td>.....................</td>
-                <td>.....................</td>
-              </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr style="text-align:center">
+              <td>.....................</td>
+              <td>.....................</td>
+              <td>.....................</td>
+              <td>.....................</td>
+            </tr>
           </table>
         </div>
         <!-- /.col -->
@@ -163,6 +164,7 @@
   <!-- ./wrapper -->
   <!-- Page specific script -->
 </body>
+
 </html>
 
 <script>

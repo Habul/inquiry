@@ -97,6 +97,37 @@ class sj extends CI_Controller
 		}
 	}
 
+	public function sj_update_edit()
+	{
+		// Wajib isi
+		$this->form_validation->set_rules('descript', 'No Delivery', 'required');
+		$this->form_validation->set_rules('qty', 'Date Delivery', 'required');
+
+		if ($this->form_validation->run() != false) {
+			$id = $this->input->post('id');
+			$descript = $this->input->post('descript');
+			$qty = $this->input->post('qty');
+
+			if ($this->form_validation->run() != false) {
+				$data = array(
+					'descript' => $descript,
+					'qty' => $qty
+				);
+			}
+
+			$where = array(
+				'no_id' => $id
+			);
+
+			$this->m_data->update_data($where, $data, 'sj_hs');
+			$this->session->set_flashdata('berhasil', 'Desc successfully Update, No Po : ' . $this->input->post('no_po', TRUE) . ' !');
+			redirect(base_url() . 'sj/sj');
+		} else {
+			$this->session->set_flashdata('gagal', 'SJ failed to Update, Please repeat !');
+			redirect(base_url() . 'sj/sj');
+		}
+	}
+
 	public function sj_edit()
 	{
 		// Wajib isi
@@ -167,10 +198,10 @@ class sj extends CI_Controller
 		//$this->load->library('mypdf');
 		$where = array(
 			'no_po' => $id
-		);	
+		);
 		$data['sj_user'] = $this->m_data->edit_data($where, 'sj_user')->result();
 		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
-		$this->load->view('sj/hs_sj', $data);			
+		$this->load->view('sj/hs_sj', $data);
 		//$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
 	}
 }

@@ -76,7 +76,7 @@
 
 <!-- ============ MODAL VIEW BUFFER =============== -->
 <?php foreach ($buffer as $p) : ?>
-  <div class="modal fade" id="modal_edit<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+  <div class="modal fade" id="modal_edit<?php echo $p->id_buffer; ?>" tabindex="-1" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -161,8 +161,8 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Kembali</button>
+          <div class="modal-footer justify-content-center">
+            <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
           </div>
         </form>
       </div>

@@ -48,7 +48,7 @@
 							<table id="example5" class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<th width="1%">NO</th>
+										<th width="1%">No</th>
 										<th>Brand Produk</th>
 										<th>D1</th>
 										<th>D2</th>
@@ -90,7 +90,7 @@
 </div>
 
 <!-- Bootstrap modal Master -->
-<div class="modal fade" id="modal_add_master" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<div class="modal fade" id="modal_add_master" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -104,9 +104,9 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<?php
-						$id_master = $this->db->select('id_master')->order_by('id_master', "desc")->limit(1)->get('master')->row();
+						$cek = $this->db->select_max('id_master')->get('master')->row();
 						?>
-						<input type="hidden" name="id_master" class="form-control" value=<?php echo $id_master->id_master + 1 ?>>
+						<input type="hidden" name="id_master" class="form-control" value=<?php echo $cek->id_master + 1 ?>>
 						<?php echo form_error('id_master'); ?>
 					</div>
 					<div class="form-group">
@@ -157,7 +157,7 @@
 
 <!-- ============ MODAL EDIT MASTER =============== -->
 <?php foreach ($master as $p) : ?>
-	<div class="modal fade" id="modal_edit<?php echo $p->id_master; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+	<div class="modal fade" id="modal_edit<?php echo $p->id_master; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -218,7 +218,7 @@
 <!--END MODAL EDIT MASTER-->
 
 <!--add MODAL import-->
-<div class="modal fade" id="modal_import_master" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<div class="modal fade" id="modal_import_master" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -246,7 +246,7 @@
 
 <!--MODAL HAPUS-->
 <?php foreach ($master as $p) : ?>
-	<div class="modal fade" id="modal_hapus<?php echo $p->id_master; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="modal_hapus<?php echo $p->id_master; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">

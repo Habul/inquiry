@@ -99,7 +99,7 @@
 
 
 <!-- modal add inquiry -->
-<div class="modal fade" id="modal_add_inquiry" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<div class="modal fade" id="modal_add_inquiry" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -115,7 +115,7 @@
 						<label class="control-label col-xs-3">Nama Sales</label>
 						<div class="col-xs-9">
 							<?php
-							$cek = $this->db->select('inquiry_id')->order_by('inquiry_id', "desc")->limit(1)->get('inquiry')->row();
+							$cek = $this->db->select_max('inquiry_id')->get('inquiry')->row();
 							?>
 							<input type="hidden" name="inquiry_id" class="form-control" value="<?php echo $cek->inquiry_id + 1; ?> ">
 							<?php
@@ -207,7 +207,7 @@
 
 <!-- ============ MODAL EDIT SALES =============== -->
 <?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_edit<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+	<div class="modal fade" id="modal_edit<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -296,7 +296,7 @@
 
 <!-- ============ MODAL EDIT PURC =============== -->
 <?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_edit_purch<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+	<div class="modal fade" id="modal_edit_purch<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
 		<<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -468,7 +468,7 @@
 
 <!--MODAL HAPUS-->
 <?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">

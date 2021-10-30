@@ -1,4 +1,3 @@
-
 <div class="intro intro-single route bg-image" style="background-image: url(img/overlay-bg.jpg)">
   <div class="overlay-mf"></div>
   <div class="intro-content display-table">
@@ -27,16 +26,16 @@
     <div class="row">
       <div class="col-md-8">
 
-        <?php foreach($artikel as $a){ ?>
+        <?php foreach ($artikel as $a) { ?>
 
           <div class="post-box">
             <div class="post-thumb">
-              <?php if($a->artikel_sampul != ""){ ?>
+              <?php if ($a->artikel_sampul != "") { ?>
                 <img src="<?php echo base_url(); ?>gambar/artikel/<?php echo $a->artikel_sampul ?>" alt="<?php echo $a->artikel_judul ?>" class="img-fluid">
               <?php } ?>
             </div>
             <div class="post-meta">
-              <h1 class="article-title"><a href="<?php echo base_url().$a->artikel_slug ?>"><?php echo $a->artikel_judul ?></a></h1>
+              <h1 class="article-title"><a href="<?php echo base_url() . $a->artikel_slug ?>"><?php echo $a->artikel_judul ?></a></h1>
               <ul>
                 <li>
                   <span class="ion-ios-person"></span>
@@ -62,4 +61,4 @@
     </div>
   </div>
 </section>
-  <!--/ Section Blog-Single End /
+<!--/ Section Blog-Single End /

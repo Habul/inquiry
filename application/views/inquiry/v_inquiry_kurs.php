@@ -48,7 +48,7 @@
 							<table id="example5" class="table table table-bordered table-striped">
 								<thead>
 									<tr>
-										<th width="1%">NO</th>
+										<th width="1%">No</th>
 										<th>Currency</th>
 										<th>Amount</th>
 										<th width="15%" style="display:none">Action</th>
@@ -84,7 +84,7 @@
 </div>
 
 <!-- Bootstrap modal kurs -->
-<div class="modal fade" id="modal_add_kurs" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<div class="modal fade" id="modal_add_kurs" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -98,9 +98,9 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<?php
-						$id_kurs = $this->db->select('id_kurs')->order_by('id_kurs', "desc")->limit(1)->get('kurs')->row();
+						$cek = $this->db->select_max('id_kurs')->get('kurs')->row();
 						?>
-						<input type="hidden" name="id_kurs" class="form-control" value=<?php echo $id_kurs->id_kurs + 1 ?>>
+						<input type="hidden" name="id_kurs" class="form-control" value=<?php echo $cek->id_kurs + 1 ?>>
 						<?php echo form_error('id_kurs'); ?>
 					</div>
 					<div class="form-group">
@@ -130,7 +130,7 @@
 
 <!-- ============ MODAL EDIT KURS =============== -->
 <?php foreach ($kurs as $p) : ?>
-	<div class="modal fade" id="modal_edit<?php echo $p->id_kurs; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+	<div class="modal fade" id="modal_edit<?php echo $p->id_kurs; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -170,7 +170,7 @@
 <!--END MODAL EDIT KURS-->
 
 <!--add MODAL import-->
-<div class="modal fade" id="modal_import_kurs" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<div class="modal fade" id="modal_import_kurs" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -199,7 +199,7 @@
 
 <!--MODAL HAPUS-->
 <?php foreach ($kurs as $p) : ?>
-	<div class="modal fade" id="modal_hapus<?php echo $p->id_kurs; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="modal_hapus<?php echo $p->id_kurs; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">

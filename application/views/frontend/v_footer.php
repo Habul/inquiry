@@ -1,4 +1,3 @@
-
 <!--/ Section Contact-Footer Star /-->
 <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(<?php echo base_url(); ?>assets_frontend/img/overlay-bg.jpg)">
   <div class="overlay-mf"></div>
@@ -18,7 +17,7 @@
             </div>
             <p class="copyright">&copy; Copyright <strong><?php echo $pengaturan->nama ?></strong>. All Rights Reserved</p>
             <div class="credits">
-              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -49,4 +48,5 @@
 <script src="<?php echo base_url(); ?>assets_frontend/js/main.js"></script>
 
 </body>
+
 </html>

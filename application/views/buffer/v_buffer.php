@@ -96,7 +96,7 @@
 	<!-- /.content -->
 </div>
 <!-- modal add buffer -->
-<div class="modal fade" id="modal_add_buffer">
+<div class="modal fade" id="modal_add_buffer" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -112,9 +112,9 @@
 						<label class="control-label col-xs-3">Nama Sales</label>
 						<div class="col-xs-9">
 							<?php
-							$cek = $this->db->select('id_buffer')->order_by('id_buffer', "desc")->limit(1)->get('buffer')->row();
+							$cek = $this->db->select_max('id_buffer')->get('buffer')->row();
 							?>
-							<input type="hidden" name="id_buffer" readonly class="form-control" value="<?php echo $cek->id_buffer + 1 ?>">
+							<input type="hidden" name="id_buffer" readonly class="form-control" value="<?php echo $cek->id_buffer + 1; ?>">
 							<?php
 							$id_user = $this->session->userdata('id');
 							$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
@@ -180,7 +180,7 @@
 
 <!-- ============ MODAL EDIT SALES =============== -->
 <?php foreach ($buffer as $p) : ?>
-	<div class="modal fade" id="modal_editsales<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+	<div class="modal fade" id="modal_editsales<?php echo $p->id_buffer; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -259,7 +259,7 @@
 
 <!-- ============ MODAL EDIT WH =============== -->
 <?php foreach ($buffer as $p) : ?>
-	<div class="modal fade" id="modal_edit_wh<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+	<div class="modal fade" id="modal_edit_wh<?php echo $p->id_buffer; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -384,7 +384,7 @@
 
 <!--MODAL HAPUS-->
 <?php foreach ($buffer as $p) : ?>
-	<div class="modal fade" id="modal_hapus<?php echo $p->id_buffer; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="modal_hapus<?php echo $p->id_buffer; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">
@@ -396,7 +396,7 @@
 				</div>
 				<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_hapus') ?>">
 					<div class="modal-body">
-						<input type="hidden" name="id" value="<?php echo $p->id_buffer; ?>">
+						<input type="hidden" name="id_buffer" value="<?php echo $p->id_buffer; ?>">
 						<p>Apakah Anda yakin mau memhapus Master ini?</p>
 					</div>
 					<div class="modal-footer justify-content-between">

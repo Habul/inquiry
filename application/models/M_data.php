@@ -61,6 +61,14 @@ class M_data extends CI_Model
 		$this->db->update($table, $data);
 	}
 
+	function update_multi($where, $where2, $where3, $data, $table)
+	{
+		$this->db->where($where);
+		$this->db->where($where2);
+		$this->db->where($where3);
+		$this->db->update($table, $data);
+	}
+
 	// fungsi untuk menghapus data dari database
 	function delete_data($where, $table)
 	{
