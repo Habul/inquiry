@@ -113,7 +113,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Amount *</label>
 						<div class="col-xs-9">
-							<input type="number" name="amount" class="form-control" placeholder="Input amount..." required>
+							<input type="number" name="amount" class="form-control" min="1" placeholder="Input amount..." required>
 							<?php echo form_error('amount'); ?>
 						</div>
 					</div>

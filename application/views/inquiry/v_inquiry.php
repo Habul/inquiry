@@ -174,9 +174,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Quantity *</label>
+						<label class="control-label col-xs-3">Qty *</label>
 						<div class="col-xs-9">
-							<input type="number" name="qty" class="form-control" placeholder="Input qty..." required>
+							<input type="number" name="qty" class="form-control" min="1" placeholder="Input qty..." required>
 							<?php echo form_error('qty'); ?>
 						</div>
 					</div>
@@ -237,14 +237,14 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">Tanggal</label>
+							<label class="control-label col-xs-3">Tanggal Edit</label>
 							<div class="col-xs-9">
 								<?php
 								$now = $this->load->helper('date');
 								$format = "%Y-%m-%d %H:%i:%s";
 								?>
-								<input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
-								<?php echo form_error('tanggal'); ?>
+								<input type="datetime" name="tanggal2" readonly class="form-control" value="<?php echo mdate($format); ?>">
+								<?php echo form_error('tanggal2'); ?>
 							</div>
 						</div>
 						<div class="form-group">
@@ -262,9 +262,9 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">Quantity *</label>
+							<label class="control-label col-xs-3">Qty *</label>
 							<div class="col-xs-9">
-								<input type="text" name="qty" class="form-control" value="<?php echo $p->qty; ?>" required>
+								<input type="number" name="qty" class="form-control" min="1" value="<?php echo $p->qty; ?>" required>
 								<?php echo form_error('qty'); ?>
 							</div>
 						</div>
@@ -381,7 +381,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Check *</label>
 							<div class="col-xs-9">
-								<input type="number" name="cek" class="form-control" placeholder="Cek.." required>
+								<input type="number" name="cek" class="form-control" min="1" placeholder="Cek.." required>
 								<?php echo form_error('cek'); ?>
 							</div>
 						</div>

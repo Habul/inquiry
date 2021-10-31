@@ -193,6 +193,18 @@ class sj extends CI_Controller
 		}
 	}
 
+	public function sj_desc_hapus()
+	{
+		$id = $this->input->post('no_id'); {
+			$where = array(
+				'no_id' => $id
+			);
+			$this->m_data->delete_data($where, 'sj_hs');
+			$this->session->set_flashdata('berhasil', 'Desc has been deleted !');
+			redirect(base_url() . 'sj/sj');
+		}
+	}
+
 	public function sj_print($id)
 	{
 		//$this->load->library('mypdf');

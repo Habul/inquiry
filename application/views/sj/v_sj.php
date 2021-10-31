@@ -126,7 +126,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Po *</label>
 						<div class="col-xs-9">
-							<input type="number" name="no_po" class="form-control" placeholder="Input No Po..." required>
+							<input type="number" name="no_po" class="form-control" min="1" placeholder="Input No Po..." required>
 							<?php echo form_error('no_po'); ?>
 						</div>
 					</div>
@@ -212,7 +212,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Po *</label>
 							<div class="col-xs-9">
-								<input type="number" name="no_po" class="form-control" value="<?php echo $p->no_po; ?>" required>
+								<input type="number" name="no_po" class="form-control" min="1" value="<?php echo $p->no_po; ?>" required>
 								<?php echo form_error('no_po'); ?>
 							</div>
 						</div>
@@ -259,7 +259,7 @@
 <!-- modal Print Desc SJ -->
 <?php foreach ($sj_user as $p) : ?>
 	<div class="modal fade" id="modal_print<?php echo $p->no_po ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $p->no_po; ?>)
@@ -270,19 +270,19 @@
 				</div>
 				<div class="modal-body">
 					<div class="row no-print">
-						<div class="col-12">
+						<div class="col-12 table-responsive-sm">
 							<a href="<?php echo base_url() . 'sj/sj_print/' . $p->no_po; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
-							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i> Add Desc</a>
+							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i>&nbsp; Add</a>
 						</div>
 					</div>
 					<br />
-					<table class="table table-bordered table-striped">
-						<thead>
+					<table class="table table-bordered table-striped table-sm">
+						<thead style="text-align:center">
 							<tr>
-								<th>No</th>
-								<th>Description</th>
-								<th>Qty</th>
-								<th width="5%">Action</th>
+								<th width="5%">No</th>
+								<th style="min-width:250px;">Description</th>
+								<th width="7%">Qty</th>
+								<th width="9%">Action</th>
 							</tr>
 						</thead>
 						<?php
@@ -291,11 +291,12 @@
 						foreach ($cek->result() as $u) {
 						?>
 							<tr>
-								<td><?php echo $no++; ?></td>
-								<td style="min-width:250px;"><?php echo $u->descript; ?></td>
-								<td><?php echo $u->qty; ?></td>
+								<td style="text-align:center"><?php echo $no++; ?></td>
+								<td><?php echo $u->descript; ?></td>
+								<td style="text-align:center"><?php echo $u->qty; ?></td>
 								<td style="text-align:center">
 									<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_desc<?php echo $u->no_id; ?>" title="Edit Desc SJ"><i class="fa fa-edit"></i></a>
+									<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del_desc<?php echo $u->no_id; ?>" title="Delete Desc SJ"><i class="fa fa-trash"></i></a>
 								</td>
 							</tr>
 						<?php
@@ -337,7 +338,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Qty *</label>
 							<div class="col-xs-9">
-								<input type="number" name="qty" class="form-control" placeholder="Input Qty.." required>
+								<input type="number" name="qty" class="form-control" min="1" step="1" placeholder="Input Qty.." required>
 								<?php echo form_error('qty'); ?>
 							</div>
 						</div>
@@ -380,7 +381,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Qty *</label>
 							<div class="col-xs-9">
-								<input type="number" name="qty" class="form-control" value=<?php echo $u->qty; ?> required>
+								<input type="number" name="qty" class="form-control" min="1" value=<?php echo $u->qty; ?> required>
 								<?php echo form_error('qty'); ?>
 							</div>
 						</div>
@@ -396,7 +397,7 @@
 <?php endforeach; ?>
 <!-- end modal Edit Desc SJ -->
 
-<!--MODAL HAPUS-->
+<!--MODAL HAPUS ALL-->
 <?php foreach ($sj_user as $p) : ?>
 	<div class="modal fade" id="modal_hapus<?php echo $p->no_po; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
@@ -411,6 +412,33 @@
 				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_po" value="<?php echo $p->no_po; ?>">
+						<p>Are you sure delete this ?</p>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<?php endforeach; ?>
+
+<!--MODAL HAPUS DESC-->
+<?php foreach ($sj_hs as $u) : ?>
+	<div class="modal fade" id="modal_del_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content bg-danger">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">Delete Desc SJ
+						<button class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
+				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_desc_hapus') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
 						<p>Are you sure delete this ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">

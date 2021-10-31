@@ -137,7 +137,7 @@ class Inquiry extends CI_Controller
 	{
 		// Wajib isi
 		$this->form_validation->set_rules('sales', 'Nama Sales', 'required');
-		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+		$this->form_validation->set_rules('tanggal2', 'Tanggal', 'required');
 		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
 		$this->form_validation->set_rules('desc', 'Description Product', 'required');
 		$this->form_validation->set_rules('qty', 'Quantity', 'required');
@@ -149,7 +149,7 @@ class Inquiry extends CI_Controller
 			$id = $this->input->post('id');
 
 			$sales = $this->input->post('sales');
-			$tanggal = $this->input->post('tanggal');
+			$tanggal2 = $this->input->post('tanggal2');
 			$brand = $this->input->post('brand');
 			$desc = $this->input->post('desc');
 			$qty = $this->input->post('qty');
@@ -159,7 +159,7 @@ class Inquiry extends CI_Controller
 			if ($this->form_validation->run() != false) {
 				$data = array(
 					'sales' => $sales,
-					'tanggal' => $tanggal,
+					'tanggal2' => $tanggal2,
 					'brand' => $brand,
 					'desc' => $desc,
 					'qty' => $qty,
