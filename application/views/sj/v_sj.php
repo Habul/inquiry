@@ -46,10 +46,10 @@
 										<th>Due Date</th>
 										<th>No Po</th>
 										<th>Cust Name</th>
-										<th>Address</th>
+										<th width="18%">Address</th>
 										<th>City</th>
 										<th>Phone</th>
-										<th width="11%">Action</th>
+										<th width="13%">Action</th>
 									</tr>
 								</thead>
 								<?php

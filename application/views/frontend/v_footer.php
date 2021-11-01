@@ -43,7 +43,6 @@
 <script src="<?php echo base_url(); ?>assets_frontend/lib/typed/typed.min.js"></script>
 <!-- Contact Form JavaScript File -->
 <script src="<?php echo base_url(); ?>assets_frontend/contactform/contactform.js"></script>
-
 <!-- Template Main Javascript File -->
 <script src="<?php echo base_url(); ?>assets_frontend/js/main.js"></script>
 
