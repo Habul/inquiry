@@ -72,7 +72,7 @@
                 <td width="30%"></td>
                 <td>Address</td>
                 <td> : </td>
-                <td><?php echo $u->address; ?></td>
+                <td width="20%"><?php echo $u->address; ?></td>
               </tr>
               <tr>
                 <td>Due Date</td>
@@ -90,7 +90,7 @@
                 <td width="30%"></td>
                 <td>Phone</td>
                 <td> : </td>
-                <td><?php echo $u->phone; ?></td>
+                <td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($u->phone)), 2); ?></td>
               </tr>
             <?php endforeach; ?>
           </table>

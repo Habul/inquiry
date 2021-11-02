@@ -140,7 +140,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Address *</label>
 						<div class="col-xs-9">
-							<textarea name="address" class="form-control" placeholder="Input Address.." required></textarea>
+							<textarea name="address" class="form-control" maxlength="110" placeholder="Input Address.." required></textarea>
 							<?php echo form_error('address'); ?>
 						</div>
 					</div>
@@ -331,14 +331,14 @@
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
 								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po; ?>">
-								<textarea name="descript" class="form-control" placeholder="Input Desc.." required></textarea>
+								<textarea name="descript" class="form-control" maxlength="110" placeholder="Input Desc.." required></textarea>
 								<?php echo form_error('descript'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Qty *</label>
 							<div class="col-xs-9">
-								<input type="number" name="qty" class="form-control" min="1" step="1" placeholder="Input Qty.." required>
+								<input type="number" name="qty" class="form-control" min="1" placeholder="Input Qty.." required>
 								<?php echo form_error('qty'); ?>
 							</div>
 						</div>
@@ -372,9 +372,9 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
-								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $u->no_id; ?>">
-								<input type="hidden" name="no_po" readonly class="form-control" value="<?php echo $u->no_po; ?>">
-								<textarea name="descript" class="form-control" required><?php echo $u->descript; ?></textarea>
+								<input type="hidden" name="id" class="form-control" value="<?php echo $u->no_id; ?>">
+								<input type="hidden" name="no_po" class="form-control" value="<?php echo $u->no_po; ?>">
+								<textarea name="descript" class="form-control" maxlength="100" required><?php echo $u->descript; ?></textarea>
 								<?php echo form_error('descript'); ?>
 							</div>
 						</div>
