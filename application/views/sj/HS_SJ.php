@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
         <div class="col-12 table-responsive-sm">
           <table class="table table-borderless table-sm">
             <tr>
-              <td><img src="<?php echo base_url(); ?>gambar/website/Logo-02.PNG" style="width:400px;height:75px;"></td>
+              <td><img src="<?php echo base_url(); ?>gambar/website/Logo-02.png" style="width:400px;height:75px;"></td>
               <td width="30%"></td>
               <td style="text-align:center"><br /><br />
                 <h3><b>SURAT JALAN</b></h3>

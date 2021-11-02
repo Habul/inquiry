@@ -42,7 +42,7 @@
 	<!-- summernote -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 
 
 </head>
@@ -127,7 +127,7 @@
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="#" class="brand-link">
-				<img src="<?php echo base_url(); ?>gambar/website/Untitled-1-02.PNG" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<img src="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-green">INTISERA</span>
 			</a>
 
