@@ -226,7 +226,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Address *</label>
 							<div class="col-xs-9">
-								<textarea name="address" class="form-control"  maxlength="70" required><?php echo $p->address; ?></textarea>
+								<textarea name="address" class="form-control" maxlength="70" required><?php echo $p->address; ?></textarea>
 								<?php echo form_error('address'); ?>
 							</div>
 						</div>

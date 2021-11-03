@@ -37,8 +37,8 @@
             </tr>
             <tr>
               <td width="30%">
-              Rukan Green Garden, Blok Z 2 No 66-69 Jl Raya panjang,
-              Jakarta Barat 11520</td>
+                Rukan Green Garden, Blok Z 2 No 66-69 Jl Raya panjang,
+                Jakarta Barat 11520</td>
               <td width="30%"></td>
               <td style="text-align:center">
                 <h3>
@@ -124,8 +124,12 @@
                   <td><?php echo $h->descript; ?></td>
                   <td style="text-align:center"><?php echo $h->qty; ?></td>
                 </tr>
+              <?php endforeach; ?>
+              <tr style="border: 2px solid black">
+                <td colspan="2" style="text-align:center"><b>Total<b></td>
+                <td style="text-align:center"><?php echo $sum_df; ?></td>
+              </tr>
               </tbody>
-            <?php endforeach; ?>
           </table>
         </div>
         <!-- /.col -->
@@ -158,9 +162,9 @@
               <td>.....................</td>
               <td>.....................</td>
               <?php
-								$id_user = $this->session->userdata('id');
-								$purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-							?>
+              $id_user = $this->session->userdata('id');
+              $purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
+              ?>
               <td><?php echo $purchase->pengguna_nama; ?></td>
             </tr>
           </table>

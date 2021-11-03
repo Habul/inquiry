@@ -213,6 +213,7 @@ class Sj extends CI_Controller
 		);
 		$data['sj_user'] = $this->m_data->edit_data($where, 'sj_user')->result();
 		$data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
+		$data['sum_hs'] = $this->db->select_sum('qty')->get_where($where, 'sj_hs')->result();
 		$this->load->view('sj/hs_sj', $data);
 		//$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
 	}
@@ -417,6 +418,7 @@ class Sj extends CI_Controller
 		);
 		$data['sj_user_df'] = $this->m_data->edit_data($where, 'sj_user_df')->result();
 		$data['sj_df'] = $this->m_data->edit_data($where, 'sj_df')->result();
+		$data['sum_df'] = $this->db->select_sum('qty')->from('sj_df')->where('no_po', $where)->row();
 		$this->load->view('sj/df_sj', $data);
 		//$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
 	}
