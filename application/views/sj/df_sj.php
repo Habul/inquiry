@@ -28,17 +28,17 @@
         <div class="col-12 table-responsive-sm">
           <table class="table table-borderless table-sm">
             <tr>
-              <td><img src="<?php echo base_url(); ?>gambar/website/Logo-02.png" style="width:400px;height:75px;"></td>
+              <td><img src="<?php echo base_url(); ?>gambar/website/Logo-011.png" style="width:239px;height:54px;"></td>
               <td width="30%"></td>
-              <td style="text-align:center"><br /><br />
+              <td style="text-align:center"><br />
                 <h3><b>SURAT JALAN</b></h3>
               </td>
             </tr>
             </tr>
             <tr>
               <td width="30%">
-                Komplek Pergudangan lio baru asri Blok C RT.7/RW.004<br>
-                Batuceper, Kec Batuceper, Kota Tangerang, Banten 15121<br></td>
+              Rukan Green Garden, Blok Z 2 No 66-69 Jl Raya panjang,
+              Jakarta Barat 11520</td>
               <td width="30%"></td>
               <td style="text-align:center">
                 <h3>
@@ -55,7 +55,7 @@
       <div class="row">
         <div class="col-12 table-responsive-sm">
           <table class="table table-borderless table-sm">
-            <?php foreach ($sj_user as $u) : ?>
+            <?php foreach ($sj_user_df as $u) : ?>
               <tr>
                 <td></td>
                 <td></td>
@@ -117,7 +117,7 @@
             </thead>
             <?php
             $no = 1; ?>
-            <?php foreach ($sj_hs as $h) : ?>
+            <?php foreach ($sj_df as $h) : ?>
               <tbody>
                 <tr>
                   <td style="text-align:center"><?php echo $no++; ?></td>
@@ -157,7 +157,11 @@
               <td>.....................</td>
               <td>.....................</td>
               <td>.....................</td>
-              <td>.....................</td>
+              <?php
+								$id_user = $this->session->userdata('id');
+								$purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
+							?>
+              <td><?php echo $purchase->pengguna_nama; ?></td>
             </tr>
           </table>
         </div>

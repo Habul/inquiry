@@ -198,12 +198,38 @@
 									<i class="nav-icon fas fa-cogs"></i>
 									<p>Setting Website</p>
 								</a>
-							</li>
+							</li>	
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'sj/sj' ?>" <?= $this->uri->uri_string() == 'sj/sj' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-									<i class="nav-icon fas fa-edit"></i>
-									<p>Surat Jalan</p>
+								<a href="<?php echo base_url() . 'it' ?>" <?= $this->uri->uri_string() == 'it' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<i class="nav-icon fas fa-server"></i>
+									<p>Data Penting IT</p>
 								</a>
+							</li>	
+							<li <?= $this->uri->uri_string() == 'sj/sj' ||
+									$this->uri->uri_string() == 'sj/sj_df' ||
+									$this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
+								<a href="#" <?= $this->uri->uri_string() == 'sj/sj' ||
+												$this->uri->uri_string() == 'sj/sj_df' ||
+												$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<i class="nav-icon fas fa-edit"></i>
+									<p>Surat Jalan
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="<?php echo base_url() . 'sj/sj' ?>" <?= $this->uri->uri_string() == 'sj/sj' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+											<i class="far fa-circle nav-icon"></i>
+											<p>SJ Hs</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="<?php echo base_url() . 'sj/sj_df' ?>" <?= $this->uri->uri_string() == 'sj/sj_df' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+											<i class="far fa-circle nav-icon"></i>
+											<p>SJ Df</p>
+										</a>
+									</li>
+								</ul>
 							</li>
 						<?php
 						}

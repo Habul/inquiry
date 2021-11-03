@@ -9,7 +9,7 @@
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
-						<li class="breadcrumb-item active">Surat Jalan HS</li>
+						<li class="breadcrumb-item active">Surat Jalan DF</li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -53,7 +53,7 @@
 									</tr>
 								</thead>
 								<?php
-								$query = $this->db->query("select * from sj_user");
+								$query = $this->db->query("select * from sj_user_df");
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
@@ -95,7 +95,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('sj/sj_aksi') ?>">
+			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('sj/sj_aksi_df') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Delivery Order *</label>
@@ -170,7 +170,7 @@
 <!-- end modal add Sj -->
 
 <!-- Modal Edit Sj -->
-<?php foreach ($sj_user as $p) : ?>
+<?php foreach ($sj_user_df as $p) : ?>
 	<div class="modal fade" id="modal_edit_sj<?php echo $p->no_po; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -181,7 +181,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_edit') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_edit_df') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Delivery Order *</label>
@@ -257,7 +257,7 @@
 <!-- end modal Edit Sj -->
 
 <!-- modal Print Desc SJ -->
-<?php foreach ($sj_user as $p) : ?>
+<?php foreach ($sj_user_df as $p) : ?>
 	<div class="modal fade" id="modal_print<?php echo $p->no_po ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
@@ -271,7 +271,7 @@
 				<div class="modal-body">
 					<div class="row no-print">
 						<div class="col-12 table-responsive-sm">
-							<a href="<?php echo base_url() . 'sj/sj_print/' . $p->no_po; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
+							<a href="<?php echo base_url() . 'sj/sj_print_df/' . $p->no_po; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
 							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i>&nbsp; Add</a>
 						</div>
 					</div>
@@ -287,7 +287,7 @@
 						</thead>
 						<?php
 						$no = 1;
-						$cek = $this->db->query("SELECT sj_hs.no_id as no_id, sj_hs.no_po as no_po, sj_hs.descript as descript, sj_hs.qty as qty FROM sj_hs INNER JOIN sj_user ON sj_hs.no_po=sj_user.no_po WHERE sj_user.no_po=$p->no_po");
+						$cek = $this->db->query("SELECT sj_df.no_id as no_id, sj_df.no_po as no_po, sj_df.descript as descript, sj_df.qty as qty FROM sj_df INNER JOIN sj_user_df ON sj_df.no_po=sj_user_df.no_po WHERE sj_user_df.no_po=$p->no_po");
 						foreach ($cek->result() as $u) {
 						?>
 							<tr>
@@ -314,7 +314,7 @@
 <!-- end modal Print Desc SJ -->
 
 <!-- modal add Desc SJ -->
-<?php foreach ($sj_user as $p) : ?>
+<?php foreach ($sj_user_df as $p) : ?>
 	<div class="modal fade" id="modal_add_desc<?php echo $p->no_po ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -325,13 +325,13 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update_df') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
 								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po; ?>">
-								<textarea name="descript" class="form-control" maxlength="110" placeholder="Input Desc.." required></textarea>
+								<textarea name="descript" class="form-control" maxlength="100" placeholder="Input Desc.." required></textarea>
 								<?php echo form_error('descript'); ?>
 							</div>
 						</div>
@@ -356,7 +356,7 @@
 
 
 <!-- modal Edit Desc SJ -->
-<?php foreach ($sj_hs as $u) : ?>
+<?php foreach ($sj_dfh as $u) : ?>
 	<div class="modal fade" id="modal_edit_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -367,7 +367,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update_edit') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update_edit_df') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
@@ -398,7 +398,7 @@
 <!-- end modal Edit Desc SJ -->
 
 <!--MODAL HAPUS ALL-->
-<?php foreach ($sj_user as $p) : ?>
+<?php foreach ($sj_user_df as $p) : ?>
 	<div class="modal fade" id="modal_hapus<?php echo $p->no_po; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
@@ -409,7 +409,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_hapus') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_hapus_df') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_po" value="<?php echo $p->no_po; ?>">
 						<p>Are you sure delete this ?</p>
@@ -425,7 +425,7 @@
 <?php endforeach; ?>
 
 <!--MODAL HAPUS DESC-->
-<?php foreach ($sj_hs as $u) : ?>
+<?php foreach ($sj_dfh as $u) : ?>
 	<div class="modal fade" id="modal_del_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
@@ -436,7 +436,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_desc_hapus') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_desc_hapus_df') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
 						<p>Are you sure delete this ?</p>

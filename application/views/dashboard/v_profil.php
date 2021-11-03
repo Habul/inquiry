@@ -34,18 +34,18 @@
 							<form method="post" action="<?php echo base_url('dashboard/profil_update') ?>" enctype="multipart/form-data">
 								<div class="card-body">
 									<div class="form-group">
-										<label>Nama</label>
-										<input type="text" name="nama" class="form-control" placeholder="Masukkan nama .." value="<?php echo $p->pengguna_nama; ?>">
+										<label>Nama *</label>
+										<input type="text" name="nama" class="form-control" placeholder="Masukkan nama .." value="<?php echo $p->pengguna_nama; ?>" required>
 										<?php echo form_error('nama'); ?>
 									</div>
 									<div class="form-group">
-										<label>Email</label>
-										<input type="text" name="email" class="form-control" placeholder="Masukkan email .." value="<?php echo $p->pengguna_email; ?>">
+										<label>Email *</label>
+										<input type="text" name="email" class="form-control" placeholder="Masukkan email .." value="<?php echo $p->pengguna_email; ?>" required>
 										<?php echo form_error('email'); ?>
 									</div>
 									<div class="form-group">
-										<label>Foto</label>
-										<input type="file" name="foto" class="form-control">
+										<label>Foto</label><br/>
+										<input type="file" name="foto"><br/>
 										<small>* Max size 1 Mb</small><br />
 										<small>* Max file name image 10 character</small><br />
 										<small>* File type Jpg, Png & Gif</small>
