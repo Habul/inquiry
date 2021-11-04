@@ -200,7 +200,7 @@
 								</a>
 							</li>	
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'it' ?>" <?= $this->uri->uri_string() == 'it' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+								<a href="<?php echo base_url() . 'it/data' ?>" <?= $this->uri->uri_string() == 'it/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-server"></i>
 									<p>Data Penting IT</p>
 								</a>

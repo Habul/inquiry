@@ -116,8 +116,9 @@
               </tr>
             </thead>
             <?php
-            $no = 1; ?>
-            <?php foreach ($sj_df as $h) : ?>
+            $no = 1; 
+            foreach ($sj_df as $h) :
+            $sum_total[] = $h->qty; $total_qty = array_sum($sum_total); ?>
               <tbody>
                 <tr>
                   <td style="text-align:center"><?php echo $no++; ?></td>
@@ -127,7 +128,7 @@
               <?php endforeach; ?>
               <tr style="border: 2px solid black">
                 <td colspan="2" style="text-align:center"><b>Total<b></td>
-                <td style="text-align:center"><?php echo $sum_df; ?></td>
+                <td style="text-align:center"><b><?php echo $total_qty; ?><b></td>
               </tr>
               </tbody>
           </table>
@@ -143,8 +144,6 @@
               <td><b>Warehouse By.</b></td>
               <td><b>Sign By.</b></td>
             </tr>
-            <?php
-            $no = 1; ?>
             <tr>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
@@ -163,9 +162,9 @@
               <td>.....................</td>
               <?php
               $id_user = $this->session->userdata('id');
-              $purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
+              $user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
               ?>
-              <td><?php echo $purchase->pengguna_nama; ?></td>
+              <td><?php echo $user->pengguna_nama; ?></td>
             </tr>
           </table>
         </div>

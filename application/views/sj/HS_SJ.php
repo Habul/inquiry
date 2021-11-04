@@ -116,8 +116,8 @@
               </tr>
             </thead>
             <?php
-            $no = 1; ?>
-            <?php foreach ($sj_hs as $h) : ?>
+            $no = 1; 
+            foreach ($sj_hs as $h) :  ?>
               <tbody>
                 <tr>
                   <td style="text-align:center"><?php echo $no++; ?></td>

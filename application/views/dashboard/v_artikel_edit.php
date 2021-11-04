@@ -29,9 +29,8 @@
 							<div class="box-body">
 								<div class="form-group">
 									<label>Konten</label>
-									<?php echo form_error('konten'); ?>
-									<br/>
 									<textarea class="form-control" id="summernote" name="konten"> <?php echo $a->artikel_konten; ?> </textarea>
+									<?php echo form_error('konten'); ?>
 								</div>
 							</div>
 						</div>

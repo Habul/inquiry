@@ -100,7 +100,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Delivery Order *</label>
 						<div class="col-xs-9">
-							<input type="text" name="no_delivery" class="form-control" placeholder="Input No Delivery order..." required>
+							<input type="text" name="no_delivery" class="form-control"  maxlength="20" placeholder="Input No Delivery order..." required>
 							<?php echo form_error('no_delivery'); ?>
 						</div>
 					</div>
@@ -140,7 +140,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Address *</label>
 						<div class="col-xs-9">
-							<textarea name="address" class="form-control" maxlength="70" placeholder="Input Address.." required></textarea>
+							<textarea name="address" class="form-control" maxlength="150" placeholder="Input Address.." required></textarea>
 							<?php echo form_error('address'); ?>
 						</div>
 					</div>
@@ -186,7 +186,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Delivery Order *</label>
 							<div class="col-xs-9">
-								<input type="text" name="no_delivery" class="form-control" value="<?php echo $p->no_delivery; ?>" required>
+								<input type="text" name="no_delivery" class="form-control"  maxlength="20" value="<?php echo $p->no_delivery; ?>" required>
 								<?php echo form_error('no_delivery'); ?>
 							</div>
 						</div>
@@ -226,7 +226,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Address *</label>
 							<div class="col-xs-9">
-								<textarea name="address" class="form-control"  maxlength="70" required><?php echo $p->address; ?></textarea>
+								<textarea name="address" class="form-control"  maxlength="150" required><?php echo $p->address; ?></textarea>
 								<?php echo form_error('address'); ?>
 							</div>
 						</div>
@@ -276,7 +276,7 @@
 						</div>
 					</div>
 					<br />
-					<table class="table table-bordered table-striped table-sm">
+					<table class="table table-bordered table-striped">
 						<thead style="text-align:center">
 							<tr>
 								<th width="5%">No</th>
@@ -331,7 +331,7 @@
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
 								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_po; ?>">
-								<textarea name="descript" class="form-control" maxlength="100" placeholder="Input Desc.." required></textarea>
+								<textarea name="descript" class="form-control" maxlength="200" placeholder="Input Desc.." required></textarea>
 								<?php echo form_error('descript'); ?>
 							</div>
 						</div>
