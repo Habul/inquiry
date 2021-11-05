@@ -31,15 +31,26 @@ class It extends CI_Controller
 		$this->form_validation->set_rules('isi', 'Isi', 'required');
 
 		if ($this->form_validation->run() != false) {
+			$config['upload_path']   = './gambar/datait/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['overwrite']	= true;
+			$config['max_size']     = 2024;
+
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('file')) {
+			$gambar = $this->upload->data();
 
 			$judul = $this->input->post('judul');
 			$isi = $this->input->post('isi');
 			$addtime = $this->input->post('addtime');
+			$file = $gambar['file_name'];
 
 			$data = array(
 				'judul' => $judul,
 				'isi' => $isi,
-				'addtime' => $addtime
+				'addtime' => $addtime,
+				'file' => $file
 			);
 
 			$this->m_data->insert_data($data, 'datapenting_it');
@@ -48,6 +59,7 @@ class It extends CI_Controller
 		} else {
 			$this->session->set_flashdata('gagal', 'Kurs Gagal di Tambah, ada form yang belum terisi, silahkan cek kembali !!!');
 			redirect(base_url() . 'it/data');
+				}
 		}
 	}
 
