@@ -100,13 +100,13 @@
 				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 					<?php $id_user = $this->session->userdata('id');
 					$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
-					<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="user-image img-circle elevation-2" alt="User Image">
+					<img src="<?php echo base_url() . 'gambar/profile/' . $user->foto; ?>" class="user-image img-circle elevation-2" alt="User Image">
 					<span class="d-none d-md-inline"><?php echo $user->pengguna_nama; ?></span>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 					<!-- User image -->
 					<li class="user-header bg-dark">
-						<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
+						<img src="<?php echo base_url() . 'gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
 						<p>
 							<?php echo $user->pengguna_nama; ?>
 							<small><?php echo $user->pengguna_level; ?></small>
@@ -138,7 +138,7 @@
 					<div class="image">
 						<?php $id_user = $this->session->userdata('id');
 						$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
-						<img src="<?php echo base_url() . '/gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
+						<img src="<?php echo base_url() . 'gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
 						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="d-block"><?php echo $user->pengguna_nama; ?></a>

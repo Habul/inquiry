@@ -14,7 +14,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Merriweather+Sans:wght@300&display=swap%22%20">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 </head>
@@ -54,17 +54,8 @@
 
       <div class="row">
         <div class="col-12 table-responsive-sm">
-          <table class="table table-borderless table-sm">
+          <table class="table table-bordered table-sm">
             <?php foreach ($sj_user_df as $u) : ?>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td width="30%"></td>
-                <td>Cust Name</td>
-                <td> : </td>
-                <td><?php echo $u->cust_name; ?></td>
-              </tr>
               <tr>
                 <td>Delivery Order No</td>
                 <td> : </td>
@@ -90,9 +81,9 @@
                 <td><?php echo $u->city; ?></td>
               </tr>
               <tr>
-                <td>P.O No.</td>
+                <td>Cust Name</td>
                 <td> : </td>
-                <td><?php echo $u->no_po; ?></td>
+                <td><?php echo $u->cust_name; ?></td>
                 <td width="30%"></td>
                 <td>Phone</td>
                 <td> : </td>
