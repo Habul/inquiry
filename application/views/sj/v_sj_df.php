@@ -56,7 +56,7 @@
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $p->no_delivery; ?></td>
+										<td><?php echo str_replace("-", "/", $p->no_delivery); ?></td>
 										<td><?php echo $p->date_delivery; ?></td>
 										<td><?php echo $p->due_date; ?></td>
 										<td><?php echo $p->cust_name; ?></td>
@@ -64,9 +64,9 @@
 										<td><?php echo $p->city; ?></td>
 										<td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($p->phone)), 2); ?></td>
 										<td style="text-align:center">
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_delivery; ?>" title="Edit SJ"><i class="fa fa-edit"></i></a>
-											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_delivery; ?>" title="Add Desc, Detail & Print"><i class="fa fa-search"></i></a>
-											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_delivery; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_id; ?>" title="Edit SJ"><i class="fa fa-edit"></i></a>
+											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_id; ?>" title="Add Desc, Detail & Print"><i class="fa fa-search"></i></a>
+											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 								<?php } ?>
@@ -98,7 +98,11 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Delivery Order *</label>
 						<div class="col-xs-9">
-							<input type="text" name="no_delivery" class="form-control"  maxlength="20" placeholder="Input No Delivery order..." required>
+							<?php
+							$cek = $this->db->select_max('no_id')->get('sj_user_df')->row();
+							$nomor = $cek->no_id + 1;
+							?>
+							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo 'IT/SJ/', date('Y/m/'), $nomor ?>">
 							<?php echo form_error('no_delivery'); ?>
 						</div>
 					</div>
@@ -113,7 +117,7 @@
 						<label class="control-label col-xs-3">Due Date *</label>
 						<div class="col-xs-9">
 							<?php
-							$now = $this->load->helper('date');
+							$this->load->helper('date');
 							$format = "%Y-%m-%d %H:%i:%s";
 							?>
 							<input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
@@ -162,7 +166,7 @@
 
 <!-- Modal Edit Sj -->
 <?php foreach ($sj_user_df as $p) : ?>
-	<div class="modal fade" id="modal_edit_sj<?php echo $p->no_delivery; ?>" tabindex="-1" data-backdrop="static">
+	<div class="modal fade" id="modal_edit_sj<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -177,8 +181,8 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Delivery Order *</label>
 							<div class="col-xs-9">
-								<input type="text" name="no_delivery" class="form-control"  maxlength="20" value="<?php echo $p->no_delivery; ?>" required>
-								<?php echo form_error('no_delivery'); ?>
+								<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
+								<input type="text" name="no_delivery" class="form-control" readonly value="<?php echo $p->no_delivery; ?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -210,7 +214,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Address *</label>
 							<div class="col-xs-9">
-								<textarea name="address" class="form-control"  maxlength="150" required><?php echo $p->address; ?></textarea>
+								<textarea name="address" class="form-control" maxlength="150" required><?php echo $p->address; ?></textarea>
 								<?php echo form_error('address'); ?>
 							</div>
 						</div>
@@ -242,11 +246,11 @@
 
 <!-- modal Print Desc SJ -->
 <?php foreach ($sj_user_df as $p) : ?>
-	<div class="modal fade" id="modal_print<?php echo $p->no_delivery ?>" tabindex="-1" data-backdrop="static">
+	<div class="modal fade" id="modal_print<?php echo $p->no_id ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $p->no_delivery; ?>)
+					<h4 class="col-12 modal-title text-center">Surat Jalan (No Do : <?php echo str_replace("-", "/", $p->no_delivery); ?>)
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -255,8 +259,8 @@
 				<div class="modal-body">
 					<div class="row no-print">
 						<div class="col-12 table-responsive-sm">
-							<a href="<?php echo base_url() . 'sj/sj_print_df/' . $p->no_delivery; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
-							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_delivery; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i>&nbsp; Add</a>
+							<a href="<?php echo base_url() . 'sj/sj_print_df/' . $p->no_id; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
+							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_id; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i>&nbsp; Add</a>
 						</div>
 					</div>
 					<br />
@@ -271,7 +275,7 @@
 						</thead>
 						<?php
 						$no = 1;
-						$cek = $this->db->query("SELECT sj_df.no_id as no_id, sj_df.no_delivery as no_delivery, sj_df.descript as descript, sj_df.qty as qty FROM sj_df INNER JOIN sj_user_df ON sj_df.no_delivery=sj_user_df.no_delivery WHERE sj_user_df.no_delivery=$p->no_delivery");
+						$cek = $this->db->query("SELECT sj_df.no_id AS no_id, sj_df.id_join AS id_join, sj_df.descript AS descript, sj_df.qty AS qty FROM sj_df INNER JOIN sj_user_df ON sj_df.id_join=sj_user_df.no_id WHERE sj_user_df.no_id=$p->no_id");
 						foreach ($cek->result() as $u) {
 						?>
 							<tr>
@@ -299,11 +303,11 @@
 
 <!-- modal add Desc SJ -->
 <?php foreach ($sj_user_df as $p) : ?>
-	<div class="modal fade" id="modal_add_desc<?php echo $p->no_delivery ?>" tabindex="-1" data-backdrop="static">
+	<div class="modal fade" id="modal_add_desc<?php echo $p->no_id ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $p->no_delivery; ?>)
+					<h4 class="col-12 modal-title text-center">Surat Jalan (No Do : <?php echo str_replace("-", "/", $p->no_delivery); ?>)
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -314,7 +318,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
-								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_delivery; ?>">
+								<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
 								<textarea name="descript" class="form-control" maxlength="200" placeholder="Input Desc.." required></textarea>
 								<?php echo form_error('descript'); ?>
 							</div>
@@ -345,7 +349,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="col-12 modal-title text-center">Surat Jalan (No Po : <?php echo $u->no_delivery; ?>)
+					<h4 class="col-12 modal-title text-center">Edit Desc Surat Jalan
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -356,8 +360,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
-								<input type="hidden" name="id" class="form-control" value="<?php echo $u->no_id; ?>">
-								<input type="hidden" name="no_delivery" class="form-control" value="<?php echo $u->no_delivery; ?>">
+								<input type="hidden" name="no_id" class="form-control" value="<?php echo $u->no_id; ?>">
 								<textarea name="descript" class="form-control" maxlength="100" required><?php echo $u->descript; ?></textarea>
 								<?php echo form_error('descript'); ?>
 							</div>
@@ -383,7 +386,7 @@
 
 <!--MODAL HAPUS ALL-->
 <?php foreach ($sj_user_df as $p) : ?>
-	<div class="modal fade" id="modal_hapus<?php echo $p->no_delivery; ?>" tabindex="-1" data-backdrop="static">
+	<div class="modal fade" id="modal_hapus<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">
@@ -395,7 +398,7 @@
 				</div>
 				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_hapus_df') ?>">
 					<div class="modal-body">
-						<input type="hidden" name="no_delivery" value="<?php echo $p->no_delivery; ?>">
+						<input type="hidden" name="no_id" value="<?php echo $p->no_id; ?>">
 						<p>Are you sure delete this ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">

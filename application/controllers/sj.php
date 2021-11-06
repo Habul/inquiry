@@ -233,7 +233,6 @@ class Sj extends CI_Controller
 		$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
 		$this->form_validation->set_rules('date_delivery', 'Date Delivery', 'required');
 		$this->form_validation->set_rules('due_date', 'Due Date', 'required');
-		$this->form_validation->set_rules('no_po', 'No PO', 'required');
 		$this->form_validation->set_rules('cust_name', 'Customer Name', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
 		$this->form_validation->set_rules('city', 'City', 'required');
@@ -243,9 +242,10 @@ class Sj extends CI_Controller
 		if ($this->form_validation->run() != false) {
 
 			$no_delivery = $this->input->post('no_delivery');
+			$nomor_del = str_replace("/", "-", $no_delivery);
+
 			$date_delivery = $this->input->post('date_delivery');
 			$due_date = $this->input->post('due_date');
-			$no_po = $this->input->post('no_po');
 			$cust_name = $this->input->post('cust_name');
 			$address = $this->input->post('address');
 			$city = $this->input->post('city');
@@ -253,10 +253,9 @@ class Sj extends CI_Controller
 			$addtime = $this->input->post('addtime');
 
 			$data = array(
-				'no_delivery' => $no_delivery,
+				'no_delivery' => $nomor_del,
 				'date_delivery' => $date_delivery,
 				'due_date' => $due_date,
-				'no_po' => $no_po,
 				'cust_name' => $cust_name,
 				'address' => $address,
 				'city' => $city,
@@ -265,7 +264,7 @@ class Sj extends CI_Controller
 			);
 
 			$this->m_data->insert_data($data, 'sj_user_df');
-			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Po : ' . $this->input->post('no_po', TRUE) . ' !');
+			$this->session->set_flashdata('berhasil', 'SJ successfully added, No Delivery : ' . $this->input->post('no_delivery', TRUE) . ' !');
 			redirect(base_url() . 'sj/sj_df');
 		} else {
 			$this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
@@ -287,13 +286,13 @@ class Sj extends CI_Controller
 			$qty = $this->input->post('qty');
 
 			$data = array(
-				'no_po' => $id,
+				'id_join' => $id,
 				'descript' => $descript,
 				'qty' => $qty
 			);
 
 			$this->m_data->insert_data($data, 'sj_df');
-			$this->session->set_flashdata('berhasil', 'No Po ' . $this->input->post('id', TRUE) . ' Successfully added Desc : ' . $this->input->post('descript', TRUE) . '  !');
+			$this->session->set_flashdata('berhasil', 'Successfully added Desc : ' . $this->input->post('descript', TRUE) . '  !');
 			redirect(base_url() . 'sj/sj_df');
 		} else {
 			$this->session->set_flashdata('gagal', 'SJ Desc failed to add, Please repeat !');
@@ -308,7 +307,7 @@ class Sj extends CI_Controller
 		$this->form_validation->set_rules('qty', 'Date Delivery', 'required');
 
 		if ($this->form_validation->run() != false) {
-			$id = $this->input->post('id');
+			$id = $this->input->post('no_id');
 			$descript = $this->input->post('descript');
 			$qty = $this->input->post('qty');
 
@@ -324,7 +323,7 @@ class Sj extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'sj_df');
-			$this->session->set_flashdata('berhasil', 'Desc successfully Update, No Po : ' . $this->input->post('no_po', TRUE) . ' !');
+			$this->session->set_flashdata('berhasil', 'Desc successfully Update, : ' . $this->input->post('descript', TRUE) . ' !');
 			redirect(base_url() . 'sj/sj_df');
 		} else {
 			$this->session->set_flashdata('gagal', 'SJ failed to Update, Please repeat !');
@@ -335,9 +334,8 @@ class Sj extends CI_Controller
 	public function sj_edit_df()
 	{
 		// Wajib isi
-		$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
+		//$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
 		$this->form_validation->set_rules('date_delivery', 'Date Delivery', 'required');
-		$this->form_validation->set_rules('no_po', 'No Po', 'required');
 		$this->form_validation->set_rules('due_date', 'Due Date', 'required');
 		$this->form_validation->set_rules('cust_name', 'Customer Name', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
@@ -346,11 +344,10 @@ class Sj extends CI_Controller
 
 		if ($this->form_validation->run() != false) {
 
-			$id = $this->input->post('no_po');
+			$id = $this->input->post('no_id');
 
 			$no_delivery = $this->input->post('no_delivery');
 			$date_delivery = $this->input->post('date_delivery');
-			$no_po = $this->input->post('no_po');
 			$due_date = $this->input->post('due_date');
 			$cust_name = $this->input->post('cust_name');
 			$address = $this->input->post('address');
@@ -363,7 +360,6 @@ class Sj extends CI_Controller
 					'no_delivery' => $no_delivery,
 					'date_delivery' => $date_delivery,
 					'due_date' => $due_date,
-					'no_po' => $no_po,
 					'cust_name' => $cust_name,
 					'address' => $address,
 					'city' => $city,
@@ -373,10 +369,10 @@ class Sj extends CI_Controller
 			}
 
 			$where = array(
-				'no_po' => $id
+				'no_id' => $id
 			);
 			$this->m_data->update_data($where, $data, 'sj_user_df');
-			$this->session->set_flashdata('berhasil', 'SJ successfully Update, No Po : ' . $this->input->post('no_po', TRUE) . ' !');
+			$this->session->set_flashdata('berhasil', 'SJ successfully Update, No Po : ' . $this->input->post('no_delivery', TRUE) . ' !');
 			redirect(base_url() . 'sj/sj_df');
 		} else {
 			$this->session->set_flashdata('gagal', 'SJ failed to Update, Please repeat !');
@@ -386,11 +382,14 @@ class Sj extends CI_Controller
 
 	public function sj_hapus_df()
 	{
-		$id = $this->input->post('no_po'); {
+		$id = $this->input->post('no_id'); {
 			$where = array(
-				'no_po' => $id
+				'no_id' => $id
 			);
-			$this->m_data->delete_data($where, 'sj_df');
+			$where2 = array(
+				'id_join' => $id
+			);
+			$this->m_data->delete_data($where2, 'sj_df');
 			$this->m_data->delete_data($where, 'sj_user_df');
 			$this->session->set_flashdata('berhasil', 'SJ has been deleted !');
 			redirect(base_url() . 'sj/sj_df');
@@ -413,10 +412,14 @@ class Sj extends CI_Controller
 	{
 		//$this->load->library('mypdf');
 		$where = array(
-			'no_po' => $id
+			'no_id' => $id
+		);
+
+		$where2 = array(
+			'id_join' => $id
 		);
 		$data['sj_user_df'] = $this->m_data->edit_data($where, 'sj_user_df')->result();
-		$data['sj_df'] = $this->m_data->edit_data($where, 'sj_df')->result();
+		$data['sj_df'] = $this->m_data->edit_data($where2, 'sj_df')->result();
 		$this->load->view('sj/df_sj', $data);
 		//$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
 	}

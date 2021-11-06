@@ -116,7 +116,7 @@
               </tr>
             </thead>
             <?php
-            $no = 1; 
+            $no = 1;
             foreach ($sj_hs as $h) :  ?>
               <tbody>
                 <tr>

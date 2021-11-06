@@ -43,12 +43,12 @@
 									<tr>
 										<th width="2%">No</th>
 										<th width="50%">Judul</th>
-                                        <th width="12%">Addtime</th>
-                                        <th width="10%">Action</th>                                        
+										<th width="12%">Addtime</th>
+										<th width="10%">Action</th>
 									</tr>
 								</thead>
 								<?php
-                                $no = 1;
+								$no = 1;
 								$query = $this->db->query("select * from datapenting_it");
 								foreach ($query->result() as $p) {
 								?>
@@ -62,8 +62,8 @@
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
-                                    <?php } ?>	
-                                    </table>														
+								<?php } ?>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -90,7 +90,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Judul *</label>
 						<div class="col-xs-9">
-                            <?php
+							<?php
 							$now = $this->load->helper('date');
 							$format = "%Y-%m-%d %H:%i:%s";
 							?>
@@ -102,14 +102,14 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Isi *</label>
 						<div class="col-xs-9">
-                            <textarea class="form-control" rows="7" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
+							<textarea class="form-control" rows="7" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Attach Image</label>
 						<div class="col-xs-9">
-						<input type="file" name="file">
-						<?php echo form_error('file'); ?>
+							<input type="file" name="file">
+							<?php echo form_error('file'); ?>
 						</div>
 						<small>* Max size 2 Mb</small><br />
 						<small>* Max file name image 10 character</small><br />
@@ -143,29 +143,29 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Judul</label>
 							<div class="col-xs-9">
-                                <?php
-                                $now = $this->load->helper('date');
-                                $format = "%Y-%m-%d %H:%i:%s";
-                                ?>
-                                <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
-                                <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?> ?>">
+								<?php
+								$now = $this->load->helper('date');
+								$format = "%Y-%m-%d %H:%i:%s";
+								?>
+								<input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
+								<input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?> ?>">
 								<input type="text" name="judul" class="form-control" readonly value="<?php echo $p->judul; ?>" required>
 								<?php echo form_error('judul'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Isi *</label>
-							<div class="col-xs-9">                            
-                            <textarea class="form-control" rows="8" name="isi" required><?php echo $p->isi; ?> </textarea>
-                            <?php echo form_error('isi'); ?>                            
+							<div class="col-xs-9">
+								<textarea class="form-control" rows="8" name="isi" required><?php echo $p->isi; ?> </textarea>
+								<?php echo form_error('isi'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Attach Image</label>
 							<div class="col-xs-9">
-							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-thumbnail" onerror="this.style.display='none'"/><br/><br/>
-							<input type="file" name="file">
-							<?php echo form_error('file'); ?>
+								<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-thumbnail" onerror="this.style.display='none'" /><br /><br />
+								<input type="file" name="file">
+								<?php echo form_error('file'); ?>
 							</div>
 							<small>* Max size 2 Mb</small><br />
 							<small>* Max file name image 10 character</small><br />
@@ -200,13 +200,13 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<div class="col-xs-9">
-                                <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-							    <textarea class="form-control" readonly rows="10" name="isi"><?php echo $p->isi; ?></textarea>                            
+								<input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
+								<textarea class="form-control" readonly rows="10" name="isi"><?php echo $p->isi; ?></textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-xs-9">
-							<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" download="myimage"><img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-thumbnail" onerror="this.style.display='none'"/></a>
+								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank"><img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-thumbnail" onerror="this.style.display='none'" /></a>
 							</div>
 						</div>
 					</div>
