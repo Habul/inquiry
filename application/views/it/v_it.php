@@ -4,7 +4,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0">Data Penting IT</h1>
-					<small>Pindahan file TXT yang di 217</small>
+					<small>Pindahan file TXT dan IMG di 217</small>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -156,7 +156,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Isi *</label>
 							<div class="col-xs-9">
-								<textarea class="form-control" rows="8" name="isi" required><?php echo $p->isi; ?> </textarea>
+								<textarea class="form-control" rows="10" name="isi" required><?php echo $p->isi; ?> </textarea>
 								<?php echo form_error('isi'); ?>
 							</div>
 						</div>
@@ -201,7 +201,7 @@
 						<div class="form-group">
 							<div class="col-xs-9">
 								<input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-								<textarea class="form-control" readonly rows="10" name="isi"><?php echo $p->isi; ?></textarea>
+								<textarea class="form-control" readonly rows="13" name="isi"><?php echo $p->isi; ?></textarea>
 							</div>
 						</div>
 						<div class="form-group">

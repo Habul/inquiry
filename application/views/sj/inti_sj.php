@@ -28,7 +28,7 @@
         <div class="col-12 table-responsive-sm">
           <table class="table table-borderless table-sm">
             <tr>
-              <td><img src="<?php echo base_url(); ?>gambar/website/Logo-011.png" style="width:239px;height:54px;"></td>
+              <td><img src="<?php echo base_url(); ?>gambar/website/INTISERA-02.png" style="width:200px;height:70px;"></td>
               <td width="30%"></td>
               <td style="text-align:center"><br />
                 <h3><b>SURAT JALAN</b></h3>
@@ -106,9 +106,9 @@
                 <th><b>Qty</b></th>
               </tr>
             </thead>
-            <?php
-            $no = 1;
-            foreach ($sj_df as $h) :
+              <?php
+              $no = 1;
+              foreach ($sj_df as $h) :
               $sum_total[] = $h->qty;
               $total_qty = array_sum($sum_total); ?>
               <tbody>

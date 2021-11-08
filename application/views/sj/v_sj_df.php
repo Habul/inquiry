@@ -259,7 +259,17 @@
 				<div class="modal-body">
 					<div class="row no-print">
 						<div class="col-12 table-responsive-sm">
-							<a href="<?php echo base_url() . 'sj/sj_print_df/' . $p->no_id; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
+							<div class="btn-group float-right">
+								<button class="btn btn-primary"><i class="fas fa-print"></i> Print</button>
+								<button class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<div class="dropdown-menu" role="menu">
+								<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_df/' . $p->no_id; ?>" rel="noopener" target="_blank" title="Print Dutaflow"><i class="fas fa-print"></i> Dutaflow</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_inti/' . $p->no_id; ?>" rel="noopener" target="_blank" title="Print Intisera"><i class="fas fa-print"></i> Intisera</a>
+								</div>
+							</div>
 							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_id; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i>&nbsp; Add</a>
 						</div>
 					</div>

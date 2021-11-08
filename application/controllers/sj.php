@@ -423,4 +423,20 @@ class Sj extends CI_Controller
 		$this->load->view('sj/df_sj', $data);
 		//$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
 	}
+
+	public function sj_print_inti($id)
+	{
+		//$this->load->library('mypdf');
+		$where = array(
+			'no_id' => $id
+		);
+
+		$where2 = array(
+			'id_join' => $id
+		);
+		$data['sj_user_df'] = $this->m_data->edit_data($where, 'sj_user_df')->result();
+		$data['sj_df'] = $this->m_data->edit_data($where2, 'sj_df')->result();
+		$this->load->view('sj/inti_sj', $data);
+		//$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
+	}
 }
