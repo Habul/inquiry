@@ -56,7 +56,7 @@
           <table class="table table-borderless table-sm">
             <?php foreach ($sj_user_df as $u) : ?>
               <tr>
-                <td>Delivery Order No</td>
+                <td>Delivery No</td>
                 <td> : </td>
                 <td><?php echo str_replace("-", "/", $u->no_delivery); ?></td>
                 <td width="30%"></td>
@@ -65,7 +65,7 @@
                 <td rowspan="2" width="30%"><?php echo $u->address; ?></td>
               </tr>
               <tr>
-                <td>Delivery Order Date</td>
+                <td>Delivery Date</td>
                 <td> : </td>
                 <td><?php echo $u->date_delivery; ?></td>
                 <td width="30%"></td>
