@@ -309,6 +309,12 @@
 							</li>
 						<?php } ?>
 						<li class="nav-item">
+							<a href="<?php echo base_url() . 'dashboard/contact' ?>" <?= $this->uri->uri_string() == 'dashboard/contact' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+								<i class="nav-icon fas fa-rss-square"></i>
+								<p>Contact IT</p>
+							</a>
+						</li>
+						<li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>" <?= $this->uri->uri_string() == 'dashboard/ganti_password' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-lock"></i>
 								<p>Change Password</p>

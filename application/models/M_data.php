@@ -140,6 +140,15 @@ class M_data extends CI_Model
 		return $data->row();
 	}
 
+	public function kontak($id)
+	{
+		$sql = "SELECT * FROM kontak where id_user = '{$id}'";
+
+		$data = $this->db->query($sql);
+
+		return $data->row();
+	}
+
 	public function total_inquiry($q = NULL)
 	{
 		$this->db->where('fu1', $q);
@@ -233,4 +242,14 @@ class M_data extends CI_Model
 
 		return $this->db->affected_rows();
 	}
+
+	function get_contact($idUser){
+		$this->db->select("*");
+		$this->db->where("id_user",$idUser);
+		return $this->db->get('kontak')->row();
+	}
+
+	public function getcontact($id){
+		return $this->db->get_where('kontak',array('id_user' => $id))->row();
+	 }
 }

@@ -815,4 +815,16 @@ class Dashboard extends CI_Controller
 		redirect(base_url() . 'dashboard/pengguna');
 	}
 	//END Crud pengguna
+
+	public function contact()	
+	{	
+		$data['it1']=$this->db->get('kontak')->row('1');
+		$data['it2']=$this->db->get('kontak')->row('2');
+		$data['it3']=$this->db->get('kontak')->row('3');
+		$data['it4']=$this->db->get('kontak')->row('4');
+		$data['it5']=$this->db->get('kontak')->row('5');
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_contact', $data);
+		$this->load->view('dashboard/v_footer');
+	}
 }
