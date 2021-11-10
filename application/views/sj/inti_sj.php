@@ -9,6 +9,7 @@
     margin: 0px;
     /* the margin on the content before printing */
   }
+
 </style>
 
 <head>
@@ -114,7 +115,7 @@
               <tbody>
                 <tr>
                   <td style="text-align:center"><?php echo $no++; ?></td>
-                  <td><?php echo $h->descript; ?></td>
+                  <td> <?php echo $h->descript; ?></td>
                   <td style="text-align:center"><?php echo $h->qty; ?></td>
                 </tr>
               <?php endforeach; ?>

@@ -144,52 +144,81 @@
 		});
 	});
 </script>
-<!--script>
-	//-------------
-	//- PIE CHART 1 -
-	//-------------
-	// Get context with jQuery - using jQuery's .get() method.
-	var pieChartCanvas = $('#pieChart1').get(0).getContext('2d')
-	var pieChart = new Chart(pieChartCanvas)
-	var PieData = <?php echo $data_sales; ?>;
-	var pieOptions = {
-
-		segmentShowStroke: true,
-		segmentStrokeColor: '#fff',
-		segmentStrokeWidth: 2,
-		percentageInnerCutout: 50,
-		animationSteps: 100,
-		animationEasing: 'easeOutBounce',
-		animateRotate: true,
-		animateScale: false,
-		responsive: true,
-		maintainAspectRatio: true,
-		legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
-	}
-	pieChart.Doughnut(PieData, pieOptions)
-</script>
 <script>
 	//-------------
-	//- PIE CHART 2 -
-	//-------------
-	var pieChartCanvas = $('#pieChart2').get(0).getContext('2d')
-	var pieChart = new Chart(pieChartCanvas)
-	var PieData = <?php echo $data_brand; ?>;
-	var pieOptions = {
-		segmentShowStroke: true,
-		segmentStrokeColor: '#fff',
-		segmentStrokeWidth: 2,
-		percentageInnerCutout: 50,
-		animationSteps: 100,
-		animationEasing: 'easeOutBounce',
-		animateRotate: true,
-		animateScale: false,
-		responsive: true,
-		maintainAspectRatio: true,
-		legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
-	}
-	pieChart.Doughnut(PieData, pieOptions)
-</script-->
+    //- DONUT CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+    var donutData        = {
+      labels: [
+		'PETER',
+		'HERMAN',
+		'FANNY',
+		'RIKI',
+		'LINDA',
+		'YUDHA',
+		'KRISTINA',
+		'DESI',
+		'REGINA',
+		'BELLA',
+		'NINA',
+		'YENNI',
+		'DEDE',
+		'FITRI',
+		'RAHMAD',
+		'LENI',
+		'MELDA',
+		'RANDI',
+		'NELI',
+		'FLORENSIA',
+		'LEVY',
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    var donutOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+	  legend: {
+        display: false
+    }
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(donutChartCanvas, {
+      type: 'doughnut',
+      data: donutData,
+      options: donutOptions
+    })
+
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData        = donutData;
+    var pieOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+	  legend: {
+        display: false
+    }
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions,
+	  
+    })
+
+</script>
 <script>
 	$(function() {
 		// Summernote
