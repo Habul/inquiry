@@ -67,7 +67,7 @@ class It extends CI_Controller
 	{
 		// Wajib isi
 		$this->form_validation->set_rules('judul', 'Judul', 'required');
-		//$this->form_validation->set_rules('isi', 'Isi', 'required');
+		$this->form_validation->set_rules('isi', 'Isi', 'required');
 
 		if ($this->form_validation->run() != false) {
 			$config['upload_path']   = './gambar/datait/';
@@ -78,6 +78,7 @@ class It extends CI_Controller
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('file')) {
+				
 			$gambar = $this->upload->data();
 
 			$id = $this->input->post('no_id');

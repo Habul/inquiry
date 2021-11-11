@@ -23,54 +23,31 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		// hitung jumlah artikel
 		$data['jumlah_SJ'] = $this->m_data->get_data('sj_user')->num_rows();
-		// hitung jumlah pengguna
 		$data['jumlah_pengguna'] = $this->m_data->get_data('pengguna')->num_rows();
-		// hitung jumlah inquiry belum terjawab
 		$data['total_inquiry'] = $this->m_data->tot_inquiry();
-		// hitung jumlah inquiry sudah terjawab
 		$data['total_buffer'] = $this->m_data->tot_buffer();
-		// count inquiry belum terjawab
 
-		//$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+		
+		$sales = $this->m_data->select_pengguna();
 
-		//$sales 				= $this->m_data->select_pengguna();
-		//$index = 0;
-		//foreach ($sales as $value) {
-		//$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
+		$color_1 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
-		//$pengguna_sales = $this->m_data->select_by_sales($value->pengguna_nama);
+		$brand 	= $this->m_data->select_by_brand();
+		$color_2 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
-		//$data_sales[$index]['value'] = $pengguna_sales->jmlh;
-		//$data_sales[$index]['color'] = $color;
-		//$data_sales[$index]['highlight'] = $color;
-		//$data_sales[$index]['label'] = $value->pengguna_nama;
+		$nama_brand = $brand->sales;
+		$jmlh_brand = $brand->jmlh;
+		$backgroud_brand = $color_2;	
 
-		//$index++;
-		//}
-
-		//$brand 				= $this->m_data->select_master();
-		//$index = 0;
-		//foreach ($brand as $value) {
-		//$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
-
-		//$pengguna_brand = $this->m_data->select_by_brand($value->brand);
-
-		//$data_brand[$index]['value'] = $pengguna_brand->jmlh;
-		//$data_brand[$index]['color'] = $color;
-		//$data_brand[$index]['highlight'] = $color;
-		//$data_brand[$index]['label'] = $value->brand;
-
-		//$index++;
-		//}
-
-		//$data['data_sales'] = json_encode($data_sales);
-		//$data['data_brand'] = json_encode($data_brand);
+		$data['data_posisi'] = json_encode($data_posisi);
+		$data['data_kota'] = json_encode($data_kota);
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index', $data);
-		$this->load->view('dashboard/v_footer');
+		$this->load->view('dashboard/v_footer', $data);
 	}
+
 
 	public function keluar()
 	{
@@ -255,9 +232,6 @@ class Dashboard extends CI_Controller
 		$this->form_validation->set_rules('kategori', 'Kategori', 'required');
 
 		// Membuat gambar wajib di isi
-		if (empty($_FILES['sampul']['name'])) {
-			$this->form_validation->set_rules('sampul', 'Gambar Sampul', 'required');
-		}
 
 		if ($this->form_validation->run() != false) {
 

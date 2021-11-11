@@ -121,9 +121,9 @@ class M_data extends CI_Model
 		return $data->result();
 	}
 
-	public function select_by_sales($id)
+	public function select_by_sales()
 	{
-		$sql = "SELECT COUNT(sales) AS jmlh FROM inquiry where sales = '{$id}'";
+		$sql = "SELECT sales,COUNT(inquiry_id) AS jmlh FROM inquiry GROUP BY sales";
 
 		$data = $this->db->query($sql);
 
@@ -131,9 +131,9 @@ class M_data extends CI_Model
 	}
 
 
-	public function select_by_brand($id)
+	public function select_by_brand()
 	{
-		$sql = "SELECT COUNT(brand) AS jmlh FROM inquiry where brand = '{$id}'";
+		$sql = "SELECT brand,COUNT(inquiry_id) AS jmlh FROM inquiry GROUP BY brand";
 
 		$data = $this->db->query($sql);
 

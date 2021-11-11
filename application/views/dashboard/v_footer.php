@@ -151,33 +151,18 @@
     // Get context with jQuery - using jQuery's .get() method.
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
-      labels: [
-		'PETER',
-		'HERMAN',
-		'FANNY',
-		'RIKI',
-		'LINDA',
-		'YUDHA',
-		'KRISTINA',
-		'DESI',
-		'REGINA',
-		'BELLA',
-		'NINA',
-		'YENNI',
-		'DEDE',
-		'FITRI',
-		'RAHMAD',
-		'LENI',
-		'MELDA',
-		'RANDI',
-		'NELI',
-		'FLORENSIA',
-		'LEVY',
-      ],
+      labels: [ <?php
+            if (count($nama_sales)>0) {
+              foreach ($nama_sales as $data) {
+                echo "'" .$data->sales ."',";
+              }
+            }
+          ?>
+		   ],
       datasets: [
         {
-          data: [700,500,400,600,300,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          data: [<?php echo $jmlh_sales . ", "; ?>],
+          backgroundColor : [<?php echo "'" .$backgroud_sales ."',"; ?> ],
         }
       ]
     }
@@ -201,7 +186,37 @@
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieData        = donutData;
+    var pieData        = {
+      labels: [
+		'EATON',
+		'TOKYO KEKEI',
+		'FANNY',
+		'RIKI',
+		'LINDA',
+		'YUDHA',
+		'KRISTINA',
+		'DESI',
+		'REGINA',
+		'BELLA',
+		'NINA',
+		'YENNI',
+		'DEDE',
+		'FITRI',
+		'RAHMAD',
+		'LENI',
+		'MELDA',
+		'RANDI',
+		'NELI',
+		'FLORENSIA',
+		'LEVY',
+      ],
+      datasets: [
+        {
+          data: [100,500,400,600,300,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
     var pieOptions     = {
       maintainAspectRatio : false,
       responsive : true,
