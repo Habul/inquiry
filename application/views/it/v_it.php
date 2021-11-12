@@ -147,8 +147,8 @@
 								$now = $this->load->helper('date');
 								$format = "%Y-%m-%d %H:%i:%s";
 								?>
-								<input type="text" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
-								<input type="text" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
+								<input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
+								<input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
 								<input type="text" name="judul" class="form-control" readonly value="<?php echo $p->judul; ?>" required>
 							</div>
 						</div>

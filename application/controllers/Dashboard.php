@@ -514,49 +514,72 @@ class Dashboard extends CI_Controller
 
 	public function profil_update()
 	{
-		// Wajib isi nama dan email
-
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
 
 		if ($this->form_validation->run() != false) {
 
-			$config['upload_path']   = './gambar/profile/';
-			$config['allowed_types'] = 'gif|jpg|png';
-			$config['overwrite']	= true;
-			$config['max_size']     = 1024;
+			$id = $this->session->userdata('id');
+			$pengguna_nama = $this->input->post('nama');
+			$pengguna_email = $this->input->post('email');
 
-			$this->load->library('upload', $config);
+			$where = array(
+				'pengguna_id' => $id
+			);
 
-			if ($this->upload->do_upload('foto')) {
+			$data = array(
+				'pengguna_nama' => $pengguna_nama,
+				'pengguna_email' => $pengguna_email
+			);
 
-				// mengambil data tentang gambar
-				$gambar = $this->upload->data();
+			$this->m_data->update_data($where, $data, 'pengguna');
 
-				$id = $this->session->userdata('id');
-				$nama = $this->input->post('nama');
-				$email = $this->input->post('email');
-				$foto = $gambar['file_name'];
+			// Periksa apakah ada gambar yang diupload
+			if (!empty($_FILES['foto']['name'])) {
 
+				$config['upload_path']   = './gambar/datait/';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['overwrite']	= true;
+				$config['max_size']     = 2024;
 
-				$where = array(
-					'pengguna_id' => $id
-				);
+				$this->load->library('upload', $config);
 
-				$data = array(
-					'pengguna_nama' => $nama,
-					'pengguna_email' => $email,
-					'foto' => $foto
+				if ($this->upload->do_upload('foto')) {
+					// mengambil data tentang gambar yang diupload
+					$gambar = $this->upload->data();
 
-				);
+					$id = $this->input->post('pengguna_id');
+					$foto = $gambar['file_name'];
 
-				$this->m_data->update_data($where, $data, 'pengguna');
+					$data = array(
+						'foto' => $foto
+					);
+					
+					$where = array(
+						'pengguna_id' => $id
+					);
 
-				redirect('dashboard');
-			} else {
-				redirect('dashboard/profil');
+					$this->m_data->update_data($where, $data, 'pengguna');					
+				}
 			}
+			redirect(base_url().'dashboard/profil/?alert=sukses');
+
+		}else
+
+			{
+			$id_pengguna = $this->session->userdata('id');
+
+			$where = array(
+				'pengguna_id' => $id_pengguna
+			);
+
+			$data['profil'] = $this->m_data->edit_data($where,'pengguna')->result();
+
+			$this->load->view('dashboard/v_header');
+			$this->load->view('dashboard/v_profil',$data);
+			$this->load->view('dashboard/v_footer');
 		}
+		
 	}
 
 	public function pengaturan()
