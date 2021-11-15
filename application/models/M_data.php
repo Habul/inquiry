@@ -127,7 +127,7 @@ class M_data extends CI_Model
 
 		$data = $this->db->query($sql);
 
-		return $data->row();
+		return $data->result();
 	}
 
 
@@ -137,7 +137,7 @@ class M_data extends CI_Model
 
 		$data = $this->db->query($sql);
 
-		return $data->row();
+		return $data->result();
 	}
 
 	public function kontak($id)

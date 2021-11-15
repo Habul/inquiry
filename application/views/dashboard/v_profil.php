@@ -48,21 +48,29 @@
 					echo "<div class='alert alert-success alert-dismissible'>Profil telah diupdate!</div>";
 				}
 			}	
+			if(isset($_GET['alert'])){
+				if($_GET['alert'] == "ok"){
+					echo "<div class='alert alert-success'>Password telah diubah!</div>";
+				}else if($_GET['alert'] == "gagal"){
+					echo "<div class='alert alert-danger'>Maaf, password lama yang anda masukkan salah!</div>";
+				}
+			}
 		?>
             <div class="card card-success card-outline card-outline-tabs">
               <div class="card-header p-0 border-bottom-0">
-                <ul class="nav nav-tabs" id="set_user" role="tablist">
+                <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="set_user" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Profile</a>
+                    <a class="nav-link active" id="set_user" data-toggle="pill" href="#profile-settiing" role="tab" aria-controls="profile-settiing" aria-selected="true">Profile</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="set_pass" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Password</a>
+                    <a class="nav-link" id="set_pass" data-toggle="pill" href="#pass-setting" role="tab" aria-controls="pass-setting" aria-selected="false">Password</a>
                   </li>
                 </ul>
               </div>
 
 			  <div class="card-body">
-			  	<div class="tab-content" id="set_user">
+			  	<div class="tab-content">
+				  <div class="tab-pane fade show active" id="profile-settiing" role="tabpanel" aria-labelledby="profile-settiing-tab">
 						<?php foreach ($profil as $p) { ?>
 							<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/profil_update') ?>" enctype="multipart/form-data">
                      				<div class="form-group row">
@@ -97,7 +105,31 @@
 							</form>
 						<?php } ?>
 					</div>
+					<div class="tab-pane fade" id="pass-setting" role="tabpanel" aria-labelledby="pass-setting-tab">		
+							<form method="post" action="<?php echo base_url('dashboard/ganti_password_aksi') ?>">
+								<div class="form-group">
+									<label>Old Password *</label>
+									<input type="password" name="password_lama" class="form-control" placeholder="Masukkan Password Lama Anda ..">
+									<?php echo form_error('password_lama'); ?>
+								</div>
+								<hr>
+								<div class="form-group">
+									<label>New Password *</label>
+									<input type="password" name="password_baru" class="form-control" placeholder="Masukkan Password Baru ..">
+									<?php echo form_error('password_baru'); ?>
+								</div>
+								<div class="form-group">
+									<label>Confirm New Password *</label>
+									<input type="password" name="konfirmasi_password" class="form-control" placeholder="Ulangi Password Baru ..">
+									<?php echo form_error('konfirmasi_password'); ?>
+								</div>
+							<div class="card-footer">
+								<input type="submit" class="btn btn-primary" value="Update">
+							</div>
+						</form>
+					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 	</section>

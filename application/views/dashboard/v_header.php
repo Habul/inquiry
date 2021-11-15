@@ -315,12 +315,6 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo base_url() . 'dashboard/ganti_password' ?>" <?= $this->uri->uri_string() == 'dashboard/ganti_password' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-								<i class="nav-icon fas fa-lock"></i>
-								<p>Change Password</p>
-							</a>
-						</li>
-						<li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard/keluar' ?>" <?= $this->uri->uri_string() == 'dashboard/keluar' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-power-off"></i>
 								<p>Sign out</p>

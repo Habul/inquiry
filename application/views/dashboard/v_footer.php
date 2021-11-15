@@ -152,17 +152,23 @@
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
       labels: [ <?php
-            if (count($nama_sales)>0) {
-              foreach ($nama_sales as $data) {
+            if (count($data_sales)>0) {
+              foreach ($data_sales as $data) {
                 echo "'" .$data->sales ."',";
               }
             }
-          ?>
-		   ],
+          ?> ],
       datasets: [
         {
-          data: [<?php echo $jmlh_sales . ", "; ?>],
-          backgroundColor : [<?php echo "'" .$backgroud_sales ."',"; ?> ],
+          data: [<?php
+                if (count($data_sales)>0) {
+                   foreach ($data_sales as $data) {
+                    echo $data->jmlh . ", ";
+                  }
+                }
+              ?>],
+          backgroundColor : ['#CDA776','#f56954', '#00A65A', '#F39C12', '#00C0EF', '#3C8DBC', '#D2D6DE','#DEB887','#A9A9A9','#DC143C','#F4A460','#2E8B57','#1D7A46'
+		,'#00CED1','#483D8B','#5F9EA0','#696969','#7CFC00','#808000','#9370DB','#A9A9A9','#B0C4DE','#C0C0C0','#D2B48C','#E6E6FA','#F0F8FF','#FFE4E1','#FFFF00'],
         }
       ]
     }
@@ -187,33 +193,26 @@
     // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
     var pieData        = {
-      labels: [
-		'EATON',
-		'TOKYO KEKEI',
-		'FANNY',
-		'RIKI',
-		'LINDA',
-		'YUDHA',
-		'KRISTINA',
-		'DESI',
-		'REGINA',
-		'BELLA',
-		'NINA',
-		'YENNI',
-		'DEDE',
-		'FITRI',
-		'RAHMAD',
-		'LENI',
-		'MELDA',
-		'RANDI',
-		'NELI',
-		'FLORENSIA',
-		'LEVY',
+      labels: [ <?php
+            if (count($data_brand)>0) {
+              foreach ($data_brand as $data) {
+                echo "'" .$data->brand ."',";
+              }
+            }
+          ?>
       ],
       datasets: [
         {
-          data: [100,500,400,600,300,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+		  label: 'Statistik Sales',
+          data: [<?php
+                if (count($data_brand)>0) {
+                   foreach ($data_brand as $data) {
+                    echo $data->jmlh . ", ";
+                  }
+                }
+              ?>],
+          backgroundColor : ['#DEB887','#A9A9A9','#DC143C','#F4A460','#2E8B57','#1D7A46','#CDA776','#f56954', '#00A65A', '#F39C12', '#00C0EF', '#3C8DBC', '#D2D6DE',
+		  '#00CED1','#483D8B','#5F9EA0','#696969','#7CFC00','#808000','#9370DB','#A9A9A9','#B0C4DE','#C0C0C0','#D2B48C','#E6E6FA','#F0F8FF','#FFE4E1','#FFFF00'],
         }
       ]
     }

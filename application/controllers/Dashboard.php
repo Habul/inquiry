@@ -28,21 +28,14 @@ class Dashboard extends CI_Controller
 		$data['total_inquiry'] = $this->m_data->tot_inquiry();
 		$data['total_buffer'] = $this->m_data->tot_buffer();
 
-		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-		
-		$sales = $this->m_data->select_pengguna();
+		//$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+		//$color_1 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
+		//$color_2 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
-		$color_1 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
-
-		$brand 	= $this->m_data->select_by_brand();
-		$color_2 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
-
-		$nama_brand = $brand->sales;
-		$jmlh_brand = $brand->jmlh;
-		$backgroud_brand = $color_2;	
-
-		$data['data_posisi'] = json_encode($data_posisi);
-		$data['data_kota'] = json_encode($data_kota);
+		$data['data_sales'] = $this->m_data->select_by_sales();
+		$data['data_brand'] = $this->m_data->select_by_brand();
+		//$data['sales_color'] = json_encode($color_1);
+		//$data['brand_color'] = $color_2;
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_index', $data);
 		$this->load->view('dashboard/v_footer', $data);
@@ -53,13 +46,6 @@ class Dashboard extends CI_Controller
 	{
 		$this->session->sess_destroy();
 		redirect('login?alert=logout');
-	}
-
-	public function ganti_password()
-	{
-		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_ganti_password');
-		$this->load->view('dashboard/v_footer');
 	}
 
 	public function ganti_password_aksi()
@@ -98,14 +84,14 @@ class Dashboard extends CI_Controller
 				$this->m_data->update_data($where, $data, 'pengguna');
 
 				// alihkan halaman kembali ke halaman ganti password
-				redirect('dashboard/ganti_password?alert=sukses');
+				redirect('dashboard/profil?alert=ok');
 			} else {
 				// alihkan halaman kembali ke halaman ganti password
-				redirect('dashboard/ganti_password?alert=gagal');
+				redirect('dashboard/profil?alert=gagal');
 			}
 		} else {
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_ganti_password');
+			$this->load->view('dashboard/v_profil');
 			$this->load->view('dashboard/v_footer');
 		}
 	}
@@ -537,7 +523,7 @@ class Dashboard extends CI_Controller
 			// Periksa apakah ada gambar yang diupload
 			if (!empty($_FILES['foto']['name'])) {
 
-				$config['upload_path']   = './gambar/datait/';
+				$config['upload_path']   = './gambar/profile/';
 				$config['allowed_types'] = 'gif|jpg|png|jpeg';
 				$config['overwrite']	= true;
 				$config['max_size']     = 2024;
@@ -548,7 +534,7 @@ class Dashboard extends CI_Controller
 					// mengambil data tentang gambar yang diupload
 					$gambar = $this->upload->data();
 
-					$id = $this->input->post('pengguna_id');
+					$id = $this->session->userdata('id');
 					$foto = $gambar['file_name'];
 
 					$data = array(

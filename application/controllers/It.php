@@ -108,15 +108,7 @@ class It extends CI_Controller
 					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
-					$data = array(
-						'file' => $file
-					);
-					
-					$where = array(
-						'no_id' => $id
-					);
-
-					$this->m_data->update_data($where, $data, 'datapenting_it');					
+					$this->db->query("UPDATE datapenting_it SET `file`='$file' where no_id='$id'");					
 				}
 			}
 			$this->session->set_flashdata('berhasil', 'Edit Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');

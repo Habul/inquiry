@@ -138,7 +138,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('it/data_edit') ?>">
+				<form class="form-horizontal" method="post" action="<?php echo base_url('it/data_edit') ?>" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Judul</label>
@@ -156,13 +156,15 @@
 							<label class="control-label col-xs-3">Isi *</label>
 							<div class="col-xs-9">
 								<textarea class="form-control" rows="10" name="isi" required><?php echo $p->isi; ?> </textarea>	
+								<?php echo form_error('isi'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Attach Image</label>
 							<div class="col-xs-9">
-								<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-thumbnail" onerror="this.style.display='none'" /><br /><br />
+							<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank"><img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" width="30%" class="img-thumbnail" onerror="this.style.display='none'" /></a><br /><br />
 								<input type="file" name="file">
+								<?php echo form_error('file'); ?>							
 							</div>
 							<small>* Max size 2 Mb</small><br />
 							<small>* Max file name image 10 character</small><br />
@@ -203,7 +205,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-xs-9">
-								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank"><img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-thumbnail" onerror="this.style.display='none'" /></a>
+								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank"><img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" width="50%" class="img-thumbnail" onerror="this.style.display='none'" /></a>
 							</div>
 						</div>
 					</div>
