@@ -44,8 +44,8 @@
 						<div class="card-body">
 							<table id="example3" class="table table table-bordered table-hover">
 								<thead>
-									<tr>
-										<th width="8%">No Buffer</th>
+									<tr style="text-align:center">
+										<th width="13%">No Buffer</th>
 										<th>Nama</th>
 										<th>Tanggal</th>
 										<th>Brand Produk</th>
@@ -53,7 +53,7 @@
 										<th>Qty</th>
 										<th>Status</th>
 										<?php if ($this->session->userdata('level') != "purchase") {	?>
-											<th width="12%">Action</th>
+											<th width="13%">Action</th>
 										<?php }	?>
 									</tr>
 								</thead>
@@ -62,12 +62,12 @@
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $p->id_buffer; ?></td>
+										<td style="text-align:center"><?php echo $p->id_buffer; ?></td>
 										<td><?php echo $p->sales; ?></td>
 										<td><?php echo $p->tanggal; ?></td>
 										<td><?php echo $p->brand; ?></td>
 										<td><?php echo $p->deskripsi; ?></td>
-										<td><?php echo $p->qty; ?></td>
+										<td style="text-align:center"><?php echo $p->qty; ?></td>
 										<td><?php echo strtoupper($p->status); ?></td>
 										<?php if ($this->session->userdata('level') != "purchase") { ?>
 											<td style="text-align:center">
@@ -106,7 +106,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_aksi') ?>">
+			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('buffer/buffer_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Nama Sales</label>
@@ -170,7 +170,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -190,7 +190,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_edit') ?>">
+				<form class="form-horizontal" onsubmit="editform.disabled = true; return true;" method="post" action="<?php echo base_url('buffer/buffer_edit') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Id Buffer</label>
@@ -248,7 +248,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="editform"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -269,7 +269,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_update') ?>">
+				<form class="form-horizontal" onsubmit="editwhform.disabled = true; return true;" method="post" action="<?php echo base_url('buffer/buffer_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Id Buffer</label>
@@ -373,7 +373,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="editwhform"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -388,20 +388,20 @@
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">
-					<h4 class="col-12 modal-title text-center">Delete Surat Jalan
+					<h4 class="col-12 modal-title text-center">Delete Buffer
 						<button class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('buffer/buffer_hapus') ?>">
+				<form class="form-horizontal" onsubmit="delform.disabled = true; return true;" method="post" action="<?php echo base_url('buffer/buffer_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="id_buffer" value="<?php echo $p->id_buffer; ?>">
-						<p>Apakah Anda yakin mau memhapus Master ini?</p>
+						<p>Are you sure delete no <?php echo $p->id_buffer; ?> ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+						<button class="btn btn-outline-light" id="delform"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>

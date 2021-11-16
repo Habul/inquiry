@@ -40,7 +40,7 @@
 						<div class="card-body">
 							<table id="example6" class="table table-bordered table-striped">
 								<thead>
-									<tr>
+									<tr style="text-align:center">
 										<th width="14%">Do No</th>
 										<th>Do Date</th>
 										<th>Due Date</th>
@@ -95,7 +95,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('sj/sj_aksi') ?>">
+			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('sj/sj_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">No Delivery Order *</label>
@@ -161,7 +161,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -181,7 +181,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_edit') ?>">
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_edit') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Delivery Order *</label>
@@ -247,7 +247,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Update</button>
+						<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
 					</div>
 				</form>
 			</div>
@@ -325,7 +325,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update') ?>">
+				<form class="form-horizontal" onsubmit="addesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
@@ -345,7 +345,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="addesc"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -367,7 +367,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update_edit') ?>">
+				<form class="form-horizontal" onsubmit="editdesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_update_edit') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
@@ -388,7 +388,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="editdesc"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -409,14 +409,14 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_hapus') ?>">
+				<form class="form-horizontal" onsubmit="delform.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_po" value="<?php echo $p->no_po; ?>">
-						<p>Are you sure delete this ?</p>
+						<p>Are you sure delete no po <?php echo $p->no_po; ?> ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+						<button class="btn btn-outline-light" id="delform"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>
@@ -436,14 +436,14 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_desc_hapus') ?>">
+				<form class="form-horizontal" onsubmit="deldesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_desc_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
 						<p>Are you sure delete this ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+						<button class="btn btn-outline-light" id="deldesc"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>

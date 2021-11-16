@@ -29,7 +29,7 @@
             <div class="card-body">
               <table id="example3" class="table table-bordered table-striped">
                 <thead>
-                  <tr>
+                  <tr style="text-align:center">
                     <th width="10%">No Inquiry</th>
                     <th>Nama</th>
                     <th>Tanggal</th>
@@ -46,12 +46,12 @@
                 foreach ($query->result() as $p) {
                 ?>
                   <tr>
-                    <td><?php echo $p->inquiry_id; ?></td>
+                    <td style="text-align:center"><?php echo $p->inquiry_id; ?></td>
                     <td><?php echo $p->sales; ?></td>
                     <td><?php echo $p->tanggal; ?></td>
                     <td><?php echo $p->brand; ?></td>
                     <td><?php echo $p->desc; ?></td>
-                    <td><?php echo $p->qty; ?></td>
+                    <td style="text-align:center"><?php echo $p->qty; ?></td>
                     <td><?php echo $p->deadline; ?></td>
                     <td><?php echo $p->request; ?></td>
                     <td style="text-align:center">

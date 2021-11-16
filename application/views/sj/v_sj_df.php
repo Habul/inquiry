@@ -40,10 +40,10 @@
 						<div class="card-body">
 							<table id="example6" class="table table-bordered table-striped">
 								<thead>
-									<tr>
-										<th width="14%">Do No</th>
-										<th>Do Date</th>
-										<th>Due Date</th>
+									<tr style="text-align:center">
+										<th width="7%">Do No</th>
+										<th width="10%">Do Date</th>
+										<th width="11%">Due Date</th>
 										<th>Cust Name</th>
 										<th width="18%">Address</th>
 										<th>City</th>
@@ -93,16 +93,15 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('sj/sj_aksi_df') ?>">
+			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('sj/sj_aksi_df') ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="control-label col-xs-3">No Delivery Order *</label>
+						<label class="control-label col-xs-3">Delivery Order No*</label>
 						<div class="col-xs-9">
 							<?php
 							$cek = $this->db->select_max('no_id')->get('sj_user_df')->row();
-							$nomor = $cek->no_id + 1;
 							?>
-							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo 'IT/SJ/', date('Y/m/'), $nomor ?>">
+							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo 'IT/SJ/', date('Y/m/'), $cek->no_id+1; ?>">
 							<?php echo form_error('no_delivery'); ?>
 						</div>
 					</div>
@@ -156,7 +155,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -176,13 +175,13 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_edit_df') ?>">
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_edit_df') ?>">
 					<div class="modal-body">
 						<div class="form-group">
-							<label class="control-label col-xs-3">No Delivery Order *</label>
+							<label class="control-label col-xs-3">Delivery Order No *</label>
 							<div class="col-xs-9">
 								<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
-								<input type="text" name="no_delivery" class="form-control" readonly value="<?php echo $p->no_delivery; ?>">
+								<input type="text" name="no_delivery" class="form-control" readonly value="<?php echo str_replace("-", "/", $p->no_delivery); ?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -235,7 +234,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Update</button>
+						<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
 					</div>
 				</form>
 			</div>
@@ -323,7 +322,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update_df') ?>">
+				<form class="form-horizontal" onsubmit="adddesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_update_df') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
@@ -343,7 +342,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="adddesc"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -365,7 +364,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_update_edit_df') ?>">
+				<form class="form-horizontal" onsubmit="editdesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_update_edit_df') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
@@ -385,7 +384,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="editdesc"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -406,14 +405,14 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_hapus_df') ?>">
+				<form class="form-horizontal" onsubmit="deldesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_hapus_df') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_id" value="<?php echo $p->no_id; ?>">
-						<p>Are you sure delete this ?</p>
+						<p>Are you sure delete Do <?php echo str_replace("-", "/", $p->no_delivery); ?> ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+						<button class="btn btn-outline-light" id="deldesc"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>
@@ -433,14 +432,14 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('sj/sj_desc_hapus_df') ?>">
+				<form class="form-horizontal" onsubmit="delform.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_desc_hapus_df') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
 						<p>Are you sure delete this ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+						<button class="btn btn-outline-light" id="delform"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>

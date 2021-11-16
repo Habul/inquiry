@@ -42,9 +42,9 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example2" class="table table-bordered table-hover">
+							<table id="example6" class="table table-bordered table-hover">
 								<thead>
-									<tr>
+									<tr style="text-align:center">
 										<th width="10%">No Inquiry</th>
 										<th>Nama</th>
 										<th>Tanggal</th>
@@ -63,12 +63,12 @@
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $p->inquiry_id; ?></td>
+										<td style="text-align:center"><?php echo $p->inquiry_id; ?></td>
 										<td><?php echo $p->sales; ?></td>
 										<td><?php echo $p->tanggal; ?></td>
 										<td><?php echo $p->brand; ?></td>
 										<td><?php echo $p->desc; ?></td>
-										<td><?php echo $p->qty; ?></td>
+										<td style="text-align:center"><?php echo $p->qty; ?></td>
 										<td><?php echo $p->deadline; ?></td>
 										<td><?php echo $p->request; ?></td>
 										<?php if ($this->session->userdata('level') != "warehouse") { ?>
@@ -109,7 +109,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="form-tambah-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
+			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Nama Sales</label>
@@ -197,7 +197,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -217,7 +217,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" id="form-edit-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;"  method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Inquiry</label>
@@ -285,7 +285,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -296,7 +296,7 @@
 
 <!-- ============ MODAL EDIT PURC =============== -->
 <?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_edit_purch<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
+	<div class="modal fade" id="modal_edit_purch<?php echo $p->inquiry_id; ?>" style="hidden;" data-backdrop="static">
 		<<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -306,7 +306,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" id="form-update-inquiry" method="post" action="<?php echo base_url('inquiry/inquiry_update') ?>">
+				<form class="form-horizontal" onsubmit="updbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Inquiry</label>
@@ -395,7 +395,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Kurs *</label>
 							<div class="col-xs-9">
-								<select class="form-control" id="kurs" name="kurs" onchange="changeTipe();" required>
+								<select class="form-control" id="kurs" name="kurs" onchange="myKurs()" required>
 									<option value="">- Pilih Kurs -</option>
 									<?php foreach ($kurs as $row) : ?>
 										<option value="<?php echo $row->id_kurs; ?>"><?php echo $row->currency; ?></option>
@@ -407,6 +407,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Cogs *</label>
 							<div class="col-xs-9">
+								<input type="text" id="amount" class="form-control" id="amount">
 								<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="changeTipe();" placeholder="Isi Cogs.." required>
 								<?php echo form_error('cogs'); ?>
 							</div>
@@ -456,7 +457,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="updbtn"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -464,6 +465,13 @@
 	</div>
 <?php endforeach; ?>
 <!--END MODAL EDIT PURC-->
+<script>
+	function myKurs() {
+	var x = document.getElementById("kurs").value;
+	document.getElementById("amount").innerHTML = x;
+	console.log(x);
+	}
+</script>
 
 
 <!--MODAL HAPUS-->
@@ -472,20 +480,20 @@
 		<div class="modal-dialog">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">
-					<h4 class="col-12 modal-title text-center">Delete Kurs
+					<h4 class="col-12 modal-title text-center">Delete Inquiry
 						<button class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
+				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="inquiry_id" value="<?php echo $p->inquiry_id; ?>">
-						<p>Apakah Anda yakin mau memhapus Inquiry ini?</p>
+						<p>Are you sure delete id <?php echo $p->inquiry_id; ?>  ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+						<button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>

@@ -28,17 +28,17 @@
           <div class="card-body">
             <table id="example3" class="table table-bordered table-striped">
               <thead>
-                <tr>
-                  <th width="8%">No Buffer</th>
+                <tr style="text-align:center">
+                  <th width="12%">No Buffer</th>
                   <th>Nama</th>
-                  <th>Tanggal</th>
-                  <th>Brand Produk</th>
+                  <th width="17%">Tanggal</th>
+                  <th>Brand</th>
                   <th>Description</th>
                   <th>Qty</th>
                   <th>Keterangan</th>
                   <th>Status</th>
                   <th>No PR</th>
-                  <th width="12%">Action</th>
+                  <th width="5%">Action</th>
                 </tr>
               </thead>
               <?php
@@ -46,14 +46,14 @@
               foreach ($query->result() as $p) {
               ?>
                 <tr>
-                  <td><?php echo $p->id_buffer; ?></td>
+                  <td style="text-align:center"><?php echo $p->id_buffer; ?></td>
                   <td><?php echo $p->sales; ?></td>
                   <td><?php echo $p->tanggal; ?></td>
                   <td><?php echo $p->brand; ?></td>
                   <td><?php echo $p->deskripsi; ?></td>
-                  <td><?php echo $p->qty; ?></td>
+                  <td style="text-align:center"><?php echo $p->qty; ?></td>
                   <td><?php echo $p->keter; ?></td>
-                  <td><?php echo $p->status; ?></td>
+                  <td><?php echo strtoupper($p->status); ?></td>
                   <td><?php echo $p->pr_no; ?></td>
                   <td style="text-align:center">
                     <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_buffer; ?>" title="View Detail"><i class="fa fa-eye"></i></a>

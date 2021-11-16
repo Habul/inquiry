@@ -56,34 +56,34 @@
           <table class="table table-borderless table-sm">
             <?php foreach ($sj_user_df as $u) : ?>
               <tr>
-                <td>Delivery No</td>
+                <td width="10%">Delivery No</td>
                 <td> : </td>
                 <td><?php echo str_replace("-", "/", $u->no_delivery); ?></td>
-                <td width="30%"></td>
+                <td width="25%"></td>
                 <td rowspan="2">Address</td>
                 <td rowspan="2"> : </td>
                 <td rowspan="2" width="30%"><?php echo $u->address; ?></td>
               </tr>
               <tr>
-                <td>Delivery Date</td>
+                <td width="10%">Delivery Date</td>
                 <td> : </td>
                 <td><?php echo $u->date_delivery; ?></td>
-                <td width="30%"></td>
+                <td width="25%"></td>
               </tr>
               <tr>
-                <td>Due Date</td>
+                <td width="10%">Due Date</td>
                 <td> : </td>
                 <td><?php echo $u->due_date; ?></td>
-                <td width="30%"></td>
+                <td width="25%"></td>
                 <td>City</td>
                 <td> : </td>
                 <td><?php echo $u->city; ?></td>
               </tr>
               <tr>
-                <td>Cust Name</td>
+                <td width="10%">Cust Name</td>
                 <td> : </td>
                 <td><?php echo $u->cust_name; ?></td>
-                <td width="30%"></td>
+                <td width="25%"></td>
                 <td>Phone</td>
                 <td> : </td>
                 <td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($u->phone)), 2); ?></td>

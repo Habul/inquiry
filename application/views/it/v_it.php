@@ -41,7 +41,7 @@
 							<table id="example8" class="table table-bordered table-hover table-sm">
 								<thead style="text-align:center">
 									<tr>
-										<th width="2%">No</th>
+										<th width="3%">No</th>
 										<th width="50%">Judul</th>
 										<th width="12%">Addtime</th>
 										<th width="10%">Action</th>
@@ -85,7 +85,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" method="post" action="<?php echo base_url('it/data_aksi') ?>" enctype="multipart/form-data">
+			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('it/data_aksi') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Judul *</label>
@@ -118,7 +118,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -138,7 +138,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('it/data_edit') ?>" enctype="multipart/form-data">
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('it/data_edit') ?>" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Judul</label>
@@ -173,7 +173,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Update</button>
+						<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
 					</div>
 				</form>
 			</div>
@@ -231,14 +231,14 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('it/data_hapus') ?>">
+				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('it/data_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
-						<p>Are you sure delete this ?</p>
+						<p>Are you sure delete <?php echo $u->judul; ?> ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+						<button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>

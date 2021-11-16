@@ -346,7 +346,7 @@ class Sj extends CI_Controller
 
 			$id = $this->input->post('no_id');
 
-			$no_delivery = $this->input->post('no_delivery');
+			$this->input->post('no_delivery');
 			$date_delivery = $this->input->post('date_delivery');
 			$due_date = $this->input->post('due_date');
 			$cust_name = $this->input->post('cust_name');
@@ -357,7 +357,6 @@ class Sj extends CI_Controller
 			if ($this->form_validation->run() != false) {
 				$data = array(
 
-					'no_delivery' => $no_delivery,
 					'date_delivery' => $date_delivery,
 					'due_date' => $due_date,
 					'cust_name' => $cust_name,

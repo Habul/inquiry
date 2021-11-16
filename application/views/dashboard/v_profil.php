@@ -72,7 +72,7 @@
 			  	<div class="tab-content">
 				  <div class="tab-pane fade show active" id="profile-settiing" role="tabpanel" aria-labelledby="profile-settiing-tab">
 						<?php foreach ($profil as $p) { ?>
-							<form class="form-horizontal" method="post" action="<?php echo base_url('dashboard/profil_update') ?>" enctype="multipart/form-data">
+							<form class="form-horizontal" onsubmit="profil.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/profil_update') ?>" enctype="multipart/form-data">
                      				<div class="form-group row">
 										<label for="inputName" class="col-sm-2 col-form-label">Nama *</label>
 										<div class="col-sm-10">
@@ -99,14 +99,14 @@
 									</div>
 									<div class="form-group row">
 										<div class="offset-sm-2 col-sm-10">
-										<input type="submit" class="btn btn-info" value="Update">
+										<input type="submit" class="btn btn-info" id="profil" value="Update">
 										</div>
 									</div>
 							</form>
 						<?php } ?>
 					</div>
 					<div class="tab-pane fade" id="pass-setting" role="tabpanel" aria-labelledby="pass-setting-tab">		
-							<form method="post" action="<?php echo base_url('dashboard/ganti_password_aksi') ?>">
+							<form method="post" onsubmit="pass.disabled = true; return true;" action="<?php echo base_url('dashboard/ganti_password_aksi') ?>">
 								<div class="form-group">
 									<label>Old Password *</label>
 									<input type="password" name="password_lama" class="form-control" placeholder="Masukkan Password Lama Anda ..">
@@ -124,7 +124,7 @@
 									<?php echo form_error('konfirmasi_password'); ?>
 								</div>
 							<div class="card-footer">
-								<input type="submit" class="btn btn-primary" value="Update">
+								<input type="submit" class="btn btn-primary" id="pass" value="Update">
 							</div>
 						</form>
 					</div>

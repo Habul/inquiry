@@ -45,10 +45,10 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example5" class="table table table-bordered table-striped">
+							<table id="example5" class="table table-bordered table-striped table-sm">
 								<thead>
-									<tr>
-										<th width="1%">No</th>
+									<tr style="text-align:center">
+										<th width="5%">No</th>
 										<th>Currency</th>
 										<th>Amount</th>
 										<th width="15%" style="display:none">Action</th>
@@ -60,7 +60,7 @@
 								foreach ($query->result() as $p) {
 								?>
 									<tr>
-										<td><?php echo $no++; ?></td>
+										<td style="text-align:center"><?php echo $no++; ?></td>
 										<td><?php echo $p->currency; ?></td>
 										<td><?php echo number_format($p->amount, 0, '.', '.'); ?></td>
 										<td style="text-align:center">
@@ -94,7 +94,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="form-modal-tambah" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>">
+			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<?php
@@ -120,7 +120,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -140,7 +140,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" id="form-modal-tambah" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_update') ?>">
+				<form class="form-horizontal" onsubmit="editform.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_update') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Brand Produk *</label>
@@ -160,7 +160,7 @@
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="editform"><i class="fa fa-check"></i> Save</button>
 					</div>
 				</form>
 			</div>
@@ -180,7 +180,7 @@
 					</button>
 				</h4>
 			</div>
-			<form method="post" action="<?php echo base_url('inquiry/inquiry_kurs_import') ?>" enctype="multipart/form-data">
+			<form method="post" onsubmit="importform.disabled = true; return true;" action="<?php echo base_url('inquiry/inquiry_kurs_import') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
 					<input type="file" name="excel" class="form-control" required>
 					<?php echo form_error('excel'); ?>
@@ -189,7 +189,7 @@
 					<small>* Format file harus sesuai dengan file excel export</small>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="form-control btn btn-primary"><i class="fa fa-check"></i> Import Data</button>
+					<button type="submit" class="form-control btn btn-primary" id="importform"><i class="fa fa-check"></i> Import Data</button>
 				</div>
 			</form>
 		</div>
@@ -209,14 +209,14 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_hapus') ?>">
+				<form class="form-horizontal" onsubmit="delform.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="id_kurs" value="<?php echo $p->id_kurs; ?>">
-						<p>Apakah Anda yakin mau memhapus Kurs <?php echo $p->currency; ?> ini?</p>
+						<p>Are you sure delete <?php echo $p->currency ?> ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-						<button class="btn btn-outline-light"><i class="fa fa-check"></i> Yes</button>
+						<button class="btn btn-outline-light" id="delform"><i class="fa fa-check"></i> Yes</button>
 					</div>
 				</form>
 			</div>
