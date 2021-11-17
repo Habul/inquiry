@@ -29,9 +29,9 @@
             <table id="example3" class="table table-bordered table-striped">
               <thead>
                 <tr style="text-align:center">
-                  <th width="12%">No Buffer</th>
+                  <th width="6%">No</th>
                   <th>Nama</th>
-                  <th width="17%">Tanggal</th>
+                  <th>Tanggal</th>
                   <th>Brand</th>
                   <th>Description</th>
                   <th>Qty</th>

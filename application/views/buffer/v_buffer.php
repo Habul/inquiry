@@ -45,7 +45,7 @@
 							<table id="example3" class="table table table-bordered table-hover">
 								<thead>
 									<tr style="text-align:center">
-										<th width="13%">No Buffer</th>
+										<th width="6%">No</th>
 										<th>Nama</th>
 										<th>Tanggal</th>
 										<th>Brand Produk</th>
@@ -53,7 +53,7 @@
 										<th>Qty</th>
 										<th>Status</th>
 										<?php if ($this->session->userdata('level') != "purchase") {	?>
-											<th width="13%">Action</th>
+										<th width="13%">Action</th>
 										<?php }	?>
 									</tr>
 								</thead>

@@ -30,15 +30,15 @@
               <table id="example3" class="table table-bordered table-striped">
                 <thead>
                   <tr style="text-align:center">
-                    <th width="10%">No Inquiry</th>
+                    <th width="5%">No</th>
                     <th>Nama</th>
                     <th>Tanggal</th>
-                    <th>Brand Produk</th>
+                    <th>Brand</th>
                     <th>Description</th>
                     <th>Qty</th>
                     <th>Deadline</th>
                     <th>Request</th>
-                    <th width="10%">Action</th>
+                    <th width="5%">Action</th>
                   </tr>
                 </thead>
                 <?php

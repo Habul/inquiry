@@ -84,6 +84,7 @@ $(document).ready(function () {
     });
 });	
 </script>
+
 <script>
 	$(function() {
 		$("#example1").DataTable({
@@ -154,10 +155,6 @@ $(document).ready(function () {
 	});
 </script>
 <script>
-	//-------------
-    //- DONUT CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
       labels: [ <?php
@@ -176,8 +173,7 @@ $(document).ready(function () {
                   }
                 }
               ?>],
-          backgroundColor : ['#CDA776','#f56954', '#00A65A', '#F39C12', '#00C0EF', '#3C8DBC', '#D2D6DE','#DEB887','#A9A9A9','#DC143C','#F4A460','#2E8B57','#1D7A46'
-		,'#00CED1','#483D8B','#5F9EA0','#696969','#7CFC00','#808000','#9370DB','#A9A9A9','#B0C4DE','#C0C0C0','#D2B48C','#E6E6FA','#F0F8FF','#FFE4E1','#FFFF00'],
+          backgroundColor : <?php echo $sales_color ?>,
         }
       ]
     }
@@ -188,18 +184,12 @@ $(document).ready(function () {
         display: false
     }
     }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
     new Chart(donutChartCanvas, {
       type: 'doughnut',
       data: donutData,
       options: donutOptions
     })
 
-    //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
     var pieData        = {
       labels: [ <?php
@@ -212,7 +202,6 @@ $(document).ready(function () {
       ],
       datasets: [
         {
-		  label: 'Statistik Sales',
           data: [<?php
                 if (count($data_brand)>0) {
                    foreach ($data_brand as $data) {
@@ -220,8 +209,7 @@ $(document).ready(function () {
                   }
                 }
               ?>],
-          backgroundColor : ['#DEB887','#A9A9A9','#DC143C','#F4A460','#2E8B57','#1D7A46','#CDA776','#f56954', '#00A65A', '#F39C12', '#00C0EF', '#3C8DBC', '#D2D6DE',
-		  '#00CED1','#483D8B','#5F9EA0','#696969','#7CFC00','#808000','#9370DB','#A9A9A9','#B0C4DE','#C0C0C0','#D2B48C','#E6E6FA','#F0F8FF','#FFE4E1','#FFFF00'],
+          backgroundColor : <?php echo $brand_color ?>,
         }
       ]
     }
@@ -232,8 +220,6 @@ $(document).ready(function () {
         display: false
     }
     }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
     new Chart(pieChartCanvas, {
       type: 'pie',
       data: pieData,
