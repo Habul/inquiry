@@ -43,8 +43,8 @@
 					<div class="card card-success card-outline">
 						<div class="card-body">
 							<table id="example3" class="table table table-bordered table-hover">
-								<thead>
-									<tr style="text-align:center">
+								<thead class="thead-dark" style="text-align:center">
+									<tr>
 										<th width="6%">No</th>
 										<th>Nama</th>
 										<th>Tanggal</th>

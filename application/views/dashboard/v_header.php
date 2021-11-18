@@ -45,7 +45,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
 	<div class="wrapper">
 
 		<!-- Navbar -->
@@ -94,6 +94,7 @@
 					<i class="fas fa-expand-arrows-alt"></i>
 				</a>
 			</li>
+			
 			<li class="nav-item dropdown user-menu">
 				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 					<?php $id_user = $this->session->userdata('id');
@@ -115,6 +116,7 @@
 						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default"><i class="fa fa-user"></i> Profile</a>
 						<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right"><i class="fa fa-power-off"></i> Sign out</a>
 					</li>
+					
 				</ul>
 			</li>
 			</ul>
@@ -157,7 +159,7 @@
 
 				<!-- Sidebar Menu -->
 				<nav class="mt-2">
-					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+					<ul class="nav nav-pills nav-sidebar nav-child-indent nav-compact flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard' ?>" <?= $this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-home"></i>

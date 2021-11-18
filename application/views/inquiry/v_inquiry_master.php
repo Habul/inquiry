@@ -46,8 +46,8 @@
 					<div class="card card-success card-outline">
 						<div class="card-body">
 							<table id="example5" class="table table-bordered table-striped table-sm">
-								<thead>
-									<tr style="text-align:center">
+								<thead class="thead-dark" style="text-align:center">
+									<tr>
 										<th width="5%">No</th>
 										<th>Brand Produk</th>
 										<th>D1</th>

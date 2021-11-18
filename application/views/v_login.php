@@ -12,7 +12,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css'); ?>">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page text-sm">
   <div class="login-box">
     <div class="login-logo">
       <a href="#"><img src="<?php echo base_url().'gambar/website/Intisera2.png'?>" style="width:250px;height:110px;">
@@ -20,7 +20,7 @@
      <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg"><b>Log Into Your Account</b></p>
-        <form action="<?php echo base_url() . 'login/aksi' ?>" method="post">
+        <form action="<?php echo base_url() . 'login/aksi' ?>" id="loginform" method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Username" name="username" required>
             <?php echo form_error('username'); ?>
@@ -48,7 +48,7 @@
               </div>
             </div>
             <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              <button type="submit" id="loginbtn" class="btn btn-primary btn-block">Sign In</button>
             </div>
           </div>
         </form>
@@ -70,6 +70,15 @@
   <script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery/jquery.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/dist/js/adminlte.min.js'); ?>"></script>
+  <script>
+  $(document).ready(function () {	
+      $("#loginbtn").click(function () {
+      $('#loginbtn').text('Sign in...');
+          $("#loginbtn").attr("disabled", true);
+          $('#loginform').submit();
+      });
+  });	
+  </script>
 </body>
 
 </html>

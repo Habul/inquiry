@@ -1,4 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer text-sm">
 	<strong>Copyright &copy; 2021 <a href="https://wa.me/6287771911287?text=Hallo%20kakak%20yang%20baik%20!!!%20">Habul</a></strong> . All rights reserved.
 	<div class="float-right d-none d-sm-inline-block">
 		<b>IT</b> - Intinusa Sejahtera International

@@ -39,8 +39,8 @@
 					<div class="card card-success card-outline">
 						<div class="card-body">
 							<table id="example6" class="table table-bordered table-striped">
-								<thead>
-									<tr style="text-align:center">
+								<thead class="thead-dark" style="text-align:center">
+									<tr>
 										<th width="14%">Do No</th>
 										<th>Do Date</th>
 										<th>Due Date</th>

@@ -39,7 +39,7 @@
 					<div class="card card-success card-outline">
 						<div class="card-body">
 							<table id="example8" class="table table-bordered table-hover table-sm">
-								<thead style="text-align:center">
+								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="3%">No</th>
 										<th width="50%">Judul</th>
