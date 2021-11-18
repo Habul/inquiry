@@ -76,13 +76,13 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 <script>
-$(document).ready(function () {	
-    $("#submitbtn").click(function () {
-		$('#submitbtn').text('saving...');
-        $("#submitbtn").attr("disabled", true);
-        $('#addform').submit();
-    });
-});	
+	$(document).ready(function() {
+		$("#submitbtn").click(function() {
+			$('#submitbtn').text('saving...');
+			$("#submitbtn").attr("disabled", true);
+			$('#addform').submit();
+		});
+	});
 </script>
 
 <script>
@@ -155,78 +155,72 @@ $(document).ready(function () {
 	});
 </script>
 <script>
-    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-    var donutData        = {
-      labels: [ <?php
-            if (count($data_sales)>0) {
-              foreach ($data_sales as $data) {
-                echo "'" .$data->sales ."',";
-              }
-            }
-          ?> ],
-      datasets: [
-        {
-          data: [<?php
-                if (count($data_sales)>0) {
-                   foreach ($data_sales as $data) {
-                    echo $data->jmlh . ", ";
-                  }
-                }
-              ?>],
-          backgroundColor : <?php echo $sales_color ?>,
-        }
-      ]
-    }
-    var donutOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-	  legend: {
-        display: false
-    }
-    }
-    new Chart(donutChartCanvas, {
-      type: 'doughnut',
-      data: donutData,
-      options: donutOptions
-    })
+	var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+	var donutData = {
+		labels: [<?php
+					if (count($data_sales) > 0) {
+						foreach ($data_sales as $data) {
+							echo "'" . $data->sales . "',";
+						}
+					}
+					?>],
+		datasets: [{
+			data: [<?php
+					if (count($data_sales) > 0) {
+						foreach ($data_sales as $data) {
+							echo $data->jmlh . ", ";
+						}
+					}
+					?>],
+			backgroundColor: <?php echo $sales_color ?>,
+		}]
+	}
+	var donutOptions = {
+		maintainAspectRatio: false,
+		responsive: true,
+		legend: {
+			display: true
+		}
+	}
+	new Chart(donutChartCanvas, {
+		type: 'doughnut',
+		data: donutData,
+		options: donutOptions
+	})
 
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieData        = {
-      labels: [ <?php
-            if (count($data_brand)>0) {
-              foreach ($data_brand as $data) {
-                echo "'" .$data->brand ."',";
-              }
-            }
-          ?>
-      ],
-      datasets: [
-        {
-          data: [<?php
-                if (count($data_brand)>0) {
-                   foreach ($data_brand as $data) {
-                    echo $data->jmlh . ", ";
-                  }
-                }
-              ?>],
-          backgroundColor : <?php echo $brand_color ?>,
-        }
-      ]
-    }
-    var pieOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-	  legend: {
-        display: false
-    }
-    }
-    new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: pieData,
-      options: pieOptions,
-	  
-    })
+	var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+	var pieData = {
+		labels: [<?php
+					if (count($data_brand) > 0) {
+						foreach ($data_brand as $data) {
+							echo "'" . $data->brand . "',";
+						}
+					}
+					?>],
+		datasets: [{
+			data: [<?php
+					if (count($data_brand) > 0) {
+						foreach ($data_brand as $data) {
+							echo $data->jmlh . ", ";
+						}
+					}
+					?>],
+			backgroundColor: <?php echo $brand_color ?>,
+		}]
+	}
+	var pieOptions = {
+		maintainAspectRatio: false,
+		responsive: true,
+		legend: {
+			display: true
+		}
+	}
+	new Chart(pieChartCanvas, {
+		type: 'pie',
+		data: pieData,
+		options: pieOptions,
 
+	})
 </script>
 <script>
 	$(function() {

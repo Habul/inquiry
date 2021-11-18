@@ -2,7 +2,7 @@
 
 <head>
 	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Intisera | Home</title>
 	<link rel='icon' href="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" type="image/gif">
 	<!-- Google Font: Source Sans Pro -->
@@ -94,7 +94,7 @@
 					<i class="fas fa-expand-arrows-alt"></i>
 				</a>
 			</li>
-			
+
 			<li class="nav-item dropdown user-menu">
 				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 					<?php $id_user = $this->session->userdata('id');
@@ -116,7 +116,7 @@
 						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default"><i class="fa fa-user"></i> Profile</a>
 						<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right"><i class="fa fa-power-off"></i> Sign out</a>
 					</li>
-					
+
 				</ul>
 			</li>
 			</ul>
@@ -198,13 +198,13 @@
 									<i class="nav-icon fas fa-cogs"></i>
 									<p>Setting Website</p>
 								</a>
-							</li>	
+							</li>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'it/data' ?>" <?= $this->uri->uri_string() == 'it/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-server"></i>
 									<p>Data Penting IT</p>
 								</a>
-							</li>	
+							</li>
 							<li <?= $this->uri->uri_string() == 'sj/sj' ||
 									$this->uri->uri_string() == 'sj/sj_df' ||
 									$this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>

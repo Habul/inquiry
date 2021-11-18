@@ -217,7 +217,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;"  method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">No Inquiry</label>
@@ -407,7 +407,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Cogs *</label>
 							<div class="col-xs-9">
-								<input type="text" id="amount" class="form-control" id="amount">
+								<input type="hidden" id="amount" class="form-control" id="amount">
 								<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="changeTipe();" placeholder="Isi Cogs.." required>
 								<?php echo form_error('cogs'); ?>
 							</div>
@@ -450,7 +450,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Ket Purchase</label>
 							<div class="col-xs-9">
-								<textarea name="ket_purch" class="form-control" placeholder="Keterangan..." required></textarea>
+								<textarea name="ket_purch" class="form-control" placeholder="Keterangan..."></textarea>
 								<?php echo form_error('ket_purch'); ?>
 							</div>
 						</div>
@@ -467,9 +467,9 @@
 <!--END MODAL EDIT PURC-->
 <script>
 	function myKurs() {
-	var x = document.getElementById("kurs").value;
-	document.getElementById("amount").innerHTML = x;
-	console.log(x);
+		var x = document.getElementById("kurs").value;
+		document.getElementById("amount").innerHTML = x;
+		console.log(x);
 	}
 </script>
 
@@ -489,7 +489,7 @@
 				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="inquiry_id" value="<?php echo $p->inquiry_id; ?>">
-						<p>Are you sure delete id <?php echo $p->inquiry_id; ?>  ?</p>
+						<p>Are you sure delete id <?php echo $p->inquiry_id; ?> ?</p>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
