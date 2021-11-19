@@ -56,7 +56,7 @@
                   <td><?php echo strtoupper($p->status); ?></td>
                   <td><?php echo $p->pr_no; ?></td>
                   <td style="text-align:center">
-                    <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->id_buffer; ?>" title="View Detail"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_view<?php echo $p->id_buffer; ?>" title="View Detail"><i class="fa fa-eye"></i></a>
                   </td>
                 </tr>
               <?php } ?>
@@ -76,7 +76,7 @@
 
 <!-- ============ MODAL VIEW BUFFER =============== -->
 <?php foreach ($buffer as $p) : ?>
-  <div class="modal fade" id="modal_edit<?php echo $p->id_buffer; ?>" tabindex="-1" data-backdrop="static">
+  <div class="modal fade" id="modal_view<?php echo $p->id_buffer; ?>" tabindex="-1" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

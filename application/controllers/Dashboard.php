@@ -831,4 +831,11 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard/v_contact', $data);
 		$this->load->view('dashboard/v_footer');
 	}
+
+	public function notfound()
+	{
+		$this->load->view('dashboard/v_header');
+		$this->load->view('frontend/v_notfound');
+		$this->load->view('dashboard/v_footer');
+	}
 }

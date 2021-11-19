@@ -19,23 +19,23 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div class="col-md-3" style="padding: 0;">
-				<a href="<?php echo base_url('dashboard/pengguna_tambah'); ?>" class="form-control btn btn-success"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Pengguna</a>
+				<a href="<?php echo base_url('dashboard/pengguna_tambah'); ?>" class="form-control btn btn-success"><i class="fa fa-plus-square"></i>&nbsp; Tambah Pengguna</a>
 			</div>
 			<br />
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example1" class="table table-bordered table-striped">
-								<thead>
+							<table id="example1" class="table table-bordered table-striped table-sm">
+								<thead class="thead-dark" style="text-align:center">
 									<tr>
-										<th width="1%">NO</th>
+										<th width="5%">No</th>
 										<th>Nama</th>
 										<th>Email</th>
 										<th>Username</th>
 										<th>Level</th>
 										<th>Status</th>
-										<th width="10%"><i class="fa fa-gear"></i></th>
+										<th width="10%">Action</i></th>
 									</tr>
 								</thead>
 								<?php
@@ -43,7 +43,7 @@
 								foreach ($pengguna as $p) {
 								?>
 									<tr>
-										<td><?php echo $no++; ?></td>
+										<td style="text-align:center"><?php echo $no++; ?></td>
 										<td><?php echo $p->pengguna_nama; ?></td>
 										<td><?php echo $p->pengguna_email; ?></td>
 										<td><?php echo $p->pengguna_username; ?></td>
@@ -57,7 +57,7 @@
 											}
 											?>
 										</td>
-										<td>
+										<td style="text-align:center">
 											<?php
 											echo anchor(site_url('dashboard/pengguna_edit/' . $p->pengguna_id), '<i class="fa fa-edit"></i>', array('title' => 'edit', 'class' => 'btn btn-warning btn-sm'));
 											echo '  ';

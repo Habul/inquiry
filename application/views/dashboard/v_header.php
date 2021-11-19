@@ -113,8 +113,8 @@
 					</li>
 					<!-- Menu Footer-->
 					<li class="user-footer">
-						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default"><i class="fa fa-user"></i> Profile</a>
-						<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right"><i class="fa fa-power-off"></i> Sign out</a>
+						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default" title="Profile"><i class="fa fa-user"></i> </a>
+						<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right" title="Sign out"><i class="fa fa-power-off"></i> </a>
 					</li>
 
 				</ul>
@@ -169,7 +169,7 @@
 						<?php
 						if ($this->session->userdata('level') == "admin") {
 						?>
-							<li class="nav-item">
+							<!--li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/kategori' ?>" <?= $this->uri->uri_string() == 'dashboard/kategori' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-th"></i>
 									<p>Category</p>
@@ -182,11 +182,17 @@
 								</a>
 							</li>
 							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>" <?= $this->uri->uri_string() == 'dashboard/pengaturan' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<i class="nav-icon fas fa-cogs"></i>
+									<p>Setting Website</p>
+								</a>
+							</li>
+							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pages' ?>" <?= $this->uri->uri_string() == 'dashboard/pages' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-tags"></i>
 									<p>Pages</p>
 								</a>
-							</li>
+							</li--->
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>" <?= $this->uri->uri_string() == 'dashboard/pengguna' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-users"></i>
@@ -194,15 +200,9 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>" <?= $this->uri->uri_string() == 'dashboard/pengaturan' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-									<i class="nav-icon fas fa-cogs"></i>
-									<p>Setting Website</p>
-								</a>
-							</li>
-							<li class="nav-item">
 								<a href="<?php echo base_url() . 'it/data' ?>" <?= $this->uri->uri_string() == 'it/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-server"></i>
-									<p>Data Penting IT</p>
+									<p>Data Penting</p>
 								</a>
 							</li>
 							<li <?= $this->uri->uri_string() == 'sj/sj' ||
@@ -308,10 +308,36 @@
 								</ul>
 							</li>
 						<?php } ?>
+						<li <?= $this->uri->uri_string() == 'tracking/data' ||
+									$this->uri->uri_string() == 'tracking/view' ||
+									$this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
+								<a href="#" <?= $this->uri->uri_string() == 'tracking/data' ||
+												$this->uri->uri_string() == 'tracking/view' ||
+												$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<i class="nav-icon fas fa-truck"></i>
+									<p>Tracking
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="<?php echo base_url() . 'tracking/data' ?>" <?= $this->uri->uri_string() == 'tracking/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+											<i class="far fa-circle nav-icon"></i>
+											<p>Input Tracking</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="<?php echo base_url() . 'tracking/view' ?>" <?= $this->uri->uri_string() == 'tracking/view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+											<i class="far fa-circle nav-icon"></i>
+											<p>View Tracking</p>
+										</a>
+									</li>
+								</ul>
+							</li>
 						<li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard/contact' ?>" <?= $this->uri->uri_string() == 'dashboard/contact' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-rss-square"></i>
-								<p>Contact IT</p>
+								<p>Contact</p>
 							</a>
 						</li>
 						<li class="nav-item">

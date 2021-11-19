@@ -11,10 +11,10 @@
   'use strict'
 
   //setTimeout(function () {
-   // if (window.___browserSync___ === undefined && Number(localStorage.getItem('AdminLTE:Demo:MessageShowed')) < Date.now()) {
+    //if (window.___browserSync___ === undefined && Number(localStorage.getItem('AdminLTE:Demo:MessageShowed')) < Date.now()) {
       //localStorage.setItem('AdminLTE:Demo:MessageShowed', (Date.now()) + (15 * 60 * 1000))
       // eslint-disable-next-line no-alert
-      //alert('Selamat datang!')
+      //alert('Selamat datang')
    // }
  // }, 1000)
 

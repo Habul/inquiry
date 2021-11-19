@@ -15,11 +15,11 @@
 <body class="hold-transition login-page text-sm">
   <div class="login-box">
     <div class="login-logo">
-      <a href="#"><img src="<?php echo base_url().'gambar/website/Intisera2.png'?>" style="width:250px;height:110px;">
+      <a href="#"><img src="<?php echo base_url().'gambar/website/Intisera2.png'?>" style="width:250px;height:110px;"></a>
     </div>
      <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg"><b>Log Into Your Account</b></p>
+        <p class="login-box-msg"><b>Sign in to start your session</b></p>
         <form action="<?php echo base_url() . 'login/aksi' ?>" id="loginform" method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Username" name="username" required>
@@ -28,14 +28,14 @@
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
               </div>
-            </div>
+            </div> 
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" name="password" required>
+           <input id="password-field" type="password" class="form-control" name="password" placeholder="Password">
             <?php echo form_error('password'); ?>
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-lock"></span>
+              <span toggle="#password-field" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
               </div>
             </div>
           </div>
@@ -78,6 +78,16 @@
           $('#loginform').submit();
       });
   });	
+
+  $(".toggle-password").click(function() {
+  $(this).toggleClass("fa-eye-slash fa-eye");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+}
+});
   </script>
 </body>
 

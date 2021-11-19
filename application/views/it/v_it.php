@@ -3,13 +3,13 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Data Penting IT</h1>
+					<h1 class="m-0">Data Penting</h1>
 					<small>Pindahan file TXT dan IMG di 217</small>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
-						<li class="breadcrumb-item active">Data Penting IT</li>
+						<li class="breadcrumb-item active">Data Penting</li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->

@@ -4,12 +4,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Contacts IT</h1>
+          <h1>Contacts</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
-            <li class="breadcrumb-item active">Contact IT</li>
+            <li class="breadcrumb-item active">Contact</li>
           </ol>
         </div>
       </div>
@@ -42,7 +42,7 @@
               </div>
               <div class="card-footer">
                 <div class="text-right">
-                  <a href="https://wa.me/62<?php echo $it1->no_hp; ?>?text=Hallo%20kakak%20IT%20yang%20baik%20!!!%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
+                  <a href="https://wa.me/62<?php echo $it1->no_hp; ?>?text=Hallo%20kakak%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
                     <i class="fas fa-comments"></i>
                   </a>
                 </div>
@@ -71,7 +71,7 @@
               </div>
               <div class="card-footer">
                 <div class="text-right">
-                  <a href="https://wa.me/62<?php echo $it2->no_hp; ?>?text=Hallo%20kakak%20IT%20yang%20baik%20!!!%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
+                  <a href="https://wa.me/62<?php echo $it2->no_hp; ?>?text=Hallo%20kakak%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
                     <i class="fas fa-comments"></i>
                   </a>
                 </div>
@@ -100,7 +100,7 @@
               </div>
               <div class="card-footer">
                 <div class="text-right">
-                  <a href="https://wa.me/62<?php echo $it3->no_hp; ?>?text=Hallo%20kakak%20IT%20yang%20baik%20!!!%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
+                  <a href="https://wa.me/62<?php echo $it3->no_hp; ?>?text=Hallo%20kakak%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
                     <i class="fas fa-comments"></i>
                   </a>
                 </div>
@@ -129,7 +129,7 @@
               </div>
               <div class="card-footer">
                 <div class="text-right">
-                  <a href="https://wa.me/62<?php echo $it4->no_hp; ?>?text=Hallo%20kakak%20IT%20yang%20baik%20!!!%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
+                  <a href="https://wa.me/62<?php echo $it4->no_hp; ?>?text=Hallo%20kakak%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
                     <i class="fas fa-comments"></i>
                   </a>
                 </div>
@@ -158,7 +158,7 @@
               </div>
               <div class="card-footer">
                 <div class="text-right">
-                  <a href="https://wa.me/62<?php echo $it5->no_hp; ?>?text=Hallo%20kakak%20IT%20yang%20baik%20!!!%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
+                  <a href="https://wa.me/62<?php echo $it5->no_hp; ?>?text=Hallo%20kakak%20" class="btn btn-sm bg-teal" rel="noopener" target="_blank">
                     <i class="fas fa-comments"></i>
                   </a>
                 </div>

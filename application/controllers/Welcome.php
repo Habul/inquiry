@@ -228,15 +228,8 @@ class Welcome extends CI_Controller {
 
 	public function notfound()
 	{
-		// data pengaturan website
-		$data['pengaturan'] = $this->m_data->get_data('pengaturan')->row();
-
-		// SEO META
-		$data['meta_keyword'] = $data['pengaturan']->nama;
-		$data['meta_description'] = $data['pengaturan']->deskripsi;
-
-		$this->load->view('frontend/v_header',$data);
-		$this->load->view('frontend/v_notfound',$data);
-		$this->load->view('frontend/v_footer',$data);
+		$this->load->view('dashboard/v_header');
+		$this->load->view('frontend/v_notfound');
+		$this->load->view('dashboard/v_footer');
 	}
 }
