@@ -113,8 +113,8 @@
 					</li>
 					<!-- Menu Footer-->
 					<li class="user-footer">
-						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default" title="Profile"><i class="fa fa-user"></i> </a>
-						<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right" title="Sign out"><i class="fa fa-power-off"></i> </a>
+						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default" title="Profile"> Profile </a>
+						<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right" title="Sign out"> Sign out </a>
 					</li>
 
 				</ul>
