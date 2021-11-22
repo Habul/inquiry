@@ -29,7 +29,7 @@
 							<div class="box-body">
 								<div class="form-group">
 									<label>Konten</label>
-									<textarea class="form-control" name="konten"> <?php echo $a->artikel_konten; ?> </textarea>
+									<textarea class="form-control" id="summernote" name="konten"> <?php echo $a->artikel_konten; ?> </textarea>
 									<?php echo form_error('konten'); ?>
 								</div>
 							</div>

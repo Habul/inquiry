@@ -226,6 +226,9 @@
 	$(function() {
 		$('#summernote').summernote()
 	})
+	$(function() {
+		$('#summernoteedit').summernote()
+	})
 </script>
 <script>
 	$(function() {

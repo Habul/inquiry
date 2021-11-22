@@ -8,9 +8,9 @@
   <link rel='icon' href="<?php echo base_url(); ?>assets/logo/PNG-LOGO.gif" type="image/gif">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/fontawesome-free/css/all.min.css'); ?>">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 </head>
 <body class="hold-transition login-page text-sm">
   <div class="login-box">
@@ -67,9 +67,9 @@
     }
     ?>
   </div>
-  <script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery/jquery.min.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/dist/js/adminlte.min.js'); ?>"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
   <script>
   $(document).ready(function () {	
       $("#loginbtn").click(function () {
@@ -88,17 +88,49 @@
     input.attr("type", "password");
 }
 });
-
-function validasi() {
-		var user = document.getElementById("username").value;
-		var pass = document.getElementById("password").value;
-		if (user != "" && pass!="") {
-			return true;
-		}else{
-			alert('Anda harus mengisi data dengan lengkap !');
-		}
-	}
-  </script>
+</script>
+<script>
+$(function () {
+  $.validator.setDefaults({
+    submitHandler: function () {
+      alert( "Form successful submitted!" );
+    }
+  });
+  $('#loginform').validate({  
+    rules: {
+      text: {
+        required: true,
+        text: true,
+      },
+      password: {
+        required: true,
+        minlength: 5
+      },
+    },
+    messages: {
+      text: {
+        required: "Please enter a email address",
+        text: "Please enter a valid email address"
+      },
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 5 characters long"
+      },
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
 </body>
 
 </html>

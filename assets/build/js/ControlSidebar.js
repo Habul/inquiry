@@ -18,7 +18,6 @@ const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
-const EVENT_COLLAPSED_DONE = `collapsed-done${EVENT_KEY}`
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 
 const SELECTOR_CONTROL_SIDEBAR = '.control-sidebar'
@@ -46,8 +45,7 @@ const Default = {
   controlsidebarSlide: true,
   scrollbarTheme: 'os-theme-light',
   scrollbarAutoHide: 'l',
-  target: SELECTOR_CONTROL_SIDEBAR,
-  animationSpeed: 300
+  target: SELECTOR_CONTROL_SIDEBAR
 }
 
 /**
@@ -81,10 +79,6 @@ class ControlSidebar {
     }
 
     $(this._element).trigger($.Event(EVENT_COLLAPSED))
-
-    setTimeout(() => {
-      $(this._element).trigger($.Event(EVENT_COLLAPSED_DONE))
-    }, this._config.animationSpeed)
   }
 
   show() {

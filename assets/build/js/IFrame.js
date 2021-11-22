@@ -53,7 +53,6 @@ const Default = {
   autoShowNewTab: true,
   autoDarkMode: false,
   allowDuplicates: false,
-  allowReload: true,
   loadingScreen: true,
   useNavbarItems: true,
   scrollOffset: 40,
@@ -147,7 +146,7 @@ class IFrame {
     const navId = `tab-${uniqueName}`
 
     if (!this._config.allowDuplicates && $(`#${navId}`).length > 0) {
-      return this.switchTab(`#${navId}`, this._config.allowReload)
+      return this.switchTab(`#${navId}`)
     }
 
     if ((!this._config.allowDuplicates && $(`#${navId}`).length === 0) || this._config.allowDuplicates) {
@@ -155,35 +154,12 @@ class IFrame {
     }
   }
 
-  switchTab(item, reload = false) {
+  switchTab(item) {
     const $item = $(item)
     const tabId = $item.attr('href')
 
     $(SELECTOR_TAB_EMPTY).hide()
-
-    if (reload) {
-      const $loadingScreen = $(SELECTOR_TAB_LOADING)
-      if (this._config.loadingScreen) {
-        $loadingScreen.show(0, () => {
-          $(`${tabId} iframe`).attr('src', $(`${tabId} iframe`).attr('src')).ready(() => {
-            if (this._config.loadingScreen) {
-              if (typeof this._config.loadingScreen === 'number') {
-                setTimeout(() => {
-                  $loadingScreen.fadeOut()
-                }, this._config.loadingScreen)
-              } else {
-                $loadingScreen.fadeOut()
-              }
-            }
-          })
-        })
-      } else {
-        $(`${tabId} iframe`).attr('src', $(`${tabId} iframe`).attr('src'))
-      }
-    }
-
     $(`${SELECTOR_TAB_NAVBAR_NAV} .active`).tab('dispose').removeClass('active')
-
     this._fixHeight()
 
     $item.tab('show')
@@ -251,20 +227,14 @@ class IFrame {
   // Private
 
   _init() {
-    const usingDefTab = ($(SELECTOR_TAB_CONTENT).children().length > 2)
+    if ($(SELECTOR_TAB_CONTENT).children().length > 2) {
+      const $el = $(`${SELECTOR_TAB_PANE}:first-child`)
+      $el.show()
+      this._setItemActive($el.find('iframe').attr('src'))
+    }
 
     this._setupListeners()
     this._fixHeight(true)
-
-    if (usingDefTab) {
-      const $el = $(`${SELECTOR_TAB_PANE}`).first()
-      // eslint-disable-next-line no-console
-      console.log($el)
-      const uniqueName = $el.attr('id').replace('panel-', '')
-      const navId = `#tab-${uniqueName}`
-
-      this.switchTab(navId, true)
-    }
   }
 
   _initFrameElement() {
@@ -289,7 +259,7 @@ class IFrame {
         this._fixHeight()
       }, 1)
     })
-    if ($(SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
+    if ($('body').hasClass(CLASS_NAME_IFRAME_MODE)) {
       $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_SIDEBAR_SEARCH_ITEM}`, e => {
         e.preventDefault()
         this.openTabSidebar(e.target)

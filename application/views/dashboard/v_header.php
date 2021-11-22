@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Intisera | Home</title>
+	<title>Intisera | Dashboard</title>
 	<link rel='icon' href="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" type="image/gif">
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -56,7 +56,7 @@
 					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="<?php echo base_url() . 'dashboard' ?>" class="nav-link">Home</a>
+					<a href="<?php echo base_url() . 'dashboard' ?>" class="nav-link">Dashboard</a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
 					<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="nav-link">Profile</a>
@@ -162,8 +162,8 @@
 					<ul class="nav nav-pills nav-sidebar nav-child-indent nav-compact flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard' ?>" <?= $this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-								<i class="nav-icon fas fa-home"></i>
-								<p>Home</p>
+								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<p>Dashboard</p>
 							</a>
 						</li>
 						<?php
@@ -192,7 +192,7 @@
 									<i class="nav-icon fas fa-tags"></i>
 									<p>Pages</p>
 								</a>
-							</li--->
+							</li-->
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>" <?= $this->uri->uri_string() == 'dashboard/pengguna' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-users"></i>

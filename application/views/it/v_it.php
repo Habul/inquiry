@@ -8,7 +8,7 @@
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Home</a></li>
+						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
 						<li class="breadcrumb-item active">Data Penting</li>
 					</ol>
 				</div><!-- /.col -->
@@ -155,7 +155,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Isi *</label>
 							<div class="col-xs-9">
-								<textarea class="form-control" rows="10" name="isi" required><?php echo $p->isi; ?> </textarea>
+								<textarea class="form-control" name="isi" > <?php echo $p->isi; ?> </textarea>
 								<?php echo form_error('isi'); ?>
 							</div>
 						</div>
