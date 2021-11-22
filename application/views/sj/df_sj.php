@@ -147,11 +147,7 @@
             <tr style="text-align:center">
               <td>.....................</td>
               <td>.....................</td>
-              <?php
-              $id_user = $this->session->userdata('id');
-              $user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-              ?>
-              <td><?php echo $user->pengguna_nama; ?></td>
+              <td><?php echo $this->session->userdata('nama'); ?></td>
             </tr>
           </table>
         </div>

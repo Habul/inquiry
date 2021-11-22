@@ -53,7 +53,7 @@
 										<th>Qty</th>
 										<th>Status</th>
 										<?php if ($this->session->userdata('level') != "purchase") {	?>
-										<th width="13%">Action</th>
+											<th width="13%">Action</th>
 										<?php }	?>
 									</tr>
 								</thead>
@@ -115,11 +115,7 @@
 							$cek = $this->db->select_max('id_buffer')->get('buffer')->row();
 							?>
 							<input type="hidden" name="id_buffer" readonly class="form-control" value="<?php echo $cek->id_buffer + 1; ?>">
-							<?php
-							$id_user = $this->session->userdata('id');
-							$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-							?>
-							<input type="text" name="sales" readonly class="form-control" value="<?php echo $sales->pengguna_nama; ?> ">
+							<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>
 					</div>
@@ -201,11 +197,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Nama sales</label>
 							<div class="col-xs-9">
-								<?php
-								$id_user = $this->session->userdata('id');
-								$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-								?>
-								<input type="text" name="sales" readonly class="form-control" value="<?php echo $user->pengguna_nama; ?> ">
+								<input type="text" name="sales" readonly class="form-control" value="<?php echo  $this->session->userdata('nama'); ?> ">
 							</div>
 						</div>
 						<div class="form-group">
@@ -316,11 +308,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Warehouse</label>
 							<div class="col-xs-9">
-								<?php
-								$id_user = $this->session->userdata('id');
-								$cek = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-								?>
-								<input type="text" name="wh" readonly class="form-control" value="<?php echo $cek->pengguna_nama; ?> ">
+								<input type="text" name="wh" readonly class="form-control" value="<?php echo  $this->session->userdata('nama'); ?> ">
 								<?php echo form_error('wh'); ?>
 							</div>
 						</div>
@@ -359,14 +347,14 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">PR No *</label>
 							<div class="col-xs-9">
-								<input type="text" name="pr_no" class="form-control" value="<?php echo $p->pr_no; ?>" required>
+								<input type="text" name="pr_no" class="form-control" placeholder="Input No PR.." value="<?php echo $p->pr_no; ?>" required>
 								<?php echo form_error('pr_no'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Ket(warehouse)</label>
 							<div class="col-xs-9">
-								<textarea name="ket_wh" class="form-control"><?php echo $p->ket_wh; ?></textarea>
+								<textarea name="ket_wh" class="form-control" placeholder="Input Ket.."><?php echo $p->ket_wh; ?></textarea>
 								<?php echo form_error('ket_wh'); ?>
 							</div>
 						</div>

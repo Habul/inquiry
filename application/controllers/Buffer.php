@@ -16,6 +16,7 @@ class Buffer extends CI_Controller
 
 	public function buffer()
 	{
+		$data['userdata'] = $this->userdata;
 		$data['master'] = $this->m_data->get_master()->result();
 		$data['buffer'] = $this->m_data->get_data('buffer')->result();
 		$this->load->view('dashboard/v_header');

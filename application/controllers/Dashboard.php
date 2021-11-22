@@ -29,26 +29,26 @@ class Dashboard extends CI_Controller
 		$data['total_buffer'] = $this->m_data->tot_buffer();
 
 		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-		
+
 		$sales = $this->m_data->select_by_sales();
 		$index = 0;
 		foreach ($sales as $value) {
-		    $color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
+			$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
 			$sales_color[$index] = $color;
 			$data_sales[$index] = $value->nama;
-			
+
 			$index++;
 		}
 
 		$brand = $this->m_data->select_by_brand();
 		$index = 0;
 		foreach ($brand as $value) {
-		    $color = '#' .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)] .$rand[rand(0,15)];
+			$color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
 			$brand_color[$index] = $color;
 			$data_posisi[$index] = $value->nama;
-			
+
 			$index++;
 		}
 		//$color1 = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
@@ -56,8 +56,8 @@ class Dashboard extends CI_Controller
 		$data['data_sales'] = $this->m_data->select_by_sales();
 		$data['data_brand'] = $this->m_data->select_by_brand();
 		$data['sales_color'] = json_encode($sales_color);
-		$data['brand_color'] = json_encode($brand_color);;
-		$this->load->view('dashboard/v_header');
+		$data['brand_color'] = json_encode($brand_color);
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('dashboard/v_index', $data);
 		$this->load->view('dashboard/v_footer', $data);
 	}
@@ -561,32 +561,28 @@ class Dashboard extends CI_Controller
 					$data = array(
 						'foto' => $foto
 					);
-					
+
 					$where = array(
 						'pengguna_id' => $id
 					);
 
-					$this->m_data->update_data($where, $data, 'pengguna');					
+					$this->m_data->update_data($where, $data, 'pengguna');
 				}
 			}
-			redirect(base_url().'dashboard/profil/?alert=sukses');
-
-		}else
-
-			{
+			redirect(base_url() . 'dashboard/profil/?alert=sukses');
+		} else {
 			$id_pengguna = $this->session->userdata('id');
 
 			$where = array(
 				'pengguna_id' => $id_pengguna
 			);
 
-			$data['profil'] = $this->m_data->edit_data($where,'pengguna')->result();
+			$data['profil'] = $this->m_data->edit_data($where, 'pengguna')->result();
 
 			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_profil',$data);
+			$this->load->view('dashboard/v_profil', $data);
 			$this->load->view('dashboard/v_footer');
 		}
-		
 	}
 
 	public function pengaturan()
@@ -820,13 +816,13 @@ class Dashboard extends CI_Controller
 	}
 	//END Crud pengguna
 
-	public function contact()	
-	{	
-		$data['it1']=$this->db->get('kontak')->row('1');
-		$data['it2']=$this->db->get('kontak')->row('2');
-		$data['it3']=$this->db->get('kontak')->row('3');
-		$data['it4']=$this->db->get('kontak')->row('4');
-		$data['it5']=$this->db->get('kontak')->row('5');
+	public function contact()
+	{
+		$data['it1'] = $this->db->get('kontak')->row('1');
+		$data['it2'] = $this->db->get('kontak')->row('2');
+		$data['it3'] = $this->db->get('kontak')->row('3');
+		$data['it4'] = $this->db->get('kontak')->row('4');
+		$data['it5'] = $this->db->get('kontak')->row('5');
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_contact', $data);
 		$this->load->view('dashboard/v_footer');

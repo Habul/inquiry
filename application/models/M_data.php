@@ -243,13 +243,15 @@ class M_data extends CI_Model
 		return $this->db->affected_rows();
 	}
 
-	function get_contact($idUser){
+	function get_contact($idUser)
+	{
 		$this->db->select("*");
-		$this->db->where("id_user",$idUser);
+		$this->db->where("id_user", $idUser);
 		return $this->db->get('kontak')->row();
 	}
 
-	public function getcontact($id){
-		return $this->db->get_where('kontak',array('id_user' => $id))->row();
-	 }
+	public function getcontact($id)
+	{
+		return $this->db->get_where('kontak', array('id_user' => $id))->row();
+	}
 }

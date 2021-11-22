@@ -118,11 +118,7 @@
 							$cek = $this->db->select_max('inquiry_id')->get('inquiry')->row();
 							?>
 							<input type="hidden" name="inquiry_id" class="form-control" value="<?php echo $cek->inquiry_id + 1; ?> ">
-							<?php
-							$id_user = $this->session->userdata('id');
-							$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-							?>
-							<input type="text" name="sales" readonly class="form-control" value="<?php echo $sales->pengguna_nama; ?> ">
+							<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>
 					</div>
@@ -228,11 +224,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Nama sales</label>
 							<div class="col-xs-9">
-								<?php
-								$id_user = $this->session->userdata('id');
-								$sales = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-								?>
-								<input type="text" name="sales" readonly class="form-control" value="<?php echo $sales->pengguna_nama; ?> ">
+								<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 								<?php echo form_error('sales'); ?>
 							</div>
 						</div>
@@ -359,11 +351,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Purchase</label>
 							<div class="col-xs-9">
-								<?php
-								$id_user = $this->session->userdata('id');
-								$purchase = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row();
-								?>
-								<input type="text" name="name_purch" readonly class="form-control" value="<?php echo $purchase->pengguna_nama; ?> ">
+								<input type="text" name="name_purch" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 								<?php echo form_error('name_purch'); ?>
 							</div>
 						</div>

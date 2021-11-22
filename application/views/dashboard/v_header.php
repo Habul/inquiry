@@ -97,18 +97,16 @@
 
 			<li class="nav-item dropdown user-menu">
 				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-					<?php $id_user = $this->session->userdata('id');
-					$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
-					<img src="<?php echo base_url() . 'gambar/profile/' . $user->foto; ?>" class="user-image img-circle elevation-2" alt="User Image">
-					<span class="d-none d-md-inline"><?php echo $user->pengguna_nama; ?></span>
+					<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="user-image img-circle elevation-2" alt="User Image">
+					<span class="d-none d-md-inline"><?php echo $this->session->userdata('nama'); ?></span>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 					<!-- User image -->
 					<li class="user-header bg-dark">
-						<img src="<?php echo base_url() . 'gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
+						<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="img-circle elevation-2" alt="User Image">
 						<p>
-							<?php echo $user->pengguna_nama; ?>
-							<small><?php echo $user->pengguna_level; ?></small>
+							<?php echo $this->session->userdata('nama');  ?>
+							<small><?php echo $this->session->userdata('level');  ?></small>
 						</p>
 					</li>
 					<!-- Menu Footer-->
@@ -136,12 +134,10 @@
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<?php $id_user = $this->session->userdata('id');
-						$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
-						<img src="<?php echo base_url() . 'gambar/profile/' . $user->foto; ?>" class="img-circle elevation-2" alt="User Image">
+						<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto');  ?>" class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
-						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="d-block"><?php echo $user->pengguna_nama; ?></a>
+						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="d-block"><?php echo $this->session->userdata('nama');  ?></a>
 					</div>
 				</div>
 
@@ -309,31 +305,31 @@
 							</li>
 						<?php } ?>
 						<li <?= $this->uri->uri_string() == 'tracking/data' ||
-									$this->uri->uri_string() == 'tracking/view' ||
-									$this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
-								<a href="#" <?= $this->uri->uri_string() == 'tracking/data' ||
-												$this->uri->uri_string() == 'tracking/view' ||
-												$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-									<i class="nav-icon fas fa-truck"></i>
-									<p>Tracking
-										<i class="fas fa-angle-left right"></i>
-									</p>
-								</a>
-								<ul class="nav nav-treeview">
-									<li class="nav-item">
-										<a href="<?php echo base_url() . 'tracking/data' ?>" <?= $this->uri->uri_string() == 'tracking/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-											<i class="far fa-circle nav-icon"></i>
-											<p>Input Tracking</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="<?php echo base_url() . 'tracking/view' ?>" <?= $this->uri->uri_string() == 'tracking/view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-											<i class="far fa-circle nav-icon"></i>
-											<p>View Tracking</p>
-										</a>
-									</li>
-								</ul>
-							</li>
+								$this->uri->uri_string() == 'tracking/view' ||
+								$this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
+							<a href="#" <?= $this->uri->uri_string() == 'tracking/data' ||
+											$this->uri->uri_string() == 'tracking/view' ||
+											$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+								<i class="nav-icon fas fa-truck"></i>
+								<p>Tracking
+									<i class="fas fa-angle-left right"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?php echo base_url() . 'tracking/data' ?>" <?= $this->uri->uri_string() == 'tracking/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+										<i class="far fa-circle nav-icon"></i>
+										<p>Input Tracking</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo base_url() . 'tracking/view' ?>" <?= $this->uri->uri_string() == 'tracking/view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+										<i class="far fa-circle nav-icon"></i>
+										<p>View Tracking</p>
+									</a>
+								</li>
+							</ul>
+						</li>
 						<li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard/contact' ?>" <?= $this->uri->uri_string() == 'dashboard/contact' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-rss-square"></i>
