@@ -51,7 +51,8 @@
 										<option value="">- Pilih Divisi -</option>
 										<option value="admin">Admin</option>
 										<option value="purchase">Purchase</option>
-										<option value="sales">Sales</option>
+										<option value="driver">Driver</option>
+										<option value="ga">GA</option>
 									</select>
 									<?php echo form_error('level'); ?>
 								</div>

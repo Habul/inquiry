@@ -674,7 +674,7 @@ class Dashboard extends CI_Controller
 		$this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
 		$this->form_validation->set_rules('email', 'Email Pengguna', 'required');
 		$this->form_validation->set_rules('username', 'Username Pengguna', 'required');
-		$this->form_validation->set_rules('password', 'Password Pengguna', 'required|min_length[8]');
+		$this->form_validation->set_rules('password', 'Password Pengguna', 'required|min_length[6]');
 		$this->form_validation->set_rules('level', 'Level Pengguna', 'required');
 		$this->form_validation->set_rules('status', 'Status Pengguna', 'required');
 
