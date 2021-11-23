@@ -16,13 +16,13 @@ class It extends CI_Controller
 
 	public function data()
 	{
-        $data['penting'] = $this->m_data->get_data('datapenting_it')->result();
+		$data['penting'] = $this->m_data->get_data('datapenting_it')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('it/v_it', $data);
 		$this->load->view('dashboard/v_footer');
-    }
+	}
 
-    
+
 	public function data_aksi()
 	{
 		$this->form_validation->set_rules('judul', 'Judul', 'required');
@@ -61,13 +61,13 @@ class It extends CI_Controller
 			}
 			$this->session->set_flashdata('berhasil', 'Add Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');
 			redirect(base_url() . 'it/data');
-		}else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			redirect(base_url() . 'it/data');
 		}
 	}
 
-    public function data_edit()
+	public function data_edit()
 	{
 		$this->form_validation->set_rules('judul', 'Judul', 'required');
 		$this->form_validation->set_rules('isi', 'Isi', 'required');
@@ -77,7 +77,7 @@ class It extends CI_Controller
 			$id = $this->input->post('no_id');
 			$judul = $this->input->post('judul');
 			$isi = $this->input->post('isi');
-            $addtime = $this->input->post('addtime');
+			$addtime = $this->input->post('addtime');
 
 			$where = array(
 				'no_id' => $id
@@ -86,7 +86,7 @@ class It extends CI_Controller
 			$data = array(
 				'judul' => $judul,
 				'isi' => $isi,
-                'addtime' => $addtime,
+				'addtime' => $addtime,
 			);
 
 			$this->m_data->update_data($where, $data, 'datapenting_it');
@@ -108,21 +108,20 @@ class It extends CI_Controller
 					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
-					$this->db->query("UPDATE datapenting_it SET `file`='$file' where no_id='$id'");					
+					$this->db->query("UPDATE datapenting_it SET `file`='$file' where no_id='$id'");
 				}
 			}
 			$this->session->set_flashdata('berhasil', 'Edit Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');
 			redirect(base_url() . 'it/data');
-		}
-		else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			redirect(base_url() . 'it/data');
 		}
 	}
 
-    public function data_hapus()
+	public function data_hapus()
 	{
-		    $id = $this->input->post('no_id'); {
+		$id = $this->input->post('no_id'); {
 			$where = array(
 				'no_id' => $id
 			);
@@ -131,6 +130,4 @@ class It extends CI_Controller
 			redirect(base_url() . 'it/data');
 		}
 	}
-
-	
 }

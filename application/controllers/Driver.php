@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class It extends CI_Controller
+class Driver extends CI_Controller
 {
 
 	function __construct()
@@ -20,7 +20,7 @@ class It extends CI_Controller
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil', $data);
 		$this->load->view('dashboard/v_footer');
-    }
+	}
 
 	public function mobil_view()
 	{
@@ -31,8 +31,8 @@ class It extends CI_Controller
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil_data', $data);
 		$this->load->view('dashboard/v_footer');
-    }
-    
+	}
+
 	public function mobil_add()
 	{
 		$this->form_validation->set_rules('type', 'Type', 'required');
@@ -74,13 +74,13 @@ class It extends CI_Controller
 			}
 			$this->session->set_flashdata('berhasil', 'Add Data successfully, type : ' . $this->input->post('type', TRUE) . ' !');
 			redirect(base_url() . 'driver/mobil');
-		}else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			redirect(base_url() . 'driver/mobil');
 		}
 	}
 
-    public function mobil_edit()
+	public function mobil_edit()
 	{
 		$this->form_validation->set_rules('merk', 'Merk', 'required');
 		$this->form_validation->set_rules('plat', 'Plat', 'required');
@@ -119,22 +119,20 @@ class It extends CI_Controller
 					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
-					$this->db->query("UPDATE type_vehicles SET `foto`='$file' where no_id='$id'");					
+					$this->db->query("UPDATE type_vehicles SET `foto`='$file' where no_id='$id'");
 				}
 			}
 			$this->session->set_flashdata('berhasil', 'Edit Data successfully, Merk : ' . $this->input->post('merk', TRUE) . ' !');
 			redirect(base_url() . 'driver/mobil');
-		}
-		else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			redirect(base_url() . 'driver/mobil');
 		}
 	}
 
-    public function mobil_del()
+	public function mobil_del()
 	{
-		    $id = $this->input->post('no_id'); 
-		{
+		$id = $this->input->post('no_id'); {
 			$where = array(
 				'no_id' => $id
 			);
@@ -153,7 +151,7 @@ class It extends CI_Controller
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil', $data);
 		$this->load->view('dashboard/v_footer');
-    }
+	}
 
 	public function mobil_odo_add()
 	{
@@ -179,7 +177,7 @@ class It extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Add Data successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
 			redirect(base_url() . 'driver/mobil_odo');
-		}else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			redirect(base_url() . 'driver/mobil_odo');
 		}
@@ -206,8 +204,7 @@ class It extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Edit Data successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
 			redirect(base_url() . 'driver/mobil_odo');
-		}
-		else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			redirect(base_url() . 'driver/mobil_odo');
 		}
@@ -215,8 +212,7 @@ class It extends CI_Controller
 
 	public function mobil_odo_del()
 	{
-		    $id = $this->input->post('no_id'); 
-		{
+		$id = $this->input->post('no_id'); {
 			$where = array(
 				'no_id' => $id
 			);
@@ -235,7 +231,7 @@ class It extends CI_Controller
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil', $data);
 		$this->load->view('dashboard/v_footer');
-    }
+	}
 
 	public function mobil_history_add()
 	{
@@ -261,12 +257,12 @@ class It extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Add Data successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
 			redirect(base_url() . 'driver/mobil_history');
-		}else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			redirect(base_url() . 'driver/mobil_history');
 		}
 	}
-	
+
 	public function mobil_history_edit()
 	{
 		$this->form_validation->set_rules('jenis', 'Merk', 'required');
@@ -296,8 +292,7 @@ class It extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Edit Data successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
 			redirect(base_url() . 'driver/mobil_history');
-		}
-		else {
+		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			redirect(base_url() . 'driver/mobil_history');
 		}
@@ -305,8 +300,7 @@ class It extends CI_Controller
 
 	public function mobil_history_del()
 	{
-		    $id = $this->input->post('no_id'); 
-		{
+		$id = $this->input->post('no_id'); {
 			$where = array(
 				'no_id' => $id
 			);
