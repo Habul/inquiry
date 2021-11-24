@@ -26,7 +26,7 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example1" class="table table-bordered table-striped table-sm">
+							<table id="example4" class="table table-bordered table-striped table-sm">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="5%">No</th>

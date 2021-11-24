@@ -26,6 +26,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Ekko Lightbox -->
+<script src="<?php echo base_url(); ?>assets/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- DataTables  & Plugins -->
@@ -73,6 +75,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
+<!-- Filterizr-->
+<script src="<?php echo base_url(); ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 <script>
@@ -84,15 +88,30 @@
 		});
 	});
 </script>
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
 
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
+</script>
 <script>
 	$(function() {
 		$("#example1").DataTable({
 			"responsive": true,
 			"lengthChange": false,
-			"autoWidth": false,
-			"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+			"autoWidth": true,
+			"searching": true
+		})
 		$('#example2').DataTable({
 			"paging": true,
 			"lengthChange": false,

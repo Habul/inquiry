@@ -33,25 +33,41 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example1" class="table table-bordered">
-								<?php
-								$query = $this->db->query("select * from type_vehicles where type='mobil'");
-								foreach ($query->result() as $p) {
-								?>
+							<table id="example8" class="table table-bordered  table-striped">
+								<thead class="thead-dark" style="text-align:center">
 									<tr>
-										<td><img width="30%" class="img-responsive" src="<?php echo base_url() . '/gambar/veihcles/' . $p->foto; ?>"><br /><?php echo $p->type; ?> <br /> <?php echo $p->merk; ?> <br /> <?php echo $p->plat; ?> </td>
-										<td><img width="30%" class="img-responsive" src="<?php echo base_url() . '/gambar/veihcles/' . $p->foto; ?>"><br /><?php echo $p->type; ?> <br /> <?php echo $p->merk; ?> <br /> <?php echo $p->plat; ?> </td>
-										<td><img width="30%" class="img-responsive" src="<?php echo base_url() . '/gambar/veihcles/' . $p->foto; ?>"><br /><?php echo $p->type; ?> <br /> <?php echo $p->merk; ?> <br /> <?php echo $p->plat; ?> </td>
+										<th width="3%">No</th>
+										<th width="25%">Foto</th>
+										<th>Merk</th>
+										<th>No Plat</th>										
+										<th width="13%">Action</th>
 									</tr>
-
-								<?php }	?>
+								</thead>
+								<?php
+								$no = 1;
+								$query = $this->db->query("select * from type_vehicles where type='mobil'");
+								foreach ($query->result() as $p) { ?> 
+									<tr>
+										<td style="text-align:center"><?php echo $no++; ?></td>
+										<td style="text-align:center">
+										<a href="<?php echo base_url() . 'gambar/veihcles/' . $p->foto; ?>" data-toggle="lightbox" data-title="<?php echo $p->merk ?>&nbsp;|&nbsp;<?php echo $p->plat; ?>">
+                  						<img src="<?php echo base_url() . 'gambar/veihcles/' . $p->foto; ?>" class="img-fluid mb-2" alt="car"/></a></td>
+										<td><?php echo $p->merk; ?></td>
+										<td><?php echo $p->plat; ?></td>										
+										<td style="text-align:center">
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+											<a class="btn btn-info btn-sm" title="View"><i class="fa fa-search"></i></a>
+											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+										</td>																											
+									</tr>
+									<?php } ?>
 							</table>
 						</div>
 					</div>
 					<div class="col-md-3" style="padding: 0;">
 						<a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
-							<i class="fa fa-plus-square"></i>&nbsp; Add</a>
-					</div>
+							<i class="fa fa-plus-square"></i>&nbsp; Tambah data</a>
+					</div><br />
 				</div>
 			</div>
 	</section>
