@@ -102,6 +102,10 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Isi *</label>
 						<div class="col-xs-9">
+							<?php
+							$cek = $this->db->select_max('no_id')->get('datapenting_it')->row();
+							?>
+							<input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $cek->no_id + 1; ?> ">
 							<textarea class="form-control" rows="7" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
 						</div>
 					</div>
@@ -124,7 +128,7 @@
 		</div>
 	</div>
 </div>
-<!--End Modals kurs-->
+<!--End Modals Add-->
 
 <!-- ============ MODAL EDIT DATA =============== -->
 <?php foreach ($penting as $p) : ?>
@@ -155,14 +159,15 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Isi *</label>
 							<div class="col-xs-9">
-								<textarea class="form-control" name="isi" > <?php echo $p->isi; ?> </textarea>
+								<textarea class="form-control" name="isi" rows="7" > <?php echo $p->isi; ?> </textarea>
 								<?php echo form_error('isi'); ?>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Attach Image</label>
-							<div class="col-xs-9">
-								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank"><img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" width="30%" class="img-thumbnail" onerror="this.style.display='none'" /></a><br /><br />
+							<div class="col-xs-9">								
+								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank">
+                  				<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-fluid mb-2" width="35%" onerror="this.style.display='none'"/></a><br/>
 								<input type="file" name="file">
 								<?php echo form_error('file'); ?>
 							</div>

@@ -25,15 +25,18 @@ class It extends CI_Controller
 
 	public function data_aksi()
 	{
+		$this->form_validation->set_rules('no_id', 'No Id', 'required');
 		$this->form_validation->set_rules('judul', 'Judul', 'required');
 		$this->form_validation->set_rules('isi', 'Isi', 'required');
 
 		if ($this->form_validation->run() != false) {
+			$id = $this->input->post('no_id');
 			$judul = $this->input->post('judul');
 			$isi = $this->input->post('isi');
 			$addtime = $this->input->post('addtime');
 
 			$data = array(
+				'no_id' => $id,
 				'judul' => $judul,
 				'isi' => $isi,
 				'addtime' => $addtime
@@ -53,10 +56,11 @@ class It extends CI_Controller
 
 				if ($this->upload->do_upload('file')) {
 					$gambar = $this->upload->data();
-
+					
+					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
-					$this->db->query("UPDATE datapenting_it SET `file`='$file'");
+					$this->db->query("UPDATE datapenting_it SET `file`='$file' WHERE no_id='$id'");
 				}
 			}
 			$this->session->set_flashdata('berhasil', 'Add Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');
@@ -108,7 +112,7 @@ class It extends CI_Controller
 					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
-					$this->db->query("UPDATE datapenting_it SET `file`='$file' where no_id='$id'");
+					$this->db->query("UPDATE datapenting_it SET `file`='$file' WHERE no_id='$id'");
 				}
 			}
 			$this->session->set_flashdata('berhasil', 'Edit Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');

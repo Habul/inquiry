@@ -5,15 +5,15 @@
 				<div class="col-sm-6">
 					<h1 class="m-0">Inquiry</h1>
 					<small>Inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>View Inquiry</b></small>
-				</div><!-- /.col -->
+				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
 						<li class="breadcrumb-item active">Inquiry</li>
 					</ol>
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.container-fluid -->
+				</div>
+			</div>
+		</div>
 	</div>
 	<section class="content">
 		<?php if ($this->session->flashdata('berhasil')) { ?>
@@ -88,14 +88,10 @@
 						</div>
 					</div>
 				</div>
-				<!-- /.box-body -->
 			</div>
-			<!-- /.box -->
 		</div>
 	</section>
-	<!-- /.col -->
 </div>
-<!-- /.row -->
 
 
 <!-- modal add inquiry -->
@@ -117,7 +113,7 @@
 							<?php
 							$cek = $this->db->select_max('inquiry_id')->get('inquiry')->row();
 							?>
-							<input type="hidden" name="inquiry_id" class="form-control" value="<?php echo $cek->inquiry_id + 1; ?> ">
+							<input type="text" name="inquiry_id" class="form-control" value="<?php echo $cek->inquiry_id + 1; ?> ">
 							<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>

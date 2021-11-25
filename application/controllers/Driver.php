@@ -16,37 +16,33 @@ class Driver extends CI_Controller
 
 	public function mobil()
 	{
-		$data['mobil'] = $this->m_data->get_data('type_vehicles')->result();
+		$where = array(
+			'type' => 'mobil'
+		);
+		
+		$data['mobil'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
-	public function mobil_view()
-	{
-		$where = array(
-			'type' => 'mobil'
-		);
-		$data['mobil'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
-		$this->load->view('dashboard/v_header');
-		$this->load->view('driver/v_mobil_data', $data);
-		$this->load->view('dashboard/v_footer');
-	}
-
 	public function mobil_add()
 	{
+		$this->form_validation->set_rules('no_id', 'No Id', 'required');
 		$this->form_validation->set_rules('type', 'Type', 'required');
 		$this->form_validation->set_rules('merk', 'Merk', 'required');
 		$this->form_validation->set_rules('plat', 'Plat', 'required');
 		$this->form_validation->set_rules('addtime', 'Addtime', 'required');
 
 		if ($this->form_validation->run() != false) {
+			$id = $this->input->post('no_id');
 			$type = $this->input->post('type');
 			$merk = $this->input->post('merk');
 			$plat = $this->input->post('plat');
 			$addtime = $this->input->post('addtime');
 
 			$data = array(
+				'no_id'=> $id,
 				'type' => $type,
 				'merk' => $merk,
 				'plat' => $plat,
@@ -55,7 +51,7 @@ class Driver extends CI_Controller
 
 			$this->m_data->insert_data($data, 'type_vehicles');
 
-			if (!empty($_FILES['file']['name'])) {
+			if (!empty($_FILES['foto']['name'])) {
 
 				$config['upload_path']   = './gambar/vehicles/';
 				$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -64,15 +60,16 @@ class Driver extends CI_Controller
 
 				$this->load->library('upload', $config);
 
-				if ($this->upload->do_upload('file')) {
+				if ($this->upload->do_upload('foto')) {
 					$gambar = $this->upload->data();
-
+					
+					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
-					$this->db->query("UPDATE type_vehicles SET `foto`='$file'");
+					$this->db->query("UPDATE type_vehicles SET foto='$file' WHERE no_id='$id'");
 				}
 			}
-			$this->session->set_flashdata('berhasil', 'Add Data successfully, type : ' . $this->input->post('type', TRUE) . ' !');
+			$this->session->set_flashdata('berhasil', 'Add data successfully, type : ' . $this->input->post('type', TRUE) . ' !');
 			redirect(base_url() . 'driver/mobil');
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
@@ -81,15 +78,18 @@ class Driver extends CI_Controller
 	}
 
 	public function mobil_edit()
-	{
+	{		
 		$this->form_validation->set_rules('merk', 'Merk', 'required');
 		$this->form_validation->set_rules('plat', 'Plat', 'required');
+		$this->form_validation->set_rules('addtime', 'Plat', 'required');
 
 		if ($this->form_validation->run() != false) {
 
 			$id = $this->input->post('no_id');
+
 			$merk = $this->input->post('merk');
 			$plat = $this->input->post('plat');
+			$addtime = $this->input->post('addtime');
 
 			$where = array(
 				'no_id' => $id
@@ -97,13 +97,14 @@ class Driver extends CI_Controller
 
 			$data = array(
 				'merk' => $merk,
-				'plat' => $plat
+				'plat' => $plat,
+				'addtime' => $addtime
 			);
 
 			$this->m_data->update_data($where, $data, 'type_vehicles');
 
 			// Periksa apakah ada gambar yang diupload
-			if (!empty($_FILES['file']['name'])) {
+			if (!empty($_FILES['foto']['name'])) {
 
 				$config['upload_path']   = './gambar/vehicles/';
 				$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -112,14 +113,14 @@ class Driver extends CI_Controller
 
 				$this->load->library('upload', $config);
 
-				if ($this->upload->do_upload('file')) {
+				if ($this->upload->do_upload('foto')) {
 					// mengambil data tentang gambar yang diupload
 					$gambar = $this->upload->data();
 
 					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
-					$this->db->query("UPDATE type_vehicles SET `foto`='$file' where no_id='$id'");
+					$this->db->query("UPDATE type_vehicles SET foto='$file' where no_id='$id'");
 				}
 			}
 			$this->session->set_flashdata('berhasil', 'Edit Data successfully, Merk : ' . $this->input->post('merk', TRUE) . ' !');
@@ -143,13 +144,14 @@ class Driver extends CI_Controller
 	}
 
 	public function mobil_odo($id)
-	{
+	{		
 		$where = array(
 			'no_id' => $id
 		);
-		$data['odo'] = $this->m_data->edit_data($where, 'driver')->result();
+		
+		$data['odo'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
 		$this->load->view('dashboard/v_header');
-		$this->load->view('driver/v_mobil', $data);
+		$this->load->view('driver/v_mobil_data', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 

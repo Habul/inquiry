@@ -721,7 +721,6 @@ class Dashboard extends CI_Controller
 
 	public function pengguna_update()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
 		$this->form_validation->set_rules('email', 'Email Pengguna', 'required');
 		$this->form_validation->set_rules('username', 'Username Pengguna', 'required');

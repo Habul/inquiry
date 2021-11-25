@@ -25,7 +25,6 @@ class Sj extends CI_Controller
 
 	public function sj_aksi()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
 		$this->form_validation->set_rules('date_delivery', 'Date Delivery', 'required');
 		$this->form_validation->set_rules('due_date', 'Due Date', 'required');
@@ -71,7 +70,6 @@ class Sj extends CI_Controller
 
 	public function sj_update()
 	{
-		// Wajib isi
 		//$this->form_validation->set_rules('no_urut', 'No Urut', 'required');
 		$this->form_validation->set_rules('descript', 'Deskripsi', 'required');
 		$this->form_validation->set_rules('qty', 'Qty', 'required');
@@ -99,7 +97,6 @@ class Sj extends CI_Controller
 
 	public function sj_update_edit()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('descript', 'No Delivery', 'required');
 		$this->form_validation->set_rules('qty', 'Date Delivery', 'required');
 
@@ -130,7 +127,6 @@ class Sj extends CI_Controller
 
 	public function sj_edit()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
 		$this->form_validation->set_rules('date_delivery', 'Date Delivery', 'required');
 		$this->form_validation->set_rules('no_po', 'No Po', 'required');
@@ -274,7 +270,6 @@ class Sj extends CI_Controller
 
 	public function sj_update_df()
 	{
-		// Wajib isi
 		//$this->form_validation->set_rules('no_urut', 'No Urut', 'required');
 		$this->form_validation->set_rules('descript', 'Deskripsi', 'required');
 		$this->form_validation->set_rules('qty', 'Qty', 'required');
@@ -302,7 +297,6 @@ class Sj extends CI_Controller
 
 	public function sj_update_edit_df()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('descript', 'No Delivery', 'required');
 		$this->form_validation->set_rules('qty', 'Date Delivery', 'required');
 
@@ -333,7 +327,6 @@ class Sj extends CI_Controller
 
 	public function sj_edit_df()
 	{
-		// Wajib isi
 		//$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
 		$this->form_validation->set_rules('date_delivery', 'Date Delivery', 'required');
 		$this->form_validation->set_rules('due_date', 'Due Date', 'required');
