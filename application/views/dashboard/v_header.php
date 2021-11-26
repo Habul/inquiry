@@ -159,38 +159,12 @@
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar nav-child-indent nav-compact flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item">
-							<a href="<?php echo base_url() . 'dashboard' ?>" <?= $this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+							<a href="<?php echo base_url() . 'dashboard' ?>" <?= $this->uri->uri_string() == 'dashboard' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-tachometer-alt"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<?php
-						if ($this->session->userdata('level') == "admin") {
-						?>
-							<!--li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/kategori' ?>" <?= $this->uri->uri_string() == 'dashboard/kategori' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-									<i class="nav-icon fas fa-th"></i>
-									<p>Category</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/artikel' ?>" <?= $this->uri->uri_string() == 'dashboard/artikel' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-									<i class="nav-icon fas fa-table"></i>
-									<p>Article</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/pengaturan' ?>" <?= $this->uri->uri_string() == 'dashboard/pengaturan' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-									<i class="nav-icon fas fa-cogs"></i>
-									<p>Setting Website</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="<?php echo base_url() . 'dashboard/pages' ?>" <?= $this->uri->uri_string() == 'dashboard/pages' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-									<i class="nav-icon fas fa-tags"></i>
-									<p>Pages</p>
-								</a>
-							</li-->
+						<?php if ($this->session->userdata('level') == "admin") { ?>							
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>" <?= $this->uri->uri_string() == 'dashboard/pengguna' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fa-users"></i>
@@ -332,11 +306,15 @@
 								</li>
 							</ul>
 						</li>
-						<li <?= $this->uri->uri_string() == 'driver/mobil' ||
+						<li <?= $this->uri->segment(2) == 'mobil' ||
+								$this->uri->segment(2) == 'mobil_odo' ||
+								$this->uri->segment(2) == 'mobil_history' ||
 								$this->uri->uri_string() == 'driver/motor' ||
 								$this->uri->uri_string() == 'driver/truck' ||
 								$this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
-							<a href="#" <?= $this->uri->uri_string() == 'driver/mobil' ||
+							<a href="#" <?= $this->uri->segment(2) == 'mobil' ||
+											$this->uri->segment(2) == 'mobil_odo' ||
+											$this->uri->segment(2) == 'mobil_history' ||
 											$this->uri->uri_string() == 'driver/motor' ||
 											$this->uri->uri_string() == 'driver/truck' ||
 											$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
@@ -347,7 +325,10 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<?php echo base_url() . 'driver/mobil' ?>" <?= $this->uri->uri_string() == 'driver/mobil' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<a href="<?php echo base_url() . 'driver/mobil' ?>" 
+									<?= $this->uri->segment(2) == 'mobil' || 
+									$this->uri->segment(2) == 'mobil_odo' ||
+									$this->uri->segment(2) == 'mobil_history' || $this->uri->segment(2) == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="fas fa-car nav-icon"></i>
 										<p>Mobil</p>
 									</a>

@@ -37,9 +37,11 @@
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="3%">No</th>
-										<th width="25%">Foto</th>
+										<th width="20%">Foto</th>
 										<th>Merk</th>
-										<th>No Plat</th>										
+										<th>Plat No</th>
+										<th>Batas Serivce (Km)</th>	
+										<th>Batas Service (Date)</th>								
 										<th width="13%">Action</th>
 									</tr>
 								</thead>
@@ -52,7 +54,9 @@
 										<a href="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" data-toggle="lightbox" data-title="<?php echo $p->merk ?>&nbsp;|&nbsp;<?php echo $p->plat; ?>">
                   						<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2" onerror="this.style.display='none'"/></a></td>
 										<td><?php echo strtoupper($p->merk) ?></td>
-										<td><?php echo strtoupper($p->plat) ?></td>										
+										<td><?php echo strtoupper($p->plat) ?></td>
+										<td></td>
+										<td></td>										
 										<td>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>											
 											<a href="<?php echo base_url() . 'driver/mobil_odo/' . $p->no_id; ?>" class="btn btn-primary btn-sm" title="View Detail"> <i class="fa fa-search"></i> </a>
@@ -65,7 +69,7 @@
 					</div>
 					<div class="col-md-3" style="padding: 0;">
 						<a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
-							<i class="fa fa-plus-square"></i>&nbsp; Tambah data</a>
+							<i class="fa fa-plus-square"></i>&nbsp; Add Car</a>
 					</div><br />
 				</div>
 			</div>
