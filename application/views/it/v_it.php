@@ -106,7 +106,7 @@
 							$cek = $this->db->select_max('no_id')->get('datapenting_it')->row();
 							?>
 							<input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $cek->no_id + 1; ?> ">
-							<textarea class="form-control" rows="7" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
+							<textarea class="form-control" rows="8" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -159,7 +159,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Isi *</label>
 							<div class="col-xs-9">
-								<textarea class="form-control" name="isi" rows="7" > <?php echo $p->isi; ?> </textarea>
+								<textarea class="form-control" name="isi" rows="10" > <?php echo $p->isi; ?> </textarea>
 								<?php echo form_error('isi'); ?>
 							</div>
 						</div>

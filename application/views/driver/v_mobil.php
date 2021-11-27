@@ -4,11 +4,13 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0">Jenis Mobil</h1>
+					<small>Batas Km Penggantian Oli <b>10.000 Km</b><br />
+					Dan Waktu Max penggantian <b>6 Bulan</b></small>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-						<li class="breadcrumb-item active">Mobil</li>
+						<li class="breadcrumb-item active">Mobil</li>						
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -40,8 +42,7 @@
 										<th width="20%">Foto</th>
 										<th>Merk</th>
 										<th>Plat No</th>
-										<th>Batas Serivce (Km)</th>	
-										<th>Batas Service (Date)</th>								
+										<th>Batas Km</th>																	
 										<th width="13%">Action</th>
 									</tr>
 								</thead>
@@ -51,12 +52,17 @@
 									<tr style="text-align:center">
 										<td ><?php echo $no++; ?></td>
 										<td>
-										<a href="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" data-toggle="lightbox" data-title="<?php echo $p->merk ?>&nbsp;|&nbsp;<?php echo $p->plat; ?>">
+										<a href="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" data-toggle="lightbox" data-title="<?php echo strtoupper($p->merk) ?>&nbsp; PLAT NO :&nbsp;<?php echo strtoupper($p->plat) ?>">
                   						<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2" onerror="this.style.display='none'"/></a></td>
 										<td><?php echo strtoupper($p->merk) ?></td>
 										<td><?php echo strtoupper($p->plat) ?></td>
-										<td></td>
-										<td></td>										
+										<?php 										
+										$driver = $this->db->select_max('odometer')->where('join_id',$p->no_id)->get('driver')->row();
+										$history = $this->db->select_max('odometer')->where('join_id',$p->no_id)->get('history_vehicles')->row();
+										$master = $this->db->select('max_km')->where('type','MOBIL')->get('master_vehicles')->row();
+										$sum = $master->max_km - ($driver->odometer - $history->odometer);
+										?>
+										<td><?php echo number_format($sum, 0, '.', '.'); ?>&nbsp;Km</td>																			
 										<td>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>											
 											<a href="<?php echo base_url() . 'driver/mobil_odo/' . $p->no_id; ?>" class="btn btn-primary btn-sm" title="View Detail"> <i class="fa fa-search"></i> </a>

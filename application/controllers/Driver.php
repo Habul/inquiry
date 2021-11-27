@@ -19,7 +19,7 @@ class Driver extends CI_Controller
 		$where = array(
 			'type' => 'mobil'
 		);
-		
+				
 		$data['mobil'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil', $data);
@@ -141,10 +141,11 @@ class Driver extends CI_Controller
 
 			$where2 = array(
 				'join_id' => $id
-			);
+			);			
 
 			$this->m_data->delete_data($where, 'type_vehicles');
 			$this->m_data->delete_data($where2, 'driver');
+			$this->m_data->delete_data($where2, 'history_vehicles');
 			$this->session->set_flashdata('berhasil', 'Data has been deleted !');
 			redirect(base_url() . 'driver/mobil');
 		}
@@ -250,9 +251,9 @@ class Driver extends CI_Controller
 		$where2 = array(
 			'join_id' => $id
 		);
-		
+
 		$data['odo'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
-		$data['history'] = $this->m_data->edit_data($where2, 'history_vehicles')->result();
+		$data['history'] = $this->m_data->edit_data($where2, 'history_vehicles')->result();		
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil_services', $data);
 		$this->load->view('dashboard/v_footer');

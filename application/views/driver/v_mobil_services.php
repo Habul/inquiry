@@ -53,10 +53,10 @@
 								$no = 1;
 								$query = $this->db->query("SELECT * FROM history_vehicles WHERE join_id=$u->no_id;");
 								foreach ($query->result() as $p) { ?> 
-									<tr style="text-align:center">										
+									<tr>										
 										<td><?php echo strtoupper($p->jenis) ?></td>						
-										<td><?php echo $p->tanggal; ?></td>
-										<td><?php echo strtoupper($p->odometer) ?></td>									
+										<td style="text-align:center"><?php echo $p->tanggal; ?></td>
+										<td style="text-align:center"><?php echo strtoupper($p->odometer) ?></td>									
 										<td style="text-align:center">
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
@@ -100,7 +100,11 @@
 							<?php foreach ($odo as $u) : ?>	
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $u->no_id; ?>">
 							<?php endforeach; ?>													
-							<input type="text" name="jenis" class="form-control" placeholder="Input Jenis.." required>
+							<select class="form-control" name="jenis" required>
+								<option value="">- Pilih Request -</option>
+								<option value="Ganti Oli">Ganti Oli</option>
+								<option value="Ganti Kapas Rem">Ganti Kapas Rem</option>
+							</select>
 							<?php echo form_error('jenis'); ?>							
 						</div>
 					</div>
@@ -115,7 +119,7 @@
 						<label class="control-label col-xs-3">Odometer *</label>
 						<div class="col-xs-9">
 							<input type="number" name="odometer" min="1" class="form-control" placeholder="Input Odometer.." required>
-							<?php echo set_value('odometer'); ?>
+							<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>					
 				</div>
