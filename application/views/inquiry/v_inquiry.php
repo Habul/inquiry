@@ -113,7 +113,7 @@
 							<?php
 							$cek = $this->db->select_max('inquiry_id')->get('inquiry')->row();
 							?>
-							<input type="text" name="inquiry_id" class="form-control" value="<?php echo $cek->inquiry_id + 1; ?> ">
+							<input type="hidden" name="inquiry_id" class="form-control" value="<?php echo $cek->inquiry_id + 1; ?> ">
 							<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>

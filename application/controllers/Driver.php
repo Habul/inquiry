@@ -19,7 +19,7 @@ class Driver extends CI_Controller
 		$where = array(
 			'type' => 'mobil'
 		);
-				
+
 		$data['mobil'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil', $data);
@@ -42,7 +42,7 @@ class Driver extends CI_Controller
 			$addtime = $this->input->post('addtime');
 
 			$data = array(
-				'no_id'=> $id,
+				'no_id' => $id,
 				'type' => $type,
 				'merk' => $merk,
 				'plat' => $plat,
@@ -62,7 +62,7 @@ class Driver extends CI_Controller
 
 				if ($this->upload->do_upload('foto')) {
 					$gambar = $this->upload->data();
-					
+
 					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
@@ -78,7 +78,7 @@ class Driver extends CI_Controller
 	}
 
 	public function mobil_edit()
-	{		
+	{
 		$this->form_validation->set_rules('merk', 'Merk', 'required');
 		$this->form_validation->set_rules('plat', 'Plat', 'required');
 		$this->form_validation->set_rules('addtime', 'Plat', 'required');
@@ -141,7 +141,7 @@ class Driver extends CI_Controller
 
 			$where2 = array(
 				'join_id' => $id
-			);			
+			);
 
 			$this->m_data->delete_data($where, 'type_vehicles');
 			$this->m_data->delete_data($where2, 'driver');
@@ -152,7 +152,7 @@ class Driver extends CI_Controller
 	}
 
 	public function mobil_odo($id)
-	{		
+	{
 		$where = array(
 			'no_id' => $id
 		);
@@ -160,9 +160,10 @@ class Driver extends CI_Controller
 		$where2 = array(
 			'join_id' => $id
 		);
-		
+
 		$data['odo'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
 		$data['driver'] = $this->m_data->edit_data($where2, 'driver')->result();
+		$data['history'] = $this->m_data->edit_data($where2, 'history_vehicles')->result();
 		$this->load->view('dashboard/v_header');
 		$this->load->view('driver/v_mobil_data', $data);
 		$this->load->view('dashboard/v_footer');
@@ -190,13 +191,13 @@ class Driver extends CI_Controller
 
 			$this->m_data->insert_data($data, 'driver');
 
-			$this->session->set_flashdata('berhasil', 'Add Data successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_odo/'.$id);
+			$this->session->set_flashdata('berhasil', 'Add history odometer successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/'.$id);
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		}
 	}
 
@@ -219,13 +220,13 @@ class Driver extends CI_Controller
 
 			$this->m_data->update_data($where, $data, 'driver');
 
-			$this->session->set_flashdata('berhasil', 'Edit Data successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_odo/'.$id);
+			$this->session->set_flashdata('berhasil', 'Edit history odometer successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_odo/'.$id);
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		}
 	}
 
@@ -236,27 +237,10 @@ class Driver extends CI_Controller
 				'no_id' => $id
 			);
 			$this->m_data->delete_data($where, 'driver');
-			$this->session->set_flashdata('berhasil', 'Data has been deleted !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_odo/'.$id);
+			$this->session->set_flashdata('berhasil', 'History odometer has been deleted !');
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		}
-	}
-
-	public function mobil_history($id)
-	{	
-		$where = array(
-			'no_id' => $id
-		);
-
-		$where2 = array(
-			'join_id' => $id
-		);
-
-		$data['odo'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
-		$data['history'] = $this->m_data->edit_data($where2, 'history_vehicles')->result();		
-		$this->load->view('dashboard/v_header');
-		$this->load->view('driver/v_mobil_services', $data);
-		$this->load->view('dashboard/v_footer');
 	}
 
 	public function mobil_history_add()
@@ -264,7 +248,7 @@ class Driver extends CI_Controller
 		$this->form_validation->set_rules('join_id', 'No Id', 'required');
 		$this->form_validation->set_rules('jenis', 'Jenis', 'required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
-		$this->form_validation->set_rules('odometer', 'Odometer', 'required');
+		//$this->form_validation->set_rules('odometer', 'Odometer', 'required');
 
 		if ($this->form_validation->run() != false) {
 			$join_id = $this->input->post('join_id');
@@ -281,13 +265,13 @@ class Driver extends CI_Controller
 
 			$this->m_data->insert_data($data, 'history_vehicles');
 
-			$this->session->set_flashdata('berhasil', 'Add Data successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_history/'.$id);
+			$this->session->set_flashdata('berhasil', 'Add history service successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_history/'.$id);
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		}
 	}
 
@@ -295,7 +279,7 @@ class Driver extends CI_Controller
 	{
 		$this->form_validation->set_rules('jenis', 'Merk', 'required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
-		$this->form_validation->set_rules('odometer', 'Odometer', 'required');
+		//$this->form_validation->set_rules('odometer', 'Odometer', 'required');
 
 		if ($this->form_validation->run() != false) {
 
@@ -318,13 +302,13 @@ class Driver extends CI_Controller
 
 			$this->m_data->update_data($where, $data, 'history_vehicles');
 
-			$this->session->set_flashdata('berhasil', 'Edit Data successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_history/'.$id);
+			$this->session->set_flashdata('berhasil', 'Edit history service successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_history/'.$id);
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		}
 	}
 
@@ -335,9 +319,9 @@ class Driver extends CI_Controller
 				'no_id' => $id
 			);
 			$this->m_data->delete_data($where, 'history_vehicles');
-			$this->session->set_flashdata('berhasil', 'Data has been deleted !');
-			$id = $this->input->post('join_id');			
-			redirect(base_url() . 'driver/mobil_history/'.$id);
+			$this->session->set_flashdata('berhasil', 'History service has been deleted !');
+			$id = $this->input->post('join_id');
+			redirect(base_url() . 'driver/mobil_odo/' . $id);
 		}
 	}
 }

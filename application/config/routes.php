@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 
 $route['default_controller'] = 'login';
@@ -13,6 +13,10 @@ $route['dashboard'] = 'dashboard';
 // // route untuk halaman blog
 $route['blog'] = 'welcome/blog';
 $route['blog/(:num)'] = 'welcome/blog/$1';
+
+// // route untuk halaman Tracking
+$route['driver'] = 'driver/mobil';
+$route['driver/mobil_odo/(:num)'] = 'driver/mobil_odo/$1';
 
 // route untuk halaman kategori artikel
 $route['kategori/(:any)'] = 'welcome/kategori/$1';

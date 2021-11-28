@@ -89,20 +89,22 @@
 	});
 </script>
 <script>
-  $(function () {
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox({
-        alwaysShowClose: true
-      });
-    });
+	$(function() {
+		$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+			event.preventDefault();
+			$(this).ekkoLightbox({
+				alwaysShowClose: true
+			});
+		});
 
-    $('.filter-container').filterizr({gutterPixels: 3});
-    $('.btn[data-filter]').on('click', function() {
-      $('.btn[data-filter]').removeClass('active');
-      $(this).addClass('active');
-    });
-  })
+		$('.filter-container').filterizr({
+			gutterPixels: 3
+		});
+		$('.btn[data-filter]').on('click', function() {
+			$('.btn[data-filter]').removeClass('active');
+			$(this).addClass('active');
+		});
+	})
 </script>
 <script>
 	$(function() {
@@ -170,6 +172,15 @@
 			"lengthChange": true,
 			"autoWidth": false,
 			"ordering": true
+		});
+		$('#example9').DataTable({
+			"paging": true,
+			"responsive": true,
+			"lengthChange": true,
+			"autoWidth": false,
+			"order": [
+				[1, "desc"]
+			]
 		});
 	});
 </script>
