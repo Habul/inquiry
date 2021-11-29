@@ -17,6 +17,7 @@
 		</div><!-- /.container-fluid -->
 	</div>
 	<section class="content">
+	<div class="container-fluid">
 		<?php if ($this->session->flashdata('berhasil')) { ?>
 			<div class="alert alert-success alert-dismissible">
 				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
@@ -28,8 +29,7 @@
 				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
 				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
 			</div>
-		<?php } ?>
-		<div class="container-fluid">
+		<?php } ?>		
 			<br />
 			<div class="row">
 				<div class="col-md-12">
@@ -76,7 +76,7 @@
 					</div>
 					<div class="col-md-3" style="padding: 0;">
 						<a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
-							<i class="fa fa-plus-square"></i>&nbsp; Add Car</a>
+							<i class="fa fa-plus-square"></i>&nbsp; Add car</a>
 					</div><br />
 				</div>
 			</div>

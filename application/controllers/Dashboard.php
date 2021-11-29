@@ -27,6 +27,10 @@ class Dashboard extends CI_Controller
 		$data['jumlah_pengguna'] = $this->m_data->get_data('pengguna')->num_rows();
 		$data['total_inquiry'] = $this->m_data->tot_inquiry();
 		$data['total_buffer'] = $this->m_data->tot_buffer();
+		$data['tot_mobil'] = $this->db->where('type','mobil')->get('type_vehicles')->num_rows();
+		$data['tot_motor'] = $this->db->where('type','motor')->get('type_vehicles')->num_rows();
+		$data['tot_truck'] = $this->db->where('type','truck')->get('type_vehicles')->num_rows();
+		$data['tot_vehicles'] = $this->m_data->get_data('type_vehicles')->num_rows();
 
 		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 
@@ -696,28 +700,14 @@ class Dashboard extends CI_Controller
 				'pengguna_status' => $status
 			);
 
-
 			$this->m_data->insert_data($data, 'pengguna');
-
+			$this->session->set_flashdata('berhasil', 'Add Data successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
 			redirect(base_url() . 'dashboard/pengguna');
 		} else {
-			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_pengguna_tambah');
-			$this->load->view('dashboard/v_footer');
+			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
+			redirect(base_url() . 'dashboard/pengguna');
 		}
 	}
-
-	public function pengguna_edit($id)
-	{
-		$where = array(
-			'pengguna_id' => $id
-		);
-		$data['pengguna'] = $this->m_data->edit_data($where, 'pengguna')->result();
-		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_pengguna_edit', $data);
-		$this->load->view('dashboard/v_footer');
-	}
-
 
 	public function pengguna_update()
 	{
@@ -762,30 +752,26 @@ class Dashboard extends CI_Controller
 			);
 
 			$this->m_data->update_data($where, $data, 'pengguna');
-
+			$this->session->set_flashdata('berhasil', 'Update Data successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
 			redirect(base_url() . 'dashboard/pengguna');
 		} else {
-			$id = $this->input->post('id');
-			$where = array(
-				'pengguna_id' => $id
-			);
-			$data['pengguna'] = $this->m_data->edit_data($where, 'pengguna')->result();
-			$this->load->view('dashboard/v_header');
-			$this->load->view('dashboard/v_pengguna_edit', $data);
-			$this->load->view('dashboard/v_footer');
+			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+			redirect(base_url() . 'dashboard/pengguna');
 		}
 	}
 
-	public function pengguna_hapus($id)
+	public function pengguna_hapus()
 	{
+		$id = $this->input->post('id'); 	{
+
 		$where = array(
 			'pengguna_id' => $id
-		);
-		$data['pengguna_hapus'] = $this->m_data->edit_data($where, 'pengguna')->row();
-		$data['pengguna_lain'] = $this->db->query("SELECT * FROM pengguna WHERE pengguna_id != $id")->result();
-		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/v_pengguna_hapus', $data);
-		$this->load->view('dashboard/v_footer');
+		);		
+
+		$this->m_data->delete_data($where, 'pengguna');
+		$this->session->set_flashdata('berhasil', 'Data has been deleted !');
+		redirect(base_url() . 'dashboard/pengguna');
+		}
 	}
 
 	public function pengguna_hapus_aksi()

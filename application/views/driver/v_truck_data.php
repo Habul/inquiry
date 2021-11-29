@@ -9,8 +9,8 @@
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="<?php echo base_url('driver/mobil') ?>">Mobil</a></li>
-						<li class="breadcrumb-item active">Detail Mobil</li>
+						<li class="breadcrumb-item"><a href="<?php echo base_url('driver/truck') ?>">Truck</a></li>
+						<li class="breadcrumb-item active">Detail Truck</li>
 					</ol>
 				</div>
 			</div>
@@ -18,7 +18,7 @@
 	</div>
 
 	<section class="content">
-	<div class="container-fluid">
+    <div class="container-fluid">
 		<?php if ($this->session->flashdata('berhasil')) { ?>
 			<div class="alert alert-success alert-dismissible">
 				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
@@ -30,7 +30,7 @@
 				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
 				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
 			</div>
-		<?php } ?>
+		<?php } ?>		
 			<br />
 			<div class="row">
 				<div class="col-md-12">
@@ -146,7 +146,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('driver/mobil_odo_add') ?>">
+			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('driver/truck_odo_add') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Nama</label>
@@ -187,7 +187,7 @@
 </div>
 <!--End Modals Add-->
 
-<!-- ============ MODAL EDIT Mobil =============== -->
+<!-- ============ MODAL EDIT truck =============== -->
 <?php foreach ($driver as $p) : ?>
 	<div class="modal fade" id="modal_edit<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
@@ -199,7 +199,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_odo_edit') ?>">
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/truck_odo_edit') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Nama</label>
@@ -236,7 +236,7 @@
 		</div>
 	</div>
 <?php endforeach; ?>
-<!--END MODAL EDIT MOBIL-->
+<!--END MODAL EDIT truck-->
 
 <!--MODAL HAPUS DESC-->
 <?php foreach ($driver as $u) : ?>
@@ -250,7 +250,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_odo_del') ?>">
+				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/truck_odo_del') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="join_id" value="<?php echo $u->join_id; ?>">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
@@ -278,7 +278,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_history_add') ?>">
+			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/truck_history_add') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Jenis *</label>
@@ -319,7 +319,7 @@
 </div>
 <!--End Modals Add-->
 
-<!-- ============ MODAL EDIT Mobil =============== -->
+<!-- ============ MODAL EDIT truck =============== -->
 <?php foreach ($history as $p) : ?>
 	<div class="modal fade" id="history_edit<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog">
@@ -331,7 +331,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_history_edit') ?>">
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/truck_history_edit') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Jenis *</label>
@@ -366,7 +366,7 @@
 		</div>
 	</div>
 <?php endforeach; ?>
-<!--END MODAL EDIT MOBIL-->
+<!--END MODAL EDIT truck-->
 
 <!--MODAL HAPUS DESC-->
 <?php foreach ($history as $u) : ?>
@@ -380,7 +380,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_history_del') ?>">
+				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/truck_history_del') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="join_id" value="<?php echo $u->join_id; ?>">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">

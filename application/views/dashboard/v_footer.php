@@ -1,3 +1,7 @@
+<a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+      <i class="fas fa-chevron-up"></i>
+</a>
+
 <footer class="main-footer text-sm">
 	<strong>Copyright &copy; 2021 <a href="https://wa.me/6287771911287?text=Hallo%20">Habul</a></strong> . All rights reserved.
 	<div class="float-right d-none d-sm-inline-block">
@@ -136,11 +140,11 @@
 		});
 		$("#example4").DataTable({
 			"responsive": false,
-			"searching": false,
+			"searching": true,
 			"lengthChange": false,
 			"autoWidth": false,
-			"buttons": ["csv", "excel", "pdf", "print"]
-		}).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
+			"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+   		 }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
 		$('#example5').DataTable({
 			"paging": true,
 			"responsive": true,
@@ -174,6 +178,15 @@
 			"ordering": true
 		});
 		$('#example9').DataTable({
+			"paging": true,
+			"responsive": true,
+			"lengthChange": true,
+			"autoWidth": false,
+			"order": [
+				[1, "desc"]
+			]
+		});
+		$('#example10').DataTable({
 			"paging": true,
 			"responsive": true,
 			"lengthChange": true,

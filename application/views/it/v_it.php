@@ -85,7 +85,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('it/data_aksi') ?>" enctype="multipart/form-data">
+			<form class="form-horizontal"id="addform"  method="post" action="<?php echo base_url('it/data_aksi') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Judul *</label>

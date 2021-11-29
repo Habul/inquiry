@@ -334,7 +334,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?php echo base_url() . 'driver/motor' ?>" <?= $this->uri->uri_string() == 'motor' ||
+									<a href="<?php echo base_url() . 'driver/motor' ?>" <?= $this->uri->segment(2) == 'motor' ||
 																							$this->uri->segment(2) == 'motor_odo' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="fas fa-motorcycle nav-icon"></i>
 										<p>Motor</p>
