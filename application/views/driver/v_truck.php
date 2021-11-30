@@ -17,19 +17,19 @@
 		</div><!-- /.container-fluid -->
 	</div>
 	<section class="content">
-  <div class="container-fluid">
-		<?php if ($this->session->flashdata('berhasil')) { ?>
-			<div class="alert alert-success alert-dismissible">
-				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-				<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
-			</div>
-		<?php } ?>
-		<?php if ($this->session->flashdata('gagal')) { ?>
-			<div class="alert alert-warning alert-dismissible">
-				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
-			</div>
-		<?php } ?>		
+		<div class="container-fluid">
+			<?php if ($this->session->flashdata('berhasil')) { ?>
+				<div class="alert alert-success alert-dismissible">
+					<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+					<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
+				</div>
+			<?php } ?>
+			<?php if ($this->session->flashdata('gagal')) { ?>
+				<div class="alert alert-warning alert-dismissible">
+					<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+					<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+				</div>
+			<?php } ?>
 			<br />
 			<div class="row">
 				<div class="col-md-12">
@@ -59,7 +59,7 @@
 										<td><?php echo strtoupper($p->plat) ?></td>
 										<?php
 										$driver = $this->db->select_max('odometer')->where('join_id', $p->no_id)->get('driver')->row();
-										$history = $this->db->select_max('odometer')->where('join_id', $p->no_id)->get('history_vehicles')->row();
+										$history = $this->db->select_max('odometer')->where('join_id', $p->no_id)->where('jenis', 'Ganti Oli')->get('history_vehicles')->row();
 										$master = $this->db->select('max_km')->where('type', 'TRUCK')->get('master_vehicles')->row();
 										$sum = $master->max_km - ($driver->odometer - $history->odometer);
 										?>

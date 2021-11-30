@@ -5,6 +5,8 @@
 				<div class="col-sm-6">
 					<?php foreach ($odo as $u) : ?>
 						<h1 class="m-0"><?php echo strtoupper($u->merk) ?> | Plat No <?php echo strtoupper($u->plat) ?></h1>
+						<small>Pastikan input history odometer dahulu, <b>sebelum menabahkan history service</b></small>
+						<br>untuk reset sisa waktu, pastikan yang di pilih history services adalah <b>Ganti Oli</b></small>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -18,19 +20,19 @@
 	</div>
 
 	<section class="content">
-    <div class="container-fluid">
-		<?php if ($this->session->flashdata('berhasil')) { ?>
-			<div class="alert alert-success alert-dismissible">
-				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-				<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
-			</div>
-		<?php } ?>
-		<?php if ($this->session->flashdata('gagal')) { ?>
-			<div class="alert alert-warning alert-dismissible">
-				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
-			</div>
-		<?php } ?>		
+		<div class="container-fluid">
+			<?php if ($this->session->flashdata('berhasil')) { ?>
+				<div class="alert alert-success alert-dismissible">
+					<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+					<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
+				</div>
+			<?php } ?>
+			<?php if ($this->session->flashdata('gagal')) { ?>
+				<div class="alert alert-warning alert-dismissible">
+					<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
+					<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+				</div>
+			<?php } ?>
 			<br />
 			<div class="row">
 				<div class="col-md-12">
@@ -101,7 +103,7 @@
 									<tr>
 										<th>Jenis</th>
 										<th>Tanggal</th>
-										<th>Odometer (Km)</th>
+										<th>Odometer</th>
 										<th width="10%">Action</th>
 									</tr>
 								</thead>
@@ -112,7 +114,7 @@
 									<tr>
 										<td><?php echo strtoupper($p->jenis) ?></td>
 										<td style="text-align:center"><?php echo $p->tanggal; ?></td>
-										<td style="text-align:center"><?php echo number_format($p->odometer, 0, '.', '.'); ?></td>
+										<td style="text-align:center"><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
 										<td style="text-align:center">
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#history_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#history_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
@@ -285,13 +287,12 @@
 						<div class="col-xs-9">
 							<?php foreach ($odo as $u) : ?>
 								<input type="hidden" name="join_id" class="form-control" value="<?php echo $u->no_id; ?>">
-							<?php endforeach; ?>
-							<select class="form-control" name="jenis" required>
-								<option value="">- Pilih Request -</option>
-								<option value="Ganti Oli">Ganti Oli</option>
-								<option value="Ganti Kapas Rem">Ganti Kapas Rem</option>
-							</select>
-							<?php echo form_error('jenis'); ?>
+								<select class="form-control" name="jenis" required>
+									<option value="">- Pilih Request -</option>
+									<option value="Ganti Oli">Ganti Oli</option>
+									<option value="Ganti Kapas Rem">Ganti Kapas Rem</option>
+								</select>
+								<?php echo form_error('jenis'); ?>
 						</div>
 					</div>
 					<div class="form-group">
@@ -304,8 +305,11 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Odometer </label>
 						<div class="col-xs-9">
-							<input type="number" name="odometer" min="1" class="form-control" placeholder="Input Odometer..">
-							<?php echo form_error('tanggal'); ?>
+							<?php $cek = $this->db->select_max('odometer')->where('join_id', $u->no_id)->get('driver')->row(); ?>
+						<?php endforeach; ?>
+						<input type="number" name="odometer" class="form-control" value="<?php echo $cek->odometer ?>">
+						<small>ambil data terakhir dari inputan history odometer</small>
+						<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
 				</div>
