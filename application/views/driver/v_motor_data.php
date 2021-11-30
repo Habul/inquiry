@@ -148,7 +148,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('driver/motor_odo_add') ?>">
+			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/motor_odo_add') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Nama</label>
@@ -181,7 +181,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="addbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -308,7 +308,7 @@
 							<?php $cek = $this->db->select_max('odometer')->where('join_id', $u->no_id)->get('driver')->row(); ?>
 						<?php endforeach; ?>
 						<input type="number" name="odometer" class="form-control" value="<?php echo $cek->odometer ?>">
-						<small>ambil data terakhir dari inputan history odometer</small>
+						<small>di ambil data terakhir dari inputan history odometer</small>
 						<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
