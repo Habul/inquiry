@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Buffer extends CI_Controller
+class Tracking extends CI_Controller
 {
 
     function __construct()
@@ -17,16 +17,9 @@ class Buffer extends CI_Controller
     public function data()
     {
         $data['tracking'] = $this->m_data->get_data('tracking')->result();
+        $data['unit_bisnis'] = $this->m_data->get_data('unit_bisnis')->result();
         $this->load->view('dashboard/v_header');
         $this->load->view('tracking/v_tracking', $data);
-        $this->load->view('dashboard/v_footer');
-    }
-
-    public function data_tambah()
-    {
-        $data['tracking'] = $this->m_data->get_data('tracking')->result();
-        $this->load->view('dashboard/v_header');
-        $this->load->view('dashboard/v_tracking_add', $data);
         $this->load->view('dashboard/v_footer');
     }
 
@@ -34,7 +27,7 @@ class Buffer extends CI_Controller
     {
         $this->form_validation->set_rules('nama_pemesan', 'Nama Pemesan', 'required');
         $this->form_validation->set_rules('group', 'Group', 'required');
-        $this->form_validation->set_rules('no_bbk', 'NO BBK', 'required');
+       // $this->form_validation->set_rules('no_bbk', 'NO BBK', 'required');
         $this->form_validation->set_rules('nama_cust', 'Nama Customer', 'required');
         $this->form_validation->set_rules('alamat_cust', 'Alamat Customer', 'required');
         $this->form_validation->set_rules('pic_penerima', 'Pic Penerima', 'required');
@@ -89,7 +82,7 @@ class Buffer extends CI_Controller
             redirect(base_url() . 'tracking/data');
         } else {
             $this->session->set_flashdata('gagal', 'Tracking failed to add, Please repeat !');
-            redirect(base_url() . 'tracking/data_tambah');
+            redirect(base_url() . 'tracking/data');
         }
     }
 
@@ -199,7 +192,7 @@ class Buffer extends CI_Controller
             redirect(base_url() . 'tracking/data');
         } else {
             $this->session->set_flashdata('gagal', 'Tracking failed to Edit, Please repeat !');
-            redirect(base_url() . 'tracking/data_tambah');
+            redirect(base_url() . 'tracking/data');
         }
     }
 
@@ -211,7 +204,7 @@ class Buffer extends CI_Controller
             );
             $this->m_data->delete_data($where, 'tracking');
             $this->session->set_flashdata('berhasil', 'Tracking has been deleted !');
-            redirect(base_url() . 'buffer/buffer');
+            redirect(base_url() . 'tracking/data');
         }
     }
 }

@@ -127,15 +127,16 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Foto truck</label>
-						<div class="col-xs-9">
-							<input type="file" name="foto">
-							<?php echo set_value('foto'); ?>
-						</div>
-						<small>* Max size 1 Mb</small><br />
+						<label class="control-label col-xs-3">Attach Image</label>
+                    	<div class="custom-file">
+                      		<input type="file" class="custom-file-input" id="customFile" name="foto">
+							  <?php echo set_value('foto'); ?>
+                    	<label class="custom-file-label" for="customFile">Choose file</label>
+                    	</div>
+						<small>* Max size 2 Mb</small><br />
 						<small>* Max file name image 10 character</small><br />
 						<small>* File type Jpg, Png & Gif</small>
-					</div>
+                  </div>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
@@ -189,16 +190,17 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">Foto truck</label>
-							<div class="col-xs-9">
-								<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2" onerror="this.style.display='none'" />
-								<input type="file" name="foto">
+						<label class="control-label col-xs-3">Attach Image</label><br/>
+						<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2" onerror="this.style.display='none'" />
+							<div class="custom-file">
+                      			<input type="file" class="custom-file-input" id="customFile" name="foto">
 								<?php echo form_error('foto'); ?>
-							</div>
-							<small>* Max size 1 Mb</small><br />
-							<small>* Max file name image 10 character</small><br />
-							<small>* File type Jpg, Png & Gif</small>
-						</div>
+                    			<label class="custom-file-label" for="customFile">Choose file</label>
+                    		</div>
+						<small>* Max size 2 Mb</small><br />
+						<small>* Max file name image 10 character</small><br />
+						<small>* File type Jpg, Png & Gif</small>
+                 	</div>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

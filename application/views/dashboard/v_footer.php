@@ -30,6 +30,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="<?php echo base_url(); ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- Ekko Lightbox -->
 <script src="<?php echo base_url(); ?>assets/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <!-- Select2 -->
@@ -91,6 +93,11 @@
 			$('#addform').submit();
 		});
 	});
+</script>
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
 </script>
 <script>
 	$(function() {
