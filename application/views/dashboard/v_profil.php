@@ -86,14 +86,17 @@
 										<input type="text" name="email" id="inputEmail" class="form-control" placeholder="Masukkan email .." value="<?php echo $p->pengguna_email; ?>" required>
 										<?php echo form_error('email'); ?>
 										</div>
-									</div>
+									</div>									
 									<div class="form-group row">
-										<label for="inputfile" class="col-sm-2 col-form-label">Foto</label>
+										<label class="control-label col-sm-2">Foto </label>
 										<div class="col-sm-10">
-										<input type="file" id="inputfile" name="foto"><br/>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" id="customFile" name="foto">
+										<label class="custom-file-label" for="customFile">Choose file</label>
+										</div>
 										<small>* Max size 1 Mb</small><br />
 										<small>* Max file name image 10 character</small><br />
-										<small>* File type Jpg, Png & Gif</small>
+										<small>* File type Jpg, Png & Gif</small>										
 										<?php echo form_error('foto'); ?>
 										</div>
 									</div>

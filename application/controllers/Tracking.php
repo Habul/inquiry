@@ -86,48 +86,6 @@ class Tracking extends CI_Controller
         }
     }
 
-    public function update()
-    {
-        $this->form_validation->set_rules('plan_kirim', 'Plan Kirim', 'required');
-        $this->form_validation->set_rules('nama_driver', 'Nama Driver', 'required');
-        $this->form_validation->set_rules('pic_penerima_brg', 'Pic Penerima Barang', 'required');
-        $this->form_validation->set_rules('status_kirim', 'Status Kirim', 'required');
-        $this->form_validation->set_rules('keter_kirim', 'Keter Kirim', 'required');
-        $this->form_validation->set_rules('updtime', 'Updatetime', 'required');
-
-        if ($this->form_validation->run() != false) {
-            $id = $this->input->post('no_id');
-            $plan_kirim = $this->input->post('plan_kirim');
-            $nama_driver = $this->input->post('nama_driver');
-            $pic_penerima_brg = $this->input->post('pic_penerima_brg');
-            $status_kirim = $this->input->post('status_kirim');
-            $keter_kirim = $this->input->post('keter_kirim');
-            $updtime = $this->input->post('updtime');
-
-            if ($this->form_validation->run() != false) {
-                $data = array(
-                    'plan_kirim' => $plan_kirim,
-                    'nama_driver' => $nama_driver,
-                    'pic_penerima_brg' => $pic_penerima_brg,
-                    'status_kirim' => $status_kirim,
-                    'keter_kirim' => $keter_kirim,
-                    'updtime' => $updtime
-                );
-            }
-
-            $where = array(
-                'no_id' => $id
-            );
-
-            $this->m_data->update_data($where, $data, 'tracking');
-            $this->session->set_flashdata('berhasil', 'Tracking Successfully Update, customer name : ' . $this->input->post('descript', TRUE) . ' !');
-            redirect(base_url() . 'tracking/data');
-        } else {
-            $this->session->set_flashdata('gagal', 'Tracking failed to Update, Please repeat !');
-            redirect(base_url() . 'tracking/data');
-        }
-    }
-
     public function edit()
     {
         $this->form_validation->set_rules('nama_pemesan', 'Nama Pemesan', 'required');
@@ -204,6 +162,60 @@ class Tracking extends CI_Controller
             );
             $this->m_data->delete_data($where, 'tracking');
             $this->session->set_flashdata('berhasil', 'Tracking has been deleted !');
+            redirect(base_url() . 'tracking/data');
+        }
+    }
+
+    public function view($id)
+	{
+		$where = array(
+			'no_id' => $id
+		);
+
+		$data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();		
+		$this->load->view('dashboard/v_header');
+		$this->load->view('tracking/v_tracking_view', $data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+    public function update()
+    {
+        $this->form_validation->set_rules('plan_kirim', 'Plan Kirim', 'required');
+        $this->form_validation->set_rules('nama_driver', 'Nama Driver', 'required');
+        $this->form_validation->set_rules('pic_penerima_brg', 'Pic Penerima Barang', 'required');
+        $this->form_validation->set_rules('status_kirim', 'Status Kirim', 'required');
+        $this->form_validation->set_rules('keter_kirim', 'Keter Kirim', 'required');
+        $this->form_validation->set_rules('updtime', 'Updatetime', 'required');
+
+        if ($this->form_validation->run() != false) {
+            $id = $this->input->post('no_id');
+            $plan_kirim = $this->input->post('plan_kirim');
+            $nama_driver = $this->input->post('nama_driver');
+            $pic_penerima_brg = $this->input->post('pic_penerima_brg');
+            $status_kirim = $this->input->post('status_kirim');
+            $keter_kirim = $this->input->post('keter_kirim');
+            $updtime = $this->input->post('updtime');
+
+            if ($this->form_validation->run() != false) {
+                $data = array(
+                    'plan_kirim' => $plan_kirim,
+                    'nama_driver' => $nama_driver,
+                    'pic_penerima_brg' => $pic_penerima_brg,
+                    'status_kirim' => $status_kirim,
+                    'keter_kirim' => $keter_kirim,
+                    'updtime' => $updtime
+                );
+            }
+
+            $where = array(
+                'no_id' => $id
+            );
+
+            $this->m_data->update_data($where, $data, 'tracking');
+            $this->session->set_flashdata('berhasil', 'Tracking Successfully Update, customer name : ' . $this->input->post('descript', TRUE) . ' !');
+            redirect(base_url() . 'tracking/data');
+        } else {
+            $this->session->set_flashdata('gagal', 'Tracking failed to Update, Please repeat !');
             redirect(base_url() . 'tracking/data');
         }
     }

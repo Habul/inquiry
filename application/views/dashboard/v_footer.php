@@ -202,6 +202,15 @@ $(function () {
 				[1, "desc"]
 			]
 		});
+		$('#example11').DataTable({
+			"paging": true,
+			"responsive": true,
+			"lengthChange": true,
+			"autoWidth": false,
+			"order": [
+				[7, "desc"]
+			]
+		});
 	});
 </script>
 <script>

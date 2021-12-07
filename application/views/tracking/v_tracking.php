@@ -38,7 +38,7 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example6" class="table table-bordered table-striped">
+							<table id="example11" class="table table-bordered table-striped">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th>Nama</th>
@@ -71,7 +71,7 @@
 										<td><?php echo $p->note; ?></td>										
 										<td style="text-align:center">
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit SJ"><i class="fa fa-edit"></i></a>
-											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_update<?php echo $p->no_id; ?>" title="Update Pengiriman"><i class="fa fa-search"></i></a>
+											<a href="<?php echo base_url() . 'tracking/view/' . $p->no_id; ?>" class="btn btn-primary btn-sm" title="Update delivery"> <i class="fa fa-search"></i> </a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
