@@ -37,6 +37,20 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
+						<div class="card-header">
+							<h4 class="card-title"><i class="fa fa-edit"></i> Surat Jalan HS</h4>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('sj/sj') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+									<i class="fas fa-sync-alt"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="maximize">
+									<i class="fas fa-expand"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>								
+							</div>
+						</div>
 						<div class="card-body">
 							<table id="example6" class="table table-bordered table-striped">
 								<thead class="thead-dark" style="text-align:center">
@@ -66,7 +80,7 @@
 										<td><?php echo $p->city; ?></td>
 										<td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($p->phone)), 2); ?></td>
 										<td style="text-align:center">
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_po; ?>" title="Edit SJ"><i class="fa fa-edit"></i></a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_po; ?>" title="Edit SJ"><i class="fa fa-pencil-alt"></i></a>
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_po; ?>" title="Add Desc, Detail & Print"><i class="fa fa-search"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>

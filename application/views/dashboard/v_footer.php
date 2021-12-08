@@ -146,9 +146,9 @@ $(function () {
 			]
 		});
 		$("#example4").DataTable({
-			"responsive": false,
+			"responsive": true,
 			"searching": true,
-			"lengthChange": false,
+			"lengthChange": true,
 			"autoWidth": false,
 			"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
    		 }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
@@ -289,7 +289,7 @@ $(function () {
 		$('#summernoteedit').summernote()
 	})
 </script>
-<script>
+<!--script>
 	$(function() {
 		var Toast = Swal.mixin({
 			toast: true,
@@ -297,22 +297,20 @@ $(function () {
 			showConfirmButton: false,
 			timer: 3000
 		});
-
-		$('.inquiryok').click(function() {
+		$('.berhasil').click(function() {
 			Toast.fire({
 				icon: 'success',
-				title: 'Inquiry successfully added'
+				title: ' Add Data successfully'
 			})
 		});
-
-		$('.sjok').click(function() {
+		$('.gagal').click(function() {
 			Toast.fire({
 				icon: 'success',
 				title: 'SJ successfully added'
 			})
 		});
 	})
-</script>
+</script-->
 <script>
 	$(function() {
 		//Initialize Select2 Elements

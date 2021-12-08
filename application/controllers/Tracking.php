@@ -172,7 +172,8 @@ class Tracking extends CI_Controller
 			'no_id' => $id
 		);
 
-		$data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();		
+		$data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();	
+        $data['jadwal'] = $this->db->where('plan_kirim', 'NOW()')->get('tracking');
 		$this->load->view('dashboard/v_header');
 		$this->load->view('tracking/v_tracking_view', $data);
 		$this->load->view('dashboard/v_footer');

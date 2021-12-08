@@ -49,10 +49,9 @@
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
 	<div class="wrapper">
-
-		<!-- Navbar -->
+		
 		<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
-			<!-- Left navbar links -->
+			
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -65,8 +64,7 @@
 				</li>
 			</ul>
 
-			<ul class="navbar-nav ml-auto">
-				<!-- Notifications Dropdown Menu -->
+			<ul class="navbar-nav ml-auto">				
 				<li class="nav-item dropdown">
 					<?php if ($this->session->userdata('level') != "sales") {	?>
 						<?php
@@ -127,7 +125,7 @@
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="#" class="brand-link">
-				<img src="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<img src="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-2">
 				<span class="brand-text font-weight-green">INTISERA</span>
 			</a>
 

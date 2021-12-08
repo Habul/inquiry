@@ -41,6 +41,20 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
+						<div class="card-header">
+							<h4 class="card-title"><i class="fa fa-book"></i> List Inquiry</h4>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('inquiry/inquiry') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+									<i class="fas fa-sync-alt"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="maximize">
+									<i class="fas fa-expand"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>								
+							</div>
+						</div>
 						<div class="card-body">
 							<table id="example6" class="table table-bordered table-hover">
 								<thead class="thead-dark" style="text-align:center">

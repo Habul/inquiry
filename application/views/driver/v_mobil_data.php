@@ -6,7 +6,7 @@
 					<?php foreach ($odo as $u) : ?>
 						<h1 class="m-0"><?php echo strtoupper($u->merk) ?> | Plat No <?php echo strtoupper($u->plat) ?></h1>
 						<small>Pastikan input history odometer dahulu, <b>sebelum menabahkan history service</b>
-							<br>untuk reset sisa waktu, pastikan yang di pilih history services adalah <b>Ganti Oli</b></small>
+							<br>untuk reset sisa Km, pastikan yang di pilih history services adalah <b>Ganti Oli</b></small>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -36,10 +36,16 @@
 			<br />
 			<div class="row">
 				<div class="col-md-12">
-					<div class="card card-success card-outline">
+					<div class="card card-success">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-tachometer-alt"></i> HISTORY ODOMETER</h4>
 							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/mobil_odo') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+									<i class="fas fa-sync-alt"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="maximize">
+									<i class="fas fa-expand"></i>
+								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
 								</button>
@@ -85,10 +91,16 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="card card-primary card-outline">
+					<div class="card card-info">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-bell"></i> HISTORY SERVICES</h4>
 							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/mobil_odo') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+									<i class="fas fa-sync-alt"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="maximize">
+									<i class="fas fa-expand"></i>
+								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
 								</button>
@@ -125,7 +137,7 @@
 						</div>
 						<div class="card-body row">
 							<div class="col-md-3">
-								<button class="btn btn-success btn-block" data-toggle="modal" data-target="#add_history">
+								<button class="btn btn-info btn-block" data-toggle="modal" data-target="#add_history">
 									<i class="fa fa-plus-square"></i> Add history service</button>
 							</div>
 						</div>

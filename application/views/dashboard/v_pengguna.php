@@ -37,6 +37,20 @@
 			<div class="row">				
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
+						<div class="card-header">
+							<h4 class="card-title"><i class="fa fa-users"></i> User account</h4>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('dashboard/pengguna') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+									<i class="fas fa-sync-alt"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="maximize">
+									<i class="fas fa-expand"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>								
+							</div>
+						</div>
 						<div class="card-body">
 							<table id="example4" class="table table-bordered table-striped table-sm">
 								<thead class="thead-dark" style="text-align:center">
@@ -70,7 +84,7 @@
 											?>
 										</td>
 										<td style="text-align:center">
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->pengguna_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->pengguna_id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->pengguna_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
@@ -101,31 +115,31 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" method="post" id="addform" action="<?php echo base_url('dashboard/pengguna_aksi') ?>">
+			<form class="form-horizontal" method="post" onsubmit="addbtn.disabled = true; return true;" action="<?php echo base_url('dashboard/pengguna_aksi') ?>">
 					<div class="card-body">
 						<div class="form-group">
-							<label>Nama</label>
-							<input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna ..">
+							<label>Nama *</label>
+							<input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .." required>
 							<?php echo form_error('nama'); ?>
 						</div>
 						<div class="form-group">
-							<label>Email</label>
-							<input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna ..">
+							<label>Email *</label>
+							<input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .." required>
 							<?php echo form_error('email'); ?>
 						</div>
 						<div class="form-group">
-							<label>Username</label>
-							<input type="text" name="username" class="form-control" placeholder="Masukkan username pengguna..">
+							<label>Username *</label>
+							<input type="text" name="username" class="form-control" placeholder="Masukkan username pengguna.." required>
 							<?php echo form_error('username'); ?>
 						</div>
 						<div class="form-group">
-							<label>Password</label>
-							<input type="password" name="password" class="form-control" placeholder="Masukkan password pengguna..">
+							<label>Password *</label>
+							<input type="password" name="password" class="form-control" placeholder="Masukkan password pengguna.." required>
 							<?php echo form_error('password'); ?>
 						</div>
 						<div class="form-group">
-							<label>Divisi</label>
-							<select class="form-control" name="level">
+							<label>Divisi *</label>
+							<select class="form-control" name="level" required>
 								<option value="">- Pilih Divisi -</option>
 								<option value="admin">Admin</option>
 								<option value="purchase">Purchase</option>
@@ -135,8 +149,8 @@
 							<?php echo form_error('level'); ?>
 						</div>
 						<div class="form-group">
-							<label>Status</label>
-							<select class="form-control" name="status">
+							<label>Status *</label>
+							<select class="form-control" name="status" required>
 								<option value="">- Pilih Status -</option>
 								<option value="1">Aktif</option>
 								<option value="0">Non-Aktif</option>
@@ -146,7 +160,7 @@
 					</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="addbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>

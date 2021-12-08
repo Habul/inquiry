@@ -13,12 +13,12 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 </head>
 <body class="hold-transition login-page text-sm">
-  <div class="login-box">
-    <div class="login-logo">
+  <div class="login-box">    
+     <div class="card shadow-lg">
+      <div class="card-body login-card-body">
+      <div class="login-logo">
       <a href="#"><img src="<?php echo base_url().'gambar/website/Intisera2.png'?>" style="width:250px;height:110px;"></a>
     </div>
-     <div class="card">
-      <div class="card-body login-card-body">
         <p class="login-box-msg"><b>Sign in to start your session</b></p>
         <form action="<?php echo base_url() . 'login/aksi' ?>" id="loginform" method="post" >
           <div class="input-group mb-3">
@@ -39,15 +39,8 @@
             </div>
           </div>
           <?php echo form_error('password'); ?>
-          <div class="row">
-            <div class="col-8">
-              <div class="icheck-primary">
-                <label>
-                  <a type="button" href="<?php echo base_url(); ?>">Back</a>
-                </label>
-              </div>
-            </div>
-            <div class="col-4">
+          <div class="row">            
+            <div class="col-12">
               <button type="submit" id="loginbtn" class="btn btn-primary btn-block">Sign In</button>
             </div>
           </div>

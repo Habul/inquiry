@@ -37,6 +37,20 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
+						<div class="card-header">
+							<h4 class="card-title"><i class="fa fa-server"></i> Data Penting IT</h4>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('it/data') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+									<i class="fas fa-sync-alt"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="maximize">
+									<i class="fas fa-expand"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>								
+							</div>
+						</div>
 						<div class="card-body">
 							<table id="example8" class="table table-bordered table-hover table-sm">
 								<thead class="thead-dark" style="text-align:center">
@@ -57,8 +71,8 @@
 										<td><?php echo $p->judul; ?></td>
 										<td style="text-align:center"><?php echo $p->addtime; ?></td>
 										<td style="text-align:center">
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
-											<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_view<?php echo $p->no_id; ?>" title="View"><i class="fa fa-eye"></i></a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+											<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_view<?php echo $p->no_id; ?>" title="View"><i class="fa fa-search"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
@@ -159,7 +173,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Isi *</label>
 							<div class="col-xs-9">
-								<textarea class="form-control" name="isi" rows="10" > <?php echo $p->isi; ?> </textarea>
+								<textarea class="form-control" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
 								<?php echo form_error('isi'); ?>
 							</div>
 						</div>						

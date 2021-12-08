@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="col-md-3">
 				<div class="card card-success card-outline">
-              	<div class="card-body box-profile">
+              	<div class="card-body box-profile shadow">
                 <div class="text-center">
 				<?php $id_user = $this->session->userdata('id');
 				$user = $this->db->query("select * from pengguna where pengguna_id='$id_user'")->row(); ?>
