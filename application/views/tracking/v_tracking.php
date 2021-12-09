@@ -28,13 +28,16 @@
 				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
 			</div>
 		<?php } ?>
-		<div class="container-fluid">
-			<div class="col-md-3" style="padding: 0;">
-				<a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
-					<i class="fa fa-plus-square"></i>&nbsp; Add Order Delivery</a>
-			</div>
-			<br />
+		<div class="container-fluid">			
 			<div class="row">
+				<div class="col-12 table-responsive-sm">					
+						<a class="btn btn-success float-left" data-toggle="modal" data-target="#modal_add">
+							<i class="fa fa-plus"></i>&nbsp; Add Order Delivery</a>			
+						<a class="btn btn-info float-right" data-toggle="modal" data-target="#modal_view_driver">
+							<i class="fa fa-search"></i>&nbsp; View Delivery Now</a>
+				</div>
+				<br />
+				<br />
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-header">
@@ -48,7 +51,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
-								</button>								
+								</button>					
 							</div>
 						</div>
 						<div class="card-body">
@@ -431,3 +434,46 @@
 		</div>
 	</div>
 <?php endforeach; ?>
+
+<div class="modal fade" id="modal_view_driver" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">List Delivery Now
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
+				<div class="modal-body">					
+					<table class="table table-bordered table-striped table-sm">
+						<thead style="text-align:center">
+							<tr>
+								<th width="5%">No</th>
+								<th style="min-width:150px;">Nama Driver</th>
+								<th width="15%">No Bbk</th>
+								<th width="30%">Customer</th>															
+							</tr>
+						</thead>
+						<?php
+						$no = 1;
+						$cek = $this->db->query("SELECT * FROM tracking WHERE plan_kirim=DATE(NOW()) AND action='START'");
+						foreach ($cek->result() as $u) {
+						?>
+							<tr>
+								<td style="text-align:center"><?php echo $no++; ?></td>
+								<td><?php echo $u->nama_driver; ?></td>
+								<td style="text-align:center"><?php echo $u->no_bbk; ?></td>
+								<td><?php echo $u->nama_cust; ?></td>								
+							</tr>
+						<?php
+						}
+						?>
+					</table>
+				</div>
+				<div class="modal-footer justify-content-center">
+					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+				</div>
+			</div>
+		</div>
+	</div>

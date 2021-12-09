@@ -34,7 +34,7 @@
            <input id="password-field" type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             <div class="input-group-append">           
               <div class="input-group-text">              
-              <span toggle="#password-field" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
               </div>              
             </div>
           </div>
@@ -73,7 +73,7 @@
   });	
 
   $(".toggle-password").click(function() {
-  $(this).toggleClass("fa-eye-slash fa-eye");
+  $(this).toggleClass("fa-eye fa-eye-slash");
   var input = $($(this).attr("toggle"));
   if (input.attr("type") == "password") {
     input.attr("type", "text");

@@ -293,13 +293,13 @@
 								<li class="nav-item">
 									<a href="<?php echo base_url() . 'tracking/data' ?>" <?= $this->uri->uri_string() == 'tracking/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="far fa-circle nav-icon"></i>
-										<p>Input Order & Delivery</p>
+										<p>Order & Delivery</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?php echo base_url() . 'tracking/view' ?>" <?= $this->uri->uri_string() == 'tracking/view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<a href="<?php echo base_url() . 'tracking/finish' ?>" <?= $this->uri->uri_string() == 'tracking/finish' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="far fa-circle nav-icon"></i>
-										<p>View Order & Delivery</p>
+										<p>Arship Order & Delivery</p>
 									</a>
 								</li>
 							</ul>
@@ -318,7 +318,7 @@
 											$this->uri->segment(2) == 'truck' ||
 											$this->uri->segment(2) == 'truck_odo' ||
 											$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-								<i class="nav-icon fas fa-map"></i>
+								<i class="nav-icon fas fa-wrench"></i>
 								<p>Tracking
 									<i class="fas fa-angle-left right"></i>
 								</p>

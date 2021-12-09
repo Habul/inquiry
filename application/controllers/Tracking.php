@@ -18,6 +18,7 @@ class Tracking extends CI_Controller
     {
         $data['tracking'] = $this->m_data->get_data('tracking')->result();
         $data['unit_bisnis'] = $this->m_data->get_data('unit_bisnis')->result();
+        $data['jadwal'] = $this->db->where('plan_kirim', 'NOW()')->get('tracking')->result();	
         $this->load->view('dashboard/v_header');
         $this->load->view('tracking/v_tracking', $data);
         $this->load->view('dashboard/v_footer');
@@ -172,8 +173,8 @@ class Tracking extends CI_Controller
 			'no_id' => $id
 		);
 
-		$data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();	
-        $data['jadwal'] = $this->db->where('plan_kirim', 'NOW()')->get('tracking');
+		$data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();  
+        $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();	
 		$this->load->view('dashboard/v_header');
 		$this->load->view('tracking/v_tracking_view', $data);
 		$this->load->view('dashboard/v_footer');
@@ -190,6 +191,7 @@ class Tracking extends CI_Controller
 
         if ($this->form_validation->run() != false) {
             $id = $this->input->post('no_id');
+
             $plan_kirim = $this->input->post('plan_kirim');
             $nama_driver = $this->input->post('nama_driver');
             $pic_penerima_brg = $this->input->post('pic_penerima_brg');
@@ -213,11 +215,20 @@ class Tracking extends CI_Controller
             );
 
             $this->m_data->update_data($where, $data, 'tracking');
-            $this->session->set_flashdata('berhasil', 'Tracking Successfully Update, customer name : ' . $this->input->post('descript', TRUE) . ' !');
+            $this->session->set_flashdata('berhasil', 'Tracking Successfully Update, Plan kirim : ' . $this->input->post('plan_kirim', TRUE) . ' !');
             redirect(base_url() . 'tracking/data');
         } else {
             $this->session->set_flashdata('gagal', 'Tracking failed to Update, Please repeat !');
             redirect(base_url() . 'tracking/data');
         }
     }
+
+    public function arship()
+	{
+		$data['arship'] = $this->db->where('action','FINISH')->get('tracking')->result();
+        $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();	
+		$this->load->view('dashboard/v_header');
+		$this->load->view('tracking/v_tracking_view', $data);
+		$this->load->view('dashboard/v_footer');
+	}
 }

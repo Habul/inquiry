@@ -463,13 +463,6 @@
 	</div>
 <?php endforeach; ?>
 <!--END MODAL EDIT PURC-->
-<script>
-	function myKurs() {
-		var x = document.getElementById("kurs").value;
-		document.getElementById("amount").innerHTML = x;
-		console.log(x);
-	}
-</script>
 
 
 <!--MODAL HAPUS-->
