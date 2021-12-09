@@ -40,7 +40,7 @@
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-tachometer-alt"></i> HISTORY ODOMETER</h4>
 							<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/mobil_odo') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/mobil_odo') ?>" data-source-selector="#example9" data-load-on-init="false">
 									<i class="fas fa-sync-alt"></i>
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -68,7 +68,7 @@
 								$no = 1;
 								$query = $this->db->query("SELECT * FROM driver WHERE join_id=$u->no_id;");
 								foreach ($query->result() as $p) { ?>
-									<tr style="text-align:center">
+									<tr id="example9" style="text-align:center">
 										<td><?php echo strtoupper($p->nama) ?></td>
 										<td><?php echo $p->tanggal; ?></td>
 										<td><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
@@ -95,7 +95,7 @@
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-bell"></i> HISTORY SERVICES</h4>
 							<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/mobil_odo') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/mobil_odo') ?>" data-source-selector="#example10" data-load-on-init="false">
 									<i class="fas fa-sync-alt"></i>
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -123,7 +123,7 @@
 								$no = 1;
 								$query = $this->db->query("SELECT * FROM history_vehicles WHERE join_id=$u->no_id;");
 								foreach ($query->result() as $p) { ?>
-									<tr>
+									<tr id="example9">
 										<td><?php echo strtoupper($p->jenis) ?></td>
 										<td style="text-align:center"><?php echo $p->tanggal; ?></td>
 										<td style="text-align:center"><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>

@@ -6,7 +6,7 @@
 					<?php foreach ($odo as $u) : ?>
 						<h1 class="m-0"><?php echo strtoupper($u->merk) ?> | Plat No <?php echo strtoupper($u->plat) ?></h1>
 						<small>Pastikan input history odometer dahulu, <b>sebelum menabahkan history service</b>
-						<br>untuk reset sisa Km, pastikan yang di pilih history services adalah <b>Ganti Oli</b></small>
+							<br>untuk reset sisa Km, pastikan yang di pilih history services adalah <b>Ganti Oli</b></small>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -40,7 +40,7 @@
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-tachometer-alt"></i> HISTORY ODOMETER</h4>
 							<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/motor_odo') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/motor_odo') ?>" data-source-selector="#example9" data-load-on-init="false">
 									<i class="fas fa-sync-alt"></i>
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -68,7 +68,7 @@
 								$no = 1;
 								$query = $this->db->query("SELECT * FROM driver WHERE join_id=$u->no_id;");
 								foreach ($query->result() as $p) { ?>
-									<tr style="text-align:center">
+									<tr class="d-none" id="example9" style="text-align:center">
 										<td><?php echo strtoupper($p->nama) ?></td>
 										<td><?php echo $p->tanggal; ?></td>
 										<td><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
@@ -91,11 +91,11 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="card card-info">	
+					<div class="card card-info">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-bell"></i> HISTORY SERVICES</h4>
 							<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/motor_odo') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
+								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/motor_odo') ?>" data-source-selector="#example10" data-load-on-init="false">
 									<i class="fas fa-sync-alt"></i>
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -123,7 +123,7 @@
 								$no = 1;
 								$query = $this->db->query("SELECT * FROM history_vehicles WHERE join_id=$u->no_id;");
 								foreach ($query->result() as $p) { ?>
-									<tr>
+									<tr class="d-none" id="example10">
 										<td><?php echo strtoupper($p->jenis) ?></td>
 										<td style="text-align:center"><?php echo $p->tanggal; ?></td>
 										<td style="text-align:center"><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
