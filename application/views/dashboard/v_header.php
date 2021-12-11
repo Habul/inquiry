@@ -278,11 +278,13 @@
 								</ul>
 							</li>
 						<?php } ?>
-						<li <?= $this->uri->uri_string() == 'tracking/data' ||
-								$this->uri->uri_string() == 'tracking/view' ||
+						<li <?= $this->uri->segment(2) == 'data_order' ||
+								$this->uri->segment(2) == 'view' ||
+								$this->uri->segment(2) == 'arship' ||
 								$this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
-							<a href="#" <?= $this->uri->uri_string() == 'tracking/data' ||
-											$this->uri->uri_string() == 'tracking/view' ||
+							<a href="#" <?= $this->uri->segment(2) == 'data_order' ||
+											$this->uri->segment(2) == 'view' ||
+											$this->uri->segment(2) == 'arship' ||
 											$this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-paper-plane"></i>
 								<p>Order & Delivery
@@ -291,13 +293,13 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="<?php echo base_url() . 'tracking/data' ?>" <?= $this->uri->uri_string() == 'tracking/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<a href="<?php echo base_url() . 'tracking/data_order' ?>" <?= $this->uri->segment(2) == 'data_order' || $this->uri->segment(2) == 'view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="far fa-circle nav-icon"></i>
 										<p>Order & Delivery</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="<?php echo base_url() . 'tracking/finish' ?>" <?= $this->uri->uri_string() == 'tracking/finish' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<a href="<?php echo base_url() . 'tracking/arship' ?>" <?= $this->uri->segment(2) == 'arship' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="far fa-circle nav-icon"></i>
 										<p>Arship Order & Delivery</p>
 									</a>

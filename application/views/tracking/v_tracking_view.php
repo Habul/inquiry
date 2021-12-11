@@ -8,7 +8,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="<?php echo base_url('tracking/data') ?>">Tracking</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url('tracking/data_order') ?>">Tracking</a></li>
               <li class="breadcrumb-item active">Update Order & Tracking</li>
             </ol>
           </div>
@@ -46,7 +46,7 @@
                     ?>
                     <input type="hidden" name="no_id" class="form-control" value="<?php echo $u->no_id; ?>">
                     <input type="hidden" name="updtime" class="form-control" value="<?php echo mdate($format); ?>">
-                    <input type="date" name="plan_kirim" class="form-control" required>
+                    <input type="date" name="plan_kirim" class="form-control" value=<?php echo $u->plan_kirim ?> required>
                     <?php echo form_error('plan_kirim'); ?>
                   </div>
                   <div class="form-group">
@@ -61,22 +61,22 @@
                   </div>  
                   <div class="form-group">
                     <label>Pic Penerima *</label>
-                    <input type="text" name="pic_penerima_brg" class="form-control" placeholder="Input pic.." required>
+                    <input type="text" name="pic_penerima_brg" class="form-control" value="<?php echo $u->pic_penerima_brg ?>" placeholder="Input pic.." required>
                     <?php echo form_error('pic_penerima_brg'); ?>
                   </div>
                   <div class="form-group">
                     <label>Status Kirim *</label>
-                    <input type="text" name="status_kirim" class="form-control" placeholder="Input status kirim.." required>
+                    <input type="text" name="status_kirim" class="form-control" value="<?php echo $u->status_kirim ?>" placeholder="Input status kirim.." required>
                     <?php echo form_error('status_kirim'); ?>
                   </div>  
                   <div class="form-group">
                     <label>Keterangan Kirim *</label>
-                    <textarea name="keter_kirim" class="form-control" placeholder="Input keterangan.."></textarea>
+                    <textarea name="keter_kirim" class="form-control" value="<?php echo $u->keter_kirim ?>" placeholder="Input keterangan.."></textarea>
                     <?php echo form_error('keter_kirim'); ?>
                   </div>                
                 <div class="card-footer justify-content-between">                  
                   <button type="submit" id="updbtn" class="btn btn-info float-right"><i class="fa fa-check"></i> Save</button>
-                  <a href="<?php echo base_url('tracking/data') ?>" class="btn btn-default"><i class="fa fa-share"></i> Back</a>
+                  <a href="<?php echo base_url('tracking/data_order') ?>" class="btn btn-default"><i class="fa fa-share"></i> Back</a>
                 </div>
               </form>
             </div>

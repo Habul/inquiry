@@ -14,7 +14,7 @@ class Tracking extends CI_Controller
         $this->load->model('m_data');
     }
 
-    public function data()
+    public function data_order()
     {
         $data['tracking'] = $this->m_data->get_data('tracking')->result();
         $data['unit_bisnis'] = $this->m_data->get_data('unit_bisnis')->result();
@@ -80,10 +80,10 @@ class Tracking extends CI_Controller
 
             $this->m_data->insert_data($data, 'tracking');
             $this->session->set_flashdata('berhasil', 'Tracking Successfully added, customer name  ' . $this->input->post('nama_pemesan', TRUE) . ' !');
-            redirect(base_url() . 'tracking/data');
+            redirect(base_url() . 'tracking/data_order');
         } else {
             $this->session->set_flashdata('gagal', 'Tracking failed to add, Please repeat !');
-            redirect(base_url() . 'tracking/data');
+            redirect(base_url() . 'tracking/data_order');
         }
     }
 
@@ -148,10 +148,10 @@ class Tracking extends CI_Controller
 
             $this->m_data->update_data($where, $data, 'tracking');
             $this->session->set_flashdata('berhasil', 'Tracking Successfully Edit, customer name  ' . $this->input->post('nama_pemesan', TRUE) . ' !');
-            redirect(base_url() . 'tracking/data');
+            redirect(base_url() . 'tracking/data_order');
         } else {
             $this->session->set_flashdata('gagal', 'Tracking failed to Edit, Please repeat !');
-            redirect(base_url() . 'tracking/data');
+            redirect(base_url() . 'tracking/data_order');
         }
     }
 
@@ -163,7 +163,7 @@ class Tracking extends CI_Controller
             );
             $this->m_data->delete_data($where, 'tracking');
             $this->session->set_flashdata('berhasil', 'Tracking has been deleted !');
-            redirect(base_url() . 'tracking/data');
+            redirect(base_url() . 'tracking/data_order');
         }
     }
 
@@ -216,10 +216,10 @@ class Tracking extends CI_Controller
 
             $this->m_data->update_data($where, $data, 'tracking');
             $this->session->set_flashdata('berhasil', 'Tracking Successfully Update, Plan kirim : ' . $this->input->post('plan_kirim', TRUE) . ' !');
-            redirect(base_url() . 'tracking/data');
+            redirect(base_url() . 'tracking/data_order');
         } else {
             $this->session->set_flashdata('gagal', 'Tracking failed to Update, Please repeat !');
-            redirect(base_url() . 'tracking/data');
+            redirect(base_url() . 'tracking/data_order');
         }
     }
 

@@ -35,14 +35,11 @@
 		<?php } ?>		
 			<br />
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-6">
 					<div class="card card-success">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-tachometer-alt"></i> HISTORY ODOMETER</h4>
-							<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/truck_odo') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
-									<i class="fas fa-sync-alt"></i>
-								</button>
+							<div class="card-tools">								
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
 									<i class="fas fa-expand"></i>
 								</button>
@@ -51,7 +48,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="remove">
 									<i class="fas fa-times"></i>
-								</button>
+								</button>							
 							</div>
 						</div>
 						<div class="card-body">
@@ -61,7 +58,7 @@
 										<th>Nama</th>
 										<th>Tanggal</th>
 										<th>Odometer</th>
-										<th width="10%">Action</th>
+										<th width="16%">Action</th>
 									</tr>
 								</thead>
 								<?php
@@ -81,23 +78,18 @@
 							</table>
 						</div>
 						<div class="card-body row">
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<button class="btn btn-success btn-block" data-toggle="modal" data-target="#modal_add">
-									<i class="fa fa-plus-square"></i> Add history odometer</button>
+									<i class="fa fa-plus"></i> History odometer</button>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card card-info">
+				</div>			
+				<div class="col-md-6">
+					<div class="card card-info collapsed-card">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-bell"></i> HISTORY SERVICES</h4>
-							<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('driver/truck_odo') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
-									<i class="fas fa-sync-alt"></i>
-								</button>
+							<div class="card-tools">								
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
 									<i class="fas fa-expand"></i>
 								</button>
@@ -106,7 +98,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="remove">
 									<i class="fas fa-times"></i>
-								</button>
+								</button>								
 							</div>
 						</div>
 						<div class="card-body">
@@ -116,7 +108,7 @@
 										<th>Jenis</th>
 										<th>Tanggal</th>
 										<th>Odometer</th>
-										<th width="10%">Action</th>
+										<th width="16%">Action</th>
 									</tr>
 								</thead>
 								<?php
@@ -136,9 +128,9 @@
 							</table>
 						</div>
 						<div class="card-body row">
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<button class="btn btn-info btn-block" data-toggle="modal" data-target="#add_history">
-									<i class="fa fa-plus-square"></i> Add history service</button>
+									<i class="fa fa-plus"></i> History service</button>
 							</div>
 						</div>
 					</div>
