@@ -51,7 +51,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="remove">
 									<i class="fas fa-times"></i>
-								</button>								
+								</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -125,17 +125,17 @@
 							<input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $cek->no_id + 1; ?> ">
 							<textarea class="form-control" rows="8" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
 						</div>
-					</div>					
-				 	<div class="form-group">
+					</div>
+					<div class="form-group">
 						<label class="control-label col-xs-3">Attach Image</label>
-                    	<div class="custom-file">
-                      		<input type="file" class="custom-file-input" id="customFile" name="file">
-                    	<label class="custom-file-label" for="customFile">Choose file</label>
-                    	</div>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" id="customFile" name="file">
+							<label class="custom-file-label" for="customFile">Choose file</label>
+						</div>
 						<small>* Max size 2 Mb</small><br />
 						<small>* Max file name image 10 character</small><br />
 						<small>* File type Jpg, Png & Gif</small>
-                  </div>
+					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
@@ -179,19 +179,19 @@
 								<textarea class="form-control" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
 								<?php echo form_error('isi'); ?>
 							</div>
-						</div>						
+						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">Attach Image</label><br/>
-								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank">
-                  				<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-fluid mb-2" width="35%" onerror="this.style.display='none'"/></a>
+							<label class="control-label col-xs-3">Attach Image</label><br />
+							<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank">
+								<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-fluid mb-2" width="35%" onerror="this.style.display='none'" /></a>
 							<div class="custom-file">
 								<input type="file" class="custom-file-input" id="customFile" name="file">
-							<label class="custom-file-label" for="customFile">Choose file</label>
+								<label class="custom-file-label" for="customFile">Choose file</label>
 							</div>
 							<small>* Max size 2 Mb</small><br />
 							<small>* Max file name image 10 character</small><br />
 							<small>* File type Jpg, Png & Gif</small>
-                		</div>
+						</div>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

@@ -48,7 +48,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
-								</button>								
+								</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -107,7 +107,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal"  onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_aksi_df') ?>">
+			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_aksi_df') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Delivery Order No*</label>
@@ -115,7 +115,7 @@
 							<?php
 							$cek = $this->db->select_max('no_id')->get('sj_user_df')->row();
 							?>
-							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo 'IT/SJ/', date('Y/m/'), $cek->no_id+1; ?>">
+							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo 'IT/SJ/', date('Y/m/'), $cek->no_id + 1; ?>">
 							<?php echo form_error('no_delivery'); ?>
 						</div>
 					</div>
@@ -275,12 +275,12 @@
 							<div class="btn-group float-right">
 								<button class="btn btn-primary"><i class="fas fa-print"></i> Print</button>
 								<button class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-								<span class="sr-only">Toggle Dropdown</span>
+									<span class="sr-only">Toggle Dropdown</span>
 								</button>
 								<div class="dropdown-menu" role="menu">
-								<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_df/' . $p->no_id; ?>" rel="noopener" target="_blank" title="Print Dutaflow"><i class="fas fa-print"></i> Dutaflow</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_inti/' . $p->no_id; ?>" rel="noopener" target="_blank" title="Print Intisera"><i class="fas fa-print"></i> Intisera</a>
+									<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_df/' . $p->no_id; ?>" rel="noopener" target="_blank" title="Print Dutaflow"><i class="fas fa-print"></i> Dutaflow</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_inti/' . $p->no_id; ?>" rel="noopener" target="_blank" title="Print Intisera"><i class="fas fa-print"></i> Intisera</a>
 								</div>
 							</div>
 							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_id; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i>&nbsp; Add</a>

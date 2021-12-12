@@ -18,7 +18,7 @@ class Tracking extends CI_Controller
     {
         $data['tracking'] = $this->m_data->get_data('tracking')->result();
         $data['unit_bisnis'] = $this->m_data->get_data('unit_bisnis')->result();
-        $data['jadwal'] = $this->db->where('plan_kirim', 'NOW()')->get('tracking')->result();	
+        $data['jadwal'] = $this->db->where('plan_kirim', 'NOW()')->get('tracking')->result();
         $this->load->view('dashboard/v_header');
         $this->load->view('tracking/v_tracking', $data);
         $this->load->view('dashboard/v_footer');
@@ -28,7 +28,7 @@ class Tracking extends CI_Controller
     {
         $this->form_validation->set_rules('nama_pemesan', 'Nama Pemesan', 'required');
         $this->form_validation->set_rules('group', 'Group', 'required');
-       // $this->form_validation->set_rules('no_bbk', 'NO BBK', 'required');
+        // $this->form_validation->set_rules('no_bbk', 'NO BBK', 'required');
         $this->form_validation->set_rules('nama_cust', 'Nama Customer', 'required');
         $this->form_validation->set_rules('alamat_cust', 'Alamat Customer', 'required');
         $this->form_validation->set_rules('pic_penerima', 'Pic Penerima', 'required');
@@ -168,17 +168,17 @@ class Tracking extends CI_Controller
     }
 
     public function view($id)
-	{
-		$where = array(
-			'no_id' => $id
-		);
+    {
+        $where = array(
+            'no_id' => $id
+        );
 
-		$data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();  
-        $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();	
-		$this->load->view('dashboard/v_header');
-		$this->load->view('tracking/v_tracking_view', $data);
-		$this->load->view('dashboard/v_footer');
-	}
+        $data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();
+        $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();
+        $this->load->view('dashboard/v_header');
+        $this->load->view('tracking/v_tracking_view', $data);
+        $this->load->view('dashboard/v_footer');
+    }
 
     public function update()
     {
@@ -224,11 +224,11 @@ class Tracking extends CI_Controller
     }
 
     public function arship()
-	{
-		$data['arship'] = $this->db->where('action','FINISH')->get('tracking')->result();
-        $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();	
-		$this->load->view('dashboard/v_header');
-		$this->load->view('tracking/v_tracking_view', $data);
-		$this->load->view('dashboard/v_footer');
-	}
+    {
+        $data['arship'] = $this->db->where('action', 'FINISH')->get('tracking')->result();
+        $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();
+        $this->load->view('dashboard/v_header');
+        $this->load->view('tracking/v_tracking_finish', $data);
+        $this->load->view('dashboard/v_footer');
+    }
 }
