@@ -4,7 +4,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0">Inquiry</h1>
-					<small>Inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>View Inquiry</b></small>
+					<small>Inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>Arship Inquiry</b></small>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -33,7 +33,7 @@
 				<?php if ($this->session->userdata('level') != "purchase") {	?>
 					<div class="col-md-3" style="padding: 0;">
 						<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_inquiry">
-							<i class="fa fa-plus-square"></i>&nbsp; Tambah Inquiry</a>
+							<i class="fa fa-plus"></i>&nbsp; Tambah Inquiry</a>
 					</div>
 					</br>
 				<?php }	?>
@@ -88,10 +88,10 @@
 										<?php if ($this->session->userdata('level') != "warehouse") { ?>
 											<td style="text-align:center">
 												<?php if ($this->session->userdata('level') != "purchase") { ?>
-													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
 												<?php }	?>
 												<?php if ($this->session->userdata('level') != "sales") { ?>
-													<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit_purch<?php echo $p->inquiry_id; ?>" title="Update"><i class="fa fa-plus-square"></i></a>
+													<a href="<?php echo base_url() . 'inquiry/inquiry_update_prch/' . $p->inquiry_id; ?>" class="btn btn-primary btn-sm" title="Update inquiry"> <i class="fa fa-edit"></i> </a>
 													<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->inquiry_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 											</td>
 									</tr>
@@ -119,7 +119,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
+			<form class="form-horizontal" onsubmit="addform.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Nama Sales</label>
@@ -203,7 +203,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="addform"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -295,175 +295,6 @@
 	</div>
 <?php endforeach; ?>
 <!--END MODAL EDIT SALES-->
-
-<!-- ============ MODAL EDIT PURC =============== -->
-<?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_edit_purch<?php echo $p->inquiry_id; ?>" style="hidden;" data-backdrop="static">
-		<<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="col-12 modal-title text-center">Update Inquiry
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</h4>
-				</div>
-				<form class="form-horizontal" onsubmit="updbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_update') ?>">
-					<div class="modal-body">
-						<div class="form-group">
-							<label class="control-label col-xs-3">No Inquiry</label>
-							<div class="col-xs-9">
-								<input type="text" name="id" class="form-control" readonly value="<?php echo $p->inquiry_id; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Sales</label>
-							<div class="col-xs-9">
-								<input type="text" class="form-control" readonly value="<?php echo $p->sales; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Brand</label>
-							<div class="col-xs-9">
-								<input type="text" class="form-control" readonly value="<?php echo $p->brand; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Desc Produk</label>
-							<div class="col-xs-9">
-								<textarea class="form-control" readonly><?php echo $p->desc; ?></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Qty</label>
-							<div class="col-xs-9">
-								<input type="text" class="form-control" readonly value="<?php echo $p->qty; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Deadline</label>
-							<div class="col-xs-9">
-								<input type="text" class="form-control" readonly value="<?php echo $p->deadline; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Request</label>
-							<div class="col-xs-9">
-								<input type="text" class="form-control" readonly value="<?php echo $p->request; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Keter(Sales)</label>
-							<div class="col-xs-9">
-								<input type="text" class="form-control" readonly value="<?php echo $p->keter; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Purchase</label>
-							<div class="col-xs-9">
-								<input type="text" name="name_purch" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
-								<?php echo form_error('name_purch'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Follow UP</label>
-							<div class="col-xs-9">
-								<?php
-								$now = $this->load->helper('date');
-								$format = "%Y-%m-%d %H:%i:%s";
-								?>
-								<input type="datetime" name="fu1" readonly class="form-control" value="<?php echo mdate($format); ?>">
-								<?php echo form_error('fu1'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Check *</label>
-							<div class="col-xs-9">
-								<input type="number" name="cek" class="form-control" min="1" placeholder="Cek.." required>
-								<?php echo form_error('cek'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Keterangan Fu</label>
-							<div class="col-xs-9">
-								<input type="text" name="ket_fu" class="form-control" placeholder="Keterangan Fu..">
-								<?php echo form_error('ket_fu'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Kurs *</label>
-							<div class="col-xs-9">
-								<select class="form-control" id="kurs" name="kurs" onchange="myKurs()" required>
-									<option value="">- Pilih Kurs -</option>
-									<?php foreach ($kurs as $row) : ?>
-										<option value="<?php echo $row->id_kurs; ?>"><?php echo $row->currency; ?></option>
-									<?php endforeach; ?>
-								</select>
-								<?php echo form_error('kurs'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Cogs *</label>
-							<div class="col-xs-9">
-								<input type="hidden" id="amount" class="form-control" id="amount">
-								<input type="number" id="cogs" min="0.001" step="0.001" name="cogs" class="form-control" onchange="changeTipe();" placeholder="Isi Cogs.." required>
-								<?php echo form_error('cogs'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Cogs IDR</label>
-							<div class="col-xs-9">
-								<input type="number" id="cogs_idr" name="cogs_idr" class="form-control">
-								<?php echo form_error('cogs_idr'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Reseller</label>
-							<div class="col-xs-9">
-								<input type="number" id="reseller" name="reseller" class="form-control">
-								<?php echo form_error('reseller'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">New Seller</label>
-							<div class="col-xs-9">
-								<input type="number" id="new_seller" name="new_seller" class="form-control">
-								<?php echo form_error('new_seller'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">User</label>
-							<div class="col-xs-9">
-								<input type="number" id="user " name="user" class="form-control">
-								<?php echo form_error('user'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Delivery *</label>
-							<div class="col-xs-9">
-								<input type="text" name="delivery" class="form-control" placeholder="Delivery.." required>
-								<?php echo form_error('delivery'); ?>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Ket Purchase</label>
-							<div class="col-xs-9">
-								<textarea name="ket_purch" class="form-control" placeholder="Keterangan..."></textarea>
-								<?php echo form_error('ket_purch'); ?>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer justify-content-between">
-						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary" id="updbtn"><i class="fa fa-check"></i> Save</button>
-					</div>
-				</form>
-			</div>
-	</div>
-	</div>
-<?php endforeach; ?>
-<!--END MODAL EDIT PURC-->
-
 
 <!--MODAL HAPUS-->
 <?php foreach ($inquiry as $p) : ?>

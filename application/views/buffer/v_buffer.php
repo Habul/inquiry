@@ -4,7 +4,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0">Buffer</h1>
-					<small>Data yang sudah di <b>APPROVE / FINISH</b> di pindahkan ke menu <b>VIEW BUFFER</b></small>
+					<small>Data yang sudah di <b>APPROVE / FINISH</b> di pindahkan ke menu <b>Arship Buffer</b></small>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">

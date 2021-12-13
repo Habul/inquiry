@@ -3,12 +3,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Kurs Inquiry</h1>
+					<h1 class="m-0">Kurs</h1>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-						<li class="breadcrumb-item active">Kurs Inquiry</li>
+						<li class="breadcrumb-item active">Kurs</li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -94,7 +94,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>">
+			<form class="form-horizontal" onsubmit="addform.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_kurs_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<?php
@@ -120,7 +120,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary" id="submitbtn"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="addform"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
@@ -182,8 +182,11 @@
 			</div>
 			<form method="post" onsubmit="importform.disabled = true; return true;" action="<?php echo base_url('inquiry/inquiry_kurs_import') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
-					<input type="file" name="excel" class="form-control" required>
-					<?php echo form_error('excel'); ?>
+				<div class="custom-file">
+                      	<input type="file" class="custom-file-input" id="customFile" name="excel">
+						<?php echo set_value('excel'); ?>
+                    	<label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
 					<small>* Extensi file xls atau xlsx</small><br />
 					<small>* File yang di import akan me replace data yang sudah ada</small><br />
 					<small>* Format file harus sesuai dengan file excel export</small>

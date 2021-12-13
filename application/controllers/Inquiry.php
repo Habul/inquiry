@@ -69,6 +69,20 @@ class Inquiry extends CI_Controller
 		}
 	}
 
+	public function inquiry_update_prch($id)
+    {
+        $where = array(
+            'inquiry_id' => $id
+        );
+
+        $data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
+        $data['kurs'] = $this->m_data->get_data('kurs')->result();
+		$data['master'] = $this->m_data->get_data('master')->result();
+        $this->load->view('dashboard/v_header');
+        $this->load->view('inquiry/v_inquiry_update', $data);
+        $this->load->view('dashboard/v_footer');
+    }
+
 	public function inquiry_update()
 	{
 		// Wajib isi
@@ -128,8 +142,15 @@ class Inquiry extends CI_Controller
 			$this->session->set_flashdata('berhasil', 'Inquiry berhasil di Update No ID : ' . $this->input->post('id', TRUE) . ' !');
 			redirect(base_url() . 'inquiry/inquiry');
 		} else {
+			$id = $this->input->post('id');
+			$where = array(
+				'inquiry_id' => $id
+			);
+			$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 			$this->session->set_flashdata('gagal', 'Inquiry Gagal di Update, ada form yang belum terisi, silahkan cek kembali !!!');
-			redirect(base_url() . 'inquiry/inquiry');
+			$this->load->view('dashboard/v_header');
+			$this->load->view('tracking/v_inquiry_update', $data);
+			$this->load->view('dashboard/v_footer');
 		}
 	}
 

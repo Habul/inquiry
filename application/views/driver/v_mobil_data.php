@@ -115,7 +115,7 @@
 								$no = 1;
 								$query = $this->db->query("SELECT * FROM history_vehicles WHERE join_id=$u->no_id;");
 								foreach ($query->result() as $p) { ?>
-									<tr id="example9">
+									<tr>
 										<td><?php echo strtoupper($p->jenis) ?></td>
 										<td style="text-align:center"><?php echo $p->tanggal; ?></td>
 										<td style="text-align:center"><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
