@@ -125,7 +125,7 @@
 								<select class="form-control" id="kurs" name="kurs" onchange="myKurs()" required>
 									<option value="">- Pilih Kurs -</option>
 									<?php foreach ($kurs as $row) : ?>
-										<option value="<?php echo $row->id_kurs; ?>"><?php echo $row->currency; ?></option>
+										<option value="<?php echo $row->id_kurs; ?>"><?php echo $row->currency; ?> -  Rp <?php echo $row->amount; ?></option>
 									<?php endforeach; ?>
 								</select>
 								<?php echo form_error('kurs'); ?>

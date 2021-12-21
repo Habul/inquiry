@@ -57,10 +57,12 @@
 					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="<?php echo base_url() . 'dashboard' ?>" class="nav-link">Dashboard</a>
+					<a href="<?php echo base_url() . 'dashboard' ?>" <?= $this->uri->uri_string() == 'dashboard' 
+					|| $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>Dashboard</a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="nav-link">Profile</a>
+					<a href="<?php echo base_url() . 'dashboard/profil' ?>" <?= $this->uri->uri_string() == 'dashboard/profil' 
+					|| $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>Profile</a>
 				</li>
 			</ul>
 

@@ -81,7 +81,7 @@
 						<p>Jumlah Mobil</p>
 					</div>
 					<div class="icon">
-						<i class="fas fa-car"></i>
+						<i class="fas fa-car-side"></i>
 					</div>
 					<a href="<?php echo base_url('driver/mobil') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i>
 					</a>
