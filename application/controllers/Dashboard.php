@@ -823,7 +823,7 @@ class Dashboard extends CI_Controller
 	public function iframe()
 	{
 		$this->load->view('dashboard/v_header');
-		$this->load->view('dashboard/iframe.php');
+		$this->load->view('dashboard/v_iframe.php');
 		$this->load->view('dashboard/v_footer');
 	}
 }

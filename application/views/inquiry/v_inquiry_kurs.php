@@ -29,13 +29,13 @@
 		<?php } ?>
 		<div class="container-fluid">
 			<div class="btn-group">
-				<div class="col-md-6" style="padding: 0;">
+				<div class="col-sm-6" style="padding: 0;">
 					<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_kurs"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data Kurs</a>
 				</div>
-				<div class="col-md-6" style="padding: 0;">
+				<div class="col-sm-6" style="padding: 0;">
 					<a class=" form-control btn btn-default" data-toggle="modal" data-target="#modal_import_kurs"><i class="fa fa-upload"></i>&nbsp; Import Data </a>
 				</div>
-				<div class="col-md-6" style="padding: 0;">
+				<div class="col-sm-6" style="padding: 0;">
 					<a href=" <?php echo base_url('inquiry/inquiry_kurs_export'); ?>" class="form-control btn btn-default"><i class="fa fa-download"></i> Export Data </a>
 				</div>
 			</div>

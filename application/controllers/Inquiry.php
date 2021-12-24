@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Inquiry extends CI_Controller
 {
 
@@ -227,70 +230,70 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_export()
 	{
-		error_reporting(E_ALL);
+			$this->load->model('m_data');
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			$sheet->setCellValue('A1', 'ID Inquiry');
+			$sheet->setCellValue('B1', 'Nama Sales');
+			$sheet->setCellValue('C1', 'Tanggal');
+			$sheet->setCellValue('D1', 'Brand Produk');
+			$sheet->setCellValue('E1', 'Desc');
+			$sheet->setCellValue('F1', 'Qty');
+			$sheet->setCellValue('G1', 'Deadline');
+			$sheet->setCellValue('H1', 'Keter Sales');
+			$sheet->setCellValue('I1', 'Request');
+			$sheet->setCellValue('J1', 'Check');
+			$sheet->setCellValue('K1', 'Follow Up');
+			$sheet->setCellValue('L1', 'Keter Fu');
+			$sheet->setCellValue('M1', 'Cogs');
+			$sheet->setCellValue('N1', 'Kurs');
+			$sheet->setCellValue('O1', 'Cogs IDR');
+			$sheet->setCellValue('P1', 'Reseller');
+			$sheet->setCellValue('Q1', 'New Seller');
+			$sheet->setCellValue('R1', 'User');
+			$sheet->setCellValue('S1', 'Delivery');
+			$sheet->setCellValue('T1', 'Keter Purchase');
+			$sheet->setCellValue('U1', 'Nama Purchase');
 
-		include_once './assets/phpexcel/Classes/PHPExcel.php';
-		$objPHPExcel = new PHPExcel();
+			
+			$data = $this->m_data->select_inquiry();			
+			$x = 2;
+			foreach($data as $row)
+			{
+				$sheet->setCellValue('A'.$x, $row->inquiry_id);
+				$sheet->setCellValue('B'.$x, $row->sales);
+				$sheet->setCellValue('C'.$x, $row->tanggal);
+				$sheet->setCellValue('D'.$x, $row->brand);
+				$sheet->setCellValue('E'.$x, $row->desc);
+				$sheet->setCellValue('E'.$x, $row->qty);
+				$sheet->setCellValue('G'.$x, $row->deadline);
+				$sheet->setCellValue('H'.$x, $row->keter);
+				$sheet->setCellValue('I'.$x, $row->request);
+				$sheet->setCellValue('J'.$x, $row->cek);
+				$sheet->setCellValue('K'.$x, $row->fu1);
+				$sheet->setCellValue('L'.$x, $row->ket_fu);
+				$sheet->setCellValue('M'.$x, $row->cogs);
+				$sheet->setCellValue('N'.$x, $row->kurs);
+				$sheet->setCellValue('O'.$x, $row->cogs_idr);
+				$sheet->setCellValue('P'.$x, $row->reseller);
+				$sheet->setCellValue('Q'.$x, $row->new_seller);
+				$sheet->setCellValue('R'.$x, $row->user);
+				$sheet->setCellValue('S'.$x, $row->delivery);
+				$sheet->setCellValue('T'.$x, $row->ket_purch);
+				$sheet->setCellValue('U'.$x, $row->name_purch);
 
-		$data = $this->m_data->select_inquiry();
 
-		$objPHPExcel = new PHPExcel();
-		$objPHPExcel->setActiveSheetIndex(0);
-		$rowCount = 1;
 
-		$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, "ID Inquiry");
-		$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, "Nama Sales");
-		$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, "Tanggal");
-		$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, "Brand Produk");
-		$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Desc");
-		$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, "Qty");
-		$objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, "Deadline");
-		$objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, "Keter Sales");
-		$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, "Request");
-		$objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, "Check");
-		$objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, "Follow Up");
-		$objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, "Keter FU");
-		$objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, "COGS");
-		$objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, "KURS");
-		$objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, "COGS IDR");
-		$objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, "Reseller");
-		$objPHPExcel->getActiveSheet()->SetCellValue('Q' . $rowCount, "New Seller");
-		$objPHPExcel->getActiveSheet()->SetCellValue('R' . $rowCount, "User");
-		$objPHPExcel->getActiveSheet()->SetCellValue('S' . $rowCount, "Delivery");
-		$objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, "Keter Purchase");
-		$objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, "Nama Purchase");
-		$rowCount++;
-
-		foreach ($data as $value) {
-			$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->inquiry_id);
-			$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->sales);
-			$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $value->tanggal);
-			$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $value->brand);
-			$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $value->desc);
-			$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $value->qty);
-			$objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $value->deadline);
-			$objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $value->keter);
-			$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $value->request);
-			$objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $value->cek);
-			$objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $value->fu1);
-			$objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $value->ket_fu);
-			$objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, $value->cogs);
-			$objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, $value->kurs);
-			$objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, $value->cogs_idr);
-			$objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, $value->reseller);
-			$objPHPExcel->getActiveSheet()->SetCellValue('Q' . $rowCount, $value->new_seller);
-			$objPHPExcel->getActiveSheet()->SetCellValue('R' . $rowCount, $value->user);
-			$objPHPExcel->getActiveSheet()->SetCellValue('S' . $rowCount, $value->delivery);
-			$objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, $value->ket_purch);
-			$objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, $value->name_purch);
-			$rowCount++;
-		}
-
-		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-		$objWriter->save('./assets/excel/Data Inquiry.xlsx');
-
-		$this->load->helper('download');
-		force_download('./assets/excel/Data Inquiry.xlsx', NULL);
+				$x++;
+			}
+			$writer = new Xlsx($spreadsheet);
+			$filename = 'Data Inquiry';
+			
+			header('Content-Type: application/vnd.ms-excel');
+			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+			header('Cache-Control: max-age=0');
+	
+			$writer->save('php://output');
 	}
 
 	public function inquiry_master()
@@ -393,41 +396,36 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_master_export()
 	{
-		error_reporting(E_ALL);
-
-		include_once './assets/phpexcel/Classes/PHPExcel.php';
-		$objPHPExcel = new PHPExcel();
-
-		$data = $this->m_data->select_master();
-
-		$objPHPExcel = new PHPExcel();
-		$objPHPExcel->setActiveSheetIndex(0);
-		$rowCount = 1;
-
-		$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, "ID Master");
-		$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, "Brand Product");
-		$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, "D1");
-		$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, "D2");
-		$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "User");
-		$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, "Distributor");
-		$rowCount++;
-
-		foreach ($data as $value) {
-			$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->id_master);
-			$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->brand);
-			$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $value->d1);
-			$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $value->d2);
-			$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $value->user);
-			$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $value->distributor);
-
-			$rowCount++;
-		}
-
-		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-		$objWriter->save('./assets/excel/Data Master.xlsx');
-
-		$this->load->helper('download');
-		force_download('./assets/excel/Data Master.xlsx', NULL);
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			$sheet->setCellValue('A1', 'No');
+			$sheet->setCellValue('B1', 'Brand');
+			$sheet->setCellValue('C1', 'D1');
+			$sheet->setCellValue('D1', 'D2');
+			$sheet->setCellValue('E1', 'User');
+			$sheet->setCellValue('F1', 'Manufature/Distributor');
+			
+			$data = $this->m_data->select_master();
+			$no = 1;
+			$x = 2;
+			foreach($data as $row)
+			{
+				$sheet->setCellValue('A'.$x, $no++);
+				$sheet->setCellValue('B'.$x, $row->brand);
+				$sheet->setCellValue('C'.$x, $row->d1);
+				$sheet->setCellValue('D'.$x, $row->d2);
+				$sheet->setCellValue('E'.$x, $row->user);
+				$sheet->setCellValue('F'.$x, $row->distributor);
+				$x++;
+			}
+			$writer = new Xlsx($spreadsheet);
+			$filename = 'Master-Inquiry';
+			
+			header('Content-Type: application/vnd.ms-excel');
+			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+			header('Cache-Control: max-age=0');
+	
+			$writer->save('php://output');
 	}
 
 	public function inquiry_master_import()
@@ -566,34 +564,30 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_kurs_export()
 	{
-		error_reporting(E_ALL);
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			$sheet->setCellValue('A1', 'No');
+			$sheet->setCellValue('B1', 'Currency');
+			$sheet->setCellValue('C1', 'Amount');
 
-		include_once './assets/phpexcel/Classes/PHPExcel.php';
-		$objPHPExcel = new PHPExcel();
-
-		$data = $this->m_data->select_kurs();
-
-		$objPHPExcel = new PHPExcel();
-		$objPHPExcel->setActiveSheetIndex(0);
-		$rowCount = 1;
-
-		$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, "ID Kurs");
-		$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, "Currency");
-		$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, "Amount");
-		$rowCount++;
-
-		foreach ($data as $value) {
-			$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->id_kurs);
-			$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->currency);
-			$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $value->amount);
-			$rowCount++;
-		}
-
-		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-		$objWriter->save('./assets/excel/Data Kurs.xlsx');
-
-		$this->load->helper('download');
-		force_download('./assets/excel/Data Kurs.xlsx', NULL);
+			$data = $this->m_data->select_kurs();
+			$no = 1;
+			$x = 2;
+			foreach($data as $row)
+			{
+				$sheet->setCellValue('A'.$x, $no++);
+				$sheet->setCellValue('B'.$x, $row->currency);
+				$sheet->setCellValue('C'.$x, $row->amount);
+				$x++;
+			}
+			$writer = new Xlsx($spreadsheet);
+			$filename = 'Kurs-Inquiry';
+			
+			header('Content-Type: application/vnd.ms-excel');
+			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+			header('Cache-Control: max-age=0');
+	
+			$writer->save('php://output');
 	}
 
 	public function inquiry_kurs_import()

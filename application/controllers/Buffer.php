@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Buffer extends CI_Controller
 {
 
@@ -171,51 +174,47 @@ class Buffer extends CI_Controller
 
 	public function buffer_export()
 	{
-		error_reporting(E_ALL);
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			$sheet->setCellValue('A1', 'Id Buffer');
+			$sheet->setCellValue('B1', 'Nama Sales');
+			$sheet->setCellValue('C1', 'Tanggal');
+			$sheet->setCellValue('D1', 'Brand');
+			$sheet->setCellValue('E1', 'Deskripsi');
+			$sheet->setCellValue('F1', 'Qty');
+			$sheet->setCellValue('G1', 'Keter(sales)');
+			$sheet->setCellValue('H1', 'Status');
+			$sheet->setCellValue('I1', 'PR No');
+			$sheet->setCellValue('J1', 'Nama WH');
+			$sheet->setCellValue('K1', 'Follow Up');
+			$sheet->setCellValue('L1', 'Keter(WH)');
+			
+			$data = $this->m_data->select_buffer();
+			$x = 2;
+			foreach($data as $row)
+			{
+				$sheet->setCellValue('A'.$x, $row->id_buffer);
+				$sheet->setCellValue('B'.$x, $row->sales);
+				$sheet->setCellValue('C'.$x, $row->tanggal);
+				$sheet->setCellValue('D'.$x, $row->brand);
+				$sheet->setCellValue('E'.$x, $row->deskripsi);
+				$sheet->setCellValue('F'.$x, $row->qty);
+				$sheet->setCellValue('G'.$x, $row->keter);
+				$sheet->setCellValue('H'.$x, $row->status);
+				$sheet->setCellValue('I'.$x, $row->pr_no);
+				$sheet->setCellValue('J'.$x, $row->wh);
+				$sheet->setCellValue('K'.$x, $row->fu);
+				$sheet->setCellValue('L'.$x, $row->ket_wh);
 
-		include_once './assets/phpexcel/Classes/PHPExcel.php';
-		$objPHPExcel = new PHPExcel();
-
-		$data = $this->m_data->select_buffer();
-
-		$objPHPExcel = new PHPExcel();
-		$objPHPExcel->setActiveSheetIndex(0);
-		$rowCount = 1;
-
-		$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, "Id Buffer");
-		$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, "Nama Sales");
-		$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, "Tanggal");
-		$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, "Brand Produk");
-		$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Deskripsi");
-		$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, "Qty");
-		$objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, "Keter(sales)");
-		$objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, "Status");
-		$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, "PR No");
-		$objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, "Nama WH");
-		$objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, "Follow Up");
-		$objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, "Keter(WH)");
-		$rowCount++;
-
-		foreach ($data as $value) {
-			$objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $value->id_buffer);
-			$objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $value->sales);
-			$objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $value->tanggal);
-			$objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $value->brand);
-			$objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $value->deskripsi);
-			$objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $value->qty);
-			$objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $value->keter);
-			$objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $value->status);
-			$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $value->pr_no);
-			$objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $value->wh);
-			$objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $value->fu);
-			$objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $value->ket_wh);
-			$rowCount++;
-		}
-
-		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-		$objWriter->save('./assets/excel/Data Buffer.xlsx');
-
-		$this->load->helper('download');
-		force_download('./assets/excel/Data Buffer.xlsx', NULL);
+				$x++;
+			}
+			$writer = new Xlsx($spreadsheet);
+			$filename = 'Data-Buffer';
+			
+			header('Content-Type: application/vnd.ms-excel');
+			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+			header('Cache-Control: max-age=0');
+	
+			$writer->save('php://output');
 	}
 }
