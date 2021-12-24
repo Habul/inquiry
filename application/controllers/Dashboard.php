@@ -819,4 +819,11 @@ class Dashboard extends CI_Controller
 		$this->load->view('frontend/v_notfound');
 		$this->load->view('dashboard/v_footer');
 	}
+
+	public function iframe()
+	{
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/iframe.php');
+		$this->load->view('dashboard/v_footer');
+	}
 }
