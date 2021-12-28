@@ -113,9 +113,9 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Ket Fu</label>
+							<label class="col-sm-2 col-form-label">Keter Fu</label>
 							<div class="col-sm-10">
-								<input type="text" name="ket_fu" class="form-control" placeholder="Keterangan Fu..">
+								<textarea name="ket_fu" class="form-control" placeholder="Keterangan Fu.."></textarea>
 								<?php echo form_error('ket_fu'); ?>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">New Seller</label>
+							<label class="col-sm-2 col-form-label">New Sel *</label>
 							<div class="col-sm-10">
 								<input type="number" id="new_seller" name="new_seller" class="form-control" placeholder="Isi Rp New Seller.." required>
 								<?php echo form_error('new_seller'); ?>

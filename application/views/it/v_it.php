@@ -127,14 +127,11 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Attach Image</label>
+						<label class="control-label col-xs-3">Attach</label>
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" id="customFile" name="file">
 							<label class="custom-file-label" for="customFile">Choose file</label>
-						</div>
-						<small>* Max size 2 Mb</small><br />
-						<small>* Max file name image 10 character</small><br />
-						<small>* File type Jpg, Png & Gif</small>
+						</div>						
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -181,16 +178,18 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-3">Attach Image</label><br />
-							<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank">
+							<label class="control-label col-xs-3">Attach</label><br />
+							<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" target="_blank">
 								<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-fluid mb-2" width="35%" onerror="this.style.display='none'" /></a>
 							<div class="custom-file">
 								<input type="file" class="custom-file-input" id="customFile" name="file">
 								<label class="custom-file-label" for="customFile">Choose file</label>
-							</div>
-							<small>* Max size 2 Mb</small><br />
-							<small>* Max file name image 10 character</small><br />
-							<small>* File type Jpg, Png & Gif</small>
+							</div>							
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3"></label>
+								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" download title="Download Attachment">
+								<img src="<?php echo base_url() . 'gambar/datait/download.svg'?>" class="img-fluid mb-2" width="4%" onerror="this.style.display='none'" /></a>
 						</div>
 					</div>
 					<div class="modal-footer justify-content-between">
@@ -227,9 +226,9 @@
 						</div>
 						<div class="form-group">
 							<div class="col-xs-9">
-								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" rel="noopener" target="_blank"><img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" width="50%" class="img-thumbnail" onerror="this.style.display='none'" /></a>
+								<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" target="_blank"><img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" width="50%" class="img-thumbnail" onerror="this.style.display='none'" /></a>
 							</div>
-						</div>
+						</div>						
 					</div>
 					<div class="modal-footer justify-content-center">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

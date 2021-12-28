@@ -48,9 +48,9 @@ class It extends CI_Controller
 			if (!empty($_FILES['file']['name'])) {
 
 				$config['upload_path']   = './gambar/datait/';
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|zip';
 				$config['overwrite']	= true;
-				$config['max_size']     = 2024;
+				$config['max_size']     = 3072;
 
 				$this->load->library('upload', $config);
 
@@ -99,9 +99,9 @@ class It extends CI_Controller
 			if (!empty($_FILES['file']['name'])) {
 
 				$config['upload_path']   = './gambar/datait/';
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|zip';
 				$config['overwrite']	= true;
-				$config['max_size']     = 2024;
+				$config['max_size']     = 3072;
 
 				$this->load->library('upload', $config);
 

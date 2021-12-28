@@ -10,6 +10,7 @@ application/logs/*
 
 composer.lock
 gambar/contact/*
+gambar/datait/*
 application/config/database.php
 
 
