@@ -63,7 +63,7 @@ class Login extends CI_Controller
 	public function notfound()
 	{
 		$this->load->view('dashboard/v_header');
-		$this->load->view('frontend/v_notfound');
+		$this->load->view('dashboard/v_notfound');
 		$this->load->view('dashboard/v_footer');
 	}
 }
