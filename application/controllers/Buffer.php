@@ -19,10 +19,11 @@ class Buffer extends CI_Controller
 
 	public function buffer()
 	{
+		$data['title'] = 'Buffer Stock';
 		$data['userdata'] = $this->userdata;
 		$data['master'] = $this->m_data->get_master()->result();
 		$data['buffer'] = $this->m_data->get_data('buffer')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('buffer/v_buffer', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -108,7 +109,6 @@ class Buffer extends CI_Controller
 
 	public function buffer_edit()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('sales', 'Nama Sales', 'required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
 		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
@@ -165,9 +165,10 @@ class Buffer extends CI_Controller
 
 	public function buffer_view()
 	{
+		$data['title'] = 'Arship Buffer';
 		$data['buffer'] = $this->m_data->select_buffer();
 
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('buffer/v_buffer_view', $data);
 		$this->load->view('dashboard/v_footer');
 	}

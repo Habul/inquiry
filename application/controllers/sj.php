@@ -16,9 +16,10 @@ class Sj extends CI_Controller
 
 	public function sj()
 	{
+		$data['title'] = 'Sj Hs';
 		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
 		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('sj/v_sj', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -216,16 +217,16 @@ class Sj extends CI_Controller
 
 	public function sj_df()
 	{
+		$data['title'] = 'Sj Df';
 		$data['sj_user_df'] = $this->m_data->get_data('sj_user_df')->result();
 		$data['sj_dfh'] = $this->m_data->get_data('sj_df')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('sj/v_sj_df', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function sj_aksi_df()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
 		$this->form_validation->set_rules('date_delivery', 'Date Delivery', 'required');
 		$this->form_validation->set_rules('due_date', 'Due Date', 'required');

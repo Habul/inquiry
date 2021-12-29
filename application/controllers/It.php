@@ -16,8 +16,9 @@ class It extends CI_Controller
 
 	public function data()
 	{
+		$data['title'] = 'Data Penting';
 		$data['penting'] = $this->m_data->get_data('datapenting_it')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('it/v_it', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -50,7 +51,7 @@ class It extends CI_Controller
 				$config['upload_path']   = './gambar/datait/';
 				$config['allowed_types'] = 'gif|jpg|png|jpeg|zip';
 				$config['overwrite']	= true;
-				$config['max_size']     = 3072;
+				$config['max_size']     = 5072;
 
 				$this->load->library('upload', $config);
 
@@ -101,7 +102,7 @@ class It extends CI_Controller
 				$config['upload_path']   = './gambar/datait/';
 				$config['allowed_types'] = 'gif|jpg|png|jpeg|zip';
 				$config['overwrite']	= true;
-				$config['max_size']     = 3072;
+				$config['max_size']     = 5072;
 
 				$this->load->library('upload', $config);
 

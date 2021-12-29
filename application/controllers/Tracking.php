@@ -16,10 +16,11 @@ class Tracking extends CI_Controller
 
     public function data_order()
     {
+        $data['title'] = 'Order & Tracking';
         $data['tracking'] = $this->m_data->get_data('tracking')->result();
         $data['unit_bisnis'] = $this->m_data->get_data('unit_bisnis')->result();
         $data['jadwal'] = $this->db->where('plan_kirim', 'NOW()')->get('tracking')->result();
-        $this->load->view('dashboard/v_header');
+        $this->load->view('dashboard/v_header', $data);
         $this->load->view('tracking/v_tracking', $data);
         $this->load->view('dashboard/v_footer');
     }
@@ -173,9 +174,10 @@ class Tracking extends CI_Controller
             'no_id' => $id
         );
 
+        $data['title'] = 'Order & Tracking';
         $data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();
         $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();
-        $this->load->view('dashboard/v_header');
+        $this->load->view('dashboard/v_header', $data);
         $this->load->view('tracking/v_tracking_view', $data);
         $this->load->view('dashboard/v_footer');
     }
@@ -225,9 +227,10 @@ class Tracking extends CI_Controller
 
     public function arship()
     {
+        $data['title'] = 'Arship Order & Tracking';
         $data['arship'] = $this->db->where('action', 'FINISH')->get('tracking')->result();
         $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();
-        $this->load->view('dashboard/v_header');
+        $this->load->view('dashboard/v_header', $data);
         $this->load->view('tracking/v_tracking_finish', $data);
         $this->load->view('dashboard/v_footer');
     }

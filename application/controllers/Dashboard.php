@@ -12,10 +12,6 @@ class Dashboard extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('m_data');
-
-		// cek session yang login, 
-		// jika session status tidak sama dengan session telah_login, berarti pengguna belum login
-		// maka halaman akan di alihkan kembali ke halaman login.
 		if ($this->session->userdata('status') != "telah_login") {
 			redirect(base_url() . 'login?alert=belum_login');
 		}
@@ -23,6 +19,7 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
+		$data['title'] = 'Dashboard';
 		$data['jumlah_SJ'] = $this->m_data->get_data('sj_user_df')->num_rows();
 		$data['jumlah_pengguna'] = $this->m_data->get_data('pengguna')->num_rows();
 		$data['total_inquiry'] = $this->m_data->tot_inquiry();
@@ -310,7 +307,6 @@ class Dashboard extends CI_Controller
 
 	public function artikel_update()
 	{
-		// Wajib isi judul,konten dan kategori
 		$this->form_validation->set_rules('judul', 'Judul', 'required');
 		$this->form_validation->set_rules('konten', 'Konten', 'required');
 		$this->form_validation->set_rules('kategori', 'Kategori', 'required');
@@ -515,10 +511,11 @@ class Dashboard extends CI_Controller
 		$where = array(
 			'pengguna_id' => $id_pengguna
 		);
-
+		
+		$data['title'] = 'Profile';
 		$data['profil'] = $this->m_data->edit_data($where, 'pengguna')->result();
 
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('dashboard/v_profil', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -659,8 +656,9 @@ class Dashboard extends CI_Controller
 	// CRUD PENGGUNA
 	public function pengguna()
 	{
+		$data['title'] = 'User Access';
 		$data['pengguna'] = $this->m_data->get_data('pengguna')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('dashboard/v_pengguna', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -803,12 +801,13 @@ class Dashboard extends CI_Controller
 
 	public function contact()
 	{
+		$data['title'] = 'Contact IT';
 		$data['it1'] = $this->db->get('kontak')->row('1');
 		$data['it2'] = $this->db->get('kontak')->row('2');
 		$data['it3'] = $this->db->get('kontak')->row('3');
 		$data['it4'] = $this->db->get('kontak')->row('4');
 		$data['it5'] = $this->db->get('kontak')->row('5');
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('dashboard/v_contact', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -822,7 +821,8 @@ class Dashboard extends CI_Controller
 
 	public function iframe()
 	{
-		$this->load->view('dashboard/v_header');
+		$data['title'] = 'Tabbed Iframe';
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('dashboard/v_iframe.php');
 		$this->load->view('dashboard/v_footer');
 	}

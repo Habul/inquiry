@@ -20,8 +20,9 @@ class Driver extends CI_Controller
 			'type' => 'mobil'
 		);
 
+		$data['title'] = 'Tracking Car';
 		$data['mobil'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_mobil', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -103,7 +104,6 @@ class Driver extends CI_Controller
 
 			$this->m_data->update_data($where, $data, 'type_vehicles');
 
-			// Periksa apakah ada gambar yang diupload
 			if (!empty($_FILES['foto']['name'])) {
 
 				$config['upload_path']   = './gambar/vehicles/';
@@ -114,7 +114,6 @@ class Driver extends CI_Controller
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('foto')) {
-					// mengambil data tentang gambar yang diupload
 					$gambar = $this->upload->data();
 
 					$id = $this->input->post('no_id');
@@ -160,11 +159,12 @@ class Driver extends CI_Controller
 		$where2 = array(
 			'join_id' => $id
 		);
-
+		
+		$data['title'] = 'Tracking Car';
 		$data['odo'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
 		$data['driver'] = $this->m_data->edit_data($where2, 'driver')->result();
 		$data['history'] = $this->m_data->edit_data($where2, 'history_vehicles')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_mobil_data', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -331,8 +331,9 @@ class Driver extends CI_Controller
 			'type' => 'motor'
 		);
 
+		$data['title'] = 'Tracking Motorcyle';
 		$data['motor'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_motor', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -414,7 +415,6 @@ class Driver extends CI_Controller
 
 			$this->m_data->update_data($where, $data, 'type_vehicles');
 
-			// Periksa apakah ada gambar yang diupload
 			if (!empty($_FILES['foto']['name'])) {
 
 				$config['upload_path']   = './gambar/vehicles/';
@@ -425,7 +425,6 @@ class Driver extends CI_Controller
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('foto')) {
-					// mengambil data tentang gambar yang diupload
 					$gambar = $this->upload->data();
 
 					$id = $this->input->post('no_id');
@@ -472,10 +471,11 @@ class Driver extends CI_Controller
 			'join_id' => $id
 		);
 
+		$data['title'] = 'Tracking Motorcyle';
 		$data['odo'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
 		$data['driver'] = $this->m_data->edit_data($where2, 'driver')->result();
 		$data['history'] = $this->m_data->edit_data($where2, 'history_vehicles')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_motor_data', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -642,8 +642,9 @@ class Driver extends CI_Controller
 			'type' => 'truck'
 		);
 
+		$data['title'] = 'Tracking Truck';
 		$data['truck'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_truck', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -725,7 +726,6 @@ class Driver extends CI_Controller
 
 			$this->m_data->update_data($where, $data, 'type_vehicles');
 
-			// Periksa apakah ada gambar yang diupload
 			if (!empty($_FILES['foto']['name'])) {
 
 				$config['upload_path']   = './gambar/vehicles/';
@@ -736,7 +736,6 @@ class Driver extends CI_Controller
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('foto')) {
-					// mengambil data tentang gambar yang diupload
 					$gambar = $this->upload->data();
 
 					$id = $this->input->post('no_id');
@@ -783,10 +782,11 @@ class Driver extends CI_Controller
 			'join_id' => $id
 		);
 
+		$data['title'] = 'Tracking Truck';
 		$data['odo'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
 		$data['driver'] = $this->m_data->edit_data($where2, 'driver')->result();
 		$data['history'] = $this->m_data->edit_data($where2, 'history_vehicles')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_truck_data', $data);
 		$this->load->view('dashboard/v_footer');
 	}

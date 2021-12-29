@@ -19,10 +19,11 @@ class Inquiry extends CI_Controller
 
 	public function inquiry()
 	{
+		$data['title'] = 'Inquiry';
 		$data['kurs'] = $this->m_data->get_kurs()->result();
 		$data['master'] = $this->m_data->get_master()->result();
 		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('inquiry/v_inquiry', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -78,17 +79,17 @@ class Inquiry extends CI_Controller
             'inquiry_id' => $id
         );
 
+		$data['title'] = 'Inquiry';
         $data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
         $data['kurs'] = $this->m_data->get_data('kurs')->result();
 		$data['master'] = $this->m_data->get_data('master')->result();
-        $this->load->view('dashboard/v_header');
+        $this->load->view('dashboard/v_header', $data);
         $this->load->view('inquiry/v_inquiry_update', $data);
         $this->load->view('dashboard/v_footer');
     }
 
 	public function inquiry_update()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('cek', 'Check', 'required');
 		$this->form_validation->set_rules('fu1', 'Fu1', 'required');
 		//$this->form_validation->set_rules('ket_fu','Ket FU','required');
@@ -159,7 +160,6 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_update_sales()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('sales', 'Nama Sales', 'required');
 		$this->form_validation->set_rules('tanggal2', 'Tanggal', 'required');
 		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
@@ -221,9 +221,9 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_view()
 	{
+		$data['title'] = 'Arship Inquiry';
 		$data['inquiry'] = $this->m_data->select_inquiry();
-
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('inquiry/v_inquiry_view', $data);
 		$this->load->view('dashboard/v_footer');
 	}
@@ -298,15 +298,15 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_master()
 	{
+		$data['title'] = 'Master Inquiry';
 		$data['master'] = $this->m_data->get_data('master')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('inquiry/v_inquiry_master', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_master_aksi()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('id_master', 'Master Inquiry', 'required');
 		$this->form_validation->set_rules('brand', 'Brand Produk', 'required');
 		$this->form_validation->set_rules('d1', 'D1', 'required');
@@ -484,15 +484,15 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_kurs()
 	{
+		$data['title'] = 'Kurs';
 		$data['kurs'] = $this->m_data->get_data('kurs')->result();
-		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('inquiry/v_inquiry_kurs', $data);
 		$this->load->view('dashboard/v_footer');
 	}
 
 	public function inquiry_kurs_aksi()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('id_kurs', 'ID Kurs', 'required');
 		$this->form_validation->set_rules('currency', 'Currency', 'required');
 		$this->form_validation->set_rules('amount', 'Amount', 'required');
@@ -520,7 +520,6 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_kurs_update()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('currency', 'Currency', 'required');
 		$this->form_validation->set_rules('amount', 'Amount', 'required');
 
