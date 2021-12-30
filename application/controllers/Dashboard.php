@@ -72,31 +72,24 @@ class Dashboard extends CI_Controller
 
 	public function ganti_password_aksi()
 	{
-
-		// form validasi
 		$this->form_validation->set_rules('password_lama', 'Password Lama', 'required');
 		$this->form_validation->set_rules('password_baru', 'Password Baru', 'required|min_length[6]');
 		$this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password Baru', 'required|matches[password_baru]');
 
-		// cek validasi
 		if ($this->form_validation->run() != false) {
 
-			// menangkap data dari form
 			$password_lama = $this->input->post('password_lama');
 			$password_baru = $this->input->post('password_baru');
 			$konfirmasi_password = $this->input->post('konfirmasi_password');
 
-			// cek kesesuaian password lama dengan id pengguna yang sedang login dan password lama
 			$where = array(
 				'pengguna_id' => $this->session->userdata('id'),
 				'pengguna_password' => md5($password_lama)
 			);
 			$cek = $this->m_data->cek_login('pengguna', $where)->num_rows();
 
-			// cek kesesuaikan password lama
 			if ($cek > 0) {
 
-				// update data password pengguna
 				$w = array(
 					'pengguna_id' => $this->session->userdata('id')
 				);
@@ -105,10 +98,9 @@ class Dashboard extends CI_Controller
 				);
 				$this->m_data->update_data($where, $data, 'pengguna');
 
-				// alihkan halaman kembali ke halaman ganti password
 				redirect('dashboard/profil?alert=ok');
 			} else {
-				// alihkan halaman kembali ke halaman ganti password
+				
 				redirect('dashboard/profil?alert=gagal');
 			}
 		} else {
@@ -118,7 +110,6 @@ class Dashboard extends CI_Controller
 		}
 	}
 
-	// CRUD KATEGORI
 	public function kategori()
 	{
 		$data['kategori'] = $this->m_data->get_data('kategori')->result();
@@ -202,7 +193,6 @@ class Dashboard extends CI_Controller
 		}
 	}
 
-
 	public function kategori_hapus($id)
 	{
 		$where = array(
@@ -213,9 +203,7 @@ class Dashboard extends CI_Controller
 
 		redirect(base_url() . 'dashboard/kategori');
 	}
-	// END CRUD KATEGORI
 
-	// CRUD ARTIKEL
 	public function artikel()
 	{
 		$data['artikel'] = $this->db->query("SELECT * FROM artikel,kategori,pengguna WHERE artikel_kategori=kategori_id and artikel_author=pengguna_id order by artikel_id desc")->result();
@@ -234,12 +222,9 @@ class Dashboard extends CI_Controller
 
 	public function artikel_aksi()
 	{
-		// Wajib isi judul,konten dan kategori
 		$this->form_validation->set_rules('judul', 'Judul', 'required|is_unique[artikel.artikel_judul]');
 		$this->form_validation->set_rules('konten', 'Konten', 'required');
 		$this->form_validation->set_rules('kategori', 'Kategori', 'required');
-
-		// Membuat gambar wajib di isi
 
 		if ($this->form_validation->run() != false) {
 
@@ -250,7 +235,6 @@ class Dashboard extends CI_Controller
 
 			if ($this->upload->do_upload('sampul')) {
 
-				// mengambil data tentang gambar
 				$gambar = $this->upload->data();
 
 				$tanggal = date('Y-m-d H:i:s');
@@ -391,10 +375,7 @@ class Dashboard extends CI_Controller
 
 		redirect(base_url() . 'dashboard/artikel');
 	}
-	// end crud artikel
 
-
-	// CRUD PAGES
 	public function pages()
 	{
 		$data['halaman'] = $this->m_data->get_data('halaman')->result();
@@ -412,7 +393,6 @@ class Dashboard extends CI_Controller
 
 	public function pages_aksi()
 	{
-		// Wajib isi judul,konten
 		$this->form_validation->set_rules('judul', 'Judul', 'required|is_unique[halaman.halaman_judul]');
 		$this->form_validation->set_rules('konten', 'Konten', 'required');
 
@@ -430,7 +410,6 @@ class Dashboard extends CI_Controller
 
 			$this->m_data->insert_data($data, 'halaman');
 
-			// alihkan kembali ke method pages
 			redirect(base_url() . 'dashboard/pages');
 		} else {
 			$this->load->view('dashboard/v_header');
@@ -453,7 +432,6 @@ class Dashboard extends CI_Controller
 
 	public function pages_update()
 	{
-		// Wajib isi judul,konten 
 		$this->form_validation->set_rules('judul', 'Judul', 'required');
 		$this->form_validation->set_rules('konten', 'Konten', 'required');
 
@@ -542,7 +520,6 @@ class Dashboard extends CI_Controller
 
 			$this->m_data->update_data($where, $data, 'pengguna');
 
-			// Periksa apakah ada gambar yang diupload
 			if (!empty($_FILES['foto']['name'])) {
 
 				$config['upload_path']   = './gambar/profile/';
@@ -553,7 +530,6 @@ class Dashboard extends CI_Controller
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('foto')) {
-					// mengambil data tentang gambar yang diupload
 					$gambar = $this->upload->data();
 
 					$id = $this->session->userdata('id');
@@ -598,7 +574,6 @@ class Dashboard extends CI_Controller
 
 	public function pengaturan_update()
 	{
-		// Wajib isi nama dan deskripsi website
 		$this->form_validation->set_rules('nama', 'Nama Website', 'required');
 		$this->form_validation->set_rules('deskripsi', 'Deskripsi Website', 'required');
 
@@ -622,10 +597,8 @@ class Dashboard extends CI_Controller
 				'link_github' => $link_github
 			);
 
-			// update pengaturan
 			$this->m_data->update_data($where, $data, 'pengaturan');
 
-			// Periksa apakah ada gambar logo yang diupload
 			if (!empty($_FILES['logo']['name'])) {
 
 				$config['upload_path']   = './gambar/website/';
@@ -634,7 +607,7 @@ class Dashboard extends CI_Controller
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('logo')) {
-					// mengambil data tentang gambar logo yang diupload
+					
 					$gambar = $this->upload->data();
 
 					$logo = $gambar['file_name'];
