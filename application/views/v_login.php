@@ -8,15 +8,15 @@
   <link rel='icon' href="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" type="image/gif">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <style>
-  .login-page {
-  background-image: url('http://it.intisera.com/gambar/website/IMG_1479.jpg') ;
-  background-color: #cccccc;
-  height: 500px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  }
+    .login-page {
+      background-image: url('http://it.intisera.com/gambar/website/IMG_1479.jpg');
+      background-color: #cccccc;
+      height: 500px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
   </style>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
@@ -28,14 +28,14 @@
   <div class="login-box">
     <div class="card shadow-lg">
       <div class="card-body">
-      <div class="login-logo">
-        <a href="#"><img src="<?php echo base_url() . 'gambar/website/Intisera2.png' ?>" style="width:250px;height:110px;"></a>
-      </div>
+        <div class="login-logo">
+          <a href="#"><img src="<?php echo base_url() . 'gambar/website/Intisera2.png' ?>" style="width:250px;height:110px;"></a>
+        </div>
         <form action="<?php echo base_url() . 'login/aksi' ?>" id="loginform" method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
             <div class="input-group-append">
-              <div class="input-group-text">                
+              <div class="input-group-text">
                 <span class="fas fa-user">&nbsp;</span>
               </div>
             </div>

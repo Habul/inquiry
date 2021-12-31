@@ -31,24 +31,24 @@
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
 	<div class="wrapper">
-		
+
 		<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
-			
+
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="<?php echo base_url() . 'dashboard' ?>" <?= $this->uri->uri_string() == 'dashboard' 
-					|| $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>Dashboard</a>
+					<a href="<?php echo base_url() . 'dashboard' ?>" <?= $this->uri->uri_string() == 'dashboard'
+																			|| $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>Dashboard</a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="<?php echo base_url() . 'dashboard/profil' ?>" <?= $this->uri->uri_string() == 'dashboard/profil' 
-					|| $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>Profile</a>
+					<a href="<?php echo base_url() . 'dashboard/profil' ?>" <?= $this->uri->uri_string() == 'dashboard/profil'
+																				|| $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>Profile</a>
 				</li>
 			</ul>
 
-			<ul class="navbar-nav ml-auto">				
+			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown">
 					<?php if ($this->session->userdata('level') != "sales") {	?>
 						<?php
@@ -80,7 +80,7 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-				<i class="fas fa-th-large"></i>
+					<i class="fas fa-th-large"></i>
 				</a>
 			</li>
 
@@ -156,7 +156,7 @@
 								<i class="nav-icon fas fa-ellipsis-h"></i>
 								<p>Tabbed IFrame</p>
 							</a>
-						</li>						
+						</li>
 						<?php if ($this->session->userdata('level') == "admin") { ?>
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/pengguna' ?>" <?= $this->uri->uri_string() == 'dashboard/pengguna' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
