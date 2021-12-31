@@ -308,6 +308,12 @@ $(function () {
 		});
 	})
 </script>
+<script>
+	$('#calendar').datetimepicker({
+   	format: 'L',
+    inline: true
+  })
+</script>
 </body>
 
 </html>
