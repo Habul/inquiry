@@ -16,6 +16,11 @@ class Tracking extends CI_Controller
 
     public function data_order()
     {
+        $session = $this->session->userdata('status');
+        if ($session == '') {
+            redirect(base_url() . 'login?alert=belum_login');
+        }
+
         $data['title'] = 'Order & Tracking';
         $data['tracking'] = $this->m_data->get_data('tracking')->result();
         $data['unit_bisnis'] = $this->m_data->get_data('unit_bisnis')->result();
@@ -170,6 +175,11 @@ class Tracking extends CI_Controller
 
     public function view($id)
     {
+        $session = $this->session->userdata('status');
+        if ($session == '') {
+            redirect(base_url() . 'login?alert=belum_login');
+        }
+
         $where = array(
             'no_id' => $id
         );
@@ -227,6 +237,11 @@ class Tracking extends CI_Controller
 
     public function arship()
     {
+        $session = $this->session->userdata('status');
+        if ($session == '') {
+            redirect(base_url() . 'login?alert=belum_login');
+        }
+
         $data['title'] = 'Arship Order & Tracking';
         $data['arship'] = $this->db->where('action', 'FINISH')->get('tracking')->result();
         $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();

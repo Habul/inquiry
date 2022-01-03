@@ -24,9 +24,9 @@ class Dashboard extends CI_Controller
 		$data['jumlah_pengguna'] = $this->m_data->get_data('pengguna')->num_rows();
 		$data['total_inquiry'] = $this->m_data->tot_inquiry();
 		$data['total_buffer'] = $this->m_data->tot_buffer();
-		$data['tot_mobil'] = $this->db->where('type','mobil')->get('type_vehicles')->num_rows();
-		$data['tot_motor'] = $this->db->where('type','motor')->get('type_vehicles')->num_rows();
-		$data['tot_truck'] = $this->db->where('type','truck')->get('type_vehicles')->num_rows();
+		$data['tot_mobil'] = $this->db->where('type', 'mobil')->get('type_vehicles')->num_rows();
+		$data['tot_motor'] = $this->db->where('type', 'motor')->get('type_vehicles')->num_rows();
+		$data['tot_truck'] = $this->db->where('type', 'truck')->get('type_vehicles')->num_rows();
 		$data['tot_vehicles'] = $this->m_data->get_data('type_vehicles')->num_rows();
 
 		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
@@ -100,7 +100,7 @@ class Dashboard extends CI_Controller
 
 				redirect('dashboard/profil?alert=ok');
 			} else {
-				
+
 				redirect('dashboard/profil?alert=gagal');
 			}
 		} else {
@@ -489,7 +489,7 @@ class Dashboard extends CI_Controller
 		$where = array(
 			'pengguna_id' => $id_pengguna
 		);
-		
+
 		$data['title'] = 'Profile';
 		$data['profil'] = $this->m_data->edit_data($where, 'pengguna')->result();
 
@@ -607,7 +607,7 @@ class Dashboard extends CI_Controller
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('logo')) {
-					
+
 					$gambar = $this->upload->data();
 
 					$logo = $gambar['file_name'];
@@ -733,15 +733,15 @@ class Dashboard extends CI_Controller
 
 	public function pengguna_hapus()
 	{
-		$id = $this->input->post('id'); 	{
+		$id = $this->input->post('id'); {
 
-		$where = array(
-			'pengguna_id' => $id
-		);		
+			$where = array(
+				'pengguna_id' => $id
+			);
 
-		$this->m_data->delete_data($where, 'pengguna');
-		$this->session->set_flashdata('berhasil', 'Data has been deleted !');
-		redirect(base_url() . 'dashboard/pengguna');
+			$this->m_data->delete_data($where, 'pengguna');
+			$this->session->set_flashdata('berhasil', 'Data has been deleted !');
+			redirect(base_url() . 'dashboard/pengguna');
 		}
 	}
 

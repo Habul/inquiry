@@ -16,6 +16,11 @@ class Sj extends CI_Controller
 
 	public function sj()
 	{
+		$session = $this->session->userdata('status');
+		if ($session == '') {
+			redirect(base_url() . 'login?alert=belum_login');
+		}
+
 		$data['title'] = 'Sj Hs';
 		$data['sj_user'] = $this->m_data->get_data('sj_user')->result();
 		$data['sj_hs'] = $this->m_data->get_data('sj_hs')->result();
@@ -217,6 +222,11 @@ class Sj extends CI_Controller
 
 	public function sj_df()
 	{
+		$session = $this->session->userdata('status');
+		if ($session == '') {
+			redirect(base_url() . 'login?alert=belum_login');
+		}
+
 		$data['title'] = 'Sj Df';
 		$data['sj_user_df'] = $this->m_data->get_data('sj_user_df')->result();
 		$data['sj_dfh'] = $this->m_data->get_data('sj_df')->result();

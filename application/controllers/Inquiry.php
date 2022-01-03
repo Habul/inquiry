@@ -19,6 +19,11 @@ class Inquiry extends CI_Controller
 
 	public function inquiry()
 	{
+		$session = $this->session->userdata('status');
+		if ($session == '') {
+			redirect(base_url() . 'login?alert=belum_login');
+		}
+
 		$data['title'] = 'Inquiry';
 		$data['kurs'] = $this->m_data->get_kurs()->result();
 		$data['master'] = $this->m_data->get_master()->result();
@@ -74,19 +79,23 @@ class Inquiry extends CI_Controller
 	}
 
 	public function inquiry_update_prch($id)
-    {
-        $where = array(
-            'inquiry_id' => $id
-        );
+	{
+		$session = $this->session->userdata('status');
+		if ($session == '') {
+			redirect(base_url() . 'login?alert=belum_login');
+		}
 
+		$where = array(
+			'inquiry_id' => $id
+		);
 		$data['title'] = 'Inquiry';
-        $data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
-        $data['kurs'] = $this->m_data->get_data('kurs')->result();
+		$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
+		$data['kurs'] = $this->m_data->get_data('kurs')->result();
 		$data['master'] = $this->m_data->get_data('master')->result();
-        $this->load->view('dashboard/v_header', $data);
-        $this->load->view('inquiry/v_inquiry_update', $data);
-        $this->load->view('dashboard/v_footer');
-    }
+		$this->load->view('dashboard/v_header', $data);
+		$this->load->view('inquiry/v_inquiry_update', $data);
+		$this->load->view('dashboard/v_footer');
+	}
 
 	public function inquiry_update()
 	{
@@ -221,6 +230,10 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_view()
 	{
+		$session = $this->session->userdata('status');
+		if ($session == '') {
+			redirect(base_url() . 'login?alert=belum_login');
+		}
 		$data['title'] = 'Arship Inquiry';
 		$data['inquiry'] = $this->m_data->select_inquiry();
 		$this->load->view('dashboard/v_header', $data);
@@ -230,74 +243,78 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_export()
 	{
-			$this->load->model('m_data');
-			$spreadsheet = new Spreadsheet();
-			$sheet = $spreadsheet->getActiveSheet();
-			$sheet->setCellValue('A1', 'ID Inquiry');
-			$sheet->setCellValue('B1', 'Nama Sales');
-			$sheet->setCellValue('C1', 'Tanggal');
-			$sheet->setCellValue('D1', 'Brand Produk');
-			$sheet->setCellValue('E1', 'Desc');
-			$sheet->setCellValue('F1', 'Qty');
-			$sheet->setCellValue('G1', 'Deadline');
-			$sheet->setCellValue('H1', 'Keter Sales');
-			$sheet->setCellValue('I1', 'Request');
-			$sheet->setCellValue('J1', 'Check');
-			$sheet->setCellValue('K1', 'Follow Up');
-			$sheet->setCellValue('L1', 'Keter Fu');
-			$sheet->setCellValue('M1', 'Cogs');
-			$sheet->setCellValue('N1', 'Kurs');
-			$sheet->setCellValue('O1', 'Cogs IDR');
-			$sheet->setCellValue('P1', 'Reseller');
-			$sheet->setCellValue('Q1', 'New Seller');
-			$sheet->setCellValue('R1', 'User');
-			$sheet->setCellValue('S1', 'Delivery');
-			$sheet->setCellValue('T1', 'Keter Purchase');
-			$sheet->setCellValue('U1', 'Nama Purchase');
-
-			
-			$data = $this->m_data->select_inquiry();			
-			$x = 2;
-			foreach($data as $row)
-			{
-				$sheet->setCellValue('A'.$x, $row->inquiry_id);
-				$sheet->setCellValue('B'.$x, $row->sales);
-				$sheet->setCellValue('C'.$x, $row->tanggal);
-				$sheet->setCellValue('D'.$x, $row->brand);
-				$sheet->setCellValue('E'.$x, $row->desc);
-				$sheet->setCellValue('E'.$x, $row->qty);
-				$sheet->setCellValue('G'.$x, $row->deadline);
-				$sheet->setCellValue('H'.$x, $row->keter);
-				$sheet->setCellValue('I'.$x, $row->request);
-				$sheet->setCellValue('J'.$x, $row->cek);
-				$sheet->setCellValue('K'.$x, $row->fu1);
-				$sheet->setCellValue('L'.$x, $row->ket_fu);
-				$sheet->setCellValue('M'.$x, $row->cogs);
-				$sheet->setCellValue('N'.$x, $row->kurs);
-				$sheet->setCellValue('O'.$x, $row->cogs_idr);
-				$sheet->setCellValue('P'.$x, $row->reseller);
-				$sheet->setCellValue('Q'.$x, $row->new_seller);
-				$sheet->setCellValue('R'.$x, $row->user);
-				$sheet->setCellValue('S'.$x, $row->delivery);
-				$sheet->setCellValue('T'.$x, $row->ket_purch);
-				$sheet->setCellValue('U'.$x, $row->name_purch);
+		$this->load->model('m_data');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'ID Inquiry');
+		$sheet->setCellValue('B1', 'Nama Sales');
+		$sheet->setCellValue('C1', 'Tanggal');
+		$sheet->setCellValue('D1', 'Brand Produk');
+		$sheet->setCellValue('E1', 'Desc');
+		$sheet->setCellValue('F1', 'Qty');
+		$sheet->setCellValue('G1', 'Deadline');
+		$sheet->setCellValue('H1', 'Keter Sales');
+		$sheet->setCellValue('I1', 'Request');
+		$sheet->setCellValue('J1', 'Check');
+		$sheet->setCellValue('K1', 'Follow Up');
+		$sheet->setCellValue('L1', 'Keter Fu');
+		$sheet->setCellValue('M1', 'Cogs');
+		$sheet->setCellValue('N1', 'Kurs');
+		$sheet->setCellValue('O1', 'Cogs IDR');
+		$sheet->setCellValue('P1', 'Reseller');
+		$sheet->setCellValue('Q1', 'New Seller');
+		$sheet->setCellValue('R1', 'User');
+		$sheet->setCellValue('S1', 'Delivery');
+		$sheet->setCellValue('T1', 'Keter Purchase');
+		$sheet->setCellValue('U1', 'Nama Purchase');
 
 
+		$data = $this->m_data->select_inquiry();
+		$x = 2;
+		foreach ($data as $row) {
+			$sheet->setCellValue('A' . $x, $row->inquiry_id);
+			$sheet->setCellValue('B' . $x, $row->sales);
+			$sheet->setCellValue('C' . $x, $row->tanggal);
+			$sheet->setCellValue('D' . $x, $row->brand);
+			$sheet->setCellValue('E' . $x, $row->desc);
+			$sheet->setCellValue('E' . $x, $row->qty);
+			$sheet->setCellValue('G' . $x, $row->deadline);
+			$sheet->setCellValue('H' . $x, $row->keter);
+			$sheet->setCellValue('I' . $x, $row->request);
+			$sheet->setCellValue('J' . $x, $row->cek);
+			$sheet->setCellValue('K' . $x, $row->fu1);
+			$sheet->setCellValue('L' . $x, $row->ket_fu);
+			$sheet->setCellValue('M' . $x, $row->cogs);
+			$sheet->setCellValue('N' . $x, $row->kurs);
+			$sheet->setCellValue('O' . $x, $row->cogs_idr);
+			$sheet->setCellValue('P' . $x, $row->reseller);
+			$sheet->setCellValue('Q' . $x, $row->new_seller);
+			$sheet->setCellValue('R' . $x, $row->user);
+			$sheet->setCellValue('S' . $x, $row->delivery);
+			$sheet->setCellValue('T' . $x, $row->ket_purch);
+			$sheet->setCellValue('U' . $x, $row->name_purch);
 
-				$x++;
-			}
-			$writer = new Xlsx($spreadsheet);
-			$filename = 'Data Inquiry';
-			
-			header('Content-Type: application/vnd.ms-excel');
-			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-			header('Cache-Control: max-age=0');
-	
-			$writer->save('php://output');
+
+
+			$x++;
+		}
+		$writer = new Xlsx($spreadsheet);
+		$filename = 'Data Inquiry';
+
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+		header('Cache-Control: max-age=0');
+
+		$writer->save('php://output');
 	}
 
 	public function inquiry_master()
 	{
+		$session = $this->session->userdata('status');
+		if ($session == '') {
+			redirect(base_url() . 'login?alert=belum_login');
+		}
+
 		$data['title'] = 'Master Inquiry';
 		$data['master'] = $this->m_data->get_data('master')->result();
 		$this->load->view('dashboard/v_header', $data);
@@ -396,36 +413,35 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_master_export()
 	{
-			$spreadsheet = new Spreadsheet();
-			$sheet = $spreadsheet->getActiveSheet();
-			$sheet->setCellValue('A1', 'No');
-			$sheet->setCellValue('B1', 'Brand');
-			$sheet->setCellValue('C1', 'D1');
-			$sheet->setCellValue('D1', 'D2');
-			$sheet->setCellValue('E1', 'User');
-			$sheet->setCellValue('F1', 'Manufature/Distributor');
-			
-			$data = $this->m_data->select_master();
-			$no = 1;
-			$x = 2;
-			foreach($data as $row)
-			{
-				$sheet->setCellValue('A'.$x, $no++);
-				$sheet->setCellValue('B'.$x, $row->brand);
-				$sheet->setCellValue('C'.$x, $row->d1);
-				$sheet->setCellValue('D'.$x, $row->d2);
-				$sheet->setCellValue('E'.$x, $row->user);
-				$sheet->setCellValue('F'.$x, $row->distributor);
-				$x++;
-			}
-			$writer = new Xlsx($spreadsheet);
-			$filename = 'Master-Inquiry';
-			
-			header('Content-Type: application/vnd.ms-excel');
-			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-			header('Cache-Control: max-age=0');
-	
-			$writer->save('php://output');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'No');
+		$sheet->setCellValue('B1', 'Brand');
+		$sheet->setCellValue('C1', 'D1');
+		$sheet->setCellValue('D1', 'D2');
+		$sheet->setCellValue('E1', 'User');
+		$sheet->setCellValue('F1', 'Manufature/Distributor');
+
+		$data = $this->m_data->select_master();
+		$no = 1;
+		$x = 2;
+		foreach ($data as $row) {
+			$sheet->setCellValue('A' . $x, $no++);
+			$sheet->setCellValue('B' . $x, $row->brand);
+			$sheet->setCellValue('C' . $x, $row->d1);
+			$sheet->setCellValue('D' . $x, $row->d2);
+			$sheet->setCellValue('E' . $x, $row->user);
+			$sheet->setCellValue('F' . $x, $row->distributor);
+			$x++;
+		}
+		$writer = new Xlsx($spreadsheet);
+		$filename = 'Master-Inquiry';
+
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+		header('Cache-Control: max-age=0');
+
+		$writer->save('php://output');
 	}
 
 	public function inquiry_master_import()
@@ -484,6 +500,11 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_kurs()
 	{
+		$session = $this->session->userdata('status');
+		if ($session == '') {
+			redirect(base_url() . 'login?alert=belum_login');
+		}
+
 		$data['title'] = 'Kurs';
 		$data['kurs'] = $this->m_data->get_data('kurs')->result();
 		$this->load->view('dashboard/v_header', $data);
@@ -563,30 +584,29 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_kurs_export()
 	{
-			$spreadsheet = new Spreadsheet();
-			$sheet = $spreadsheet->getActiveSheet();
-			$sheet->setCellValue('A1', 'No');
-			$sheet->setCellValue('B1', 'Currency');
-			$sheet->setCellValue('C1', 'Amount');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'No');
+		$sheet->setCellValue('B1', 'Currency');
+		$sheet->setCellValue('C1', 'Amount');
 
-			$data = $this->m_data->select_kurs();
-			$no = 1;
-			$x = 2;
-			foreach($data as $row)
-			{
-				$sheet->setCellValue('A'.$x, $no++);
-				$sheet->setCellValue('B'.$x, $row->currency);
-				$sheet->setCellValue('C'.$x, $row->amount);
-				$x++;
-			}
-			$writer = new Xlsx($spreadsheet);
-			$filename = 'Kurs-Inquiry';
-			
-			header('Content-Type: application/vnd.ms-excel');
-			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-			header('Cache-Control: max-age=0');
-	
-			$writer->save('php://output');
+		$data = $this->m_data->select_kurs();
+		$no = 1;
+		$x = 2;
+		foreach ($data as $row) {
+			$sheet->setCellValue('A' . $x, $no++);
+			$sheet->setCellValue('B' . $x, $row->currency);
+			$sheet->setCellValue('C' . $x, $row->amount);
+			$x++;
+		}
+		$writer = new Xlsx($spreadsheet);
+		$filename = 'Kurs-Inquiry';
+
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+		header('Cache-Control: max-age=0');
+
+		$writer->save('php://output');
 	}
 
 	public function inquiry_kurs_import()

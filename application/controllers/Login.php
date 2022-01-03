@@ -5,7 +5,13 @@ class Login extends CI_Controller
 {
 	public function index()
 	{
-		$this->load->view('v_login');
+		$session = $this->session->userdata('status');
+
+		if ($session == '') {
+			$this->load->view('v_login');
+		} else {
+			redirect('dashboard');
+		}
 	}
 
 	public function aksi()
@@ -23,7 +29,7 @@ class Login extends CI_Controller
 				'pengguna_password' => md5($password),
 				'pengguna_status' => 1
 			);
-			
+
 			$this->load->model('m_data');
 
 			$cek = $this->m_data->cek_login('pengguna', $where)->num_rows();

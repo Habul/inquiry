@@ -52,7 +52,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
-								</button>								
+								</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -109,6 +109,7 @@
 	</section>
 	<!-- /.content -->
 </div>
+
 <!-- modal add buffer -->
 <div class="modal fade" id="modal_add_buffer" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
@@ -122,9 +123,9 @@
 			</div>
 			<form class="form-horizontal" id="addform" method="post" action="<?php echo base_url('buffer/buffer_aksi') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Nama Sales</label>
-						<div class="col-xs-9">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nama </label>
+						<div class="col-sm-10">
 							<?php
 							$cek = $this->db->select_max('id_buffer')->get('buffer')->row();
 							?>
@@ -133,9 +134,9 @@
 							<?php echo form_error('sales'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Tanggal</label>
-						<div class="col-xs-9">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Tanggal</label>
+						<div class="col-sm-10">
 							<?php
 							$now = $this->load->helper('date');
 							$format = "%Y-%m-%d %H:%i:%s";
@@ -144,9 +145,9 @@
 							<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Brand Produk *</label>
-						<div class="col-xs-9">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Brand *</label>
+						<div class="col-sm-10">
 							<select class="form-control" name="brand" required>
 								<option value="">- Pilih Brand -</option>
 								<?php foreach ($master as $row) : ?>
@@ -156,23 +157,23 @@
 							<?php echo form_error('brand'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Deskripsi *</label>
-						<div class="col-xs-9">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Desc *</label>
+						<div class="col-sm-10">
 							<textarea name="deskripsi" class="form-control" placeholder="Input Desc.." required></textarea>
 							<?php echo form_error('deskripsi'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Quantity *</label>
-						<div class="col-xs-9">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Qty *</label>
+						<div class="col-sm-10">
 							<input type="number" name="qty" class="form-control" placeholder="Input qty..." required>
 							<?php echo form_error('qty'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Keterangan *</label>
-						<div class="col-xs-9">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Note *</label>
+						<div class="col-sm-10">
 							<textarea name="keter" class="form-control" placeholder="Input keter.." required></textarea>
 							<?php echo form_error('keter'); ?>
 						</div>
@@ -202,21 +203,21 @@
 				</div>
 				<form class="form-horizontal" onsubmit="editform.disabled = true; return true;" method="post" action="<?php echo base_url('buffer/buffer_edit') ?>">
 					<div class="modal-body">
-						<div class="form-group">
-							<label class="control-label col-xs-3">Id Buffer</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Id Buffer</label>
+							<div class="col-sm-10">
 								<input type="text" name="id" readonly class="form-control" value="<?php echo $p->id_buffer; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Nama sales</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Nama</label>
+							<div class="col-sm-10">
 								<input type="text" name="sales" readonly class="form-control" value="<?php echo  $this->session->userdata('nama'); ?> ">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Tanggal</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Tanggal</label>
+							<div class="col-sm-10">
 								<?php
 								$now = $this->load->helper('date');
 								$format = "%Y-%m-%d %H:%i:%s";
@@ -224,29 +225,29 @@
 								<input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Brand Produk</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Brand</label>
+							<div class="col-sm-10">
 								<input type="text" name="brand" readonly class="form-control" value="<?php echo $p->brand; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Deskripsi *</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Desc *</label>
+							<div class="col-sm-10">
 								<textarea name="deskripsi" class="form-control" required><?php echo $p->deskripsi; ?></textarea>
 								<?php echo form_error('deskripsi'); ?>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Quantity *</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Qty *</label>
+							<div class="col-sm-10">
 								<input type="number" name="qty" class="form-control" value="<?php echo $p->qty; ?>" required>
 								<?php echo form_error('qty'); ?>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Keterangan *</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Note *</label>
+							<div class="col-sm-10">
 								<textarea name="keter" class="form-control" required><?php echo $p->keter; ?></textarea>
 								<?php echo form_error('keter'); ?>
 							</div>
@@ -277,58 +278,58 @@
 				</div>
 				<form class="form-horizontal" onsubmit="editwhform.disabled = true; return true;" method="post" action="<?php echo base_url('buffer/buffer_update') ?>">
 					<div class="modal-body">
-						<div class="form-group">
-							<label class="control-label col-xs-3">Id Buffer</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Id Buffer</label>
+							<div class="col-sm-10">
 								<input type="text" name="id" class="form-control" readonly value="<?php echo $p->id_buffer; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Sales</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Sales</label>
+							<div class="col-sm-10">
 								<input type="text" class="form-control" readonly value="<?php echo $p->sales; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Tanggal</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Tanggal</label>
+							<div class="col-sm-10">
 								<input type="text" class="form-control" readonly value="<?php echo $p->tanggal; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Brand</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Brand</label>
+							<div class="col-sm-10">
 								<input type="text" class="form-control" readonly value="<?php echo $p->brand; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Desc Produk</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Desc</label>
+							<div class="col-sm-10">
 								<input type="text" class="form-control" readonly value="<?php echo $p->deskripsi; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Qty</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Qty</label>
+							<div class="col-sm-10">
 								<input type="text" class="form-control" readonly value="<?php echo $p->qty; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Keter(Sales)</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Keter(Sales)</label>
+							<div class="col-sm-10">
 								<textarea class="form-control" readonly><?php echo $p->keter; ?></textarea>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Warehouse</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Warehouse</label>
+							<div class="col-sm-10">
 								<input type="text" name="wh" readonly class="form-control" value="<?php echo  $this->session->userdata('nama'); ?> ">
 								<?php echo form_error('wh'); ?>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Follow UP</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Follow UP</label>
+							<div class="col-sm-10">
 								<?php
 								$now = $this->load->helper('date');
 								$format = "%Y-%m-%d %H:%i:%s";
@@ -337,9 +338,9 @@
 								<?php echo form_error('fu'); ?>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Status *</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Status *</label>
+							<div class="col-sm-10">
 								<select class="form-control" name="status" required>
 									<option value="">- Pilih Request -</option>
 									<option <?php if ($p->status == "approve") {
@@ -358,16 +359,16 @@
 								<?php echo form_error('status'); ?>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">PR No *</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">PR No *</label>
+							<div class="col-sm-10">
 								<input type="text" name="pr_no" class="form-control" placeholder="Input No PR.." value="<?php echo $p->pr_no; ?>" required>
 								<?php echo form_error('pr_no'); ?>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Ket(warehouse)</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Ket(Wh)</label>
+							<div class="col-sm-10">
 								<textarea name="ket_wh" class="form-control" placeholder="Input Ket.."><?php echo $p->ket_wh; ?></textarea>
 								<?php echo form_error('ket_wh'); ?>
 							</div>

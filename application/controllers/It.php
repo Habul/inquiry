@@ -16,6 +16,11 @@ class It extends CI_Controller
 
 	public function data()
 	{
+		$session = $this->session->userdata('status');
+		if ($session == '') {
+			redirect(base_url() . 'login?alert=belum_login');
+		}
+
 		$data['title'] = 'Data Penting';
 		$data['penting'] = $this->m_data->get_data('datapenting_it')->result();
 		$this->load->view('dashboard/v_header', $data);
@@ -57,7 +62,7 @@ class It extends CI_Controller
 
 				if ($this->upload->do_upload('file')) {
 					$gambar = $this->upload->data();
-					
+
 					$id = $this->input->post('no_id');
 					$file = $gambar['file_name'];
 
