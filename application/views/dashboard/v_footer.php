@@ -1,5 +1,5 @@
 <footer class="main-footer text-sm">
-	<strong>Copyright &copy; 2022 <a href="https://wa.me/6287771911287?text=Hallo%20">Habul</a></strong> . All rights reserved.
+	<strong>Copyright &copy; <?= date('Y'); ?> <a href="https://wa.me/6287771911287?text=Hallo%20">Habul</a></strong> . All rights reserved.
 	<div class="float-right d-none d-sm-inline-block">
 		<b>IT</b> - Intinusa Sejahtera International
 	</div>
@@ -62,9 +62,9 @@
 	});
 </script>
 <script>
-$(function () {
-  bsCustomFileInput.init();
-});
+	$(function() {
+		bsCustomFileInput.init();
+	});
 </script>
 <script>
 	$(function() {
@@ -118,7 +118,7 @@ $(function () {
 			"lengthChange": true,
 			"autoWidth": false,
 			"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-   		 }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
+		}).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
 		$('#example5').DataTable({
 			"paging": true,
 			"responsive": true,
@@ -310,9 +310,51 @@ $(function () {
 </script>
 <script>
 	$('#calendar').datetimepicker({
-   	format: 'L',
-    inline: true
-  })
+		format: 'L',
+		inline: true
+	})
+</script>
+<script>
+	var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+	var currentTheme = localStorage.getItem('theme');
+	var mainHeader = document.querySelector('.main-header');
+
+	if (currentTheme) {
+		if (currentTheme === 'dark') {
+			if (!document.body.classList.contains('dark-mode')) {
+				document.body.classList.add("dark-mode");
+			}
+			if (mainHeader.classList.contains('navbar-light')) {
+				mainHeader.classList.add('navbar-dark');
+				mainHeader.classList.remove('navbar-light');
+			}
+			toggleSwitch.checked = true;
+		}
+	}
+
+	function switchTheme(e) {
+		if (e.target.checked) {
+			if (!document.body.classList.contains('dark-mode')) {
+				document.body.classList.add("dark-mode");
+			}
+			if (mainHeader.classList.contains('navbar-light')) {
+				mainHeader.classList.add('navbar-dark');
+				mainHeader.classList.remove('navbar-light');
+			}
+			localStorage.setItem('theme', 'dark');
+		} else {
+			if (document.body.classList.contains('dark-mode')) {
+				document.body.classList.remove("dark-mode");
+			}
+			if (mainHeader.classList.contains('navbar-dark')) {
+				mainHeader.classList.add('navbar-light');
+				mainHeader.classList.remove('navbar-dark');
+			}
+			localStorage.setItem('theme', 'light');
+		}
+	}
+
+	toggleSwitch.addEventListener('change', switchTheme, false);
 </script>
 </body>
 

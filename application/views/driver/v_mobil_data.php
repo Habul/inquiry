@@ -22,24 +22,27 @@
 	<section class="content">
 		<div class="container-fluid">
 			<?php if ($this->session->flashdata('berhasil')) { ?>
-				<div class="alert alert-success alert-dismissible">
-					<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-					<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h6><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h6>
 				</div>
 			<?php } ?>
 			<?php if ($this->session->flashdata('gagal')) { ?>
-				<div class="alert alert-warning alert-dismissible">
-					<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-					<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h6><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h6>
 				</div>
 			<?php } ?>
-			<br />
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card card-success">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-tachometer-alt"></i> HISTORY ODOMETER</h4>
-							<div class="card-tools">								
+							<div class="card-tools">
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
 									<i class="fas fa-expand"></i>
 								</button>
@@ -48,7 +51,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="remove">
 									<i class="fas fa-times"></i>
-								</button>								
+								</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -84,12 +87,12 @@
 							</div>
 						</div>
 					</div>
-				</div>			
+				</div>
 				<div class="col-md-6">
 					<div class="card card-info collapsed-card">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-bell"></i> HISTORY SERVICES</h4>
-							<div class="card-tools">								
+							<div class="card-tools">
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
 									<i class="fas fa-expand"></i>
 								</button>
@@ -98,7 +101,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="remove">
 									<i class="fas fa-times"></i>
-								</button>								
+								</button>
 							</div>
 						</div>
 						<div class="card-body">

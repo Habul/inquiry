@@ -6,7 +6,7 @@
 					<?php foreach ($odo as $u) : ?>
 						<h1 class="m-0"><?php echo strtoupper($u->merk) ?> | Plat No <?php echo strtoupper($u->plat) ?></h1>
 						<small>Pastikan input history odometer dahulu, <b>sebelum menabahkan history service</b>
-						<br>untuk reset sisa Km, pastikan yang di pilih history services adalah <b>Ganti Oli</b></small>
+							<br>untuk reset sisa Km, pastikan yang di pilih history services adalah <b>Ganti Oli</b></small>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -20,26 +20,29 @@
 	</div>
 
 	<section class="content">
-    <div class="container-fluid">
-		<?php if ($this->session->flashdata('berhasil')) { ?>
-			<div class="alert alert-success alert-dismissible">
-				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-				<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
-			</div>
-		<?php } ?>
-		<?php if ($this->session->flashdata('gagal')) { ?>
-			<div class="alert alert-warning alert-dismissible">
-				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
-			</div>
-		<?php } ?>		
-			<br />
+		<div class="container-fluid">
+			<?php if ($this->session->flashdata('berhasil')) { ?>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h6><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h6>
+				</div>
+			<?php } ?>
+			<?php if ($this->session->flashdata('gagal')) { ?>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h6><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h6>
+				</div>
+			<?php } ?>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card card-success">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-tachometer-alt"></i> HISTORY ODOMETER</h4>
-							<div class="card-tools">								
+							<div class="card-tools">
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
 									<i class="fas fa-expand"></i>
 								</button>
@@ -48,7 +51,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="remove">
 									<i class="fas fa-times"></i>
-								</button>							
+								</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -84,12 +87,12 @@
 							</div>
 						</div>
 					</div>
-				</div>			
+				</div>
 				<div class="col-md-6">
 					<div class="card card-info collapsed-card">
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-bell"></i> HISTORY SERVICES</h4>
-							<div class="card-tools">								
+							<div class="card-tools">
 								<button type="button" class="btn btn-tool" data-card-widget="maximize">
 									<i class="fas fa-expand"></i>
 								</button>
@@ -98,7 +101,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="remove">
 									<i class="fas fa-times"></i>
-								</button>								
+								</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -290,13 +293,13 @@
 						<label class="control-label col-xs-3">Jenis *</label>
 						<div class="col-xs-9">
 							<?php foreach ($odo as $u) : ?>
-								<input type="hidden" name="join_id" class="form-control" value="<?php echo $u->no_id; ?>">							
-							<select class="form-control" name="jenis" required>
-								<option value="">- Pilih Request -</option>
-								<option value="Ganti Oli">Ganti Oli</option>
-								<option value="Ganti Kapas Rem">Ganti Kapas Rem</option>
-							</select>
-							<?php echo form_error('jenis'); ?>
+								<input type="hidden" name="join_id" class="form-control" value="<?php echo $u->no_id; ?>">
+								<select class="form-control" name="jenis" required>
+									<option value="">- Pilih Request -</option>
+									<option value="Ganti Oli">Ganti Oli</option>
+									<option value="Ganti Kapas Rem">Ganti Kapas Rem</option>
+								</select>
+								<?php echo form_error('jenis'); ?>
 						</div>
 					</div>
 					<div class="form-group">
@@ -309,11 +312,11 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Odometer </label>
 						<div class="col-xs-9">
-						<?php $cek = $this->db->select_max('odometer')->where('join_id',$u->no_id)->get('driver')->row(); ?>
-							<?php endforeach; ?>
-							<input type="number" name="odometer" min="1" class="form-control" value="<?php echo $cek->odometer ?>">
-							<small>di ambil data terakhir dari inputan history odometer</small>
-							<?php echo form_error('tanggal'); ?>
+							<?php $cek = $this->db->select_max('odometer')->where('join_id', $u->no_id)->get('driver')->row(); ?>
+						<?php endforeach; ?>
+						<input type="number" name="odometer" min="1" class="form-control" value="<?php echo $cek->odometer ?>">
+						<small>di ambil data terakhir dari inputan history odometer</small>
+						<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
 				</div>

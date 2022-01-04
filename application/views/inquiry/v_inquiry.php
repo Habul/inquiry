@@ -16,19 +16,23 @@
 		</div>
 	</div>
 	<section class="content">
-		<?php if ($this->session->flashdata('berhasil')) { ?>
-			<div class="alert alert-success alert-dismissible">
-				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-				<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
-			</div>
-		<?php } ?>
-		<?php if ($this->session->flashdata('gagal')) { ?>
-			<div class="alert alert-warning alert-dismissible">
-				<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-				<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
-			</div>
-		<?php } ?>
 		<div class="container-fluid">
+			<?php if ($this->session->flashdata('berhasil')) { ?>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h6><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h6>
+				</div>
+			<?php } ?>
+			<?php if ($this->session->flashdata('gagal')) { ?>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h6><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h6>
+				</div>
+			<?php } ?>
 			<?php if ($this->session->userdata('level') != "warehouse") {	?>
 				<?php if ($this->session->userdata('level') != "purchase") {	?>
 					<div class="col-md-3" style="padding: 0;">
@@ -52,7 +56,7 @@
 								</button>
 								<button type="button" class="btn btn-tool" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
-								</button>								
+								</button>
 							</div>
 						</div>
 						<div class="card-body">

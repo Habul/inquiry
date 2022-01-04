@@ -19,18 +19,21 @@
 	<section class="content">
 		<div class="container-fluid">
 			<?php if ($this->session->flashdata('berhasil')) { ?>
-				<div class="alert alert-success alert-dismissible">
-					<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-					<h4><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h6><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h6>
 				</div>
 			<?php } ?>
 			<?php if ($this->session->flashdata('gagal')) { ?>
-				<div class="alert alert-warning alert-dismissible">
-					<button class="close" data-dismiss="alert" aria-hidden="true" id="info">&times;</button>
-					<h4><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h4>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h6><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h6>
 				</div>
 			<?php } ?>
-			<br />
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
@@ -128,15 +131,15 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Attach Image</label>
-                    	<div class="custom-file">
-                      		<input type="file" class="custom-file-input" id="customFile" name="foto">
-							  <?php echo set_value('foto'); ?>
-                    	<label class="custom-file-label" for="customFile">Choose file</label>
-                    	</div>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" id="customFile" name="foto">
+							<?php echo set_value('foto'); ?>
+							<label class="custom-file-label" for="customFile">Choose file</label>
+						</div>
 						<small>* Max size 2 Mb</small><br />
 						<small>* Max file name image 10 character</small><br />
 						<small>* File type Jpg, Png & Gif</small>
-                  </div>
+					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
@@ -190,17 +193,17 @@
 							</div>
 						</div>
 						<div class="form-group">
-						<label class="control-label col-xs-3">Attach Image</label><br/>
-						<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2" onerror="this.style.display='none'" />
+							<label class="control-label col-xs-3">Attach Image</label><br />
+							<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2" onerror="this.style.display='none'" />
 							<div class="custom-file">
-                      			<input type="file" class="custom-file-input" id="customFile" name="foto">
+								<input type="file" class="custom-file-input" id="customFile" name="foto">
 								<?php echo form_error('foto'); ?>
-                    			<label class="custom-file-label" for="customFile">Choose file</label>
-                    		</div>
-						<small>* Max size 2 Mb</small><br />
-						<small>* Max file name image 10 character</small><br />
-						<small>* File type Jpg, Png & Gif</small>
-                 	</div>
+								<label class="custom-file-label" for="customFile">Choose file</label>
+							</div>
+							<small>* Max size 2 Mb</small><br />
+							<small>* Max file name image 10 character</small><br />
+							<small>* File type Jpg, Png & Gif</small>
+						</div>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

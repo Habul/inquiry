@@ -27,12 +27,16 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/docs.css">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed text-sm">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
 	<div class="wrapper">
+		<div class="preloader flex-column justify-content-center align-items-center">
+			<img class="animation__shake" src="<?php echo base_url(); ?>assets/dist/img/Untitled-1-02.png" alt="IntiseraLogo" height="60" width="60">
+		</div>
 
-		<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+		<nav class="main-header navbar navbar-expand navbar-light navbar-light">
 
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -49,6 +53,8 @@
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
+
+
 				<li class="nav-item dropdown">
 					<?php if ($this->session->userdata('level') != "sales") {	?>
 						<?php
@@ -79,9 +85,12 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-					<i class="fas fa-th-large"></i>
-				</a>
+				<div class="theme-switch-wrapper nav-link">
+					<label class="theme-switch" for="checkbox">
+						<input type="checkbox" id="checkbox" title="Dark Mode" />
+						<span class="slider round"></span>
+					</label>
+				</div>
 			</li>
 
 			<li class="nav-item dropdown user-menu">
