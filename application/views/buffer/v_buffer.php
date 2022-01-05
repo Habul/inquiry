@@ -5,32 +5,28 @@
 				<div class="col-sm-6">
 					<h1 class="m-0">Buffer</h1>
 					<small>Data yang sudah di <b>APPROVE / FINISH</b> di pindahkan ke menu <b>Arship Buffer</b></small>
-				</div><!-- /.col -->
+				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
 						<li class="breadcrumb-item active">Buffer</li>
 					</ol>
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.container-fluid -->
+				</div>
+			</div>
+		</div>
 	</div>
 	<section class="content">
 		<div class="container-fluid">
 			<?php if ($this->session->flashdata('berhasil')) { ?>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h6><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h6>
+					<button type=" button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
 				</div>
 			<?php } ?>
 			<?php if ($this->session->flashdata('gagal')) { ?>
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h6><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h6>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
 				</div>
 			<?php } ?>
 			<?php if ($this->session->userdata('level') != "purchase") {	?>
@@ -39,9 +35,9 @@
 						<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_buffer">
 							<i class="fa fa-plus-square"></i> Tambah buffer stock</a>
 					</div>
-					<br />
 				<?php }	?>
 			<?php }	?>
+			<br />
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
@@ -103,15 +99,10 @@
 							</table>
 						</div>
 					</div>
-					<!-- /.box-body -->
 				</div>
-				<!-- /.box -->
 			</div>
-			<!-- /.col -->
 		</div>
-		<!-- /.row -->
 	</section>
-	<!-- /.content -->
 </div>
 
 <!-- modal add buffer -->

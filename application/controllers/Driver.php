@@ -12,15 +12,14 @@ class Driver extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('m_data');
-	}
-
-	public function mobil()
-	{
 		$session = $this->session->userdata('status');
 		if ($session == '') {
 			redirect(base_url() . 'login?alert=belum_login');
 		}
+	}
 
+	public function mobil()
+	{
 		$where = array(
 			'type' => 'mobil'
 		);
@@ -157,11 +156,6 @@ class Driver extends CI_Controller
 
 	public function mobil_odo($id)
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$where = array(
 			'no_id' => $id
 		);
@@ -337,11 +331,6 @@ class Driver extends CI_Controller
 
 	public function motor()
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$where = array(
 			'type' => 'motor'
 		);
@@ -478,11 +467,6 @@ class Driver extends CI_Controller
 
 	public function motor_odo($id)
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$where = array(
 			'no_id' => $id
 		);
@@ -658,11 +642,6 @@ class Driver extends CI_Controller
 
 	public function truck()
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$where = array(
 			'type' => 'truck'
 		);
@@ -799,11 +778,6 @@ class Driver extends CI_Controller
 
 	public function truck_odo($id)
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$where = array(
 			'no_id' => $id
 		);

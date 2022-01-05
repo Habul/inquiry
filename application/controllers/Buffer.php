@@ -15,15 +15,14 @@ class Buffer extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('m_data');
-	}
-
-	public function buffer()
-	{
 		$session = $this->session->userdata('status');
 		if ($session == '') {
 			redirect(base_url() . 'login?alert=belum_login');
 		}
+	}
 
+	public function buffer()
+	{
 		$data['title'] = 'Buffer Stock';
 		$data['userdata'] = $this->userdata;
 		$data['master'] = $this->m_data->get_master()->result();
@@ -168,11 +167,6 @@ class Buffer extends CI_Controller
 
 	public function buffer_view()
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$data['title'] = 'Arship Buffer';
 		$data['buffer'] = $this->m_data->select_buffer();
 

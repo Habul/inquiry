@@ -15,15 +15,14 @@ class Inquiry extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('m_data');
-	}
-
-	public function inquiry()
-	{
 		$session = $this->session->userdata('status');
 		if ($session == '') {
 			redirect(base_url() . 'login?alert=belum_login');
 		}
+	}
 
+	public function inquiry()
+	{
 		$data['title'] = 'Inquiry';
 		$data['kurs'] = $this->m_data->get_kurs()->result();
 		$data['master'] = $this->m_data->get_master()->result();
@@ -35,7 +34,6 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_aksi()
 	{
-		// Wajib isi
 		//$this->form_validation->set_rules('inquiry_id', 'No Inquiry', 'required');
 		$this->form_validation->set_rules('sales', 'Nama Sales', 'required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
@@ -80,11 +78,6 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_update_prch($id)
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$where = array(
 			'inquiry_id' => $id
 		);
@@ -230,10 +223,6 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_view()
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
 		$data['title'] = 'Arship Inquiry';
 		$data['inquiry'] = $this->m_data->select_inquiry();
 		$this->load->view('dashboard/v_header', $data);
@@ -310,11 +299,6 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_master()
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$data['title'] = 'Master Inquiry';
 		$data['master'] = $this->m_data->get_data('master')->result();
 		$this->load->view('dashboard/v_header', $data);
@@ -373,7 +357,6 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_master_update()
 	{
-		// Wajib isi
 		$this->form_validation->set_rules('d1', 'D1', 'required');
 		$this->form_validation->set_rules('d2', 'D2', 'required');
 		$this->form_validation->set_rules('user', 'USER', 'required');
@@ -500,11 +483,6 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_kurs()
 	{
-		$session = $this->session->userdata('status');
-		if ($session == '') {
-			redirect(base_url() . 'login?alert=belum_login');
-		}
-
 		$data['title'] = 'Kurs';
 		$data['kurs'] = $this->m_data->get_data('kurs')->result();
 		$this->load->view('dashboard/v_header', $data);

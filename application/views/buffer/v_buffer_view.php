@@ -5,15 +5,15 @@
         <div class="col-sm-6">
           <h1 class="m-0">View Buffer</h1>
           <small>Buffer Marketing - Warehouse</small>
-        </div><!-- /.col -->
+        </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
             <li class="breadcrumb-item active">Buffer View</li>
           </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
   </div>
   <div class="container-fluid">
     <?php if ($this->session->userdata('level') != "sales") {  ?>
@@ -77,15 +77,10 @@
             </table>
           </div>
         </div>
-        <!-- /.box-body -->
       </div>
-      <!-- /.box -->
     </div>
-    <!-- /.col -->
   </div>
-  <!-- /.row -->
   </section>
-  <!-- /.content -->
 </div>
 
 <!-- ============ MODAL VIEW BUFFER =============== -->

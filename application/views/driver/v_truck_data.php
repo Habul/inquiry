@@ -23,18 +23,14 @@
 		<div class="container-fluid">
 			<?php if ($this->session->flashdata('berhasil')) { ?>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h6><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h6>
+					<button type=" button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
 				</div>
 			<?php } ?>
 			<?php if ($this->session->flashdata('gagal')) { ?>
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h6><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h6>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
 				</div>
 			<?php } ?>
 			<div class="row">

@@ -5,32 +5,28 @@
 				<div class="col-sm-6">
 					<h1 class="m-0">Data Penting</h1>
 					<small>Pindahan file TXT dan IMG di 217</small>
-				</div><!-- /.col -->
+				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
 						<li class="breadcrumb-item active">Data Penting</li>
 					</ol>
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.container-fluid -->
+				</div>
+			</div>
+		</div>
 	</div>
 	<section class="content">
 		<div class="container-fluid">
 			<?php if ($this->session->flashdata('berhasil')) { ?>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h6><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h6>
+					<button type=" button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
 				</div>
 			<?php } ?>
 			<?php if ($this->session->flashdata('gagal')) { ?>
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h6><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h6>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
 				</div>
 			<?php } ?>
 			<div class="col-md-3" style="padding: 0;">
@@ -88,11 +84,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- /.box-body -->
 			</div>
-			<!-- /.box -->
 	</section>
-	<!-- /.col -->
 </div>
 
 <!-- Bootstrap modal add -->

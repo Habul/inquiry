@@ -12,15 +12,14 @@ class It extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('m_data');
-	}
-
-	public function data()
-	{
 		$session = $this->session->userdata('status');
 		if ($session == '') {
 			redirect(base_url() . 'login?alert=belum_login');
 		}
+	}
 
+	public function data()
+	{
 		$data['title'] = 'Data Penting';
 		$data['penting'] = $this->m_data->get_data('datapenting_it')->result();
 		$this->load->view('dashboard/v_header', $data);
@@ -50,7 +49,6 @@ class It extends CI_Controller
 
 			$this->m_data->insert_data($data, 'datapenting_it');
 
-			// Periksa apakah ada gambar logo yang diupload
 			if (!empty($_FILES['file']['name'])) {
 
 				$config['upload_path']   = './gambar/datait/';
@@ -101,7 +99,6 @@ class It extends CI_Controller
 
 			$this->m_data->update_data($where, $data, 'datapenting_it');
 
-			// Periksa apakah ada gambar yang diupload
 			if (!empty($_FILES['file']['name'])) {
 
 				$config['upload_path']   = './gambar/datait/';
@@ -112,7 +109,6 @@ class It extends CI_Controller
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('file')) {
-					// mengambil data tentang gambar yang diupload
 					$gambar = $this->upload->data();
 
 					$id = $this->input->post('no_id');

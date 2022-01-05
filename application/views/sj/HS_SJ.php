@@ -50,9 +50,7 @@
             </tr>
           </table>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- info row -->
 
       <div class="row">
         <div class="col-12 table-responsive-sm">
@@ -103,10 +101,8 @@
             <?php endforeach; ?>
           </table>
         </div>
-        <!-- /.col -->
       </div>
 
-      <!-- Table row -->
       <div class="row">
         <div class="col-12 table-responsive-sm">
           <table class="table table-bordered table-sm" style="border: 2px solid black">
@@ -130,7 +126,6 @@
             <?php endforeach; ?>
           </table>
         </div>
-        <!-- /.col -->
       </div>
       <div class="row">
         <div class="col-12 table-responsive-sm">
@@ -163,14 +158,9 @@
             </tr>
           </table>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
     </section>
-    <!-- /.content -->
   </div>
-  <!-- ./wrapper -->
-  <!-- Page specific script -->
 </body>
 
 </html>

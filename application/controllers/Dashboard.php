@@ -52,8 +52,12 @@ class Dashboard extends CI_Controller
 
 			$index++;
 		}
-		//$color1 = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
 
+		//$dfh = $this->m_data->suratjalandf();
+		//$hs = $this->m_data->suratjalanhs();
+
+		$data['suratdf'] = $this->m_data->suratjalandf();
+		$data['suraths'] = $this->m_data->suratjalanhs();
 		$data['data_sales'] = $this->m_data->select_by_sales();
 		$data['data_brand'] = $this->m_data->select_by_brand();
 		$data['sales_color'] = json_encode($sales_color);

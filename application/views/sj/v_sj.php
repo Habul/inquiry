@@ -5,32 +5,28 @@
 				<div class="col-sm-6">
 					<h1 class="m-0">Surat Jalan</h1>
 					<small>Pastikan Desc SJ sudah terinput, sebelum <b>View & Print</b></small>
-				</div><!-- /.col -->
+				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
 						<li class="breadcrumb-item active">Surat Jalan HS</li>
 					</ol>
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.container-fluid -->
+				</div>
+			</div>
+		</div>
 	</div>
 	<section class="content">
 		<div class="container-fluid">
 			<?php if ($this->session->flashdata('berhasil')) { ?>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h6><i class="icon fa fa-check"></i><?= $this->session->flashdata('berhasil') ?></h6>
+					<button type=" button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
 				</div>
 			<?php } ?>
 			<?php if ($this->session->flashdata('gagal')) { ?>
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h6><i class="icon fa fa-warning"></i><?= $this->session->flashdata('gagal') ?></h6>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
 				</div>
 			<?php } ?>
 			<div class="col-md-3" style="padding: 0;">
@@ -94,13 +90,10 @@
 						</div>
 					</div>
 				</div>
-				<!-- /.box-body -->
 			</div>
-			<!-- /.box -->
 	</section>
-	<!-- /.col -->
 </div>
-<!-- /.row -->
+
 
 <!-- modal add Sj -->
 <div class="modal fade" id="modal_add_sj" tabindex="-1" data-backdrop="static">

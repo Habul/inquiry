@@ -76,10 +76,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.box-body -->
             </div>
-            <!-- /.box -->
     </section>
-    <!-- /.col -->
 </div>
-<!-- /.row -->

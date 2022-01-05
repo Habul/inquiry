@@ -22,9 +22,7 @@
 
 <body>
   <div class="wrapper">
-    <!-- Main content -->
     <section class="invoice">
-      <!-- title row -->
       <div class="row">
         <div class="col-12 table-responsive-sm">
           <table class="table table-borderless table-sm">
@@ -49,9 +47,7 @@
             </tr>
           </table>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- info row -->
 
       <div class="row">
         <div class="col-12 table-responsive-sm">
@@ -93,10 +89,8 @@
             <?php endforeach; ?>
           </table>
         </div>
-        <!-- /.col -->
       </div>
 
-      <!-- Table row -->
       <div class="row">
         <div class="col-12 table-responsive-sm">
           <table class="table table-bordered table-sm" style="border: 2px solid black">
@@ -126,7 +120,6 @@
               </tbody>
           </table>
         </div>
-        <!-- /.col -->
       </div>
       <div class="row">
         <div class="col-12 table-responsive-sm">
@@ -153,14 +146,9 @@
             </tr>
           </table>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
     </section>
-    <!-- /.content -->
   </div>
-  <!-- ./wrapper -->
-  <!-- Page specific script -->
 </body>
 
 </html>

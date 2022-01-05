@@ -140,6 +140,26 @@ class M_data extends CI_Model
 		return $data->result();
 	}
 
+	public function suratjalandf()
+	{
+		$sql = "SELECT COUNT(*) as total FROM sj_user_df WHERE EXTRACT(YEAR FROM date_delivery) = '2021'
+		GROUP BY EXTRACT(MONTH FROM date_delivery) ORDER BY EXTRACT(MONTH FROM date_delivery)";
+
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
+	public function suratjalanhs()
+	{
+		$sql = "SELECT COUNT(*) as total FROM sj_user WHERE EXTRACT(YEAR FROM date_delivery) = '2021'
+		GROUP BY EXTRACT(MONTH FROM date_delivery) ORDER BY EXTRACT(MONTH FROM date_delivery)";
+
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
 	public function kontak($id)
 	{
 		$sql = "SELECT * FROM kontak where id_user = '{$id}'";

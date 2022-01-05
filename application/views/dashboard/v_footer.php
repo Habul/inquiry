@@ -254,6 +254,72 @@
 		options: pieOptions,
 
 	})
+
+	var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+	var areaChartData = {
+		labels: ['November', 'Desember', 'January', 'February', 'March', 'April', 'May', 'June', 'July'],
+		datasets: [{
+				label: 'SJ HS',
+				backgroundColor: 'rgba(60,141,188,0.9)',
+				borderColor: 'rgba(60,141,188,0.8)',
+				pointRadius: false,
+				pointColor: '#3b8bba',
+				pointStrokeColor: 'rgba(60,141,188,1)',
+				pointHighlightFill: '#fff',
+				pointHighlightStroke: 'rgba(60,141,188,1)',
+				data: [<?php
+						if (count($suraths) > 0) {
+							foreach ($suraths as $data) {
+								echo $data->total . ", ";
+							}
+						}
+						?>]
+			},
+			{
+				label: 'SJ DF',
+				backgroundColor: 'rgba(210, 214, 222, 1)',
+				borderColor: 'rgba(210, 214, 222, 1)',
+				pointRadius: false,
+				pointColor: 'rgba(210, 214, 222, 1)',
+				pointStrokeColor: '#c1c7d1',
+				pointHighlightFill: '#fff',
+				pointHighlightStroke: 'rgba(220,220,220,1)',
+				data: [<?php
+						if (count($suratdf) > 0) {
+							foreach ($suratdf as $data) {
+								echo $data->total . ", ";
+							}
+						}
+						?>]
+			},
+		]
+	}
+
+	var areaChartOptions = {
+		maintainAspectRatio: false,
+		responsive: true,
+		legend: {
+			display: true
+		},
+		scales: {
+			xAxes: [{
+				gridLines: {
+					display: false,
+				}
+			}],
+			yAxes: [{
+				gridLines: {
+					display: true,
+				}
+			}]
+		}
+	}
+
+	new Chart(areaChartCanvas, {
+		type: 'line',
+		data: areaChartData,
+		options: areaChartOptions
+	})
 </script>
 <script>
 	$(function() {
@@ -263,28 +329,6 @@
 		$('#summernoteedit').summernote()
 	})
 </script>
-<!--script>
-	$(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			timer: 3000
-		});
-		$('.berhasil').click(function() {
-			Toast.fire({
-				icon: 'success',
-				title: ' Add Data successfully'
-			})
-		});
-		$('.gagal').click(function() {
-			Toast.fire({
-				icon: 'success',
-				title: 'SJ successfully added'
-			})
-		});
-	})
-</script-->
 <script>
 	$(function() {
 		$('.select2').select2()

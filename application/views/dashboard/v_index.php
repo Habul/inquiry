@@ -4,14 +4,14 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0">Dashboard</h1>
-				</div><!-- /.col -->
+				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
 					</ol>
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.container-fluid -->
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<section class="content">
@@ -134,6 +134,9 @@
 									<li class="nav-item">
 										<a class="nav-link" href="#sales-chart" data-toggle="tab">Brand</a>
 									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#area-chart" data-toggle="tab">Surat Jalan</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -144,6 +147,9 @@
 								</div>
 								<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
 									<canvas id="pieChart" height="300" style="height: 300px;"></canvas>
+								</div>
+								<div class="chart tab-pane" id="area-chart" style="position: relative; height: 300px;">
+									<canvas id="areaChart" height="300" style="height: 300px;"></canvas>
 								</div>
 							</div>
 						</div>

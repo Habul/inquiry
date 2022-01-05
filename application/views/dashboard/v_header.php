@@ -33,7 +33,7 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
 	<div class="wrapper">
 		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" src="<?php echo base_url(); ?>assets/dist/img/Untitled-1-02.png" alt="IntiseraLogo" height="60" width="60">
+			<img class="animation__wobble" src="<?php echo base_url(); ?>assets/dist/img/Untitled-1-02.png" alt="IntiseraLogo" height="60" width="60">
 		</div>
 
 		<nav class="main-header navbar navbar-expand navbar-light navbar-light">
@@ -53,8 +53,6 @@
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
-
-
 				<li class="nav-item dropdown">
 					<?php if ($this->session->userdata('level') != "sales") {	?>
 						<?php
@@ -99,7 +97,6 @@
 					<span class="d-none d-md-inline"><?php echo $this->session->userdata('nama'); ?></span>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-					<!-- User image -->
 					<li class="user-header bg-dark">
 						<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="img-circle elevation-2" alt="User Image">
 						<p>
@@ -107,7 +104,6 @@
 							<small><?php echo $this->session->userdata('level');  ?></small>
 						</p>
 					</li>
-					<!-- Menu Footer-->
 					<li class="user-footer">
 						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default" title="Profile"> Profile </a>
 						<a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right" title="Sign out"> Sign out </a>
@@ -117,19 +113,14 @@
 			</li>
 			</ul>
 		</nav>
-		<!-- /.navbar -->
-		<!-- Main Sidebar Container -->
 
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<!-- Brand Logo -->
 			<a href="#" class="brand-link">
 				<img src="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-2">
 				<span class="brand-text font-weight-green">INTISERA</span>
 			</a>
 
-			<!-- Sidebar -->
 			<div class="sidebar">
-				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
 						<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto');  ?>" class="img-circle elevation-2" alt="User Image">
@@ -139,7 +130,6 @@
 					</div>
 				</div>
 
-				<!-- SidebarSearch Form -->
 				<div class="form-inline">
 					<div class="input-group" data-widget="sidebar-search">
 						<input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
@@ -151,7 +141,6 @@
 					</div>
 				</div>
 
-				<!-- Sidebar Menu -->
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar nav-child-indent nav-compact flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item">
