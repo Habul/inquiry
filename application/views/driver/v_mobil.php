@@ -65,7 +65,7 @@
 										<td><?php echo number_format($sum, 0, '.', '.'); ?>&nbsp;Km</td>
 										<td>
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
-											<a href="<?php echo base_url() . 'driver/mobil_odo/' . $p->no_id; ?>" class="btn btn-primary btn-sm" title="View Detail"> <i class="fa fa-search"></i> </a>
+											<a href="<?php echo base_url() . 'driver/mobil_odo/' . $p->no_id; ?>" class="btn btn-primary btn-sm" title="View Detail"><i class="fa fa-search"></i></a>
 											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>

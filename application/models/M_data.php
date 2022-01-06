@@ -160,6 +160,16 @@ class M_data extends CI_Model
 		return $data->result();
 	}
 
+	public function bartracking($type)
+	{
+		$sql = "SELECT COUNT(*) AS total FROM driver WHERE join_id IN (SELECT no_id FROM type_vehicles WHERE TYPE='$type') AND
+		EXTRACT(YEAR FROM tanggal) = '2021' GROUP BY EXTRACT(MONTH FROM tanggal) ORDER BY EXTRACT(MONTH FROM tanggal)";
+
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
 	public function kontak($id)
 	{
 		$sql = "SELECT * FROM kontak where id_user = '{$id}'";

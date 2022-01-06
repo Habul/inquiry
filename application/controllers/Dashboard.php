@@ -53,9 +53,9 @@ class Dashboard extends CI_Controller
 			$index++;
 		}
 
-		//$dfh = $this->m_data->suratjalandf();
-		//$hs = $this->m_data->suratjalanhs();
-
+		$data['barmobil'] = $this->m_data->bartracking('mobil');
+		$data['barmotor'] = $this->m_data->bartracking('motor');
+		$data['bartruck'] = $this->m_data->bartracking('truck');
 		$data['suratdf'] = $this->m_data->suratjalandf();
 		$data['suraths'] = $this->m_data->suratjalanhs();
 		$data['data_sales'] = $this->m_data->select_by_sales();

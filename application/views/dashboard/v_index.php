@@ -137,6 +137,9 @@
 									<li class="nav-item">
 										<a class="nav-link" href="#area-chart" data-toggle="tab">Surat Jalan</a>
 									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#bar-chart" data-toggle="tab">Tracking</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -150,6 +153,9 @@
 								</div>
 								<div class="chart tab-pane" id="area-chart" style="position: relative; height: 300px;">
 									<canvas id="areaChart" height="300" style="height: 300px;"></canvas>
+								</div>
+								<div class="chart tab-pane" id="bar-chart" style="position: relative; height: 300px;">
+									<canvas id="barChart" height="300" style="height: 300px;"></canvas>
 								</div>
 							</div>
 						</div>

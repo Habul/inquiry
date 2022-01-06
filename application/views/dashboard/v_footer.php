@@ -1,5 +1,5 @@
 <footer class="main-footer text-sm">
-	<strong>Copyright &copy; <?= date('Y'); ?> <a href="https://wa.me/6287771911287?text=Hallo%20">Habul</a></strong> . All rights reserved.
+	<strong>Copyright &copy; <?= date('Y'); ?> <a href="https://github.com/Habul">Habul</a></strong> . All rights reserved.
 	<div class="float-right d-none d-sm-inline-block">
 		<b>IT</b> - Intinusa Sejahtera International
 	</div>
@@ -260,8 +260,8 @@
 		labels: ['November', 'Desember', 'January', 'February', 'March', 'April', 'May', 'June', 'July'],
 		datasets: [{
 				label: 'SJ HS',
-				backgroundColor: 'rgba(60,141,188,0.9)',
-				borderColor: 'rgba(60,141,188,0.8)',
+				backgroundColor: '#95a5a6',
+				borderColor: '#7f8c8d',
 				pointRadius: false,
 				pointColor: '#3b8bba',
 				pointStrokeColor: 'rgba(60,141,188,1)',
@@ -277,10 +277,10 @@
 			},
 			{
 				label: 'SJ DF',
-				backgroundColor: 'rgba(210, 214, 222, 1)',
-				borderColor: 'rgba(210, 214, 222, 1)',
+				backgroundColor: '#3498db',
+				borderColor: '#2980b9',
 				pointRadius: false,
-				pointColor: 'rgba(210, 214, 222, 1)',
+				pointColor: '#2980b9',
 				pointStrokeColor: '#c1c7d1',
 				pointHighlightFill: '#fff',
 				pointHighlightStroke: 'rgba(220,220,220,1)',
@@ -319,6 +319,75 @@
 		type: 'line',
 		data: areaChartData,
 		options: areaChartOptions
+	})
+
+	var barChartCanvas = $('#barChart').get(0).getContext('2d')
+	var barChartData = {
+		labels: ['November', 'Desember', 'January', 'February', 'March', 'April', 'May', 'June', 'July'],
+		datasets: [{
+				label: 'Mobil',
+				backgroundColor: '#1abc9c',
+				borderColor: '#16a085',
+				pointRadius: false,
+				pointColor: '#16a085',
+				pointStrokeColor: 'rgba(60,141,188,1)',
+				pointHighlightFill: '#fff',
+				pointHighlightStroke: 'rgba(60,141,188,1)',
+				data: [<?php
+						if (count($barmobil) > 0) {
+							foreach ($barmobil as $data) {
+								echo $data->total . ", ";
+							}
+						}
+						?>]
+			},
+			{
+				label: 'Motor',
+				backgroundColor: '#2ecc71',
+				borderColor: '#27ae60',
+				pointRadius: false,
+				pointColor: '#27ae60',
+				pointStrokeColor: '#c1c7d1',
+				pointHighlightFill: '#fff',
+				pointHighlightStroke: 'rgba(220,220,220,1)',
+				data: [<?php
+						if (count($barmotor) > 0) {
+							foreach ($barmotor as $data) {
+								echo $data->total . ", ";
+							}
+						}
+						?>]
+			},
+			{
+				label: 'Truck',
+				backgroundColor: '#bdc3c7',
+				borderColor: '#bdc3c7',
+				pointRadius: false,
+				pointColor: '#bdc3c7',
+				pointStrokeColor: '#c1c7d1',
+				pointHighlightFill: '#fff',
+				pointHighlightStroke: 'rgba(220,220,220,1)',
+				data: [<?php
+						if (count($bartruck) > 0) {
+							foreach ($bartruck as $data) {
+								echo $data->total . ", ";
+							}
+						}
+						?>]
+			},
+		]
+	}
+
+	var barChartOptions = {
+		responsive: true,
+		maintainAspectRatio: false,
+		datasetFill: false
+	}
+
+	new Chart(barChartCanvas, {
+		type: 'bar',
+		data: barChartData,
+		options: barChartOptions
 	})
 </script>
 <script>
