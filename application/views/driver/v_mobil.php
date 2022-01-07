@@ -93,11 +93,11 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_add') ?>" enctype="multipart/form-data">
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_add') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Type *</label>
-						<div class="col-xs-9">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Type *</label>
+						<div class="col-sm-10">
 							<?php
 							$now = $this->load->helper('date');
 							$format = "%Y-%m-%d %H:%i:%s";
@@ -107,20 +107,17 @@
 							<?php echo set_value('type'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Merk *</label>
-						<div class="col-xs-9">
-							<?php
-							$cek = $this->db->select_max('no_id')->get('type_vehicles')->row();
-							?>
-							<input type="hidden" name="no_id" class="form-control" value="<?php echo $cek->no_id + 1; ?> ">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Merk *</label>
+						<div class="col-sm-10">
+							<input type="hidden" name="no_id" class="form-control" value="<?php echo $id_add->no_id + 1; ?> ">
 							<input type="text" name="merk" class="form-control" placeholder="Input Merk.." required>
 							<?php echo set_value('merk'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Plat *</label>
-						<div class="col-xs-9">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Plat *</label>
+						<div class="col-sm-10">
 							<input type="text" name="plat" class="form-control" placeholder="Input Plat.." required>
 							<?php echo set_value('plat'); ?>
 						</div>
@@ -147,7 +144,6 @@
 </div>
 <!--End Modals Add-->
 
-
 <!-- ============ MODAL EDIT Mobil =============== -->
 <?php foreach ($mobil as $p) : ?>
 	<div class="modal fade" id="modal_edit<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
@@ -160,18 +156,18 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_edit') ?>" enctype="multipart/form-data">
+				<form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_edit') ?>" enctype="multipart/form-data">
 					<div class="modal-body">
-						<div class="form-group">
-							<label class="control-label col-xs-3">Type</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Type</label>
+							<div class="col-sm-10">
 								<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
 								<input type="text" name="type" readonly class="form-control" value="<?php echo $p->type; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Merk *</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Merk *</label>
+							<div class="col-sm-10">
 								<?php
 								$now = $this->load->helper('date');
 								$format = "%Y-%m-%d %H:%i:%s";
@@ -181,9 +177,9 @@
 								<?php echo form_error('merk'); ?>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-3">Plat *</label>
-							<div class="col-xs-9">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Plat *</label>
+							<div class="col-sm-10">
 								<input type="text" name="plat" class="form-control" value="<?php echo $p->plat; ?>" required>
 								<?php echo form_error('plat'); ?>
 							</div>
@@ -224,7 +220,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_del') ?>">
+				<form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_del') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
 						<p>Are you sure delete <?php echo $u->plat; ?> ?</p>

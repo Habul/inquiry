@@ -26,6 +26,7 @@ class Driver extends CI_Controller
 
 		$data['title'] = 'Tracking Car';
 		$data['mobil'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
+		$data['id_add'] = $this->db->select_max('no_id')->get('type_vehicles')->row();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_mobil', $data);
 		$this->load->view('dashboard/v_footer');
@@ -337,6 +338,7 @@ class Driver extends CI_Controller
 
 		$data['title'] = 'Tracking Motorcyle';
 		$data['motor'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
+		$data['id_add'] = $this->db->select_max('no_id')->get('type_vehicles')->row();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_motor', $data);
 		$this->load->view('dashboard/v_footer');
@@ -648,6 +650,7 @@ class Driver extends CI_Controller
 
 		$data['title'] = 'Tracking Truck';
 		$data['truck'] = $this->m_data->edit_data($where, 'type_vehicles')->result();
+		$data['id_add'] = $this->db->select_max('no_id')->get('type_vehicles')->row();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('driver/v_truck', $data);
 		$this->load->view('dashboard/v_footer');

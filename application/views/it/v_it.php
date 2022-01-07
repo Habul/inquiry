@@ -66,8 +66,7 @@
 								</thead>
 								<?php
 								$no = 1;
-								$query = $this->db->query("select * from datapenting_it");
-								foreach ($query->result() as $p) {
+								foreach ($penting as $p) {
 								?>
 									<tr>
 										<td style="text-align:center"><?php echo $no++; ?></td>

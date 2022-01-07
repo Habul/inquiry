@@ -76,7 +76,7 @@
 										<td><?php echo $p->cust_name; ?></td>
 										<td><?php echo $p->address; ?></td>
 										<td><?php echo $p->city; ?></td>
-										<td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($p->phone)), 2); ?></td>
+										<td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', 'null', trim($p->phone)), 1); ?></td>
 										<td style="text-align:center">
 											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_id; ?>" title="Edit SJ"><i class="fa fa-pencil-alt"></i></a>
 											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_print<?php echo $p->no_id; ?>" title="Add Desc, Detail & Print"><i class="fa fa-search"></i></a>

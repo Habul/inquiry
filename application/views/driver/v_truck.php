@@ -93,7 +93,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/truck_add') ?>" enctype="multipart/form-data">
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/truck_add') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Type *</label>
@@ -110,10 +110,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Merk *</label>
 						<div class="col-xs-9">
-							<?php
-							$cek = $this->db->select_max('no_id')->get('type_vehicles')->row();
-							?>
-							<input type="hidden" name="no_id" class="form-control" value="<?php echo $cek->no_id + 1; ?> ">
+							<input type="hidden" name="no_id" class="form-control" value="<?php echo $id_add->no_id + 1; ?> ">
 							<input type="text" name="merk" class="form-control" placeholder="Input Merk.." required>
 							<?php echo set_value('merk'); ?>
 						</div>

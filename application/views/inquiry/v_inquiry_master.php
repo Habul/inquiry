@@ -58,9 +58,8 @@
 									</tr>
 								</thead>
 								<?php
-								$no = $this->uri->segment('3') + 1;
-								$query = $this->db->query("select * from master");
-								foreach ($query->result() as $p) {
+								$no = 1;
+								foreach ($master as $p) {
 								?>
 									<tr>
 										<td style="text-align:center"><?php echo $no++; ?></td>

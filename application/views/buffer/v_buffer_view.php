@@ -56,8 +56,7 @@
                 </tr>
               </thead>
               <?php
-              $query = $this->db->query("SELECT * FROM `buffer` WHERE status='approve' OR status='finish'");
-              foreach ($query->result() as $p) {
+              foreach ($buffer as $p) {
               ?>
                 <tr>
                   <td style="text-align:center"><?php echo $p->id_buffer; ?></td>

@@ -72,8 +72,7 @@
 									</tr>
 								</thead>
 								<?php
-								$query = $this->db->query("SELECT * FROM `buffer` WHERE status!='approve' AND status!='finish'");
-								foreach ($query->result() as $p) {
+								foreach ($buffer as $p) {
 								?>
 									<tr>
 										<td style="text-align:center"><?php echo $p->id_buffer; ?></td>
@@ -121,10 +120,7 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Nama </label>
 						<div class="col-sm-10">
-							<?php
-							$cek = $this->db->select_max('id_buffer')->get('buffer')->row();
-							?>
-							<input type="hidden" name="id_buffer" readonly class="form-control" value="<?php echo $cek->id_buffer + 1; ?>">
+							<input type="hidden" name="id_buffer" readonly class="form-control" value="<?php echo $id_add->id_buffer + 1; ?>">
 							<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>

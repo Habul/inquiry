@@ -56,8 +56,7 @@
                   </tr>
                 </thead>
                 <?php
-                $query = $this->db->query("SELECT * FROM inquiry WHERE fu1 IS NOT NULL");
-                foreach ($query->result() as $p) {
+                foreach ($view_inquiry as $p) {
                 ?>
                   <tr>
                     <td style="text-align:center"><?php echo $p->inquiry_id; ?></td>

@@ -1,8 +1,4 @@
 <?php
-
-// Model yang terstruktur. agar bisa digunakan berulang kali untuk membuat CRUD. 
-// Sehingga proses pembuatan CRUD menjadi lebih cepat dan efisien.
-
 class M_data extends CI_Model
 {
 
@@ -11,8 +7,6 @@ class M_data extends CI_Model
 		return $this->db->get_where($table, $where);
 	}
 
-	// FUNGSI CRUD
-	// fungsi untuk mengambil data dari database
 	function get_data($table)
 	{
 		return $this->db->get($table);
@@ -20,7 +14,8 @@ class M_data extends CI_Model
 
 	public function select_inquiry()
 	{
-		$sql = "SELECT a.sales,a.tanggal,a.inquiry_id,a.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,a.ket_fu,a.cogs,b.currency as kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch 
+		$sql = "SELECT a.sales,a.tanggal,a.inquiry_id,a.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,
+		a.ket_fu,a.cogs,b.currency as kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch 
 		FROM inquiry a, kurs b WHERE a.kurs=b.id_kurs";
 
 		$data = $this->db->query($sql);
@@ -28,9 +23,18 @@ class M_data extends CI_Model
 		return $data->result();
 	}
 
-	public function select_buffer()
+	public function buffer()
 	{
-		$sql = "SELECT * FROM `buffer` where `status`='approve'";
+		$sql = "SELECT * FROM `buffer` WHERE status!='approve' AND status!='finish'";
+
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
+	public function arshipbuffer()
+	{
+		$sql = "SELECT * FROM `buffer` WHERE status='approve' OR status='finish'";
 
 		$data = $this->db->query($sql);
 
@@ -104,8 +108,9 @@ class M_data extends CI_Model
 
 	public function select_all_inquiry()
 	{
-		$sql = "SELECT a.sales,a.tanggal,a.inquiry_id,b.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,a.ket_fu,a.cogs,c.currency as kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch FROM inquiry a,MASTER b, kurs c 
-		WHERE a.brand=b.id_master AND a.kurs=c.id_kurs";
+		$sql = "SELECT a.sales,a.tanggal,a.inquiry_id,b.brand,a.desc,a.qty,a.deadline,a.keter,a.request,
+		a.cek,a.fu1,a.ket_fu,a.cogs,c.currency as kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,
+		a.ket_purch,a.name_purch FROM inquiry a,MASTER b, kurs c WHERE a.brand=b.id_master AND a.kurs=c.id_kurs";
 
 		$data = $this->db->query($sql);
 
@@ -114,7 +119,8 @@ class M_data extends CI_Model
 
 	public function select_sjhs($no_po)
 	{
-		$sql = "SELECT sj_hs.no_po as no_po,sj_hs.descript as descript,sj_hs.qty as qty FROM sj_hs INNER JOIN sj_user ON sj_hs.no_po=sj_user.no_po WHERE sj_user.no_po='{$no_po}'";
+		$sql = "SELECT sj_hs.no_po as no_po,sj_hs.descript as descript,sj_hs.qty as qty FROM sj_hs 
+		INNER JOIN sj_user ON sj_hs.no_po=sj_user.no_po WHERE sj_user.no_po='{$no_po}'";
 
 		$data = $this->db->query($sql);
 
@@ -140,19 +146,9 @@ class M_data extends CI_Model
 		return $data->result();
 	}
 
-	public function suratjalandf()
+	public function suratjalan($table)
 	{
-		$sql = "SELECT COUNT(*) as total FROM sj_user_df WHERE EXTRACT(YEAR FROM date_delivery) = '2021'
-		GROUP BY EXTRACT(MONTH FROM date_delivery) ORDER BY EXTRACT(MONTH FROM date_delivery)";
-
-		$data = $this->db->query($sql);
-
-		return $data->result();
-	}
-
-	public function suratjalanhs()
-	{
-		$sql = "SELECT COUNT(*) as total FROM sj_user WHERE EXTRACT(YEAR FROM date_delivery) = '2021'
+		$sql = "SELECT COUNT(*) as total FROM $table WHERE EXTRACT(YEAR FROM date_delivery) = '2021'
 		GROUP BY EXTRACT(MONTH FROM date_delivery) ORDER BY EXTRACT(MONTH FROM date_delivery)";
 
 		$data = $this->db->query($sql);
@@ -172,7 +168,7 @@ class M_data extends CI_Model
 
 	public function kontak($id)
 	{
-		$sql = "SELECT * FROM kontak where id_user = '{$id}'";
+		$sql = "SELECT * FROM kontak where id_user = '$id'";
 
 		$data = $this->db->query($sql);
 
@@ -226,23 +222,6 @@ class M_data extends CI_Model
 		return $data->row();
 	}
 
-	function get_kurs()
-	{
-		$this->db->select('id_kurs,currency,amount');
-		$this->db->from('kurs');
-		$query = $this->db->get();
-		return $query;
-	}
-
-	function get_master()
-	{
-		$this->db->select('id_master,brand,d1,d2,user');
-		$this->db->from('master');
-		$this->db->order_by('brand', "ASC");
-		$query = $this->db->get();
-		return $query;
-	}
-
 	public function insert_kurs($data)
 	{
 		$this->db->insert_batch('kurs', $data);
@@ -271,17 +250,5 @@ class M_data extends CI_Model
 		$this->db->insert_batch('master', $data);
 
 		return $this->db->affected_rows();
-	}
-
-	function get_contact($idUser)
-	{
-		$this->db->select("*");
-		$this->db->where("id_user", $idUser);
-		return $this->db->get('kontak')->row();
-	}
-
-	public function getcontact($id)
-	{
-		return $this->db->get_where('kontak', array('id_user' => $id))->row();
 	}
 }

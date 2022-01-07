@@ -24,9 +24,9 @@ class Buffer extends CI_Controller
 	public function buffer()
 	{
 		$data['title'] = 'Buffer Stock';
-		$data['userdata'] = $this->userdata;
-		$data['master'] = $this->m_data->get_master()->result();
-		$data['buffer'] = $this->m_data->get_data('buffer')->result();
+		$data['master'] = $this->m_data->get_data('master')->result();
+		$data['buffer'] = $this->m_data->buffer();
+		$data['id_add'] = $this->db->select_max('id_buffer')->get('buffer')->row();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('buffer/v_buffer', $data);
 		$this->load->view('dashboard/v_footer');
@@ -168,8 +168,7 @@ class Buffer extends CI_Controller
 	public function buffer_view()
 	{
 		$data['title'] = 'Arship Buffer';
-		$data['buffer'] = $this->m_data->select_buffer();
-
+		$data['buffer'] = $this->m_data->arshipbuffer();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('buffer/v_buffer_view', $data);
 		$this->load->view('dashboard/v_footer');

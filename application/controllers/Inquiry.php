@@ -23,10 +23,14 @@ class Inquiry extends CI_Controller
 
 	public function inquiry()
 	{
+		$where = array(
+			'fu1' => NULL
+		);
 		$data['title'] = 'Inquiry';
-		$data['kurs'] = $this->m_data->get_kurs()->result();
-		$data['master'] = $this->m_data->get_master()->result();
-		$data['inquiry'] = $this->m_data->get_data('inquiry')->result();
+		$data['id_add'] = $this->db->select_max('inquiry_id')->get('inquiry')->row();
+		$data['kurs'] = $this->m_data->get_data('kurs')->result();
+		$data['master'] = $this->m_data->get_data('master')->result();
+		$data['inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('inquiry/v_inquiry', $data);
 		$this->load->view('dashboard/v_footer');
@@ -107,9 +111,7 @@ class Inquiry extends CI_Controller
 
 
 		if ($this->form_validation->run() != false) {
-
 			$id = $this->input->post('id');
-
 			$cek = $this->input->post('cek');
 			$fu1 = $this->input->post('fu1');
 			$ket_fu = $this->input->post('ket_fu');
@@ -223,8 +225,13 @@ class Inquiry extends CI_Controller
 
 	public function inquiry_view()
 	{
+		$where = array(
+			'fu1 !=' => NULL
+		);
+
 		$data['title'] = 'Arship Inquiry';
 		$data['inquiry'] = $this->m_data->select_inquiry();
+		$data['view_inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('inquiry/v_inquiry_view', $data);
 		$this->load->view('dashboard/v_footer');

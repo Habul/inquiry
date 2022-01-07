@@ -20,8 +20,11 @@ class Tracking extends CI_Controller
 
     public function data_order()
     {
+        $where = array(
+            'action !=' => 'FINISH'
+        );
         $data['title'] = 'Order & Tracking';
-        $data['tracking'] = $this->m_data->get_data('tracking')->result();
+        $data['tracking'] = $this->m_data->edit_data($where, 'tracking')->result();
         $data['unit_bisnis'] = $this->m_data->get_data('unit_bisnis')->result();
         $data['jadwal'] = $this->db->where('plan_kirim', 'NOW()')->get('tracking')->result();
         $this->load->view('dashboard/v_header', $data);

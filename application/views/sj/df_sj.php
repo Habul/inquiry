@@ -84,7 +84,7 @@
                 <td width="25%"></td>
                 <td>Phone</td>
                 <td> : </td>
-                <td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($u->phone)), 2); ?></td>
+                <td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', 'null', trim($u->phone)), 1); ?></td>
               </tr>
             <?php endforeach; ?>
           </table>

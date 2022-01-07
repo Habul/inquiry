@@ -73,8 +73,7 @@
 									</tr>
 								</thead>
 								<?php
-								$query = $this->db->query("select * from inquiry where fu1 is NULL");
-								foreach ($query->result() as $p) {
+								foreach ($inquiry as $p) {
 								?>
 									<tr>
 										<td style="text-align:center"><?php echo $p->inquiry_id; ?></td>
@@ -124,10 +123,7 @@
 					<div class="form-group">
 						<label class="control-label col-xs-3">Nama Sales</label>
 						<div class="col-xs-9">
-							<?php
-							$cek = $this->db->select_max('inquiry_id')->get('inquiry')->row();
-							?>
-							<input type="hidden" name="inquiry_id" class="form-control" value="<?php echo $cek->inquiry_id + 1; ?> ">
+							<input type="hidden" name="inquiry_id" readonly class="form-control" value="<?php echo $id_add->inquiry_id + 1; ?>">
 							<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>

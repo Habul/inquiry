@@ -151,7 +151,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_odo_add') ?>">
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_odo_add') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Nama</label>
@@ -204,7 +204,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_odo_edit') ?>">
+				<form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_odo_edit') ?>">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="control-label col-xs-3">Nama</label>
@@ -255,7 +255,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_odo_del') ?>">
+				<form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_odo_del') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="join_id" value="<?php echo $u->join_id; ?>">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
@@ -283,7 +283,7 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_history_add') ?>">
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_history_add') ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-xs-3">Jenis *</label>
@@ -387,7 +387,7 @@
 						</button>
 					</h4>
 				</div>
-				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_history_del') ?>">
+				<form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('driver/mobil_history_del') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="join_id" value="<?php echo $u->join_id; ?>">
 						<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">

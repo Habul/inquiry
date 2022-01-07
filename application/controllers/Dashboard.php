@@ -56,8 +56,8 @@ class Dashboard extends CI_Controller
 		$data['barmobil'] = $this->m_data->bartracking('mobil');
 		$data['barmotor'] = $this->m_data->bartracking('motor');
 		$data['bartruck'] = $this->m_data->bartracking('truck');
-		$data['suratdf'] = $this->m_data->suratjalandf();
-		$data['suraths'] = $this->m_data->suratjalanhs();
+		$data['suratdf'] = $this->m_data->suratjalan('sj_user_df');
+		$data['suraths'] = $this->m_data->suratjalan('sj_user');
 		$data['data_sales'] = $this->m_data->select_by_sales();
 		$data['data_brand'] = $this->m_data->select_by_brand();
 		$data['sales_color'] = json_encode($sales_color);
@@ -779,11 +779,11 @@ class Dashboard extends CI_Controller
 	public function contact()
 	{
 		$data['title'] = 'Contact IT';
-		$data['it1'] = $this->db->get('kontak')->row('1');
-		$data['it2'] = $this->db->get('kontak')->row('2');
-		$data['it3'] = $this->db->get('kontak')->row('3');
-		$data['it4'] = $this->db->get('kontak')->row('4');
-		$data['it5'] = $this->db->get('kontak')->row('5');
+		$data['it1'] = $this->m_data->kontak('1');
+		$data['it2'] = $this->m_data->kontak('2');
+		$data['it3'] = $this->m_data->kontak('3');
+		$data['it4'] = $this->m_data->kontak('4');
+		$data['it5'] = $this->m_data->kontak('5');
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('dashboard/v_contact', $data);
 		$this->load->view('dashboard/v_footer');
