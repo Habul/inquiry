@@ -29,14 +29,14 @@
 				</div>
 			<?php } ?>
 			<div class="btn-group">
-				<div class="col-sm-6" style="padding: 0;">
-					<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_master"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data Master</a>
+				<div class="col-sm-6 col-6" style="padding: 0;">
+					<a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_master"><i class="fa fa-plus-square"></i>&nbsp; Add Master</a>
 				</div>
-				<div class="col-sm-6" style="padding: 0;">
-					<a class="form-control btn btn-default" data-toggle="modal" data-target="#modal_import_master"><i class="fa fa-upload"></i>&nbsp; Import Data </a>
+				<div class="col-sm-6 col-4" style="padding: 0;">
+					<a class="form-control btn btn-default" data-toggle="modal" data-target="#modal_import_master"><i class="fa fa-upload"></i>&nbsp; Import</a>
 				</div>
-				<div class="col-sm-6" style="padding: 0;">
-					<a href="<?php echo base_url('inquiry/inquiry_master_export'); ?>" class="form-control btn btn-default"><i class="fa fa-download"></i> Export Data </a>
+				<div class="col-sm-6 col-4" style="padding: 0;">
+					<a href="<?php echo base_url('inquiry/inquiry_master_export'); ?>" class="form-control btn btn-default"><i class="fa fa-download"></i> Export</a>
 				</div>
 			</div>
 			<br />
@@ -45,7 +45,7 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
-							<table id="example5" class="table table-bordered table-striped table-sm">
+							<table id="index2" class="table table-bordered table-striped table-sm">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="5%">No</th>
@@ -54,15 +54,14 @@
 										<th>D2</th>
 										<th>User</th>
 										<th>Manufacture/Distributor</th>
-										<th width="12%" style="display:none">Action</th>
+										<th width="12%">Action</th>
 									</tr>
 								</thead>
 								<?php
-								$no = 1;
 								foreach ($master as $p) {
 								?>
 									<tr>
-										<td style="text-align:center"><?php echo $no++; ?></td>
+										<td style="text-align:center"></td>
 										<td><?php echo $p->brand; ?></td>
 										<td style="text-align:center"><?php echo $p->d1; ?></td>
 										<td style="text-align:center"><?php echo $p->d2; ?></td>
@@ -97,10 +96,7 @@
 			<form class="form-horizontal" onsubmit="addform.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_master_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<?php
-						$cek = $this->db->select_max('id_master')->get('master')->row();
-						?>
-						<input type="hidden" name="id_master" class="form-control" value=<?php echo $cek->id_master + 1 ?>>
+						<input type="hidden" name="id_master" class="form-control" value=<?php echo $id_add->id_master + 1 ?>>
 						<?php echo form_error('id_master'); ?>
 					</div>
 					<div class="form-group">

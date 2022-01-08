@@ -308,6 +308,7 @@ class Inquiry extends CI_Controller
 	{
 		$data['title'] = 'Master Inquiry';
 		$data['master'] = $this->m_data->get_data('master')->result();
+		$data['id_add'] = $this->db->select_max('id_master')->get('master')->row();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('inquiry/v_inquiry_master', $data);
 		$this->load->view('dashboard/v_footer');
@@ -492,6 +493,7 @@ class Inquiry extends CI_Controller
 	{
 		$data['title'] = 'Kurs';
 		$data['kurs'] = $this->m_data->get_data('kurs')->result();
+		$data['id_add'] = $this->db->select_max('id_kurs')->get('kurs')->row();
 		$this->load->view('dashboard/v_header', $data);
 		$this->load->view('inquiry/v_inquiry_kurs', $data);
 		$this->load->view('dashboard/v_footer');

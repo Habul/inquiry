@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="card-body">
-            <table id="example3" class="table table-bordered table-striped">
+            <table id="index1" class="table table-bordered table-striped">
               <thead class="thead-dark" style="text-align:center">
                 <tr>
                   <th width="6%">No</th>

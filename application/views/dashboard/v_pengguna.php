@@ -52,7 +52,7 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<table id="example4" class="table table-bordered table-striped table-sm">
+							<table id="index2" class="table table-bordered table-striped table-sm">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="5%">No</th>
@@ -61,16 +61,15 @@
 										<th>Username</th>
 										<th>Level</th>
 										<th>Status</th>
-										<th width="10%">Action</i></th>
+										<th width="10%">Action</th>
 									</tr>
 								</thead>
 								<?php
-								$no = 1;
 								foreach ($pengguna as $p) {
 								?>
 									<tr>
-										<td style="text-align:center"><?php echo $no++; ?></td>
-										<td><?php echo $p->pengguna_nama; ?></td>
+										<td style="text-align:center"></td>
+										<td><?php echo strtoupper($p->pengguna_nama) ?></td>
 										<td><?php echo $p->pengguna_email; ?></td>
 										<td><?php echo $p->pengguna_username; ?></td>
 										<td><?php echo $p->pengguna_level; ?></td>
