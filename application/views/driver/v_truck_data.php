@@ -61,7 +61,6 @@
 									</tr>
 								</thead>
 								<?php
-								$no = 1;
 								$query = $this->db->query("SELECT * FROM driver WHERE join_id=$u->no_id;");
 								foreach ($query->result() as $p) { ?>
 									<tr style="text-align:center">

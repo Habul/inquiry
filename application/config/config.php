@@ -328,7 +328,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'CMSintinusasejahterainternational';
+$config['encryption_key'] = '1nt1nus4s3j4ht3r41ntern4t10n4l';
 
 /*
 |--------------------------------------------------------------------------

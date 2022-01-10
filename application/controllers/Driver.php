@@ -155,8 +155,9 @@ class Driver extends CI_Controller
 		}
 	}
 
-	public function mobil_odo($id)
+	public function mobil_odo()
 	{
+		$id = rawurldecode($this->encrypt->decode($_GET['id']));
 		$where = array(
 			'no_id' => $id
 		);
@@ -198,11 +199,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Add history odometer successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -227,11 +230,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Edit history odometer successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -244,7 +249,8 @@ class Driver extends CI_Controller
 			$this->m_data->delete_data($where, 'driver');
 			$this->session->set_flashdata('berhasil', 'History odometer has been deleted !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -272,11 +278,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Add history service successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -302,18 +310,19 @@ class Driver extends CI_Controller
 				'jenis' => $jenis,
 				'tanggal' => $tanggal,
 				'odometer' => $odometer
-
 			);
 
 			$this->m_data->update_data($where, $data, 'history_vehicles');
 
 			$this->session->set_flashdata('berhasil', 'Edit history service successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -326,7 +335,8 @@ class Driver extends CI_Controller
 			$this->m_data->delete_data($where, 'history_vehicles');
 			$this->session->set_flashdata('berhasil', 'History service has been deleted !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/mobil_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/mobil_odo/?id' . $encrypt);
 		}
 	}
 
@@ -467,8 +477,9 @@ class Driver extends CI_Controller
 		}
 	}
 
-	public function motor_odo($id)
+	public function motor_odo()
 	{
+		$id = rawurldecode($this->encrypt->decode($_GET['id']));
 		$where = array(
 			'no_id' => $id
 		);
@@ -510,11 +521,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Add history odometer successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -539,11 +552,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Edit history odometer successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -556,7 +571,8 @@ class Driver extends CI_Controller
 			$this->m_data->delete_data($where, 'driver');
 			$this->session->set_flashdata('berhasil', 'History odometer has been deleted !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -584,11 +600,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Add history service successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -621,11 +639,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Edit history service successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -638,7 +658,8 @@ class Driver extends CI_Controller
 			$this->m_data->delete_data($where, 'history_vehicles');
 			$this->session->set_flashdata('berhasil', 'History service has been deleted !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/motor_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/motor_odo/' . $encrypt);
 		}
 	}
 
@@ -779,8 +800,9 @@ class Driver extends CI_Controller
 		}
 	}
 
-	public function truck_odo($id)
+	public function truck_odo()
 	{
+		$id = rawurldecode($this->encrypt->decode($_GET['id']));
 		$where = array(
 			'no_id' => $id
 		);
@@ -822,11 +844,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Add history odometer successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -851,11 +875,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Edit history odometer successfully, odometer : ' . $this->input->post('odometer', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -868,7 +894,8 @@ class Driver extends CI_Controller
 			$this->m_data->delete_data($where, 'driver');
 			$this->session->set_flashdata('berhasil', 'History odometer has been deleted !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -896,11 +923,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Add history service successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -933,11 +962,13 @@ class Driver extends CI_Controller
 
 			$this->session->set_flashdata('berhasil', 'Edit history service successfully, Jenis : ' . $this->input->post('jenis', TRUE) . ' !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		} else {
 			$this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		}
 	}
 
@@ -950,7 +981,8 @@ class Driver extends CI_Controller
 			$this->m_data->delete_data($where, 'history_vehicles');
 			$this->session->set_flashdata('berhasil', 'History service has been deleted !');
 			$id = $this->input->post('join_id');
-			redirect(base_url() . 'driver/truck_odo/' . $id);
+			$encrypt = urlencode($this->encrypt->encode($id));
+			redirect(base_url() . 'driver/truck_odo/?id=' . $encrypt);
 		}
 	}
 }
