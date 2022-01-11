@@ -278,9 +278,10 @@
 									<span class="sr-only">Toggle Dropdown</span>
 								</button>
 								<div class="dropdown-menu" role="menu">
-									<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_df/' . $p->no_id; ?>" rel="noopener" target="_blank" title="Print Dutaflow"><i class="fas fa-print"></i> Dutaflow</a>
+									<?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
+									<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_df/?p=' . $encrypturl; ?>" rel="noopener" target="_blank" title="Print Dutaflow"><i class="fas fa-print"></i> Dutaflow</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_inti/' . $p->no_id; ?>" rel="noopener" target="_blank" title="Print Intisera"><i class="fas fa-print"></i> Intisera</a>
+									<a class="dropdown-item" href="<?php echo base_url() . 'sj/sj_print_inti/?p=' . $encrypturl; ?>" rel="noopener" target="_blank" title="Print Intisera"><i class="fas fa-print"></i> Intisera</a>
 								</div>
 							</div>
 							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_id; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i>&nbsp; Add</a>

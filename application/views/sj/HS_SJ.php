@@ -1,31 +1,91 @@
 <!DOCTYPE html>
-<style media="print">
-  @page {
-    size: 9.5in 5.5in;
-    size: landscape;
-  }
-
-  body {
-    margin: 0px;
-    /* the margin on the content before printing */
-  }
-</style>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intisera | Surat Jalan Print</title>
   <link rel='icon' href="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" type="image/gif">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+  <style>
+    .row {
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+
+    .col-xs-1,
+    .col-sm-1,
+    .col-md-1,
+    .col-lg-1,
+    .col-xs-2,
+    .col-sm-2,
+    .col-md-2,
+    .col-lg-2,
+    .col-xs-3,
+    .col-sm-3,
+    .col-md-3,
+    .col-lg-3,
+    .col-xs-4,
+    .col-sm-4,
+    .col-md-4,
+    .col-lg-4,
+    .col-xs-5,
+    .col-sm-5,
+    .col-md-5,
+    .col-lg-5,
+    .col-xs-6,
+    .col-sm-6,
+    .col-md-6,
+    .col-lg-6,
+    .col-xs-7,
+    .col-sm-7,
+    .col-md-7,
+    .col-lg-7,
+    .col-xs-8,
+    .col-sm-8,
+    .col-md-8,
+    .col-lg-8,
+    .col-xs-9,
+    .col-sm-9,
+    .col-md-9,
+    .col-lg-9,
+    .col-xs-10,
+    .col-sm-10,
+    .col-md-10,
+    .col-lg-10,
+    .col-xs-11,
+    .col-sm-11,
+    .col-md-11,
+    .col-lg-11,
+    .col-xs-12,
+    .col-sm-12,
+    .col-md-12,
+    .col-lg-12 {
+      position: relative;
+      min-height: 1px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .col-lg-12 {
+      width: 100%;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.42857143;
+      color: #333;
+      background-color: #fff;
+    }
+  </style>
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Main content -->
-    <section class="invoice">
-      <!-- title row -->
+    <section>
       <div class="row">
         <div class="col-12 table-responsive-sm">
           <table class="table table-borderless table-sm">
@@ -66,7 +126,7 @@
                 <td><?php echo $u->cust_name; ?></td>
               </tr>
               <tr>
-                <td>Delivery Order No</td>
+                <td width="30%">Delivery Order No</td>
                 <td> : </td>
                 <td><?php echo $u->no_delivery; ?></td>
                 <td width="30%"></td>
@@ -75,13 +135,13 @@
                 <td rowspan="2" width="30%"><?php echo $u->address; ?></td>
               </tr>
               <tr>
-                <td>Delivery Order Date</td>
+                <td width="30%">Delivery Order Date</td>
                 <td> : </td>
                 <td><?php echo $u->date_delivery; ?></td>
                 <td width="30%"></td>
               </tr>
               <tr>
-                <td>Due Date</td>
+                <td width="30%">Due Date</td>
                 <td> : </td>
                 <td><?php echo $u->due_date; ?></td>
                 <td width="30%"></td>
@@ -90,7 +150,7 @@
                 <td><?php echo $u->city; ?></td>
               </tr>
               <tr>
-                <td>P.O No.</td>
+                <td width="30%">P.O No.</td>
                 <td> : </td>
                 <td><?php echo $u->no_po; ?></td>
                 <td width="30%"></td>
@@ -164,7 +224,3 @@
 </body>
 
 </html>
-
-<script>
-  window.addEventListener("load", window.print());
-</script>

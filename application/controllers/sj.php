@@ -1,18 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
-
 class Sj extends CI_Controller
 {
 
   function __construct()
   {
     parent::__construct();
-
     date_default_timezone_set('Asia/Jakarta');
-
     $this->load->helper(array('form', 'url'));
     $this->load->model('m_data');
     $session = $this->session->userdata('status');
@@ -147,7 +142,6 @@ class Sj extends CI_Controller
     if ($this->form_validation->run() != false) {
 
       $id = $this->input->post('no_po');
-
       $no_delivery = $this->input->post('no_delivery');
       $date_delivery = $this->input->post('date_delivery');
       $no_po = $this->input->post('no_po');
@@ -157,9 +151,9 @@ class Sj extends CI_Controller
       $city = $this->input->post('city');
       $phone = $this->input->post('phone');
       $addtime2 = $this->input->post('addtime2');
+
       if ($this->form_validation->run() != false) {
         $data = array(
-
           'no_delivery' => $no_delivery,
           'date_delivery' => $date_delivery,
           'due_date' => $due_date,
@@ -209,16 +203,22 @@ class Sj extends CI_Controller
     }
   }
 
-  public function sj_print($id)
+  public function sj_print()
   {
-    //$this->load->library('mypdf');
+    $id = rawurldecode($this->encrypt->decode($_GET['p']));
+    $this->load->library('pdf');
+    $file_pdf = 'Print SJ';
+    $paper = 'A4';
+    $orientation = "POTRAIT";
+
     $where = array(
       'no_po' => $id
     );
+
     $data['sj_user'] = $this->m_data->edit_data($where, 'sj_user')->result();
     $data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
-    $this->load->view('sj/hs_sj', $data);
-    //$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
+    $html = $this->load->view('sj/hs_sj', $data, true);
+    $this->pdf->generate($html, $file_pdf, $paper, $orientation);
   }
 
 
@@ -408,9 +408,14 @@ class Sj extends CI_Controller
     }
   }
 
-  public function sj_print_df($id)
+  public function sj_print_df()
   {
-    //$this->load->library('mypdf');
+    $id = rawurldecode($this->encrypt->decode($_GET['p']));
+    $this->load->library('pdf');
+    $file_pdf = 'Print SJ';
+    $paper = 'LETTER';
+    $orientation = "potrait";
+
     $where = array(
       'no_id' => $id
     );
@@ -418,15 +423,15 @@ class Sj extends CI_Controller
     $where2 = array(
       'id_join' => $id
     );
+
     $data['sj_user_df'] = $this->m_data->edit_data($where, 'sj_user_df')->result();
     $data['sj_df'] = $this->m_data->edit_data($where2, 'sj_df')->result();
-    $this->load->view('sj/df_sj', $data);
-    //$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
+    $html = $this->load->view('sj/df_sj', $data, true);
+    $this->pdf->generate($html, $file_pdf, $paper, $orientation);
   }
 
   public function sj_print_inti($id)
   {
-    //$this->load->library('mypdf');
     $where = array(
       'no_id' => $id
     );
@@ -437,6 +442,5 @@ class Sj extends CI_Controller
     $data['sj_user_df'] = $this->m_data->edit_data($where, 'sj_user_df')->result();
     $data['sj_df'] = $this->m_data->edit_data($where2, 'sj_df')->result();
     $this->load->view('sj/inti_sj', $data);
-    //$this->mypdf->generate('sj/hs_sj', $data, 'surat-jalan', 'A4', 'landscape');
   }
 }

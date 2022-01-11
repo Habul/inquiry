@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 </head>
 
-<body>
+<body class="text-sm">
   <div class="wrapper">
     <section class="invoice">
       <div class="row">

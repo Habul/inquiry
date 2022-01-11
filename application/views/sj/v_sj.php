@@ -281,7 +281,8 @@
 				<div class="modal-body">
 					<div class="row no-print">
 						<div class="col-12 table-responsive-sm">
-							<a href="<?php echo base_url() . 'sj/sj_print/' . $p->no_po; ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
+							<?php $encrypturl = urlencode($this->encrypt->encode($p->no_po)) ?>
+							<a href="<?php echo base_url() . 'sj/sj_print/?p=' . $encrypturl ?>" rel="noopener" target="_blank" class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
 							<a data-toggle="modal" data-target="#modal_add_desc<?php echo $p->no_po; ?>" class="btn btn-success float-left"><i class="fas fa-plus-square"></i>&nbsp; Add</a>
 						</div>
 					</div>
