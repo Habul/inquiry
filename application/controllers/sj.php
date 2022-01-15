@@ -413,7 +413,7 @@ class Sj extends CI_Controller
     $id = rawurldecode($this->encrypt->decode($_GET['p']));
     $this->load->library('pdf');
     $file_pdf = 'Print SJ';
-    $paper = 'LETTER';
+    $paper = 'A4';
     $orientation = "potrait";
 
     $where = array(
@@ -430,8 +430,14 @@ class Sj extends CI_Controller
     $this->pdf->generate($html, $file_pdf, $paper, $orientation);
   }
 
-  public function sj_print_inti($id)
+  public function sj_print_inti()
   {
+    $id = rawurldecode($this->encrypt->decode($_GET['p']));
+    $this->load->library('pdf');
+    $file_pdf = 'Print SJ';
+    $paper = 'A4';
+    $orientation = "potrait";
+
     $where = array(
       'no_id' => $id
     );
@@ -441,6 +447,7 @@ class Sj extends CI_Controller
     );
     $data['sj_user_df'] = $this->m_data->edit_data($where, 'sj_user_df')->result();
     $data['sj_df'] = $this->m_data->edit_data($where2, 'sj_df')->result();
-    $this->load->view('sj/inti_sj', $data);
+    $html = $this->load->view('sj/inti_sj', $data, true);
+    $this->pdf->generate($html, $file_pdf, $paper, $orientation);
   }
 }
