@@ -139,7 +139,7 @@
       "responsive": true,
       "lengthChange": false,
       "autoWidth": true,
-      "searching": true
+      "searching": false
     })
     $('#example2').DataTable({
       "paging": true,
@@ -190,7 +190,7 @@
       "searching": false,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "responsive": true,
     });
     $('#example8').DataTable({

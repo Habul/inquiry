@@ -79,7 +79,7 @@ class Sj extends CI_Controller
 
     if ($this->form_validation->run() != false) {
 
-      $id = $this->input->post('id');
+      $id = $this->input->post('no_po');
       $descript = $this->input->post('descript');
       $qty = $this->input->post('qty');
 
@@ -91,10 +91,14 @@ class Sj extends CI_Controller
 
       $this->m_data->insert_data($data, 'sj_hs');
       $this->session->set_flashdata('berhasil', 'No Po ' . $this->input->post('id', TRUE) . ' Successfully added Desc : ' . $this->input->post('descript', TRUE) . '  !');
-      redirect(base_url() . 'sj/sj');
+      $id = $this->input->post('no_po');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view/?sj=' . $encrypt);
     } else {
       $this->session->set_flashdata('gagal', 'SJ Desc failed to add, Please repeat !');
-      redirect(base_url() . 'sj/sj');
+      $id = $this->input->post('no_po');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view/?sj=' . $encrypt);
     }
   }
 
@@ -105,6 +109,7 @@ class Sj extends CI_Controller
 
     if ($this->form_validation->run() != false) {
       $id = $this->input->post('id');
+      $nopo = $this->input->post('no_po');
       $descript = $this->input->post('descript');
       $qty = $this->input->post('qty');
 
@@ -121,10 +126,14 @@ class Sj extends CI_Controller
 
       $this->m_data->update_data($where, $data, 'sj_hs');
       $this->session->set_flashdata('berhasil', 'Desc successfully Update, No Po : ' . $this->input->post('no_po', TRUE) . ' !');
-      redirect(base_url() . 'sj/sj');
+      $id = $this->input->post('no_po');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view/?sj=' . $encrypt);
     } else {
       $this->session->set_flashdata('gagal', 'SJ failed to Update, Please repeat !');
-      redirect(base_url() . 'sj/sj');
+      $id = $this->input->post('no_po');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view/?sj=' . $encrypt);
     }
   }
 
@@ -178,6 +187,22 @@ class Sj extends CI_Controller
     }
   }
 
+  public function sj_view()
+  {
+    $id = rawurldecode($this->encrypt->decode($_GET['sj']));
+
+    $where = array(
+      'no_po' => $id
+    );
+
+    $data['title'] = 'Sj Hs View';
+    $data['sj_user'] = $this->m_data->edit_data($where, 'sj_user')->result();
+    $data['sj_hs'] = $this->m_data->edit_data($where, 'sj_hs')->result();
+    $this->load->view('dashboard/v_header', $data);
+    $this->load->view('sj/v_sj_view', $data);
+    $this->load->view('dashboard/v_footer');
+  }
+
   public function sj_hapus()
   {
     $id = $this->input->post('no_po'); {
@@ -193,13 +218,15 @@ class Sj extends CI_Controller
 
   public function sj_desc_hapus()
   {
-    $id = $this->input->post('no_id'); {
+    $id = $this->input->post('id'); {
       $where = array(
         'no_id' => $id
       );
       $this->m_data->delete_data($where, 'sj_hs');
       $this->session->set_flashdata('berhasil', 'Desc has been deleted !');
-      redirect(base_url() . 'sj/sj');
+      $id = $this->input->post('no_po');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view/?sj=' . $encrypt);
     }
   }
 
@@ -276,6 +303,26 @@ class Sj extends CI_Controller
     }
   }
 
+  public function sj_view_df()
+  {
+    $id = rawurldecode($this->encrypt->decode($_GET['sj']));
+
+    $where = array(
+      'no_id' => $id
+    );
+
+    $where2 = array(
+      'id_join' => $id
+    );
+
+    $data['title'] = 'Sj Df View';
+    $data['sj_user_df'] = $this->m_data->edit_data($where, 'sj_user_df')->result();
+    $data['sj_dfh'] = $this->m_data->edit_data($where2, 'sj_df')->result();
+    $this->load->view('dashboard/v_header', $data);
+    $this->load->view('sj/v_sj_view_df', $data);
+    $this->load->view('dashboard/v_footer');
+  }
+
   public function sj_update_df()
   {
     //$this->form_validation->set_rules('no_urut', 'No Urut', 'required');
@@ -296,10 +343,14 @@ class Sj extends CI_Controller
 
       $this->m_data->insert_data($data, 'sj_df');
       $this->session->set_flashdata('berhasil', 'Successfully added Desc : ' . $this->input->post('descript', TRUE) . '  !');
-      redirect(base_url() . 'sj/sj_df');
+      $id = $this->input->post('id');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
     } else {
       $this->session->set_flashdata('gagal', 'SJ Desc failed to add, Please repeat !');
-      redirect(base_url() . 'sj/sj_df');
+      $id = $this->input->post('id');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
     }
   }
 
@@ -326,10 +377,14 @@ class Sj extends CI_Controller
 
       $this->m_data->update_data($where, $data, 'sj_df');
       $this->session->set_flashdata('berhasil', 'Desc successfully Update, : ' . $this->input->post('descript', TRUE) . ' !');
-      redirect(base_url() . 'sj/sj_df');
+      $id = $this->input->post('id');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
     } else {
       $this->session->set_flashdata('gagal', 'SJ failed to Update, Please repeat !');
-      redirect(base_url() . 'sj/sj_df');
+      $id = $this->input->post('id');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
     }
   }
 
@@ -404,7 +459,9 @@ class Sj extends CI_Controller
       );
       $this->m_data->delete_data($where, 'sj_df');
       $this->session->set_flashdata('berhasil', 'Desc has been deleted !');
-      redirect(base_url() . 'sj/sj_df');
+      $id = $this->input->post('id');
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
     }
   }
 

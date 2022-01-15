@@ -29,7 +29,7 @@
           <i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
         </div>
       <?php } ?>
-      <div class="col-md-3" style="padding: 0;">
+      <div class="col-md-3 shadow" style="padding: 0;">
         <a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
           <i class="fa fa-plus"></i>&nbsp; Add</a>
       </div>

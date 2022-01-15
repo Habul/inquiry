@@ -74,7 +74,7 @@
 							</table>
 						</div>
 					</div>
-					<div class="col-md-3" style="padding: 0;">
+					<div class="col-md-3 shadow" style="padding: 0;">
 						<a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
 							<i class="fa fa-plus-square"></i>&nbsp; Add motorcycle</a>
 					</div><br />
