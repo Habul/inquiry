@@ -61,15 +61,15 @@
                   </tr>
                 </thead>
                 <?php
-                $query = $this->db->query("SELECT * FROM driver WHERE join_id=$u->no_id;");
+                $query = $this->db->where('join_id', $u->no_id)->get('driver');
                 foreach ($query->result() as $p) { ?>
                   <tr style="text-align:center">
                     <td><?php echo strtoupper($p->nama) ?></td>
                     <td><?php echo $p->tanggal; ?></td>
                     <td><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
                     <td style="text-align:center">
-                      <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
-                      <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+                      <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -111,15 +111,15 @@
                 </thead>
                 <?php
                 $no = 1;
-                $query = $this->db->query("SELECT * FROM history_vehicles WHERE join_id=$u->no_id;");
+                $query = $this->db->where('join_id', $u->no_id)->get('history_vehicles');
                 foreach ($query->result() as $p) { ?>
                   <tr>
                     <td><?php echo strtoupper($p->jenis) ?></td>
                     <td style="text-align:center"><?php echo $p->tanggal; ?></td>
                     <td style="text-align:center"><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
                     <td style="text-align:center">
-                      <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#history_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
-                      <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#history_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      <a class="btn-sm btn-warning" data-toggle="modal" data-target="#history_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+                      <a class="btn-sm btn-danger" data-toggle="modal" data-target="#history_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -134,6 +134,9 @@
           </div>
         <?php endforeach; ?>
         </div>
+        <div class="col-12 table-responsive-sm text-center">
+          <a href="<?php echo base_url() . 'driver/motor/' ?>" class="btn btn-default"><i class="fas fa-undo"></i> Back</a>
+        </div><br /><br />
       </div>
     </div>
   </section>

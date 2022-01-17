@@ -67,12 +67,12 @@
                 <?php foreach ($penting as $p) { ?>
                   <tr>
                     <td style="text-align:center"></td>
-                    <td><?php echo $p->judul; ?></td>
+                    <td><?php echo strtoupper($p->judul) ?></td>
                     <td style="text-align:center"><?php echo $p->addtime; ?></td>
                     <td style="text-align:center">
-                      <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
-                      <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_view<?php echo $p->no_id; ?>" title="View"><i class="fa fa-search"></i></a>
-                      <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+                      <a class="btn-sm btn-info" data-toggle="modal" data-target="#modal_view<?php echo $p->no_id; ?>" title="View"><i class="fa fa-search"></i></a>
+                      <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 <?php } ?>

@@ -61,7 +61,7 @@
                   </tr>
                 </thead>
                 <?php
-                $query = $this->db->query("SELECT * FROM driver WHERE join_id=$u->no_id;");
+                $query = $this->db->where('join_id', $u->no_id)->get('driver');
                 foreach ($query->result() as $p) { ?>
                   <tr style="text-align:center">
                     <td><?php echo strtoupper($p->nama) ?></td>
@@ -111,7 +111,7 @@
                 </thead>
                 <?php
                 $no = 1;
-                $query = $this->db->query("SELECT * FROM history_vehicles WHERE join_id=$u->no_id;");
+                $query = $this->db->where('join_id', $u->no_id)->get('history_vehicles');
                 foreach ($query->result() as $p) { ?>
                   <tr>
                     <td><?php echo strtoupper($p->jenis) ?></td>
@@ -134,6 +134,9 @@
           </div>
         <?php endforeach; ?>
         </div>
+        <div class="col-12 table-responsive-sm text-center">
+          <a href="<?php echo base_url() . 'driver/truck/' ?>" class="btn btn-default"><i class="fas fa-undo"></i> Back</a>
+        </div><br /><br />
       </div>
     </div>
   </section>

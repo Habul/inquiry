@@ -61,7 +61,7 @@
                     <th>Cust Name</th>
                     <th width="18%">Address</th>
                     <th>City</th>
-                    <th>Phone</th>
+                    <th width="12%">Phone</th>
                     <th width="13%">Action</th>
                   </tr>
                 </thead>

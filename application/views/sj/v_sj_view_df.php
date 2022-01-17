@@ -77,15 +77,15 @@
                 </thead>
                 <?php
                 $no = 1;
-                $query = $this->db->query("SELECT * FROM sj_df WHERE id_join=$p->no_id;");
+                $query = $this->db->where('id_join', $p->no_id)->get('sj_df');
                 foreach ($query->result() as $u) { ?>
                   <tr>
                     <td style="text-align:center"><?php echo $no++; ?></td>
                     <td><?php echo $u->descript; ?></td>
                     <td style="text-align:center"><?php echo $u->qty; ?></td>
                     <td style="text-align:center">
-                      <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_desc<?php echo $u->no_id; ?>" title="Edit Desc SJ"><i class="fa fa-edit"></i></a>
-                      <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del_desc<?php echo $u->no_id; ?>" title="Delete Desc SJ"><i class="fa fa-trash"></i></a>
+                      <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit_desc<?php echo $u->no_id; ?>" title="Edit Desc SJ"><i class="fa fa-edit"></i></a>
+                      <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_del_desc<?php echo $u->no_id; ?>" title="Delete Desc SJ"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 <?php } ?>
