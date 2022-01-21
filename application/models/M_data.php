@@ -12,35 +12,6 @@ class M_data extends CI_Model
     return $this->db->get($table);
   }
 
-  public function select_inquiry()
-  {
-    $sql = "SELECT a.sales,a.tanggal,a.inquiry_id,a.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,
-		a.ket_fu,a.cogs,b.currency as kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch 
-		FROM inquiry a, kurs b WHERE a.kurs=b.id_kurs";
-
-    $data = $this->db->query($sql);
-
-    return $data->result();
-  }
-
-  public function buffer()
-  {
-    $sql = "SELECT * FROM `buffer` WHERE status!='approve' AND status!='finish'";
-
-    $data = $this->db->query($sql);
-
-    return $data->result();
-  }
-
-  public function arshipbuffer()
-  {
-    $sql = "SELECT * FROM `buffer` WHERE status='approve' OR status='finish'";
-
-    $data = $this->db->query($sql);
-
-    return $data->result();
-  }
-
   // fungsi untuk menginput data ke database
   function insert_data($data, $table)
   {
@@ -106,17 +77,6 @@ class M_data extends CI_Model
     return $data->num_rows();
   }
 
-  public function select_all_inquiry()
-  {
-    $sql = "SELECT a.sales,a.tanggal,a.inquiry_id,b.brand,a.desc,a.qty,a.deadline,a.keter,a.request,
-		a.cek,a.fu1,a.ket_fu,a.cogs,c.currency as kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,
-		a.ket_purch,a.name_purch FROM inquiry a,MASTER b, kurs c WHERE a.brand=b.id_master AND a.kurs=c.id_kurs";
-
-    $data = $this->db->query($sql);
-
-    return $data->result();
-  }
-
   public function select_sjhs($no_po)
   {
     $sql = "SELECT sj_hs.no_id as no_id, sj_hs.no_po as no_po, sj_hs.descript as descript, sj_hs.qty as qty FROM sj_hs INNER JOIN sj_user 
@@ -145,7 +105,6 @@ class M_data extends CI_Model
 
     return $data->result();
   }
-
 
   public function select_by_brand()
   {
@@ -260,5 +219,33 @@ class M_data extends CI_Model
     $this->db->insert_batch('master', $data);
 
     return $this->db->affected_rows();
+  }
+
+  public function select_inquiry()
+  {
+    $sql = "SELECT a.sales,a.tanggal,a.inquiry_id,a.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,a.ket_fu,a.cogs,b.currency 
+    AS kurs,a.cogs_idr,a.reseller,a.new_seller,a.user,a.delivery,a.ket_purch,a.name_purch FROM inquiry a INNER JOIN kurs b ON a.kurs=b.id_kurs";
+
+    $data = $this->db->query($sql);
+
+    return $data->result();
+  }
+
+  public function buffer()
+  {
+    $sql = "SELECT * FROM `buffer` WHERE status!='approve' AND status!='finish'";
+
+    $data = $this->db->query($sql);
+
+    return $data->result();
+  }
+
+  public function arshipbuffer()
+  {
+    $sql = "SELECT * FROM `buffer` WHERE status='approve' OR status='finish'";
+
+    $data = $this->db->query($sql);
+
+    return $data->result();
   }
 }

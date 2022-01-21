@@ -53,6 +53,15 @@
       </ul>
 
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <div class="theme-switch-wrapper nav-link">
+            <label class="theme-switch" for="checkbox">
+              <input type="checkbox" id="checkbox" title="Dark Mode" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </li>
+
         <li class="nav-item dropdown">
           <?php if ($this->session->userdata('level') != "sales") {  ?>
             <?php
@@ -81,14 +90,6 @@
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
-      </li>
-      <li class="nav-item">
-        <div class="theme-switch-wrapper nav-link">
-          <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" title="Dark Mode" />
-            <span class="slider round"></span>
-          </label>
-        </div>
       </li>
 
       <li class="nav-item dropdown user-menu ">

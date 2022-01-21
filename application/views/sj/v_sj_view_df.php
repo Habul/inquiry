@@ -4,7 +4,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php foreach ($sj_user_df as $p) : ?>
-            <h1 class="m-0">Surat Jalan (No Do : <?php echo $p->no_delivery; ?>)</h1>
+            <h1 class="m-0">Surat Jalan (No Do : <?php echo str_replace("-", "/", $p->no_delivery); ?>)</h1>
             <small>Cust Name : <?php echo $p->cust_name ?> <br />
               Address : <?php echo $p->address ?> </small>
         </div>
