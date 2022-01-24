@@ -242,7 +242,7 @@
                   <li class="nav-item">
                     <a href="<?php echo base_url() . 'inquiry/inquiry_view' ?>" <?= $this->uri->uri_string() == 'inquiry/inquiry_view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Arship Inquiry</p>
+                      <p>Arsip Inquiry</p>
                     </a>
                   </li>
                 </ul>
@@ -271,7 +271,7 @@
                   <li class="nav-item">
                     <a href="<?php echo base_url() . 'buffer/buffer_view' ?>" <?= $this->uri->uri_string() == 'buffer/buffer_view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Arship Buffer</p>
+                      <p>Arsip Buffer</p>
                     </a>
                   </li>
                 </ul>
@@ -279,11 +279,11 @@
             <?php } ?>
             <li <?= $this->uri->segment(2) == 'data_order' ||
                   $this->uri->segment(2) == 'view' ||
-                  $this->uri->segment(2) == 'arship' ||
+                  $this->uri->segment(2) == 'arsip' ||
                   $this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
               <a href="#" <?= $this->uri->segment(2) == 'data_order' ||
                             $this->uri->segment(2) == 'view' ||
-                            $this->uri->segment(2) == 'arship' ||
+                            $this->uri->segment(2) == 'arsip' ||
                             $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
                 <i class="nav-icon fas fa-paper-plane"></i>
                 <p>Order & Delivery
@@ -298,9 +298,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="<?php echo base_url() . 'tracking/arship' ?>" <?= $this->uri->segment(2) == 'arship' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+                  <a href="<?php echo base_url() . 'tracking/arsip' ?>" <?= $this->uri->segment(2) == 'arsip' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Arship Order & Delivery</p>
+                    <p>Arsip Order & Delivery</p>
                   </a>
                 </li>
               </ul>

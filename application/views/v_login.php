@@ -31,7 +31,7 @@
         <div class="login-logo">
           <a href="#"><img src="<?php echo base_url() . 'gambar/website/Intisera2.png' ?>" style="width:250px;height:110px;"></a>
         </div>
-        <form action="<?php echo base_url() . 'login/aksi' ?>" id="loginform" method="post">
+        <form action="<?php echo base_url() . 'login/proses' ?>" id="loginform" method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
             <div class="input-group-append">

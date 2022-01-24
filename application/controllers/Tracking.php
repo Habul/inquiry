@@ -233,7 +233,7 @@ class Tracking extends CI_Controller
     }
   }
 
-  public function arship()
+  public function arsip()
   {
     $data['title'] = 'Arship Order & Tracking';
     $data['arship'] = $this->db->where('action', 'FINISH')->get('tracking')->result();

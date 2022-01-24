@@ -10,7 +10,7 @@ class It extends CI_Controller
 
     date_default_timezone_set('Asia/Jakarta');
 
-    $this->load->helper(array('form', 'url'));
+    $this->load->helper(array('form', 'url', 'date'));
     $this->load->model('m_data');
     $session = $this->session->userdata('status');
     if ($session == '') {
@@ -28,7 +28,6 @@ class It extends CI_Controller
     $this->load->view('dashboard/v_footer');
   }
 
-
   public function data_aksi()
   {
     $this->form_validation->set_rules('no_id', 'No Id', 'required');
@@ -39,7 +38,7 @@ class It extends CI_Controller
       $id = $this->input->post('no_id');
       $judul = $this->input->post('judul');
       $isi = $this->input->post('isi');
-      $addtime = $this->input->post('addtime');
+      $addtime = mdate('%Y-%m-%d %H:%i:%s');
 
       $data = array(
         'no_id' => $id,
@@ -86,7 +85,7 @@ class It extends CI_Controller
       $id = $this->input->post('no_id');
       $judul = $this->input->post('judul');
       $isi = $this->input->post('isi');
-      $addtime = $this->input->post('addtime');
+      $addtime = mdate('%Y-%m-%d %H:%i:%s');
 
       $where = array(
         'no_id' => $id

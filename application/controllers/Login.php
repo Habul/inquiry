@@ -13,39 +13,24 @@ class Login extends CI_Controller
     }
   }
 
-  public function aksi()
+  public function proses()
   {
-    $this->form_validation->set_rules('username', 'Username', 'trim|required');
-    $this->form_validation->set_rules('password', 'Password', 'required');
+    $user = $this->input->post('username');
+    $pass = $this->input->post('password');
 
-    if ($this->form_validation->run() != false) {
+    $cek = $this->db->get_where('pengguna', ['pengguna_username' => $user]);
 
-      $username = $this->input->post('username');
-      $password = $this->input->post('password');
+    if ($cek->num_rows() > 0) {
 
-      $where = array(
-        'pengguna_username' => $username,
-        'pengguna_password' => md5($password),
-        'pengguna_status' => 1
-      );
+      $hasil = $cek->row();
 
-      $this->load->model('m_data');
-
-      $cek = $this->m_data->cek_login('pengguna', $where)->num_rows();
-
-      if ($cek > 0) {
-
-        $data = $this->m_data->cek_login('pengguna', $where)->row();
-
-        $data_session = array(
-          'id' => $data->pengguna_id,
-          'username' => $data->pengguna_username,
-          'nama' => $data->pengguna_nama,
-          'foto' => $data->foto,
-          'level' => $data->pengguna_level,
-          'status' => 'telah_login'
-        );
-        $this->session->set_userdata($data_session);
+      if (password_verify($pass, $hasil->pengguna_password)) {
+        $this->session->set_userdata('id', $hasil->pengguna_id);
+        $this->session->set_userdata('username', $hasil->pengguna_username);
+        $this->session->set_userdata('nama', $hasil->pengguna_nama);
+        $this->session->set_userdata('foto', $hasil->foto);
+        $this->session->set_userdata('level', $hasil->pengguna_level);
+        $this->session->set_userdata('status', 'telah_login');
         redirect(base_url() . 'dashboard');
       } else {
         redirect(base_url() . 'login?alert=gagal');

@@ -100,11 +100,6 @@
           <div class="form-group">
             <label class="control-label col-xs-3">Judul *</label>
             <div class="col-xs-9">
-              <?php
-              $now = $this->load->helper('date');
-              $format = "%Y-%m-%d %H:%i:%s";
-              ?>
-              <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
               <input type="text" name="judul" class="form-control" placeholder="Input Judul.." required>
               <?php echo set_value('judul'); ?>
             </div>
@@ -151,11 +146,6 @@
             <div class="form-group">
               <label class="control-label col-xs-3">Judul</label>
               <div class="col-xs-9">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d %H:%i:%s";
-                ?>
-                <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
                 <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
                 <input type="text" name="judul" class="form-control" readonly value="<?php echo $p->judul; ?>" required>
               </div>
