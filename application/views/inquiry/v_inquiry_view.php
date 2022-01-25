@@ -17,21 +17,34 @@
   </div>
   <div class="container-fluid">
     <section class="content">
-      <?php if ($this->session->userdata('level') != "sales") {  ?>
-        <div class="col-md-3" style="padding: 0;">
-          <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="form-control btn btn-success"><i class="fa fa-download"></i></i> Export To Excel </a>
+
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h4 class="card-title"><i class="fa fa-search"></i> Filter Inquiry</h4>
         </div>
-      <?php }  ?>
-      <br />
+        <form action="" method="POST">
+          <div class="card-body">
+            <div class="row">
+              <div class="col form-group">
+                <label for="inputMulaiTanggal" class="font-weight-bold">Mulai Tanggal :</label>
+                <input type="date" id="inputMulaiTanggal" name="mulai_tanggal" class="form-control" name="mulai_tanggal" value="<?php echo date('Y-m-d', strtotime($mulai_tanggal)); ?>" required>
+              </div>
+              <div class="col form-group">
+                <label for="inputSampaiTanggal" class="font-weight-bold">Sampai Tanggal :</label>
+                <input type="date" id="inputSampaiTanggal" name="sampai_tanggal" class="form-control" name="sampai_tanggal" value="<?php echo date('Y-m-d', strtotime($sampai_tanggal)); ?>" required>
+              </div>
+            </div>
+            <button type="submit" class="col btn btn-primary sm-3">Tampilkan</button>
+          </div>
+        </form>
+      </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="card card-success card-outline">
             <div class="card-header">
               <h4 class="card-title"><i class="fa fa-book"></i> View Inquiry</h4>
               <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('inquiry/inquiry_view') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
@@ -41,7 +54,7 @@
               </div>
             </div>
             <div class="card-body">
-              <table id="example3" class="table table-bordered table-striped">
+              <table id="example3" class="table table-bordered table-striped table-sm">
                 <thead class="thead-dark" style="text-align:center">
                   <tr>
                     <th width="5%">No</th>
@@ -68,22 +81,20 @@
                     <td><?php echo $p->deadline; ?></td>
                     <td><?php echo $p->request; ?></td>
                     <td style="text-align:center">
-                      <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="View Detail"><i class="fa fa-eye"></i></a>
+                      <a class="btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="View Detail"><i class="fa fa-eye"></i></a>
                     </td>
                   </tr>
                 <?php } ?>
               </table>
             </div>
           </div>
-          <!-- /.box-body -->
+          <div>
+            <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="btn btn-success"><i class="fas fa-file-excel"></i> Export to excel</a>
+          </div></br />
         </div>
-        <!-- /.box -->
       </div>
-      <!-- /.col -->
   </div>
-  <!-- /.row -->
   </section>
-  <!-- /.content -->
 </div>
 
 <!-- ============ MODAL VIEW INQUIRY =============== -->

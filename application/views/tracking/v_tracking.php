@@ -85,7 +85,7 @@
                   </tr>
                 </thead>
                 <?php
-                $query = $this->db->query("SELECT * FROM tracking WHERE ACTION!='FINISH'");
+                $query = $this->db->where('action!=', 'FINISH')->get('tracking');
                 foreach ($query->result() as $p) {
                 ?>
                   <tr>
