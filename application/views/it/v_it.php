@@ -29,16 +29,12 @@
           <i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
         </div>
       <?php } ?>
-      <div class="col-md-3 shadow" style="padding: 0;">
-        <a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
-          <i class="fa fa-plus"></i>&nbsp; Add</a>
-      </div>
-      <br />
       <div class="row">
         <div class="col-md-12">
           <div class="card card-success card-outline">
             <div class="card-header">
-              <h4 class="card-title"><i class="fa fa-user-astronaut"></i> Data Penting IT</h4>
+              <h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
+                  <i class="fa fa-plus"></i>&nbsp; Add Data</a></h4>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('it/data') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
                   <i class="fas fa-sync-alt"></i>

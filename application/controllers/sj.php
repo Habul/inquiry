@@ -8,7 +8,7 @@ class Sj extends CI_Controller
   {
     parent::__construct();
     date_default_timezone_set('Asia/Jakarta');
-    $this->load->helper(array('form', 'url'));
+    $this->load->helper(array('form', 'url', 'date'));
     $this->load->model('m_data');
     $session = $this->session->userdata('status');
     if ($session == '') {
@@ -36,7 +36,6 @@ class Sj extends CI_Controller
     $this->form_validation->set_rules('address', 'Address', 'required');
     $this->form_validation->set_rules('city', 'City', 'required');
     $this->form_validation->set_rules('phone', 'Phone', 'required');
-    $this->form_validation->set_rules('addtime', 'Addtime', 'required');
 
     if ($this->form_validation->run() != false) {
 
@@ -48,7 +47,7 @@ class Sj extends CI_Controller
       $address = $this->input->post('address');
       $city = $this->input->post('city');
       $phone = $this->input->post('phone');
-      $addtime = $this->input->post('addtime');
+      $addtime = mdate("%Y-%m-%d %H:%i:%s");
 
       $data = array(
         'no_delivery' => $no_delivery,
@@ -159,7 +158,7 @@ class Sj extends CI_Controller
       $address = $this->input->post('address');
       $city = $this->input->post('city');
       $phone = $this->input->post('phone');
-      $addtime2 = $this->input->post('addtime2');
+      $addtime2 = mdate("%Y-%m-%d %H:%i:%s");
 
       if ($this->form_validation->run() != false) {
         $data = array(
@@ -268,7 +267,6 @@ class Sj extends CI_Controller
     $this->form_validation->set_rules('address', 'Address', 'required');
     $this->form_validation->set_rules('city', 'City', 'required');
     $this->form_validation->set_rules('phone', 'Phone', 'required');
-    $this->form_validation->set_rules('addtime', 'Addtime', 'required');
 
     if ($this->form_validation->run() != false) {
 
@@ -281,7 +279,7 @@ class Sj extends CI_Controller
       $address = $this->input->post('address');
       $city = $this->input->post('city');
       $phone = $this->input->post('phone');
-      $addtime = $this->input->post('addtime');
+      $addtime = mdate("%Y-%m-%d %H:%i:%s");
 
       $data = array(
         'no_delivery' => $nomor_del,
@@ -409,10 +407,10 @@ class Sj extends CI_Controller
       $address = $this->input->post('address');
       $city = $this->input->post('city');
       $phone = $this->input->post('phone');
-      $addtime2 = $this->input->post('addtime2');
+      $addtime2 = mdate("%Y-%m-%d %H:%i:%s");
+
       if ($this->form_validation->run() != false) {
         $data = array(
-
           'date_delivery' => $date_delivery,
           'due_date' => $due_date,
           'cust_name' => $cust_name,

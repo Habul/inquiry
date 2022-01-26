@@ -4,7 +4,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0">Buffer</h1>
-          <small>Data yang sudah di <b>APPROVE / FINISH</b> di pindahkan ke menu <b>Arship Buffer</b></small>
+          <small>Data yang sudah di <b>APPROVE / FINISH</b> di pindahkan ke menu <b>Arsip Buffer</b></small>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -29,34 +29,27 @@
           <i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
         </div>
       <?php } ?>
-      <?php if ($this->session->userdata('level') != "purchase") {  ?>
-        <?php if ($this->session->userdata('level') != "warehouse") {  ?>
-          <div class="col-md-3" style="padding: 0;">
-            <a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_buffer">
-              <i class="fa fa-plus-square"></i> Tambah buffer stock</a>
-          </div>
-        <?php }  ?>
-      <?php }  ?>
-      <br />
       <div class="row">
         <div class="col-md-12">
           <div class="card card-success card-outline">
-            <div class="card-header">
-              <h4 class="card-title"><i class="fa fa-database"></i> List Buffer</h4>
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('buffer/buffer') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                  <i class="fas fa-expand"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-            </div>
+            <?php if ($this->session->userdata('level') != "purchase") {  ?>
+              <?php if ($this->session->userdata('level') != "warehouse") {  ?>
+                <div class="card-header">
+                  <h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add_buffer">
+                      <i class="fa fa-plus-square"></i> Add buffer stock</a></h4>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+              <?php }  ?>
+            <?php }  ?>
             <div class="card-body">
-              <table id="index1" class="table table table-bordered table-hover">
+              <table id="index1" class="table table table-bordered table-hover table-sm">
                 <thead class="thead-dark" style="text-align:center">
                   <tr>
                     <th width="6%">No</th>
@@ -76,7 +69,7 @@
                 ?>
                   <tr>
                     <td style="text-align:center"><?php echo $p->id_buffer; ?></td>
-                    <td><?php echo $p->sales; ?></td>
+                    <td><?php echo strtoupper($p->sales) ?></td>
                     <td><?php echo $p->tanggal; ?></td>
                     <td><?php echo $p->brand; ?></td>
                     <td><?php echo $p->deskripsi; ?></td>
@@ -90,11 +83,11 @@
                     <?php if ($this->session->userdata('level') != "purchase") { ?>
                       <td style="text-align:center">
                         <?php if ($this->session->userdata('level') != "warehouse") { ?>
-                          <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+                          <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>" title="Edit"><i class="fa fa-edit"></i></a>
                         <?php }  ?>
                         <?php if ($this->session->userdata('level') != "sales") { ?>
-                          <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-plus-square" title="Update"></i></a>
-                          <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_buffer; ?>"><i class="fa fa-trash" title="Delete"></i></a>
+                          <a class="btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-plus-square" title="Update"></i></a>
+                          <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_buffer; ?>"><i class="fa fa-trash" title="Delete"></i></a>
                       </td>
                   </tr>
                 <?php }  ?>

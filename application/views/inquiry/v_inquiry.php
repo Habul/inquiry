@@ -4,7 +4,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0">Inquiry</h1>
-          <small>Inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>Arship Inquiry</b></small>
+          <small>Inquiry yang sudah di jawab Purchase tidak di munculkan, di pindahkan ke menu <b>Arsip Inquiry</b></small>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -29,34 +29,27 @@
           <i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
         </div>
       <?php } ?>
-      <?php if ($this->session->userdata('level') != "warehouse") {  ?>
-        <?php if ($this->session->userdata('level') != "purchase") {  ?>
-          <div class="col-md-3" style="padding: 0;">
-            <a class="form-control btn btn-success" data-toggle="modal" data-target="#modal_add_inquiry">
-              <i class="fa fa-plus"></i>&nbsp; Tambah Inquiry</a>
-          </div>
-        <?php }  ?>
-      <?php }  ?>
-      </br>
       <div class="row">
         <div class="col-md-12">
           <div class="card card-success card-outline">
-            <div class="card-header">
-              <h4 class="card-title"><i class="fa fa-book"></i> List Inquiry</h4>
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('inquiry/inquiry') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                  <i class="fas fa-expand"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-            </div>
+            <?php if ($this->session->userdata('level') != "warehouse") {  ?>
+              <?php if ($this->session->userdata('level') != "purchase") {  ?>
+                <div class="card-header">
+                  <h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add_inquiry">
+                      <i class="fa fa-plus"></i>&nbsp; Add Inquiry</a></h4>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+              <?php }  ?>
+            <?php }  ?>
             <div class="card-body">
-              <table id="example6" class="table table-bordered table-hover">
+              <table id="example6" class="table table-bordered table-hover table-sm">
                 <thead class="thead-dark" style="text-align:center">
                   <tr>
                     <th width="5%">No</th>
@@ -87,12 +80,12 @@
                     <?php if ($this->session->userdata('level') != "warehouse") { ?>
                       <td style="text-align:center">
                         <?php if ($this->session->userdata('level') != "purchase") { ?>
-                          <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+                          <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
                         <?php }  ?>
                         <?php if ($this->session->userdata('level') != "sales") { ?>
                           <?php $encrypturl = urlencode($this->encrypt->encode($p->inquiry_id)) ?>
-                          <a href="<?php echo base_url() . 'inquiry/inquiry_update_prch/?id=' . $encrypturl; ?>" class="btn btn-primary btn-sm" title="Update inquiry"> <i class="fa fa-edit"></i> </a>
-                          <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->inquiry_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                          <a href="<?php echo base_url() . 'inquiry/inquiry_update_prch/?id=' . $encrypturl; ?>" class="btn-sm btn-primary" title="Update inquiry"><i class="fa fa-edit"></i></a>
+                          <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->inquiry_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                       </td>
                   </tr>
                 <?php }  ?>

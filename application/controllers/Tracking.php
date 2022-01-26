@@ -235,7 +235,7 @@ class Tracking extends CI_Controller
 
   public function arsip()
   {
-    $data['title'] = 'Arship Order & Tracking';
+    $data['title'] = 'Arsip Order & Tracking';
     $data['arship'] = $this->db->where('action', 'FINISH')->get('tracking')->result();
     $data['driver'] = $this->db->select('pengguna_nama')->where('pengguna_level', 'driver')->get('pengguna')->result();
     $this->load->view('dashboard/v_header', $data);

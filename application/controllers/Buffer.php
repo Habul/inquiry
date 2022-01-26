@@ -167,7 +167,7 @@ class Buffer extends CI_Controller
 
   public function buffer_view()
   {
-    $data['title'] = 'Arship Buffer';
+    $data['title'] = 'Arsip Buffer';
     $data['buffer'] = $this->m_data->arshipbuffer();
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('buffer/v_buffer_view', $data);

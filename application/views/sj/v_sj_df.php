@@ -29,20 +29,13 @@
           <i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
         </div>
       <?php } ?>
-      <div class="col-md-3 shadow" style="padding: 0;">
-        <a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add_sj">
-          <i class="fa fa-plus"></i>&nbsp; Add SJ</a>
-      </div>
-      <br />
       <div class="row">
         <div class="col-md-12">
           <div class="card card-success card-outline">
             <div class="card-header">
-              <h4 class="card-title"><i class="fa fa-edit"></i> Surat Jalan DF</h4>
+              <h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add_sj">
+                  <i class="fa fa-plus"></i>&nbsp; Add Surat Jalan</a></h4>
               <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('sj/sj_df') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
@@ -52,7 +45,7 @@
               </div>
             </div>
             <div class="card-body">
-              <table id="example9" class="table table-bordered table-striped">
+              <table id="example9" class="table table-borderless table-striped">
                 <thead class="thead-dark" style="text-align:center">
                   <tr>
                     <th width="7%">Do No</th>
@@ -78,9 +71,9 @@
                     <td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', 'null', trim($p->phone)), 1); ?></td>
                     <td style="text-align:center">
                       <?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
-                      <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_id; ?>" title="Edit SJ"><i class="fa fa-pencil-alt"></i></a>
-                      <a href="<?php echo base_url() . 'sj/sj_view_df/?sj=' . $encrypturl; ?>" class="btn btn-primary btn-sm" title="Add Desc, Detail & Print""><i class=" fa fa-search"></i></a>
-                      <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_id; ?>" title="Edit SJ"><i class="fa fa-pencil-alt"></i></a>
+                      <a href="<?php echo base_url() . 'sj/sj_view_df/?sj=' . $encrypturl; ?>" class="btn-sm btn-primary" title="Add Desc, Detail & Print""><i class=" fa fa-search"></i></a>
+                      <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -105,9 +98,9 @@
       </div>
       <form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_aksi_df') ?>">
         <div class="modal-body">
-          <div class="form-group">
-            <label class="control-label col-xs-3">Delivery Order No*</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Do No *</label>
+            <div class="col-sm-10">
               <?php
               $cek = $this->db->select_max('no_id')->get('sj_user_df')->row();
               ?>
@@ -115,49 +108,44 @@
               <?php echo form_error('no_delivery'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Date Delivery *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Date *</label>
+            <div class="col-sm-10">
               <input type="date" name="date_delivery" class="form-control" required>
               <?php echo form_error('date_delivery'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Due Date *</label>
-            <div class="col-xs-9">
-              <?php
-              $this->load->helper('date');
-              $format = "%Y-%m-%d %H:%i:%s";
-              ?>
-              <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Due Date *</label>
+            <div class="col-sm-10">
               <input type="date" name="due_date" class="form-control" required>
               <?php echo form_error('due_date'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Cust Name *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cust *</label>
+            <div class="col-sm-10">
               <input type="text" name="cust_name" class="form-control" placeholder="Input Cust Name..." required>
               <?php echo form_error('cust_name'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Address *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Address *</label>
+            <div class="col-sm-10">
               <textarea name="address" class="form-control" maxlength="150" placeholder="Input Address.." required></textarea>
               <?php echo form_error('address'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">City *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">City *</label>
+            <div class="col-sm-10">
               <input type="text" name="city" class="form-control" placeholder="Input City..." required>
               <?php echo form_error('city'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Phone *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Phone *</label>
+            <div class="col-sm-10">
               <input type="number" name="phone" class="form-control" placeholder="Input No Phone.." data-mask data-mask required>
               <?php echo form_error('phone'); ?>
             </div>
@@ -187,56 +175,51 @@
         </div>
         <form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_edit_df') ?>">
           <div class="modal-body">
-            <div class="form-group">
-              <label class="control-label col-xs-3">Delivery Order No *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Do No *</label>
+              <div class="col-sm-10">
                 <input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
                 <input type="text" name="no_delivery" class="form-control" readonly value="<?php echo str_replace("-", "/", $p->no_delivery); ?>">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Date Delivery *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Date *</label>
+              <div class="col-sm-10">
                 <input type="date" name="date_delivery" class="form-control" value="<?php echo $p->date_delivery; ?>" required>
                 <?php echo form_error('date_delivery'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Due Date *</label>
-              <div class="col-xs-9">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d %H:%i:%s";
-                ?>
-                <input type="hidden" name="addtime2" readonly class="form-control" value="<?php echo mdate($format); ?>">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Due Date *</label>
+              <div class="col-sm-10">
                 <input type="date" name="due_date" class="form-control" value="<?php echo $p->due_date; ?>" required>
                 <?php echo form_error('due_date'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Cust Name *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Cust *</label>
+              <div class="col-sm-10">
                 <input type="text" name="cust_name" class="form-control" value="<?php echo $p->cust_name; ?>" required>
                 <?php echo form_error('cust_name'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Address *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Address *</label>
+              <div class="col-sm-10">
                 <textarea name="address" class="form-control" maxlength="150" required><?php echo $p->address; ?></textarea>
                 <?php echo form_error('address'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">City *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">City *</label>
+              <div class="col-sm-10">
                 <input type="text" name="city" class="form-control" value="<?php echo $p->city; ?>" required>
                 <?php echo form_error('city'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Phone *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Phone *</label>
+              <div class="col-sm-10">
                 <input type="text" name="phone" class="form-control" value="<?php echo $p->phone; ?>" required>
                 <?php echo form_error('phone'); ?>
               </div>

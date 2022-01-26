@@ -84,6 +84,7 @@
     });
   })
 </script>
+
 <script>
   $(document).ready(function() {
     var t = $('#index1').DataTable({

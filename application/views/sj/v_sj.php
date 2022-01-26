@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="card-body">
-              <table id="example6" class="table table-bordered table-striped">
+              <table id="example6" class="table table-borderless table-striped">
                 <thead class="thead-dark" style="text-align:center">
                   <tr>
                     <th width="14%">Do No</th>
@@ -80,9 +80,9 @@
                     <td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', 'null', trim($p->phone)), 1); ?></td>
                     <td style="text-align:center">
                       <?php $encrypturl = urlencode($this->encrypt->encode($p->no_po)) ?>
-                      <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_po; ?>" title="Edit SJ"><i class="fa fa-pencil-alt"></i></a>
-                      <a href="<?php echo base_url() . 'sj/sj_view/?sj=' . $encrypturl; ?>" class="btn btn-primary btn-sm" title="Add Desc, Detail & Print""><i class=" fa fa-search"></i></a>
-                      <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_po; ?>" title="Edit SJ"><i class="fa fa-pencil-alt"></i></a>
+                      <a href="<?php echo base_url() . 'sj/sj_view/?sj=' . $encrypturl; ?>" class="btn-sm btn-primary" title="Add Desc, Detail & Print""><i class=" fa fa-search"></i></a>
+                      <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_po; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -125,11 +125,6 @@
           <div class="form-group">
             <label class="control-label col-xs-3">Due Date *</label>
             <div class="col-xs-9">
-              <?php
-              $now = $this->load->helper('date');
-              $format = "%Y-%m-%d %H:%i:%s";
-              ?>
-              <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
               <input type="date" name="due_date" class="form-control" required>
               <?php echo form_error('due_date'); ?>
             </div>
@@ -211,11 +206,6 @@
             <div class="form-group">
               <label class="control-label col-xs-3">Due Date *</label>
               <div class="col-xs-9">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d %H:%i:%s";
-                ?>
-                <input type="hidden" name="addtime2" readonly class="form-control" value="<?php echo mdate($format); ?>">
                 <input type="date" name="due_date" class="form-control" value="<?php echo $p->due_date; ?>" required>
                 <?php echo form_error('due_date'); ?>
               </div>

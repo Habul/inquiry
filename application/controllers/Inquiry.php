@@ -3,6 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Csv;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\Writer\Word2007;
 
 class Inquiry extends CI_Controller
 {
@@ -230,7 +233,7 @@ class Inquiry extends CI_Controller
       'fu1 !=' => NULL
     );
 
-    $data['title'] = 'Arship Inquiry';
+    $data['title'] = 'Arsip Inquiry';
     $data['inquiry'] = $this->m_data->select_inquiry();
     $data['view_inquiry'] = $this->m_data->edit_data($where, 'inquiry')->result();
     $this->load->view('dashboard/v_header', $data);
@@ -240,7 +243,6 @@ class Inquiry extends CI_Controller
 
   public function inquiry_export()
   {
-    $this->load->model('m_data');
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setCellValue('A1', 'ID Inquiry');
@@ -297,6 +299,89 @@ class Inquiry extends CI_Controller
 
     header('Content-Type: application/vnd.ms-excel');
     header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+    header('Cache-Control: max-age=0');
+
+    $writer->save('php://output');
+  }
+
+  public function inquiry_export_csv()
+  {
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'ID Inquiry');
+    $sheet->setCellValue('B1', 'Nama Sales');
+    $sheet->setCellValue('C1', 'Tanggal');
+    $sheet->setCellValue('D1', 'Brand Produk');
+    $sheet->setCellValue('E1', 'Desc');
+    $sheet->setCellValue('F1', 'Qty');
+    $sheet->setCellValue('G1', 'Deadline');
+    $sheet->setCellValue('H1', 'Keter Sales');
+    $sheet->setCellValue('I1', 'Request');
+    $sheet->setCellValue('J1', 'Check');
+    $sheet->setCellValue('K1', 'Follow Up');
+    $sheet->setCellValue('L1', 'Keter Fu');
+    $sheet->setCellValue('M1', 'Cogs');
+    $sheet->setCellValue('N1', 'Kurs');
+    $sheet->setCellValue('O1', 'Cogs IDR');
+    $sheet->setCellValue('P1', 'Reseller');
+    $sheet->setCellValue('Q1', 'New Seller');
+    $sheet->setCellValue('R1', 'User');
+    $sheet->setCellValue('S1', 'Delivery');
+    $sheet->setCellValue('T1', 'Keter Purchase');
+    $sheet->setCellValue('U1', 'Nama Purchase');
+
+
+    $data = $this->m_data->select_inquiry();
+    $x = 2;
+    foreach ($data as $row) {
+      $sheet->setCellValue('A' . $x, $row->inquiry_id);
+      $sheet->setCellValue('B' . $x, $row->sales);
+      $sheet->setCellValue('C' . $x, $row->tanggal);
+      $sheet->setCellValue('D' . $x, $row->brand);
+      $sheet->setCellValue('E' . $x, $row->desc);
+      $sheet->setCellValue('E' . $x, $row->qty);
+      $sheet->setCellValue('G' . $x, $row->deadline);
+      $sheet->setCellValue('H' . $x, $row->keter);
+      $sheet->setCellValue('I' . $x, $row->request);
+      $sheet->setCellValue('J' . $x, $row->cek);
+      $sheet->setCellValue('K' . $x, $row->fu1);
+      $sheet->setCellValue('L' . $x, $row->ket_fu);
+      $sheet->setCellValue('M' . $x, $row->cogs);
+      $sheet->setCellValue('N' . $x, $row->kurs);
+      $sheet->setCellValue('O' . $x, $row->cogs_idr);
+      $sheet->setCellValue('P' . $x, $row->reseller);
+      $sheet->setCellValue('Q' . $x, $row->new_seller);
+      $sheet->setCellValue('R' . $x, $row->user);
+      $sheet->setCellValue('S' . $x, $row->delivery);
+      $sheet->setCellValue('T' . $x, $row->ket_purch);
+      $sheet->setCellValue('U' . $x, $row->name_purch);
+      $x++;
+    }
+    $writer = new Csv($spreadsheet);
+    $filename = 'Data Inquiry';
+
+    header("Content-type: application/csv");
+    header('Content-Disposition: attachment;filename="' . $filename . '.csv"');
+    header('Cache-Control: max-age=0');
+
+    $writer->save('php://output');
+  }
+
+  public function inquiry_export_word()
+  {
+    $phpWord = new PhpWord();
+    $section = $phpWord->addSection();
+    $section->addText(
+      '"Great achievement is usually born of great sacrifice, '
+        . 'and is never the result of selfishness." '
+        . '(Napoleon Hill)',
+      array('name' => 'Tahoma', 'size' => 10)
+    );
+
+    $writer = new Word2007($phpWord);
+    $filename = "Test";
+    header('Content-Type: application/msword');
+    header('Content-Disposition: attachment;filename="' . $filename . '.docx"');
     header('Cache-Control: max-age=0');
 
     $writer->save('php://output');
