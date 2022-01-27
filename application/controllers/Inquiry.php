@@ -197,7 +197,6 @@ class Inquiry extends CI_Controller
           'qty' => $qty,
           'deadline' => $deadline,
           'keter' => $keter
-
         );
       }
 

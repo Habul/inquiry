@@ -238,6 +238,124 @@
   });
 </script>
 <script>
+  var start_date;
+  var end_date;
+  var DateFilterFunction = (function(oSettings, aData, iDataIndex) {
+    var dateStart = parseDateValue(start_date);
+    var dateEnd = parseDateValue(end_date);
+    var evalDate = parseDateValue(aData[6]);
+    if ((isNaN(dateStart) && isNaN(dateEnd)) ||
+      (isNaN(dateStart) && evalDate <= dateEnd) ||
+      (dateStart <= evalDate && isNaN(dateEnd)) ||
+      (dateStart <= evalDate && evalDate <= dateEnd)) {
+      return true;
+    }
+    return false;
+  });
+
+  function parseDateValue(rawDate) {
+    var dateArray = rawDate.split("/");
+    var parsedDate = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0]);
+    return parsedDate;
+  }
+
+  $(document).ready(function() {
+    var $dTable = $('#filter1').DataTable({
+      "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+      "responsive": true,
+      "lengthChange": true,
+      "order": [
+        [2, "desc"]
+      ]
+    });
+
+    $("div.datesearchbox").html('<div class="input-group col-6"> <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div><input type="text" class="form-control form-control-sm pull-right" id="datesearch" placeholder="Filter by deadline range.."> </div > ');
+
+    document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";
+
+    $('#datesearch').daterangepicker({
+      autoUpdateInput: false
+    });
+
+    $('#datesearch').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+      start_date = picker.startDate.format('DD/MM/YYYY');
+      end_date = picker.endDate.format('DD/MM/YYYY');
+      $.fn.dataTableExt.afnFiltering.push(DateFilterFunction);
+      $dTable.draw();
+    });
+
+    $('#datesearch').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+      start_date = '';
+      end_date = '';
+      $.fn.dataTable.ext.search.splice($.fn.dataTable.ext.search.indexOf(DateFilterFunction, 1));
+      $dTable.draw();
+    });
+  });
+</script>
+<script>
+  var start_date;
+  var end_date;
+  var DateFilterFunction = (function(oSettings, aData, iDataIndex) {
+    var dateStart = parseDateValue(start_date);
+    var dateEnd = parseDateValue(end_date);
+    var evalDate = parseDateValue(aData[2]);
+    if ((isNaN(dateStart) && isNaN(dateEnd)) ||
+      (isNaN(dateStart) && evalDate <= dateEnd) ||
+      (dateStart <= evalDate && isNaN(dateEnd)) ||
+      (dateStart <= evalDate && evalDate <= dateEnd)) {
+      return true;
+    }
+    return false;
+  });
+
+  function parseDateValue(rawDate) {
+    var dateArray = rawDate.split("/");
+    var parsedDate = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0]);
+    return parsedDate;
+  }
+
+  $(document).ready(function() {
+    var $dTable = $('#filter2').DataTable({
+      "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+      "responsive": true,
+      "lengthChange": true,
+      "order": [
+        [2, "desc"]
+      ]
+    });
+
+    $("div.datesearchbox").html('<div class="input-group col-6"> <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div><input type="text" class="form-control form-control-sm pull-right" id="datesearch" placeholder="Filter by deadline range.."> </div > ');
+
+    document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";
+
+    $('#datesearch').daterangepicker({
+      autoUpdateInput: false
+    });
+
+    $('#datesearch').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+      start_date = picker.startDate.format('DD/MM/YYYY');
+      end_date = picker.endDate.format('DD/MM/YYYY');
+      $.fn.dataTableExt.afnFiltering.push(DateFilterFunction);
+      $dTable.draw();
+    });
+
+    $('#datesearch').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+      start_date = '';
+      end_date = '';
+      $.fn.dataTable.ext.search.splice($.fn.dataTable.ext.search.indexOf(DateFilterFunction, 1));
+      $dTable.draw();
+    });
+  });
+</script>
+<script>
   var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
   var donutData = {
     labels: [<?php
@@ -441,49 +559,32 @@
   })
 </script>
 <script>
-  $(function() {
-    $('#summernote').summernote()
-  })
-  $(function() {
-    $('#summernoteedit').summernote()
-  })
+  $('#dropping').summernote({
+    dialogsInBody: true
+  });
 </script>
 <script>
   $(function() {
-    //Initialize Select2 Elements
     $('.select2').select2()
-
-    //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     })
-
-    //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', {
       'placeholder': 'dd/mm/yyyy'
     })
-    //Datemask2 mm/dd/yyyy
     $('#datemask2').inputmask('mm/dd/yyyy', {
       'placeholder': 'mm/dd/yyyy'
     })
-    //Money Euro
     $('[data-mask]').inputmask()
-
-    //Date picker
     $('#reservationdate').datetimepicker({
       format: 'L'
     });
-
-    //Date and time picker
     $('#reservationdatetime').datetimepicker({
       icons: {
         time: 'far fa-clock'
       }
     });
-
-    //Date range picker
     $('#reservation').daterangepicker()
-    //Date range picker with time picker
     $('#reservationtime').daterangepicker({
       timePicker: true,
       timePickerIncrement: 30,
@@ -491,7 +592,6 @@
         format: 'MM/DD/YYYY hh:mm A'
       }
     })
-    //Date range as a button
     $('#daterange-btn').daterangepicker({
         ranges: {
           'Today': [moment(), moment()],
@@ -508,28 +608,18 @@
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
       }
     )
-
-    //Timepicker
     $('#timepicker').datetimepicker({
       format: 'LT'
     })
-
-    //Bootstrap Duallistbox
     $('.duallistbox').bootstrapDualListbox()
-
-    //Colorpicker
     $('.my-colorpicker1').colorpicker()
-    //color picker with addon
     $('.my-colorpicker2').colorpicker()
-
     $('.my-colorpicker2').on('colorpickerChange', function(event) {
       $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
     })
-
     $("input[data-bootstrap-switch]").each(function() {
       $(this).bootstrapSwitch('state', $(this).prop('checked'));
     })
-
   })
 </script>
 <script>

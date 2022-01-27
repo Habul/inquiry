@@ -33,8 +33,8 @@
         <div class="col-md-12">
           <div class="card card-success card-outline">
             <div class="card-header">
-              <h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
-                  <i class="fa fa-plus"></i>&nbsp; Add Data</a></h4>
+              <h6 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
+                  <i class="fa fa-plus"></i>&nbsp; Add Data</a></h6>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('it/data') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
                   <i class="fas fa-sync-alt"></i>
@@ -96,7 +96,7 @@
           <div class="form-group">
             <label class="control-label col-xs-3">Judul *</label>
             <div class="col-xs-9">
-              <input type="text" name="judul" class="form-control" placeholder="Input Judul.." required>
+              <input type="text" name="judul" class="form-control form-control-border" placeholder="Input Judul.." required>
               <?php echo set_value('judul'); ?>
             </div>
           </div>
@@ -143,7 +143,7 @@
               <label class="control-label col-xs-3">Judul</label>
               <div class="col-xs-9">
                 <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-                <input type="text" name="judul" class="form-control" readonly value="<?php echo $p->judul; ?>" required>
+                <input type="text" name="judul" class="form-control form-control-border" readonly value="<?php echo $p->judul; ?>" required>
               </div>
             </div>
             <div class="form-group">
@@ -165,7 +165,7 @@
             <div class="form-group">
               <label class="control-label col-xs-3"></label>
               <a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" download title="Download Attachment" alt="">
-                <img src="<?php echo base_url() . 'gambar/datait/paperclip-solid.svg' ?>" width="3%" onerror="this.style.display='none'" /></a>
+                <img src="<?php echo base_url() . 'gambar/datait/paperclip-solid.svg' ?>" width="2%" onerror="this.style.display='none'" /></a>
             </div>
           </div>
           <div class="modal-footer justify-content-between">
@@ -207,7 +207,7 @@
           <div class="form-group">
             <div class="col-xs-9">
               <a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" download title="Download Attachment" alt="#">
-                <img src="<?php echo base_url() . 'gambar/datait/paperclip-solid.svg' ?>" width="3%" onerror="this.style.display='none'" /></a>
+                <img src="<?php echo base_url() . 'gambar/datait/paperclip-solid.svg' ?>" width="2%" onerror="this.style.display='none'" /></a>
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="card-body">
-            <table id="index1" class="table table-bordered table-striped table-sm">
+            <table id="filter2" class="table table-bordered table-striped table-sm">
               <thead class="thead-dark" style="text-align:center">
                 <tr>
                   <th width="6%">No</th>
@@ -55,7 +55,7 @@
                 <tr>
                   <td style="text-align:center"><?php echo $p->id_buffer; ?></td>
                   <td><?php echo $p->sales; ?></td>
-                  <td><?php echo $p->tanggal; ?></td>
+                  <td><?php echo  date('d/m/Y', strtotime($p->tanggal)); ?></td>
                   <td><?php echo $p->brand; ?></td>
                   <td><?php echo $p->deskripsi; ?></td>
                   <td style="text-align:center"><?php echo $p->qty; ?></td>
@@ -70,7 +70,7 @@
             </table>
             <?php if ($this->session->userdata('level') != "sales") {  ?>
               <div>
-                <a href="<?php echo base_url('buffer/buffer_export'); ?>" class="btn btn-success" title="Export to Excel"><i class="fas fa-file-excel"></i></i> Excel</a>
+                <a href="<?php echo base_url('buffer/buffer_export'); ?>" class="btn btn-warning col-1" title="Export to Excel"><i class="fas fa-file-excel"></i></i> Excel</a>
               </div>
             <?php }  ?>
           </div>

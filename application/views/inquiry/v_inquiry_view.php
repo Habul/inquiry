@@ -18,39 +18,6 @@
 
   <div class="container-fluid">
     <section class="content">
-      <div class="card card-primary card-outline collapsed-card shadow">
-        <div class="card-header">
-          <h4 class="card-title"><i class="fa fa-search"></i> Filter Inquiry</h4>
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-              <i class="fas fa-plus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div>
-        <div class="card-body">
-          <form class="form-horizontal" action="<?php echo base_url('inquiry/inquiry_detail') ?>" method="POST">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Minimal</label>
-                  <input type="date" id="min" class="form-control" name="min" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Multiple</label>
-                  <input type="date" id="max" class="form-control" name="max" required>
-                </div>
-              </div>
-              <button type="submit" class="col btn btn-primary sm-3">Tampilkan</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
       <div class="row">
         <div class="col-md-12">
           <div class="card card-success card-outline">
@@ -66,7 +33,7 @@
               </div>
             </div>
             <div class="card-body">
-              <table id="example3" class="table table-bordered table-striped table-sm">
+              <table id="filter1" class="table table-bordered table-striped table-sm">
                 <thead class="thead-dark" style="text-align:center">
                   <tr>
                     <th width="5%">No</th>
@@ -90,7 +57,7 @@
                     <td><?php echo $p->brand; ?></td>
                     <td><?php echo $p->desc; ?></td>
                     <td style="text-align:center"><?php echo $p->qty; ?></td>
-                    <td><?php echo $p->deadline; ?></td>
+                    <td><?php echo date('d/m/Y', strtotime($p->deadline)); ?></td>
                     <td><?php echo $p->request; ?></td>
                     <td style="text-align:center">
                       <a class="btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="View Detail"><i class="fa fa-search"></i></a>
@@ -99,10 +66,10 @@
                 <?php } ?>
               </table>
               <div>
-                <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="btn btn-warning" title="Export to Excel"><i class="fas fa-file-excel"></i> Excel</a>
-                <a href="<?php echo base_url('inquiry/inquiry_export_word'); ?>" class="btn btn-secondary" title="Export to Word"><i class="fas fa-file-word"></i> Word</a>
-                <a href="<?php echo base_url('inquiry/inquiry_export_csv'); ?>" class="btn btn-primary" title="Export to Csv"><i class="fas fa-file-csv"></i> Csv</a>
-                <a href="<?php echo base_url('inquiry/inquiry_export_pdf'); ?>" class="btn btn-danger" title="Export to Pdf"><i class="fas fa-file-pdf"></i> Pdf</a>
+                <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="btn btn-warning col-1" title="Export to Excel"><i class="fas fa-file-excel"></i> Excel</a>
+                <a href="<?php echo base_url('inquiry/inquiry_export_word'); ?>" class="btn btn-secondary col-1" title="Export to Word"><i class="fas fa-file-word"></i> Word</a>
+                <a href="<?php echo base_url('inquiry/inquiry_export_csv'); ?>" class="btn btn-primary col-1" title="Export to Csv"><i class="fas fa-file-csv"></i> Csv</a>
+                <a href="<?php echo base_url('inquiry/inquiry_export_pdf'); ?>" class="btn btn-danger col-1" title="Export to Pdf"><i class="fas fa-file-pdf"></i> Pdf</a>
               </div>
             </div>
           </div>
@@ -129,109 +96,109 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">No Inquiry</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="id" readonly value="<?php echo $p->inquiry_id; ?> ">
+                <input type="text" class="form-control form-control-sm" name="id" readonly value="<?php echo $p->inquiry_id; ?> ">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Sales</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="<?php echo $p->sales; ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="<?php echo $p->sales; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Tanggal</label>
               <div class="col-sm-10">
-                <input type="datetime" class="form-control" readonly value="<?php echo $p->tanggal; ?>">
+                <input type="datetime" class="form-control form-control-sm" readonly value="<?php echo $p->tanggal; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Brand</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="<?php echo $p->brand; ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="<?php echo $p->brand; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Deskripsi</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="<?php echo $p->desc; ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="<?php echo $p->desc; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Quantity</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="<?php echo $p->qty; ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="<?php echo $p->qty; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Deadline</label>
               <div class="col-sm-10">
-                <input type="date" class="form-control" readonly value="<?php echo $p->deadline; ?>">
+                <input type="date" class="form-control form-control-sm" readonly value="<?php echo $p->deadline; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Ket(Sales)</label>
               <div class="col-sm-10">
-                <textarea type="text" class="form-control" readonly><?php echo $p->keter; ?></textarea>
+                <textarea type="text" class="form-control form-control-sm" readonly><?php echo $p->keter; ?></textarea>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Request</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="<?php echo $p->request; ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="<?php echo $p->request; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Check</label>
               <div class="col-sm-10">
-                <input type="number" class="form-control" readonly value="<?php echo $p->cek; ?>">
+                <input type="number" class="form-control form-control-sm" readonly value="<?php echo $p->cek; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Follow Up</label>
               <div class="col-sm-10">
-                <input type="datetime" class="form-control" readonly value="<?php echo $p->fu1; ?>">
+                <input type="datetime" class="form-control form-control-sm" readonly value="<?php echo $p->fu1; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Ket(Fu)</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="<?php echo $p->ket_fu; ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="<?php echo $p->ket_fu; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Reseller</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->reseller, 0, '.', '.'); ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="Rp <?php echo number_format($p->reseller, 0, '.', '.'); ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Seller</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->new_seller, 0, '.', '.'); ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="Rp <?php echo number_format($p->new_seller, 0, '.', '.'); ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">User</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="Rp <?php echo number_format($p->user, 0, '.', '.'); ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="Rp <?php echo number_format($p->user, 0, '.', '.'); ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Delivery</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="<?php echo $p->delivery; ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="<?php echo $p->delivery; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Purchase</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="<?php echo $p->name_purch; ?>">
+                <input type="text" class="form-control form-control-sm" readonly value="<?php echo $p->name_purch; ?>">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Ket(Prch)</label>
               <div class="col-sm-10">
-                <textarea type="text" class="form-control" readonly><?php echo $p->ket_purch; ?></textarea>
+                <textarea type="text" class="form-control form-control-sm" readonly><?php echo $p->ket_purch; ?></textarea>
               </div>
             </div>
           </div>

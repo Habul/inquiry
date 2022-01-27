@@ -27,7 +27,6 @@
                 Jakarta Barat 11520</td>
               <td width="30%"></td>
               <td style="text-align:center">
-
               </td>
             </tr>
           </table>

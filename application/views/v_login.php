@@ -33,7 +33,7 @@
         </div>
         <form action="<?php echo base_url() . 'login/proses' ?>" id="loginform" method="post">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
+            <input type="text" class="form-control" placeholder="Username" id="username" name="username">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user">&nbsp;</span>
@@ -42,7 +42,7 @@
           </div>
           <?php echo form_error('username'); ?>
           <div class="input-group mb-3">
-            <input id="password-field" type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            <input id="password-field" type="password" class="form-control" id="password" name="password" placeholder="Password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span toggle="#password-field" class="fa fa-fw fa-lock field-icon toggle-password"></span>
@@ -73,6 +73,8 @@
   </div>
   <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/jquery-validation/additional-methods.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
   <script>
     $(document).ready(function() {
@@ -91,48 +93,6 @@
       } else {
         input.attr("type", "password");
       }
-    });
-  </script>
-  <script>
-    $(function() {
-      $.validator.setDefaults({
-        submitHandler: function() {
-          alert("Form successful submitted!");
-        }
-      });
-      $('#loginform').validate({
-        rules: {
-          text: {
-            required: true,
-            text: true,
-          },
-          password: {
-            required: true,
-            minlength: 5
-          },
-        },
-        messages: {
-          text: {
-            required: "Please enter a email address",
-            text: "Please enter a valid email address"
-          },
-          password: {
-            required: "Please provide a password",
-            minlength: "Your password must be at least 5 characters long"
-          },
-        },
-        errorElement: 'span',
-        errorPlacement: function(error, element) {
-          error.addClass('invalid-feedback');
-          element.closest('.form-group').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-          $(element).addClass('is-invalid');
-        },
-        unhighlight: function(element, errorClass, validClass) {
-          $(element).removeClass('is-invalid');
-        }
-      });
     });
   </script>
 </body>
