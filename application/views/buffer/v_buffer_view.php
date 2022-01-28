@@ -70,7 +70,7 @@
             </table>
             <?php if ($this->session->userdata('level') != "sales") {  ?>
               <div>
-                <a href="<?php echo base_url('buffer/buffer_export'); ?>" class="btn btn-warning col-1" title="Export to Excel"><i class="fas fa-file-excel"></i></i> Excel</a>
+                <a href="<?php echo base_url('buffer/buffer_export'); ?>" class="btn btn-warning col-sm-1" title="Export to Excel"><i class="fas fa-file-excel"></i></i> Excel</a>
               </div>
             <?php }  ?>
           </div>

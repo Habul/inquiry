@@ -66,10 +66,9 @@
                 <?php } ?>
               </table>
               <div>
-                <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="btn btn-warning col-1" title="Export to Excel"><i class="fas fa-file-excel"></i> Excel</a>
-                <a href="<?php echo base_url('inquiry/inquiry_export_word'); ?>" class="btn btn-secondary col-1" title="Export to Word"><i class="fas fa-file-word"></i> Word</a>
-                <a href="<?php echo base_url('inquiry/inquiry_export_csv'); ?>" class="btn btn-primary col-1" title="Export to Csv"><i class="fas fa-file-csv"></i> Csv</a>
-                <a href="<?php echo base_url('inquiry/inquiry_export_pdf'); ?>" class="btn btn-danger col-1" title="Export to Pdf"><i class="fas fa-file-pdf"></i> Pdf</a>
+                <a href="<?php echo base_url('inquiry/inquiry_export'); ?>" class="btn btn-warning col-sm-1" title="Export to Excel"><i class="fas fa-file-excel"></i> Excel</a>
+                <a href="<?php echo base_url('inquiry/inquiry_export_word'); ?>" class="btn btn-secondary col-sm-1" title="Export to Word"><i class="fas fa-file-word"></i> Word</a>
+                <a href="<?php echo base_url('inquiry/inquiry_export_csv'); ?>" class="btn btn-primary col-sm-1" title="Export to Csv"><i class="fas fa-file-csv"></i> Csv</a>
               </div>
             </div>
           </div>

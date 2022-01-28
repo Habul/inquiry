@@ -83,10 +83,10 @@
                     <?php if ($this->session->userdata('level') != "purchase") { ?>
                       <td style="text-align:center">
                         <?php if ($this->session->userdata('level') != "warehouse") { ?>
-                          <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+                          <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_editsales<?php echo $p->id_buffer; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
                         <?php }  ?>
                         <?php if ($this->session->userdata('level') != "sales") { ?>
-                          <a class="btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-plus-square" title="Update"></i></a>
+                          <a class="btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit_wh<?php echo $p->id_buffer; ?>"><i class="fa fa-edit" title="Update"></i></a>
                           <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id_buffer; ?>"><i class="fa fa-trash" title="Delete"></i></a>
                       </td>
                   </tr>

@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="card-body">
-              <table id="example9" class="table table-borderless table-striped">
+              <table id="filter3" class="table table-borderless table-striped">
                 <thead class="thead-dark" style="text-align:center">
                   <tr>
                     <th width="7%">Do No</th>
@@ -63,12 +63,12 @@
                 ?>
                   <tr>
                     <td><?php echo str_replace("-", "/", $p->no_delivery); ?></td>
-                    <td><?php echo $p->date_delivery; ?></td>
-                    <td><?php echo $p->due_date; ?></td>
+                    <td><?php echo date('d/m/Y', strtotime($p->date_delivery)); ?></td>
+                    <td><?php echo date('d/m/Y', strtotime($p->due_date)); ?></td>
                     <td><?php echo $p->cust_name; ?></td>
                     <td><?php echo $p->address; ?></td>
                     <td><?php echo $p->city; ?></td>
-                    <td><?php echo preg_replace('/\d{3}/', '$0-', str_replace('.', 'null', trim($p->phone)), 1); ?></td>
+                    <td><?php echo $p->phone; ?></td>
                     <td style="text-align:center">
                       <?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
                       <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_id; ?>" title="Edit SJ"><i class="fa fa-pencil-alt"></i></a>
@@ -90,11 +90,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="col-12 modal-title text-center">Add Surat Jalan
+        <h5 class="col-12 modal-title text-center">Add Surat Jalan
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </h4>
+        </h5>
       </div>
       <form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_aksi_df') ?>">
         <div class="modal-body">
@@ -167,11 +167,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="col-12 modal-title text-center">Add Surat Jalan
+          <h5 class="col-12 modal-title text-center">Edit Surat Jalan
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </h4>
+          </h5>
         </div>
         <form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_edit_df') ?>">
           <div class="modal-body">
@@ -242,11 +242,11 @@
     <div class="modal-dialog">
       <div class="modal-content bg-danger">
         <div class="modal-header">
-          <h4 class="col-12 modal-title text-center">Delete Surat Jalan
+          <h5 class="col-12 modal-title text-center">Delete Surat Jalan
             <button class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </h4>
+          </h5>
         </div>
         <form class="form-horizontal" onsubmit="deldesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_hapus_df') ?>">
           <div class="modal-body">

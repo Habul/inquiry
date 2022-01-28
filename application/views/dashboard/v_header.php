@@ -107,7 +107,7 @@
           </li>
           <li class="user-footer">
             <a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default" title="Profile"> Profile </a>
-            <a href="<?php echo base_url() . 'dashboard/keluar' ?>" class="btn btn-danger float-right" title="Sign out"> Sign out </a>
+            <a data-toggle="modal" data-target="#logoutModal" class="btn btn-danger float-right" title="Sign out"> Sign out </a>
           </li>
         </ul>
       </li>
@@ -355,7 +355,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?php echo base_url() . 'dashboard/keluar' ?>" <?= $this->uri->uri_string() == 'dashboard/keluar' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+              <a data-toggle="modal" data-target="#logoutModal" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>Sign out</p>
               </a>

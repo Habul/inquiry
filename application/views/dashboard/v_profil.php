@@ -99,9 +99,9 @@
                           <?php echo form_error('foto'); ?>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="form-group text-center">
                         <div class="offset-sm-2 col-sm-10">
-                          <input type="submit" class="btn btn-info" id="profil" value="Update">
+                          <input type="submit" class="btn btn-info col-3" id="profil" value="Update">
                         </div>
                       </div>
                     </form>
@@ -125,8 +125,8 @@
                       <input type="password" name="konfirmasi_password" class="form-control" placeholder="Ulangi Password Baru .." required>
                       <?php echo form_error('konfirmasi_password'); ?>
                     </div>
-                    <div class="card-footer">
-                      <input type="submit" class="btn btn-primary" id="pass" value="Update">
+                    <div class="form-group text-center">
+                      <input type="submit" class="btn btn-primary col-3" id="pass" value="Update">
                     </div>
                   </form>
                 </div>

@@ -71,13 +71,13 @@
                     </td>
                   </tr>
                 <?php } ?>
-              </table>
+              </table><br />
+              <div class="col-md-3 shadow" style="padding: 0;">
+                <a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
+                  <i class="fa fa-plus-square"></i>&nbsp; Add trcuk</a>
+              </div>
             </div>
           </div>
-          <div class="col-md-3 shadow" style="padding: 0;">
-            <a class=" form-control btn btn-success" data-toggle="modal" data-target="#modal_add">
-              <i class="fa fa-plus-square"></i>&nbsp; Add trcuk</a>
-          </div><br />
         </div>
       </div>
   </section>

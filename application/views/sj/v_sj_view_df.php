@@ -107,11 +107,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="col-12 modal-title text-center">Surat Jalan (No Do : <?php echo str_replace("-", "/", $p->no_delivery); ?>)
+          <h5 class="col-12 modal-title text-center">Surat Jalan (No Do : <?php echo str_replace("-", "/", $p->no_delivery); ?>)
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </h4>
+          </h5>
         </div>
         <form class="form-horizontal" onsubmit="adddesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_update_df') ?>">
           <div class="modal-body">
@@ -149,11 +149,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="col-12 modal-title text-center">Edit Desc Surat Jalan
+          <h5 class="col-12 modal-title text-center">Edit Desc Surat Jalan
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </h4>
+          </h5>
         </div>
         <form class="form-horizontal" onsubmit="editdesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_update_edit_df') ?>">
           <div class="modal-body">
@@ -191,11 +191,11 @@
     <div class="modal-dialog">
       <div class="modal-content bg-danger">
         <div class="modal-header">
-          <h4 class="col-12 modal-title text-center">Delete Desc SJ
+          <h5 class="col-12 modal-title text-center">Delete Desc SJ
             <button class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </h4>
+          </h5>
         </div>
         <form class="form-horizontal" onsubmit="delform.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_desc_hapus_df') ?>">
           <div class="modal-body">

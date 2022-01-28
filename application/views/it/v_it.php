@@ -33,12 +33,9 @@
         <div class="col-md-12">
           <div class="card card-success card-outline">
             <div class="card-header">
-              <h6 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
+              <h6 class="card-title"><a class="form-control btn btn-success col-15 shadow" data-toggle="modal" data-target="#modal_add">
                   <i class="fa fa-plus"></i>&nbsp; Add Data</a></h6>
               <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('it/data') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
@@ -85,18 +82,18 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="col-12 modal-title text-center">Add Data
+        <h5 class="col-12 modal-title text-center">Add Data
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </h4>
+        </h5>
       </div>
       <form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('it/data_aksi') ?>" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="form-group">
             <label class="control-label col-xs-3">Judul *</label>
             <div class="col-xs-9">
-              <input type="text" name="judul" class="form-control form-control-border" placeholder="Input Judul.." required>
+              <input type="text" name="judul" class="form-control form-control-sm form-control-border" placeholder="Input Judul.." required>
               <?php echo set_value('judul'); ?>
             </div>
           </div>
@@ -104,7 +101,7 @@
             <label class="control-label col-xs-3">Isi *</label>
             <div class="col-xs-9">
               <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $id_add->no_id + 1; ?> ">
-              <textarea class="form-control" rows="8" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
+              <textarea class="form-control form-control-sm" rows="8" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
             </div>
           </div>
           <div class="form-group">
@@ -131,11 +128,11 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="col-12 modal-title text-center">Edit Data
+          <h5 class="col-12 modal-title text-center">Edit Data
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </h4>
+          </h5>
         </div>
         <form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('it/data_edit') ?>" enctype="multipart/form-data">
           <div class="modal-body">
@@ -143,13 +140,13 @@
               <label class="control-label col-xs-3">Judul</label>
               <div class="col-xs-9">
                 <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-                <input type="text" name="judul" class="form-control form-control-border" readonly value="<?php echo $p->judul; ?>" required>
+                <input type="text" name="judul" class="form-control form-control-sm form-control-border" readonly value="<?php echo $p->judul; ?>" required>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-xs-3">Isi *</label>
               <div class="col-xs-9">
-                <textarea class="form-control" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
+                <textarea class="form-control form-control-sm" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
                 <?php echo form_error('isi'); ?>
               </div>
             </div>
@@ -185,17 +182,17 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="col-12 modal-title text-center"><?php echo $p->judul; ?>
+          <h5 class="col-12 modal-title text-center"><?php echo $p->judul; ?>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </h4>
+          </h5>
         </div>
         <div class="modal-body">
           <div class="form-group">
             <div class="col-xs-9">
               <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-              <textarea class="form-control" readonly rows="13" name="isi"><?php echo $p->isi; ?></textarea>
+              <textarea class="form-control form-control-sm" readonly rows="13" name="isi"><?php echo $p->isi; ?></textarea>
             </div>
           </div>
           <div class="form-group">
@@ -226,11 +223,11 @@
     <div class="modal-dialog">
       <div class="modal-content bg-danger">
         <div class="modal-header">
-          <h4 class="col-12 modal-title text-center">Delete Data
+          <h5 class="col-12 modal-title text-center">Delete Data
             <button class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </h4>
+          </h5>
         </div>
         <form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('it/data_hapus') ?>">
           <div class="modal-body">
