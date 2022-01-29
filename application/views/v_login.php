@@ -31,9 +31,9 @@
         <div class="login-logo">
           <a href="#"><img src="<?php echo base_url() . 'gambar/website/Intisera2.png' ?>" style="width:250px;height:110px;"></a>
         </div>
-        <form action="<?php echo base_url() . 'login/proses' ?>" id="loginform" method="post">
+        <form action="<?php echo base_url() . 'login/proses' ?>" onsubmit="logbtn.disabled = true; return true;" id="loginform" method="post">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" id="username" name="username">
+            <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user">&nbsp;</span>
@@ -42,7 +42,7 @@
           </div>
           <?php echo form_error('username'); ?>
           <div class="input-group mb-3">
-            <input id="password-field" type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <input id="password-field" type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span toggle="#password-field" class="fa fa-fw fa-lock field-icon toggle-password"></span>
@@ -52,7 +52,7 @@
           <?php echo form_error('password'); ?>
           <div class="row">
             <div class="col-12">
-              <button type="submit" id="loginbtn" class="btn btn-primary btn-block">Sign In</button>
+              <button type="submit" id="logbtn" class="btn btn-primary btn-block">Sign In</button>
             </div>
           </div>
         </form>
@@ -78,21 +78,15 @@
   <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
   <script>
     $(document).ready(function() {
-      $("#loginbtn").click(function() {
-        $('#loginbtn').text('Sign in...');
-        $("#loginbtn").attr("disabled", true);
-        $('#loginform').submit();
+      $(".toggle-password").click(function() {
+        $(this).toggleClass("fa-lock fa-lock-open");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
       });
-    });
-
-    $(".toggle-password").click(function() {
-      $(this).toggleClass("fa-lock fa-lock-open");
-      var input = $($(this).attr("toggle"));
-      if (input.attr("type") == "password") {
-        input.attr("type", "text");
-      } else {
-        input.attr("type", "password");
-      }
     });
   </script>
 </body>

@@ -176,31 +176,32 @@
          "ordering": true
       });
    });
-
-   var start_date;
-   var end_date;
-   var DateFilterFunction = (function(oSettings, aData, iDataIndex) {
-      var dateStart = parseDateValue(start_date);
-      var dateEnd = parseDateValue(end_date);
+</script>
+<script>
+   var awal_date;
+   var akhir_date;
+   var filterdate = (function(oSettings, aData, iDataIndex) {
+      var mulaistart = parseDateValue(awal_date);
+      var akhirend = parseDateValue(akhir_date);
       var evalDate = parseDateValue(aData[6]);
-      if ((isNaN(dateStart) && isNaN(dateEnd)) ||
-         (isNaN(dateStart) && evalDate <= dateEnd) ||
-         (dateStart <= evalDate && isNaN(dateEnd)) ||
-         (dateStart <= evalDate && evalDate <= dateEnd)) {
+      if ((isNaN(mulaistart) && isNaN(akhirend)) ||
+         (isNaN(mulaistart) && evalDate <= akhirend) ||
+         (mulaistart <= evalDate && isNaN(akhirend)) ||
+         (mulaistart <= evalDate && evalDate <= akhirend)) {
          return true;
       }
       return false;
    });
 
    function parseDateValue(rawDate) {
-      var dateArray = rawDate.split("/");
-      var parsedDate = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0]);
-      return parsedDate;
+      var tglArray = rawDate.split("/");
+      var parsingdate = new Date(tglArray[2], parseInt(tglArray[1]) - 1, tglArray[0]);
+      return parsingdate;
    }
 
    $(document).ready(function() {
-      var $dTable = $('#filter1').DataTable({
-         "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
+      var $tableid = $('#filter1').DataTable({
+         "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datecaribox'>><'col-sm-3'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
          "responsive": true,
@@ -210,9 +211,9 @@
          ]
       });
 
-      $("div.datesearchbox").html('<div class="input-group col-sm-7"> <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div><input type="text" class="form-control form-control-sm pull-right" id="datesearch" placeholder="Filter by deadline range.."> </div > ');
+      $("div.datecaribox").html('<div class="input-group col-sm-7"> <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div><input type="text" class="form-control form-control-sm pull-right" id="datesearch" placeholder="Filter by deadline range.."> </div > ');
 
-      document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";
+      document.getElementsByClassName("datecaribox")[0].style.textAlign = "right";
 
       $('#datesearch').daterangepicker({
          autoUpdateInput: false
@@ -220,21 +221,22 @@
 
       $('#datesearch').on('apply.daterangepicker', function(ev, picker) {
          $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-         start_date = picker.startDate.format('DD/MM/YYYY');
-         end_date = picker.endDate.format('DD/MM/YYYY');
-         $.fn.dataTableExt.afnFiltering.push(DateFilterFunction);
-         $dTable.draw();
+         awal_date = picker.startDate.format('DD/MM/YYYY');
+         akhir_date = picker.endDate.format('DD/MM/YYYY');
+         $.fn.dataTableExt.afnFiltering.push(filterdate);
+         $tableid.draw();
       });
 
       $('#datesearch').on('cancel.daterangepicker', function(ev, picker) {
          $(this).val('');
-         start_date = '';
-         end_date = '';
+         awal_date = '';
+         akhir_date = '';
          $.fn.dataTable.ext.search.splice($.fn.dataTable.ext.search.indexOf(DateFilterFunction, 1));
-         $dTable.draw();
+         $tableid.draw();
       });
    });
-
+</script>
+<script>
    var start_date;
    var end_date;
    var DateFilterFunction = (function(oSettings, aData, iDataIndex) {
@@ -255,46 +257,8 @@
       var parsedDate = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0]);
       return parsedDate;
    }
-
    $(document).ready(function() {
       var $dTable = $('#filter2').DataTable({
-         "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-         "responsive": true,
-         "lengthChange": true,
-         "order": [
-            [2, "desc"]
-         ]
-      });
-
-      $("div.datesearchbox").html('<div class="input-group col-sm-7"> <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div><input type="text" class="form-control form-control-sm pull-right" id="datesearch" placeholder="Filter by date range.."> </div > ');
-
-      document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";
-
-      $('#datesearch').daterangepicker({
-         autoUpdateInput: false
-      });
-
-      $('#datesearch').on('apply.daterangepicker', function(ev, picker) {
-         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-         start_date = picker.startDate.format('DD/MM/YYYY');
-         end_date = picker.endDate.format('DD/MM/YYYY');
-         $.fn.dataTableExt.afnFiltering.push(DateFilterFunction);
-         $dTable.draw();
-      });
-
-      $('#datesearch').on('cancel.daterangepicker', function(ev, picker) {
-         $(this).val('');
-         start_date = '';
-         end_date = '';
-         $.fn.dataTable.ext.search.splice($.fn.dataTable.ext.search.indexOf(DateFilterFunction, 1));
-         $dTable.draw();
-      });
-   });
-
-   $(document).ready(function() {
-      var $dTable = $('#filter3').DataTable({
          "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-5'i><'col-sm-7'p>>",

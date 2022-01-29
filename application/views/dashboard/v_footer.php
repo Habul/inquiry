@@ -72,9 +72,9 @@
 <script src="<?php echo base_url(); ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
 <?php include './assets/plugins/ajax.php'; ?>
 <script>
-  let toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-  let currentTheme = localStorage.getItem('theme');
-  let mainHeader = document.querySelector('.main-header');
+  var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  var currentTheme = localStorage.getItem('theme');
+  var mainHeader = document.querySelector('.main-header');
 
   if (currentTheme) {
     if (currentTheme === 'dark') {
