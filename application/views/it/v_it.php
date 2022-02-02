@@ -52,7 +52,7 @@
                 <thead class="thead-dark" style="text-align:center">
                   <tr>
                     <th width="3%">No</th>
-                    <th width="50%">Judul</th>
+                    <th width="50%">Title</th>
                     <th width="12%">Addtime</th>
                     <th width="10%">Action</th>
                   </tr>
@@ -91,17 +91,17 @@
       <form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('it/data_aksi') ?>" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="form-group">
-            <label class="control-label col-xs-3">Judul *</label>
+            <label class="control-label col-xs-3">Title *</label>
             <div class="col-xs-9">
+              <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $id_add->no_id + 1; ?> ">
               <input type="text" name="judul" class="form-control form-control-sm form-control-border" placeholder="Input Judul.." required>
               <?php echo set_value('judul'); ?>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-3">Isi *</label>
+            <label class="control-label col-xs-3">Description *</label>
             <div class="col-xs-9">
-              <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $id_add->no_id + 1; ?> ">
-              <textarea class="form-control form-control-sm" rows="8" name="isi" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
+              <textarea class="form-control form-control-sm" name="isi" rows="10" placeholder="Input Isi.." required><?php echo set_value('isi'); ?></textarea>
             </div>
           </div>
           <div class="form-group">
@@ -137,17 +137,18 @@
         <form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('it/data_edit') ?>" enctype="multipart/form-data">
           <div class="modal-body">
             <div class="form-group">
-              <label class="control-label col-xs-3">Judul</label>
+              <label class="control-label col-xs-3">Title</label>
               <div class="col-xs-9">
                 <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
                 <input type="text" name="judul" class="form-control form-control-sm form-control-border" readonly value="<?php echo $p->judul; ?>" required>
+                <?php echo form_error('judul'); ?>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-xs-3">Isi *</label>
+              <label class="control-label col-xs-3">Description *</label>
               <div class="col-xs-9">
-                <textarea class="form-control form-control-sm" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
                 <?php echo form_error('isi'); ?>
+                <textarea class="form-control form-control-sm" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
               </div>
             </div>
             <div class="form-group">
@@ -192,7 +193,7 @@
           <div class="form-group">
             <div class="col-xs-9">
               <input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-              <textarea class="form-control form-control-sm" readonly rows="13" name="isi"><?php echo $p->isi; ?></textarea>
+              <textarea class="form-control form-control-sm form-control-border" readonly rows="13" name="isi"><?php echo $p->isi; ?></textarea>
             </div>
           </div>
           <div class="form-group">

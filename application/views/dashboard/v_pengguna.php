@@ -102,44 +102,68 @@
       <form class="form-horizontal" method="post" onsubmit="addbtn.disabled = true; return true;" action="<?php echo base_url('dashboard/pengguna_aksi') ?>">
         <div class="card-body">
           <div class="form-group">
-            <label>Nama *</label>
-            <input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .." required>
-            <?php echo form_error('nama'); ?>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+              </div>
+              <input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .." required>
+              <?php echo form_error('nama'); ?>
+            </div>
           </div>
           <div class="form-group">
-            <label>Email *</label>
-            <input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .." required>
-            <?php echo form_error('email'); ?>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+              </div>
+              <input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .." required>
+              <?php echo form_error('email'); ?>
+            </div>
           </div>
           <div class="form-group">
-            <label>Username *</label>
-            <input type="text" name="username" class="form-control" placeholder="Masukkan username pengguna.." required>
-            <?php echo form_error('username'); ?>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" name="username" class="form-control" placeholder="Masukkan username pengguna.." required>
+              <?php echo form_error('username'); ?>
+            </div>
           </div>
           <div class="form-group">
-            <label>Password *</label>
-            <input type="password" name="password" class="form-control" placeholder="Masukkan password pengguna.." required>
-            <?php echo form_error('password'); ?>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+              </div>
+              <input type="password" name="password" class="form-control" placeholder="Masukkan password pengguna.." required>
+              <?php echo form_error('password'); ?>
+            </div>
           </div>
           <div class="form-group">
-            <label>Divisi *</label>
-            <select class="form-control" name="level" required>
-              <option value="">- Pilih Divisi -</option>
-              <option value="admin">Admin</option>
-              <option value="purchase">Purchase</option>
-              <option value="driver">Driver</option>
-              <option value="ga">GA</option>
-            </select>
-            <?php echo form_error('level'); ?>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-suitcase"></i></span>
+              </div>
+              <select class="form-control" name="level" required>
+                <option value="">- Pilih Divisi -</option>
+                <option value="admin">Admin</option>
+                <option value="purchase">Purchase</option>
+                <option value="driver">Driver</option>
+                <option value="ga">GA</option>
+              </select>
+              <?php echo form_error('level'); ?>
+            </div>
           </div>
           <div class="form-group">
-            <label>Status *</label>
-            <select class="form-control" name="status" required>
-              <option value="">- Pilih Status -</option>
-              <option value="1">Aktif</option>
-              <option value="0">Non-Aktif</option>
-            </select>
-            <?php echo form_error('status'); ?>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+              </div>
+              <select class="form-control" name="status" required>
+                <option value="">- Pilih Status -</option>
+                <option value="1">Aktif</option>
+                <option value="0">Non-Aktif</option>
+              </select>
+              <?php echo form_error('status'); ?>
+            </div>
           </div>
         </div>
         <div class="modal-footer justify-content-between">
@@ -167,61 +191,85 @@
         <form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/pengguna_update') ?>">
           <div class="card-body">
             <div class="form-group">
-              <label>Nama</label>
-              <input type="hidden" name="id" value="<?php echo $p->pengguna_id; ?>">
-              <input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .." value="<?php echo $p->pengguna_nama; ?>">
-              <?php echo form_error('nama'); ?>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                </div>
+                <input type="hidden" name="id" value="<?php echo $p->pengguna_id; ?>">
+                <input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .." value="<?php echo $p->pengguna_nama; ?>">
+                <?php echo form_error('nama'); ?>
+              </div>
             </div>
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .." value="<?php echo $p->pengguna_email; ?>">
-              <?php echo form_error('email'); ?>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                </div>
+                <input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .." value="<?php echo $p->pengguna_email; ?>">
+                <?php echo form_error('email'); ?>
+              </div>
             </div>
             <div class="form-group">
-              <label>Username</label>
-              <input type="text" name="username" class="form-control" placeholder="Masukkan username pengguna.." value="<?php echo $p->pengguna_username; ?>">
-              <?php echo form_error('username'); ?>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="username" class="form-control" placeholder="Masukkan username pengguna.." value="<?php echo $p->pengguna_username; ?>">
+                <?php echo form_error('username'); ?>
+              </div>
             </div>
             <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Masukkan password pengguna..">
-              <?php echo form_error('password'); ?>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
+                <input type="password" name="password" class="form-control" placeholder="Masukkan password pengguna..">
+                <?php echo form_error('password'); ?>
+              </div>
               <small>Kosongkan jika tidak ingin mengubah password</small>
             </div>
             <div class="form-group">
-              <label>Divisi</label>
-              <select class="form-control" name="level">
-                <option value="">- Pilih Level -</option>
-                <option <?php if ($p->pengguna_level == "admin") {
-                          echo "selected='selected'";
-                        } ?> value="admin">Admin</option>
-                <option <?php if ($p->pengguna_level == "purchase") {
-                          echo "selected='selected'";
-                        } ?> value="purchase">Purchase</option>
-                <option <?php if ($p->pengguna_level == "sales") {
-                          echo "selected='selected'";
-                        } ?> value="sales">Sales</option>
-                <option <?php if ($p->pengguna_level == "driver") {
-                          echo "selected='selected'";
-                        } ?> value="sales">Driver</option>
-                <option <?php if ($p->pengguna_level == "ga") {
-                          echo "selected='selected'";
-                        } ?> value="sales">Ga</option>
-              </select>
-              <?php echo form_error('level'); ?>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-suitcase"></i></span>
+                </div>
+                <select class="form-control" name="level">
+                  <option value="">- Pilih Level -</option>
+                  <option <?php if ($p->pengguna_level == "admin") {
+                            echo "selected='selected'";
+                          } ?> value="admin">Admin</option>
+                  <option <?php if ($p->pengguna_level == "purchase") {
+                            echo "selected='selected'";
+                          } ?> value="purchase">Purchase</option>
+                  <option <?php if ($p->pengguna_level == "sales") {
+                            echo "selected='selected'";
+                          } ?> value="sales">Sales</option>
+                  <option <?php if ($p->pengguna_level == "driver") {
+                            echo "selected='selected'";
+                          } ?> value="sales">Driver</option>
+                  <option <?php if ($p->pengguna_level == "ga") {
+                            echo "selected='selected'";
+                          } ?> value="sales">Ga</option>
+                </select>
+                <?php echo form_error('level'); ?>
+              </div>
             </div>
             <div class="form-group">
-              <label>Status</label>
-              <select class="form-control" name="status">
-                <option value="">- Pilih Status -</option>
-                <option <?php if ($p->pengguna_status == "1") {
-                          echo "selected='selected'";
-                        } ?> value="1">Aktif</option>
-                <option <?php if ($p->pengguna_status == "0") {
-                          echo "selected='selected'";
-                        } ?> value="0">Non-Aktif</option>
-              </select>
-              <?php echo form_error('status'); ?>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                </div>
+                <select class="form-control" name="status">
+                  <option value="">- Pilih Status -</option>
+                  <option <?php if ($p->pengguna_status == "1") {
+                            echo "selected='selected'";
+                          } ?> value="1">Aktif</option>
+                  <option <?php if ($p->pengguna_status == "0") {
+                            echo "selected='selected'";
+                          } ?> value="0">Non-Aktif</option>
+                </select>
+                <?php echo form_error('status'); ?>
+              </div>
             </div>
           </div>
           <div class="modal-footer justify-content-between">

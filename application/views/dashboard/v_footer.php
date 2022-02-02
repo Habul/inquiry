@@ -66,11 +66,14 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/dropzone/min/dropzone.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
 <?php include './assets/plugins/ajax.php'; ?>
+<!-- <script src="//cdn.ckeditor.com/4.17.1/basic/ckeditor.js"></script> -->
+<!-- <script>
+  CKEDITOR.replace('editor');
+</script> -->
 <script>
   var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   var currentTheme = localStorage.getItem('theme');

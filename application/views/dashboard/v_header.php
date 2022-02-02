@@ -33,7 +33,7 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
   <div class="wrapper">
     <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__wobble" src="<?php echo base_url(); ?>assets/dist/img/Untitled-1-02.png" alt="IntiseraLogo" height="60" width="60">
+      <img src="<?php echo base_url(); ?>assets/dist/img/loading.gif" alt="Untitled-1-02.png" height="100" width="100">
     </div>
 
     <nav class="main-header navbar navbar-expand navbar-light navbar-light">

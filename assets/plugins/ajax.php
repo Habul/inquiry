@@ -53,7 +53,7 @@
 
    var x = $('#index2').DataTable({
       "responsive": true,
-      "lengthChange": true,
+      "lengthChange": false,
       "autoWidth": false,
       "columnDefs": [{
          "searchable": false,
@@ -62,7 +62,51 @@
       }],
       "order": [
          [1, 'asc']
-      ]
+      ],
+      "buttons": [{
+            extend: 'copyHtml5',
+            filename: 'Data Pengguna',
+            title: 'Rekap Data Pengguna',
+            footer: true,
+            exportOptions: {
+               columns: [1, 2, 3, 4, 5],
+               orthogonal: 'export',
+            },
+         },
+         {
+            extend: 'excelHtml5',
+            filename: 'Data Pengguna',
+            title: 'Rekap Data Pengguna',
+            footer: true,
+            exportOptions: {
+               columns: [1, 2, 3, 4, 5],
+               orthogonal: 'export'
+            },
+         },
+         {
+            extend: 'csvHtml5',
+            filename: 'Data Pengguna',
+            title: 'Rekap Data Pengguna',
+            footer: true,
+            exportOptions: {
+               columns: [1, 2, 3, 4, 5],
+               orthogonal: 'export'
+            },
+         },
+         {
+            extend: 'pdfHtml5',
+            filename: 'Data Pengguna',
+            title: 'Rekap Data Pengguna',
+            footer: true,
+            exportOptions: {
+               columns: [1, 2, 3, 4, 5],
+               orthogonal: 'export',
+               modifier: {
+                  orientation: 'landscape'
+               },
+            },
+         }, 'colvis'
+      ],
    });
 
    x.on('order.dt search.dt', function() {
@@ -71,9 +115,8 @@
          order: 'applied'
       }).nodes().each(function(cell, j) {
          cell.innerHTML = j + 1;
-      });
+      }).buttons().container().appendTo('#index2_wrapper .col-md-6:eq(0)');
    }).draw();
-
 
    $(function() {
       $("#example1").DataTable({
@@ -107,7 +150,18 @@
          "searching": true,
          "lengthChange": true,
          "autoWidth": false,
-         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+         "buttons": ['copyHtml5',
+            {
+               extend: 'excelHtml5',
+               filename: 'Data Mahasiswa',
+               title: 'Rekap Data Mahasiswa',
+               footer: true,
+               exportOptions: {
+                  columns: [0, 1, 2, 3, 4, 5],
+                  orthogonal: 'export'
+               },
+            }, "csv", "excel", "pdf", "print", "colvis"
+         ],
       }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
       $('#example5').DataTable({
          "paging": true,
@@ -252,6 +306,11 @@
       return false;
    });
 
+   function strtrunc(str, max, add) {
+      add = add || '...';
+      return (typeof str === 'string' && str.length > max ? str.substring(0, max) + add : str);
+   };
+
    function parseDateValue(rawDate) {
       var dateArray = rawDate.split("/");
       var parsedDate = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0]);
@@ -266,7 +325,16 @@
          "lengthChange": true,
          "order": [
             [0, "desc"]
-         ]
+         ],
+         'columnDefs': [{
+            'targets': 4,
+            'render': function(data, type, full, meta) {
+               if (type === 'display') {
+                  data = strtrunc(data, 20);
+               }
+               return data;
+            }
+         }]
       });
 
       $("div.datesearchbox").html('<div class="input-group col-sm-7"> <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div><input type="text" class="form-control form-control-sm pull-right" id="datesearch" placeholder="Filter by date range.."> </div > ');
@@ -496,10 +564,6 @@
       data: barChartData,
       options: barChartOptions
    })
-
-   $('#dropping').summernote({
-      dialogsInBody: true
-   });
 
    $(function() {
       $('.select2').select2()
