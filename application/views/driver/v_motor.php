@@ -39,8 +39,6 @@
                   <tr>
                     <th width="3%">No</th>
                     <th width="20%">Foto</th>
-                    <th>Merk</th>
-                    <th>Plat No</th>
                     <th>Sisa Km</th>
                     <th width="13%">Action</th>
                   </tr>
@@ -51,23 +49,26 @@
                   <tr style="text-align:center">
                     <td><?php echo $no++; ?></td>
                     <td>
-                      <a href="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" data-toggle="lightbox" data-title="<?php echo strtoupper($p->merk) ?>&nbsp; PLAT NO :&nbsp;<?php echo strtoupper($p->plat) ?>">
-                        <img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2" onerror="this.style.display='none'" /></a>
+                      <picture>
+                        <a href="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" data-toggle="lightbox" data-title="<?php echo strtoupper($p->merk) ?>&nbsp; PLAT NO :&nbsp;<?php echo strtoupper($p->plat) ?>">
+                          <img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2" onerror="this.style.display='none'" /></a>
+                        <figcaption><?php echo strtoupper($p->merk) ?>&nbsp;<?php echo strtoupper($p->plat) ?></figcaption>
+                      </picture>
                     </td>
-                    <td><?php echo strtoupper($p->merk) ?></td>
-                    <td><?php echo strtoupper($p->plat) ?></td>
                     <?php
                     $driver = $this->db->select_max('odometer')->where('join_id', $p->no_id)->get('driver')->row();
                     $history = $this->db->select_max('odometer')->where('join_id', $p->no_id)->where('jenis', 'Ganti Oli')->get('history_vehicles')->row();
                     $master = $this->db->select('max_km')->where('type', 'motor')->get('master_vehicles')->row();
                     $sum = $master->max_km - ($driver->odometer - $history->odometer);
                     ?>
-                    <td><?php echo number_format($sum, 0, '.', '.'); ?>&nbsp;Km</td>
+                    <td>
+                      <h5><b><?php echo number_format($sum, 0, '.', '.'); ?>&nbsp;Km</b></h5>
+                    </td>
                     <td>
                       <?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
-                      <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
-                      <a href="<?php echo base_url() . 'driver/motor_odo/?id=' . $encrypturl; ?>" class="btn btn-primary btn-sm" title="View Detail"> <i class="fa fa-search"></i> </a>
-                      <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      <a class="btn btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+                      <a href="<?php echo base_url() . 'driver/motor_odo/?id=' . $encrypturl; ?>" class="btn btn-primary" title="View Detail"><i class="fa fa-search"></i></a>
+                      <a class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 <?php } ?>
