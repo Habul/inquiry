@@ -178,21 +178,65 @@ class Buffer extends CI_Controller
   {
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
-    $sheet->setCellValue('A1', 'Id Buffer');
-    $sheet->setCellValue('B1', 'Nama Sales');
-    $sheet->setCellValue('C1', 'Tanggal');
-    $sheet->setCellValue('D1', 'Brand');
-    $sheet->setCellValue('E1', 'Deskripsi');
-    $sheet->setCellValue('F1', 'Qty');
-    $sheet->setCellValue('G1', 'Keter(sales)');
-    $sheet->setCellValue('H1', 'Status');
-    $sheet->setCellValue('I1', 'PR No');
-    $sheet->setCellValue('J1', 'Nama WH');
-    $sheet->setCellValue('K1', 'Follow Up');
-    $sheet->setCellValue('L1', 'Keter(WH)');
 
-    $data = $this->m_data->select_buffer();
-    $x = 2;
+    $style_col = [
+      'font' => ['bold' => true],
+      'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+      ],
+      'borders' => [
+        'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+        'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+        'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+        'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+      ]
+    ];
+
+    $style_row = [
+      'alignment' => [
+        'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+      ],
+      'borders' => [
+        'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+        'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+        'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+        'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+      ]
+    ];
+
+    $sheet->setCellValue('A1', "DATA BUFFER STOCK");
+    $sheet->mergeCells('A1:L1');
+    $sheet->getStyle('A1')->getFont()->setBold(true);
+
+    $sheet->setCellValue('A3', 'Id Buffer');
+    $sheet->setCellValue('B3', 'Nama Sales');
+    $sheet->setCellValue('C3', 'Tanggal');
+    $sheet->setCellValue('D3', 'Brand');
+    $sheet->setCellValue('E3', 'Deskripsi');
+    $sheet->setCellValue('F3', 'Qty');
+    $sheet->setCellValue('G3', 'Keter(sales)');
+    $sheet->setCellValue('H3', 'Status');
+    $sheet->setCellValue('I3', 'PR No');
+    $sheet->setCellValue('J3', 'Nama WH');
+    $sheet->setCellValue('K3', 'Follow Up');
+    $sheet->setCellValue('L3', 'Keter(WH)');
+
+    $sheet->getStyle('A3')->applyFromArray($style_col);
+    $sheet->getStyle('B3')->applyFromArray($style_col);
+    $sheet->getStyle('C3')->applyFromArray($style_col);
+    $sheet->getStyle('D3')->applyFromArray($style_col);
+    $sheet->getStyle('E3')->applyFromArray($style_col);
+    $sheet->getStyle('F3')->applyFromArray($style_col);
+    $sheet->getStyle('G3')->applyFromArray($style_col);
+    $sheet->getStyle('H3')->applyFromArray($style_col);
+    $sheet->getStyle('I3')->applyFromArray($style_col);
+    $sheet->getStyle('J3')->applyFromArray($style_col);
+    $sheet->getStyle('K3')->applyFromArray($style_col);
+    $sheet->getStyle('L3')->applyFromArray($style_col);
+
+    $data = $this->m_data->arshipbuffer();
+    $x = 4;
     foreach ($data as $row) {
       $sheet->setCellValue('A' . $x, $row->id_buffer);
       $sheet->setCellValue('B' . $x, $row->sales);
@@ -207,15 +251,36 @@ class Buffer extends CI_Controller
       $sheet->setCellValue('K' . $x, $row->fu);
       $sheet->setCellValue('L' . $x, $row->ket_wh);
 
+      $sheet->getStyle('A' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('B' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('C' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('D' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('E' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('F' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('G' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('H' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('I' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('J' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('K' . $x)->applyFromArray($style_row);
+      $sheet->getStyle('L' . $x)->applyFromArray($style_row);
+
       $x++;
     }
-    $writer = new Xlsx($spreadsheet);
-    $filename = 'Data-Buffer';
 
-    header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+    $sheet->getDefaultRowDimension()->setRowHeight(-1);
+
+    // Set orientasi kertas jadi LANDSCAPE
+    $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+
+    // Set judul file excel nya
+    $sheet->setTitle("Laporan Buffer Stock");
+
+    // Proses file excel
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment; filename="Data Buffer.xlsx"'); // Set nama file excel nya
     header('Cache-Control: max-age=0');
 
+    $writer = new Xlsx($spreadsheet);
     $writer->save('php://output');
   }
 }

@@ -40,7 +40,7 @@
                     <th width="3%">No</th>
                     <th width="20%">Foto</th>
                     <th>Sisa Km</th>
-                    <th width="13%">Action</th>
+                    <th width="15%">Action</th>
                   </tr>
                 </thead>
                 <?php
@@ -62,7 +62,7 @@
                     $sum = $master->max_km - ($driver->odometer - $history->odometer);
                     ?>
                     <td>
-                      <h5><b><?php echo number_format($sum, 0, '.', '.'); ?>&nbsp;Km</b></h5>
+                      <h6><b><?php echo number_format($sum, 0, '.', '.'); ?>&nbsp;Km</b></h6>
                     </td>
                     <td>
                       <?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
@@ -100,11 +100,6 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Type *</label>
             <div class="col-sm-10">
-              <?php
-              $now = $this->load->helper('date');
-              $format = "%Y-%m-%d %H:%i:%s";
-              ?>
-              <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
               <input type="text" name="type" class="form-control" value="Motor" readonly required>
               <?php echo set_value('type'); ?>
             </div>
@@ -171,11 +166,6 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Merk *</label>
               <div class="col-sm-10">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d %H:%i:%s";
-                ?>
-                <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
                 <input type="text" name="merk" class="form-control" value="<?php echo $p->merk; ?>" required>
                 <?php echo form_error('merk'); ?>
               </div>

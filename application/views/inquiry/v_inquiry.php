@@ -114,28 +114,17 @@
       </div>
       <form class="form-horizontal" onsubmit="addform.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
         <div class="modal-body">
-          <div class="form-group">
-            <label class="control-label col-xs-3">Nama Sales</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nama</label>
+            <div class="col-sm-10">
               <input type="hidden" name="inquiry_id" readonly class="form-control" value="<?php echo $id_add->inquiry_id + 1; ?>">
               <input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
               <?php echo form_error('sales'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Tanggal</label>
-            <div class="col-xs-9">
-              <?php
-              $now = $this->load->helper('date');
-              $format = "%Y-%m-%d %H:%i:%s";
-              ?>
-              <input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
-              <?php echo form_error('tanggal'); ?>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Request *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Request *</label>
+            <div class="col-sm-10">
               <select class="form-control" name="request" required>
                 <option value="">- Pilih Request -</option>
                 <option value="PRICE+LT">PRICE+LT</option>
@@ -150,9 +139,9 @@
               <?php echo form_error('request'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Brand Produk *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Brand *</label>
+            <div class="col-sm-10">
               <select class="form-control" name="brand" required>
                 <option value="">- Pilih Brand -</option>
                 <?php foreach ($master as $row) : ?>
@@ -162,30 +151,30 @@
               <?php echo form_error('brand'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Deskripsi *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Desc *</label>
+            <div class="col-sm-10">
               <textarea name="desc" class="form-control" placeholder="Input Desc.." required></textarea>
               <?php echo form_error('desc'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Qty *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Qty *</label>
+            <div class="col-sm-10">
               <input type="number" name="qty" class="form-control" min="1" placeholder="Input qty..." required>
               <?php echo form_error('qty'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Deadline *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Deadline *</label>
+            <div class="col-sm-10">
               <input type="date" name="deadline" class="form-control" placeholder="Input deadline .." required>
               <?php echo form_error('deadline'); ?>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-xs-3">Keterangan *</label>
-            <div class="col-xs-9">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Keter *</label>
+            <div class="col-sm-10">
               <textarea name="keter" class="form-control" placeholder="Input Keter .." required></textarea>
               <?php echo form_error('keter'); ?>
             </div>
@@ -215,61 +204,50 @@
         </div>
         <form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
           <div class="modal-body">
-            <div class="form-group">
-              <label class="control-label col-xs-3">No Inquiry</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">No Inquiry</label>
+              <div class="col-sm-10">
                 <input type="text" name="id" readonly class="form-control" value="<?php echo $p->inquiry_id; ?>">
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Nama sales</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Nama</label>
+              <div class="col-sm-10">
                 <input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
                 <?php echo form_error('sales'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Tanggal Edit</label>
-              <div class="col-xs-9">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d %H:%i:%s";
-                ?>
-                <input type="datetime" name="tanggal2" readonly class="form-control" value="<?php echo mdate($format); ?>">
-                <?php echo form_error('tanggal2'); ?>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Brand Produk</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Brand</label>
+              <div class="col-sm-10">
                 <input type="text" name="brand" readonly class="form-control" value="<?php echo $p->brand; ?>">
                 <?php echo form_error('brand'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Deskripsi *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Desc *</label>
+              <div class="col-sm-10">
                 <textarea name="desc" class="form-control" required><?php echo $p->desc; ?></textarea>
                 <?php echo form_error('desc'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Qty *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Qty *</label>
+              <div class="col-sm-10">
                 <input type="number" name="qty" class="form-control" min="1" value="<?php echo $p->qty; ?>" required>
                 <?php echo form_error('qty'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Deadline *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Deadline *</label>
+              <div class="col-sm-10">
                 <input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>" required>
                 <?php echo form_error('deadline'); ?>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-3">Keterangan *</label>
-              <div class="col-xs-9">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Keter *</label>
+              <div class="col-sm-10">
                 <textarea name="keter" class="form-control" required><?php echo $p->keter; ?></textarea>
                 <?php echo form_error('keter'); ?>
               </div>

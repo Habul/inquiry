@@ -14,7 +14,7 @@ class Inquiry extends CI_Controller
   {
     parent::__construct();
     date_default_timezone_set('Asia/Jakarta');
-    $this->load->helper(array('form', 'url'));
+    $this->load->helper(array('form', 'url', 'date'));
     $this->load->model('m_data');
     $session = $this->session->userdata('status');
     if ($session == '') {
@@ -39,9 +39,8 @@ class Inquiry extends CI_Controller
 
   public function inquiry_aksi()
   {
-    //$this->form_validation->set_rules('inquiry_id', 'No Inquiry', 'required');
     $this->form_validation->set_rules('sales', 'Nama Sales', 'required');
-    $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+    //$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
     $this->form_validation->set_rules('brand', 'Brand Produk', 'required');
     $this->form_validation->set_rules('desc', 'Description Produk', 'required');
     $this->form_validation->set_rules('qty', 'Quantity', 'required');
@@ -52,7 +51,7 @@ class Inquiry extends CI_Controller
     if ($this->form_validation->run() != false) {
       $inquiry_id = $this->input->post('inquiry_id');
       $sales = $this->input->post('sales');
-      $tanggal = $this->input->post('tanggal');
+      $tanggal = mdate('%Y-%m-%d %H:%i:%s');
       $brand = $this->input->post('brand');
       $desc = $this->input->post('desc');
       $qty = $this->input->post('qty');
@@ -169,7 +168,7 @@ class Inquiry extends CI_Controller
   public function inquiry_update_sales()
   {
     $this->form_validation->set_rules('sales', 'Nama Sales', 'required');
-    $this->form_validation->set_rules('tanggal2', 'Tanggal', 'required');
+    // $this->form_validation->set_rules('tanggal2', 'Tanggal', 'required');
     $this->form_validation->set_rules('brand', 'Brand Produk', 'required');
     $this->form_validation->set_rules('desc', 'Description Product', 'required');
     $this->form_validation->set_rules('qty', 'Quantity', 'required');
@@ -181,7 +180,7 @@ class Inquiry extends CI_Controller
       $id = $this->input->post('id');
 
       $sales = $this->input->post('sales');
-      $tanggal2 = $this->input->post('tanggal2');
+      $tanggal2 = mdate('%Y-%m-%d %H:%i:%s');
       $brand = $this->input->post('brand');
       $desc = $this->input->post('desc');
       $qty = $this->input->post('qty');

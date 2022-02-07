@@ -68,9 +68,9 @@
                     <td><?php echo $p->pengguna_level; ?></td>
                     <td style="text-align:center">
                       <?php if ($p->pengguna_status == 1) : ?>
-                        <span class="badge badge-primary">Aktif</span>
+                        <span class="badge badge-primary"><i class="fas fa-check-circle"></i> Aktif</span>
                       <?php else : ?>
-                        <span class="badge badge-danger">Non-Aktif</span>
+                        <span class="badge badge-danger"><i class="fas fa-times-circle"></i> Non-Aktif</span>
                       <?php endif; ?>
                     </td>
                     <td style="text-align:center">

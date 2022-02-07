@@ -10,7 +10,7 @@ class Driver extends CI_Controller
 
     date_default_timezone_set('Asia/Jakarta');
 
-    $this->load->helper(array('form', 'url'));
+    $this->load->helper(array('form', 'url', 'date'));
     $this->load->model('m_data');
     $session = $this->session->userdata('status');
     if ($session == '') {
@@ -38,14 +38,13 @@ class Driver extends CI_Controller
     $this->form_validation->set_rules('type', 'Type', 'required');
     $this->form_validation->set_rules('merk', 'Merk', 'required');
     $this->form_validation->set_rules('plat', 'Plat', 'required');
-    $this->form_validation->set_rules('addtime', 'Addtime', 'required');
 
     if ($this->form_validation->run() != false) {
       $id = $this->input->post('no_id');
       $type = $this->input->post('type');
       $merk = $this->input->post('merk');
       $plat = $this->input->post('plat');
-      $addtime = $this->input->post('addtime');
+      $addtime = mdate('%Y-%m-%d %H:%i:%s');
 
       $data = array(
         'no_id' => $id,
@@ -87,7 +86,6 @@ class Driver extends CI_Controller
   {
     $this->form_validation->set_rules('merk', 'Merk', 'required');
     $this->form_validation->set_rules('plat', 'Plat', 'required');
-    $this->form_validation->set_rules('addtime', 'Plat', 'required');
 
     if ($this->form_validation->run() != false) {
 
@@ -95,7 +93,7 @@ class Driver extends CI_Controller
 
       $merk = $this->input->post('merk');
       $plat = $this->input->post('plat');
-      $addtime = $this->input->post('addtime');
+      $updtime = mdate('%Y-%m-%d %H:%i:%s');
 
       $where = array(
         'no_id' => $id
@@ -104,7 +102,7 @@ class Driver extends CI_Controller
       $data = array(
         'merk' => $merk,
         'plat' => $plat,
-        'addtime' => $addtime
+        'updtime' => $updtime
       );
 
       $this->m_data->update_data($where, $data, 'type_vehicles');
@@ -360,14 +358,13 @@ class Driver extends CI_Controller
     $this->form_validation->set_rules('type', 'Type', 'required');
     $this->form_validation->set_rules('merk', 'Merk', 'required');
     $this->form_validation->set_rules('plat', 'Plat', 'required');
-    $this->form_validation->set_rules('addtime', 'Addtime', 'required');
 
     if ($this->form_validation->run() != false) {
       $id = $this->input->post('no_id');
       $type = $this->input->post('type');
       $merk = $this->input->post('merk');
       $plat = $this->input->post('plat');
-      $addtime = $this->input->post('addtime');
+      $addtime = mdate('%Y-%m-%d %H:%i:%s');
 
       $data = array(
         'no_id' => $id,
@@ -409,7 +406,6 @@ class Driver extends CI_Controller
   {
     $this->form_validation->set_rules('merk', 'Merk', 'required');
     $this->form_validation->set_rules('plat', 'Plat', 'required');
-    $this->form_validation->set_rules('addtime', 'Plat', 'required');
 
     if ($this->form_validation->run() != false) {
 
@@ -417,7 +413,7 @@ class Driver extends CI_Controller
 
       $merk = $this->input->post('merk');
       $plat = $this->input->post('plat');
-      $addtime = $this->input->post('addtime');
+      $updtime = mdate('%Y-%m-%d %H:%i:%s');
 
       $where = array(
         'no_id' => $id
@@ -426,7 +422,7 @@ class Driver extends CI_Controller
       $data = array(
         'merk' => $merk,
         'plat' => $plat,
-        'addtime' => $addtime
+        'updtime' => $updtime
       );
 
       $this->m_data->update_data($where, $data, 'type_vehicles');
@@ -683,14 +679,13 @@ class Driver extends CI_Controller
     $this->form_validation->set_rules('type', 'Type', 'required');
     $this->form_validation->set_rules('merk', 'Merk', 'required');
     $this->form_validation->set_rules('plat', 'Plat', 'required');
-    $this->form_validation->set_rules('addtime', 'Addtime', 'required');
 
     if ($this->form_validation->run() != false) {
       $id = $this->input->post('no_id');
       $type = $this->input->post('type');
       $merk = $this->input->post('merk');
       $plat = $this->input->post('plat');
-      $addtime = $this->input->post('addtime');
+      $addtime = mdate('%Y-%m-%d %H:%i:%s');
 
       $data = array(
         'no_id' => $id,
@@ -732,7 +727,6 @@ class Driver extends CI_Controller
   {
     $this->form_validation->set_rules('merk', 'Merk', 'required');
     $this->form_validation->set_rules('plat', 'Plat', 'required');
-    $this->form_validation->set_rules('addtime', 'Plat', 'required');
 
     if ($this->form_validation->run() != false) {
 
@@ -740,7 +734,7 @@ class Driver extends CI_Controller
 
       $merk = $this->input->post('merk');
       $plat = $this->input->post('plat');
-      $addtime = $this->input->post('addtime');
+      $updtime = mdate('%Y-%m-%d %H:%i:%s');
 
       $where = array(
         'no_id' => $id
@@ -749,7 +743,7 @@ class Driver extends CI_Controller
       $data = array(
         'merk' => $merk,
         'plat' => $plat,
-        'addtime' => $addtime
+        'updtime' => $updtime
       );
 
       $this->m_data->update_data($where, $data, 'type_vehicles');
