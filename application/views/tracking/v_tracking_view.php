@@ -40,12 +40,8 @@
                 <form method="post" onsubmit="updbtn.disabled = true; return true;" method="post" action="<?php echo base_url('tracking/update') ?>">
                   <div class="form-group">
                     <label>Plan Kirim *</label>
-                    <?php
-                    $now = $this->load->helper('date');
-                    $format = "%Y-%m-%d %H:%i:%s";
-                    ?>
                     <input type="hidden" name="no_id" class="form-control" value="<?php echo $u->no_id; ?>">
-                    <input type="hidden" name="updtime" class="form-control" value="<?php echo mdate($format); ?>">
+                    <input type="hidden" name="updtime" class="form-control" value="<?php echo mdate("%Y-%m-%d %H:%i:%s"); ?>">
                     <input type="date" name="plan_kirim" class="form-control" value=<?php echo $u->plan_kirim ?> required>
                     <?php echo form_error('plan_kirim'); ?>
                   </div>

@@ -131,11 +131,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Pemesan</label>
             <div class="col-sm-10">
-              <?php
-              $now = $this->load->helper('date');
-              $format = "%Y-%m-%d %H:%i:%s";
-              ?>
-              <input type="hidden" name="addtime" class="form-control" value="<?php echo mdate($format); ?>">
+              <input type="hidden" name="addtime" class="form-control" value="<?php echo mdate("%Y-%m-%d %H:%i:%s"); ?>">
               <input type="text" name="nama_pemesan" class="form-control" value="<?php echo $this->session->userdata('nama') ?>" readonly required>
               <?php echo form_error('nama_pemesan'); ?>
             </div>
@@ -279,12 +275,8 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Pemesan</label>
               <div class="col-sm-10">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d %H:%i:%s";
-                ?>
                 <input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
-                <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate($format); ?>">
+                <input type="hidden" name="addtime" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d %H:%i:%s"); ?>">
                 <input type="text" name="nama_pemesan" class="form-control" value="<?php echo $p->nama_pemesan ?>" readonly>
                 <?php echo form_error('nama_pemesan'); ?>
               </div>

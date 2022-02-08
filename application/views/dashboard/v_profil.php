@@ -42,16 +42,16 @@
           <?php
           if (isset($_GET['alert'])) {
             if ($_GET['alert'] == "sukses") {
-              echo "<div class='alert alert-success alert-dismissible'>Profil telah diupdate!</div>";
+              echo "<div class='alert alert-success alert-dismissible'><i class='icon fas fa-check'></i>Profil telah diupdate!</div>";
             }
           }
           if (isset($_GET['alert'])) {
             if ($_GET['alert'] == "ok") {
-              echo "<div class='alert alert-success'>Password telah diubah!</div>";
+              echo "<div class='alert alert-success'><i class='icon fas fa-check'></i>Password telah diubah!</div>";
             } else if ($_GET['alert'] == "gagal") {
-              echo "<div class='alert alert-danger'>Maaf, password lama yang anda masukkan salah!</div>";
+              echo "<div class='alert alert-danger'><i class='icon fas fa-exclamation-triangle'></i>Maaf, password lama yang anda masukkan salah!</div>";
             } else if ($_GET['alert'] == "kurang") {
-              echo "<div class='alert alert-warning'>Maaf, password baru min 6 character / konfirmasi password tidak sama !</div>";
+              echo "<div class='alert alert-warning'><i class='icon fas fa-ban'></i>Maaf, password baru min 6 character / konfirmasi password tidak sama!</div>";
             }
           }
           ?>

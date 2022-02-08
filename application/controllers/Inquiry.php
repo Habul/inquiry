@@ -14,7 +14,6 @@ class Inquiry extends CI_Controller
   {
     parent::__construct();
     date_default_timezone_set('Asia/Jakarta');
-    $this->load->helper(array('form', 'url', 'date'));
     $this->load->model('m_data');
     $session = $this->session->userdata('status');
     if ($session == '') {

@@ -126,11 +126,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Tanggal</label>
             <div class="col-sm-10">
-              <?php
-              $now = $this->load->helper('date');
-              $format = "%Y-%m-%d %H:%i:%s";
-              ?>
-              <input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
+              <input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d %H:%i:%s"); ?>">
               <?php echo form_error('tanggal'); ?>
             </div>
           </div>
@@ -207,11 +203,7 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Tanggal</label>
               <div class="col-sm-10">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d %H:%i:%s";
-                ?>
-                <input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
+                <input type="datetime" name="tanggal" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d %H:%i:%s"); ?>">
               </div>
             </div>
             <div class="form-group row">
@@ -319,11 +311,7 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Follow UP</label>
               <div class="col-sm-10">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d %H:%i:%s";
-                ?>
-                <input type="datetime" name="fu" readonly class="form-control" value="<?php echo mdate($format); ?>">
+                <input type="datetime" name="fu" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d %H:%i:%s"); ?>">
                 <?php echo form_error('fu'); ?>
               </div>
             </div>

@@ -168,7 +168,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Deadline *</label>
             <div class="col-sm-10">
-              <input type="date" name="deadline" class="form-control" placeholder="Input deadline .." required>
+              <input type="date" name="deadline" class="form-control" value="2022-01-01" required>
               <?php echo form_error('deadline'); ?>
             </div>
           </div>

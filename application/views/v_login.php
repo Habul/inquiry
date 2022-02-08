@@ -62,11 +62,11 @@
     <?php
     if (isset($_GET['alert'])) {
       if ($_GET['alert'] == "gagal") {
-        echo "<div class='alert alert-danger font-weight-bold text-center'>Maaf! Username & Password Salah.</div>";
+        echo "<div class='alert alert-warning font-weight-bold text-center'><i class='icon fas fa-exclamation-triangle'></i>Maaf! Username & Password Salah</div>";
       } else if ($_GET['alert'] == "belum_login") {
-        echo "<div class='alert alert-danger font-weight-bold text-center'>Anda Harus Login Terlebih Dulu!</div>";
+        echo "<div class='alert alert-danger font-weight-bold text-center'><i class='icon fas fa-ban'></i>Anda Harus Login Terlebih Dulu!</div>";
       } else if ($_GET['alert'] == "logout") {
-        echo "<div class='alert alert-success font-weight-bold text-center'>Anda Telah Logout!</div>";
+        echo "<div class='alert alert-success font-weight-bold text-center'><i class='icon fas fa-bell'></i>Anda Telah Logout!</div>";
       }
     }
     ?>

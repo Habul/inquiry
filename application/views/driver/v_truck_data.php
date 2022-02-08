@@ -23,7 +23,7 @@
     <div class="container-fluid">
       <?php if ($this->session->flashdata('berhasil')) { ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <button type=" button" class="close" data-dismiss="alert">&times;</button>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
           <i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
         </div>
       <?php } ?>
@@ -168,11 +168,7 @@
           <div class="form-group">
             <label class="control-label col-xs-3">Tanggal</label>
             <div class="col-xs-9">
-              <?php
-              $now = $this->load->helper('date');
-              $format = "%Y-%m-%d";
-              ?>
-              <input type="date" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
+              <input type="date" name="tanggal" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d"); ?>">
               <?php echo form_error('tanggal'); ?>
             </div>
           </div>
@@ -217,13 +213,9 @@
             <div class="form-group">
               <label class="control-label col-xs-3">Type</label>
               <div class="col-xs-9">
-                <?php
-                $now = $this->load->helper('date');
-                $format = "%Y-%m-%d";
-                ?>
                 <input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
                 <input type="hidden" name="join_id" class="form-control" value="<?php echo $p->join_id; ?>">
-                <input type="date" name="tanggal" readonly class="form-control" value="<?php echo mdate($format); ?>">
+                <input type="date" name="tanggal" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d"); ?>">
               </div>
             </div>
             <div class="form-group">
