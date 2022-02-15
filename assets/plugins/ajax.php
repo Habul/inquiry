@@ -316,6 +316,7 @@
       var parsedDate = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0]);
       return parsedDate;
    }
+
    $(document).ready(function() {
       var $dTable = $('#filter2').DataTable({
          "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +

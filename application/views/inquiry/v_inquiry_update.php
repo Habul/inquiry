@@ -182,7 +182,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <a href=" <?php echo base_url('inquiry/inquiry') ?>" class="btn btn-default"><i class="fa fa-share"></i> Back</a>
+                    <a href="<?php echo base_url('inquiry/inquiry') ?>" class="btn btn-default"><i class="fa fa-share"></i> Back</a>
                     <button class="btn btn-primary float-right" id="updbtn"><i class="fa fa-check"></i> Save</button>
                   </div>
                 </form>

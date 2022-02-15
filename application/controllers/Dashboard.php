@@ -367,14 +367,118 @@ class Dashboard extends CI_Controller
   public function contact()
   {
     $data['title'] = 'Contact IT';
-    $data['it1'] = $this->m_data->kontak('1');
-    $data['it2'] = $this->m_data->kontak('2');
-    $data['it3'] = $this->m_data->kontak('3');
-    $data['it4'] = $this->m_data->kontak('4');
-    $data['it5'] = $this->m_data->kontak('5');
+    $data['it'] = $this->m_data->get_data('kontak')->result();
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('dashboard/v_contact', $data);
     $this->load->view('dashboard/v_footer');
+  }
+
+  public function contact_add()
+  {
+    $this->form_validation->set_rules('nama', 'Nama', 'required');
+    $this->form_validation->set_rules('posisi', 'Posisi', 'required');
+    $this->form_validation->set_rules('no_hp', 'No Hp', 'required');
+    $this->form_validation->set_rules('about', 'About', 'required');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+
+    if ($this->form_validation->run() != false) {
+      $nama = $this->input->post('nama');
+      $posisi = $this->input->post('posisi');
+      $no_hp = $this->input->post('no_hp');
+      $about = $this->input->post('about');
+      $alamat = $this->input->post('alamat');
+
+      $data = array(
+        'nama' => $nama,
+        'posisi' => $posisi,
+        'no_hp' => $no_hp,
+        'about' => $about,
+        'alamat' => $alamat
+      );
+
+      $this->m_data->insert_data($data, 'kontak');
+
+      if (!empty($_FILES['file']['name'])) {
+
+        $config['upload_path']   = './gambar/contact/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['overwrite']  = true;
+        $config['max_size']     = 5072;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('file')) {
+          $gambar = $this->upload->data();
+
+          $id = $this->input->post('no_id');
+          $file = $gambar['file_name'];
+
+          $this->db->query("UPDATE kontak SET `foto`='$file' WHERE id_user='$id'");
+        }
+      }
+      $this->session->set_flashdata('berhasil', 'Add contact successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
+      redirect(base_url() . 'dashboard/contact');
+    } else {
+      $this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
+      redirect(base_url() . 'dashboard/contact');
+    }
+  }
+
+  public function contact_edit()
+  {
+    $this->form_validation->set_rules('nama', 'Nama', 'required');
+    $this->form_validation->set_rules('posisi', 'Posisi', 'required');
+    $this->form_validation->set_rules('no_hp', 'No Hp', 'required');
+    $this->form_validation->set_rules('about', 'About', 'required');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+
+    if ($this->form_validation->run() != false) {
+
+      $id = $this->input->post('id');
+      $nama = $this->input->post('nama');
+      $posisi = $this->input->post('posisi');
+      $no_hp = $this->input->post('no_hp');
+      $about = $this->input->post('about');
+      $alamat = $this->input->post('alamat');
+
+      $where = array(
+        'id_user' => $id
+      );
+
+      $data = array(
+        'nama' => $nama,
+        'posisi' => $posisi,
+        'no_hp' => $no_hp,
+        'about' => $about,
+        'alamat' => $alamat
+      );
+
+      $this->m_data->update_data($where, $data, 'kontak');
+
+      if (!empty($_FILES['file']['name'])) {
+
+        $config['upload_path']   = './gambar/contact/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['overwrite']  = true;
+        $config['max_size']     = 5072;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('file')) {
+          $gambar = $this->upload->data();
+
+          $id = $this->input->post('id_user');
+          $file = $gambar['file_name'];
+
+          $this->db->query("UPDATE kontak SET foto='$file' WHERE no_id='$id'");
+        }
+      }
+      $this->session->set_flashdata('berhasil', 'Edit contact successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
+      redirect(base_url() . 'dashboard/contact');
+    } else {
+      $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+      redirect(base_url() . 'dashboard/contact');
+    }
   }
 
   public function notfound()
