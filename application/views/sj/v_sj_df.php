@@ -36,11 +36,11 @@
               <h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add_sj">
                   <i class="fa fa-plus"></i>&nbsp; Add Surat Jalan</a></h4>
               <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                  <i class="fas fa-expand"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
                 </button>
               </div>
             </div>

@@ -40,14 +40,14 @@
             <div class="card-header">
               <h4 class="card-title"><i class="fa fa-edit"></i> Surat Jalan HS</h4>
               <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="<?php echo base_url('sj/sj') ?>" data-source-selector="#card-refresh-content" data-load-on-init="false">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
                 </button>
               </div>
             </div>

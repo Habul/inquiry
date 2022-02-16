@@ -36,13 +36,13 @@
               <h6 class="card-title"><a class="form-control btn btn-success col-15 shadow" data-toggle="modal" data-target="#modal_add">
                   <i class="fa fa-plus"></i>&nbsp; Add Data</a></h6>
               <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
                   <i class="fas fa-times"></i>
                 </button>
               </div>

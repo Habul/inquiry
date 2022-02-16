@@ -160,8 +160,8 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="icon fas fa-user-tie"></i></span>
                 </div>
-                <input type="hidden" name="id" class="form-control" value=<?php echo $row->id_user; ?>>
-                <input type="text" name="nama" class="form-control" value=<?php echo $row->nama; ?> required>
+                <input type="hidden" name="id" class="form-control" value="<?php echo $row->id_user; ?>">
+                <input type="text" name="nama" class="form-control" value="<?php echo $row->nama; ?>" required>
               </div>
             </div>
             <div class="form-group">
@@ -169,15 +169,15 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="icon fas fa-briefcase"></i></span>
                 </div>
-                <input type="text" name="posisi" class="form-control" value=<?php echo $row->posisi; ?> required>
+                <input type="text" name="posisi" class="form-control" value="<?php echo $row->posisi; ?>" required>
               </div>
             </div>
-            <div class="form-group">
+            <div class=" form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="icon fas fa-phone"></i></span>
                 </div>
-                <input type="number" name="no_hp" class="form-control" value=<?php echo $row->no_hp; ?> required>
+                <input type="number" name="no_hp" class="form-control" value="0<?php echo $row->no_hp; ?>" required>
               </div>
             </div>
             <div class="form-group">
