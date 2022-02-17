@@ -104,7 +104,9 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                <div class="input-group-text">
+                  <span><i class="fas fa-user-tie"></i></span>
+                </div>
               </div>
               <input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .." required>
               <?php echo form_error('nama'); ?>
@@ -113,7 +115,9 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                <div class="input-group-text">
+                  <span><i class="fas fa-envelope-square"></i></span>
+                </div>
               </div>
               <input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .." required>
               <?php echo form_error('email'); ?>
@@ -122,7 +126,9 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <div class="input-group-text">
+                  <span><i class="fas fa-user"></i></span>
+                </div>
               </div>
               <input type="text" name="username" class="form-control" placeholder="Masukkan username pengguna.." required>
               <?php echo form_error('username'); ?>
@@ -130,17 +136,21 @@
           </div>
           <div class="form-group">
             <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span toggle="#password-field" class="fa fa-fw fa-lock field-icon toggle-password"></span>
+                </div>
               </div>
-              <input type="password" name="password" class="form-control" placeholder="Masukkan password pengguna.." required>
+              <input id="password-field" type="password" class="form-control" name="password" placeholder="Masukan password.." required>
               <?php echo form_error('password'); ?>
             </div>
           </div>
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-suitcase"></i></span>
+                <div class="input-group-text">
+                  <span><i class="fas fa-suitcase"></i></span>
+                </div>
               </div>
               <select class="form-control" name="level" required>
                 <option value="">- Pilih Divisi -</option>
@@ -155,7 +165,9 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                <div class="input-group-text">
+                  <span><i class="fas fa-exclamation-circle"></i></span>
+                </div>
               </div>
               <select class="form-control" name="status" required>
                 <option value="">- Pilih Status -</option>
@@ -193,37 +205,45 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                  <div class="input-group-text">
+                    <span><i class="fas fa-user-tie"></i></span>
+                  </div>
                 </div>
                 <input type="hidden" name="id" value="<?php echo $p->pengguna_id; ?>">
-                <input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .." value="<?php echo $p->pengguna_nama; ?>">
+                <input type="text" name="nama" class="form-control" value="<?php echo $p->pengguna_nama; ?>">
                 <?php echo form_error('nama'); ?>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                  <div class="input-group-text">
+                    <span><i class="fas fa-envelope-square"></i></span>
+                  </div>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .." value="<?php echo $p->pengguna_email; ?>">
+                <input type="email" name="email" class="form-control" value="<?php echo $p->pengguna_email; ?>">
                 <?php echo form_error('email'); ?>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  <div class="input-group-text">
+                    <span><i class="fas fa-user"></i></span>
+                  </div>
                 </div>
-                <input type="text" name="username" class="form-control" placeholder="Masukkan username pengguna.." value="<?php echo $p->pengguna_username; ?>">
+                <input type="text" name="username" class="form-control" value="<?php echo $p->pengguna_username; ?>">
                 <?php echo form_error('username'); ?>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                  <div class="input-group-text">
+                    <span><i class="fa fa-lock"></i></span>
+                  </div>
                 </div>
-                <input type="password" name="password" class="form-control" placeholder="Masukkan password pengguna..">
+                <input type="password" class="form-control" name="password" placeholder="Masukan Password.." required>
                 <?php echo form_error('password'); ?>
               </div>
               <small>Kosongkan jika tidak ingin mengubah password</small>
@@ -231,7 +251,9 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-suitcase"></i></span>
+                  <div class="input-group-text">
+                    <span><i class="fas fa-suitcase"></i></span>
+                  </div>
                 </div>
                 <select class="form-control" name="level">
                   <option value="">- Pilih Level -</option>
@@ -257,7 +279,9 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                  <div class="input-group-text">
+                    <span><i class="fas fa-exclamation-circle"></i></span>
+                  </div>
                 </div>
                 <select class="form-control" name="status">
                   <option value="">- Pilih Status -</option>

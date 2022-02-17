@@ -22,34 +22,36 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body class="hold-transition login-page text-sm">
   <div class="login-box">
-    <div class="card shadow-lg">
+    <div class="card card-info card-outline">
       <div class="card-body">
         <div class="login-logo">
           <a href="#"><img src="<?php echo base_url() . 'gambar/website/Intisera2.png' ?>" style="width:250px;height:110px;"></a>
         </div>
         <form action="<?php echo base_url() . 'login/proses' ?>" onsubmit="logbtn.disabled = true; return true;" id="loginform" method="post">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user">&nbsp;</span>
               </div>
             </div>
+            <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
           </div>
           <?php echo form_error('username'); ?>
           <div class="input-group mb-3">
-            <input id="password-field" type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span toggle="#password-field" class="fa fa-fw fa-lock field-icon toggle-password"></span>
               </div>
             </div>
+            <input id="password-field" type="password" class="form-control" name="password" placeholder="Password" required>
           </div>
           <?php echo form_error('password'); ?>
+          <div class="g-recaptcha col-12" data-sitekey="<?php echo $this->config->item('google_key') ?>"></div><br />
           <div class="row">
             <div class="col-12">
               <button type="submit" id="logbtn" class="btn btn-primary btn-block">Sign In</button>

@@ -329,6 +329,8 @@ $config['cache_query_string'] = FALSE;
 |
 */
 $config['encryption_key'] = '1nt1nus4s3j4ht3r41ntern4t10n4l';
+$config['google_key'] = '6LfRRYMeAAAAANk9SznvVOtxhTRUnvN6jHXJRU1L';
+$config['google_secret'] = '6LfRRYMeAAAAAGeW8zRhwS6wzmraw3vBosAlaaNG';
 
 /*
 |--------------------------------------------------------------------------

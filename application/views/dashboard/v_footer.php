@@ -70,10 +70,19 @@
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
 <?php include './assets/plugins/ajax.php'; ?>
-<!-- <script src="//cdn.ckeditor.com/4.17.1/basic/ckeditor.js"></script> -->
-<!-- <script>
-  CKEDITOR.replace('editor');
-</script> -->
+<script>
+  $(document).ready(function() {
+    $(".toggle-password").click(function() {
+      $(this).toggleClass("fa-lock fa-lock-open");
+      let input = $($(this).attr("toggle"));
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+    });
+  });
+</script>
 <script>
   var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   var currentTheme = localStorage.getItem('theme');
