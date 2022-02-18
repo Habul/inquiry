@@ -39,7 +39,7 @@
                 <span class="fas fa-user">&nbsp;</span>
               </div>
             </div>
-            <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
+            <input type="text" class="form-control" placeholder="Username" id="username" name="username" required="" oninvalid="this.setCustomValidity('Field username belum diisi')" oninput="setCustomValidity('')">
           </div>
           <?php echo form_error('username'); ?>
           <div class="input-group mb-3">
@@ -48,10 +48,10 @@
                 <span toggle="#password-field" class="fa fa-fw fa-lock field-icon toggle-password"></span>
               </div>
             </div>
-            <input id="password-field" type="password" class="form-control" name="password" placeholder="Password" required>
+            <input id="password-field" type="password" class="form-control" name="password" placeholder="Password" required="" oninvalid="this.setCustomValidity('Field Password belum diisi')" oninput="setCustomValidity('')">
           </div>
           <?php echo form_error('password'); ?>
-          <div class="g-recaptcha col-12" data-sitekey="<?php echo $this->config->item('google_key') ?>"></div><br />
+          <div class="g-recaptcha col-md-12" data-sitekey="<?php echo $this->config->item('google_key') ?>"></div><br />
           <div class="row">
             <div class="col-12">
               <button type="submit" id="logbtn" class="btn btn-primary btn-block">Sign In</button>

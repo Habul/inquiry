@@ -4,6 +4,7 @@ application/cache/*
 !application/cache/index.html
 
 application/logs/*
+application/config/config.php
 !application/logs/index.html
 
 !application/*/.htaccess
@@ -13,11 +14,6 @@ gambar/contact/*
 gambar/datait/*
 application/config/database.php
 
-
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
 # IDE Files

@@ -58,7 +58,6 @@ class Login extends CI_Controller
     } else {
       redirect(base_url() . 'login?alert=gagal');
     }
-    redirect(base_url() . 'login?alert=belum_login');
   }
 
   public function notfound()
