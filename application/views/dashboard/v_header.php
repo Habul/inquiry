@@ -64,6 +64,7 @@
 
         <li class="nav-item dropdown">
           <?php if ($this->session->userdata('level') != "sales") {  ?>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
             <?php
             $this->load->model('m_data');
             $jml_inquiry = $this->m_data->total_inquiry();
@@ -85,6 +86,7 @@
               </a>
             </div>
         </li>
+      <?php } ?>
       <?php } ?>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -201,8 +203,8 @@
             <?php
             }
             ?>
-            <?php
-            if ($this->session->userdata('level') != "warehouse") { ?>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
+            <?php if ($this->session->userdata('level') != "warehouse") { ?>              
               <li <?= $this->uri->uri_string() == 'inquiry/inquiry_master' ||
                     $this->uri->uri_string() == 'inquiry/inquiry_kurs' ||
                     $this->uri->segment(2) == 'inquiry' ||
@@ -348,6 +350,7 @@
                 </li>
               </ul>
             </li>
+            <?php } ?>
             <li class="nav-item">
               <a href="<?php echo base_url() . 'dashboard/contact' ?>" <?= $this->uri->uri_string() == 'dashboard/contact' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
                 <i class="nav-icon fas fa-rss-square"></i>

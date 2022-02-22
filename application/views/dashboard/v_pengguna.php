@@ -158,6 +158,7 @@
                 <option value="purchase">Purchase</option>
                 <option value="driver">Driver</option>
                 <option value="ga">GA</option>
+                <option value="guest">Guest</option>
               </select>
               <?php echo form_error('level'); ?>
             </div>
@@ -268,10 +269,13 @@
                           } ?> value="sales">Sales</option>
                   <option <?php if ($p->pengguna_level == "driver") {
                             echo "selected='selected'";
-                          } ?> value="sales">Driver</option>
+                          } ?> value="driver">Driver</option>
                   <option <?php if ($p->pengguna_level == "ga") {
                             echo "selected='selected'";
-                          } ?> value="sales">Ga</option>
+                          } ?> value="ga">Ga</option>
+                  <option <?php if ($p->pengguna_level == "guest") {
+                            echo "selected='selected'";
+                          } ?> value="guest">Guest</option>
                 </select>
                 <?php echo form_error('level'); ?>
               </div>

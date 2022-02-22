@@ -26,7 +26,9 @@
             <div class="icon">
               <i class="ion ion-android-list"></i>
             </div>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
             <a href="<?php echo base_url('sj/sj_df') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <?php } ?>
           </div>
         </div>
 
@@ -39,7 +41,9 @@
             <div class="icon">
               <i class="ion ion-android-document"></i>
             </div>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
             <a href="<?php echo base_url('inquiry/inquiry') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <?php } ?>
           </div>
         </div>
 
@@ -52,7 +56,9 @@
             <div class="icon">
               <i class="ion ion-ios-briefcase"></i>
             </div>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
             <a href="<?php echo base_url('buffer/buffer') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <?php } ?>
           </div>
         </div>
 
@@ -65,7 +71,9 @@
             <div class="icon">
               <i class="fas fa-users"></i>
             </div>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <?php } ?>
           </div>
         </div>
 
@@ -78,8 +86,9 @@
             <div class="icon">
               <i class="fas fa-car-side"></i>
             </div>
-            <a href="<?php echo base_url('driver/mobil') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i>
-            </a>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
+            <a href="<?php echo base_url('driver/mobil') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <?php } ?>
           </div>
         </div>
         <div class="col-lg-3 col-6">
@@ -91,8 +100,10 @@
             <div class="icon">
               <i class="fas fa-motorcycle"></i>
             </div>
-            <a href="<?php echo base_url('driver/motor') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i>
-            </a>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
+            <a href="<?php echo base_url('driver/motor') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <?php } ?>
+            
           </div>
         </div>
         <div class="col-lg-3 col-6">
@@ -104,8 +115,9 @@
             <div class="icon">
               <i class="fas fa-truck"></i>
             </div>
-            <a href="<?php echo base_url('driver/truck') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i>
-            </a>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
+            <a href="<?php echo base_url('driver/truck') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <?php } ?>
           </div>
         </div>
         <div class="col-lg-3 col-6">
@@ -117,8 +129,9 @@
             <div class="icon">
               <i class="fas fa-paper-plane"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i>
-            </a>
+            <?php if ($this->session->userdata('level') != "guest") {  ?>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <?php } ?>
           </div>
         </div>
 
