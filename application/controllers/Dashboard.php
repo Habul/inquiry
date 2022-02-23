@@ -488,11 +488,11 @@ class Dashboard extends CI_Controller
     $this->load->view('dashboard/v_footer');
   }
 
-  public function iframe()
+  public function mini_games()
   {
-    $data['title'] = 'Tabbed Iframe';
+    $data['title'] = 'Mini Games';
     $this->load->view('dashboard/v_header', $data);
-    $this->load->view('dashboard/v_iframe.php');
+    $this->load->view('it/v_games.php');
     $this->load->view('dashboard/v_footer');
   }
 }
