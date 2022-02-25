@@ -1,27 +1,29 @@
 <div class="modal fade" id="logoutModal" tabindex="-1" data-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content bg-primary">
-      <div class="modal-header">
-        <h5 class="col-12 modal-title text-center">Ready to Leave?
-          <button class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </h5>
-      </div>
-      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-      <div class="modal-footer justify-content-between">
-        <button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-        <a class="btn btn-outline-light" href="<?= base_url('dashboard/keluar'); ?>"><i class="fas fa-sign-out-alt"></i> Logout</a>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content bg-primary">
+			<div class="modal-header">
+				<h5 class="col-12 modal-title text-center">Ready to Leave?
+					<button class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h5>
+			</div>
+			<div class="modal-body">Select "Sign Out" below if you are ready to end your current session.</div>
+			<div class="modal-footer justify-content-between">
+				<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<a class="btn btn-outline-light" href="<?= base_url('dashboard/keluar'); ?>">Sign Out <i
+						class="fas fa-sign-out-alt"></i></a>
+			</div>
+		</div>
+	</div>
 </div>
 
 <footer class="main-footer text-sm">
-  <strong>Copyright &copy; <?= date('Y'); ?><a href="https://github.com/Habul"> Habul</a></strong> . All rights reserved.
-  <div class="float-right d-none d-sm-inline-block">
-    <b>IT</b> - Intinusa Sejahtera International
-  </div>
+	<strong>Copyright &copy; <?= date('Y'); ?><a href="https://github.com/Habul"> Habul</a></strong> . All rights
+	reserved.
+	<div class="float-right d-none d-sm-inline-block">
+		<b>IT</b> - Intinusa Sejahtera International
+	</div>
 </footer>
 
 <aside class="control-sidebar control-sidebar-dark"></aside>
@@ -31,7 +33,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+	$.widget.bridge('uibutton', $.ui.button)
+
 </script>
 <script src="<?php echo base_url(); ?>assets/plugins/chart.js/Chart.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
@@ -62,7 +65,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/inputmask/jquery.inputmask.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js">
+</script>
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/dropzone/min/dropzone.min.js"></script>
@@ -71,59 +75,61 @@
 <script src="<?php echo base_url(); ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
 <?php include './assets/plugins/ajax.php'; ?>
 <script>
-  $(document).ready(function() {
-    $(".toggle-password").click(function() {
-      $(this).toggleClass("fa-lock fa-lock-open");
-      let input = $($(this).attr("toggle"));
-      if (input.attr("type") == "password") {
-        input.attr("type", "text");
-      } else {
-        input.attr("type", "password");
-      }
-    });
-  });
+	$(document).ready(function () {
+		$(".toggle-password").click(function () {
+			$(this).toggleClass("fa-lock fa-lock-open");
+			let input = $($(this).attr("toggle"));
+			if (input.attr("type") == "password") {
+				input.attr("type", "text");
+			} else {
+				input.attr("type", "password");
+			}
+		});
+	});
+
 </script>
 <script>
-  var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-  var currentTheme = localStorage.getItem('theme');
-  var mainHeader = document.querySelector('.main-header');
+	var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+	var currentTheme = localStorage.getItem('theme');
+	var mainHeader = document.querySelector('.main-header');
 
-  if (currentTheme) {
-    if (currentTheme === 'dark') {
-      if (!document.body.classList.contains('dark-mode')) {
-        document.body.classList.add("dark-mode");
-      }
-      if (mainHeader.classList.contains('navbar-light')) {
-        mainHeader.classList.add('navbar-dark');
-        mainHeader.classList.remove('navbar-light');
-      }
-      toggleSwitch.checked = true;
-    }
-  }
+	if (currentTheme) {
+		if (currentTheme === 'dark') {
+			if (!document.body.classList.contains('dark-mode')) {
+				document.body.classList.add("dark-mode");
+			}
+			if (mainHeader.classList.contains('navbar-light')) {
+				mainHeader.classList.add('navbar-dark');
+				mainHeader.classList.remove('navbar-light');
+			}
+			toggleSwitch.checked = true;
+		}
+	}
 
-  function switchTheme(e) {
-    if (e.target.checked) {
-      if (!document.body.classList.contains('dark-mode')) {
-        document.body.classList.add("dark-mode");
-      }
-      if (mainHeader.classList.contains('navbar-light')) {
-        mainHeader.classList.add('navbar-dark');
-        mainHeader.classList.remove('navbar-light');
-      }
-      localStorage.setItem('theme', 'dark');
-    } else {
-      if (document.body.classList.contains('dark-mode')) {
-        document.body.classList.remove("dark-mode");
-      }
-      if (mainHeader.classList.contains('navbar-dark')) {
-        mainHeader.classList.add('navbar-light');
-        mainHeader.classList.remove('navbar-dark');
-      }
-      localStorage.setItem('theme', 'light');
-    }
-  }
+	function switchTheme(e) {
+		if (e.target.checked) {
+			if (!document.body.classList.contains('dark-mode')) {
+				document.body.classList.add("dark-mode");
+			}
+			if (mainHeader.classList.contains('navbar-light')) {
+				mainHeader.classList.add('navbar-dark');
+				mainHeader.classList.remove('navbar-light');
+			}
+			localStorage.setItem('theme', 'dark');
+		} else {
+			if (document.body.classList.contains('dark-mode')) {
+				document.body.classList.remove("dark-mode");
+			}
+			if (mainHeader.classList.contains('navbar-dark')) {
+				mainHeader.classList.add('navbar-light');
+				mainHeader.classList.remove('navbar-dark');
+			}
+			localStorage.setItem('theme', 'light');
+		}
+	}
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+	toggleSwitch.addEventListener('change', switchTheme, false);
+
 </script>
 </body>
 

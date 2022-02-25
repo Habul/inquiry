@@ -39,7 +39,6 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/docs.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/style_games.css">
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
@@ -67,11 +66,24 @@
 
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<div class="theme-switch-wrapper nav-link">
-						<label class="theme-switch" for="checkbox">
-							<input type="checkbox" id="checkbox" title="Dark Mode" />
-							<span class="slider round"></span>
-						</label>
+					<a class="nav-link" data-widget="navbar-search" href="#" role="button">
+						<i class="fas fa-search"></i>
+					</a>
+					<div class="navbar-search-block">
+						<form class="form-inline">
+							<div class="input-group input-group-sm">
+								<input class="form-control form-control-navbar" type="search" placeholder="Search"
+									aria-label="Search">
+								<div class="input-group-append">
+									<button class="btn btn-navbar" type="submit">
+										<i class="fas fa-search"></i>
+									</button>
+									<button class="btn btn-navbar" type="button" data-widget="navbar-search">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</li>
 
@@ -106,6 +118,14 @@
 						<i class="fas fa-expand-arrows-alt"></i>
 					</a>
 				</li>
+				<li class="nav-item">
+					<div class="theme-switch-wrapper nav-link">
+						<label class="theme-switch" for="checkbox">
+							<input type="checkbox" id="checkbox" title="Dark Mode" />
+							<span class="slider round"></span>
+						</label>
+					</div>
+				</li>
 
 				<li class="nav-item dropdown user-menu ">
 					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -115,7 +135,7 @@
 								class="fas fa-angle-down right"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-						<li class="user-header bg-dark">
+						<li class="user-header">
 							<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>"
 								class="img-circle elevation-2" alt="User Image">
 							<p>
@@ -124,12 +144,10 @@
 							</p>
 						</li>
 						<li class="user-footer">
-							<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default" title="Profile">
-								Profile
-							</a>
-							<a data-toggle="modal" data-target="#logoutModal" class="btn btn-danger float-right"
-								title="Sign out">
-								Sign out </a>
+							<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default border-0"
+								title="Profile"><i class="fas fa-user-tie"></i> Profile</a>
+							<a data-toggle="modal" data-target="#logoutModal" class="btn btn-default float-right border-0"
+								title="Sign out"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
 						</li>
 					</ul>
 				</li>
@@ -364,7 +382,7 @@
 								<li class="nav-item">
 									<a href="<?php echo base_url() . 'driver/mobil' ?>"
 										<?= $this->uri->segment(2) == 'mobil' ||
-                                                                        $this->uri->segment(2) == 'mobil_odo' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+                              $this->uri->segment(2) == 'mobil_odo' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="fas fa-car-side nav-icon"></i>
 										<p>Mobil</p>
 									</a>
@@ -372,7 +390,7 @@
 								<li class="nav-item">
 									<a href="<?php echo base_url() . 'driver/motor' ?>"
 										<?= $this->uri->segment(2) == 'motor' ||
-                                                                        $this->uri->segment(2) == 'motor_odo' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+                              $this->uri->segment(2) == 'motor_odo' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="fas fa-motorcycle nav-icon"></i>
 										<p>Motor</p>
 									</a>
@@ -380,7 +398,7 @@
 								<li class="nav-item">
 									<a href="<?php echo base_url() . 'driver/truck' ?>"
 										<?= $this->uri->segment(2) == 'truck' ||
-                                                                        $this->uri->segment(2) == 'truck_odo' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+                              $this->uri->segment(2) == 'truck_odo' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="fas fa-truck nav-icon"></i>
 										<p>Truck</p>
 									</a>
