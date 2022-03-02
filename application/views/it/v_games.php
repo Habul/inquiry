@@ -17,7 +17,7 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-lg-6 col-12">
 					<div class="card card-success card-outline">
 						<div class="card-body">
 							<div class="summary shadow">
@@ -34,16 +34,68 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-lg-6 col-12">
+					<div class="card card-success card-outline direct-chat direct-chat-success shadow">
+						<div class="card-header">
+							<h3 class="card-title">Send chat Bot</h3>
+							<div class="card-tools">
+								<span title="New Messages" class="badge bg-success"></span>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-tool" data-card-widget="remove">
+									<i class="fas fa-times"></i>
+								</button>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="direct-chat-messages">
+								<div class="direct-chat-msg">
+									<div class="direct-chat-infos clearfix">
+										<span class="direct-chat-name float-left">Bot</span>
+									</div>
+									<img class="direct-chat-img" src="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png"
+										alt="Message User Image">
+									<div class="direct-chat-text">
+										Lorem ipsum dolor sit amet.
+									</div>
+								</div>
+								<div class="direct-chat-msg right">
+									<div class="direct-chat-infos clearfix">
+										<span
+											class="direct-chat-name float-right"><?php echo $this->session->userdata('nama'); ?></span>
+									</div>
+									<img class="direct-chat-img"
+										src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>"
+										alt="Message User Image">
+									<div class="direct-chat-text">
+										Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vel aperiam vitae qui,
+										suscipit soluta libero beatae culpa mollitia aliquid!
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<form action="#" method="post">
+								<div class="input-group">
+									<input type="text" name="message" placeholder="Type Message ..." class="form-control">
+									<span class="input-group-append">
+										<button type="submit" class="btn btn-success">Send</button>
+									</span>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 </div>
-
 <script>
 	class Start {
 		constructor() {
 			this.playerName = "Player"
-			this.botName = "bot"
+			this.botName = "Bot"
 			this.playerOption;
 			this.botOption;
 			this.winner = ""
