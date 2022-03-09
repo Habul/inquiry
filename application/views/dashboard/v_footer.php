@@ -131,6 +131,25 @@
 	toggleSwitch.addEventListener('change', switchTheme, false);
 
 </script>
+<script>
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#blah').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	$("#imgInp").change(function () {
+		readURL(this);
+	});
+
+	$("#info").fadeTo(3000, 500).slideUp(500, function () {
+		$("#info").slideUp(500);
+	});
+
+</script>
 </body>
 
 </html>

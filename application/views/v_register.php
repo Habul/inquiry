@@ -35,8 +35,8 @@
 					<a href="#"><img src="<?php echo base_url() . 'gambar/website/Intisera2.png' ?>"
 							style="width:250px;height:110px;"></a>
 				</div>
-				<form onsubmit="regbtn.disabled = true; return true;" action="<?php echo base_url('login/register_proses') ?>"
-					method="post">
+				<form onsubmit="regbtn.disabled = true; return true;"
+					action="<?php echo base_url('login/register_proses') ?>" method="post">
 					<div class="input-group mb-2">
 						<input type="text" name="nama" class="form-control" placeholder="Full name"
 							value="<?= set_value('nama'); ?>" required autofocus>
@@ -56,8 +56,8 @@
 						</div>
 					</div>
 					<div class="input-group mb-2">
-						<input type="email" name="email" class="form-control" placeholder="Email" value="<?= set_value('email'); ?>"
-							required>
+						<input type="email" name="email" class="form-control" placeholder="Email"
+							value="<?= set_value('email'); ?>" required>
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-envelope"></span>
@@ -82,7 +82,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="g-recaptcha col-md-12" data-sitekey="<?php echo $this->config->item('google_key') ?>"></div><br />
+					<div class="g-recaptcha col-md-12" data-sitekey="<?php echo $this->config->item('google_key') ?>"></div>
+					<br />
 					<div class="row">
 						<div class="col-12">
 							<button type="submit" id="regbtn" class="btn btn-primary btn-block">Register</button>
@@ -118,6 +119,7 @@
 					input.attr("type", "password");
 				}
 			});
+
 			$(".toggle-password2").click(function () {
 				$(this).toggleClass("fa-lock fa-lock-open");
 				var input = $($(this).attr("toggle2"));
