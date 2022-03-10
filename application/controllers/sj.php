@@ -252,6 +252,7 @@ class Sj extends CI_Controller
     $data['title'] = 'Sj Df';
     $data['sj_user_df'] = $this->m_data->get_data('sj_user_df')->result();
     $data['sj_dfh'] = $this->m_data->get_data('sj_df')->result();
+    $data['sj_add'] = $this->db->select_max('no_id')->get('sj_user_df')->row();
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('sj/v_sj_df', $data);
     $this->load->view('dashboard/v_footer');
@@ -271,7 +272,7 @@ class Sj extends CI_Controller
 
       $no_delivery = $this->input->post('no_delivery');
       $nomor_del = str_replace("/", "-", $no_delivery);
-
+      $id = $this->input->post('id');
       $date_delivery = $this->input->post('date_delivery');
       $due_date = $this->input->post('due_date');
       $cust_name = $this->input->post('cust_name');
@@ -292,12 +293,33 @@ class Sj extends CI_Controller
       );
 
       $this->m_data->insert_data($data, 'sj_user_df');
-      $this->session->set_flashdata('berhasil', 'SJ successfully added, No Delivery : ' . $this->input->post('no_delivery', TRUE) . ' !');
-      redirect(base_url() . 'sj/sj_df');
+      $id = $this->input->post('id');    
+      $encrypt = urlencode($this->encrypt->encode($id));
+      redirect(base_url() . 'sj/sj_new/?sj=' . $encrypt);
     } else {
       $this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
       redirect(base_url() . 'sj/sj_df');
     }
+  }
+
+  public function sj_new()
+  {
+    $id = rawurldecode($this->encrypt->decode($_GET['sj']));
+
+    $where = array(
+      'no_id' => $id
+    );
+
+    $where2 = array(
+      'id_join' => $id
+    );
+
+    $data['title'] = 'Sj Df View';
+    $data['sj_user_df'] = $this->m_data->edit_data($where, 'sj_user_df')->result();
+    $data['sj_dfh'] = $this->m_data->edit_data($where2, 'sj_df')->result();
+    $this->load->view('dashboard/v_header', $data);
+    $this->load->view('sj/v_sj_view_df_new', $data);
+    $this->load->view('dashboard/v_footer');
   }
 
   public function sj_view_df()

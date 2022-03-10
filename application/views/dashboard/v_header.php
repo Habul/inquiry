@@ -212,11 +212,13 @@
 						</li>
 						<li <?= $this->uri->uri_string() == 'sj/sj' ||
                     $this->uri->segment(2) == 'sj_view' ||
-                    $this->uri->segment(2) == 'sj_view_df' ||
+                    $this->uri->segment(2) == 'sj_new' ||
+						  $this->uri->segment(2) == 'sj_view_df' ||
                     $this->uri->uri_string() == 'sj/sj_df' ||
                     $this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
 							<a href="#" <?= $this->uri->uri_string() == 'sj/sj' ||
                               $this->uri->segment(2) == 'sj_view' ||
+										$this->uri->segment(2) == 'sj_new' ||
                               $this->uri->segment(2) == 'sj_view_df' ||
                               $this->uri->uri_string() == 'sj/sj_df' ||
                               $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
@@ -235,7 +237,7 @@
 								</li>
 								<li class="nav-item">
 									<a href="<?php echo base_url() . 'sj/sj_df' ?>"
-										<?= $this->uri->uri_string() == 'sj/sj_df' || $this->uri->segment(2) == 'sj_view_df' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+										<?= $this->uri->uri_string() == 'sj/sj_df' || $this->uri->segment(2) == 'sj_view_df' ||  $this->uri->segment(2) == 'sj_new' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="far fa-circle nav-icon"></i>
 										<p>SJ Df</p>
 									</a>

@@ -37,10 +37,12 @@
 									data-target="#modal_add_sj">
 									<i class="fa fa-plus"></i>&nbsp; Add Surat Jalan</a></h4>
 							<div class="card-tools">
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning"
+									data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
 								</button>
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger"
+									data-card-widget="remove">
 									<i class="fas fa-times"></i>
 								</button>
 							</div>
@@ -75,10 +77,12 @@
 										<a class="btn-sm btn-warning" data-toggle="modal"
 											data-target="#modal_edit_sj<?php echo $p->no_id; ?>" title="Edit SJ"><i
 												class="fa fa-pencil-alt"></i></a>
-										<a href="<?php echo base_url() . 'sj/sj_view_df/?sj=' . $encrypturl; ?>" class="btn-sm btn-primary"
-											title="Add Desc, Detail & Print""><i class=" fa fa-search"></i></a>
-										<a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>"
-											title="Delete"><i class="fa fa-trash"></i></a>
+										<a href="<?php echo base_url() . 'sj/sj_view_df/?sj=' . $encrypturl; ?>"
+											class="btn-sm btn-primary" title="Add Desc, Detail & Print""><i class=" fa
+											fa-search"></i></a>
+										<a class="btn-sm btn-danger" data-toggle="modal"
+											data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i
+												class="fa fa-trash"></i></a>
 									</td>
 								</tr>
 								<?php } ?>
@@ -107,11 +111,9 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Do No *</label>
 						<div class="col-sm-10">
-							<?php
-              $cek = $this->db->select_max('no_id')->get('sj_user_df')->row();
-              ?>
+							<input type="hidden" name="id" value="<?php echo $sj_add->no_id + 1; ?>">
 							<input type="text" name="no_delivery" readonly class="form-control"
-								value="<?php echo 'IT/SJ/', date('Y/m/'), $cek->no_id + 1; ?>">
+								value="<?php echo 'IT/SJ/', date('Y/m/'), $sj_add->no_id + 1; ?>">
 							<?php echo form_error('no_delivery'); ?>
 						</div>
 					</div>
@@ -154,8 +156,8 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Phone *</label>
 						<div class="col-sm-10">
-							<input type="number" name="phone" class="form-control" placeholder="Input No Phone.." data-mask data-mask
-								required>
+							<input type="number" name="phone" class="form-control" placeholder="Input No Phone.." data-mask
+								data-mask required>
 							<?php echo form_error('phone'); ?>
 						</div>
 					</div>
@@ -196,22 +198,24 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Date *</label>
 						<div class="col-sm-10">
-							<input type="date" name="date_delivery" class="form-control" value="<?php echo $p->date_delivery; ?>"
-								required>
+							<input type="date" name="date_delivery" class="form-control"
+								value="<?php echo $p->date_delivery; ?>" required>
 							<?php echo form_error('date_delivery'); ?>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Due Date *</label>
 						<div class="col-sm-10">
-							<input type="date" name="due_date" class="form-control" value="<?php echo $p->due_date; ?>" required>
+							<input type="date" name="due_date" class="form-control" value="<?php echo $p->due_date; ?>"
+								required>
 							<?php echo form_error('due_date'); ?>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Cust *</label>
 						<div class="col-sm-10">
-							<input type="text" name="cust_name" class="form-control" value="<?php echo $p->cust_name; ?>" required>
+							<input type="text" name="cust_name" class="form-control" value="<?php echo $p->cust_name; ?>"
+								required>
 							<?php echo form_error('cust_name'); ?>
 						</div>
 					</div>
