@@ -50,7 +50,7 @@ class It extends CI_Controller
       if (!empty($_FILES['file']['name'])) {
 
         $config['upload_path']   = './gambar/datait/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|zip';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|zip|7z';
         $config['overwrite']  = true;
         $config['max_size']     = 5072;
 
@@ -100,7 +100,7 @@ class It extends CI_Controller
       if (!empty($_FILES['file']['name'])) {
 
         $config['upload_path']   = './gambar/datait/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|zip';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|zip|7z';
         $config['overwrite']  = true;
         $config['max_size']     = 5072;
 

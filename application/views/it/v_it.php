@@ -37,13 +37,16 @@
 									data-target="#modal_add">
 									<i class="fa fa-plus"></i>&nbsp; Add Data</a></h6>
 							<div class="card-tools">
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning"
+									data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
 								</button>
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-primary"
+									data-card-widget="maximize">
 									<i class="fas fa-expand"></i>
 								</button>
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger"
+									data-card-widget="remove">
 									<i class="fas fa-times"></i>
 								</button>
 							</div>
@@ -64,12 +67,15 @@
 									<td><?php echo htmlentities(strtoupper($p->judul)) ?></td>
 									<td style="text-align:center"><?php echo $p->addtime; ?></td>
 									<td style="text-align:center">
-										<a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>"
-											title="Edit"><i class="fa fa-pencil-alt"></i></a>
-										<a class="btn-sm btn-info" data-toggle="modal" data-target="#modal_view<?php echo $p->no_id; ?>"
-											title="View"><i class="fa fa-search"></i></a>
-										<a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>"
-											title="Delete"><i class="fa fa-trash"></i></a>
+										<a class="btn-sm btn-warning" data-toggle="modal"
+											data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i
+												class="fa fa-pencil-alt"></i></a>
+										<a class="btn-sm btn-info" data-toggle="modal"
+											data-target="#modal_view<?php echo $p->no_id; ?>" title="View"><i
+												class="fa fa-search"></i></a>
+										<a class="btn-sm btn-danger" data-toggle="modal"
+											data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i
+												class="fa fa-trash"></i></a>
 									</td>
 								</tr>
 								<?php } ?>
@@ -158,25 +164,27 @@
 						<label class="control-label col-xs-3">Description *</label>
 						<div class="col-xs-9">
 							<?php echo form_error('isi'); ?>
-							<textarea class="form-control form-control-sm" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
+							<textarea class="form-control form-control-sm" name="isi"
+								rows="10"><?php echo $p->isi; ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-xs-3">Attach</label>
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" target="_blank">
-							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-fluid mb-2" width="35%"
-								onerror="this.style.display='none'" /></a>
+							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-fluid mb-2"
+								width="35%" onerror="this.style.display='none'" /></a>
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" id="customFile" name="file">
 							<label class="custom-file-label" for="customFile">Choose file</label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3"></label>
+						<?php if ($p->file != '') : ?>
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" download title="Download Attachment"
 							alt="">
 							<img src="<?php echo base_url() . 'gambar/datait/paperclip-solid.svg' ?>" width="2%"
 								onerror="this.style.display='none'" /></a>
+						<?php endif; ?>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -213,16 +221,18 @@
 				<div class="form-group">
 					<div class="col-xs-9">
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" target="_blank">
-							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" width="50%" class="img-thumbnail"
-								onerror="this.style.display='none'" /></a>
+							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" width="50%"
+								class="img-thumbnail" onerror="this.style.display='none'" /></a>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-9">
+						<?php if ($p->file != '') : ?>
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" download title="Download Attachment"
 							alt="#">
 							<img src="<?php echo base_url() . 'gambar/datait/paperclip-solid.svg' ?>" width="2%"
 								onerror="this.style.display='none'" /></a>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>
