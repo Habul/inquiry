@@ -7,29 +7,18 @@
 	<title>Intisera | Log in</title>
 	<link rel='icon' href="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png" type="image/gif">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<style>
-		.login-page {
-			background-image: url('http://it.intisera.com/gambar/website/IMG_1479.jpg');
-			background-color: #cccccc;
-			height: 500px;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: cover;
-			position: relative;
-		}
-
-	</style>
 	<link rel="stylesheet" type="text/css"
 		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/login.css"> -->
 </head>
 
 <body class="hold-transition login-page text-sm">
 	<div class="login-box">
 		<div class="card card-transparent">
-			<div class="card-body">
+			<div class="card-body shadow-lg">
 				<div class="login-logo">
 					<a href="#"><img src="<?php echo base_url() . 'gambar/website/Intisera2.png' ?>"
 							style="width:250px;height:110px;"></a>
@@ -72,13 +61,13 @@
 		<?php
     if (isset($_GET['alert'])) {
       if ($_GET['alert'] == "gagal") {
-        echo "<div class='alert alert-warning font-weight-bold text-center'><i class='icon fas fa-exclamation-triangle'></i>Login Gagal!</div>";
+        echo "<div class='alert alert-warning font-weight-bold text-center shadow'><i class='icon fas fa-exclamation-triangle'></i>Login Gagal!</div>";
       } else if ($_GET['alert'] == "belum_login") {
-        echo "<div class='alert alert-danger font-weight-bold text-center'><i class='icon fas fa-ban'></i>Anda Harus Login Terlebih Dulu!</div>";
+        echo "<div class='alert alert-danger font-weight-bold text-center shadow'><i class='icon fas fa-ban'></i>Anda Harus Login Terlebih Dulu!</div>";
       } else if ($_GET['alert'] == "logout") {
-        echo "<div class='alert alert-success font-weight-bold text-center'><i class='icon fas fa-bell'></i>Anda Telah Logout!</div>";
+        echo "<div class='alert alert-success font-weight-bold text-center shadow'><i class='icon fas fa-bell'></i>Anda Telah Logout!</div>";
       } else if ($_GET['alert'] == "registered") {
-        echo "<div class='alert alert-success font-weight-bold text-center'><i class='icon fas fa-bell'></i>User berhasil di tambah</div>";
+        echo "<div class='alert alert-success font-weight-bold text-center shadow'><i class='icon fas fa-bell'></i>User berhasil di tambah</div>";
       }
     }
     ?>

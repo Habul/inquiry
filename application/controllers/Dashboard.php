@@ -368,6 +368,7 @@ class Dashboard extends CI_Controller
   {
     $data['title'] = 'Contact IT';
     $data['it'] = $this->m_data->get_data('kontak')->result();
+    $data['id_add'] = $this->db->select_max('id_user')->get('kontak')->row();
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('dashboard/v_contact', $data);
     $this->load->view('dashboard/v_footer');
@@ -382,6 +383,7 @@ class Dashboard extends CI_Controller
     $this->form_validation->set_rules('alamat', 'Alamat', 'required');
 
     if ($this->form_validation->run() != false) {
+      $id = $this->input->post('id');
       $nama = $this->input->post('nama');
       $posisi = $this->input->post('posisi');
       $no_hp = $this->input->post('no_hp');
@@ -389,6 +391,7 @@ class Dashboard extends CI_Controller
       $alamat = $this->input->post('alamat');
 
       $data = array(
+        'id_user' =>$id,
         'nama' => $nama,
         'posisi' => $posisi,
         'no_hp' => $no_hp,
@@ -398,22 +401,22 @@ class Dashboard extends CI_Controller
 
       $this->m_data->insert_data($data, 'kontak');
 
-      if (!empty($_FILES['file']['name'])) {
+      if (!empty($_FILES['foto']['name'])) {
 
         $config['upload_path']   = './gambar/contact/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['overwrite']  = true;
-        $config['max_size']     = 5072;
+        $config['max_size']     = 2048;
 
         $this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('file')) {
+        if ($this->upload->do_upload('foto')) {
           $gambar = $this->upload->data();
 
-          $id = $this->input->post('no_id');
+          $id = $this->input->post('id');
           $file = $gambar['file_name'];
 
-          $this->db->query("UPDATE kontak SET `foto`='$file' WHERE id_user='$id'");
+          $this->db->query("UPDATE kontak SET foto='$file' WHERE id_user='$id'");
         }
       }
       $this->session->set_flashdata('berhasil', 'Add contact successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
@@ -455,28 +458,40 @@ class Dashboard extends CI_Controller
 
       $this->m_data->update_data($where, $data, 'kontak');
 
-      if (!empty($_FILES['file']['name'])) {
+      if (!empty($_FILES['foto']['name'])) {
 
         $config['upload_path']   = './gambar/contact/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['overwrite']  = true;
-        $config['max_size']     = 5072;
+        $config['max_size']     = 2048;
 
         $this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('file')) {
+        if ($this->upload->do_upload('foto')) {
           $gambar = $this->upload->data();
 
-          $id = $this->input->post('id_user');
+          $id = $this->input->post('id');
           $file = $gambar['file_name'];
 
-          $this->db->query("UPDATE kontak SET foto='$file' WHERE no_id='$id'");
+          $this->db->query("UPDATE kontak SET foto='$file' WHERE id_user='$id'");
         }
       }
       $this->session->set_flashdata('berhasil', 'Edit contact successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
       redirect(base_url() . 'dashboard/contact');
     } else {
       $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+      redirect(base_url() . 'dashboard/contact');
+    }
+  }
+
+  public function contact_hapus()
+  {
+    $id = $this->input->post('id'); {
+      $where = array(
+        'id_user' => $id
+      );
+      $this->m_data->delete_data($where, 'kontak');
+      $this->session->set_flashdata('berhasil', 'Data has been deleted !');
       redirect(base_url() . 'dashboard/contact');
     }
   }

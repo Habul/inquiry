@@ -207,6 +207,10 @@
 							<a href="<?php echo base_url() . 'it/data' ?>"
 								<?= $this->uri->uri_string() == 'it/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-user-astronaut"></i>
+								<?php $cek = $this->db->like('addtime', mdate('%Y-%m-%d'))->get('datapenting_it')->num_rows();  ?>
+								<?php if ($cek != '') : ?>
+								<span class="right badge badge-danger">New</span>
+								<?php endif; ?>
 								<p>Data Penting</p>
 							</a>
 						</li>
@@ -223,6 +227,10 @@
                               $this->uri->uri_string() == 'sj/sj_df' ||
                               $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-mail-bulk"></i>
+								<?php $cek = $this->db->like('addtime', mdate('%Y-%m-%d'))->get('sj_user_df')->num_rows();  ?>
+								<?php if ($cek != '') : ?>
+								<span class="right badge badge-danger">New</span>
+								<?php endif; ?>
 								<p>Surat Jalan
 									<i class="fas fa-angle-left right"></i>
 								</p>
@@ -239,6 +247,9 @@
 									<a href="<?php echo base_url() . 'sj/sj_df' ?>"
 										<?= $this->uri->uri_string() == 'sj/sj_df' || $this->uri->segment(2) == 'sj_view_df' ||  $this->uri->segment(2) == 'sj_new' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="far fa-circle nav-icon"></i>
+										<?php if ($cek != '') : ?>
+										<span class="right badge badge-danger">New</span>
+										<?php endif; ?>
 										<p>SJ Df</p>
 									</a>
 								</li>
@@ -262,6 +273,10 @@
                               $this->uri->segment(2) == 'inquiry_update_prch' ||
                               $this->uri->uri_string() == 'inquiry/inquiry_view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-book"></i>
+								<?php $total = $this->db->where('fu1', NULL)->get('inquiry')->num_rows(); ?>
+								<?php if ($total != 0) : ?>
+								<span class="badge badge-info right"><?php echo $total; ?></span>
+								<?php endif; ?>
 								<p>Inquiry
 									<i class="fas fa-angle-left right"></i>
 								</p>
@@ -287,6 +302,9 @@
 									<a href="<?php echo base_url() . 'inquiry/inquiry' ?>"
 										<?= $this->uri->segment(2) == 'inquiry' || $this->uri->segment(2) == 'inquiry_update_prch' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="far fa-circle nav-icon"></i>
+										<?php if ($total != 0) : ?>
+										<span class="badge badge-info right"><?php echo $total; ?></span>
+										<?php endif; ?>
 										<p>Inquiry</p>
 									</a>
 								</li>
@@ -309,6 +327,10 @@
                               $this->uri->uri_string() == 'buffer/buffer_view' ||
                               $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-database"></i>
+								<?php $total = $this->db->where('fu', NULL)->get('buffer')->num_rows(); ?>
+								<?php if ($total != 0) : ?>
+								<span class="badge badge-info right"><?php echo $total; ?></span>
+								<?php endif; ?>
 								<p>Buffer
 									<i class="fas fa-angle-left right"></i>
 								</p>
@@ -318,6 +340,9 @@
 									<a href="<?php echo base_url() . 'buffer/buffer' ?>"
 										<?= $this->uri->uri_string() == 'buffer/buffer' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="far fa-circle nav-icon"></i>
+										<?php if ($total != 0) : ?>
+										<span class="badge badge-info right"><?php echo $total; ?></span>
+										<?php endif; ?>
 										<p>Buffer</p>
 									</a>
 								</li>

@@ -51,7 +51,7 @@
 						<?php }  ?>
 						<?php }  ?>
 						<div class="card-body">
-							<table id="example6" class="table table-bordered table-hover table-sm">
+							<table id="example6" class="table table-hover table-sm">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="5%">No</th>
@@ -63,7 +63,7 @@
 										<th>Deadline</th>
 										<th>Request</th>
 										<?php if ($this->session->userdata('level') != "warehouse") { ?>
-										<th width="13%">Action</th>
+										<th width="13%">Actions</th>
 										<?php }  ?>
 									</tr>
 								</thead>
@@ -246,14 +246,16 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Qty *</label>
 						<div class="col-sm-10">
-							<input type="number" name="qty" class="form-control" min="1" value="<?php echo $p->qty; ?>" required>
+							<input type="number" name="qty" class="form-control" min="1" value="<?php echo $p->qty; ?>"
+								required>
 							<?php echo form_error('qty'); ?>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Deadline *</label>
 						<div class="col-sm-10">
-							<input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>" required>
+							<input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>"
+								required>
 							<?php echo form_error('deadline'); ?>
 						</div>
 					</div>

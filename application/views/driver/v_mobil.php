@@ -50,10 +50,11 @@
 									<td><?php echo $no++; ?></td>
 									<td>
 										<picture>
-											<a href="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" data-toggle="lightbox"
+											<a href="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>"
+												data-toggle="lightbox"
 												data-title="<?php echo strtoupper($p->merk) ?>&nbsp; PLAT NO :&nbsp;<?php echo strtoupper($p->plat) ?>">
-												<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2"
-													onerror="this.style.display='none'" /></a>
+												<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>"
+													class="img-fluid mb-2" onerror="this.style.display='none'" /></a>
 											<figcaption><?php echo strtoupper($p->merk) ?>&nbsp;<?php echo strtoupper($p->plat) ?>
 											</figcaption>
 										</picture>
@@ -69,12 +70,14 @@
 									</td>
 									<td>
 										<?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
-										<a class="btn btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>"
-											title="Edit"><i class="fa fa-edit"></i></a>
-										<a href="<?php echo base_url() . 'driver/mobil_odo/?id=' . $encrypturl; ?>" class="btn btn-primary"
-											title="View Detail"><i class="fa fa-search"></i></a>
-										<a class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>"
-											title="Delete"><i class="fa fa-trash"></i></a>
+										<a class="btn btn-warning" data-toggle="modal"
+											data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i
+												class="fa fa-edit"></i></a>
+										<a href="<?php echo base_url() . 'driver/mobil_odo/?id=' . $encrypturl; ?>"
+											class="btn btn-primary" title="View Detail"><i class="fa fa-search"></i></a>
+										<a class="btn btn-danger" data-toggle="modal"
+											data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i
+												class="fa fa-trash"></i></a>
 									</td>
 								</tr>
 								<?php } ?>

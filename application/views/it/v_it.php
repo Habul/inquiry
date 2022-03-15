@@ -52,13 +52,13 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<table id="index1" class="table table-bordered table-hover table-sm">
+							<table id="index1" class="table table-hover table-sm">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="3%">No</th>
 										<th width="50%">Title</th>
 										<th width="12%">Addtime</th>
-										<th width="10%">Action</th>
+										<th width="10%">Actions</th>
 									</tr>
 								</thead>
 								<?php foreach ($penting as $p) { ?>

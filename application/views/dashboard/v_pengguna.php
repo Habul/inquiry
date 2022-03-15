@@ -46,7 +46,7 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<table id="index2" class="table table-bordered table-striped table-sm">
+							<table id="index2" class="table table-striped table-sm">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="5%">No</th>
@@ -55,7 +55,7 @@
 										<th>Username</th>
 										<th>Level</th>
 										<th>Status</th>
-										<th width="10%">Action</th>
+										<th width="10%">Actions</th>
 									</tr>
 								</thead>
 								<?php
@@ -114,7 +114,8 @@
 									<span><i class="fas fa-user-tie"></i></span>
 								</div>
 							</div>
-							<input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .." required>
+							<input type="text" name="nama" class="form-control" placeholder="Masukkan nama pengguna .."
+								required>
 							<?php echo form_error('nama'); ?>
 						</div>
 					</div>
@@ -125,7 +126,8 @@
 									<span><i class="fas fa-envelope-square"></i></span>
 								</div>
 							</div>
-							<input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .." required>
+							<input type="email" name="email" class="form-control" placeholder="Masukkan email pengguna .."
+								required>
 							<?php echo form_error('email'); ?>
 						</div>
 					</div>
@@ -242,7 +244,8 @@
 									<span><i class="fas fa-user"></i></span>
 								</div>
 							</div>
-							<input type="text" name="username" class="form-control" value="<?php echo $p->pengguna_username; ?>">
+							<input type="text" name="username" class="form-control"
+								value="<?php echo $p->pengguna_username; ?>">
 							<?php echo form_error('username'); ?>
 						</div>
 					</div>
@@ -253,7 +256,8 @@
 									<span><i class="fa fa-lock"></i></span>
 								</div>
 							</div>
-							<input type="password" class="form-control" name="password" placeholder="Masukan Password.." required>
+							<input type="password" class="form-control" name="password" placeholder="Masukan Password.."
+								required>
 							<?php echo form_error('password'); ?>
 						</div>
 						<small>Kosongkan jika tidak ingin mengubah password</small>
