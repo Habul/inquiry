@@ -9,72 +9,46 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css"
 		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
-	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/login.css"> -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/login.css">
 </head>
 
-<body class="hold-transition login-page text-sm">
-	<div class="login-box">
-		<div class="card card-transparent">
-			<div class="card-body shadow-lg">
-				<div class="login-logo">
-					<a href="#"><img src="<?php echo base_url() . 'gambar/website/Intisera2.png' ?>"
-							style="width:250px;height:110px;"></a>
-				</div>
-				<form action="<?php echo base_url() . 'login/proses' ?>" onsubmit="logbtn.disabled = true; return true;"
-					id="loginform" method="post">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Username" id="username" name="username"
-							required="" oninvalid="this.setCustomValidity('Field username belum diisi')"
-							oninput="setCustomValidity('')" autofocus>
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-user">&nbsp;</span>
-							</div>
-						</div>
-					</div>
-					<?php echo form_error('username'); ?>
-					<div class="input-group mb-3">
-						<input id="password-field" type="password" class="form-control" name="password" placeholder="Password"
-							required="" oninvalid="this.setCustomValidity('Field Password belum diisi')"
-							oninput="setCustomValidity('')">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span toggle="#password-field" class="fa fa-fw fa-lock field-icon toggle-password"></span>
-							</div>
-						</div>
-					</div>
-					<?php echo form_error('password'); ?>
-					<div class="row">
-						<div class="col-12">
-							<button type="submit" id="logbtn" class="btn btn-primary btn-block">Sign In</button>
-						</div>
-					</div>
-				</form>
-				<p class="d-block text-center mt-2 mb-0">Not registered? <a
-						href="<?php echo base_url() . 'login/register' ?>"><u>Sign Up Now!</u></a></p>
-			</div>
+<body class="hold-transition login-page">
+	<div class="wrapper">
+		<div class="logo">
+			<img src="<?php echo base_url() . 'gambar/website/Untitled-1-02.png' ?>">
 		</div>
-		<br />
+		<div class="text-center mt-4 name">INTISERA</div>
+		<form class="p-3 mt-3" action="<?php echo base_url() . 'login/proses' ?>"
+			onsubmit="logbtn.disabled = true; return true;" id="loginform" method="post">
+			<div class="form-field d-flex align-items-center"><span class="fas fa-user"></span>
+				<input type="text" name="username" placeholder="Username.." autofocus required>
+			</div>
+			<div class="form-field d-flex align-items-center"><span toggle="#password-field"
+					class="fas fa-fw fa-lock field-icon toggle-password"></span>
+				<input type="password" name="password" id="password-field" placeholder="Password.." required>
+			</div>
+			<button class="btn mt-3" type="submit" id="logbtn">Sign in</button>
+		</form>
+		<div class="text-center fs-6">Not registered?<a href="<?php echo base_url() . 'login/register' ?>"> Sign up</a>
+		</div>
 		<?php
     if (isset($_GET['alert'])) {
       if ($_GET['alert'] == "gagal") {
-        echo "<div class='alert alert-warning font-weight-bold text-center shadow'><i class='icon fas fa-exclamation-triangle'></i>Login Gagal!</div>";
+        echo "<div class='alert font-weight-bold text-center mt-2'><i class='icon fas fa-exclamation-triangle'></i> Login Gagal!</div>";
       } else if ($_GET['alert'] == "belum_login") {
-        echo "<div class='alert alert-danger font-weight-bold text-center shadow'><i class='icon fas fa-ban'></i>Anda Harus Login Terlebih Dulu!</div>";
+        echo "<div class='alert font-weight-bold text-center mt-2'><i class='icon fas fa-ban'></i> Anda Harus Login Terlebih Dulu!</div>";
       } else if ($_GET['alert'] == "logout") {
-        echo "<div class='alert alert-success font-weight-bold text-center shadow'><i class='icon fas fa-bell'></i>Anda Telah Logout!</div>";
+        echo "<div class='alert font-weight-bold text-center mt-2'><i class='icon fas fa-bell'></i> Anda Telah Logout!</div>";
       } else if ($_GET['alert'] == "registered") {
-        echo "<div class='alert alert-success font-weight-bold text-center shadow'><i class='icon fas fa-bell'></i>User berhasil di tambah</div>";
+        echo "<div class='alert font-weight-bold text-center mt-2'><i class='icon fas fa-bell'></i> User berhasil di tambah</div>";
       }
     }
     ?>
 	</div>
 	<script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
 	<script>
 		$(document).ready(function () {
 			$(".toggle-password").click(function () {
