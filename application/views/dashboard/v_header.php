@@ -196,6 +196,7 @@
 							</a>
 						</li>
 						<?php if ($this->session->userdata('level') == "admin") { ?>
+						<li class="nav-header">Administrator</li>
 						<li class="nav-item">
 							<a href="<?php echo base_url() . 'dashboard/pengguna' ?>"
 								<?= $this->uri->uri_string() == 'dashboard/pengguna' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
@@ -260,6 +261,7 @@
             ?>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
 						<?php if ($this->session->userdata('level') != "warehouse") { ?>
+						<li class="nav-header">Users</li>
 						<li
 							<?= $this->uri->uri_string() == 'inquiry/inquiry_master' ||
                     $this->uri->uri_string() == 'inquiry/inquiry_kurs' ||
@@ -438,6 +440,13 @@
 								<?= $this->uri->uri_string() == 'dashboard/mini_games' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-hand-peace"></i></i>
 								<p>Mini Games</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url() . 'dashboard/kanban' ?>"
+								<?= $this->uri->uri_string() == 'dashboard/kanban' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+								<i class="nav-icon fas fas fa-columns"></i></i>
+								<p>Kanban Board</p>
 							</a>
 						</li>
 						<li class="nav-item">

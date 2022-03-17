@@ -164,7 +164,8 @@
 						</div>
 						<div class="card-body">
 							<div class="tab-content p-0">
-								<div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+								<div class="chart tab-pane active" id="revenue-chart"
+									style="position: relative; height: 300px;">
 									<canvas id="donutChart" height="300" style="height: 300px;"></canvas>
 								</div>
 								<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">

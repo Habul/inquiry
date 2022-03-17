@@ -510,4 +510,12 @@ class Dashboard extends CI_Controller
     $this->load->view('it/v_games.php');
     $this->load->view('dashboard/v_footer');
   }
+
+  public function kanban()
+  {
+    $data['title'] = 'Mini Games';
+    $this->load->view('dashboard/v_header', $data);
+    $this->load->view('it/v_kanban.php');
+    $this->load->view('dashboard/v_footer');
+  }
 }

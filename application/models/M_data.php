@@ -117,7 +117,7 @@ class M_data extends CI_Model
 
   public function suratjalan($table)
   {
-    $sql = "SELECT COUNT(*) as total FROM $table WHERE EXTRACT(YEAR FROM date_delivery) = '2021'
+    $sql = "SELECT COUNT(*) as total FROM $table WHERE EXTRACT(YEAR FROM date_delivery) = '2022'
 		GROUP BY EXTRACT(MONTH FROM date_delivery) ORDER BY EXTRACT(MONTH FROM date_delivery)";
 
     $data = $this->db->query($sql);
@@ -128,7 +128,7 @@ class M_data extends CI_Model
   public function bartracking($type)
   {
     $sql = "SELECT COUNT(*) AS total FROM driver WHERE join_id IN (SELECT no_id FROM type_vehicles WHERE TYPE='$type') AND
-		EXTRACT(YEAR FROM tanggal) = '2021' GROUP BY EXTRACT(MONTH FROM tanggal) ORDER BY EXTRACT(MONTH FROM tanggal)";
+		EXTRACT(YEAR FROM tanggal) = '2022' GROUP BY EXTRACT(MONTH FROM tanggal) ORDER BY EXTRACT(MONTH FROM tanggal)";
 
     $data = $this->db->query($sql);
 

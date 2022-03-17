@@ -316,7 +316,6 @@
       var parsedDate = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0]);
       return parsedDate;
    }
-
    $(document).ready(function() {
       var $dTable = $('#filter2').DataTable({
          "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
@@ -433,7 +432,7 @@
 
    var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
    var areaChartData = {
-      labels: ['November', 'Desember', 'January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [{
             label: 'SJ HS',
             backgroundColor: '#95a5a6',
@@ -499,7 +498,7 @@
 
    var barChartCanvas = $('#barChart').get(0).getContext('2d')
    var barChartData = {
-      labels: ['November', 'Desember', 'January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [{
             label: 'Mobil',
             backgroundColor: '#1abc9c',

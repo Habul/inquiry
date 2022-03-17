@@ -19,7 +19,8 @@
 </div>
 
 <footer class="main-footer text-sm">
-	<strong>Copyright &copy; <?= date('Y'); ?><a href="https://github.com/Habul"> Habul</a></strong> . All rights
+	<strong>Copyright &copy; <?= date('Y'); ?><a href="https://github.com/Habul" rel="noopener" target="_blank">
+			Habul</a></strong> . All rights
 	reserved.
 	<div class="float-right d-none d-sm-inline-block">
 		<b>IT</b> - Intinusa Sejahtera International
