@@ -141,6 +141,7 @@
 							<p>
 								<?php echo $this->session->userdata('nama');  ?>
 								<small><?php echo $this->session->userdata('level');  ?></small>
+								<small id='hclock'><?php mdate('%Y-%m-%d %H:%i:%s') ?></small>
 							</p>
 						</li>
 						<li class="user-footer">

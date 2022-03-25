@@ -96,7 +96,7 @@
 
 <!-- modal add Sj -->
 <div class="modal fade" id="modal_add_sj" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add Surat Jalan
@@ -175,7 +175,7 @@
 <!-- Modal Edit Sj -->
 <?php foreach ($sj_user_df as $p) : ?>
 <div class="modal fade" id="modal_edit_sj<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Edit Surat Jalan
@@ -256,7 +256,7 @@
 <!--MODAL HAPUS ALL-->
 <?php foreach ($sj_user_df as $p) : ?>
 <div class="modal fade" id="modal_hapus<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content bg-danger">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Delete Surat Jalan
@@ -269,7 +269,7 @@
 				action="<?php echo base_url('sj/sj_hapus_df') ?>">
 				<div class="modal-body">
 					<input type="hidden" name="no_id" value="<?php echo $p->no_id; ?>">
-					<p>Are you sure delete Do <?php echo str_replace("-", "/", $p->no_delivery); ?> ?</p>
+					<span>Are you sure delete Do <?php echo str_replace("-", "/", $p->no_delivery); ?> ?</span>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>

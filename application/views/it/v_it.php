@@ -89,7 +89,7 @@
 
 <!-- Bootstrap modal add -->
 <div class="modal fade" id="modal_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add Data
@@ -139,7 +139,7 @@
 <!-- ============ MODAL EDIT DATA =============== -->
 <?php foreach ($penting as $p) : ?>
 <div class="modal fade" id="modal_edit<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Edit Data
@@ -201,7 +201,7 @@
 <!-- ============ MODAL View DATA =============== -->
 <?php foreach ($penting as $p) : ?>
 <div class="modal fade" id="modal_view<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center"><?php echo $p->judul; ?>
@@ -248,7 +248,7 @@
 <!--MODAL HAPUS DESC-->
 <?php foreach ($penting as $u) : ?>
 <div class="modal fade" id="modal_hapus<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content bg-danger">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Delete Data
@@ -261,7 +261,7 @@
 				action="<?php echo base_url('it/data_hapus') ?>">
 				<div class="modal-body">
 					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
-					<p>Are you sure delete <?php echo $u->judul; ?> ?</p>
+					<span>Are you sure delete <?php echo $u->judul; ?> ?</span>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>

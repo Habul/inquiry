@@ -125,7 +125,7 @@
 <!-- modal add Desc SJ -->
 <?php foreach ($sj_user_df as $p) : ?>
 <div class="modal fade" id="modal_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Surat Jalan (No Do :
@@ -138,21 +138,21 @@
 			<form class="form-horizontal" onsubmit="adddesc.disabled = true; return true;" method="post"
 				action="<?php echo base_url('sj/sj_update_df') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Description *</label>
-						<div class="col-xs-9">
-							<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-							<textarea name="descript" class="form-control" maxlength="200" placeholder="Input Desc.."
-								required></textarea>
-							<?php echo form_error('descript'); ?>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Desc</span>
 						</div>
+						<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
+						<textarea name="descript" class="form-control" maxlength="200" placeholder="Input Desc.."
+							required></textarea>
+						<?php echo form_error('descript'); ?>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Qty *</label>
-						<div class="col-xs-9">
-							<input type="number" name="qty" class="form-control" min="1" placeholder="Input Qty.." required>
-							<?php echo form_error('qty'); ?>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Desc</span>
 						</div>
+						<input type="number" name="qty" class="form-control" min="1" placeholder="Input Qty.." required>
+						<?php echo form_error('qty'); ?>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -170,7 +170,7 @@
 <!-- modal Edit Desc SJ -->
 <?php foreach ($sj_dfh as $u) : ?>
 <div class="modal fade" id="modal_edit_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Edit Desc Surat Jalan
@@ -183,7 +183,6 @@
 				action="<?php echo base_url('sj/sj_update_edit_df') ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="control-label col-xs-3">Description *</label>
 						<div class="col-xs-9">
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $u->no_id; ?>">
 							<input type="hidden" name="id" class="form-control" value="<?php echo $u->id_join; ?>">
@@ -193,7 +192,6 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-xs-3">Qty *</label>
 						<div class="col-xs-9">
 							<input type="number" name="qty" class="form-control" min="1" value=<?php echo $u->qty; ?> required>
 							<?php echo form_error('qty'); ?>
@@ -214,7 +212,7 @@
 <!--MODAL HAPUS DESC-->
 <?php foreach ($sj_dfh as $u) : ?>
 <div class="modal fade" id="modal_del_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content bg-danger">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Delete Desc SJ
@@ -228,7 +226,7 @@
 				<div class="modal-body">
 					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
 					<input type="hidden" name="id" class="form-control" value="<?php echo $u->id_join; ?>">
-					<p>Are you sure delete this ?</p>
+					<span>Are you sure delete this ?</span>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
