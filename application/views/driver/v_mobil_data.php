@@ -61,18 +61,20 @@
 									</tr>
 								</thead>
 								<?php
-                $no = 1;
-                $query = $this->db->where('join_id', $u->no_id)->get('driver');
-                foreach ($query->result() as $p) { ?>
+								$no = 1;
+								$query = $this->db->where('join_id', $u->no_id)->get('driver');
+								foreach ($query->result() as $p) { ?>
 								<tr id="example9" style="text-align:center">
 									<td><?php echo strtoupper($p->nama) ?></td>
 									<td><?php echo $p->tanggal; ?></td>
 									<td><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
 									<td style="text-align:center">
-										<a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->no_id; ?>"
-											title="Edit"><i class="fa fa-edit"></i></a>
-										<a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>"
-											title="Delete"><i class="fa fa-trash"></i></a>
+										<a class="btn-sm btn-warning" data-toggle="modal"
+											data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i
+												class="fa fa-edit"></i></a>
+										<a class="btn-sm btn-danger" data-toggle="modal"
+											data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i
+												class="fa fa-trash"></i></a>
 									</td>
 								</tr>
 								<?php } ?>
@@ -119,10 +121,12 @@
 								<tr>
 									<td><?php echo strtoupper($p->jenis) ?></td>
 									<td style="text-align:center"><?php echo $p->tanggal; ?></td>
-									<td style="text-align:center"><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km</td>
+									<td style="text-align:center"><?php echo number_format($p->odometer, 0, '.', '.'); ?>&nbsp;Km
+									</td>
 									<td style="text-align:center">
 										<a class="btn-sm btn-warning" data-toggle="modal"
-											data-target="#history_edit<?php echo $p->no_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>
+											data-target="#history_edit<?php echo $p->no_id; ?>" title="Edit"><i
+												class="fa fa-edit"></i></a>
 										<a class="btn-sm btn-danger" data-toggle="modal"
 											data-target="#history_hapus<?php echo $p->no_id; ?>" title="Delete"><i
 												class="fa fa-trash"></i></a>
@@ -163,9 +167,11 @@
 			<form onsubmit="addbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/mobil_odo_add') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Nama</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Nama&emsp;&emsp;</span>
+							</div>
 							<?php foreach ($odo as $u) : ?>
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $u->no_id; ?>">
 							<?php endforeach; ?>
@@ -174,17 +180,23 @@
 							<?php echo form_error('nama'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Tanggal</label>
-						<div class="col-xs-9">
-							<input type="date" name="tanggal" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d"); ?>">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tanggal&emsp;</span>
+							</div>
+							<input type="date" name="tanggal" readonly class="form-control"
+								value="<?php echo mdate("%Y-%m-%d"); ?>">
 							<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Odometer *</label>
-						<div class="col-xs-9">
-							<input type="number" name="odometer" min="1" class="form-control" placeholder="Input Odometer.." required>
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Odometer</span>
+							</div>
+							<input type="number" name="odometer" min="1" class="form-control" placeholder="Input Odometer.."
+								required>
 							<?php echo set_value('odometer'); ?>
 						</div>
 					</div>
@@ -214,25 +226,33 @@
 			<form onsubmit="editbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/mobil_odo_edit') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Nama</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Nama&emsp;&emsp;</span>
+							</div>
 							<input type="text" name="odometer" readonly class="form-control"
 								value="<?php echo strtoupper($p->nama) ?>">
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Type</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tanggal&emsp;</span>
+							</div>
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $p->join_id; ?>">
-							<input type="date" name="tanggal" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d"); ?>">
+							<input type="date" name="tanggal" readonly class="form-control"
+								value="<?php echo mdate("%Y-%m-%d"); ?>">
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Merk *</label>
-						<div class="col-xs-9">
-							<input type="text" name="odometer" class="form-control" value="<?php echo $p->odometer; ?>" required>
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Odometer</span>
+							</div>
+							<input type="text" name="odometer" class="form-control" value="<?php echo $p->odometer; ?>"
+								required>
 							<?php echo form_error('odometer'); ?>
 						</div>
 					</div>
@@ -265,7 +285,7 @@
 				<div class="modal-body">
 					<input type="hidden" name="join_id" value="<?php echo $u->join_id; ?>">
 					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
-					<p>Are you sure delete, Odometer <?php echo $u->odometer; ?> ?</p>
+					<span>Are you sure delete, Odometer <?php echo $u->odometer; ?> ?</span>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
@@ -292,9 +312,11 @@
 			<form onsubmit="addbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/mobil_history_add') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Jenis *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Jenis&emsp;&emsp;</span>
+							</div>
 							<?php foreach ($odo as $u) : ?>
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $u->no_id; ?>">
 							<select class="form-control" name="jenis" required>
@@ -305,22 +327,26 @@
 							<?php echo form_error('jenis'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Tanggal *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tanggal&emsp;</span>
+							</div>
 							<input type="date" name="tanggal" class="form-control" required>
 							<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Odometer </label>
-						<div class="col-xs-9">
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Odometer</span>
+							</div>
 							<?php $cek = $this->db->select_max('odometer')->where('join_id', $u->no_id)->get('driver')->row(); ?>
 							<?php endforeach; ?>
 							<input type="number" name="odometer" class="form-control" value="<?php echo $cek->odometer; ?>">
-							<small>di ambil data terakhir dari inputan history odometer</small>
 							<?php echo form_error('odometer'); ?>
 						</div>
+						<small>di ambil data terakhir dari inputan history odometer</small>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -348,25 +374,31 @@
 			<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/mobil_history_edit') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Jenis *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Jenis&emsp;&emsp;</span>
+							</div>
 							<input type="text" name="jenis" class="form-control" value="<?php echo $p->jenis; ?>" required>
 							<?php echo form_error('jenis'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Tanggal *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tanggal&emsp;</span>
+							</div>
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $p->join_id; ?>">
 							<input type="date" name="tanggal" class="form-control" value="<?php echo $p->tanggal; ?>">
 							<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Odometer </label>
-						<div class="col-xs-9">
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Odometer</span>
+							</div>
 							<input type="text" name="odometer" class="form-control" value="<?php echo $p->odometer; ?>">
 							<?php echo form_error('odometer'); ?>
 						</div>
@@ -400,7 +432,7 @@
 				<div class="modal-body">
 					<input type="hidden" name="join_id" value="<?php echo $u->join_id; ?>">
 					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
-					<p>Are you sure delete, <?php echo $u->jenis; ?> ?</p>
+					<span>Are you sure delete, <?php echo $u->jenis; ?> ?</span>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>

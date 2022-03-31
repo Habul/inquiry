@@ -44,8 +44,8 @@
 									</tr>
 								</thead>
 								<?php
-                $no = 1;
-                foreach ($mobil as $p) { ?>
+								$no = 1;
+								foreach ($mobil as $p) { ?>
 								<tr style="text-align:center">
 									<td><?php echo $no++; ?></td>
 									<td>
@@ -60,11 +60,11 @@
 										</picture>
 									</td>
 									<?php
-                    $driver = $this->db->select_max('odometer')->where('join_id', $p->no_id)->get('driver')->row();
-                    $history = $this->db->select_max('odometer')->where('join_id', $p->no_id)->where('jenis', 'Ganti Oli')->get('history_vehicles')->row();
-                    $master = $this->db->select('max_km')->where('type', 'MOBIL')->get('master_vehicles')->row();
-                    $sum = $master->max_km - ($driver->odometer - $history->odometer);
-                    ?>
+									$driver = $this->db->select_max('odometer')->where('join_id', $p->no_id)->get('driver')->row();
+									$history = $this->db->select_max('odometer')->where('join_id', $p->no_id)->where('jenis', 'Ganti Oli')->get('history_vehicles')->row();
+									$master = $this->db->select('max_km')->where('type', 'MOBIL')->get('master_vehicles')->row();
+									$sum = $master->max_km - ($driver->odometer - $history->odometer);
+									?>
 									<td>
 										<h6><b><?php echo number_format($sum, 0, '.', '.'); ?>&nbsp;Km</b></h6>
 									</td>
@@ -107,38 +107,44 @@
 			<form onsubmit="addbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/mobil_add') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Type *</label>
-						<div class="col-sm-10">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Type</span>
+							</div>
 							<input type="text" name="type" class="form-control" value="Mobil" readonly required>
 							<?php echo set_value('type'); ?>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Merk *</label>
-						<div class="col-sm-10">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Merk</span>
+							</div>
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $id_add->no_id + 1; ?> ">
 							<input type="text" name="merk" class="form-control" placeholder="Input Merk.." required>
 							<?php echo set_value('merk'); ?>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Plat *</label>
-						<div class="col-sm-10">
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Plat&nbsp;</span>
+							</div>
 							<input type="text" name="plat" class="form-control" placeholder="Input Plat.." required>
 							<?php echo set_value('plat'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Attach Image</label>
+					<div class="form-group mb-0">
+						<img class="img-priview img-fluid col-sm-5 mb-1 mt-1">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="customFile" name="foto">
+							<input type="file" class="custom-file-input" id="image" name="foto" onchange="priviewImage()">
+							<label class="custom-file-label" for="image">Upload Image..</label>
 							<?php echo set_value('foto'); ?>
-							<label class="custom-file-label" for="customFile">Choose file</label>
+							<small>* Max size 2 Mb</small><br />
+							<small>* Max file name image 10 character</small><br />
+							<small>* File type Jpg, Png & Gif</small>
 						</div>
-						<small>* Max size 2 Mb</small><br />
-						<small>* Max file name image 10 character</small><br />
-						<small>* File type Jpg, Png & Gif</small>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -166,35 +172,39 @@
 			<form onsubmit="editbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/mobil_edit') ?>" enctype="multipart/form-data">
 				<div class="modal-body">
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Type</label>
-						<div class="col-sm-10">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Type</span>
+							</div>
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
 							<input type="text" name="type" readonly class="form-control" value="<?php echo $p->type; ?>">
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Merk *</label>
-						<div class="col-sm-10">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Merk</span>
+							</div>
 							<input type="text" name="merk" class="form-control" value="<?php echo $p->merk; ?>" required>
 							<?php echo form_error('merk'); ?>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Plat *</label>
-						<div class="col-sm-10">
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Plat&nbsp;</span>
+							</div>
 							<input type="text" name="plat" class="form-control" value="<?php echo $p->plat; ?>" required>
 							<?php echo form_error('plat'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Attach Image</label><br />
-						<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-2"
-							onerror="this.style.display='none'" />
+					<div class="form-group mb-0">
+						<img class="img-priview2 img-fluid col-sm-5 mb-1 mt-1">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="customFile" name="foto">
+							<input type="file" class="custom-file-input" id="image2" name="foto" onchange="EditImage()">
 							<?php echo form_error('foto'); ?>
-							<label class="custom-file-label" for="customFile">Choose file</label>
+							<label class="custom-file-label" for="image2">Choose file</label>
 						</div>
 						<small>* Max size 2 Mb</small><br />
 						<small>* Max file name image 10 character</small><br />
@@ -228,7 +238,7 @@
 				action="<?php echo base_url('driver/mobil_del') ?>">
 				<div class="modal-body">
 					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
-					<p>Are you sure delete <?php echo $u->plat; ?> ?</p>
+					<span>Are you sure delete <?php echo $u->plat; ?> ?</span>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
@@ -239,3 +249,34 @@
 	</div>
 </div>
 <?php endforeach; ?>
+
+<script>
+	function priviewImage() {
+		const image = document.querySelector('#image');
+		const imgPreview = document.querySelector('.img-priview');
+
+		imgPreview.style.display = 'block';
+
+		const oFReader = new FileReader();
+		oFReader.readAsDataURL(image.files[0]);
+
+		oFReader.onload = function (oFREvent) {
+			imgPreview.src = oFREvent.target.result;
+		}
+	}
+
+	function EditImage() {
+		const image = document.querySelector('#image2');
+		const imgPreview = document.querySelector('.img-priview2');
+
+		imgPreview.style.display = 'block';
+
+		const oFReader = new FileReader();
+		oFReader.readAsDataURL(image.files[0]);
+
+		oFReader.onload = function (oFREvent) {
+			imgPreview.src = oFREvent.target.result;
+		}
+	}
+
+</script>

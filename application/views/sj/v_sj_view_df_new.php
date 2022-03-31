@@ -125,7 +125,7 @@
 <!-- modal add Desc SJ -->
 <?php foreach ($sj_user_df as $p) : ?>
 <div class="modal fade" id="modal_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Surat Jalan (No Do :
@@ -138,21 +138,21 @@
 			<form class="form-horizontal" onsubmit="adddesc.disabled = true; return true;" method="post"
 				action="<?php echo base_url('sj/sj_update_df') ?>">
 				<div class="modal-body">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text">Desc</span>
+					<div class="form-group">
+						<label class="control-label col-xs-3">Description *</label>
+						<div class="col-xs-9">
+							<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
+							<textarea name="descript" class="form-control" maxlength="200" placeholder="Input Desc.."
+								required></textarea>
+							<?php echo form_error('descript'); ?>
 						</div>
-						<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-						<textarea name="descript" class="form-control" maxlength="200" placeholder="Input Desc.."
-							required></textarea>
-						<?php echo form_error('descript'); ?>
 					</div>
-					<div class="input-group mb-0">
-						<div class="input-group-prepend">
-							<span class="input-group-text">Qty&nbsp;</span>
+					<div class="form-group">
+						<label class="control-label col-xs-3">Qty *</label>
+						<div class="col-xs-9">
+							<input type="number" name="qty" class="form-control" min="1" placeholder="Input Qty.." required>
+							<?php echo form_error('qty'); ?>
 						</div>
-						<input type="number" name="qty" class="form-control" min="1" placeholder="Input Qty.." required>
-						<?php echo form_error('qty'); ?>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -170,7 +170,7 @@
 <!-- modal Edit Desc SJ -->
 <?php foreach ($sj_dfh as $u) : ?>
 <div class="modal fade" id="modal_edit_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Edit Desc Surat Jalan
@@ -183,10 +183,8 @@
 				action="<?php echo base_url('sj/sj_update_edit_df') ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Desc</span>
-							</div>
+						<label class="control-label col-xs-3">Description *</label>
+						<div class="col-xs-9">
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $u->no_id; ?>">
 							<input type="hidden" name="id" class="form-control" value="<?php echo $u->id_join; ?>">
 							<textarea name="descript" class="form-control" maxlength="100"
@@ -195,10 +193,8 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Qty&nbsp;</span>
-							</div>
+						<label class="control-label col-xs-3">Qty *</label>
+						<div class="col-xs-9">
 							<input type="number" name="qty" class="form-control" min="1" value=<?php echo $u->qty; ?> required>
 							<?php echo form_error('qty'); ?>
 						</div>
@@ -218,7 +214,7 @@
 <!--MODAL HAPUS DESC-->
 <?php foreach ($sj_dfh as $u) : ?>
 <div class="modal fade" id="modal_del_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog">
 		<div class="modal-content bg-danger">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Delete Desc SJ
@@ -232,7 +228,7 @@
 				<div class="modal-body">
 					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
 					<input type="hidden" name="id" class="form-control" value="<?php echo $u->id_join; ?>">
-					<span>Are you sure delete this ?</span>
+					<p>Are you sure delete this ?</p>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>

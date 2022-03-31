@@ -162,9 +162,11 @@
 			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/truck_odo_add') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Nama</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Nama&emsp;&emsp;</span>
+							</div>
 							<?php foreach ($odo as $u) : ?>
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $u->no_id; ?>">
 							<?php endforeach; ?>
@@ -173,16 +175,20 @@
 							<?php echo form_error('nama'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Tanggal</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tanggal&emsp;</span>
+							</div>
 							<input type="date" name="tanggal" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d"); ?>">
 							<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Odometer *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Odometer</span>
+							</div>
 							<input type="number" name="odometer" min="1" class="form-control" placeholder="Input Odometer.." required>
 							<?php echo set_value('odometer'); ?>
 						</div>
@@ -213,24 +219,30 @@
 			<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/truck_odo_edit') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Nama</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Nama&emsp;&emsp;</span>
+							</div>
 							<input type="text" name="odometer" readonly class="form-control"
 								value="<?php echo strtoupper($p->nama) ?>">
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Type</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tanggal&emsp;</span>
+							</div>
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $p->join_id; ?>">
 							<input type="date" name="tanggal" readonly class="form-control" value="<?php echo mdate("%Y-%m-%d"); ?>">
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Merk *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Odometer</span>
+							</div>
 							<input type="text" name="odometer" class="form-control" value="<?php echo $p->odometer; ?>" required>
 							<?php echo form_error('odometer'); ?>
 						</div>
@@ -264,7 +276,7 @@
 				<div class="modal-body">
 					<input type="hidden" name="join_id" value="<?php echo $u->join_id; ?>">
 					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
-					<p>Are you sure delete, Odometer <?php echo $u->odometer; ?> ?</p>
+					<span>Are you sure delete, Odometer <?php echo $u->odometer; ?> ?</span>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
@@ -291,9 +303,11 @@
 			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/truck_history_add') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Jenis *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Jenis&emsp;&emsp;</span>
+							</div>
 							<?php foreach ($odo as $u) : ?>
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $u->no_id; ?>">
 							<select class="form-control" name="jenis" required>
@@ -304,22 +318,26 @@
 							<?php echo form_error('jenis'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Tanggal *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tanggal&emsp;</span>
+							</div>
 							<input type="date" name="tanggal" class="form-control" required>
 							<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Odometer </label>
-						<div class="col-xs-9">
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Odometer</span>
+							</div>
 							<?php $cek = $this->db->select_max('odometer')->where('join_id', $u->no_id)->get('driver')->row(); ?>
 							<?php endforeach; ?>
 							<input type="number" name="odometer" min="1" class="form-control" value="<?php echo $cek->odometer ?>">
-							<small>di ambil data terakhir dari inputan history odometer</small>
 							<?php echo form_error('tanggal'); ?>
 						</div>
+						<small>di ambil data terakhir dari inputan history odometer</small>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -347,25 +365,31 @@
 			<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post"
 				action="<?php echo base_url('driver/truck_history_edit') ?>">
 				<div class="modal-body">
-					<div class="form-group">
-						<label class="control-label col-xs-3">Jenis *</label>
-						<div class="col-xs-9">
+					<div class="input-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Jenis&emsp;&emsp;</span>
+							</div>
 							<input type="text" name="jenis" class="form-control" value="<?php echo $p->jenis; ?>" required>
 							<?php echo form_error('jenis'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Tanggal *</label>
-						<div class="col-xs-9">
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tanggal&emsp;</span>
+							</div>
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
 							<input type="hidden" name="join_id" class="form-control" value="<?php echo $p->join_id; ?>">
 							<input type="date" name="tanggal" class="form-control" value="<?php echo $p->tanggal; ?>">
 							<?php echo form_error('tanggal'); ?>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-3">Odometer </label>
-						<div class="col-xs-9">
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Odometer</span>
+							</div>
 							<input type="text" name="odometer" class="form-control" value="<?php echo $p->odometer; ?>">
 							<?php echo form_error('odometer'); ?>
 						</div>
@@ -399,7 +423,7 @@
 				<div class="modal-body">
 					<input type="hidden" name="join_id" value="<?php echo $u->join_id; ?>">
 					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
-					<p>Are you sure delete, <?php echo $u->jenis; ?> ?</p>
+					<span>Are you sure delete, <?php echo $u->jenis; ?> ?</span>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
