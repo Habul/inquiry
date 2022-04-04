@@ -9,17 +9,25 @@
 }
 
 body {
-	 background: #ecf0f3
+	margin: 0;
+	padding: 0;
+	height: 500px;
+	 background: #ecf0f3;
+	 background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+	 
 }
 
 .wrapper {
-	 max-width: 350px;
-	 min-height: 500px;
-	 margin: 80px auto;
-	 padding: 40px 30px 30px 30px;
-	 background-color: #ecf0f3;
-	 border-radius: 15px;
-	 box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff
+	max-width: 350px;
+	min-height: 500px;
+	margin: 80px auto;
+	padding: 40px 30px 30px 30px;
+	background-color: #ecf0f3;
+	border-radius: 15px;
+	box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff
 }
 
 .logo {

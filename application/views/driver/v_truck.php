@@ -201,11 +201,12 @@
 						</div>
 					</div>
 					<div class="form-group mb-0">
-						<img class="img-priview2 img-fluid rounded col-sm-5 mb-1 mt-1">
+						<img src="<?php echo base_url() . 'gambar/vehicles/' . $p->foto; ?>" class="img-fluid mb-1 mt-1"
+							onerror="this.style.display='none'" />
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="image2" name="foto" onchange="EditImage()">
+							<input type="file" class="custom-file-input" id="customfile" name="foto">
 							<?php echo form_error('foto'); ?>
-							<label class="custom-file-label" for="image2">Choose file</label>
+							<label class="custom-file-label" for="customfile">Choose file</label>
 						</div>
 						<small>* Max size 2 Mb</small><br />
 						<small>* Max file name image 10 character</small><br />
@@ -255,20 +256,6 @@
 	function priviewImage() {
 		const image = document.querySelector('#image');
 		const imgPreview = document.querySelector('.img-priview');
-
-		imgPreview.style.display = 'block';
-
-		const oFReader = new FileReader();
-		oFReader.readAsDataURL(image.files[0]);
-
-		oFReader.onload = function (oFREvent) {
-			imgPreview.src = oFREvent.target.result;
-		}
-	}
-
-	function EditImage() {
-		const image = document.querySelector('#image2');
-		const imgPreview = document.querySelector('.img-priview2');
 
 		imgPreview.style.display = 'block';
 

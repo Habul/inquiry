@@ -216,50 +216,18 @@
 								<p>Data Penting</p>
 							</a>
 						</li>
-						<li <?= $this->uri->uri_string() == 'sj/sj' ||
-                    $this->uri->segment(2) == 'sj_view' ||
-                    $this->uri->segment(2) == 'sj_new' ||
-						  $this->uri->segment(2) == 'sj_view_df' ||
-                    $this->uri->uri_string() == 'sj/sj_df' ||
-                    $this->uri->uri_string() == '' ? 'class="nav-item menu-open"' : 'class="nav-item"' ?>>
-							<a href="#" <?= $this->uri->uri_string() == 'sj/sj' ||
-                              $this->uri->segment(2) == 'sj_view' ||
-										$this->uri->segment(2) == 'sj_new' ||
-                              $this->uri->segment(2) == 'sj_view_df' ||
-                              $this->uri->uri_string() == 'sj/sj_df' ||
-                              $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+						<li class="nav-item">
+							<a href="<?php echo base_url() . 'sj/sj_df' ?>"
+								<?= $this->uri->uri_string() == 'sj/sj_df' || $this->uri->segment(2) == 'sj_view_df' ||  $this->uri->segment(2) == 'sj_new' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-mail-bulk"></i>
 								<?php $cek = $this->db->like('addtime', mdate('%Y-%m-%d'))->get('sj_user_df')->num_rows();  ?>
 								<?php if ($cek != '') : ?>
 								<span class="right badge badge-danger">New</span>
 								<?php endif; ?>
-								<p>Surat Jalan
-									<i class="fas fa-angle-left right"></i>
-								</p>
+								<p>Surat Jalan</p>
 							</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<a href="<?php echo base_url() . 'sj/sj' ?>"
-										<?= $this->uri->uri_string() == 'sj/sj' || $this->uri->segment(2) == 'sj_view' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-										<i class="far fa-circle nav-icon"></i>
-										<p>SJ Hs</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="<?php echo base_url() . 'sj/sj_df' ?>"
-										<?= $this->uri->uri_string() == 'sj/sj_df' || $this->uri->segment(2) == 'sj_view_df' ||  $this->uri->segment(2) == 'sj_new' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
-										<i class="far fa-circle nav-icon"></i>
-										<?php if ($cek != '') : ?>
-										<span class="right badge badge-danger">New</span>
-										<?php endif; ?>
-										<p>SJ Df</p>
-									</a>
-								</li>
-							</ul>
 						</li>
-						<?php
-            }
-            ?>
+						<?php } ?>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
 						<?php if ($this->session->userdata('level') != "warehouse") { ?>
 						<li class="nav-header">Users</li>

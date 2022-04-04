@@ -118,11 +118,12 @@
 								required><?php echo set_value('isi'); ?></textarea>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group mb-0">
 						<label class="control-label col-xs-3">Attach</label>
+						<img class="img-priview img-fluid col-sm-5 mb-1 mt-1">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="customFile" name="file">
-							<label class="custom-file-label" for="customFile">Choose file</label>
+							<input type="file" class="custom-file-input" id="image" name="file" onchange="priviewImage()">
+							<label class="custom-file-label" for="image">Choose file</label>
 						</div>
 					</div>
 				</div>
@@ -168,7 +169,7 @@
 								rows="10"><?php echo $p->isi; ?></textarea>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group mb-0">
 						<label class="control-label col-xs-3">Attach</label>
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" target="_blank">
 							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-fluid mb-2"
@@ -178,7 +179,7 @@
 							<label class="custom-file-label" for="customFile">Choose file</label>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group mb-0">
 						<?php if ($p->file != '') : ?>
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" download title="Download Attachment"
 							alt="">
@@ -218,14 +219,14 @@
 							name="isi"><?php echo $p->isi; ?></textarea>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-0">
 					<div class="col-xs-9">
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" target="_blank">
 							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" width="50%"
 								class="img-thumbnail" onerror="this.style.display='none'" /></a>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-0">
 					<div class="col-xs-9">
 						<?php if ($p->file != '') : ?>
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" download title="Download Attachment"
@@ -272,3 +273,21 @@
 	</div>
 </div>
 <?php endforeach; ?>
+
+
+<script>
+	function priviewImage() {
+		const image = document.querySelector('#image');
+		const imgPreview = document.querySelector('.img-priview');
+
+		imgPreview.style.display = 'block';
+
+		const oFReader = new FileReader();
+		oFReader.readAsDataURL(image.files[0]);
+
+		oFReader.onload = function (oFREvent) {
+			imgPreview.src = oFREvent.target.result;
+		}
+	}
+
+</script>
