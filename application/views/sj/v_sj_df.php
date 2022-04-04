@@ -48,7 +48,7 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<table id="filter2" class="table table-borderless table-striped">
+							<table id="filter2" class="table table-striped">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
 										<th width="7%">Do No</th>

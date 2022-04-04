@@ -42,10 +42,11 @@
 									<h2 class="lead"><b><?php echo $row->nama; ?></b></h2>
 									<p class="text-muted text-sm"><b>About: </b> <?php echo $row->about; ?> </p>
 									<ul class="ml-4 mb-0 fa-ul text-muted">
-										<li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address:
+										<li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
+											Address:
 											<?php echo $row->alamat; ?> </li>
 										<li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone :
-											0<?php echo $row->no_hp; ?> </li>
+											<?php echo $row->no_hp; ?> </li>
 									</ul>
 								</div>
 								<div class="col-5 text-center">
@@ -55,14 +56,16 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<a href="https://wa.me/62<?php echo $row->no_hp; ?>?text=Hallo%20kakak%20"
+							<a href="https://wa.me/62<?php echo substr($row->no_hp,1) ?>?text=Hallo%20kakak%20"
 								class="btn btn-sm bg-teal float-right shadow" rel="noopener" target="_blank">
 								<i class="fab fa-whatsapp"></i></a>
 							<?php if ($this->session->userdata('level') == "admin") { ?>
-							<a class="btn btn-sm bg-info" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_user; ?>"
-								title="Edit"><i class="fa fa-pencil-alt"></i></a>
-							<a class="btn btn-sm bg-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_user; ?>"
-								title="Delete"><i class="fa fa-trash"></i></a>
+							<a class="btn btn-sm bg-info" data-toggle="modal"
+								data-target="#modal_edit<?php echo $row->id_user; ?>" title="Edit"><i
+									class="fa fa-pencil-alt"></i></a>
+							<a class="btn btn-sm bg-danger" data-toggle="modal"
+								data-target="#modal_hapus<?php echo $row->id_user; ?>" title="Delete"><i
+									class="fa fa-trash"></i></a>
 							<?php }  ?>
 						</div>
 					</div>
@@ -131,7 +134,8 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="icon fas fa-home"></i></span>
 							</div>
-							<textarea type="text" name="alamat" class="form-control" placeholder="Input alamat" required></textarea>
+							<textarea type="text" name="alamat" class="form-control" placeholder="Input alamat"
+								required></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -186,7 +190,8 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="icon fas fa-phone"></i></span>
 							</div>
-							<input type="number" name="no_hp" class="form-control" value="0<?php echo $row->no_hp; ?>" required>
+							<input type="number" name="no_hp" class="form-control" value="0<?php echo $row->no_hp; ?>"
+								required>
 						</div>
 					</div>
 					<div class="form-group">
@@ -202,12 +207,13 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="icon fas fa-home"></i></span>
 							</div>
-							<textarea type="text" name="alamat" class="form-control" required><?php echo $row->alamat; ?></textarea>
+							<textarea type="text" name="alamat" class="form-control"
+								required><?php echo $row->alamat; ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
-						<img src="<?php echo base_url() . 'gambar/contact/' . $row->foto; ?>" class="img-fluid mb-2" width="30%"
-							onerror="this.style.display='none'" />
+						<img src="<?php echo base_url() . 'gambar/contact/' . $row->foto; ?>" class="img-fluid mb-2"
+							width="30%" onerror="this.style.display='none'" />
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" id="customFile" name="foto">
 							<label class="custom-file-label" for="customFile">Upload Image</label>
