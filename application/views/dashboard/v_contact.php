@@ -190,8 +190,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="icon fas fa-phone"></i></span>
 							</div>
-							<input type="number" name="no_hp" class="form-control" value="0<?php echo $row->no_hp; ?>"
-								required>
+							<input type="number" name="no_hp" class="form-control" value="<?php echo $row->no_hp; ?>" required>
 						</div>
 					</div>
 					<div class="form-group">

@@ -62,8 +62,8 @@
 									</tr>
 								</thead>
 								<?php
-                foreach ($sj_user_df as $p) {
-                ?>
+								foreach ($sj_user_df as $p) {
+								?>
 								<tr>
 									<td><?php echo str_replace("-", "/", $p->no_delivery); ?></td>
 									<td><?php echo date('d/m/Y', strtotime($p->date_delivery)); ?></td>
@@ -72,7 +72,7 @@
 									<td><?php echo htmlentities($p->address); ?></td>
 									<td><?php echo htmlentities($p->city); ?></td>
 									<td><?php echo htmlentities($p->phone); ?></td>
-									<td style="text-align:center">
+									<td class="align-middle text-center">
 										<?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
 										<a class="btn-sm btn-warning" data-toggle="modal"
 											data-target="#modal_edit_sj<?php echo $p->no_id; ?>" title="Edit SJ"><i

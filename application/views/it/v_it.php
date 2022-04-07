@@ -53,20 +53,20 @@
 						</div>
 						<div class="card-body">
 							<table id="index1" class="table table-hover table-sm">
-								<thead class="thead-dark" style="text-align:center">
+								<thead class="thead-dark text-center">
 									<tr>
 										<th width="3%">No</th>
 										<th width="50%">Title</th>
-										<th width="12%">Addtime</th>
-										<th width="10%">Actions</th>
+										<th width="10%">Addtime</th>
+										<th width="8%">Actions</th>
 									</tr>
 								</thead>
 								<?php foreach ($penting as $p) { ?>
 								<tr>
-									<td style="text-align:center"></td>
+									<td class="text-center"></td>
 									<td><?php echo htmlentities(strtoupper($p->judul)) ?></td>
-									<td style="text-align:center"><?php echo $p->addtime; ?></td>
-									<td style="text-align:center">
+									<td class="text-center"><?php echo $p->addtime; ?></td>
+									<td class="align-middle text-center">
 										<a class="btn-sm btn-warning" data-toggle="modal"
 											data-target="#modal_edit<?php echo $p->no_id; ?>" title="Edit"><i
 												class="fa fa-pencil-alt"></i></a>

@@ -140,7 +140,7 @@
 				<div class="modal-body">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text">Desc</span>
+							<label class="input-group-text">Desc</label>
 						</div>
 						<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
 						<textarea name="descript" class="form-control" maxlength="200" placeholder="Input Desc.."
@@ -149,7 +149,7 @@
 					</div>
 					<div class="input-group mb-0">
 						<div class="input-group-prepend">
-							<span class="input-group-text">Qty&nbsp;</span>
+							<label class="input-group-text">Qty&nbsp;</label>
 						</div>
 						<input type="number" name="qty" class="form-control" min="1" placeholder="Input Qty.." required>
 						<?php echo form_error('qty'); ?>
@@ -185,7 +185,7 @@
 					<div class="form-group">
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Desc</span>
+								<label class="input-group-text">Desc</label>
 							</div>
 							<input type="hidden" name="no_id" class="form-control" value="<?php echo $u->no_id; ?>">
 							<input type="hidden" name="id" class="form-control" value="<?php echo $u->id_join; ?>">
@@ -197,7 +197,7 @@
 					<div class="form-group">
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Qty&nbsp;</span>
+								<label class="input-group-text">Qty&nbsp;</label>
 							</div>
 							<input type="number" name="qty" class="form-control" min="1" value=<?php echo $u->qty; ?> required>
 							<?php echo form_error('qty'); ?>
