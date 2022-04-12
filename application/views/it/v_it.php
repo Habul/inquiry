@@ -170,10 +170,11 @@
 						</div>
 					</div>
 					<div class="form-group mb-0">
-						<label class="control-label col-xs-3">Attach</label>
+						<label class="control-label col-xs-3">Attach</label><br />
 						<a href="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" target="_blank">
-							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>" class="img-fluid mb-2"
-								width="35%" onerror="this.style.display='none'" /></a>
+							<img src="<?php echo base_url() . 'gambar/datait/' . $p->file; ?>"
+								class="img-priview img-fluid col-sm-5 mb-1 mt-1" width="35%"
+								onerror="this.style.display='none'" /></a>
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" id="customFile" name="file">
 							<label class="custom-file-label" for="customFile">Choose file</label>

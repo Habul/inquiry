@@ -9,7 +9,6 @@ class Dashboard extends CI_Controller
     parent::__construct();
 
     date_default_timezone_set('Asia/Jakarta');
-    $this->load->model('m_data');
     if ($this->session->userdata('status') != "telah_login") {
       redirect(base_url() . 'login?alert=belum_login');
     }

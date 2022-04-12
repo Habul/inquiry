@@ -17,12 +17,15 @@ class Login extends CI_Controller
       $user = $this->input->post('username');
       $pass = $this->input->post('password');
 
-      $cek = $this->db->get_where('pengguna', ['pengguna_username' => $user]);
+      $where = array(
+				'pengguna_username' => $user,
+				'pengguna_status' => 1
+			);
+
+      $cek = $this->m_data->cek_login('pengguna',$where);
 
       if ($cek->num_rows() > 0) {
-
         $hasil = $cek->row();
-
         if (password_verify($pass, $hasil->pengguna_password)) {
           $this->session->set_userdata('id', $hasil->pengguna_id);
           $this->session->set_userdata('username', $hasil->pengguna_username);
@@ -61,9 +64,9 @@ class Login extends CI_Controller
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $output = curl_exec($ch);
     curl_close($ch);
-    $status = json_decode($output, true);    
-    if ($status['success']) {
+    $status = json_decode($output, true);
 
+    if ($status['success']) {
     $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
     $this->form_validation->set_rules('username', 'Username', 'required|trim');
     $this->form_validation->set_rules('email', 'Email', 'required|trim');
