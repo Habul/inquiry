@@ -540,14 +540,13 @@ class Inquiry extends CI_Controller
 
         $index = 0;
         foreach ($sheetData as $key => $value) {
-          if ($key != 1) { {
-              $resultData[$index]['id_master'] = $value['A'];
-              $resultData[$index]['brand'] = $value['B'];
-              $resultData[$index]['d1'] = $value['C'];
-              $resultData[$index]['d2'] = $value['D'];
-              $resultData[$index]['user'] = $value['E'];
-              $resultData[$index]['distributor'] = $value['F'];
-            }
+          if ($key != 1) {
+            $resultData[$index]['id_master'] = $value['A'];
+            $resultData[$index]['brand'] = $value['B'];
+            $resultData[$index]['d1'] = $value['C'];
+            $resultData[$index]['d2'] = $value['D'];
+            $resultData[$index]['user'] = $value['E'];
+            $resultData[$index]['distributor'] = $value['F'];
           }
           $index++;
         }
@@ -701,11 +700,10 @@ class Inquiry extends CI_Controller
 
         $index = 0;
         foreach ($sheetData as $key => $value) {
-          if ($key != 1) { {
-              $resultData[$index]['id_kurs'] = $value['A'];
-              $resultData[$index]['currency'] = $value['B'];
-              $resultData[$index]['amount'] = $value['C'];
-            }
+          if ($key != 1) {
+            $resultData[$index]['id_kurs'] = $value['A'];
+            $resultData[$index]['currency'] = $value['B'];
+            $resultData[$index]['amount'] = $value['C'];
           }
           $index++;
         }

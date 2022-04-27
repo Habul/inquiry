@@ -3,243 +3,260 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Surat Jalan Detail</h1>
+					<h1 class="m-0">Surat Jalan</h1>
+					<small>Pastikan Desc SJ sudah terinput, sebelum <b>View & Print</b></small>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="<?php echo base_url('sj/sj_df') ?>">Surat Jalan DF</a></li>
-						<li class="breadcrumb-item active">Surat Jalan Desc</li>
+						<li class="breadcrumb-item active">Surat Jalan</li>
 					</ol>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<section class="content">
 		<div class="container-fluid">
+			<?php if ($this->session->flashdata('berhasil')) { ?>
+				<div class="alert alert-success alert-dismissible fade show" id="info" role="alert">
+					<button type=" button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
+				</div>
+			<?php } ?>
+			<?php if ($this->session->flashdata('gagal')) { ?>
+				<div class="alert alert-warning alert-dismissible fade show" id="info" role="alert">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
+				</div>
+			<?php } ?>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="callout callout-info">
-						<?php foreach ($sj_user_df as $p) : ?>
-						<li>No Do &emsp;&emsp;: <?php echo str_replace("-", "/", $p->no_delivery); ?></li>
-						<li>Cust Name : <?php echo $p->cust_name ?></li>
-						<li>Address &emsp;: <?php echo $p->address ?></li>
-					</div>
-					<?php if ($this->session->flashdata('berhasil')) { ?>
-					<div class="alert alert-success alert-dismissible fade show" id="info" role="alert">
-						<button type=" button" class="close" data-dismiss="alert">&times;</button>
-						<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
-					</div>
-					<?php } ?>
-					<?php if ($this->session->flashdata('gagal')) { ?>
-					<div class="alert alert-warning alert-dismissible fade show" id="info" role="alert">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
-					</div>
-					<?php } ?>
 					<div class="card card-success card-outline">
 						<div class="card-header">
-							<h4 class="card-title">
-								<a class="btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
-									<i class="fa fa-plus"></i>&nbsp; Add Order Delivery</a>
-								<div class="btn-group shadow">
-									<button class="btn btn-primary"><i class="fas fa-print"></i> Print Surat Jalan</button>
-									<button class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-										<span class="sr-only">Toggle Dropdown</span>
-									</button>
-									<div class="dropdown-menu" role="menu">
-										<?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
-										<a class="dropdown-item"
-											href="<?php echo base_url() . 'sj/sj_print_df/?p=' . $encrypturl; ?>" rel="noopener"
-											target="_blank" title="Print Dutaflow"><i class="fas fa-print"></i> Dutaflow</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item"
-											href="<?php echo base_url() . 'sj/sj_print_inti/?p=' . $encrypturl; ?>" rel="noopener"
-											target="_blank" title="Print Intisera"><i class="fas fa-print"></i> Intisera</a>
-									</div>
-								</div>
-							</h4>
+							<h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add_sj">
+									<i class="fa fa-plus"></i>&nbsp; Add Surat Jalan</a></h4>
 							<div class="card-tools">
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning"
-									data-card-widget="collapse">
+								<button type="button" class="btn btn-icon btn-circle btn-warning" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
 								</button>
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-primary"
-									data-card-widget="maximize">
-									<i class="fas fa-expand"></i>
-								</button>
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger"
-									data-card-widget="remove">
+								<button type="button" class="btn btn-icon btn-circle btn-danger" data-card-widget="remove">
 									<i class="fas fa-times"></i>
 								</button>
 							</div>
 						</div>
 						<div class="card-body">
-							<table id="example1" class="table table-bordered table-striped table-sm">
+							<table id="filter2" class="table table-striped">
 								<thead class="thead-dark" style="text-align:center">
 									<tr>
-										<th width="3%">No</th>
-										<th width="50%">Description</th>
-										<th width="5%">Qty</th>
-										<th width="10%">Action</th>
+										<th width="7%">Do No</th>
+										<th width="10%">Do Date</th>
+										<th width="11%">Due Date</th>
+										<th>Cust Name</th>
+										<th width="18%">Address</th>
+										<th>City</th>
+										<th width="12%">Phone</th>
+										<th width="13%">Action</th>
 									</tr>
 								</thead>
 								<?php
-                $no = 1;
-                $query = $this->db->where('id_join', $p->no_id)->get('sj_df');
-                foreach ($query->result() as $u) {
-                $sum_total[] = $u->qty;
-                $total_qty = array_sum($sum_total); ?>
-								<tr>
-									<td style="text-align:center"><?php echo $no++; ?></td>
-									<td><?php echo $u->descript; ?></td>
-									<td style="text-align:center"><?php echo $u->qty; ?></td>
-									<td style="text-align:center">
-										<a class="btn-sm btn-warning" data-toggle="modal"
-											data-target="#modal_edit_desc<?php echo $u->no_id; ?>" title="Edit Desc SJ"><i
-												class="fa fa-edit"></i></a>
-										<a class="btn-sm btn-danger" data-toggle="modal"
-											data-target="#modal_del_desc<?php echo $u->no_id; ?>" title="Delete Desc SJ"><i
-												class="fa fa-trash"></i></a>
-									</td>
-								</tr>
+								foreach ($sj_user_df as $p) {
+								?>
+									<tr>
+										<td><?php echo str_replace("-", "/", $p->no_delivery); ?></td>
+										<td><?php echo date('d/m/Y', strtotime($p->date_delivery)); ?></td>
+										<td><?php echo date('d/m/Y', strtotime($p->due_date)); ?></td>
+										<td><?php echo htmlentities(strtoupper($p->cust_name)); ?></td>
+										<td><?php echo htmlentities($p->address); ?></td>
+										<td><?php echo htmlentities($p->city); ?></td>
+										<td><?php echo htmlentities($p->phone); ?></td>
+										<td class="align-middle text-center">
+											<?php $encrypturl = urlencode($this->encrypt->encode($p->no_id)) ?>
+											<a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit_sj<?php echo $p->no_id; ?>" title="Edit SJ"><i class="fa fa-pencil-alt"></i></a>
+											<a href="<?php echo base_url() . 'sj/sj_view_df/?sj=' . $encrypturl; ?>" class="btn-sm btn-primary" title="Add Desc, Detail & Print""><i class=" fa fa-search"></i></a>
+											<a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->no_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
 								<?php } ?>
-								<tr>
-									<td colspan="2" style="text-align:center"><b>Total<b></td>
-									<td colspan="2" style="text-align:center"><b><?php echo $total_qty; ?><b></td>
-								</tr>
 							</table>
 						</div>
 					</div>
 				</div>
-				<div class="col-12 table-responsive-sm text-center mb-3">
-					<a href="<?php echo base_url() . 'sj/sj_df/' ?>" class="btn btn-default"><i class="fas fa-undo"></i>
-						Back</a>
-				</div>
 			</div>
-			<?php endforeach; ?>
 	</section>
 </div>
 
-<!-- modal add Desc SJ -->
+<!-- modal add Sj -->
+<div class="modal fade" id="modal_add_sj" tabindex="-1" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="col-12 modal-title text-center">Add Surat Jalan
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h5>
+			</div>
+			<form class="form-horizontal" onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_aksi_df') ?>">
+				<div class="modal-body">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Do No *</label>
+						<div class="col-sm-10">
+							<input type="hidden" name="id" value="<?php echo $sj_add->no_id + 1; ?>">
+							<input type="text" name="no_delivery" readonly class="form-control" value="<?php echo 'IT/SJ/', date('Y/m/'), $sj_add->no_id + 1; ?>">
+							<?php echo form_error('no_delivery'); ?>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Date *</label>
+						<div class="col-sm-10">
+							<input type="date" name="date_delivery" class="form-control" required>
+							<?php echo form_error('date_delivery'); ?>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Due Date *</label>
+						<div class="col-sm-10">
+							<input type="date" name="due_date" class="form-control" required>
+							<?php echo form_error('due_date'); ?>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Cust *</label>
+						<div class="col-sm-10">
+							<input type="text" name="cust_name" class="form-control" placeholder="Input Cust Name..." required>
+							<?php echo form_error('cust_name'); ?>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Address *</label>
+						<div class="col-sm-10">
+							<textarea name="address" class="form-control" maxlength="150" placeholder="Input Address.." required></textarea>
+							<?php echo form_error('address'); ?>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">City *</label>
+						<div class="col-sm-10">
+							<input type="text" name="city" class="form-control" placeholder="Input City..." required>
+							<?php echo form_error('city'); ?>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Phone *</label>
+						<div class="col-sm-10">
+							<input type="number" name="phone" class="form-control" placeholder="Input No Phone.." data-mask data-mask required>
+							<?php echo form_error('phone'); ?>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+					<button class="btn btn-primary" id="addbtn"><i class="fa fa-check"></i> Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- end modal add Sj -->
+
+<!-- Modal Edit Sj -->
 <?php foreach ($sj_user_df as $p) : ?>
-<div class="modal fade" id="modal_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="col-12 modal-title text-center">Surat Jalan (No Do :
-					<?php echo str_replace("-", "/", $p->no_delivery); ?>)
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h5>
-			</div>
-			<form class="form-horizontal" onsubmit="adddesc.disabled = true; return true;" method="post"
-				action="<?php echo base_url('sj/sj_update_df') ?>">
-				<div class="modal-body">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<label class="input-group-text">Desc</label>
-						</div>
-						<input type="hidden" name="id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-						<textarea name="descript" class="form-control" maxlength="200" placeholder="Input Desc.."
-							required></textarea>
-						<?php echo form_error('descript'); ?>
-					</div>
-					<div class="input-group mb-0">
-						<div class="input-group-prepend">
-							<label class="input-group-text">Qty&nbsp;</label>
-						</div>
-						<input type="number" name="qty" class="form-control" min="1" placeholder="Input Qty.." required>
-						<?php echo form_error('qty'); ?>
-					</div>
+	<div class="modal fade" id="modal_edit_sj<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Edit Surat Jalan
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
 				</div>
-				<div class="modal-footer justify-content-between">
-					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary" id="adddesc"><i class="fa fa-check"></i> Save</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<?php endforeach; ?>
-<!-- end modal add Desc SJ -->
-
-
-<!-- modal Edit Desc SJ -->
-<?php foreach ($sj_dfh as $u) : ?>
-<div class="modal fade" id="modal_edit_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="col-12 modal-title text-center">Edit Desc Surat Jalan
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h5>
-			</div>
-			<form class="form-horizontal" onsubmit="editdesc.disabled = true; return true;" method="post"
-				action="<?php echo base_url('sj/sj_update_edit_df') ?>">
-				<div class="modal-body">
-					<div class="form-group">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text">Desc</label>
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_edit_df') ?>">
+					<div class="modal-body">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Do No *</label>
+							<div class="col-sm-10">
+								<input type="hidden" name="no_id" class="form-control" value="<?php echo $p->no_id; ?>">
+								<input type="text" name="no_delivery" class="form-control" readonly value="<?php echo str_replace("-", "/", $p->no_delivery); ?>">
 							</div>
-							<input type="hidden" name="no_id" class="form-control" value="<?php echo $u->no_id; ?>">
-							<input type="hidden" name="id" class="form-control" value="<?php echo $u->id_join; ?>">
-							<textarea name="descript" class="form-control" maxlength="100"
-								required><?php echo $u->descript; ?></textarea>
-							<?php echo form_error('descript'); ?>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text">Qty&nbsp;</label>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Date *</label>
+							<div class="col-sm-10">
+								<input type="date" name="date_delivery" class="form-control" value="<?php echo $p->date_delivery; ?>" required>
+								<?php echo form_error('date_delivery'); ?>
 							</div>
-							<input type="number" name="qty" class="form-control" min="1" value=<?php echo $u->qty; ?> required>
-							<?php echo form_error('qty'); ?>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Due Date *</label>
+							<div class="col-sm-10">
+								<input type="date" name="due_date" class="form-control" value="<?php echo $p->due_date; ?>" required>
+								<?php echo form_error('due_date'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Cust *</label>
+							<div class="col-sm-10">
+								<input type="text" name="cust_name" class="form-control" value="<?php echo $p->cust_name; ?>" required>
+								<?php echo form_error('cust_name'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Address *</label>
+							<div class="col-sm-10">
+								<textarea name="address" class="form-control" maxlength="150" required><?php echo $p->address; ?></textarea>
+								<?php echo form_error('address'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">City *</label>
+							<div class="col-sm-10">
+								<input type="text" name="city" class="form-control" value="<?php echo $p->city; ?>" required>
+								<?php echo form_error('city'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Phone *</label>
+							<div class="col-sm-10">
+								<input type="text" name="phone" class="form-control" value="<?php echo $p->phone; ?>" required>
+								<?php echo form_error('phone'); ?>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="modal-footer justify-content-between">
-					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary" id="editdesc"><i class="fa fa-check"></i> Save</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<?php endforeach; ?>
-<!-- end modal Edit Desc SJ -->
-
-<!--MODAL HAPUS DESC-->
-<?php foreach ($sj_dfh as $u) : ?>
-<div class="modal fade" id="modal_del_desc<?php echo $u->no_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content bg-danger">
-			<div class="modal-header">
-				<h5 class="col-12 modal-title text-center">Delete Desc SJ
-					<button class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h5>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+						<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
+					</div>
+				</form>
 			</div>
-			<form class="form-horizontal" onsubmit="delform.disabled = true; return true;" method="post"
-				action="<?php echo base_url('sj/sj_desc_hapus_df') ?>">
-				<div class="modal-body">
-					<input type="hidden" name="no_id" value="<?php echo $u->no_id; ?>">
-					<input type="hidden" name="id" class="form-control" value="<?php echo $u->id_join; ?>">
-					<span>Are you sure delete this ?</span>
-				</div>
-				<div class="modal-footer justify-content-between">
-					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-					<button class="btn btn-outline-light" id="delform"><i class="fa fa-check"></i> Yes</button>
-				</div>
-			</form>
 		</div>
 	</div>
-</div>
+<?php endforeach; ?>
+<!-- end modal Edit Sj -->
+
+<!--MODAL HAPUS ALL-->
+<?php foreach ($sj_user_df as $p) : ?>
+	<div class="modal fade" id="modal_hapus<?php echo $p->no_id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content bg-danger">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Delete Surat Jalan
+						<button class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form class="form-horizontal" onsubmit="deldesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_hapus_df') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="no_id" value="<?php echo $p->no_id; ?>">
+						<span>Are you sure delete Do <?php echo str_replace("-", "/", $p->no_delivery); ?> ?</span>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+						<button class="btn btn-outline-light" id="deldesc"><i class="fa fa-check"></i> Yes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 <?php endforeach; ?>
