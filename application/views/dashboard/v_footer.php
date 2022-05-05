@@ -11,8 +11,7 @@
 			<div class="modal-body">Select "Sign Out" below if you are ready to end your current session.</div>
 			<div class="modal-footer justify-content-between">
 				<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<a class="btn btn-outline-light" href="<?= base_url('dashboard/keluar'); ?>">Sign Out <i
-						class="fas fa-sign-out-alt"></i></a>
+				<a class="btn btn-outline-light" href="<?= base_url('dashboard/keluar'); ?>">Sign Out <i class="fas fa-sign-out-alt"></i></a>
 			</div>
 		</div>
 	</div>
@@ -35,7 +34,6 @@
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script>
 	$.widget.bridge('uibutton', $.ui.button)
-
 </script>
 <script src="<?php echo base_url(); ?>assets/plugins/chart.js/Chart.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
@@ -76,8 +74,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
 <?php include './assets/plugins/ajax.php'; ?>
 <script>
-	$(document).ready(function () {
-		$(".toggle-password").click(function () {
+	$(document).ready(function() {
+		$(".toggle-password").click(function() {
 			$(this).toggleClass("fa-lock fa-lock-open");
 			let input = $($(this).attr("toggle"));
 			if (input.attr("type") == "password") {
@@ -87,7 +85,6 @@
 			}
 		});
 	});
-
 </script>
 <script>
 	var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
@@ -130,23 +127,22 @@
 	}
 
 	toggleSwitch.addEventListener('change', switchTheme, false);
-
 </script>
 <script>
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				$('#blah').attr('src', e.target.result);
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	$("#imgInp").change(function () {
+	$("#imgInp").change(function() {
 		readURL(this);
 	});
 
-	$("#info").fadeTo(3000, 500).slideUp(500, function () {
+	$("#info").fadeTo(3000, 500).slideUp(500, function() {
 		$("#info").slideUp(500);
 	});
 
@@ -161,7 +157,6 @@
 		setTimeout(gethclock, 1000);
 	}
 	gethclock();
-
 </script>
 </body>
 

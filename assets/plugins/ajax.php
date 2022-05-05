@@ -122,8 +122,11 @@
       $("#example1").DataTable({
          "responsive": true,
          "lengthChange": false,
-         "autoWidth": true,
-         "searching": false
+         "autoWidth": false,
+         "searching": false,
+         "ordering": true,
+         "paging": false,
+         "info": false,
       })
       $('#example2').DataTable({
          "paging": true,
