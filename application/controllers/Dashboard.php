@@ -290,10 +290,10 @@ class Dashboard extends CI_Controller
       );
 
       $this->m_data->insert_data($data, 'pengguna');
-      $this->session->set_flashdata('berhasil', 'Add Data successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
+      $this->session->set_flashdata('success', 'Add Data successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
       redirect(base_url() . 'dashboard/pengguna');
     } else {
-      $this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
+      $this->session->set_flashdata('error', 'Data failed to Add, Please repeat !');
       redirect(base_url() . 'dashboard/pengguna');
     }
   }
@@ -341,10 +341,10 @@ class Dashboard extends CI_Controller
       );
 
       $this->m_data->update_data($where, $data, 'pengguna');
-      $this->session->set_flashdata('berhasil', 'Update Data successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
+      $this->session->set_flashdata('success', 'Update Data successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
       redirect(base_url() . 'dashboard/pengguna');
     } else {
-      $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+      $this->session->set_flashdata('error', 'Data failed to Update, Please repeat !');
       redirect(base_url() . 'dashboard/pengguna');
     }
   }
@@ -358,7 +358,7 @@ class Dashboard extends CI_Controller
       );
 
       $this->m_data->delete_data($where, 'pengguna');
-      $this->session->set_flashdata('berhasil', 'Data has been deleted !');
+      $this->session->set_flashdata('success', 'Data has been deleted !');
       redirect(base_url() . 'dashboard/pengguna');
     }
   }
@@ -390,7 +390,7 @@ class Dashboard extends CI_Controller
       $alamat = $this->input->post('alamat');
 
       $data = array(
-        'id_user' =>$id,
+        'id_user' => $id,
         'nama' => $nama,
         'posisi' => $posisi,
         'no_hp' => $no_hp,
@@ -418,10 +418,10 @@ class Dashboard extends CI_Controller
           $this->db->query("UPDATE kontak SET foto='$file' WHERE id_user='$id'");
         }
       }
-      $this->session->set_flashdata('berhasil', 'Add contact successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
+      $this->session->set_flashdata('success', 'Add contact successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
       redirect(base_url() . 'dashboard/contact');
     } else {
-      $this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
+      $this->session->set_flashdata('error', 'Data failed to Add, Please repeat !');
       redirect(base_url() . 'dashboard/contact');
     }
   }
@@ -475,10 +475,10 @@ class Dashboard extends CI_Controller
           $this->db->query("UPDATE kontak SET foto='$file' WHERE id_user='$id'");
         }
       }
-      $this->session->set_flashdata('berhasil', 'Edit contact successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
+      $this->session->set_flashdata('success', 'Edit contact successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
       redirect(base_url() . 'dashboard/contact');
     } else {
-      $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+      $this->session->set_flashdata('error', 'Data failed to Update, Please repeat !');
       redirect(base_url() . 'dashboard/contact');
     }
   }
@@ -490,7 +490,7 @@ class Dashboard extends CI_Controller
         'id_user' => $id
       );
       $this->m_data->delete_data($where, 'kontak');
-      $this->session->set_flashdata('berhasil', 'Data has been deleted !');
+      $this->session->set_flashdata('success', 'Data has been deleted !');
       redirect(base_url() . 'dashboard/contact');
     }
   }

@@ -9,8 +9,7 @@ class It extends CI_Controller
     parent::__construct();
 
     date_default_timezone_set('Asia/Jakarta');
-    $session = $this->session->userdata('status');
-    if ($session == '') {
+    if ($this->session->userdata('status') != "telah_login") {
       redirect(base_url() . 'login?alert=belum_login');
     }
   }
@@ -64,10 +63,10 @@ class It extends CI_Controller
           $this->db->query("UPDATE datapenting_it SET `file`='$file' WHERE no_id='$id'");
         }
       }
-      $this->session->set_flashdata('berhasil', 'Add Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');
+      $this->session->set_flashdata('success', 'Add Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');
       redirect(base_url() . 'it/data');
     } else {
-      $this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
+      $this->session->set_flashdata('error', 'Data failed to Add, Please repeat !');
       redirect(base_url() . 'it/data');
     }
   }
@@ -114,10 +113,10 @@ class It extends CI_Controller
           $this->db->query("UPDATE datapenting_it SET `file`='$file' WHERE no_id='$id'");
         }
       }
-      $this->session->set_flashdata('berhasil', 'Edit Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');
+      $this->session->set_flashdata('success', 'Edit Data successfully, Judul : ' . $this->input->post('judul', TRUE) . ' !');
       redirect(base_url() . 'it/data');
     } else {
-      $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+      $this->session->set_flashdata('error', 'Data failed to Update, Please repeat !');
       redirect(base_url() . 'it/data');
     }
   }
@@ -129,7 +128,7 @@ class It extends CI_Controller
         'no_id' => $id
       );
       $this->m_data->delete_data($where, 'datapenting_it');
-      $this->session->set_flashdata('berhasil', 'Data has been deleted !');
+      $this->session->set_flashdata('success', 'Data has been deleted !');
       redirect(base_url() . 'it/data');
     }
   }

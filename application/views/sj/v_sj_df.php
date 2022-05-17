@@ -15,20 +15,9 @@
 			</div>
 		</div>
 	</div>
+
 	<section class="content">
 		<div class="container-fluid">
-			<?php if ($this->session->flashdata('berhasil')) { ?>
-				<div class="alert alert-success alert-dismissible fade show" id="info" role="alert">
-					<button type=" button" class="close" data-dismiss="alert">&times;</button>
-					<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
-				</div>
-			<?php } ?>
-			<?php if ($this->session->flashdata('gagal')) { ?>
-				<div class="alert alert-warning alert-dismissible fade show" id="info" role="alert">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
-				</div>
-			<?php } ?>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
@@ -36,10 +25,10 @@
 							<h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add_sj">
 									<i class="fa fa-plus"></i>&nbsp; Add Surat Jalan</a></h4>
 							<div class="card-tools">
-								<button type="button" class="btn btn-icon btn-circle btn-warning" data-card-widget="collapse">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
 								</button>
-								<button type="button" class="btn btn-icon btn-circle btn-danger" data-card-widget="remove">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
 									<i class="fas fa-times"></i>
 								</button>
 							</div>

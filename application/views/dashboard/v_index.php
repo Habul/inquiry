@@ -3,7 +3,13 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Welcome back, <?php echo ucwords($this->session->userdata('nama')) ?></h1>
+					<?php if (mdate('%H:%i') >= '00:01' && mdate('%H:%i') <= '10:00') : ?>
+						<h1 class="m-0">Good Morning <?php echo ucwords($this->session->userdata('nama')) ?></h1>
+					<?php elseif (mdate('%H:%i') >= '10:01' && mdate('%H:%i') <= '18:00') : ?>
+						<h1 class="m-0">Good Afternoon <?php echo ucwords($this->session->userdata('nama')) ?></h1>
+					<?php elseif (mdate('%H:%i') >= '18:01' && mdate('%H:%i') <= '23:59') : ?>
+						<h1 class="m-0">Good Evening <?php echo ucwords($this->session->userdata('nama')) ?></h1>
+					<?php endif ?>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -27,8 +33,7 @@
 							<i class="ion ion-android-list"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-						<a href="<?php echo base_url('sj/sj_df') ?>" class="small-box-footer">More info <i
-								class="fa fa-arrow-circle-right"></i></a>
+							<a href="<?php echo base_url('sj/sj_df') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -43,8 +48,7 @@
 							<i class="ion ion-android-document"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-						<a href="<?php echo base_url('inquiry/inquiry') ?>" class="small-box-footer">More info <i
-								class="fa fa-arrow-circle-right"></i></a>
+							<a href="<?php echo base_url('inquiry/inquiry') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -59,8 +63,7 @@
 							<i class="ion ion-ios-briefcase"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-						<a href="<?php echo base_url('buffer/buffer') ?>" class="small-box-footer">More info <i
-								class="fa fa-arrow-circle-right"></i></a>
+							<a href="<?php echo base_url('buffer/buffer') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -75,7 +78,7 @@
 							<i class="fas fa-users"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-						<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -90,8 +93,7 @@
 							<i class="fas fa-car-side"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-						<a href="<?php echo base_url('driver/mobil') ?>" class="small-box-footer">More info <i
-								class="fas fa-arrow-circle-right"></i></a>
+							<a href="<?php echo base_url('driver/mobil') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -105,8 +107,7 @@
 							<i class="fas fa-motorcycle"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-						<a href="<?php echo base_url('driver/motor') ?>" class="small-box-footer">More info <i
-								class="fas fa-arrow-circle-right"></i></a>
+							<a href="<?php echo base_url('driver/motor') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 						<?php } ?>
 
 					</div>
@@ -121,8 +122,7 @@
 							<i class="fas fa-truck"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-						<a href="<?php echo base_url('driver/truck') ?>" class="small-box-footer">More info <i
-								class="fas fa-arrow-circle-right"></i></a>
+							<a href="<?php echo base_url('driver/truck') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -136,7 +136,7 @@
 							<i class="fas fa-paper-plane"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+							<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -164,8 +164,7 @@
 						</div>
 						<div class="card-body">
 							<div class="tab-content p-0">
-								<div class="chart tab-pane active" id="revenue-chart"
-									style="position: relative; height: 300px;">
+								<div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
 									<canvas id="donutChart" height="300" style="height: 300px;"></canvas>
 								</div>
 								<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">

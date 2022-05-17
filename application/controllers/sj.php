@@ -8,8 +8,7 @@ class Sj extends CI_Controller
   {
     parent::__construct();
     date_default_timezone_set('Asia/Jakarta');
-    $session = $this->session->userdata('status');
-    if ($session == '') {
+    if ($this->session->userdata('status') != "telah_login") {
       redirect(base_url() . 'login?alert=belum_login');
     }
   }
@@ -60,11 +59,11 @@ class Sj extends CI_Controller
       );
 
       $this->m_data->insert_data($data, 'sj_user_df');
-      $id = $this->input->post('id');    
+      $id = $this->input->post('id');
       $encrypt = urlencode($this->encrypt->encode($id));
       redirect(base_url() . 'sj/sj_new/?sj=' . $encrypt);
     } else {
-      $this->session->set_flashdata('gagal', 'SJ failed to add, Please repeat !');
+      $this->session->set_flashdata('error', 'SJ failed to add, Please repeat !');
       redirect(base_url() . 'sj/sj_df');
     }
   }
@@ -128,12 +127,12 @@ class Sj extends CI_Controller
       );
 
       $this->m_data->insert_data($data, 'sj_df');
-      $this->session->set_flashdata('berhasil', 'Successfully added Desc : ' . $this->input->post('descript', TRUE) . '  !');
+      $this->session->set_flashdata('success', 'Successfully added Desc : ' . $this->input->post('descript', TRUE) . '  !');
       $id = $this->input->post('id');
       $encrypt = urlencode($this->encrypt->encode($id));
       redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
     } else {
-      $this->session->set_flashdata('gagal', 'SJ Desc failed to add, Please repeat !');
+      $this->session->set_flashdata('error', 'SJ Desc failed to add, Please repeat !');
       $id = $this->input->post('id');
       $encrypt = urlencode($this->encrypt->encode($id));
       redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
@@ -162,12 +161,12 @@ class Sj extends CI_Controller
       );
 
       $this->m_data->update_data($where, $data, 'sj_df');
-      $this->session->set_flashdata('berhasil', 'Desc successfully Update, : ' . $this->input->post('descript', TRUE) . ' !');
+      $this->session->set_flashdata('success', 'Desc successfully Update, : ' . $this->input->post('descript', TRUE) . ' !');
       $id = $this->input->post('id');
       $encrypt = urlencode($this->encrypt->encode($id));
       redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
     } else {
-      $this->session->set_flashdata('gagal', 'SJ failed to Update, Please repeat !');
+      $this->session->set_flashdata('error', 'SJ failed to Update, Please repeat !');
       $id = $this->input->post('id');
       $encrypt = urlencode($this->encrypt->encode($id));
       redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);
@@ -213,10 +212,10 @@ class Sj extends CI_Controller
         'no_id' => $id
       );
       $this->m_data->update_data($where, $data, 'sj_user_df');
-      $this->session->set_flashdata('berhasil', 'SJ successfully Update, No Po : ' . $this->input->post('no_delivery', TRUE) . ' !');
+      $this->session->set_flashdata('success', 'SJ successfully Update, No Po : ' . $this->input->post('no_delivery', TRUE) . ' !');
       redirect(base_url() . 'sj/sj_df');
     } else {
-      $this->session->set_flashdata('gagal', 'SJ failed to Update, Please repeat !');
+      $this->session->set_flashdata('error', 'SJ failed to Update, Please repeat !');
       redirect(base_url() . 'sj/sj_df');
     }
   }
@@ -232,7 +231,7 @@ class Sj extends CI_Controller
       );
       $this->m_data->delete_data($where2, 'sj_df');
       $this->m_data->delete_data($where, 'sj_user_df');
-      $this->session->set_flashdata('berhasil', 'SJ has been deleted !');
+      $this->session->set_flashdata('success', 'SJ has been deleted !');
       redirect(base_url() . 'sj/sj_df');
     }
   }
@@ -244,7 +243,7 @@ class Sj extends CI_Controller
         'no_id' => $id
       );
       $this->m_data->delete_data($where, 'sj_df');
-      $this->session->set_flashdata('berhasil', 'Desc has been deleted !');
+      $this->session->set_flashdata('success', 'Desc has been deleted !');
       $id = $this->input->post('id');
       $encrypt = urlencode($this->encrypt->encode($id));
       redirect(base_url() . 'sj/sj_view_df/?sj=' . $encrypt);

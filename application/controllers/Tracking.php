@@ -8,8 +8,7 @@ class Tracking extends CI_Controller
   {
     parent::__construct();
     date_default_timezone_set('Asia/Jakarta');
-    $session = $this->session->userdata('status');
-    if ($session == '') {
+    if ($this->session->userdata('status') != "telah_login") {
       redirect(base_url() . 'login?alert=belum_login');
     }
   }
