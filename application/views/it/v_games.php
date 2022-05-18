@@ -3,12 +3,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Mini Games</h1>
+					<h1 class="m-0">Trick Or Treat</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-						<li class="breadcrumb-item active">Mini Games</li>
+						<li class="breadcrumb-item active">Trick Or Treat</li>
 					</ol>
 				</div>
 			</div>
@@ -35,55 +35,59 @@
 					</div>
 				</div>
 				<div class="col-lg-6 col-12">
-					<div class="card card-success card-outline direct-chat direct-chat-success shadow">
+					<div class="card card-warning card-outline shadow">
 						<div class="card-header">
-							<h3 class="card-title">Send chat Bot</h3>
+							<h3 class="card-title">Barcode Generator</h3>
 							<div class="card-tools">
-								<span title="New Messages" class="badge bg-success"></span>
-								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
 								</button>
-								<button type="button" class="btn btn-tool" data-card-widget="remove">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
 									<i class="fas fa-times"></i>
 								</button>
 							</div>
 						</div>
 						<div class="card-body">
-							<div class="direct-chat-messages">
-								<div class="direct-chat-msg">
-									<div class="direct-chat-infos clearfix">
-										<span class="direct-chat-name float-left">Bot</span>
-									</div>
-									<img class="direct-chat-img" src="<?php echo base_url(); ?>gambar/website/Untitled-1-02.png"
-										alt="Message User Image">
-									<div class="direct-chat-text">
-										Lorem ipsum dolor sit amet.
-									</div>
-								</div>
-								<div class="direct-chat-msg right">
-									<div class="direct-chat-infos clearfix">
-										<span
-											class="direct-chat-name float-right"><?php echo $this->session->userdata('nama'); ?></span>
-									</div>
-									<img class="direct-chat-img"
-										src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>"
-										alt="Message User Image">
-									<div class="direct-chat-text">
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vel aperiam vitae qui,
-										suscipit soluta libero beatae culpa mollitia aliquid!
-									</div>
+							<?php echo form_open('dashboard/generate') ?>
+							<div class="input-group mb-2">
+								<input type="number" class="form-control" placeholder="Enter.." name="keyword" value="<?= html_escape($detail) ?>" required>
+								<div class="input-group-append">
+									<button class="btn btn-outline-warning" type="submit">Generate!</button>
 								</div>
 							</div>
+							<?php echo form_close() ?>
+							<span class="d-flex justify-content-center">
+								<?= $generate ?>
+							</span>
+							<small class="d-flex justify-content-center"><?= $detail ?></small>
 						</div>
-						<div class="card-footer">
-							<form action="#" method="post">
-								<div class="input-group">
-									<input type="text" name="message" placeholder="Type Message ..." class="form-control">
-									<span class="input-group-append">
-										<button type="submit" class="btn btn-success">Send</button>
-									</span>
+					</div>
+
+					<div class="card card-info card-outline shadow">
+						<div class="card-header">
+							<h3 class="card-title">Qrcode Generator</h3>
+							<div class="card-tools">
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
+									<i class="fas fa-times"></i>
+								</button>
+							</div>
+						</div>
+						<div class="card-body">
+							<?php echo form_open('dashboard/generateQR') ?>
+							<div class="input-group mb-2">
+								<input type="text" class="form-control" placeholder="Enter.." name="keywordqr" value="<?= html_escape($detailqr) ?>" required>
+								<div class="input-group-append">
+									<button class="btn btn-outline-info" type="submit">Generate!</button>
 								</div>
-							</form>
+							</div>
+							<?php echo form_close() ?>
+							<span class="d-flex justify-content-center">
+								<?= $generateqr ?>
+							</span>
+							<small class="d-flex justify-content-center"><?= $detailqr ?></small>
 						</div>
 					</div>
 				</div>
@@ -94,35 +98,29 @@
 <script>
 	class Start {
 		constructor() {
-			this.playerName = "Player"
+			this.playerName = " Player"
 			this.botName = "Bot"
 			this.playerOption;
 			this.botOption;
 			this.winner = ""
 		}
-
 		get getBotOption() {
 			return this.botOption;
 		}
-
 		set setBotOption(option) {
 			this.botOption = option;
 		}
-
 		get getPlayerOption() {
 			return this.playerOption
 		}
-
 		set setPlayerOption(option) {
 			this.playerOption = option;
 		}
-
 		botBrain() {
 			const option = ["🖐", "✌", "✊"];
 			const bot = option[Math.floor(Math.random() * option.length)];
 			return bot;
 		}
-
 		winCalculation() {
 			if (this.botOption == "🖐" && this.playerOption == "✌") {
 				return this.winner = this.playerName
@@ -140,7 +138,6 @@
 				return this.winner = "SERI"
 			}
 		}
-
 		matchResult() {
 			if (this.winner != "SERI") {
 				return `${this.winner} MENANG!`;
@@ -155,18 +152,14 @@
 		start.setPlayerOption = params;
 		start.setBotOption = start.botBrain();
 		start.winCalculation();
-
 		const inGame = document.getElementById("inGame");
 		const result = document.getElementById("result");
-
 		inGame.textContent = "..."
 		result.textContent = "..."
-
 		setTimeout(() => {
 			inGame.textContent = `${start.getPlayerOption} VS ${start.getBotOption}`
 			result.textContent = start.matchResult();
 		}, 1500);
 
 	}
-
 </script>

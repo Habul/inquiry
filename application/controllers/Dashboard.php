@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+
 class Dashboard extends CI_Controller
 {
 
@@ -504,17 +505,49 @@ class Dashboard extends CI_Controller
 
   public function mini_games()
   {
-    $data['title'] = 'Mini Games';
+    $data['title'] = 'Trick Or Treat';
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('it/v_games.php');
     $this->load->view('dashboard/v_footer');
   }
 
-  public function kanban()
+  public function generate()
   {
-    $data['title'] = 'Mini Games';
+    $data['title'] = 'Trick Or Treat';
+    $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+    $update = $this->input->post('keyword');
+
+    if ($update == '') {
+      redirect(base_url() . 'dashboard/mini_games');
+    }
+
+    $data['generate'] = '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($update, $generator::TYPE_CODE_128)) . '">';
+    $data['detail'] = $update;
     $this->load->view('dashboard/v_header', $data);
-    $this->load->view('it/v_kanban.php');
+    $this->load->view('it/v_games.php', $data);
+    $this->load->view('dashboard/v_footer');
+  }
+
+  public function generateQR()
+  {
+    $data['title'] = 'Trick Or Treat';
+    $update = $this->input->post('keywordqr');
+
+    if ($update == '') {
+      redirect(base_url() . 'dashboard/mini_games');
+    }
+
+    $this->load->library('ciqrcode');
+    $params['data'] = $update;
+    $params['level'] = 'H';
+    $params['size'] = 10;
+    $params['savename'] = FCPATH . 'Qr.png';
+    $this->ciqrcode->generate($params);
+
+    $data['generateqr'] = '<img src="' . base_url() . 'Qr.png" style="width: 100px;" />';
+    $data['detailqr'] = $update;
+    $this->load->view('dashboard/v_header', $data);
+    $this->load->view('it/v_games.php', $data);
     $this->load->view('dashboard/v_footer');
   }
 }
