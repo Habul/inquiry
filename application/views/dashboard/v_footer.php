@@ -86,21 +86,31 @@
 		});
 	});
 
-	// $(function() {
-	// 	var Toast = Swal.mixin({
-	// 		toast: true,
-	// 		position: 'top-end',
-	// 		showConfirmButton: false,
-	// 		timer: 3000
-	// 	});
+	$(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 6000
+		});
 
-	// 	<?php if ($this->session->userdata('status') == "telah_login") { ?>
-	// 		Toast.fire({
-	// 			icon: 'success',
-	// 			title: ' Welcome back, <?php echo ucwords($this->session->userdata('nama')) ?>'
-	// 		})
-	// 	<?php } ?>
-	// });
+		<?php if ($this->session->flashdata('berhasil')) { ?>
+			Toast.fire({
+				icon: 'success',
+				title: '<?= ucwords($this->session->flashdata('berhasil')) ?>'
+			})
+		<?php } else if ($this->session->flashdata('gagal')) { ?>
+			Toast.fire({
+				icon: 'error',
+				title: '<?= ucwords($this->session->flashdata('gagal')) ?>'
+			})
+		<?php } else if ($this->session->flashdata('ulang')) { ?>
+			Toast.fire({
+				icon: 'error',
+				title: '<?= ucwords($this->session->flashdata('ulang')) ?>'
+			})
+		<?php } ?>
+	});
 </script>
 <script>
 	var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
@@ -146,13 +156,13 @@
 </script>
 <script>
 	<?php if ($this->session->flashdata('success')) { ?>
-		toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+		toastr.success("<?= $this->session->flashdata('success'); ?>");
 	<?php } else if ($this->session->flashdata('error')) {  ?>
-		toastr.error("<?php echo $this->session->flashdata('error'); ?>");
+		toastr.error("<?= $this->session->flashdata('error'); ?>");
 	<?php } else if ($this->session->flashdata('warning')) {  ?>
-		toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
+		toastr.warning("<?= $this->session->flashdata('warning'); ?>");
 	<?php } else if ($this->session->flashdata('info')) {  ?>
-		toastr.info("<?php echo $this->session->flashdata('info'); ?>");
+		toastr.info("<?= $this->session->flashdata('info'); ?>");
 	<?php } ?>
 </script>
 <script>

@@ -4,7 +4,6 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<h1 class="m-0">Surat Jalan</h1>
-					<small>Pastikan Desc SJ sudah terinput, sebelum <b>View & Print</b></small>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -238,7 +237,7 @@
 				<form class="form-horizontal" onsubmit="deldesc.disabled = true; return true;" method="post" action="<?php echo base_url('sj/sj_hapus_df') ?>">
 					<div class="modal-body">
 						<input type="hidden" name="no_id" value="<?php echo $p->no_id; ?>">
-						<span>Are you sure delete Do <?php echo str_replace("-", "/", $p->no_delivery); ?> ?</span>
+						<span>Are you sure delete Do No <?php echo str_replace("-", "/", $p->no_delivery); ?> ?</span>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>

@@ -435,42 +435,24 @@
 
    var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
    var areaChartData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [{
-            label: 'SJ HS',
-            backgroundColor: '#95a5a6',
-            borderColor: '#7f8c8d',
-            pointRadius: false,
-            pointColor: '#3b8bba',
-            pointStrokeColor: 'rgba(60,141,188,1)',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: [<?php
-                     if (count($suraths) > 0) {
-                        foreach ($suraths as $data) {
-                           echo $data->total . ", ";
-                        }
+         label: 'Surat Jalan',
+         backgroundColor: '#3498db',
+         borderColor: '#2980b9',
+         pointRadius: false,
+         pointColor: '#2980b9',
+         pointStrokeColor: '#c1c7d1',
+         pointHighlightFill: '#fff',
+         pointHighlightStroke: 'rgba(220,220,220,1)',
+         data: [<?php
+                  if (count($suratdf) > 0) {
+                     foreach ($suratdf as $data) {
+                        echo $data->total . ", ";
                      }
-                     ?>]
-         },
-         {
-            label: 'SJ DF',
-            backgroundColor: '#3498db',
-            borderColor: '#2980b9',
-            pointRadius: false,
-            pointColor: '#2980b9',
-            pointStrokeColor: '#c1c7d1',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(220,220,220,1)',
-            data: [<?php
-                     if (count($suratdf) > 0) {
-                        foreach ($suratdf as $data) {
-                           echo $data->total . ", ";
-                        }
-                     }
-                     ?>]
-         },
-      ]
+                  }
+                  ?>]
+      }, ]
    }
 
    var areaChartOptions = {
@@ -501,7 +483,7 @@
 
    var barChartCanvas = $('#barChart').get(0).getContext('2d')
    var barChartData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [{
             label: 'Mobil',
             backgroundColor: '#1abc9c',
