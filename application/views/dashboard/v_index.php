@@ -182,6 +182,23 @@
 				</div>
 
 				<div class="col-lg-6 col-12">
+					<div class="table-responsive">
+						<table class="table table-bordered table-striped">
+							<tr>
+								<td><b>IP Address</b></td>
+								<td><?= $ip_address; ?></td>
+							</tr>
+							<tr>
+								<td><b>Operating System</b></td>
+								<td><?= $os; ?></td>
+							</tr>
+							<tr>
+								<td><b>Browser Details</b></td>
+								<td><?= $browser . ' - ' . $browser_version; ?></td>
+							</tr>
+						</table>
+					</div>
+
 					<div class="card bg-gradient-primary">
 						<div class="card-header border-0">
 							<h3 class="card-title"><i class="far fa-calendar-alt"></i> Calendar</h3>

@@ -51,11 +51,15 @@ class Dashboard extends CI_Controller
       $index++;
     }
 
+    $this->load->library('user_agent');
+    $data['browser'] = $this->agent->browser();
+    $data['browser_version'] = $this->agent->version();
+    $data['os'] = $this->agent->platform();
+    $data['ip_address'] = $this->input->ip_address();
     $data['barmobil'] = $this->m_data->bartracking('mobil');
     $data['barmotor'] = $this->m_data->bartracking('motor');
     $data['bartruck'] = $this->m_data->bartracking('truck');
     $data['suratdf'] = $this->m_data->suratjalan('sj_user_df');
-    $data['suraths'] = $this->m_data->suratjalan('sj_user');
     $data['data_sales'] = $this->m_data->select_by_sales();
     $data['data_brand'] = $this->m_data->select_by_brand();
     $data['sales_color'] = json_encode($sales_color);
