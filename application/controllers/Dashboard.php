@@ -515,6 +515,14 @@ class Dashboard extends CI_Controller
     $this->load->view('dashboard/v_footer');
   }
 
+  public function workspace()
+  {
+    $data['title'] = 'Workspace';
+    $this->load->view('dashboard/v_header', $data);
+    $this->load->view('it/v_kanban.php');
+    $this->load->view('dashboard/v_footer');
+  }
+
   public function generate()
   {
     $data['title'] = 'Trick Or Treat';

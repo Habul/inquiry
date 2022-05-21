@@ -198,6 +198,12 @@
 									<p>Surat Jalan</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/workspace' ?>" <?= $this->uri->uri_string() == 'dashboard/workspace' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<i class="nav-icon fas fas fa-columns"></i></i>
+									<p>Workspace Board</p>
+								</a>
+							</li>
 						<?php } ?>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
 							<?php if ($this->session->userdata('level') != "warehouse") { ?>
