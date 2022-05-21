@@ -19,36 +19,35 @@
 	<section class="content">
 		<div class="container-fluid">
 			<?php if ($this->session->flashdata('berhasil')) { ?>
-			<div class="alert alert-success alert-dismissible fade show" id="info" role="alert">
-				<button type=" button" class="close" data-dismiss="alert">&times;</button>
-				<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
-			</div>
+				<div class="alert alert-success alert-dismissible fade show" id="info" role="alert">
+					<button type=" button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-check"></i>&nbsp;<?= $this->session->flashdata('berhasil') ?>
+				</div>
 			<?php } ?>
 			<?php if ($this->session->flashdata('gagal')) { ?>
-			<div class="alert alert-warning alert-dismissible fade show" id="info" role="alert">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
-			</div>
+				<div class="alert alert-warning alert-dismissible fade show" id="info" role="alert">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<i class="icon fa fa-warning"></i>&nbsp;<?= $this->session->flashdata('gagal') ?>
+				</div>
 			<?php } ?>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<?php if ($this->session->userdata('level') != "warehouse") {  ?>
-						<?php if ($this->session->userdata('level') != "purchase") {  ?>
-						<div class="card-header">
-							<h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal"
-									data-target="#modal_add_inquiry">
-									<i class="fa fa-plus"></i>&nbsp; Add Inquiry</a></h4>
-							<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="maximize">
-									<i class="fas fa-expand"></i>
-								</button>
-								<button type="button" class="btn btn-tool" data-card-widget="collapse">
-									<i class="fas fa-minus"></i>
-								</button>
-							</div>
-						</div>
-						<?php }  ?>
+							<?php if ($this->session->userdata('level') != "purchase") {  ?>
+								<div class="card-header">
+									<h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add_inquiry">
+											<i class="fa fa-plus"></i>&nbsp; Add Inquiry</a></h4>
+									<div class="card-tools">
+										<button type="button" class="btn btn-tool" data-card-widget="maximize">
+											<i class="fas fa-expand"></i>
+										</button>
+										<button type="button" class="btn btn-tool" data-card-widget="collapse">
+											<i class="fas fa-minus"></i>
+										</button>
+									</div>
+								</div>
+							<?php }  ?>
 						<?php }  ?>
 						<div class="card-body">
 							<table id="example6" class="table table-hover table-sm">
@@ -63,41 +62,36 @@
 										<th>Deadline</th>
 										<th>Request</th>
 										<?php if ($this->session->userdata('level') != "warehouse") { ?>
-										<th width="13%">Actions</th>
+											<th width="13%">Actions</th>
 										<?php }  ?>
 									</tr>
 								</thead>
 								<?php
-                foreach ($inquiry as $p) {
-                ?>
-								<tr>
-									<td style="text-align:center"><?php echo $p->inquiry_id; ?></td>
-									<td><?php echo $p->sales; ?></td>
-									<td><?php echo $p->tanggal; ?></td>
-									<td><?php echo $p->brand; ?></td>
-									<td><?php echo $p->desc; ?></td>
-									<td style="text-align:center"><?php echo $p->qty; ?></td>
-									<td><?php echo $p->deadline; ?></td>
-									<td><?php echo $p->request; ?></td>
-									<?php if ($this->session->userdata('level') != "warehouse") { ?>
-									<td style="text-align:center">
-										<?php if ($this->session->userdata('level') != "purchase") { ?>
-										<a class="btn-sm btn-warning" data-toggle="modal"
-											data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="Edit"><i
-												class="fa fa-pencil-alt"></i></a>
-										<?php }  ?>
-										<?php if ($this->session->userdata('level') != "sales") { ?>
-										<?php $encrypturl = urlencode($this->encrypt->encode($p->inquiry_id)) ?>
-										<a href="<?php echo base_url() . 'inquiry/inquiry_update_prch/?id=' . $encrypturl; ?>"
-											class="btn-sm btn-primary" title="Update inquiry"><i class="fa fa-edit"></i></a>
-										<a class="btn-sm btn-danger" data-toggle="modal"
-											data-target="#modal_hapus<?php echo $p->inquiry_id; ?>" title="Delete"><i
-												class="fa fa-trash"></i></a>
-									</td>
-								</tr>
+								foreach ($inquiry as $p) {
+								?>
+									<tr>
+										<td style="text-align:center"><?php echo $p->inquiry_id; ?></td>
+										<td><?php echo $p->sales; ?></td>
+										<td><?php echo $p->tanggal; ?></td>
+										<td><?php echo $p->brand; ?></td>
+										<td><?php echo $p->desc; ?></td>
+										<td style="text-align:center"><?php echo $p->qty; ?></td>
+										<td><?php echo $p->deadline; ?></td>
+										<td><?php echo $p->request; ?></td>
+										<?php if ($this->session->userdata('level') != "warehouse") { ?>
+											<td style="text-align:center">
+												<?php if ($this->session->userdata('level') != "purchase") { ?>
+													<a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->inquiry_id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+												<?php }  ?>
+												<?php if ($this->session->userdata('level') != "sales") { ?>
+													<?php $encrypturl = urlencode($this->encrypt->encode($p->inquiry_id)) ?>
+													<a href="<?php echo base_url() . 'inquiry/inquiry_update_prch/?id=' . $encrypturl; ?>" class="btn-sm btn-primary" title="Update inquiry"><i class="fa fa-edit"></i></a>
+													<a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->inquiry_id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+											</td>
+									</tr>
 								<?php }  ?>
-								<?php }  ?>
-								<?php } ?>
+							<?php }  ?>
+						<?php } ?>
 							</table>
 						</div>
 					</div>
@@ -119,16 +113,13 @@
 					</button>
 				</h4>
 			</div>
-			<form class="form-horizontal" onsubmit="addform.disabled = true; return true;" method="post"
-				action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
+			<form class="form-horizontal" onsubmit="addform.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
 				<div class="modal-body">
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Nama</label>
 						<div class="col-sm-10">
-							<input type="hidden" name="inquiry_id" readonly class="form-control"
-								value="<?php echo $id_add->inquiry_id + 1; ?>">
-							<input type="text" name="sales" readonly class="form-control"
-								value="<?php echo $this->session->userdata('nama'); ?> ">
+							<input type="hidden" name="inquiry_id" readonly class="form-control" value="<?php echo $id_add->inquiry_id + 1; ?>">
+							<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
 							<?php echo form_error('sales'); ?>
 						</div>
 					</div>
@@ -155,7 +146,7 @@
 							<select class="form-control" name="brand" required>
 								<option value="">- Pilih Brand -</option>
 								<?php foreach ($master as $row) : ?>
-								<option value="<?php echo $row->brand; ?>"><?php echo $row->brand; ?></option>
+									<option value="<?php echo $row->brand; ?>"><?php echo $row->brand; ?></option>
 								<?php endforeach; ?>
 							</select>
 							<?php echo form_error('brand'); ?>
@@ -202,107 +193,102 @@
 
 <!-- ============ MODAL EDIT SALES =============== -->
 <?php foreach ($inquiry as $p) : ?>
-<div class="modal fade" id="modal_edit<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="col-12 modal-title text-center">Edit Inquiry
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h4>
+	<div class="modal fade" id="modal_edit<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">Edit Inquiry
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
+				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
+					<div class="modal-body">
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">No Inquiry</label>
+							<div class="col-sm-10">
+								<input type="text" name="id" readonly class="form-control" value="<?php echo $p->inquiry_id; ?>">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Nama</label>
+							<div class="col-sm-10">
+								<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
+								<?php echo form_error('sales'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Brand</label>
+							<div class="col-sm-10">
+								<input type="text" name="brand" readonly class="form-control" value="<?php echo $p->brand; ?>">
+								<?php echo form_error('brand'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Desc *</label>
+							<div class="col-sm-10">
+								<textarea name="desc" class="form-control" required><?php echo $p->desc; ?></textarea>
+								<?php echo form_error('desc'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Qty *</label>
+							<div class="col-sm-10">
+								<input type="number" name="qty" class="form-control" min="1" value="<?php echo $p->qty; ?>" required>
+								<?php echo form_error('qty'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Deadline *</label>
+							<div class="col-sm-10">
+								<input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>" required>
+								<?php echo form_error('deadline'); ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Keter *</label>
+							<div class="col-sm-10">
+								<textarea name="keter" class="form-control" required><?php echo $p->keter; ?></textarea>
+								<?php echo form_error('keter'); ?>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+						<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Save</button>
+					</div>
+				</form>
 			</div>
-			<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post"
-				action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
-				<div class="modal-body">
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">No Inquiry</label>
-						<div class="col-sm-10">
-							<input type="text" name="id" readonly class="form-control" value="<?php echo $p->inquiry_id; ?>">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Nama</label>
-						<div class="col-sm-10">
-							<input type="text" name="sales" readonly class="form-control"
-								value="<?php echo $this->session->userdata('nama'); ?> ">
-							<?php echo form_error('sales'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Brand</label>
-						<div class="col-sm-10">
-							<input type="text" name="brand" readonly class="form-control" value="<?php echo $p->brand; ?>">
-							<?php echo form_error('brand'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Desc *</label>
-						<div class="col-sm-10">
-							<textarea name="desc" class="form-control" required><?php echo $p->desc; ?></textarea>
-							<?php echo form_error('desc'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Qty *</label>
-						<div class="col-sm-10">
-							<input type="number" name="qty" class="form-control" min="1" value="<?php echo $p->qty; ?>"
-								required>
-							<?php echo form_error('qty'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Deadline *</label>
-						<div class="col-sm-10">
-							<input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>"
-								required>
-							<?php echo form_error('deadline'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Keter *</label>
-						<div class="col-sm-10">
-							<textarea name="keter" class="form-control" required><?php echo $p->keter; ?></textarea>
-							<?php echo form_error('keter'); ?>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer justify-content-between">
-					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Save</button>
-				</div>
-			</form>
 		</div>
 	</div>
-</div>
 <?php endforeach; ?>
 <!--END MODAL EDIT SALES-->
 
 <!--MODAL HAPUS-->
 <?php foreach ($inquiry as $p) : ?>
-<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
-		<div class="modal-content bg-danger">
-			<div class="modal-header">
-				<h4 class="col-12 modal-title text-center">Delete Inquiry
-					<button class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h4>
+	<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content bg-danger">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center">Delete Inquiry
+						<button class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h4>
+				</div>
+				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="inquiry_id" value="<?php echo $p->inquiry_id; ?>">
+						<p>Are you sure delete id <?php echo $p->inquiry_id; ?> ?</p>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+						<button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
+					</div>
+				</form>
 			</div>
-			<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post"
-				action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
-				<div class="modal-body">
-					<input type="hidden" name="inquiry_id" value="<?php echo $p->inquiry_id; ?>">
-					<p>Are you sure delete id <?php echo $p->inquiry_id; ?> ?</p>
-				</div>
-				<div class="modal-footer justify-content-between">
-					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-					<button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
-				</div>
-			</form>
 		</div>
 	</div>
-</div>
 <?php endforeach; ?>
 <!--END MODAL HAPUS-->

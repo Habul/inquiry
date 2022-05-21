@@ -369,7 +369,7 @@
 							</li>
 						<?php } ?>
 						<li class="nav-item">
-							<a href="<?php echo base_url() . 'dashboard/mini_games' ?>" <?= $this->uri->uri_string() == 'dashboard/mini_games' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+							<a href="<?php echo base_url() . 'dashboard/mini_games' ?>" <?= $this->uri->uri_string() == 'dashboard/mini_games' || $this->uri->uri_string() == 'dashboard/generate' || $this->uri->uri_string() == 'dashboard/generateQR' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 								<i class="nav-icon fas fa-hand-peace"></i></i>
 								<p>Trick Or Treat</p>
 							</a>

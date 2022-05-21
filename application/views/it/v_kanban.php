@@ -24,28 +24,25 @@
 					</h3>
 				</div>
 				<div class="card-body">
-					<div class="card card-primary card-outline">
-						<div class="card-header">
-							<h5 class="card-title">Create first milestone</h5>
-							<div class="card-tools">
-								<a href="#" class="btn btn-tool btn-link">#5</a>
-								<a href="#" class="btn btn-tool">
-									<i class="fas fa-pen"></i>
-								</a>
+					<?php foreach ($todo as $row) : ?>
+						<div class="card card-primary card-outline collapsed-card">
+							<div class=" card-header">
+								<h5 class="card-title"><?= $row->header ?></h5>
+								<div class="card-tools">
+									<a href="modal Edit" class="btn btn-tool">
+										<i class="fas fa-pen"></i>
+									</a>
+									<button type="button" class="btn btn-tool" data-card-widget="collapse">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
+							<div class="card-body">
+								<pre class="p-0 m-0"><?= $row->body ?></pre>
 							</div>
 						</div>
-					</div>
-					<div class="card card-primary card-outline">
-						<div class="card-header">
-							<h5 class="card-title">Create first milestone</h5>
-							<div class="card-tools">
-								<a href="#" class="btn btn-tool btn-link">#5</a>
-								<a href="#" class="btn btn-tool">
-									<i class="fas fa-pen"></i>
-								</a>
-							</div>
-						</div>
-					</div>
+					<?php endforeach; ?>
+					<button class="btn btn-block btn-light btn-sm"><i class="fa fa-plus"></i>&nbsp;Add a card</button>
 				</div>
 			</div>
 
@@ -56,14 +53,16 @@
 					</h3>
 				</div>
 				<div class="card-body">
-					<div class="card card-info card-outline">
+					<div class="card card-info card-outline collapsed-card">
 						<div class="card-header">
 							<h5 class="card-title">Update Readme</h5>
 							<div class="card-tools">
-								<a href="#" class="btn btn-tool btn-link">#2</a>
 								<a href="#" class="btn btn-tool">
 									<i class="fas fa-pen"></i>
 								</a>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+									<i class="fas fa-plus"></i>
+								</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -75,6 +74,7 @@
 							</p>
 						</div>
 					</div>
+					<button class="btn btn-block btn-light btn-sm"><i class="fa fa-plus"></i>&nbsp;Add a card</button>
 				</div>
 			</div>
 
@@ -85,17 +85,28 @@
 					</h3>
 				</div>
 				<div class="card-body">
-					<div class="card card-success card-outline">
+					<div class="card card-success card-outline collapsed-card">
 						<div class="card-header">
 							<h5 class="card-title">Create repo</h5>
 							<div class="card-tools">
-								<a href="#" class="btn btn-tool btn-link">#1</a>
 								<a href="#" class="btn btn-tool">
 									<i class="fas fa-pen"></i>
 								</a>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+									<i class="fas fa-plus"></i>
+								</button>
 							</div>
 						</div>
+						<div class="card-body">
+							<p>
+								Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+								Aenean commodo ligula eget dolor. Aenean massa.
+								Cum sociis natoque penatibus et magnis dis parturient montes,
+								nascetur ridiculus mus.
+							</p>
+						</div>
 					</div>
+					<button class="btn btn-block btn-light btn-sm"><i class="fa fa-plus"></i>&nbsp;Add a card</button>
 				</div>
 			</div>
 
@@ -106,19 +117,31 @@
 					</h3>
 				</div>
 				<div class="card-body">
-					<div class="card card-danger card-outline">
+					<div class="card card-danger card-outline collapsed-card">
 						<div class="card-header">
-							<h5 class="card-title">Test</h5>
+							<h5 class="card-title">Create repo</h5>
 							<div class="card-tools">
-								<a href="#" class="btn btn-tool btn-link">#1</a>
 								<a href="#" class="btn btn-tool">
 									<i class="fas fa-pen"></i>
 								</a>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+									<i class="fas fa-plus"></i>
+								</button>
 							</div>
 						</div>
+						<div class="card-body">
+							<p>
+								Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+								Aenean commodo ligula eget dolor. Aenean massa.
+								Cum sociis natoque penatibus et magnis dis parturient montes,
+								nascetur ridiculus mus.
+							</p>
+						</div>
 					</div>
+					<button class="btn btn-block btn-light btn-sm"><i class="fa fa-plus"></i>&nbsp;Add a card</button>
 				</div>
 			</div>
+
 		</div>
 	</section>
 </div>

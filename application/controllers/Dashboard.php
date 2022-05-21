@@ -518,6 +518,10 @@ class Dashboard extends CI_Controller
   public function workspace()
   {
     $data['title'] = 'Workspace';
+    $data['todo'] = $this->m_data->edit_data(['status' => '1'], 'workspace')->result();
+    $data['progress'] = $this->m_data->edit_data(['status' => '2'], 'workspace')->result();
+    $data['done'] = $this->m_data->edit_data(['status' => '3'], 'workspace')->result();
+    $data['failed'] = $this->m_data->edit_data(['status' => '4'], 'workspace')->result();
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('it/v_kanban.php');
     $this->load->view('dashboard/v_footer');
