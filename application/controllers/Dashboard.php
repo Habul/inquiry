@@ -527,6 +527,74 @@ class Dashboard extends CI_Controller
     $this->load->view('dashboard/v_footer');
   }
 
+  public function workspace_add()
+  {
+    $this->form_validation->set_rules('header', 'Header', 'required');
+    $this->form_validation->set_rules('body', 'Body', 'required');
+
+    if ($this->form_validation->run() != false) {
+      $header = $this->input->post('header');
+      $body = $this->input->post('body');
+      $status = $this->input->post('status');
+      $ket = $this->input->post('ket');
+      $addtime = mdate('%Y-%m-%d %H:%i:%s');
+
+      $data = array(
+        'header' => $header,
+        'body' => $body,
+        'status' => $status,
+        'addtime' => $addtime
+      );
+
+      $this->m_data->insert_data($data, 'workspace');
+      $this->session->set_flashdata('berhasil', 'Add workspace ' . $ket . ' successfully : ' . $header . ' !');
+      redirect(base_url() . 'dashboard/workspace');
+    } else {
+      $this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
+      redirect(base_url() . 'dashboard/workspace');
+    }
+  }
+
+  public function workspace_edit()
+  {
+    $this->form_validation->set_rules('header', 'Header', 'required');
+    $this->form_validation->set_rules('body', 'Body', 'required');
+
+    if ($this->form_validation->run() != false) {
+      $id = $this->input->post('id');
+      $header = $this->input->post('header');
+      $ket = $this->input->post('ket');
+      $body = $this->input->post('body');
+      $status = $this->input->post('status');
+
+      $where = array(
+        'id' => $id
+      );
+
+      $data = array(
+        'header' => $header,
+        'body' => $body,
+        'status' => $status
+      );
+
+      $this->m_data->update_data($where, $data, 'workspace');
+      $this->session->set_flashdata('berhasil', 'Edit workspace ' . $ket . '  successfully : ' . $header . ' !');
+      redirect(base_url() . 'dashboard/workspace');
+    } else {
+      $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+      redirect(base_url() . 'dashboard/workspace');
+    }
+  }
+
+  public function workspace_del()
+  {
+    $id = $this->input->post('id');
+    $ket = $this->input->post('ket');
+    $this->m_data->delete_data(['id' => $id], 'workspace');
+    $this->session->set_flashdata('berhasil', 'Data ' . $ket . ' has been deleted !');
+    redirect(base_url() . 'dashboard/workspace');
+  }
+
   public function generate()
   {
     $data['title'] = 'Trick Or Treat';

@@ -26,15 +26,16 @@
 				<div class="card-body">
 					<?php foreach ($todo as $row) : ?>
 						<div class="card card-primary card-outline collapsed-card">
-							<div class=" card-header">
+							<div class="card-header" data-card-widget="collapse">
 								<h5 class="card-title"><?= $row->header ?></h5>
 								<div class="card-tools">
-									<a href="modal Edit" class="btn btn-tool">
-										<i class="fas fa-pen"></i>
-									</a>
-									<button type="button" class="btn btn-tool" data-card-widget="collapse">
-										<i class="fas fa-plus"></i>
-									</button>
+									<div class="btn-group">
+										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" data-toggle="modal" data-target="#todo_edit<?= $row->id; ?>">Edit</a>
+											<a class="dropdown-item" data-toggle="modal" data-target="#todo_delete<?= $row->id; ?>">Delete</a>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="card-body">
@@ -42,7 +43,9 @@
 							</div>
 						</div>
 					<?php endforeach; ?>
-					<button class="btn btn-block btn-light btn-sm"><i class="fa fa-plus"></i>&nbsp;Add a card</button>
+					<button class="btn btn-block btn-light btn-sm" data-toggle="modal" data-target="#todo_add">
+						<i class="fa fa-plus"></i>&nbsp;Add a card
+					</button>
 				</div>
 			</div>
 
@@ -53,28 +56,28 @@
 					</h3>
 				</div>
 				<div class="card-body">
-					<div class="card card-info card-outline collapsed-card">
-						<div class="card-header">
-							<h5 class="card-title">Update Readme</h5>
-							<div class="card-tools">
-								<a href="#" class="btn btn-tool">
-									<i class="fas fa-pen"></i>
-								</a>
-								<button type="button" class="btn btn-tool" data-card-widget="collapse">
-									<i class="fas fa-plus"></i>
-								</button>
+					<?php foreach ($progress as $row) : ?>
+						<div class="card card-info card-outline collapsed-card">
+							<div class="card-header" data-card-widget="collapse">
+								<h5 class="card-title"><?= $row->header ?></h5>
+								<div class="card-tools">
+									<div class="btn-group">
+										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" data-toggle="modal" data-target="#progress_edit<?= $row->id; ?>">Edit</a>
+											<a class="dropdown-item" data-toggle="modal" data-target="#progress_del<?= $row->id; ?>">Delete</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<pre class="p-0 m-0"><?= $row->body ?></pre>
 							</div>
 						</div>
-						<div class="card-body">
-							<p>
-								Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-								Aenean commodo ligula eget dolor. Aenean massa.
-								Cum sociis natoque penatibus et magnis dis parturient montes,
-								nascetur ridiculus mus.
-							</p>
-						</div>
-					</div>
-					<button class="btn btn-block btn-light btn-sm"><i class="fa fa-plus"></i>&nbsp;Add a card</button>
+					<?php endforeach; ?>
+					<button class="btn btn-block btn-light btn-sm" data-toggle="modal" data-target="#progress_add">
+						<i class="fa fa-plus"></i>&nbsp;Add a card
+					</button>
 				</div>
 			</div>
 
@@ -85,28 +88,28 @@
 					</h3>
 				</div>
 				<div class="card-body">
-					<div class="card card-success card-outline collapsed-card">
-						<div class="card-header">
-							<h5 class="card-title">Create repo</h5>
-							<div class="card-tools">
-								<a href="#" class="btn btn-tool">
-									<i class="fas fa-pen"></i>
-								</a>
-								<button type="button" class="btn btn-tool" data-card-widget="collapse">
-									<i class="fas fa-plus"></i>
-								</button>
+					<?php foreach ($done as $row) : ?>
+						<div class="card card-success card-outline collapsed-card">
+							<div class="card-header" data-card-widget="collapse">
+								<h5 class="card-title"><?= $row->header ?></h5>
+								<div class="card-tools">
+									<div class="btn-group">
+										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" data-toggle="modal" data-target="#done_edit<?= $row->id; ?>">Edit</a>
+											<a class="dropdown-item" data-toggle="modal" data-target="#done_del<?= $row->id; ?>">Delete</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<pre class="p-0 m-0"><?= $row->body ?></pre>
 							</div>
 						</div>
-						<div class="card-body">
-							<p>
-								Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-								Aenean commodo ligula eget dolor. Aenean massa.
-								Cum sociis natoque penatibus et magnis dis parturient montes,
-								nascetur ridiculus mus.
-							</p>
-						</div>
-					</div>
-					<button class="btn btn-block btn-light btn-sm"><i class="fa fa-plus"></i>&nbsp;Add a card</button>
+					<?php endforeach; ?>
+					<button class="btn btn-block btn-light btn-sm" data-toggle="modal" data-target="#done_add">
+						<i class=" fa fa-plus"></i>&nbsp;Add a card
+					</button>
 				</div>
 			</div>
 
@@ -117,31 +120,498 @@
 					</h3>
 				</div>
 				<div class="card-body">
-					<div class="card card-danger card-outline collapsed-card">
-						<div class="card-header">
-							<h5 class="card-title">Create repo</h5>
-							<div class="card-tools">
-								<a href="#" class="btn btn-tool">
-									<i class="fas fa-pen"></i>
-								</a>
-								<button type="button" class="btn btn-tool" data-card-widget="collapse">
-									<i class="fas fa-plus"></i>
-								</button>
+					<?php foreach ($failed as $row) : ?>
+						<div class="card card-success card-outline collapsed-card">
+							<div class="card-header" data-card-widget="collapse">
+								<h5 class="card-title"><?= $row->header ?></h5>
+								<div class="card-tools">
+									<div class="btn-group">
+										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" data-toggle="modal" data-target="#failed_edit<?= $row->id; ?>">Edit</a>
+											<a class="dropdown-item" data-toggle="modal" data-target="#failed_del<?= $row->id; ?>">Delete</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<pre class="p-0 m-0"><?= $row->body ?></pre>
 							</div>
 						</div>
-						<div class="card-body">
-							<p>
-								Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-								Aenean commodo ligula eget dolor. Aenean massa.
-								Cum sociis natoque penatibus et magnis dis parturient montes,
-								nascetur ridiculus mus.
-							</p>
-						</div>
-					</div>
-					<button class="btn btn-block btn-light btn-sm"><i class="fa fa-plus"></i>&nbsp;Add a card</button>
+					<?php endforeach; ?>
+					<button class="btn btn-block btn-light btn-sm" data-toggle="modal" data-target="#failed_add">
+						<i class="fa fa-plus"></i>&nbsp;Add a card
+					</button>
 				</div>
 			</div>
-
-		</div>
 	</section>
 </div>
+
+<!-- todo modal add -->
+<div class="modal fade" id="todo_add" tabindex="-1" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="col-12 modal-title text-center">Add to do
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h5>
+			</div>
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_add') ?>">
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="col-xs-9">
+							<input type="hidden" name="status" value="1">
+							<input type="hidden" name="ket" value="to do">
+							<input type="text" name="header" class="form-control form-control-sm form-control-border" placeholder="Header.." required>
+						</div>
+					</div>
+					<div class="form-group mb-0">
+						<div class="col-xs-9">
+							<textarea class="form-control form-control-sm" name="body" rows="7" placeholder="Body.." required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="form-control btn btn-primary" id="addbtn"><i class="fa fa-check"></i> Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--End Modals Add-->
+
+<!-- todo modal Edit & delete -->
+<?php foreach ($todo as $row) : ?>
+	<div class="modal fade" id="todo_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Edit to do
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_edit') ?>">
+					<div class="modal-body">
+						<div class="form-group">
+							<div class="col-xs-9">
+								<input type="hidden" name="id" value="<?= $row->id ?>">
+								<input type="hidden" name="ket" value="to do">
+								<input type="text" name="header" class="form-control form-control-sm form-control-border" value="<?= $row->header ?>" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class=" col-xs-9">
+								<textarea class="form-control form-control-sm" name="body" rows="10" required><?= $row->body ?></textarea>
+							</div>
+						</div>
+						<div class="form-group mb-0">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<label class="input-group-text form-control-sm">Card group</label>
+								</div>
+								<select class="form-control form-control-sm" name="status" required>
+									<option <?php if ($row->status == "1") {
+													echo "selected='selected'";
+												} ?> value="1">To Do</option>
+									<option <?php if ($row->status == "2") {
+													echo "selected='selected'";
+												} ?> value="2">In Progress</option>
+									<option <?php if ($row->status == "3") {
+													echo "selected='selected'";
+												} ?> value="3">Done</option>
+									<option <?php if ($row->status == "4") {
+													echo "selected='selected'";
+												} ?> value="4">Failed</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="form-control btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="todo_delete<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content bg-danger">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Delete to do
+						<button class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_del') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="id" value="<?= $row->id; ?>">
+						<input type="hidden" name="ket" value="to do">
+						<span>Are you sure delete <?= $row->header ?> ?</span>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+						<button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<?php endforeach; ?>
+<!--End Modals Add-->
+
+<!-- progress modal add -->
+<div class="modal fade" id="progress_add" tabindex="-1" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="col-12 modal-title text-center">Add progress
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h5>
+			</div>
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_add') ?>">
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="col-xs-9">
+							<input type="hidden" name="status" value="2">
+							<input type="hidden" name="ket" value="In Progress">
+							<input type="text" name="header" class="form-control form-control-sm form-control-border" placeholder="Header.." required>
+						</div>
+					</div>
+					<div class="form-group mb-0">
+						<div class="col-xs-9">
+							<textarea class="form-control form-control-sm" name="body" rows="7" placeholder="Body.." required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="form-control btn btn-primary" id="addbtn"><i class="fa fa-check"></i> Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--End Modals Add-->
+
+<!-- progress modal Edit & delete -->
+<?php foreach ($progress as $row) : ?>
+	<div class="modal fade" id="progress_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Edit progress
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_edit') ?>">
+					<div class="modal-body">
+						<div class="form-group">
+							<div class="col-xs-9">
+								<input type="hidden" name="id" value="<?= $row->id ?>">
+								<input type="hidden" name="ket" value="In Progress">
+								<input type="text" name="header" class="form-control form-control-sm form-control-border" value="<?= $row->header ?>" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class=" col-xs-9">
+								<textarea class="form-control form-control-sm" name="body" rows="10" required><?= $row->body ?></textarea>
+							</div>
+						</div>
+						<div class="form-group mb-0">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<label class="input-group-text form-control-sm">Card group</label>
+								</div>
+								<select class="form-control form-control-sm" name="status" required>
+									<option <?php if ($row->status == "1") {
+													echo "selected='selected'";
+												} ?> value="1">To Do</option>
+									<option <?php if ($row->status == "2") {
+													echo "selected='selected'";
+												} ?> value="2">In Progress</option>
+									<option <?php if ($row->status == "3") {
+													echo "selected='selected'";
+												} ?> value="3">Done</option>
+									<option <?php if ($row->status == "4") {
+													echo "selected='selected'";
+												} ?> value="4">Failed</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="form-control btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="progress_del<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content bg-danger">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Delete in progress
+						<button class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_del') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="id" value="<?= $row->id; ?>">
+						<input type="hidden" name="ket" value="In Progress">
+						<span>Are you sure delete <?= $row->header ?> ?</span>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+						<button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<?php endforeach; ?>
+<!--End Modals Add-->
+
+
+<!-- done modal add -->
+<div class="modal fade" id="done_add" tabindex="-1" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="col-12 modal-title text-center">Add done
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h5>
+			</div>
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_add') ?>">
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="col-xs-9">
+							<input type="hidden" name="status" value="3">
+							<input type="hidden" name="ket" value="Done">
+							<input type="text" name="header" class="form-control form-control-sm form-control-border" placeholder="Header.." required>
+						</div>
+					</div>
+					<div class="form-group mb-0">
+						<div class="col-xs-9">
+							<textarea class="form-control form-control-sm" name="body" rows="7" placeholder="Body.." required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="form-control btn btn-primary" id="addbtn"><i class="fa fa-check"></i> Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--End Modals Add-->
+
+<!-- done modal Edit & delete -->
+<?php foreach ($done as $row) : ?>
+	<div class="modal fade" id="done_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Edit done
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_edit') ?>">
+					<div class="modal-body">
+						<div class="form-group">
+							<div class="col-xs-9">
+								<input type="hidden" name="id" value="<?= $row->id ?>">
+								<input type="hidden" name="ket" value="Done">
+								<input type="text" name="header" class="form-control form-control-sm form-control-border" value="<?= $row->header ?>" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class=" col-xs-9">
+								<textarea class="form-control form-control-sm" name="body" rows="10" required><?= $row->body ?></textarea>
+							</div>
+						</div>
+						<div class="form-group mb-0">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<label class="input-group-text form-control-sm">Card group</label>
+								</div>
+								<select class=" form-control form-control-sm" name=" status" required>
+									<option <?php if ($row->status == "1") {
+													echo "selected='selected'";
+												} ?> value="1">To Do</option>
+									<option <?php if ($row->status == "2") {
+													echo "selected='selected'";
+												} ?> value="2">In Progress</option>
+									<option <?php if ($row->status == "3") {
+													echo "selected='selected'";
+												} ?> value="3">Done</option>
+									<option <?php if ($row->status == "4") {
+													echo "selected='selected'";
+												} ?> value="4">Failed</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="form-control btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="done_del<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content bg-danger">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Delete done
+						<button class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_del') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="id" value="<?= $row->id; ?>">
+						<input type="hidden" name="ket" value="Done">
+						<span>Are you sure delete <?= $row->header ?> ?</span>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+						<button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<?php endforeach; ?>
+<!--End Modals Add-->
+
+
+<!-- failed modal add -->
+<div class="modal fade" id="failed_add" tabindex="-1" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="col-12 modal-title text-center">Add failed
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h5>
+			</div>
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_add') ?>">
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="col-xs-9">
+							<input type="hidden" name="status" value="4">
+							<input type="hidden" name="ket" value="Failed">
+							<input type="text" name="header" class="form-control form-control-sm form-control-border" placeholder="Header.." required>
+						</div>
+					</div>
+					<div class="form-group mb-0">
+						<div class="col-xs-9">
+							<textarea class="form-control form-control-sm" name="body" rows="7" placeholder="Body.." required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="form-control btn btn-primary" id="addbtn"><i class="fa fa-check"></i> Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--End Modals Add-->
+
+<!-- failed modal Edit & delete -->
+<?php foreach ($failed as $row) : ?>
+	<div class="modal fade" id="failed_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Edit failed
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_edit') ?>">
+					<div class="modal-body">
+						<div class="form-group">
+							<div class="col-xs-9">
+								<input type="hidden" name="id" value="<?= $row->id ?>">
+								<input type="hidden" name="ket" value="Failed">
+								<input type="text" name="header" class="form-control form-control-sm form-control-border" value="<?= $row->header ?>" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class=" col-xs-9">
+								<textarea class="form-control form-control-sm" name="body" rows="10" required><?= $row->body ?></textarea>
+							</div>
+						</div>
+						<div class="form-group mb-0">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<label class="input-group-text form-control-sm">Card group</label>
+								</div>
+								<select class="form-control form-control-sm" name=" status" required>
+									<option <?php if ($row->status == "1") {
+													echo "selected='selected'";
+												} ?> value="1">To Do</option>
+									<option <?php if ($row->status == "2") {
+													echo "selected='selected'";
+												} ?> value="2">In Progress</option>
+									<option <?php if ($row->status == "3") {
+													echo "selected='selected'";
+												} ?> value="3">Done</option>
+									<option <?php if ($row->status == "4") {
+													echo "selected='selected'";
+												} ?> value="4">Failed</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="form-control btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="failed_del<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content bg-danger">
+				<div class="modal-header">
+					<h5 class="col-12 modal-title text-center">Delete failed
+						<button class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</h5>
+				</div>
+				<form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/workspace_del') ?>">
+					<div class="modal-body">
+						<input type="hidden" name="id" value="<?= $row->id; ?>">
+						<input type="hidden" name="ket" value="Failed">
+						<span>Are you sure delete <?= $row->header ?> ?</span>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+						<button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<?php endforeach; ?>
