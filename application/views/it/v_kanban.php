@@ -4,6 +4,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<h1>Workspace Board</h1>
+					<small>Project ERP 7 Soft</small>
 				</div>
 				<div class="col-sm-6 d-none d-sm-block">
 					<ol class="breadcrumb float-sm-right">
@@ -27,7 +28,7 @@
 					<?php foreach ($todo as $row) : ?>
 						<div class="card card-primary card-outline collapsed-card">
 							<div class="card-header" data-card-widget="collapse">
-								<h5 class="card-title"><?= $row->header ?></h5>
+								<h6 class="card-title"><?= $row->header ?></h6>
 								<div class="card-tools">
 									<div class="btn-group">
 										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
@@ -59,7 +60,7 @@
 					<?php foreach ($progress as $row) : ?>
 						<div class="card card-info card-outline collapsed-card">
 							<div class="card-header" data-card-widget="collapse">
-								<h5 class="card-title"><?= $row->header ?></h5>
+								<h6 class="card-title"><?= $row->header ?></h6>
 								<div class="card-tools">
 									<div class="btn-group">
 										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
@@ -91,7 +92,7 @@
 					<?php foreach ($done as $row) : ?>
 						<div class="card card-success card-outline collapsed-card">
 							<div class="card-header" data-card-widget="collapse">
-								<h5 class="card-title"><?= $row->header ?></h5>
+								<h6 class="card-title"><?= $row->header ?></h6>
 								<div class="card-tools">
 									<div class="btn-group">
 										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
@@ -123,7 +124,7 @@
 					<?php foreach ($failed as $row) : ?>
 						<div class="card card-success card-outline collapsed-card">
 							<div class="card-header" data-card-widget="collapse">
-								<h5 class="card-title"><?= $row->header ?></h5>
+								<h6 class="card-title"><?= $row->header ?></h6>
 								<div class="card-tools">
 									<div class="btn-group">
 										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
@@ -149,7 +150,7 @@
 
 <!-- todo modal add -->
 <div class="modal fade" id="todo_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-xl modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add to do
@@ -185,7 +186,7 @@
 <!-- todo modal Edit & delete -->
 <?php foreach ($todo as $row) : ?>
 	<div class="modal fade" id="todo_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-xl modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="col-12 modal-title text-center">Edit to do
@@ -266,7 +267,7 @@
 
 <!-- progress modal add -->
 <div class="modal fade" id="progress_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-xl modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add progress
@@ -302,7 +303,7 @@
 <!-- progress modal Edit & delete -->
 <?php foreach ($progress as $row) : ?>
 	<div class="modal fade" id="progress_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-xl modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="col-12 modal-title text-center">Edit progress
@@ -384,7 +385,7 @@
 
 <!-- done modal add -->
 <div class="modal fade" id="done_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-xl modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add done
@@ -420,7 +421,7 @@
 <!-- done modal Edit & delete -->
 <?php foreach ($done as $row) : ?>
 	<div class="modal fade" id="done_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-xl modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="col-12 modal-title text-center">Edit done
@@ -502,7 +503,7 @@
 
 <!-- failed modal add -->
 <div class="modal fade" id="failed_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-xl modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add failed
@@ -538,7 +539,7 @@
 <!-- failed modal Edit & delete -->
 <?php foreach ($failed as $row) : ?>
 	<div class="modal fade" id="failed_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-xl modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="col-12 modal-title text-center">Edit failed
