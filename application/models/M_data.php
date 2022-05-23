@@ -12,6 +12,11 @@ class M_data extends CI_Model
     return $this->db->get($table);
   }
 
+  function get_index($table, $condition)
+  {
+    return $this->db->order_by($condition, 'desc')->get($table);
+  }
+
   // fungsi untuk menginput data ke database
   function insert_data($data, $table)
   {

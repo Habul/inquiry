@@ -61,7 +61,7 @@
          "targets": 0
       }],
       "order": [
-         [1, 'asc']
+         [2, 'asc']
       ],
       "buttons": [{
             extend: 'copyHtml5',

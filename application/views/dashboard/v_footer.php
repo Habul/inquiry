@@ -106,7 +106,7 @@
 			})
 		<?php } else if ($this->session->flashdata('ulang')) { ?>
 			Toast.fire({
-				icon: 'error',
+				icon: 'warning',
 				title: '<?= ucwords($this->session->flashdata('ulang')) ?>'
 			})
 		<?php } ?>

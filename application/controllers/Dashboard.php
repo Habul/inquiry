@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller
     $data['tot_mobil'] = $this->db->where('type', 'mobil')->get('type_vehicles')->num_rows();
     $data['tot_motor'] = $this->db->where('type', 'motor')->get('type_vehicles')->num_rows();
     $data['tot_truck'] = $this->db->where('type', 'truck')->get('type_vehicles')->num_rows();
-    $data['tot_vehicles'] = $this->m_data->get_data('type_vehicles')->num_rows();
+    $data['license'] = $this->m_data->get_data('license')->num_rows();
 
     $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 
@@ -523,8 +523,8 @@ class Dashboard extends CI_Controller
     $data['done'] = $this->m_data->edit_data(['status' => '3'], 'workspace')->result();
     $data['failed'] = $this->m_data->edit_data(['status' => '4'], 'workspace')->result();
     $this->load->view('dashboard/v_header', $data);
-    $this->load->view('it/v_kanban.php');
-    $this->load->view('dashboard/v_footer');
+    $this->load->view('dashboard/v_kanban.php', $data);
+    $this->load->view('dashboard/v_footer', $data);
   }
 
   public function workspace_add()
@@ -633,5 +633,14 @@ class Dashboard extends CI_Controller
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('it/v_games.php', $data);
     $this->load->view('dashboard/v_footer');
+  }
+
+  public function license()
+  {
+    $data['title'] = 'License 7Soft';
+    $data['license'] = $this->m_data->get_index('license', 'addtime')->result();
+    $this->load->view('dashboard/v_header', $data);
+    $this->load->view('dashboard/v_license.php', $data);
+    $this->load->view('dashboard/v_footer', $data);
   }
 }

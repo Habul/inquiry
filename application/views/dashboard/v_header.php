@@ -208,6 +208,12 @@
 									<p>Workspace Board</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="<?php echo base_url() . 'dashboard/license' ?>" <?= $this->uri->uri_string() == 'dashboard/license' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<i class="nav-icon fas fa-fingerprint"></i>
+									<p>License</p>
+								</a>
+							</li>
 						<?php } ?>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
 							<?php if ($this->session->userdata('level') != "warehouse") { ?>

@@ -129,14 +129,14 @@
 				<div class="col-lg-3 col-6">
 					<div class="small-box bg-danger shadow">
 						<div class="inner">
-							<h3><?php echo $tot_vehicles ?></h3>
-							<p>Total Kendaraan</p>
+							<h3><?php echo $license ?></h3>
+							<p>Total License 7Soft</p>
 						</div>
 						<div class="icon">
-							<i class="fas fa-paper-plane"></i>
+							<i class="fas fa-fingerprint"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-							<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+							<a href="<?php echo base_url('dashboard/license') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
