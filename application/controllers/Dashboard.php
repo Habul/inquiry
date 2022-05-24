@@ -643,4 +643,135 @@ class Dashboard extends CI_Controller
     $this->load->view('dashboard/v_license.php', $data);
     $this->load->view('dashboard/v_footer', $data);
   }
+
+  public function license_add()
+  {
+    $this->form_validation->set_rules('user', 'User', 'required');
+    $this->form_validation->set_rules('user_log', 'User login', 'required|is_unique[license.user_log]');
+    $this->form_validation->set_rules('unit', 'Phone', 'required');
+
+    if ($this->form_validation->run() != false) {
+      $user = $this->input->post('user');
+      $user_log = $this->input->post('user_log');
+      $unit = $this->input->post('unit');
+      $sn = $this->input->post('sn');
+      $key = $this->input->post('key');
+      $addtime = mdate('%Y-%m-%d %H:%i:%s');
+
+      $data = array(
+        'user' => $user,
+        'user_log' => $user_log,
+        'unit' => $unit,
+        'sn' => $sn,
+        'key' => $key,
+        'addtime' => $addtime
+      );
+
+      $this->m_data->insert_data($data, 'license');
+      $this->session->set_flashdata('berhasil', 'Add license ' . $user . ' successfully !');
+      redirect(base_url() . 'dashboard/license');
+    } else {
+      $this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
+      redirect(base_url() . 'dashboard/license');
+    }
+  }
+
+  public function license_edit()
+  {
+    $this->form_validation->set_rules('user', 'User', 'required');
+    $this->form_validation->set_rules('user_log', 'User login', 'required');
+    $this->form_validation->set_rules('unit', 'Phone', 'required');
+
+    if ($this->form_validation->run() != false) {
+      $id = $this->input->post('id');
+      $user = $this->input->post('user');
+      $user_log = $this->input->post('user_log');
+      $unit = $this->input->post('unit');
+      $sn = $this->input->post('sn');
+      $key = $this->input->post('key');
+      $status = $this->input->post('status');
+
+      $where = array(
+        'id' => $id
+      );
+
+      $data = array(
+        'user' => $user,
+        'user_log' => $user_log,
+        'unit' => $unit,
+        'sn' => $sn,
+        'key' => $key,
+        'status' => $status,
+      );
+
+      $this->m_data->update_data($where, $data, 'license');
+      $this->session->set_flashdata('berhasil', 'Edit license ' . $user . ' successfully !');
+      redirect(base_url() . 'dashboard/license');
+    } else {
+      $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+      redirect(base_url() . 'dashboard/license');
+    }
+  }
+
+  public function license_del()
+  {
+    $id = $this->input->post('id');
+    $user = $this->input->post('user');
+    $this->m_data->delete_data(['id' => $id], 'license');
+    $this->session->set_flashdata('berhasil', 'Data ' . $user . ' has been deleted !');
+    redirect(base_url() . 'dashboard/license');
+  }
+
+  public function license_import()
+  {
+    $this->form_validation->set_rules('excel', 'File', 'trim|required');
+
+    if ($_FILES['excel']['name'] != '') {
+      $config['upload_path'] = './assets/excel/';
+      $config['allowed_types'] = 'xls|xlsx';
+      $config['overwrite']  = true;
+
+      $this->load->library('upload', $config);
+
+      if (!$this->upload->do_upload('excel')) {
+        $this->upload->display_errors();
+      } else {
+        $data = $this->upload->data();
+        $this->db->empty_table('license');
+
+        error_reporting(E_ALL);
+        date_default_timezone_set('Asia/Jakarta');
+        include './assets/phpexcel/Classes/PHPExcel/IOFactory.php';
+        $inputFileName = './assets/excel/' . $data['file_name'];
+        $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
+        $sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+
+        $index = 0;
+        foreach ($sheetData as $key => $value) {
+          if ($key != 1) {
+            $resultData[$index]['user'] = $value['A'];
+            $resultData[$index]['unit'] = $value['B'];
+            $resultData[$index]['user_log'] = $value['C'];
+            $resultData[$index]['sn'] = $value['D'];
+            $resultData[$index]['key'] = $value['E'];
+            $resultData[$index]['addtime'] = mdate('%Y-%m-%d %H:%i:%s');
+          }
+          $index++;
+        }
+
+        unlink('./assets/excel/' . $data['file_name']);
+
+        if (count($resultData) != 0) {
+          $result = $this->m_data->insert_license($resultData);
+          if ($result > 0) {
+            $this->session->set_flashdata('berhasil', 'Data successfully imported to database');
+            redirect(base_url() . 'dashboard/license');
+          }
+        } else {
+          $this->session->set_flashdata('gagal', 'Data failed to import to database');
+          redirect(base_url() . 'dashboard/license');
+        }
+      }
+    }
+  }
 }

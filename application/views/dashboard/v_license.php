@@ -21,8 +21,14 @@
 				<div class="col-md-12">
 					<div class="card card-success card-outline">
 						<div class="card-header">
-							<h4 class="card-title"><a class="form-control btn btn-success shadow" data-toggle="modal" data-target="#modal_add_inquiry">
-									<i class="fa fa-plus"></i>&nbsp; Add new license</a></h4>
+							<h4 class="card-title">
+								<a class="btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
+									<i class="fa fa-plus"></i>&nbsp; Create new license
+								</a>
+								<a class="btn btn-warning shadow" data-toggle="modal" data-target="#modal_import">
+									<i class="fas fa-file-import"></i>&nbsp; Import license
+								</a>
+							</h4>
 							<div class="card-tools">
 								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
@@ -41,26 +47,34 @@
 									<tr>
 										<th width="5%">No</th>
 										<th>User</th>
-										<th>Unit</th>
-										<th>SN</th>
-										<th>Key</th>
-										<th>Keterangan</th>
+										<th width="10%">Unit</th>
+										<th>User login</th>
+										<th width="17%">SN</th>
+										<th width="15%">Key</th>
+										<th>Status</th>
 										<th width="8%">Actions</th>
 									</tr>
 								</thead>
 								<?php
 								foreach ($license as $p) {
 								?>
-									<tr class="text-center">
-										<td></td>
-										<td><?php echo $p->user; ?></td>
-										<td><?php echo $p->unit; ?></td>
-										<td><?php echo $p->sn; ?></td>
-										<td><?php echo $p->key; ?></td>
-										<td><?php echo $p->note; ?></td>
+									<tr>
+										<td class="text-center"></td>
+										<td><?= strtoupper($p->user) ?></td>
+										<td class="text-center"><?= $p->unit ?></td>
+										<td class="text-center"><?= strtoupper($p->user_log) ?></td>
+										<td class="text-center"><?= $p->sn ?></td>
+										<td class="text-center"><?= $p->key ?></td>
+										<td class="text-center">
+											<?php if ($p->status == 1) : ?>
+												<span class="badge badge-primary"><i class="fas fa-check-circle"></i> Aktif</span>
+											<?php else : ?>
+												<span class="badge badge-danger"><i class="fas fa-times-circle"></i> Non-Aktif</span>
+											<?php endif; ?>
+										</td>
 										<td>
-											<a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?php echo $p->id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
-											<a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $p->id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+											<a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?= $p->id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+											<a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_del<?= $p->id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 								<?php }  ?>
@@ -73,156 +87,122 @@
 	</section>
 </div>
 
-
-<!-- modal add inquiry -->
-<div class="modal fade" id="modal_add_inquiry" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
+<!-- Bootstrap modal add -->
+<div class="modal fade" id="modal_add" tabindex="-1" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="col-12 modal-title text-center">Add Inquiry
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</h4>
+				<h5 class="col-12 modal-title text-center">Create new license</h5>
 			</div>
-			<form class="form-horizontal" onsubmit="addform.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_aksi') ?>">
+			<form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/license_add') ?>">
 				<div class="modal-body">
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Nama</label>
-						<div class="col-sm-10">
-							<input type="hidden" name="inquiry_id" readonly class="form-control" value="<?php echo $id_add->inquiry_id + 1; ?>">
-							<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
-							<?php echo form_error('sales'); ?>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text pr-5">User</label>
+						</div>
+						<input type="text" name="user" class="form-control" placeholder="Input user.." required>
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text">User login</label>
+						</div>
+						<input type="text" name="user_log" class="form-control" placeholder="Input user login.." required>
+					</div>
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<label class="input-group-text pr-5">Unit</label>
+							</div>
+							<input type="text" name="unit" class="form-control" placeholder="Input unit bisnis.." required>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Request *</label>
-						<div class="col-sm-10">
-							<select class="form-control" name="request" required>
-								<option value="">- Pilih Request -</option>
-								<option value="PRICE+LT">PRICE+LT</option>
-								<option value="PRICE">PRICE</option>
-								<option value="LT">LT</option>
-								<option value="STOCK">STOCK</option>
-								<option value="PRICE+LT+STOCK">PRICE+LT+STOCK</option>
-								<option value="COO">COO</option>
-								<option value="CATALOGUE">CATALOGUE</option>
-								<option value="DESIGN">DESIGN</option>
-							</select>
-							<?php echo form_error('request'); ?>
+					<div class="form-group mb-3">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<label class="input-group-text pr-5">SN&nbsp;&nbsp;&nbsp;</label>
+							</div>
+							<input type="text" name="sn" class="form-control" placeholder="Serial number..">
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Brand *</label>
-						<div class="col-sm-10">
-							<select class="form-control" name="brand" required>
-								<option value="">- Pilih Brand -</option>
-								<?php foreach ($master as $row) : ?>
-									<option value="<?php echo $row->brand; ?>"><?php echo $row->brand; ?></option>
-								<?php endforeach; ?>
-							</select>
-							<?php echo form_error('brand'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Desc *</label>
-						<div class="col-sm-10">
-							<textarea name="desc" class="form-control" placeholder="Input Desc.." required></textarea>
-							<?php echo form_error('desc'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Qty *</label>
-						<div class="col-sm-10">
-							<input type="number" name="qty" class="form-control" min="1" placeholder="Input qty..." required>
-							<?php echo form_error('qty'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Deadline *</label>
-						<div class="col-sm-10">
-							<input type="date" name="deadline" class="form-control" value="2022-01-01" required>
-							<?php echo form_error('deadline'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Keter *</label>
-						<div class="col-sm-10">
-							<textarea name="keter" class="form-control" placeholder="Input Keter .." required></textarea>
-							<?php echo form_error('keter'); ?>
+					<div class="form-group mb-0">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<label class="input-group-text pr-5">Key&nbsp;</label>
+							</div>
+							<input type="text" name="key" class="form-control" placeholder="Key..">
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-					<button class="btn btn-primary" id="addform"><i class="fa fa-check"></i> Save</button>
+					<button class="btn btn-primary" id="addbtn"><i class="fa fa-check"></i> Save</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
-<!-- end modal add inquiry -->
+<!--End Modals Add-->
 
-<!-- ============ MODAL EDIT SALES =============== -->
-<?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_edit<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog">
+<?php foreach ($license as $p) : ?>
+	<!-- Bootstrap modal edit -->
+	<div class="modal fade" id="modal_edit<?= $p->id ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="col-12 modal-title text-center">Edit Inquiry
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</h4>
+					<h5 class="col-12 modal-title text-center">Edit license</h5>
 				</div>
-				<form class="form-horizontal" onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_update_sales') ?>">
+				<form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/license_edit') ?>">
 					<div class="modal-body">
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">No Inquiry</label>
-							<div class="col-sm-10">
-								<input type="text" name="id" readonly class="form-control" value="<?php echo $p->inquiry_id; ?>">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<label class="input-group-text pr-5">User</label>
+							</div>
+							<input type="hidden" name="id" class="form-control" value="<?= $p->id ?>">
+							<input type="text" name="user" class="form-control" value="<?= $p->user ?>" required>
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<label class="input-group-text">User login</label>
+							</div>
+							<input type="text" name="user_log" class="form-control" value="<?= $p->user_log ?>" required>
+						</div>
+						<div class="form-group mb-3">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<label class="input-group-text pr-5">Unit</label>
+								</div>
+								<input type="text" name="unit" class="form-control" value="<?= $p->unit ?>" required>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Nama</label>
-							<div class="col-sm-10">
-								<input type="text" name="sales" readonly class="form-control" value="<?php echo $this->session->userdata('nama'); ?> ">
-								<?php echo form_error('sales'); ?>
+						<div class="form-group mb-3">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<label class="input-group-text pr-5">SN&nbsp;&nbsp;&nbsp;</label>
+								</div>
+								<input type="text" name="sn" class="form-control" value="<?= $p->sn ?>">
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Brand</label>
-							<div class="col-sm-10">
-								<input type="text" name="brand" readonly class="form-control" value="<?php echo $p->brand; ?>">
-								<?php echo form_error('brand'); ?>
+						<div class="form-group mb-3">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<label class="input-group-text pr-5">Key&nbsp;</label>
+								</div>
+								<input type="text" name="key" class="form-control" value="<?= $p->key ?>">
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Desc *</label>
-							<div class="col-sm-10">
-								<textarea name="desc" class="form-control" required><?php echo $p->desc; ?></textarea>
-								<?php echo form_error('desc'); ?>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Qty *</label>
-							<div class="col-sm-10">
-								<input type="number" name="qty" class="form-control" min="1" value="<?php echo $p->qty; ?>" required>
-								<?php echo form_error('qty'); ?>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Deadline *</label>
-							<div class="col-sm-10">
-								<input type="date" name="deadline" class="form-control" value="<?php echo $p->deadline; ?>" required>
-								<?php echo form_error('deadline'); ?>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Keter *</label>
-							<div class="col-sm-10">
-								<textarea name="keter" class="form-control" required><?php echo $p->keter; ?></textarea>
-								<?php echo form_error('keter'); ?>
+						<div class="form-group mb-0">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<label class="input-group-text pr-4">Status&emsp;</label>
+								</div>
+								<select class="form-control" name="status">
+									<option <?php if ($p->status == "1") {
+													echo "selected='selected'";
+												} ?> value="1">Aktif</option>
+									<option <?php if ($p->status == "0") {
+													echo "selected='selected'";
+												} ?> value="0">Tidak aktif</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -234,25 +214,18 @@
 			</div>
 		</div>
 	</div>
-<?php endforeach; ?>
-<!--END MODAL EDIT SALES-->
-
-<!--MODAL HAPUS-->
-<?php foreach ($inquiry as $p) : ?>
-	<div class="modal fade" id="modal_hapus<?php echo $p->inquiry_id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog">
+	<div class="modal fade" id="modal_del<?= $p->id; ?>" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content bg-danger">
 				<div class="modal-header">
-					<h4 class="col-12 modal-title text-center">Delete Inquiry
-						<button class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</h4>
+					<h5 class="col-12 modal-title text-center">Delete license
+					</h5>
 				</div>
-				<form class="form-horizontal" onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('inquiry/inquiry_hapus') ?>">
+				<form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?php echo base_url('dashboard/license_del') ?>">
 					<div class="modal-body">
-						<input type="hidden" name="inquiry_id" value="<?php echo $p->inquiry_id; ?>">
-						<p>Are you sure delete id <?php echo $p->inquiry_id; ?> ?</p>
+						<input type="hidden" name="id" value="<?= $p->id; ?>">
+						<input type="hidden" name="user" value="<?= $p->user; ?>">
+						<span>Are you sure delete <?= $p->user; ?> ?</span>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
@@ -263,4 +236,36 @@
 		</div>
 	</div>
 <?php endforeach; ?>
-<!--END MODAL HAPUS-->
+<!--End Modals Edit & delete-->
+
+
+<!--add MODAL import-->
+<div class="modal fade" id="modal_import" tabindex="-1" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="col-12 modal-title text-center">Import Master
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</h4>
+			</div>
+			<form method="post" onsubmit="importform.disabled = true; return true;" action="<?php echo base_url('dashboard/license_import') ?>" enctype="multipart/form-data">
+				<div class="modal-body">
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="customFile" name="excel">
+						<label class="custom-file-label" for="customFile">Choose file</label>
+					</div>
+					<small>* Extensi file xls atau xlsx</small><br />
+					<small><b>* File yang di import akan me replace data yang sudah ada</b></small><br />
+					<small>* Format file harus sesuai dengan file excel export</small>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="form-control btn btn-primary" id="importform"> <i class="fa fa-check"></i> Import
+						Data</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--END MODAL import MASTER-->

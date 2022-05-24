@@ -226,6 +226,14 @@ class M_data extends CI_Model
     return $this->db->affected_rows();
   }
 
+  public function insert_license($data)
+  {
+    $this->db->insert_batch('license', $data);
+
+    return $this->db->affected_rows();
+  }
+
+
   public function select_inquiry()
   {
     $sql = "SELECT a.sales,a.tanggal,a.inquiry_id,a.brand,a.desc,a.qty,a.deadline,a.keter,a.request,a.cek,a.fu1,a.ket_fu,a.cogs,b.currency 

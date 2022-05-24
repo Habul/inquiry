@@ -65,8 +65,7 @@
       ],
       "buttons": [{
             extend: 'copyHtml5',
-            filename: 'Data Pengguna',
-            title: 'Rekap Data Pengguna',
+            filename: 'Download',
             footer: true,
             exportOptions: {
                columns: [1, 2, 3, 4, 5],
@@ -75,8 +74,7 @@
          },
          {
             extend: 'excelHtml5',
-            filename: 'Data Pengguna',
-            title: 'Rekap Data Pengguna',
+            filename: 'Download',
             footer: true,
             exportOptions: {
                columns: [1, 2, 3, 4, 5],
@@ -85,8 +83,7 @@
          },
          {
             extend: 'csvHtml5',
-            filename: 'Data Pengguna',
-            title: 'Rekap Data Pengguna',
+            filename: 'Download',
             footer: true,
             exportOptions: {
                columns: [1, 2, 3, 4, 5],
@@ -95,8 +92,7 @@
          },
          {
             extend: 'pdfHtml5',
-            filename: 'Data Pengguna',
-            title: 'Rekap Data Pengguna',
+            filename: 'Download',
             footer: true,
             exportOptions: {
                columns: [1, 2, 3, 4, 5],
