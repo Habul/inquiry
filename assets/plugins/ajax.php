@@ -366,17 +366,17 @@
    var donutData = {
       labels: [<?php
                if (count($data_sales) > 0) {
-                  foreach ($data_sales as $data) {
-                     echo "'" . $data->sales . "',";
-                  }
+                   foreach ($data_sales as $data) {
+                       echo "'" . $data->sales . "',";
+                   }
                }
                ?>],
       datasets: [{
          data: [<?php
                   if (count($data_sales) > 0) {
-                     foreach ($data_sales as $data) {
-                        echo $data->jmlh . ", ";
-                     }
+                      foreach ($data_sales as $data) {
+                          echo $data->jmlh . ", ";
+                      }
                   }
                   ?>],
          backgroundColor: <?php echo $sales_color ?>,
@@ -399,17 +399,17 @@
    var pieData = {
       labels: [<?php
                if (count($data_brand) > 0) {
-                  foreach ($data_brand as $data) {
-                     echo "'" . $data->brand . "',";
-                  }
+                   foreach ($data_brand as $data) {
+                       echo "'" . $data->brand . "',";
+                   }
                }
                ?>],
       datasets: [{
          data: [<?php
                   if (count($data_brand) > 0) {
-                     foreach ($data_brand as $data) {
-                        echo $data->jmlh . ", ";
-                     }
+                      foreach ($data_brand as $data) {
+                          echo $data->jmlh . ", ";
+                      }
                   }
                   ?>],
          backgroundColor: <?php echo $brand_color ?>,
@@ -443,9 +443,9 @@
          pointHighlightStroke: 'rgba(220,220,220,1)',
          data: [<?php
                   if (count($suratdf) > 0) {
-                     foreach ($suratdf as $data) {
-                        echo $data->total . ", ";
-                     }
+                      foreach ($suratdf as $data) {
+                          echo $data->total . ", ";
+                      }
                   }
                   ?>]
       }, ]
@@ -491,9 +491,9 @@
             pointHighlightStroke: 'rgba(60,141,188,1)',
             data: [<?php
                      if (count($barmobil) > 0) {
-                        foreach ($barmobil as $data) {
-                           echo $data->total . ", ";
-                        }
+                         foreach ($barmobil as $data) {
+                             echo $data->total . ", ";
+                         }
                      }
                      ?>]
          },
@@ -508,9 +508,9 @@
             pointHighlightStroke: 'rgba(220,220,220,1)',
             data: [<?php
                      if (count($barmotor) > 0) {
-                        foreach ($barmotor as $data) {
-                           echo $data->total . ", ";
-                        }
+                         foreach ($barmotor as $data) {
+                             echo $data->total . ", ";
+                         }
                      }
                      ?>]
          },
@@ -525,9 +525,9 @@
             pointHighlightStroke: 'rgba(220,220,220,1)',
             data: [<?php
                      if (count($bartruck) > 0) {
-                        foreach ($bartruck as $data) {
-                           echo $data->total . ", ";
-                        }
+                         foreach ($bartruck as $data) {
+                             echo $data->total . ", ";
+                         }
                      }
                      ?>]
          },

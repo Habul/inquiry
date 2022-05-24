@@ -56,8 +56,8 @@
 									</tr>
 								</thead>
 								<?php
-								foreach ($license as $p) {
-								?>
+                                foreach ($license as $p) {
+                                    ?>
 									<tr>
 										<td class="text-center"></td>
 										<td><?= strtoupper($p->user) ?></td>
@@ -77,7 +77,8 @@
 											<a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_del<?= $p->id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
-								<?php }  ?>
+								<?php
+                                }  ?>
 							</table>
 						</div>
 					</div>
@@ -197,18 +198,18 @@
 								</div>
 								<select class="form-control" name="status">
 									<option <?php if ($p->status == "1") {
-													echo "selected='selected'";
-												} ?> value="1">Aktif</option>
+                                    echo "selected='selected'";
+                                } ?> value="1">Aktif</option>
 									<option <?php if ($p->status == "0") {
-													echo "selected='selected'";
-												} ?> value="0">Tidak aktif</option>
+                                    echo "selected='selected'";
+                                } ?> value="0">Tidak aktif</option>
 								</select>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-						<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Save</button>
+						<button class="btn btn-primary" id="editbtn"><i class="fa fa-check"></i> Update</button>
 					</div>
 				</form>
 			</div>
@@ -244,7 +245,7 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="col-12 modal-title text-center">Import Master
+				<h4 class="col-12 modal-title text-center">Import license
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
