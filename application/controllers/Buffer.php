@@ -29,7 +29,6 @@ class Buffer extends CI_Controller
 
   public function buffer_aksi()
   {
-    //$this->form_validation->set_rules('id_buffer', 'Id Buffer', 'required');
     $this->form_validation->set_rules('sales', 'Nama Sales', 'required');
     $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
     $this->form_validation->set_rules('brand', 'Brand Produk', 'required');
@@ -264,15 +263,12 @@ class Buffer extends CI_Controller
 
     $sheet->getDefaultRowDimension()->setRowHeight(-1);
 
-    // Set orientasi kertas jadi LANDSCAPE
     $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
 
-    // Set judul file excel nya
     $sheet->setTitle("Laporan Buffer Stock");
 
-    // Proses file excel
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment; filename="Data Buffer.xlsx"'); // Set nama file excel nya
+    header('Content-Disposition: attachment; filename="Data Buffer.xlsx"');
     header('Cache-Control: max-age=0');
 
     $writer = new Xlsx($spreadsheet);

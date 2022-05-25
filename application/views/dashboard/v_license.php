@@ -56,8 +56,8 @@
 									</tr>
 								</thead>
 								<?php
-                                foreach ($license as $p) {
-                                    ?>
+								foreach ($license as $p) {
+								?>
 									<tr>
 										<td class="text-center"></td>
 										<td><?= strtoupper($p->user) ?></td>
@@ -78,7 +78,7 @@
 										</td>
 									</tr>
 								<?php
-                                }  ?>
+								}  ?>
 							</table>
 						</div>
 					</div>
@@ -144,8 +144,8 @@
 </div>
 <!--End Modals Add-->
 
+<!-- Bootstrap modal edit -->
 <?php foreach ($license as $p) : ?>
-	<!-- Bootstrap modal edit -->
 	<div class="modal fade" id="modal_edit<?= $p->id ?>" tabindex="-1" data-backdrop="static">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -198,11 +198,11 @@
 								</div>
 								<select class="form-control" name="status">
 									<option <?php if ($p->status == "1") {
-                                    echo "selected='selected'";
-                                } ?> value="1">Aktif</option>
+													echo "selected='selected'";
+												} ?> value="1">Aktif</option>
 									<option <?php if ($p->status == "0") {
-                                    echo "selected='selected'";
-                                } ?> value="0">Tidak aktif</option>
+													echo "selected='selected'";
+												} ?> value="0">Tidak aktif</option>
 								</select>
 							</div>
 						</div>
@@ -238,7 +238,6 @@
 	</div>
 <?php endforeach; ?>
 <!--End Modals Edit & delete-->
-
 
 <!--add MODAL import-->
 <div class="modal fade" id="modal_import" tabindex="-1" data-backdrop="static">

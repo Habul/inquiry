@@ -574,7 +574,8 @@ class Dashboard extends CI_Controller
       $data = array(
         'header' => $header,
         'body' => $body,
-        'status' => $status
+        'status' => $status,
+        'updtime' => mdate('%Y-%m-%d %H:%i:%s')
       );
 
       $this->m_data->update_data($where, $data, 'workspace');
@@ -702,6 +703,7 @@ class Dashboard extends CI_Controller
         'sn' => $sn,
         'key' => $key,
         'status' => $status,
+        'updtime' => mdate('%Y-%m-%d %H:%i:%s')
       );
 
       $this->m_data->update_data($where, $data, 'license');
