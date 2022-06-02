@@ -518,10 +518,10 @@ class Dashboard extends CI_Controller
   public function workspace()
   {
     $data['title'] = 'Workspace';
-    $data['todo'] = $this->m_data->edit_data(['status' => '1'], 'workspace')->result();
-    $data['progress'] = $this->m_data->edit_data(['status' => '2'], 'workspace')->result();
-    $data['done'] = $this->m_data->edit_data(['status' => '3'], 'workspace')->result();
-    $data['failed'] = $this->m_data->edit_data(['status' => '4'], 'workspace')->result();
+    $data['todo'] = $this->m_data->get_index_where('addtime', ['status' => '1'], 'workspace')->result();
+    $data['progress'] = $this->m_data->get_index_where('addtime', ['status' => '2'], 'workspace')->result();
+    $data['done'] = $this->m_data->get_index_where('addtime', ['status' => '3'], 'workspace')->result();
+    $data['failed'] = $this->m_data->get_index_where('addtime', ['status' => '4'], 'workspace')->result();
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('dashboard/v_kanban.php', $data);
     $this->load->view('dashboard/v_footer', $data);
@@ -575,7 +575,7 @@ class Dashboard extends CI_Controller
         'header' => $header,
         'body' => $body,
         'status' => $status,
-        'updtime' => mdate('%Y-%m-%d %H:%i:%s')
+        'addtime' => mdate('%Y-%m-%d %H:%i:%s')
       );
 
       $this->m_data->update_data($where, $data, 'workspace');

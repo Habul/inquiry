@@ -17,6 +17,11 @@ class M_data extends CI_Model
     return $this->db->order_by($condition, 'desc')->get($table);
   }
 
+  function get_index_where($condition, $where, $table)
+  {
+    return $this->db->order_by($condition, 'asc')->where($where)->get($table);
+  }
+
   function insert_data($data, $table)
   {
     $this->db->insert($table, $data);
