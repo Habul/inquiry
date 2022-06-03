@@ -201,7 +201,7 @@
 							<li class="nav-item">
 								<a href="<?php echo base_url() . 'dashboard/workspace' ?>" <?= $this->uri->uri_string() == 'dashboard/workspace' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 									<i class="nav-icon fas fas fa-columns"></i>
-									<?php $cek = $this->db->like('addtime', mdate('%Y-%m-%d'))->get('workspace')->num_rows() || $cek = $this->db->like('updtime', mdate('%Y-%m-%d'))->get('workspace')->num_rows() ?>
+									<?php $cek = $this->db->like('addtime', mdate('%Y-%m-%d'))->get('workspace')->num_rows() ?>
 									<?php if ($cek != '') : ?>
 										<span class="right badge badge-danger">New</span>
 									<?php endif; ?>
