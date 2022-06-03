@@ -222,6 +222,12 @@
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
 							<?php if ($this->session->userdata('level') != "warehouse") { ?>
 								<li class="nav-header">Users</li>
+								<li class="nav-item">
+									<a href="<?= base_url() . 'master_item/data' ?>" <?= $this->uri->uri_string() == 'master_item/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+										<i class="nav-icon fas fa-tools"></i>
+										<p>Master Item</p>
+									</a>
+								</li>
 								<li <?= $this->uri->uri_string() == 'inquiry/inquiry_master' ||
 											$this->uri->uri_string() == 'inquiry/inquiry_kurs' ||
 											$this->uri->segment(2) == 'inquiry' ||
