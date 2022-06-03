@@ -4,7 +4,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0">Master Item</h1>
-          <small>Approve Master item INTISERA<b>7Soft</b></small>
+          <small>Approve Master item INTISERA <b>7Soft</b></small>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -49,6 +49,7 @@
                     <th>Part Number</th>
                     <th>Nama</th>
                     <th>Satuan</th>
+                    <th>Tipe</th>
                     <th>Status</th>
                     <th width="8%">Actions</th>
                   </tr>
@@ -64,16 +65,78 @@
                     <td class="text-center"><?= strtoupper($p->part_number) ?></td>
                     <td class="text-center"><?= $p->nama ?></td>
                     <td class="text-center"><?= $p->satuan ?></td>
-                    <td class="text-center">
-                      <?php if ($p->approve == 1) : ?>
+                    <td class="text-center"><?= strtoupper($p->type) ?></td>
+                    <td class="align-middle text-center">
+                      <?php if ($p->status == 1) : ?>
                         <span class="badge badge-success"><i class="fas fa-check-circle"></i> Approve</span>
-                      <?php else : ?>
+                      <?php elseif ($p->status == 2) : ?>
                         <span class="badge badge-danger"><i class="fas fa-times-circle"></i> Reject</span>
+                      <?php else : ?>
+                        <span> - </span>
                       <?php endif; ?>
                     </td>
-                    <td>
+                    <td class="align-middle text-center">
                       <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?= $p->id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+                      <a class="btn-sm btn-info" data-toggle="modal" data-target="#modal_update<?= $p->id; ?>" title="Update"><i class="fas fa-edit"></i></a>
                       <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_del<?= $p->id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                <?php
+                }  ?>
+              </table>
+            </div>
+          </div>
+
+          <div class="card card-success card-outline">
+            <div class="card-header">
+              <h4 class="card-title"><i class="fa fa-check-square"></i> Master item Approve</h4>
+              <div class="card-tools">
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
+                  <i class="fas fa-expand"></i>
+                </button>
+                <button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <table id="index2" class="table table-hover table-sm">
+                <thead class="thead-light text-center">
+                  <tr>
+                    <th width="5%">No</th>
+                    <th>User</th>
+                    <th>Merk</th>
+                    <th>Kelompok</th>
+                    <th>Part Number</th>
+                    <th>Nama</th>
+                    <th>Satuan</th>
+                    <th>Tipe</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <?php
+                foreach ($master_ok as $p) {
+                ?>
+                  <tr>
+                    <td class="text-center"></td>
+                    <td class="text-center"><?= $p->user ?></td>
+                    <td><?= strtoupper($p->merk) ?></td>
+                    <td class="text-center"><?= $p->kelompok ?></td>
+                    <td class="text-center"><?= strtoupper($p->part_number) ?></td>
+                    <td class="text-center"><?= $p->nama ?></td>
+                    <td class="text-center"><?= $p->satuan ?></td>
+                    <td class="text-center"><?= strtoupper($p->type) ?></td>
+                    <td class="align-middle text-center">
+                      <?php if ($p->status == 1) : ?>
+                        <span class="badge badge-success"><i class="fas fa-check-circle"></i> Approve</span>
+                      <?php elseif ($p->status == 2) : ?>
+                        <span class="badge badge-danger"><i class="fas fa-times-circle"></i> Reject</span>
+                      <?php else : ?>
+                        <span> - </span>
+                      <?php endif; ?>
                     </td>
                   </tr>
                 <?php
@@ -89,10 +152,10 @@
 
 <!-- Bootstrap modal add -->
 <div class="modal fade" id="modal_add" tabindex="-1" data-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="col-12 modal-title text-center">Create new license</h5>
+        <h5 class="col-12 modal-title text-center">Create new item</h5>
       </div>
       <form onsubmit="addbtn.disabled = true; return true;" method="post" action="<?= base_url('master_item/add') ?>">
         <div class="modal-body">
@@ -143,9 +206,13 @@
           <div class="form-group mb-0">
             <div class="input-group">
               <div class="input-group-prepend">
-                <label class="input-group-text pr-5">Type&emsp;</label>
+                <label class="input-group-text pr-5">Tipe&emsp;</label>
               </div>
-              <input type="text" name="type" class="form-control" placeholder="Input satuan..">
+              <select name="type" class="form-control">
+                <option value="">-Choose Tipe-</option>
+                <option value="inventory">Inventory</option>
+                <option value="non inventory">Non Inventory</option>
+              </select>
             </div>
           </div>
         </div>
@@ -162,29 +229,30 @@
 <!-- Bootstrap modal edit -->
 <?php foreach ($master as $p) : ?>
   <div class="modal fade" id="modal_edit<?= $p->id ?>" tabindex="-1" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="col-12 modal-title text-center">Edit license</h5>
+          <h5 class="col-12 modal-title text-center">Edit item</h5>
         </div>
         <form onsubmit="editbtn.disabled = true; return true;" method="post" action="<?= base_url('master_item/edit') ?>">
           <div class="modal-body">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <label class="input-group-text pr-5">User</label>
+                <label class="input-group-text pr-5">User&emsp;</label>
               </div>
+              <input type="hidden" name="id" value="<?= $p->id ?>">
               <input type="text" name="user" class="form-control" value="<?= $p->user ?>" readonly required>
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <label class="input-group-text">Merk</label>
+                <label class="input-group-text pr-5">Merk&emsp;</label>
               </div>
               <input type="text" name="merk" class="form-control" value="<?= $p->merk ?>" required>
             </div>
             <div class="form-group mb-3">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <label class="input-group-text">Kelompok</label>
+                  <label class="input-group-text">Kelompok&emsp;</label>
                 </div>
                 <input type="text" name="kelompok" class="form-control" value="<?= $p->kelompok ?>" required>
               </div>
@@ -192,25 +260,40 @@
             <div class="form-group mb-3">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <label class="input-group-text pr-5">Part Number</label>
+                  <label class="input-group-text">Part Number</label>
                 </div>
-                <input type="text" name="part_number" class="form-control" value="<?= $p->part_number ?>">
+                <input type="text" name="part_number" class="form-control" value="<?= $p->part_number ?>" required>
               </div>
             </div>
             <div class="form-group mb-3">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <label class="input-group-text pr-5">Nama</label>
+                  <label class="input-group-text pr-5">Nama&nbsp;&nbsp;</label>
                 </div>
-                <input type="text" name="nama" class="form-control" value="<?= $p->nama ?>">
+                <input type="text" name="nama" class="form-control" value="<?= $p->nama ?>" required>
               </div>
             </div>
             <div class="form-group mb-3">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <label class="input-group-text pr-5">Satuan</label>
+                  <label class="input-group-text pr-4">Satuan&emsp;&nbsp;&nbsp;</label>
                 </div>
                 <input type="text" name="satuan" class="form-control" value="<?= $p->satuan ?>">
+              </div>
+            </div>
+            <div class="form-group mb-0">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text pr-5">Tipe&emsp;</label>
+                </div>
+                <select class="form-control" name="type">
+                  <option <?php if ($p->type == "iventory") {
+                            echo "selected='selected'";
+                          } ?> value="inventory">Inventory</option>
+                  <option <?php if ($p->status == "non iventory") {
+                            echo "selected='selected'";
+                          } ?> value="non iventory">Non Inventory</option>
+                </select>
               </div>
             </div>
           </div>
@@ -222,11 +305,12 @@
       </div>
     </div>
   </div>
+
   <div class="modal fade" id="modal_del<?= $p->id; ?>" tabindex="-1" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-danger">
         <div class="modal-header">
-          <h5 class="col-12 modal-title text-center">Delete license
+          <h5 class="col-12 modal-title text-center">Delete item
           </h5>
         </div>
         <form onsubmit="delbtn.disabled = true; return true;" method="post" action="<?= base_url('master_item/delete') ?>">
@@ -238,6 +322,95 @@
           <div class="modal-footer justify-content-between">
             <button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
             <button class="btn btn-outline-light" id="delbtn"><i class="fa fa-check"></i> Yes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal_update<?= $p->id ?>" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="col-12 modal-title text-center">Update item</h5>
+        </div>
+        <form onsubmit="updbtn.disabled = true; return true;" method="post" action="<?= base_url('master_item/update') ?>">
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text pr-5">User&emsp;</label>
+              </div>
+              <input type="hidden" name="id" value="<?= $p->id ?>">
+              <input type="text" name="user" class="form-control" value="<?= $p->user ?>" readonly>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text pr-5">Merk&emsp;</label>
+              </div>
+              <input type="text" name="merk" class="form-control" value="<?= $p->merk ?>" readonly>
+            </div>
+            <div class="form-group mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text">Kelompok&emsp;</label>
+                </div>
+                <input type="text" name="kelompok" class="form-control" value="<?= $p->kelompok ?>" readonly>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text">Part Number</label>
+                </div>
+                <input type="text" name="part_number" class="form-control" value="<?= $p->part_number ?>" readonly>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text pr-5">Nama&nbsp;&nbsp;</label>
+                </div>
+                <input type="text" name="nama" class="form-control" value="<?= $p->nama ?>" readonly>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text pr-4">Satuan&emsp;&nbsp;&nbsp;</label>
+                </div>
+                <input type="text" name="satuan" class="form-control" value="<?= $p->satuan ?>" readonly>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text pr-5">Tipe&emsp;</label>
+                </div>
+                <input type="text" name="type" class="form-control" value="<?= $p->type ?>" readonly>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text pr-4">Status&emsp;&emsp;</label>
+                </div>
+                <select class="form-control" name="status" required>
+                  <option <?php if ($p->status == "0") {
+                            echo "selected='selected'";
+                          } ?> value="0">-Choose Select-</option>
+                  <option <?php if ($p->status == "1") {
+                            echo "selected='selected'";
+                          } ?> value="1">Approve</option>
+                  <option <?php if ($p->status == "2") {
+                            echo "selected='selected'";
+                          } ?> value="2">Reject</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+            <button class="btn btn-primary" id="updbtn"><i class="fa fa-check"></i> Update</button>
           </div>
         </form>
       </div>

@@ -17,7 +17,7 @@ class It extends CI_Controller
   public function data()
   {
     $data['title'] = 'Data Penting';
-    $data['penting'] = $this->m_data->get_data('datapenting_it')->result();
+    $data['penting'] = $this->m_data->get_index('datapenting_it', 'addtime')->result();
     $data['id_add'] = $this->db->select_max('no_id')->get('datapenting_it')->row();
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('it/v_it', $data);

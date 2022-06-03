@@ -16,7 +16,8 @@ class Master_item extends CI_Controller
    public function data()
    {
       $data['title'] = 'Master Item';
-      $data['master'] = $this->m_data->get_data('master_item')->result();
+      $data['master'] = $this->m_data->get_index_wheredesc('addtime', ['status !=' => '1'], 'master_item')->result();
+      $data['master_ok'] = $this->m_data->get_index_wheredesc('addtime', ['status' => '1'], 'master_item')->result();
       $this->load->view('dashboard/v_header', $data);
       $this->load->view('it/v_master_item', $data);
       $this->load->view('dashboard/v_footer', $data);
@@ -38,7 +39,6 @@ class Master_item extends CI_Controller
          $nama = $this->input->post('nama');
          $type = $this->input->post('type');
          $satuan = $this->input->post('satuan');
-         $addtime = mdate('%Y-%m-%d %H:%i:%s');
 
          $data = array(
             'user' => $user,
@@ -48,11 +48,11 @@ class Master_item extends CI_Controller
             'nama' => $nama,
             'type' => $type,
             'satuan' => $satuan,
-            'addtime' => $addtime
+            'addtime' => mdate('%Y-%m-%d %H:%i:%s')
          );
 
          $this->m_data->insert_data($data, 'master_item');
-         $this->session->set_flashdata('berhasil', 'Add Data successfully, Judul : ' . $merk . ' !');
+         $this->session->set_flashdata('berhasil', 'Add Data successfully, Merk : ' . $merk . ' !');
          redirect(base_url() . 'master_item/data');
       } else {
          $this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
@@ -73,7 +73,6 @@ class Master_item extends CI_Controller
          $nama = $this->input->post('nama');
          $satuan = $this->input->post('satuan');
          $type = $this->input->post('type');
-         $addtime = mdate('%Y-%m-%d %H:%i:%s');
 
          $where = array(
             'id' => $id
@@ -86,7 +85,7 @@ class Master_item extends CI_Controller
             'nama' => $nama,
             'satuan' => $satuan,
             'type' => $type,
-            'addtime' => $addtime,
+            'addtime' => mdate('%Y-%m-%d %H:%i:%s')
          );
 
          $this->m_data->update_data($where, $data, 'master_item');
@@ -98,9 +97,35 @@ class Master_item extends CI_Controller
       }
    }
 
+   public function update()
+   {
+      $this->form_validation->set_rules('status', 'Status', 'required');
+
+      if ($this->form_validation->run() != false) {
+         $id = $this->input->post('id');
+         $status = $this->input->post('status');
+         $merk = $this->input->post('merk');
+
+         $where = array(
+            'id' => $id
+         );
+
+         $data = array(
+            'status' => $status
+         );
+
+         $this->m_data->update_data($where, $data, 'master_item');
+         $this->session->set_flashdata('berhasil', 'Update Data successfully, Merk : ' . $merk . ' !');
+         redirect(base_url() . 'master_item/data');
+      } else {
+         $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+         redirect(base_url() . 'master_item/data');
+      }
+   }
+
    public function delete()
    {
-      $id = $this->input->post('no_id');
+      $id = $this->input->post('id');
       $this->m_data->delete_data(['id' => $id], 'Master_item');
       $this->session->set_flashdata('berhasil', 'Data has been deleted !');
       redirect(base_url() . 'master_item/data');

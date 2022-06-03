@@ -90,12 +90,10 @@
 												<label class="control-label col-sm-2">Foto </label>
 												<div class="col-sm-10">
 													<div class="custom-file">
-														<input type="file" class="custom-file-input" id="customFile" name="foto">
-														<label class="custom-file-label" for="customFile">Choose file</label>
+														<input type="file" class="custom-file-input" id="image" name="foto" onchange="priviewImage()">
+														<label class="custom-file-label" for="image">Choose file</label>
 													</div>
-													<small>* Max size 1 Mb</small><br />
-													<small>* Max file name image 10 character</small><br />
-													<small>* File type Jpg, Png & Gif</small>
+													<img class="img-priview img-fluid col-sm-5 mt-3">
 													<?php echo form_error('foto'); ?>
 												</div>
 											</div>
@@ -136,3 +134,19 @@
 				</div>
 	</section>
 </div>
+
+<script>
+	function priviewImage() {
+		const image = document.querySelector('#image');
+		const imgPreview = document.querySelector('.img-priview');
+
+		imgPreview.style.display = 'block';
+
+		const oFReader = new FileReader();
+		oFReader.readAsDataURL(image.files[0]);
+
+		oFReader.onload = function(oFREvent) {
+			imgPreview.src = oFREvent.target.result;
+		}
+	}
+</script>
