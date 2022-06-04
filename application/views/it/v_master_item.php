@@ -22,9 +22,13 @@
           <div class="card card-success card-outline">
             <div class="card-header">
               <h4 class="card-title">
-                <a class="btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
-                  <i class="fa fa-plus"></i>&nbsp; Create new item
-                </a>
+                <?php if ($this->session->userdata('level') != "sales") :  ?>
+                  <a class="btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
+                    <i class="fa fa-plus"></i>&nbsp; Create new item
+                  </a>
+                <?php elseif ($this->session->userdata('enginering') != "engineering") : ?>
+                  <i class="fas fa-tools"></i>&nbsp; Master item
+                <?php endif; ?>
               </h4>
               <div class="card-tools">
                 <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
@@ -51,7 +55,7 @@
                     <th>Satuan</th>
                     <th>Tipe</th>
                     <th>Status</th>
-                    <th width="8%">Actions</th>
+                    <th width="9%">Actions</th>
                   </tr>
                 </thead>
                 <?php
@@ -76,9 +80,13 @@
                       <?php endif; ?>
                     </td>
                     <td class="align-middle text-center">
-                      <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?= $p->id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
-                      <a class="btn-sm btn-info" data-toggle="modal" data-target="#modal_update<?= $p->id; ?>" title="Update"><i class="fas fa-edit"></i></a>
-                      <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_del<?= $p->id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      <?php if ($this->session->userdata('level') != "engineering") :  ?>
+                        <a class="btn-sm btn-info" data-toggle="modal" data-target="#modal_update<?= $p->id; ?>" title="Update"><i class="fas fa-edit"></i></a>
+                      <?php endif ?>
+                      <?php if ($this->session->userdata('level') != "sales") :  ?>
+                        <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?= $p->id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+                        <a class="btn-sm btn-danger" data-toggle="modal" data-target="#modal_del<?= $p->id; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      <?php endif; ?>
                     </td>
                   </tr>
                 <?php

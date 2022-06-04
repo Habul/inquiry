@@ -148,6 +148,7 @@
 								<option value="admin">Admin</option>
 								<option value="purchase">Purchase</option>
 								<option value="driver">Driver</option>
+								<option value="engineering">Engineering</option>
 								<option value="ga">GA</option>
 								<option value="guest">Guest</option>
 							</select>
@@ -261,6 +262,9 @@
 									<option <?php if ($p->pengguna_level == "driver") {
 													echo "selected='selected'";
 												} ?> value="driver">Driver</option>
+									<option <?php if ($p->pengguna_level == "engineering") {
+													echo "selected='selected'";
+												} ?> value="engineering">Engineering</option>
 									<option <?php if ($p->pengguna_level == "ga") {
 													echo "selected='selected'";
 												} ?> value="ga">Ga</option>
