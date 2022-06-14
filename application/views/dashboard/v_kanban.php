@@ -150,7 +150,7 @@
 
 <!-- todo modal add -->
 <div class="modal fade" id="todo_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-xl modal-dialog-centered">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add to do
@@ -186,7 +186,7 @@
 <!-- todo modal Edit & delete -->
 <?php foreach ($todo as $row) : ?>
 	<div class="modal fade" id="todo_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-xl modal-dialog-centered">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="col-12 modal-title text-center">Edit to do
@@ -267,7 +267,7 @@
 
 <!-- progress modal add -->
 <div class="modal fade" id="progress_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-xl modal-dialog-centered">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add progress
@@ -303,7 +303,7 @@
 <!-- progress modal Edit & delete -->
 <?php foreach ($progress as $row) : ?>
 	<div class="modal fade" id="progress_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-xl modal-dialog-centered">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="col-12 modal-title text-center">Edit progress
@@ -385,7 +385,7 @@
 
 <!-- done modal add -->
 <div class="modal fade" id="done_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-xl modal-dialog-centered">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add done
@@ -421,7 +421,7 @@
 <!-- done modal Edit & delete -->
 <?php foreach ($done as $row) : ?>
 	<div class="modal fade" id="done_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-xl modal-dialog-centered">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="col-12 modal-title text-center">Edit done
@@ -503,7 +503,7 @@
 
 <!-- failed modal add -->
 <div class="modal fade" id="failed_add" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-xl modal-dialog-centered">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Add failed
@@ -539,7 +539,7 @@
 <!-- failed modal Edit & delete -->
 <?php foreach ($failed as $row) : ?>
 	<div class="modal fade" id="failed_edit<?= $row->id; ?>" tabindex="-1" data-backdrop="static">
-		<div class="modal-dialog modal-xl modal-dialog-centered">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="col-12 modal-title text-center">Edit failed
