@@ -28,7 +28,6 @@ class It extends CI_Controller
   {
     $this->form_validation->set_rules('no_id', 'No Id', 'required');
     $this->form_validation->set_rules('judul', 'Judul', 'required');
-    $this->form_validation->set_rules('isi', 'Isi', 'required');
 
     if ($this->form_validation->run() != false) {
       $id = $this->input->post('no_id');
@@ -74,7 +73,6 @@ class It extends CI_Controller
   public function data_edit()
   {
     $this->form_validation->set_rules('judul', 'Judul', 'required');
-    $this->form_validation->set_rules('isi', 'Isi', 'required');
 
     if ($this->form_validation->run() != false) {
 

@@ -129,14 +129,12 @@
 							<label class="control-label col-xs-3">Title</label>
 							<div class="col-xs-9">
 								<input type="hidden" name="no_id" readonly class="form-control" value="<?php echo $p->no_id; ?>">
-								<input type="text" name="judul" class="form-control form-control-sm form-control-border" readonly value="<?php echo $p->judul; ?>" required>
-								<?php echo form_error('judul'); ?>
+								<input type="text" name="judul" class="form-control form-control-sm form-control-border" value="<?php echo $p->judul; ?>" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
-								<?php echo form_error('isi'); ?>
 								<textarea class="form-control form-control-sm" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
 							</div>
 						</div>

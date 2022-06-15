@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -99,5 +99,5 @@ $foreign_characters = array(
 	'/Ю/' => 'Yu',
 	'/ю/' => 'yu',
 	'/Я/' => 'Ya',
-	'/я/' => 'ya'
+	'/я/' => 'ya',
 );
