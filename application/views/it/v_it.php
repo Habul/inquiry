@@ -135,7 +135,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-3">Description *</label>
 							<div class="col-xs-9">
-								<textarea class="form-control form-control-sm" name="isi" rows="10"><?php echo $p->isi; ?></textarea>
+								<textarea class="form-control form-control-sm" name="isi" rows="10"><?php echo htmlspecialchars($p->isi); ?></textarea>
 							</div>
 						</div>
 						<div class="form-group mb-0">

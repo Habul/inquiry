@@ -24,8 +24,6 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/summernote/summernote-bs4.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/docs.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/style_games.css">
@@ -225,6 +223,10 @@
 								<li class="nav-item">
 									<a href="<?= base_url() . 'master_item/data' ?>" <?= $this->uri->uri_string() == 'master_item/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="nav-icon fas fa-tools"></i>
+										<?php $total = $this->db->where('status_it', '0')->where('status', '1')->get('master_item')->num_rows(); ?>
+										<?php if ($total != 0) : ?>
+											<span class="badge badge-info right"><?php echo $total; ?></span>
+										<?php endif; ?>
 										<p>Master Item</p>
 									</a>
 								</li>

@@ -130,4 +130,32 @@ class Master_item extends CI_Controller
       $this->session->set_flashdata('berhasil', 'Data has been deleted !');
       redirect(base_url() . 'master_item/data');
    }
+
+   public function update_it()
+   {
+      $this->form_validation->set_rules('status', 'Status', 'required');
+
+      if ($this->form_validation->run() != false) {
+         $id = $this->input->post('id');
+         $merk = $this->input->post('merk');
+         $type = $this->input->post('type');
+         $status_it = $this->input->post('status_it');
+
+         $where = array(
+            'id' => $id
+         );
+
+         $data = array(
+            'type' => $type,
+            'status_it' => $status_it,
+         );
+
+         $this->m_data->update_data($where, $data, 'master_item');
+         $this->session->set_flashdata('berhasil', 'Update Data successfully, Merk : ' . $merk . ' !');
+         redirect(base_url() . 'master_item/data');
+      } else {
+         $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
+         redirect(base_url() . 'master_item/data');
+      }
+   }
 }
