@@ -126,7 +126,7 @@ class Master_item extends CI_Controller
    public function delete()
    {
       $id = $this->input->post('id');
-      $this->m_data->delete_data(['id' => $id], 'Master_item');
+      $this->m_data->delete_data(['id' => $id], 'master_item');
       $this->session->set_flashdata('berhasil', 'Data has been deleted !');
       redirect(base_url() . 'master_item/data');
    }
