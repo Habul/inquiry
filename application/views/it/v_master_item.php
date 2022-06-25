@@ -55,7 +55,7 @@
                     <th>Satuan</th>
                     <th>Tipe</th>
                     <th>Status</th>
-                    <th width="9%">Actions</th>
+                    <th width="11%">Actions</th>
                   </tr>
                 </thead>
                 <?php

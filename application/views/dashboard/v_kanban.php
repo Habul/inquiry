@@ -31,7 +31,7 @@
 								<h6 class="card-title"><?= $row->header ?></h6>
 								<div class="card-tools">
 									<div class="btn-group">
-										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
+										<a class="text-muted dropdown-toggle" data-toggle="dropdown"><i class="fas fa-marker"></i></a>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" data-toggle="modal" data-target="#todo_edit<?= $row->id; ?>">Edit</a>
 											<a class="dropdown-item" data-toggle="modal" data-target="#todo_delete<?= $row->id; ?>">Delete</a>
@@ -63,7 +63,7 @@
 								<h6 class="card-title"><?= $row->header ?></h6>
 								<div class="card-tools">
 									<div class="btn-group">
-										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
+										<a class="text-muted dropdown-toggle" data-toggle="dropdown"><i class="fas fa-marker"></i></a>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" data-toggle="modal" data-target="#progress_edit<?= $row->id; ?>">Edit</a>
 											<a class="dropdown-item" data-toggle="modal" data-target="#progress_del<?= $row->id; ?>">Delete</a>
@@ -95,7 +95,7 @@
 								<h6 class="card-title"><?= $row->header ?></h6>
 								<div class="card-tools">
 									<div class="btn-group">
-										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
+										<a class="text-muted dropdown-toggle" data-toggle="dropdown"><i class="fas fa-marker"></i></a>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" data-toggle="modal" data-target="#done_edit<?= $row->id; ?>">Edit</a>
 											<a class="dropdown-item" data-toggle="modal" data-target="#done_del<?= $row->id; ?>">Delete</a>
@@ -127,7 +127,7 @@
 								<h6 class="card-title"><?= $row->header ?></h6>
 								<div class="card-tools">
 									<div class="btn-group">
-										<a class="text-muted dropdown-toggle" data-toggle="dropdown"></a>
+										<a class="text-muted dropdown-toggle" data-toggle="dropdown"><i class="fas fa-marker"></i></a>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" data-toggle="modal" data-target="#failed_edit<?= $row->id; ?>">Edit</a>
 											<a class="dropdown-item" data-toggle="modal" data-target="#failed_del<?= $row->id; ?>">Delete</a>
