@@ -151,6 +151,7 @@ class Dashboard extends CI_Controller
       );
 
       $this->m_data->update_data($where, $data, 'pengguna');
+      $this->session->set_flashdata('berhasil', 'Update Profile ' . $pengguna_nama . ' successfully !');
 
       if (!empty($_FILES['foto']['name'])) {
         $config['upload_path']   = './gambar/profile/';
@@ -177,7 +178,8 @@ class Dashboard extends CI_Controller
           $this->m_data->update_data($where, $data, 'pengguna');
         }
       }
-      redirect(base_url() . 'dashboard/profil/?alert=sukses');
+      redirect(base_url() . 'dashboard/profil');
+      $this->session->set_flashdata('berhasil', 'Update Profile ' . $pengguna_nama . ' successfully !');
     } else {
       $id_pengguna = $this->session->userdata('id');
 
@@ -228,6 +230,7 @@ class Dashboard extends CI_Controller
       );
 
       $this->m_data->update_data($where, $data, 'pengaturan');
+      $this->session->set_flashdata('berhasil', 'Update Password ' . $nama . ' successfully !');
 
       if (!empty($_FILES['logo']['name'])) {
 
@@ -245,8 +248,8 @@ class Dashboard extends CI_Controller
           $this->db->query("UPDATE pengaturan SET logo='$logo'");
         }
       }
-
-      redirect(base_url() . 'dashboard/pengaturan/?alert=sukses');
+      redirect(base_url() . 'dashboard/pengaturan');
+      $this->session->set_flashdata('berhasil', 'Update Password ' . $nama . ' successfully !');
     } else {
       $data['pengaturan'] = $this->m_data->get_data('pengaturan')->result();
 

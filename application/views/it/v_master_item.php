@@ -287,7 +287,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text pr-2">Part Number</label>
                 </div>
-                <input type="text" name="part_number" class="form-control" value="<?= $p->part_number ?>" required>
+                <input type="text" name="part_number" class="form-control" value="<?= htmlentities($p->part_number) ?>" required>
               </div>
             </div>
             <div class="form-group mb-3">

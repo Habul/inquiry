@@ -39,30 +39,14 @@
 				</div>
 
 				<div class="col-md-9">
-					<?php
-					if (isset($_GET['alert'])) {
-						if ($_GET['alert'] == "sukses") {
-							echo "<div class='alert alert-success alert-dismissible' id='info'><i class='icon fas fa-check'></i>Profil telah diupdate!</div>";
-						}
-					}
-					if (isset($_GET['alert'])) {
-						if ($_GET['alert'] == "ok") {
-							echo "<div class='alert alert-success' id='info'><i class='icon fas fa-check'></i>Password telah diubah!</div>";
-						} else if ($_GET['alert'] == "gagal") {
-							echo "<div class='alert alert-danger' id='info'><i class='icon fas fa-exclamation-triangle'></i>Maaf, password lama yang anda masukkan salah!</div>";
-						} else if ($_GET['alert'] == "kurang") {
-							echo "<div class='alert alert-warning' id='info'><i class='icon fas fa-ban'></i>Maaf, password baru min 6 character / konfirmasi password tidak sama!</div>";
-						}
-					}
-					?>
 					<div class="card card-success card-outline card-outline-tabs">
 						<div class="card-header p-0 border-bottom-0">
-							<ul class="nav nav-tabs" role="tablist">
+							<ul class="nav nav-tabs" role="tablist" id="myTab">
 								<li class="nav-item">
-									<a class="nav-link active" id="set_user" data-toggle="pill" href="#profile-settiing" role="tab" aria-controls="profile-settiing" aria-selected="true">Profile</a>
+									<a class="nav-link active" id="set_user" data-toggle="tab" href="#profile-settiing" role="tab" aria-controls="profile-settiing" aria-selected="true">Profile</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="set_pass" data-toggle="pill" href="#pass-setting" role="tab" aria-controls="pass-setting" aria-selected="false">Password</a>
+									<a class="nav-link" id="set_pass" data-toggle="tab" href="#pass-setting" role="tab" aria-controls="pass-setting" aria-selected="false">Password</a>
 								</li>
 							</ul>
 						</div>
