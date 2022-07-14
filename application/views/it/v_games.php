@@ -59,7 +59,6 @@
 							<span class="d-flex justify-content-center">
 								<?= $generate ?>
 							</span>
-							<small class="d-flex justify-content-center"><?= $detail ?></small>
 						</div>
 					</div>
 
@@ -87,7 +86,6 @@
 							<span class="d-flex justify-content-center">
 								<?= $generateqr ?>
 							</span>
-							<small class="d-flex justify-content-center"><?= $detailqr ?></small>
 						</div>
 					</div>
 				</div>

@@ -3,13 +3,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<?php if (mdate('%H:%i') >= '00:01' && mdate('%H:%i') <= '10:00') : ?>
-						<h1 class="m-0">Good Morning <?php echo ucwords($this->session->userdata('nama')) ?></h1>
-					<?php elseif (mdate('%H:%i') >= '10:01' && mdate('%H:%i') <= '18:00') : ?>
-						<h1 class="m-0">Good Afternoon <?php echo ucwords($this->session->userdata('nama')) ?></h1>
-					<?php elseif (mdate('%H:%i') >= '18:01' && mdate('%H:%i') <= '23:59') : ?>
-						<h1 class="m-0">Good Evening <?php echo ucwords($this->session->userdata('nama')) ?></h1>
-					<?php endif ?>
+					<h1>Dashboard</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -22,6 +16,18 @@
 
 	<section class="content">
 		<div class="container-fluid">
+			<div class="alert alert-info alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<h5><i class="icon fas fa-info"></i> Welcome,
+					<?php if (mdate('%H:%i') >= '00:01' && mdate('%H:%i') <= '10:00') : ?>
+						Good morning <?php echo ucfirst($this->session->userdata('nama')) ?>
+					<?php elseif (mdate('%H:%i') >= '10:01' && mdate('%H:%i') <= '18:00') : ?>
+						Good afternoon <?php echo ucfirst($this->session->userdata('nama')) ?>
+					<?php elseif (mdate('%H:%i') >= '18:01' && mdate('%H:%i') <= '23:59') : ?>
+						Good evening <?php echo ucfirst($this->session->userdata('nama')) ?>
+					<?php endif ?> !
+				</h5>
+			</div>
 			<div class="row">
 				<div class="col-lg-3 col-6">
 					<div class="small-box bg-info shadow">
@@ -156,9 +162,9 @@
 									<li class="nav-item">
 										<a class="nav-link" href="#area-chart" data-toggle="tab">Surat Jalan</a>
 									</li>
-									<li class="nav-item">
+									<!-- <li class="nav-item">
 										<a class="nav-link" href="#bar-chart" data-toggle="tab">Tracking</a>
-									</li>
+									</li> -->
 								</ul>
 							</div>
 						</div>
@@ -173,44 +179,54 @@
 								<div class="chart tab-pane" id="area-chart" style="position: relative; height: 300px;">
 									<canvas id="areaChart" height="300" style="height: 300px;"></canvas>
 								</div>
-								<div class="chart tab-pane" id="bar-chart" style="position: relative; height: 300px;">
-									<canvas id="barChart" height="300" style="height: 300px;"></canvas>
-								</div>
+								<!-- <div class="chart tab-pane" id="bar-chart" style="position: relative; height: 300px;">
+										<canvas id="barChart" height="300" style="height: 300px;"></canvas>
+									</div> -->
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-lg-6 col-12">
-					<div class="table-responsive">
-						<table class="table table-bordered table-striped">
-							<tr>
-								<td><b>IP Address</b></td>
-								<td><?= $ip_address; ?></td>
-							</tr>
-							<tr>
-								<td><b>Operating System</b></td>
-								<td><?= $os; ?></td>
-							</tr>
-							<tr>
-								<td><b>Browser Details</b></td>
-								<td><?= $browser . ' - ' . $browser_version; ?></td>
-							</tr>
-						</table>
-					</div>
-
-					<div class="card bg-gradient-primary">
-						<div class="card-header border-0">
-							<h3 class="card-title"><i class="far fa-calendar-alt"></i> Calendar</h3>
+				<div class="col-md-6">
+					<div class="card card-outline card-info">
+						<div class="card-header">
+							<h3 class="card-title"><b>History Login</b></h3>
 							<div class="card-tools">
-								<button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse">
-									<i class="fas fa-minus"></i></button>
-								<button type="button" class="btn btn-primary btn-sm" data-card-widget="remove">
-									<i class="fas fa-times"></i></button>
+								<button type="button" class="btn btn-xs btn-icon" data-card-widget="collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-xs btn-icon" data-card-widget="maximize">
+									<i class="fas fa-expand"></i>
+								</button>
+								<button type="button" class="btn btn-xs btn-icon" data-card-widget="remove">
+									<i class="fas fa-times"></i>
+								</button>
 							</div>
 						</div>
-						<div class="card-body pt-0">
-							<div id="calendar" style="width: 100%"></div>
+						<div class="card-body">
+							<table id="index1" class="table table-hover table-sm">
+								<thead class="thead-light text-center">
+									<tr>
+										<th width="6%">No</th>
+										<th>Name</th>
+										<th>Ip</th>
+										<th>Os</th>
+										<th>Browser</th>
+										<th>Date</th>
+									</tr>
+								</thead>
+								<?php $no = 1;
+								foreach ($history_log as $log) { ?>
+									<tr>
+										<td class="text-center align-middle"><?= $no++ ?></td>
+										<td class="align-middle"><?= $log->username ?></td>
+										<td class="align-middle"><?= $log->ip ?></td>
+										<td class="align-middle"><?= $log->os ?></td>
+										<td class="align-middle"><?= $log->browser ?></td>
+										<td class="align-middle"><?= $log->date ?></td>
+									</tr>
+								<?php } ?>
+							</table>
 						</div>
 					</div>
 				</div>

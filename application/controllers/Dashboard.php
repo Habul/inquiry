@@ -26,6 +26,7 @@ class Dashboard extends CI_Controller
     $data['tot_motor'] = $this->db->where('type', 'motor')->get('type_vehicles')->num_rows();
     $data['tot_truck'] = $this->db->where('type', 'truck')->get('type_vehicles')->num_rows();
     $data['license'] = $this->m_data->get_data('license')->num_rows();
+    $data['history_log'] = $this->m_data->get_index('history_log', 'date')->result();
 
     $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 
@@ -51,11 +52,6 @@ class Dashboard extends CI_Controller
       $index++;
     }
 
-    $this->load->library('user_agent');
-    $data['browser'] = $this->agent->browser();
-    $data['browser_version'] = $this->agent->version();
-    $data['os'] = $this->agent->platform();
-    $data['ip_address'] = $this->input->ip_address();
     $data['barmobil'] = $this->m_data->bartracking('mobil');
     $data['barmotor'] = $this->m_data->bartracking('motor');
     $data['bartruck'] = $this->m_data->bartracking('truck');

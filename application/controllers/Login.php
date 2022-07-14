@@ -33,6 +33,18 @@ class Login extends CI_Controller
         $this->session->set_userdata('foto', $hasil->foto);
         $this->session->set_userdata('level', $hasil->pengguna_level);
         $this->session->set_userdata('status', 'telah_login');
+
+        $data =
+          [
+            'username' => $hasil->pengguna_username,
+            'ip' => $this->input->ip_address(),
+            'os' => $this->agent->platform(),
+            'browser' => $this->agent->browser() . '-' . $this->agent->version(),
+            'date' => date('Y-m-d H:i:s')
+          ];
+
+        $this->m_data->insert_data($data, 'history_log');
+        $this->session->set_flashdata('berhasil', 'Login successfully !');
         redirect(base_url() . 'dashboard');
       } else {
         redirect(base_url() . 'login?alert=gagal');

@@ -38,10 +38,9 @@
 									<tr>
 										<th width="7%">Do No</th>
 										<th width="10%">Do Date</th>
-										<th width="11%">Due Date</th>
 										<th>Cust Name</th>
-										<th width="18%">Address</th>
-										<th>City</th>
+										<th>Address</th>
+										<th width="10%">City</th>
 										<th width="12%">Phone</th>
 										<th width="13%">Action</th>
 									</tr>
@@ -52,7 +51,6 @@
 									<tr>
 										<td><?php echo str_replace("-", "/", $p->no_delivery); ?></td>
 										<td><?php echo date('d/m/Y', strtotime($p->date_delivery)); ?></td>
-										<td><?php echo date('d/m/Y', strtotime($p->due_date)); ?></td>
 										<td><?php echo htmlentities(strtoupper($p->cust_name)); ?></td>
 										<td><?php echo htmlentities($p->address); ?></td>
 										<td><?php echo htmlentities($p->city); ?></td>
@@ -102,13 +100,6 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Due Date *</label>
-						<div class="col-sm-10">
-							<input type="date" name="due_date" class="form-control" required>
-							<?php echo form_error('due_date'); ?>
-						</div>
-					</div>
-					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Cust *</label>
 						<div class="col-sm-10">
 							<input type="text" name="cust_name" class="form-control" placeholder="Input Cust Name..." required>
@@ -129,7 +120,7 @@
 							<?php echo form_error('city'); ?>
 						</div>
 					</div>
-					<div class="form-group row">
+					<div class="form-group row mb-0">
 						<label class="col-sm-2 col-form-label">Phone *</label>
 						<div class="col-sm-10">
 							<input type="number" name="phone" class="form-control" placeholder="Input No Phone.." data-mask data-mask required>
@@ -176,13 +167,6 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Due Date *</label>
-							<div class="col-sm-10">
-								<input type="date" name="due_date" class="form-control" value="<?php echo $p->due_date; ?>" required>
-								<?php echo form_error('due_date'); ?>
-							</div>
-						</div>
-						<div class="form-group row">
 							<label class="col-sm-2 col-form-label">Cust *</label>
 							<div class="col-sm-10">
 								<input type="text" name="cust_name" class="form-control" value="<?php echo $p->cust_name; ?>" required>
@@ -203,7 +187,7 @@
 								<?php echo form_error('city'); ?>
 							</div>
 						</div>
-						<div class="form-group row">
+						<div class="form-group row mb-0">
 							<label class="col-sm-2 col-form-label">Phone *</label>
 							<div class="col-sm-10">
 								<input type="text" name="phone" class="form-control" value="<?php echo $p->phone; ?>" required>
