@@ -20,6 +20,7 @@ class Dashboard extends CI_Controller
     $data['title'] = 'Dashboard';
     $data['jumlah_SJ'] = $this->m_data->get_data('sj_user_df')->num_rows();
     $data['jumlah_pengguna'] = $this->m_data->get_data('pengguna')->num_rows();
+    $data['master_item'] = $this->m_data->get_data('master_item')->num_rows();
     $data['total_inquiry'] = $this->m_data->tot_inquiry();
     $data['total_buffer'] = $this->m_data->tot_buffer();
     $data['tot_mobil'] = $this->db->where('type', 'mobil')->get('type_vehicles')->num_rows();

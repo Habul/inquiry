@@ -47,14 +47,14 @@
 				<div class="col-lg-3 col-6">
 					<div class="small-box bg-green shadow">
 						<div class="inner">
-							<h3><?php echo $total_inquiry ?></h3>
-							<p>Jumlah Inquiry</p>
+							<h3><?php echo $master_item ?></h3>
+							<p>Jumlah Master Item</p>
 						</div>
 						<div class="icon">
 							<i class="ion ion-android-document"></i>
 						</div>
 						<?php if ($this->session->userdata('level') != "guest") {  ?>
-							<a href="<?php echo base_url('inquiry/inquiry') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+							<a href="<?php echo base_url('master_item/data') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 						<?php } ?>
 					</div>
 				</div>
