@@ -113,13 +113,13 @@
 		<li class="nav-item dropdown user-menu ">
 			<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 				<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="user-image img-circle elevation-2" alt="User Image">
-				<span class="d-none d-md-inline"><?php echo $this->session->userdata('nama'); ?>&nbsp;<i class="fas fa-angle-down right"></i>
+				<span class="d-none d-md-inline"><?php echo ucwords($this->session->userdata('nama')) ?>&nbsp;<i class="fas fa-angle-down right"></i>
 			</a>
 			<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 				<li class="user-header">
 					<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="img-circle elevation-2" alt="User Image">
 					<p>
-						<?php echo $this->session->userdata('nama');  ?>
+						<?= ucwords($this->session->userdata('nama'))  ?>
 						<small><?php echo $this->session->userdata('level');  ?></small>
 						<small id='hclock'><?php mdate('%Y-%m-%d %H:%i:%s') ?></small>
 					</p>
@@ -145,7 +145,7 @@
 						<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto');  ?>" class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
-						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="d-block"><?php echo $this->session->userdata('nama');  ?></a>
+						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="d-block"><?= ucwords($this->session->userdata('nama'))  ?></a>
 					</div>
 				</div>
 

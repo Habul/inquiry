@@ -174,7 +174,6 @@ class Sj extends CI_Controller
   {
     //$this->form_validation->set_rules('no_delivery', 'No Delivery', 'required');
     $this->form_validation->set_rules('date_delivery', 'Date Delivery', 'required');
-    $this->form_validation->set_rules('due_date', 'Due Date', 'required');
     $this->form_validation->set_rules('cust_name', 'Customer Name', 'required');
     $this->form_validation->set_rules('address', 'Address', 'required');
     $this->form_validation->set_rules('city', 'City', 'required');
@@ -186,7 +185,6 @@ class Sj extends CI_Controller
 
       $this->input->post('no_delivery');
       $date_delivery = $this->input->post('date_delivery');
-      $due_date = $this->input->post('due_date');
       $cust_name = $this->input->post('cust_name');
       $address = $this->input->post('address');
       $city = $this->input->post('city');
@@ -196,7 +194,6 @@ class Sj extends CI_Controller
       if ($this->form_validation->run() != false) {
         $data = array(
           'date_delivery' => $date_delivery,
-          'due_date' => $due_date,
           'cust_name' => $cust_name,
           'address' => $address,
           'city' => $city,

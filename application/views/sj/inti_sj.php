@@ -42,9 +42,9 @@
                 <td> : </td>
                 <td><?php echo str_replace("-", "/", $u->no_delivery); ?></td>
                 <td width="25%"></td>
-                <td rowspan="2">Address</td>
-                <td rowspan="2"> : </td>
-                <td rowspan="2" width="30%"><?php echo $u->address; ?></td>
+                <td rowspan="3">Address</td>
+                <td rowspan="3"> : </td>
+                <td rowspan="3" width="30%"><?php echo $u->address; ?></td>
               </tr>
               <tr>
                 <td width="15%">Delivery Date</td>
@@ -53,18 +53,15 @@
                 <td width="25%"></td>
               </tr>
               <tr>
-                <td width="15%">Due Date</td>
-                <td> : </td>
-                <td><?php echo $u->due_date; ?></td>
-                <td width="25%"></td>
-                <td>City</td>
-                <td> : </td>
-                <td><?php echo $u->city; ?></td>
-              </tr>
-              <tr>
                 <td width="15%">Cust Name</td>
                 <td> : </td>
                 <td><?php echo $u->cust_name; ?></td>
+                <td width="25%"></td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td> : </td>
+                <td><?php echo $u->city; ?></td>
                 <td width="25%"></td>
                 <td>Phone</td>
                 <td> : </td>

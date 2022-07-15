@@ -267,9 +267,9 @@ class Dashboard extends CI_Controller
 
   public function pengguna_aksi()
   {
-    $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
+    $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required|is_unique[pengguna.pengguna_nama]');
     $this->form_validation->set_rules('email', 'Email Pengguna', 'required');
-    $this->form_validation->set_rules('username', 'Username Pengguna', 'required');
+    $this->form_validation->set_rules('username', 'Username Pengguna', 'required|is_unique[pengguna.pengguna_username]');
     $this->form_validation->set_rules('password', 'Password Pengguna', 'required|min_length[6]');
     $this->form_validation->set_rules('level', 'Level Pengguna', 'required');
     $this->form_validation->set_rules('status', 'Status Pengguna', 'required');
@@ -297,7 +297,7 @@ class Dashboard extends CI_Controller
       $this->session->set_flashdata('success', 'Add Data successfully, Name : ' . $this->input->post('nama', TRUE) . ' !');
       redirect(base_url() . 'dashboard/pengguna');
     } else {
-      $this->session->set_flashdata('error', 'Data failed to Add, Please repeat !');
+      $this->session->set_flashdata('error', 'Data failed to Add, Username or Name as exists !');
       redirect(base_url() . 'dashboard/pengguna');
     }
   }
