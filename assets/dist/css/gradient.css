@@ -1,0 +1,25 @@
+:root {
+   --gradient: linear-gradient(to right, #f6d365 0%, #fda085 100%);
+ }
+
+ .gradient {
+   background-color: #eaeaea;
+   background-image: var(--gradient);
+   background-size: 200%;
+   background-position: right;
+   animation: animateGradient 20s infinite alternate;
+ }
+
+ @keyframes animateGradient {
+   0% {
+     background-position: left
+   }
+
+   50% {
+     background-position: right
+   }
+
+   100% {
+     background-position: left
+   }
+ }
