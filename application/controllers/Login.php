@@ -43,8 +43,16 @@ class Login extends CI_Controller
             'date' => date('Y-m-d H:i:s')
           ];
 
+        if (mdate('%H:%i') >= '00:01' && mdate('%H:%i') <= '10:00') :
+          $logg = 'Good morning ' . $this->session->userdata('nama') . '!';
+        elseif (mdate('%H:%i') >= '10:01' && mdate('%H:%i') <= '18:00') :
+          $logg = 'Good afternoon ' . $this->session->userdata('nama') . '!';
+        elseif (mdate('%H:%i') >= '18:01' && mdate('%H:%i') <= '23:59') :
+          $logg = 'Good evening' . $this->session->userdata('nama') . '!';
+        endif;
+
         $this->m_data->insert_data($data, 'history_log');
-        $this->session->set_flashdata('berhasil', 'Login successfully !');
+        $this->session->set_flashdata('loginok', $logg);
         redirect(base_url() . 'dashboard');
       } else {
         redirect(base_url() . 'login?alert=gagal');

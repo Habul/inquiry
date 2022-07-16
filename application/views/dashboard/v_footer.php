@@ -113,6 +113,15 @@
 			})
 		<?php } ?>
 	});
+
+	<?php if ($this->session->flashdata('loginok')) : ?> {
+			$(document).Toasts('create', {
+				class: 'bg-success',
+				title: 'Welcome',
+				body: '<?= ucwords($this->session->flashdata('loginok')) ?>'
+			})
+		};
+	<?php endif; ?>
 </script>
 <script>
 	var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');

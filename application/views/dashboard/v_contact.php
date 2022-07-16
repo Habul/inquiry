@@ -118,11 +118,12 @@
 							<textarea type="text" name="alamat" class="form-control" placeholder="Input alamat" required></textarea>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group mb-0">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="customFile" name="foto">
-							<label class="custom-file-label" for="customFile">Upload Image</label>
+							<input type="file" class="custom-file-input" id="image" name="foto" onchange="priviewImage()">
+							<label class="custom-file-label" for="image">Upload Image</label>
 						</div>
+						<img class="img-priview img-fluid col-sm-5 mt-1 mb-1">
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -231,3 +232,19 @@
 		</div>
 	</div>
 <?php endforeach; ?>
+
+<script>
+	function priviewImage() {
+		const image = document.querySelector('#image');
+		const imgPreview = document.querySelector('.img-priview');
+
+		imgPreview.style.display = 'block';
+
+		const oFReader = new FileReader();
+		oFReader.readAsDataURL(image.files[0]);
+
+		oFReader.onload = function(oFREvent) {
+			imgPreview.src = oFREvent.target.result;
+		}
+	}
+</script>

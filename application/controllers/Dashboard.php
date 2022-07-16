@@ -100,13 +100,16 @@ class Dashboard extends CI_Controller
             'pengguna_password' => password_hash($password_baru, PASSWORD_DEFAULT)
           );
           $this->m_data->update_data($where, $data, 'pengguna');
-          redirect('dashboard/profil?alert=ok');
+          $this->session->set_flashdata('berhasil', 'Update password successfully !');
+          redirect('dashboard/profil');
         } else {
-          redirect('dashboard/profil?alert=gagal');
+          $this->session->set_flashdata('gagal', 'Password does not match !');
+          redirect('dashboard/profil');
         }
       }
     } else {
-      redirect('dashboard/profil?alert=kurang');
+      $this->session->set_flashdata('ulang', 'Password must be 6 digits!');
+      redirect('dashboard/profil');
     }
   }
 

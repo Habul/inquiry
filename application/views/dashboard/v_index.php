@@ -16,18 +16,6 @@
 
 	<section class="content">
 		<div class="container-fluid">
-			<div class="alert alert-info alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<h5><i class="icon fas fa-info"></i> Welcome,
-					<?php if (mdate('%H:%i') >= '00:01' && mdate('%H:%i') <= '10:00') : ?>
-						Good morning <?php echo ucfirst($this->session->userdata('nama')) ?>
-					<?php elseif (mdate('%H:%i') >= '10:01' && mdate('%H:%i') <= '18:00') : ?>
-						Good afternoon <?php echo ucfirst($this->session->userdata('nama')) ?>
-					<?php elseif (mdate('%H:%i') >= '18:01' && mdate('%H:%i') <= '23:59') : ?>
-						Good evening <?php echo ucfirst($this->session->userdata('nama')) ?>
-					<?php endif ?> !
-				</h5>
-			</div>
 			<div class="row">
 				<div class="col-lg-3 col-6">
 					<div class="small-box bg-info shadow">
@@ -38,9 +26,7 @@
 						<div class="icon">
 							<i class="ion ion-android-list"></i>
 						</div>
-						<?php if ($this->session->userdata('level') != "guest") {  ?>
-							<a href="<?php echo base_url('sj/sj_df') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-						<?php } ?>
+						<a <?php if ($this->session->userdata('level') != "guest" && $this->session->userdata('level') == "admin") {  ?> href="<?php echo base_url('sj/sj_df') ?>" <?php } ?> class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 
@@ -83,9 +69,7 @@
 						<div class="icon">
 							<i class="fas fa-users"></i>
 						</div>
-						<?php if ($this->session->userdata('level') != "guest") {  ?>
-							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-						<?php } ?>
+						<a <?php if ($this->session->userdata('level') != "guest" && $this->session->userdata('level') == "admin") {  ?> href="<?= base_url('dashboard/pengguna') ?>" <?php } ?>class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 
@@ -141,9 +125,7 @@
 						<div class="icon">
 							<i class="fas fa-fingerprint"></i>
 						</div>
-						<?php if ($this->session->userdata('level') != "guest") {  ?>
-							<a href="<?php echo base_url('dashboard/license') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-						<?php } ?>
+						<a <?php if ($this->session->userdata('level') != "guest" && $this->session->userdata('level') == "admin") { ?> href="<?= base_url('dashboard/license') ?>" <?php } ?> class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 
