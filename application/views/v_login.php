@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/login.css">
 </head>
 
-<body class="hold-transition login-page">
+<body>
 	<div class="wrapper">
 		<div class="logo">
 			<img src="<?php echo base_url() . 'gambar/website/Untitled-1-02.png' ?>">
