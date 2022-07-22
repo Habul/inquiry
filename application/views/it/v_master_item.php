@@ -160,8 +160,10 @@
                       <?php endif; ?>
                     </td>
                     <?php if ($this->session->userdata('level') == "admin") :  ?>
-                      <td>
-                        <a class="btn-sm btn-info" data-toggle="modal" data-target="#modal_update_it<?= $p->id; ?>" title="Update IT"><i class="fas fa-user-edit"></i></a>
+                      <td class="text-center">
+                        <div class="form-check">
+                          <input class="form-check-input position-static" type="checkbox" <?= check_access($role['id'], $m['id']);  ?> data-role="<?= $p->status_it;  ?>" data-menu="<?= $p->id; ?>">
+                        </div>
                       </td>
                     <?php endif ?>
                   </tr>
