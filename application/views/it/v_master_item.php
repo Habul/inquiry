@@ -125,7 +125,7 @@
                     <th>Status</th>
                     <th>Status IT</th>
                     <?php if ($this->session->userdata('level') == "admin") :  ?>
-                      <th width="3%">Actions</th>
+                      <th width="10%">Actions</th>
                     <?php endif ?>
                   </tr>
                 </thead>
@@ -133,14 +133,14 @@
                 foreach ($master_ok as $p) {
                 ?>
                   <tr>
-                    <td class="text-center"></td>
-                    <td class="text-center"><?= $p->user ?></td>
-                    <td><?= strtoupper($p->merk) ?></td>
-                    <td class="text-center"><?= $p->kelompok ?></td>
-                    <td class="text-center"><?= strtoupper($p->part_number) ?></td>
-                    <td class="text-center"><?= strtoupper($p->nama) ?></td>
-                    <td class="text-center"><?= $p->satuan ?></td>
-                    <td class="text-center"><?= strtoupper($p->type) ?></td>
+                    <td class="align-middle text-center"></td>
+                    <td class="align-middle text-center"><?= $p->user ?></td>
+                    <td class="align-middle"><?= strtoupper($p->merk) ?></td>
+                    <td class="align-middle text-center"><?= $p->kelompok ?></td>
+                    <td class="align-middle"><?= strtoupper($p->part_number) ?></td>
+                    <td class="align-middle text-center"><?= strtoupper($p->nama) ?></td>
+                    <td class="align-middle text-center"><?= $p->satuan ?></td>
+                    <td class="align-middle text-center"><?= strtoupper($p->type) ?></td>
                     <td class="align-middle text-center">
                       <?php if ($p->status == 1) : ?>
                         <span class="badge badge-success"><i class="fas fa-check-circle"></i> Approve</span>
@@ -160,9 +160,14 @@
                       <?php endif; ?>
                     </td>
                     <?php if ($this->session->userdata('level') == "admin") :  ?>
-                      <td class="text-center">
-                        <div class="form-check">
-                          <input class="form-check-input position-static" type="checkbox" <?= check_access($role['id'], $m['id']);  ?> data-role="<?= $p->status_it;  ?>" data-menu="<?= $p->id; ?>">
+                      <td class="align-middle text-center">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="approve" value="option1" title="Approve">
+                          <label class="form-check-label" for="approve">App</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="reject" value="option2" title="Reject">
+                          <label class="form-check-label" for="reject">Rej</label>
                         </div>
                       </td>
                     <?php endif ?>

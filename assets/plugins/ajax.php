@@ -30,7 +30,7 @@
 
    var t = $('#index1').DataTable({
       "responsive": true,
-      "lengthChange": true,
+      "lengthChange": false,
       "autoWidth": false,
       "columnDefs": [{
          "searchable": false,
