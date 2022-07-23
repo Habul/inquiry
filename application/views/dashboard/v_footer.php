@@ -80,23 +80,23 @@
 		});
 	});
 
-	// $('.form-check-input').on('click', function() {
-	// 	const menuId = $(this).data('menu');
-	// 	const roleId = $(this).data('role');
+	$('.form-check-input').on('click', function() {
+		const id = $(this).data('id');
+		const status_it = $(this).data('status_it');
 
 
-	// 	$.ajax({
-	// 		url: "<?= base_url('master_item/changeaccess'); ?>",
-	// 		type: 'post',
-	// 		data: {
-	// 			menuId: menuId,
-	// 			roleId: roleId
-	// 		},
-	// 		success: function() {
-	// 			document.location.href = "<?= base_url('admin/roleaccess/'); ?>" + roleId;
-	// 		}
-	// 	})
-	// });
+		$.ajax({
+			url: "<?= base_url('master_item/change'); ?>",
+			type: 'post',
+			data: {
+				id: id,
+				status_it: status_it
+			},
+			success: function() {
+				document.location.href = "<?= base_url('admin/roleaccess/'); ?>" + roleId;
+			}
+		})
+	});
 
 	$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
 		localStorage.setItem('activeTab', $(e.target).attr('href'));

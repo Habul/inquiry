@@ -53,6 +53,7 @@
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
+      "dom": '<lf<t>ip>',
       "columnDefs": [{
          "searchable": false,
          "orderable": false,

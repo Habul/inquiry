@@ -159,27 +159,24 @@ class Master_item extends CI_Controller
       }
    }
 
-   public function change()
+   public function approve_system()
    {
-      $menu_id = $this->input->post('menuId');
-      $role_id = $this->input->post('roleId');
+      $id = $this->input->post('id');
+      $status_it = $this->input->post('status_it');
 
-      $data = [
-         'role_id' => $role_id,
-         'menu_id' => $menu_id
+      $id = [
+         'id' => $id,
       ];
 
-      $result = $this->db->get_where('user_access_menu', $data);
+      $data = [
+         'status_it' => $status_it,
+      ];
+
+      $result = $this->db->get_where('master_item', $id);
 
       if ($result->num_rows() < 1) {
-         $this->db->insert('user_access_menu', $data);
-      } else {
-         $this->db->delete('user_access_menu', $data);
+         $this->m_data->update_data($id, $data, 'master_item');
       }
-      $this->session->set_flashdata('message', '<script type="text/javascript">
-                Swal.fire(
-                \'Access Telah Berhasil Diubah!\',
-                \'\',
-                \'success\')</script>');
+      $this->session->set_flashdata('berhasil', 'Approve system successfully!');
    }
 }

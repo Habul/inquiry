@@ -161,16 +161,11 @@
                     </td>
                     <?php if ($this->session->userdata('level') == "admin") :  ?>
                       <td class="align-middle text-center">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="approve" value="option1" title="Approve">
-                          <label class="form-check-label" for="approve">App</label>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" data-id="<?= $p->id; ?>" data-status_it="<?= $p->status_it; ?>" id="approve<?= $p->id ?>">
+                          <label class="form-check-label" for="approve<?= $p->id ?>">Acc</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="reject" value="option2" title="Reject">
-                          <label class="form-check-label" for="reject">Rej</label>
-                        </div>
-                      </td>
-                    <?php endif ?>
+                      <?php endif ?>
                   </tr>
                 <?php  }  ?>
               </table>
