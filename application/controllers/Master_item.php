@@ -161,22 +161,15 @@ class Master_item extends CI_Controller
 
    public function approve_system()
    {
-      $id = $this->input->post('id');
       $status_it = $this->input->post('status_it');
 
-      $id = [
-         'id' => $id,
-      ];
-
-      $data = [
-         'status_it' => $status_it,
-      ];
-
-      $result = $this->db->get_where('master_item', $id);
-
-      if ($result->num_rows() < 1) {
-         $this->m_data->update_data($id, $data, 'master_item');
+      for ($i = 0; $i < sizeof($status_it); $i++) {
+         $data = array('status_it' => $status_it[$i]);
+         $this->db->insert('added_student', $data);
       }
-      $this->session->set_flashdata('berhasil', 'Approve system successfully!');
+
+      $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
+
+      return redirect('students');
    }
 }

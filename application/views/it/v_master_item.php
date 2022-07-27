@@ -62,14 +62,14 @@
                 foreach ($master as $p) {
                 ?>
                   <tr>
-                    <td class="text-center"></td>
-                    <td class="text-center"><?= $p->user ?></td>
-                    <td><?= strtoupper($p->merk) ?></td>
-                    <td class="text-center"><?= $p->kelompok ?></td>
-                    <td class="text-center"><?= strtoupper($p->part_number) ?></td>
-                    <td class="text-center"><?= strtoupper($p->nama) ?></td>
-                    <td class="text-center"><?= $p->satuan ?></td>
-                    <td class="text-center"><?= strtoupper($p->type) ?></td>
+                    <td class="align-middle text-center"></td>
+                    <td class="align-middle"><?= $p->user ?></td>
+                    <td class="align-middle"><?= strtoupper($p->merk) ?></td>
+                    <td class="align-middle text-center"><?= $p->kelompok ?></td>
+                    <td class="align-middle"><?= strtoupper($p->part_number) ?></td>
+                    <td class="align-middle text-center"><?= strtoupper($p->nama) ?></td>
+                    <td class="align-middle text-center"><?= $p->satuan ?></td>
+                    <td class="align-middle text-center"><?= strtoupper($p->type) ?></td>
                     <td class="align-middle text-center">
                       <?php if ($p->status == 1) : ?>
                         <span class="badge badge-success"><i class="fas fa-check-circle"></i> Approve</span>
@@ -99,15 +99,24 @@
             <div class="card-header">
               <h4 class="card-title"><i class="fa fa-check-square"></i> Master item Approve</h4>
               <div class="card-tools">
-                <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
-                  <i class="fas fa-expand"></i>
-                </button>
-                <button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                </button>
+                <?php if ($this->session->userdata('level') == "admin") :  ?>
+                  <a class="btn btn-xs btn-success" href="#">
+                    <i class="fas fa-check-circle shadow">&nbsp;Proses</i>
+                  </a>
+                  <a class="btn btn-xs btn-danger" href="#">
+                    <i class="fas fa-times-circle shadow">&nbsp;Reject</i>
+                  </a>
+                <?php else : ?>
+                  <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                  <button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                <?php endif; ?>
               </div>
             </div>
             <div class="card-body">
@@ -125,7 +134,7 @@
                     <th>Status</th>
                     <th>Status IT</th>
                     <?php if ($this->session->userdata('level') == "admin") :  ?>
-                      <th width="10%">Actions</th>
+                      <th width="5%">Actions</th>
                     <?php endif ?>
                   </tr>
                 </thead>
@@ -134,7 +143,7 @@
                 ?>
                   <tr>
                     <td class="align-middle text-center"></td>
-                    <td class="align-middle text-center"><?= $p->user ?></td>
+                    <td class="align-middle"><?= $p->user ?></td>
                     <td class="align-middle"><?= strtoupper($p->merk) ?></td>
                     <td class="align-middle text-center"><?= $p->kelompok ?></td>
                     <td class="align-middle"><?= strtoupper($p->part_number) ?></td>
@@ -162,8 +171,8 @@
                     <?php if ($this->session->userdata('level') == "admin") :  ?>
                       <td class="align-middle text-center">
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" data-id="<?= $p->id; ?>" data-status_it="<?= $p->status_it; ?>" id="approve<?= $p->id ?>">
-                          <label class="form-check-label" for="approve<?= $p->id ?>">Acc</label>
+                          <input class="form-check-input" type="checkbox" id="approve<?= $p->id ?>" name="status_it[]">
+                          <label class="form-check-label" for="approve<?= $p->id ?>"></label>
                         </div>
                       <?php endif ?>
                   </tr>

@@ -53,13 +53,15 @@
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
-      "dom": '<lf<t>ip>',
       "columnDefs": [{
          "searchable": false,
          "orderable": false,
          "targets": 0
       }],
       "order": [],
+      dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+         "<'row'<'col-sm-12'tr>>" +
+         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
       "buttons": [{
             extend: 'copyHtml5',
             filename: 'Download',
