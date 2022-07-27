@@ -20,26 +20,32 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card card-success card-outline">
+            <?= form_open('master_item/approve_system') ?>
             <div class="card-header">
               <h4 class="card-title">
                 <?php if ($this->session->userdata('level') != "sales") :  ?>
                   <a class="btn btn-success shadow" data-toggle="modal" data-target="#modal_add">
                     <i class="fa fa-plus"></i>&nbsp; Create new item
                   </a>
-                <?php elseif ($this->session->userdata('enginering') != "engineering") : ?>
+                <?php elseif ($this->session->userdata('level') != "engineering") : ?>
                   <i class="fas fa-tools"></i>&nbsp; Master item
                 <?php endif; ?>
               </h4>
               <div class="card-tools">
-                <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
-                  <i class="fas fa-expand"></i>
-                </button>
-                <button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                </button>
+                <?php if ($this->session->userdata('level') == "admin" || $this->session->userdata('level') == "sales") :  ?>
+                  <button type="submit" class="btn btn-xs btn-success shadow">
+                    <i class="fas fa-check-circle">&nbsp;Proses approve</i>
+                  </button>
+                <?php else : ?> <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                  <button type="button" class="btn btn-xs btn-icon btn-circle btn-danger" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                <?php endif; ?>
               </div>
             </div>
             <div class="card-body">
@@ -81,7 +87,12 @@
                     </td>
                     <td class="align-middle text-center">
                       <?php if ($this->session->userdata('level') != "engineering") :  ?>
-                        <a class="btn-sm btn-info" data-toggle="modal" data-target="#modal_update<?= $p->id; ?>" title="Update"><i class="fas fa-edit"></i></a>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="status[]" value="<?= $p->id; ?>" <?php if ($p->status == '1') {
+                                                                                                                    echo 'checked disabled';
+                                                                                                                  } ?>>
+                          <label class="form-check-label"></label>
+                        </div>
                       <?php endif ?>
                       <?php if ($this->session->userdata('level') != "sales") :  ?>
                         <a class="btn-sm btn-warning" data-toggle="modal" data-target="#modal_edit<?= $p->id; ?>" title="Edit"><i class="fa fa-pencil-alt"></i></a>
@@ -93,18 +104,18 @@
                 }  ?>
               </table>
             </div>
+            <?= form_close() ?>
           </div>
 
           <div class="card card-success card-outline">
-            <?= form_open('master_item/approve_system') ?>
-            <button type="submit" class="btn btn-xs btn-success">
-              <i class="fas fa-check-circle shadow">&nbsp;Proses</i>
-            </button>
+            <?= form_open('master_item/approve_system_it') ?>
             <div class="card-header">
               <h4 class="card-title"><i class="fa fa-check-square"></i> Master item Approve</h4>
               <div class="card-tools">
                 <?php if ($this->session->userdata('level') == "admin") :  ?>
-
+                  <button type="submit" class="btn btn-xs btn-success shadow">
+                    <i class="fas fa-check-circle">&nbsp;Proses approve IT</i>
+                  </button>
                 <?php else : ?> <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
@@ -168,10 +179,10 @@
                     </td>
                     <?php if ($this->session->userdata('level') == "admin") :  ?>
                       <td class="align-middle text-center">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" name="status[]" value="<?= $p->id; ?>" <?php if ($p->item_id == $p->id) {
-                                                                                                                    echo 'checked disabled';
-                                                                                                                  } ?>>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="status_it[]" value="<?= $p->id; ?>" <?php if ($p->status_it == '1') {
+                                                                                                                      echo 'checked disabled';
+                                                                                                                    } ?>>
                           <label class="form-check-label"></label>
                         </div>
                       <?php endif ?>

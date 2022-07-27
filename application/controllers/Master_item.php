@@ -17,7 +17,7 @@ class Master_item extends CI_Controller
    {
       $data['title'] = 'Master Item';
       $data['master'] = $this->m_data->get_index_wheredesc('addtime', ['status !=' => '1'], 'master_item')->result();
-      $data['master_ok'] = $this->m_data->master_item();
+      $data['master_ok'] = $this->m_data->get_index_wheredesc('addtime', ['status' => '1'], 'master_item')->result();
       $this->load->view('dashboard/v_header', $data);
       $this->load->view('it/v_master_item', $data);
       $this->load->view('dashboard/v_footer', $data);
@@ -162,12 +162,35 @@ class Master_item extends CI_Controller
    public function approve_system()
    {
       $status = $this->input->post('status');
-
       for ($i = 0; $i < sizeof($status); $i++) {
-         $data = array('item_id' => $status[$i]);
-         $this->db->insert('add_master_item', $data);
-      }
+         $where = array(
+            'id' => $status[$i]
+         );
 
+         $data = array(
+            'status' => '1'
+         );
+
+         $this->m_data->update_data($where, $data, 'master_item');
+      }
+      $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
+      redirect(base_url() . 'master_item/data');
+   }
+
+   public function approve_system_it()
+   {
+      $status_it = $this->input->post('status_it');
+      for ($i = 0; $i < sizeof($status_it); $i++) {
+         $where = array(
+            'id' => $status_it[$i]
+         );
+
+         $data = array(
+            'status_it' => '1'
+         );
+
+         $this->m_data->update_data($where, $data, 'master_item');
+      }
       $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
       redirect(base_url() . 'master_item/data');
    }
