@@ -96,18 +96,16 @@
           </div>
 
           <div class="card card-success card-outline">
+            <?= form_open('master_item/approve_system') ?>
+            <button type="submit" class="btn btn-xs btn-success">
+              <i class="fas fa-check-circle shadow">&nbsp;Proses</i>
+            </button>
             <div class="card-header">
               <h4 class="card-title"><i class="fa fa-check-square"></i> Master item Approve</h4>
               <div class="card-tools">
                 <?php if ($this->session->userdata('level') == "admin") :  ?>
-                  <a class="btn btn-xs btn-success" href="#">
-                    <i class="fas fa-check-circle shadow">&nbsp;Proses</i>
-                  </a>
-                  <a class="btn btn-xs btn-danger" href="#">
-                    <i class="fas fa-times-circle shadow">&nbsp;Reject</i>
-                  </a>
-                <?php else : ?>
-                  <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
+
+                <?php else : ?> <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
                   <button type="button" class="btn btn-xs btn-icon btn-circle btn-primary" data-card-widget="maximize">
@@ -171,14 +169,17 @@
                     <?php if ($this->session->userdata('level') == "admin") :  ?>
                       <td class="align-middle text-center">
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="approve<?= $p->id ?>" name="status_it[]">
-                          <label class="form-check-label" for="approve<?= $p->id ?>"></label>
+                          <input class="form-check-input" type="checkbox" name="status[]" value="<?= $p->id; ?>" <?php if ($p->item_id == $p->id) {
+                                                                                                                    echo 'checked disabled';
+                                                                                                                  } ?>>
+                          <label class="form-check-label"></label>
                         </div>
                       <?php endif ?>
                   </tr>
                 <?php  }  ?>
               </table>
             </div>
+            <?= form_close() ?>
           </div>
         </div>
       </div>

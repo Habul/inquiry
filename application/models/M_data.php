@@ -238,4 +238,13 @@ class M_data extends CI_Model
     $data = $this->db->query($sql);
     return $data->result();
   }
+
+  public function master_item()
+  {
+    $sql = $this->db->select('s.*, as.item_id')
+      ->from('master_item as s')
+      ->join('add_master_item as as', 'as.item_id = s.id', 'left')
+      ->order_by('s.id', 'desc');
+    return $sql->get()->result();
+  }
 }

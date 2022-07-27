@@ -17,7 +17,7 @@ class Master_item extends CI_Controller
    {
       $data['title'] = 'Master Item';
       $data['master'] = $this->m_data->get_index_wheredesc('addtime', ['status !=' => '1'], 'master_item')->result();
-      $data['master_ok'] = $this->m_data->get_index_wheredesc('addtime', ['status' => '1'], 'master_item')->result();
+      $data['master_ok'] = $this->m_data->master_item();
       $this->load->view('dashboard/v_header', $data);
       $this->load->view('it/v_master_item', $data);
       $this->load->view('dashboard/v_footer', $data);
@@ -161,15 +161,14 @@ class Master_item extends CI_Controller
 
    public function approve_system()
    {
-      $status_it = $this->input->post('status_it');
+      $status = $this->input->post('status');
 
-      for ($i = 0; $i < sizeof($status_it); $i++) {
-         $data = array('status_it' => $status_it[$i]);
-         $this->db->insert('added_student', $data);
+      for ($i = 0; $i < sizeof($status); $i++) {
+         $data = array('item_id' => $status[$i]);
+         $this->db->insert('add_master_item', $data);
       }
 
       $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
-
-      return redirect('students');
+      redirect(base_url() . 'master_item/data');
    }
 }
