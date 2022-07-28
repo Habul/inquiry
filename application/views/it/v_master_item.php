@@ -33,8 +33,8 @@
               </h4>
               <div class="card-tools">
                 <?php if ($this->session->userdata('level') == "admin" || $this->session->userdata('level') == "sales") :  ?>
-                  <button type="submit" class="btn btn-xs btn-success shadow">
-                    <i class="fas fa-check-circle">&nbsp;Proses approve</i>
+                  <button type="submit" class="btn btn-sm btn-success shadow">
+                    <i class="fas fa-check-circle"></i>&nbsp;Proses approve
                   </button>
                 <?php else : ?> <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -113,8 +113,8 @@
               <h4 class="card-title"><i class="fa fa-check-square"></i> Master item Approve</h4>
               <div class="card-tools">
                 <?php if ($this->session->userdata('level') == "admin") :  ?>
-                  <button type="submit" class="btn btn-xs btn-success shadow">
-                    <i class="fas fa-check-circle">&nbsp;Proses approve IT</i>
+                  <button type="submit" class="btn btn-sm btn-success shadow">
+                    <i class="fas fa-check-circle"></i>&nbsp;Proses approve IT
                   </button>
                 <?php else : ?> <button type="button" class="btn btn-xs btn-icon btn-circle btn-warning" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>

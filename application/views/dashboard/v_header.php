@@ -221,11 +221,14 @@
 							<?php if ($this->session->userdata('level') != "warehouse") { ?>
 								<li class="nav-header">Users</li>
 								<li class="nav-item">
-									<a href="<?= base_url() . 'master_item/data' ?>" <?= $this->uri->uri_string() == 'master_item/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+									<a href="<?= base_url('master_item/data') ?>" <?= $this->uri->uri_string() == 'master_item/data' || $this->uri->uri_string() == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
 										<i class="nav-icon fas fa-tools"></i>
-										<?php $total = $this->db->where('status_it', '0')->where('status', '1')->get('master_item')->num_rows(); ?>
-										<?php if ($total != 0) : ?>
-											<span class="badge badge-info right"><?php echo $total; ?></span>
+										<?php $total = $this->db->where('status_it', '0')->where('status', '1')->get('master_item')->num_rows();
+										$total2 = $this->db->where('status', '0')->where('status_it', '0')->get('master_item')->num_rows(); ?>
+										<?php if ($total != 0 && $this->session->userdata('level') == "admin") : ?>
+											<span class="badge badge-info right"><?= $total; ?></span>
+										<?php elseif ($total2 != 0 && $this->session->userdata('level') != "admin") : ?>
+											<span class="badge badge-warning right"><?= $total2; ?></span>
 										<?php endif; ?>
 										<p>Master Item</p>
 									</a>
