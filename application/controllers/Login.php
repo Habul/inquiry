@@ -48,7 +48,7 @@ class Login extends CI_Controller
         elseif (mdate('%H:%i') >= '10:01' && mdate('%H:%i') <= '18:00') :
           $logg = 'Good afternoon ' . $this->session->userdata('nama') . '!';
         elseif (mdate('%H:%i') >= '18:01' && mdate('%H:%i') <= '23:59') :
-          $logg = 'Good evening' . $this->session->userdata('nama') . '!';
+          $logg = 'Good evening ' . $this->session->userdata('nama') . '!';
         endif;
 
         $this->m_data->insert_data($data, 'history_log');
