@@ -107,9 +107,17 @@ class M_data extends CI_Model
     return $data->result();
   }
 
+  public function select_by_user()
+  {
+    $sql = "SELECT user,COUNT(id) AS jmlh FROM master_item GROUP BY `user`";
+    $data = $this->db->query($sql);
+    return $data->result();
+  }
+
+
   public function select_by_brand()
   {
-    $sql = "SELECT brand,COUNT(inquiry_id) AS jmlh FROM inquiry GROUP BY brand";
+    $sql = "SELECT merk,COUNT(id) AS jmlh FROM master_item GROUP BY merk";
     $data = $this->db->query($sql);
     return $data->result();
   }

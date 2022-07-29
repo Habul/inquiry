@@ -364,21 +364,21 @@
    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
    var donutData = {
       labels: [<?php
-               if (count($data_sales) > 0) {
-                  foreach ($data_sales as $data) {
-                     echo "'" . $data->sales . "',";
+               if (count($data_user) > 0) {
+                  foreach ($data_user as $data) {
+                     echo "'" . $data->user . "',";
                   }
                }
                ?>],
       datasets: [{
          data: [<?php
-                  if (count($data_sales) > 0) {
-                     foreach ($data_sales as $data) {
+                  if (count($data_user) > 0) {
+                     foreach ($data_user as $data) {
                         echo $data->jmlh . ", ";
                      }
                   }
                   ?>],
-         backgroundColor: <?php echo $sales_color ?>,
+         backgroundColor: <?php echo $user_color ?>,
       }]
    }
    var donutOptions = {
@@ -399,7 +399,7 @@
       labels: [<?php
                if (count($data_brand) > 0) {
                   foreach ($data_brand as $data) {
-                     echo "'" . $data->brand . "',";
+                     echo "'" . $data->merk . "',";
                   }
                }
                ?>],

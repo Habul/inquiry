@@ -136,17 +136,17 @@
 							<div class="card-tools">
 								<ul class="nav nav-pills ml-auto">
 									<li class="nav-item">
-										<a class="nav-link active" href="#revenue-chart" data-toggle="tab">Sales</a>
+										<a class="nav-link active" href="#revenue-chart" data-toggle="tab">User</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="#sales-chart" data-toggle="tab">Brand</a>
+										<a class="nav-link" href="#sales-chart" data-toggle="tab">Merk</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="#area-chart" data-toggle="tab">Surat Jalan</a>
 									</li>
-									<!-- <li class="nav-item">
+									<li class="nav-item">
 										<a class="nav-link" href="#bar-chart" data-toggle="tab">Tracking</a>
-									</li> -->
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -161,9 +161,9 @@
 								<div class="chart tab-pane" id="area-chart" style="position: relative; height: 300px;">
 									<canvas id="areaChart" height="300" style="height: 300px;"></canvas>
 								</div>
-								<!-- <div class="chart tab-pane" id="bar-chart" style="position: relative; height: 300px;">
-										<canvas id="barChart" height="300" style="height: 300px;"></canvas>
-									</div> -->
+								<div class="chart tab-pane" id="bar-chart" style="position: relative; height: 300px;">
+									<canvas id="barChart" height="300" style="height: 300px;"></canvas>
+								</div>
 							</div>
 						</div>
 					</div>

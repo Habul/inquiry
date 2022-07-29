@@ -31,13 +31,13 @@ class Dashboard extends CI_Controller
 
     $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 
-    $sales = $this->m_data->select_by_sales();
+    $user = $this->m_data->select_by_user();
     $index = 0;
-    foreach ($sales as $value) {
+    foreach ($user as $value) {
       $color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
-      $sales_color[$index] = $color;
-      $data_sales[$index] = $value->nama;
+      $user_color[$index] = $color;
+      $data_user[$index] = $value->user;
 
       $index++;
     }
@@ -48,7 +48,7 @@ class Dashboard extends CI_Controller
       $color = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
       $brand_color[$index] = $color;
-      $data_posisi[$index] = $value->nama;
+      $data_posisi[$index] = $value->merk;
 
       $index++;
     }
@@ -57,9 +57,10 @@ class Dashboard extends CI_Controller
     $data['barmotor'] = $this->m_data->bartracking('motor');
     $data['bartruck'] = $this->m_data->bartracking('truck');
     $data['suratdf'] = $this->m_data->suratjalan('sj_user_df');
+    $data['data_user'] = $this->m_data->select_by_user();
     $data['data_sales'] = $this->m_data->select_by_sales();
     $data['data_brand'] = $this->m_data->select_by_brand();
-    $data['sales_color'] = json_encode($sales_color);
+    $data['user_color'] = json_encode($user_color);
     $data['brand_color'] = json_encode($brand_color);
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('dashboard/v_index', $data);

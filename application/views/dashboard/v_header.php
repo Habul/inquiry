@@ -49,87 +49,64 @@
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" data-widget="navbar-search" href="#" role="button">
-						<i class="fas fa-search"></i>
-					</a>
-					<div class="navbar-search-block">
-						<form class="form-inline">
-							<div class="input-group input-group-sm">
-								<input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-								<div class="input-group-append">
-									<button class="btn btn-navbar" type="submit">
-										<i class="fas fa-search"></i>
-									</button>
-									<button class="btn btn-navbar" type="button" data-widget="navbar-search">
-										<i class="fas fa-times"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</li>
-
 				<li class="nav-item dropdown">
-					<?php if ($this->session->userdata('level') != "sales") {  ?>
-						<?php if ($this->session->userdata('level') != "guest") {  ?>
-							<?php
-							$this->load->model('m_data');
-							$jml_inquiry = $this->m_data->total_inquiry();
-							$jml_buffer = $this->m_data->total_buffer();
-							$total = $jml_inquiry + $jml_buffer;  ?>
-							<a class="nav-link" data-toggle="dropdown" href="#">
-								<i class="far fa-bell"></i>
-								<span class="badge badge-warning navbar-badge"><?= $total; ?></span>
+					<?php if ($this->session->userdata('level') == "admin") {  ?>
+						<?php
+						$this->load->model('m_data');
+						$jml_inquiry = $this->m_data->total_inquiry();
+						$jml_buffer = $this->m_data->total_buffer();
+						$total = $jml_inquiry + $jml_buffer;  ?>
+						<a class="nav-link" data-toggle="dropdown" href="#">
+							<i class="far fa-bell"></i>
+							<span class="badge badge-warning navbar-badge"><?= $total; ?></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+							<span class="dropdown-item dropdown-header">You have notifications</span>
+							<div class="dropdown-divider"></div>
+							<a href="<?php echo base_url('inquiry/inquiry') ?>" class="dropdown-item">
+								<i class="fas fa-book"></i> You have <?= $jml_inquiry; ?> Inquiry
 							</a>
-							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-								<span class="dropdown-item dropdown-header">You have notifications</span>
-								<div class="dropdown-divider"></div>
-								<a href="<?php echo base_url('inquiry/inquiry') ?>" class="dropdown-item">
-									<i class="fas fa-book"></i> You have <?= $jml_inquiry; ?> Inquiry
-								</a>
-								<div class="dropdown-divider"></div>
-								<a href="<?php echo base_url('buffer/buffer') ?>" class="dropdown-item">
-									<i class="fas fa-database"></i> You have <?= $jml_buffer; ?> Buffer
-								</a>
-							</div>
+							<div class="dropdown-divider"></div>
+							<a href="<?php echo base_url('buffer/buffer') ?>" class="dropdown-item">
+								<i class="fas fa-database"></i> You have <?= $jml_buffer; ?> Buffer
+							</a>
+						</div>
 				</li>
 			<?php } ?>
-		<?php } ?>
-		<li class="nav-item">
-			<a class="nav-link" data-widget="fullscreen" href="#" role="button">
-				<i class="fas fa-expand-arrows-alt"></i>
-			</a>
-		</li>
-		<li class="nav-item">
-			<div class="theme-switch-wrapper nav-link">
-				<label class="theme-switch" for="checkbox">
-					<input type="checkbox" id="checkbox" title="Dark Mode" />
-					<span class="slider round"></span>
-				</label>
-			</div>
-		</li>
+			<li class="nav-item">
+				<a class="nav-link" data-widget="fullscreen" href="#" role="button">
+					<i class="fas fa-expand-arrows-alt"></i>
+				</a>
+			</li>
+			<li class="nav-item">
+				<div class="theme-switch-wrapper nav-link">
+					<label class="theme-switch" for="checkbox">
+						<input type="checkbox" id="checkbox" title="Dark Mode" />
+						<span class="slider round"></span>
+					</label>
+				</div>
+			</li>
 
-		<li class="nav-item dropdown user-menu ">
-			<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-				<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="user-image img-circle elevation-2" alt="User Image">
-				<span class="d-none d-md-inline"><?php echo ucwords($this->session->userdata('nama')) ?>&nbsp;<i class="fas fa-angle-down right"></i>
-			</a>
-			<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-				<li class="user-header">
-					<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="img-circle elevation-2" alt="User Image">
-					<p>
-						<?= ucwords($this->session->userdata('nama'))  ?>
-						<small><?php echo $this->session->userdata('level');  ?></small>
-						<small id='hclock'><?php mdate('%Y-%m-%d %H:%i:%s') ?></small>
-					</p>
-				</li>
-				<li class="user-footer">
-					<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default border-0" title="Profile"><i class="fas fa-user-tie"></i> Profile</a>
-					<a data-toggle="modal" data-target="#logoutModal" class="btn btn-default float-right border-0" title="Sign out"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
-				</li>
-			</ul>
-		</li>
+			<li class="nav-item dropdown user-menu ">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+					<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="user-image img-circle elevation-2" alt="User Image">
+					<span class="d-none d-md-inline"><?php echo ucwords($this->session->userdata('nama')) ?>&nbsp;<i class="fas fa-angle-down right"></i>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+					<li class="user-header">
+						<img src="<?php echo base_url() . 'gambar/profile/' . $this->session->userdata('foto'); ?>" class="img-circle elevation-2" alt="User Image">
+						<p>
+							<?= ucwords($this->session->userdata('nama'))  ?>
+							<small><?php echo $this->session->userdata('level');  ?></small>
+							<small id='hclock'><?php mdate('%Y-%m-%d %H:%i:%s') ?></small>
+						</p>
+					</li>
+					<li class="user-footer">
+						<a href="<?php echo base_url() . 'dashboard/profil' ?>" class="btn btn-default border-0" title="Profile"><i class="fas fa-user-tie"></i> Profile</a>
+						<a data-toggle="modal" data-target="#logoutModal" class="btn btn-default float-right border-0" title="Sign out"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+					</li>
+				</ul>
+			</li>
 			</ul>
 		</nav>
 
