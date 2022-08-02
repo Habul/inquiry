@@ -56,9 +56,10 @@
 								</div>
 							</div>
 							<?php echo form_close() ?>
-							<span class="d-flex justify-content-center">
+							<span class="d-flex justify-content-center mb-3 mt-3">
 								<?= $generate ?>
 							</span>
+							<?= $download ?>
 						</div>
 					</div>
 
@@ -83,9 +84,10 @@
 								</div>
 							</div>
 							<?php echo form_close() ?>
-							<span class="d-flex justify-content-center">
+							<span class="d-flex justify-content-center mt-3 mb-3">
 								<?= $generateqr ?>
 							</span>
+							<?= $downloadqr ?>
 						</div>
 					</div>
 				</div>

@@ -611,6 +611,7 @@ class Dashboard extends CI_Controller
     }
 
     $data['generate'] = '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($update, $generator::TYPE_CODE_128)) . '">';
+    $data['download'] = '<a href="data:image/png;base64,' . base64_encode($generator->getBarcode($update, $generator::TYPE_CODE_128)) . '" download="' . $update . '.png" class="btn btn-block btn-outline-warning btn-sm">Download</a>';
     $data['detail'] = $update;
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('it/v_games.php', $data);
@@ -634,6 +635,7 @@ class Dashboard extends CI_Controller
     $this->ciqrcode->generate($params);
 
     $data['generateqr'] = '<img src="' . base_url() . 'Qr.png" style="width: 100px;" />';
+    $data['downloadqr'] = '<a href="' . base_url() . 'Qr.png" download="' . $update . '.png" class="btn btn-block btn-outline-secondary btn-sm">Download</a>';
     $data['detailqr'] = $update;
     $this->load->view('dashboard/v_header', $data);
     $this->load->view('it/v_games.php', $data);
