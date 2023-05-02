@@ -1,197 +1,235 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Master_item extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        date_default_timezone_set('Asia/Jakarta');
+        if ($this->session->userdata('status') != "telah_login") {
+            redirect(base_url() . 'login?alert=belum_login');
+        }
+    }
 
-   function __construct()
-   {
-      parent::__construct();
-      date_default_timezone_set('Asia/Jakarta');
-      if ($this->session->userdata('status') != "telah_login") {
-         redirect(base_url() . 'login?alert=belum_login');
-      }
-   }
+    public function data()
+    {
+        $data['title'] = 'Master Item';
+        $this->load->view('dashboard/v_header', $data);
+        $this->load->view('it/v_master_item', $data);
+        $this->load->view('dashboard/v_footer', $data);
+    }
 
-   public function data()
-   {
-      $data['title'] = 'Master Item';
-      $data['master'] = $this->m_data->get_index_wheredesc('addtime', ['status !=' => '1'], 'master_item')->result();
-      $data['master_ok'] = $this->m_data->get_index_wheredesc('addtime', ['status' => '1'], 'master_item')->result();
-      $this->load->view('dashboard/v_header', $data);
-      $this->load->view('it/v_master_item', $data);
-      $this->load->view('dashboard/v_footer', $data);
-   }
+    public function ajax_list()
+    {
+        header('Content-Type: application/json');
+        $this->load->model('m_side');
+        $list = $this->m_side->get_datatables();
+        $data = array();
+        $no = $this->input->post('start');
+        foreach ($list as $item) {
+            $no++;
 
-   public function add()
-   {
-      $this->form_validation->set_rules('merk', 'Merk', 'required');
-      $this->form_validation->set_rules('kelompok', 'Kelompok', 'required');
-      $this->form_validation->set_rules('part_number', 'part_number', 'required');
-      $this->form_validation->set_rules('nama', 'Nama', 'required');
-      $this->form_validation->set_rules('type', 'Type', 'required');
+            if ($item->status == 1) {
+                $status = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Approve</span>';
+            } elseif ($item->status == 2) {
+                $status = '<span class="badge badge-danger"><i class="fas fa-times-circle"></i> Reject</span>';
+            } else {
+                $status = '<span> - </span>';
+            }
 
-      if ($this->form_validation->run() != false) {
-         $user = $this->input->post('user');
-         $merk = $this->input->post('merk');
-         $kelompok = $this->input->post('kelompok');
-         $part_number = $this->input->post('part_number');
-         $nama = $this->input->post('nama');
-         $type = $this->input->post('type');
-         $satuan = $this->input->post('satuan');
+            if ($item->status_it == 1) {
+                $status_it = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Approve System</span>';
+                $approve = '<i class="far fa-thumbs-up"></i>';
+            } elseif ($item->status_it == 2) {
+                $status_it = '<span class="badge badge-danger"><i class="fas fa-times-circle"></i> Reject</span>';
+                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="edit_person('."'".$item->id."'".')"><i class="fas fa-thumbs-up"></i></a>';
+            } else {
+                $status_it = '<span> - </span>';
+                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="edit_person('."'".$item->id."'".')"><i class="fas fa-thumbs-up"></i></a>';
+            }
 
-         $data = array(
-            'user' => $user,
-            'merk' => $merk,
-            'kelompok' => $kelompok,
-            'part_number' => $part_number,
-            'nama' => $nama,
-            'type' => $type,
-            'satuan' => $satuan,
-            'addtime' => mdate('%Y-%m-%d %H:%i:%s')
-         );
+            $row = array();
+            $row[] = $no;
+            $row[] = $item->user;
+            $row[] = $item->merk;
+            $row[] = strtoupper($item->kelompok);
+            $row[] = strtoupper($item->part_number);
+            $row[] = $item->nama;
+            $row[] = $item->satuan;
+            $row[] = strtoupper($item->type);
+            $row[] = $status;
+            $row[] = $status_it;
+            $row[] = $approve;
 
-         $this->m_data->insert_data($data, 'master_item');
-         $this->session->set_flashdata('berhasil', 'Add Data successfully, Merk : ' . $merk . ' !');
-         redirect(base_url() . 'master_item/data');
-      } else {
-         $this->session->set_flashdata('gagal', 'Data failed to Add, Please repeat !');
-         redirect(base_url() . 'master_item/data');
-      }
-   }
+            $data[] = $row;
+        }
 
-   public function edit()
-   {
-      $this->form_validation->set_rules('merk', 'Merk', 'required');
-      $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->m_side->count_all(),
+            "recordsFiltered" => $this->m_side->count_filtered(),
+            "data" => $data,
+        );
 
-      if ($this->form_validation->run() != false) {
-         $id = $this->input->post('id');
-         $merk = $this->input->post('merk');
-         $kelompok = $this->input->post('kelompok');
-         $part_number = $this->input->post('part_number');
-         $nama = $this->input->post('nama');
-         $satuan = $this->input->post('satuan');
-         $type = $this->input->post('type');
+        $this->output->set_output(json_encode($output));
+    }
 
-         $where = array(
-            'id' => $id
-         );
+    public function ajax_edit($id)
+    {
+        $data = $this->m_side->get_by_id($id);
+        $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+        echo json_encode($data);
+    }
 
-         $data = array(
-            'merk' => $merk,
-            'kelompok' => $kelompok,
-            'part_number' => $part_number,
-            'nama' => $nama,
-            'satuan' => $satuan,
-            'type' => $type,
-            'addtime' => mdate('%Y-%m-%d %H:%i:%s')
-         );
+    public function ajax_add()
+    {
+        $this->_validate();
+        $data = array(
+            'firstName' => $this->input->post('firstName'),
+            'lastName' => $this->input->post('lastName'),
+            'gender' => $this->input->post('gender'),
+            'address' => $this->input->post('address'),
+            'dob' => $this->input->post('dob'),
+        );
+        $insert = $this->m_side->save($data);
+        echo json_encode(array("status" => true));
+    }
 
-         $this->m_data->update_data($where, $data, 'master_item');
-         $this->session->set_flashdata('berhasil', 'Edit Data successfully, Judul : ' . $merk . ' !');
-         redirect(base_url() . 'master_item/data');
-      } else {
-         $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
-         redirect(base_url() . 'master_item/data');
-      }
-   }
+    public function ajax_update()
+    {
+        $this->_validate();
+        $data = array(
+            'firstName' => $this->input->post('firstName'),
+            'lastName' => $this->input->post('lastName'),
+            'gender' => $this->input->post('gender'),
+            'address' => $this->input->post('address'),
+            'dob' => $this->input->post('dob'),
+        );
+        $this->m_side->update(array('id' => $this->input->post('id')), $data);
+        echo json_encode(array("status" => true));
+    }
 
-   public function update()
-   {
-      $this->form_validation->set_rules('status', 'Status', 'required');
+    public function ajax_delete($id)
+    {
+        $this->m_side->delete_by_id($id);
+        echo json_encode(array("status" => true));
+    }
 
-      if ($this->form_validation->run() != false) {
-         $id = $this->input->post('id');
-         $status = $this->input->post('status');
-         $merk = $this->input->post('merk');
 
-         $where = array(
-            'id' => $id
-         );
+    private function _validate()
+    {
+        $data = array();
+        $data['error_string'] = array();
+        $data['inputerror'] = array();
+        $data['status'] = true;
 
-         $data = array(
-            'status' => $status
-         );
+        if ($this->input->post('firstName') == '') {
+            $data['inputerror'][] = 'firstName';
+            $data['error_string'][] = 'First name is required';
+            $data['status'] = false;
+        }
 
-         $this->m_data->update_data($where, $data, 'master_item');
-         $this->session->set_flashdata('berhasil', 'Update Data successfully, Merk : ' . $merk . ' !');
-         redirect(base_url() . 'master_item/data');
-      } else {
-         $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
-         redirect(base_url() . 'master_item/data');
-      }
-   }
+        if ($this->input->post('lastName') == '') {
+            $data['inputerror'][] = 'lastName';
+            $data['error_string'][] = 'Last name is required';
+            $data['status'] = false;
+        }
 
-   public function delete()
-   {
-      $id = $this->input->post('id');
-      $this->m_data->delete_data(['id' => $id], 'master_item');
-      $this->session->set_flashdata('berhasil', 'Data has been deleted !');
-      redirect(base_url() . 'master_item/data');
-   }
+        if ($this->input->post('dob') == '') {
+            $data['inputerror'][] = 'dob';
+            $data['error_string'][] = 'Date of Birth is required';
+            $data['status'] = false;
+        }
 
-   public function update_it()
-   {
-      $this->form_validation->set_rules('status', 'Status', 'required');
+        if ($this->input->post('gender') == '') {
+            $data['inputerror'][] = 'gender';
+            $data['error_string'][] = 'Please select gender';
+            $data['status'] = false;
+        }
 
-      if ($this->form_validation->run() != false) {
-         $id = $this->input->post('id');
-         $merk = $this->input->post('merk');
-         $type = $this->input->post('type');
-         $status_it = $this->input->post('status_it');
+        if ($this->input->post('address') == '') {
+            $data['inputerror'][] = 'address';
+            $data['error_string'][] = 'Addess is required';
+            $data['status'] = false;
+        }
 
-         $where = array(
-            'id' => $id
-         );
+        if ($data['status'] === false) {
+            echo json_encode($data);
+            exit();
+        }
+    }
 
-         $data = array(
-            'type' => $type,
-            'status_it' => $status_it,
-         );
+    public function ajax_list_item()
+    {
+        header('Content-Type: application/json');
+        $this->load->model('m_side2');
+        $list = $this->m_side2->get_datatables();
+        $data = array();
+        $no = $this->input->post('start');
+        foreach ($list as $item) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $item->user;
+            $row[] = $item->merk;
+            $row[] = strtoupper($item->kelompok);
+            $row[] = strtoupper($item->part_number);
+            $row[] = $item->nama;
+            $row[] = $item->satuan;
+            $row[] = strtoupper($item->type);
 
-         $this->m_data->update_data($where, $data, 'master_item');
-         $this->session->set_flashdata('berhasil', 'Update Data successfully, Merk : ' . $merk . ' !');
-         redirect(base_url() . 'master_item/data');
-      } else {
-         $this->session->set_flashdata('gagal', 'Data failed to Update, Please repeat !');
-         redirect(base_url() . 'master_item/data');
-      }
-   }
+            $row[] = '<a class="btn-sm btn-info" title="Approve ?" onclick="edit_person('."'".$item->id."'".')"><i class="fas fa-thumbs-up"></i></a>
+            <a class="btn-sm btn-warning" onclick="edit_item('."'".$item->id."'".')" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+            <a class="btn-sm btn-danger" onclick="delete_item('."'".$item->id."'".')" title="Delete"><i class="fa fa-trash"></i></a>';
 
-   public function approve_system()
-   {
-      $status = $this->input->post('status');
-      for ($i = 0; $i < sizeof($status); $i++) {
-         $where = array(
-            'id' => $status[$i]
-         );
+            $data[] = $row;
+        }
 
-         $data = array(
-            'status' => '1'
-         );
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->m_side2->count_all(),
+            "recordsFiltered" => $this->m_side2->count_filtered(),
+            "data" => $data,
+        );
 
-         $this->m_data->update_data($where, $data, 'master_item');
-      }
-      $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
-      redirect(base_url() . 'master_item/data');
-   }
+        $this->output->set_output(json_encode($output));
+    }
 
-   public function approve_system_it()
-   {
-      $status_it = $this->input->post('status_it');
-      for ($i = 0; $i < sizeof($status_it); $i++) {
-         $where = array(
-            'id' => $status_it[$i]
-         );
+    public function approve_system()
+    {
+        $status = $this->input->post('status');
+        for ($i = 0; $i < sizeof($status); $i++) {
+            $where = array(
+                'id' => $status[$i]
+            );
 
-         $data = array(
-            'status_it' => '1'
-         );
+            $data = array(
+                'status' => '1'
+            );
 
-         $this->m_data->update_data($where, $data, 'master_item');
-      }
-      $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
-      redirect(base_url() . 'master_item/data');
-   }
+            $this->m_data->update_data($where, $data, 'master_item');
+        }
+        $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
+        redirect(base_url() . 'master_item/data');
+    }
+
+    public function approve_system_it()
+    {
+        $status_it = $this->input->post('status_it');
+        for ($i = 0; $i < sizeof($status_it); $i++) {
+            $where = array(
+                'id' => $status_it[$i]
+            );
+
+            $data = array(
+                'status_it' => '1'
+            );
+
+            $this->m_data->update_data($where, $data, 'master_item');
+        }
+        $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
+        redirect(base_url() . 'master_item/data');
+    }
 }

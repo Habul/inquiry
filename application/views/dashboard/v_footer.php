@@ -49,6 +49,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<?php $this->load->view('it/v_ajax_item'); ?>
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/chart.js/Chart.min.js"></script>
@@ -65,7 +66,6 @@
 <script src="<?php echo base_url(); ?>assets/plugins/dropzone/min/dropzone.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/filterizr/jquery.filterizr.min.js"></script>
 <?php include './assets/plugins/ajax.php'; ?>
 <script>
 	$(document).ready(function() {
@@ -119,12 +119,12 @@
 				icon: 'success',
 				title: '<?= ucwords($this->session->flashdata('berhasil')) ?>'
 			})
-		<?php } else if ($this->session->flashdata('gagal')) { ?>
+		<?php } elseif ($this->session->flashdata('gagal')) { ?>
 			Toast.fire({
 				icon: 'error',
 				title: '<?= ucwords($this->session->flashdata('gagal')) ?>'
 			})
-		<?php } else if ($this->session->flashdata('ulang')) { ?>
+		<?php } elseif ($this->session->flashdata('ulang')) { ?>
 			Toast.fire({
 				icon: 'warning',
 				title: '<?= ucwords($this->session->flashdata('ulang')) ?>'
@@ -186,11 +186,11 @@
 <script>
 	<?php if ($this->session->flashdata('success')) { ?>
 		toastr.success("<?= $this->session->flashdata('success'); ?>");
-	<?php } else if ($this->session->flashdata('error')) {  ?>
+	<?php } elseif ($this->session->flashdata('error')) {  ?>
 		toastr.error("<?= $this->session->flashdata('error'); ?>");
-	<?php } else if ($this->session->flashdata('warning')) {  ?>
+	<?php } elseif ($this->session->flashdata('warning')) {  ?>
 		toastr.warning("<?= $this->session->flashdata('warning'); ?>");
-	<?php } else if ($this->session->flashdata('info')) {  ?>
+	<?php } elseif ($this->session->flashdata('info')) {  ?>
 		toastr.info("<?= $this->session->flashdata('info'); ?>");
 	<?php } ?>
 </script>
