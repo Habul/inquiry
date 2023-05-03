@@ -11,7 +11,8 @@
 			<div class="modal-body">Select "Sign Out" below if you are ready to end your current session.</div>
 			<div class="modal-footer justify-content-between">
 				<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<a class="btn btn-outline-light" href="<?= base_url('dashboard/keluar'); ?>">Sign Out <i class="fas fa-sign-out-alt"></i></a>
+				<a class="btn btn-outline-light" href="<?= base_url('dashboard/keluar'); ?>">Sign Out <i
+						class="fas fa-sign-out-alt"></i></a>
 			</div>
 		</div>
 	</div>
@@ -34,6 +35,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script>
 	$.widget.bridge('uibutton', $.ui.button)
+
 </script>
 <script src="<?php echo base_url(); ?>assets/plugins/chart.js/Chart.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
@@ -49,7 +51,6 @@
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<?php $this->load->view('it/v_ajax_item'); ?>
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/chart.js/Chart.min.js"></script>
@@ -66,6 +67,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/dropzone/min/dropzone.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
+<?php $this->load->view('it/v_ajax_item'); ?>
 <?php include './assets/plugins/ajax.php'; ?>
 <script>
 	$(document).ready(function() {
@@ -182,9 +184,10 @@
 	}
 
 	toggleSwitch.addEventListener('change', switchTheme, false);
+
 </script>
 <script>
-	<?php if ($this->session->flashdata('success')) { ?>
+<?php if ($this->session->flashdata('success')) { ?>
 		toastr.success("<?= $this->session->flashdata('success'); ?>");
 	<?php } elseif ($this->session->flashdata('error')) {  ?>
 		toastr.error("<?= $this->session->flashdata('error'); ?>");
@@ -193,22 +196,23 @@
 	<?php } elseif ($this->session->flashdata('info')) {  ?>
 		toastr.info("<?= $this->session->flashdata('info'); ?>");
 	<?php } ?>
+
 </script>
 <script>
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
-			reader.onload = function(e) {
+			reader.onload = function (e) {
 				$('#blah').attr('src', e.target.result);
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	$("#imgInp").change(function() {
+	$("#imgInp").change(function () {
 		readURL(this);
 	});
 
-	$("#info").fadeTo(3000, 500).slideUp(500, function() {
+	$("#info").fadeTo(3000, 500).slideUp(500, function () {
 		$("#info").slideUp(500);
 	});
 
@@ -223,6 +227,7 @@
 		setTimeout(gethclock, 1000);
 	}
 	gethclock();
+
 </script>
 </body>
 

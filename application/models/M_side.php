@@ -32,7 +32,6 @@ class M_side extends CI_Model
             $i++;
         }
 
-        // jika datatable mengirim POST untuk order
         if ($this->input->post('order')) {
             $this->db->order_by($this->column_order[$this->input->post('order')['0']['column']], $this->input->post('order')['0']['dir']);
         } elseif (isset($this->order)) {
@@ -61,14 +60,12 @@ class M_side extends CI_Model
     public function count_all()
     {
         $this->db->from($this->table)->where(['status' => '1']);
-        ;
         return $this->db->count_all_results();
     }
 
     public function get_by_id($id)
     {
         $this->db->from($this->table)->where(['status' => '1']);
-        ;
         $this->db->where('id', $id);
         $query = $this->db->get();
 

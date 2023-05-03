@@ -24,7 +24,6 @@ class Master_item extends CI_Controller
     public function ajax_list()
     {
         header('Content-Type: application/json');
-        $this->load->model('m_side');
         $list = $this->m_side->get_datatables();
         $data = array();
         $no = $this->input->post('start');
@@ -41,13 +40,13 @@ class Master_item extends CI_Controller
 
             if ($item->status_it == 1) {
                 $status_it = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Approve System</span>';
-                $approve = '<i class="far fa-thumbs-up"></i>';
+                $approve = '<i class="fas fa-lock"></i>';
             } elseif ($item->status_it == 2) {
                 $status_it = '<span class="badge badge-danger"><i class="fas fa-times-circle"></i> Reject</span>';
-                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="edit_person('."'".$item->id."'".')"><i class="fas fa-thumbs-up"></i></a>';
+                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="edit_person(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>';
             } else {
                 $status_it = '<span> - </span>';
-                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="edit_person('."'".$item->id."'".')"><i class="fas fa-thumbs-up"></i></a>';
+                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="edit_person(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>';
             }
 
             $row = array();
@@ -64,6 +63,7 @@ class Master_item extends CI_Controller
             $row[] = $approve;
 
             $data[] = $row;
+
         }
 
         $output = array(
@@ -76,95 +76,9 @@ class Master_item extends CI_Controller
         $this->output->set_output(json_encode($output));
     }
 
-    public function ajax_edit($id)
-    {
-        $data = $this->m_side->get_by_id($id);
-        $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
-        echo json_encode($data);
-    }
-
-    public function ajax_add()
-    {
-        $this->_validate();
-        $data = array(
-            'firstName' => $this->input->post('firstName'),
-            'lastName' => $this->input->post('lastName'),
-            'gender' => $this->input->post('gender'),
-            'address' => $this->input->post('address'),
-            'dob' => $this->input->post('dob'),
-        );
-        $insert = $this->m_side->save($data);
-        echo json_encode(array("status" => true));
-    }
-
-    public function ajax_update()
-    {
-        $this->_validate();
-        $data = array(
-            'firstName' => $this->input->post('firstName'),
-            'lastName' => $this->input->post('lastName'),
-            'gender' => $this->input->post('gender'),
-            'address' => $this->input->post('address'),
-            'dob' => $this->input->post('dob'),
-        );
-        $this->m_side->update(array('id' => $this->input->post('id')), $data);
-        echo json_encode(array("status" => true));
-    }
-
-    public function ajax_delete($id)
-    {
-        $this->m_side->delete_by_id($id);
-        echo json_encode(array("status" => true));
-    }
-
-
-    private function _validate()
-    {
-        $data = array();
-        $data['error_string'] = array();
-        $data['inputerror'] = array();
-        $data['status'] = true;
-
-        if ($this->input->post('firstName') == '') {
-            $data['inputerror'][] = 'firstName';
-            $data['error_string'][] = 'First name is required';
-            $data['status'] = false;
-        }
-
-        if ($this->input->post('lastName') == '') {
-            $data['inputerror'][] = 'lastName';
-            $data['error_string'][] = 'Last name is required';
-            $data['status'] = false;
-        }
-
-        if ($this->input->post('dob') == '') {
-            $data['inputerror'][] = 'dob';
-            $data['error_string'][] = 'Date of Birth is required';
-            $data['status'] = false;
-        }
-
-        if ($this->input->post('gender') == '') {
-            $data['inputerror'][] = 'gender';
-            $data['error_string'][] = 'Please select gender';
-            $data['status'] = false;
-        }
-
-        if ($this->input->post('address') == '') {
-            $data['inputerror'][] = 'address';
-            $data['error_string'][] = 'Addess is required';
-            $data['status'] = false;
-        }
-
-        if ($data['status'] === false) {
-            echo json_encode($data);
-            exit();
-        }
-    }
-
     public function ajax_list_item()
     {
         header('Content-Type: application/json');
-        $this->load->model('m_side2');
         $list = $this->m_side2->get_datatables();
         $data = array();
         $no = $this->input->post('start');
@@ -180,9 +94,9 @@ class Master_item extends CI_Controller
             $row[] = $item->satuan;
             $row[] = strtoupper($item->type);
 
-            $row[] = '<a class="btn-sm btn-info" title="Approve ?" onclick="edit_person('."'".$item->id."'".')"><i class="fas fa-thumbs-up"></i></a>
-            <a class="btn-sm btn-warning" onclick="edit_item('."'".$item->id."'".')" title="Edit"><i class="fa fa-pencil-alt"></i></a>
-            <a class="btn-sm btn-danger" onclick="delete_item('."'".$item->id."'".')" title="Delete"><i class="fa fa-trash"></i></a>';
+            $row[] = '<a class="btn-sm btn-info" title="Approve ?" onclick="edit_person(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>
+            <a class="btn-sm btn-warning" onclick="edit_item(' . "'" . $item->id . "'" . ')" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+            <a class="btn-sm btn-danger" onclick="delete_item(' . "'" . $item->id . "'" . ')" title="Delete"><i class="fa fa-trash"></i></a>';
 
             $data[] = $row;
         }
@@ -195,6 +109,102 @@ class Master_item extends CI_Controller
         );
 
         $this->output->set_output(json_encode($output));
+    }
+
+    public function ajax_edit_item($id)
+    {
+        $data = $this->m_side2->get_by_id($id);
+        echo json_encode($data);
+    }
+
+    public function ajax_add()
+    {
+        $this->_validate();
+        $data = array(
+            'user' => $this->session->userdata('nama'),
+            'merk' => $this->input->post('merk'),
+            'kelompok' => $this->input->post('kelompok'),
+            'part_number' => $this->input->post('part_number'),
+            'nama' => $this->input->post('nama'),
+            'satuan' => $this->input->post('satuan'),
+            'type' => $this->input->post('type'),
+        );
+        $this->m_side2->save($data);
+        $this->session->set_flashdata('berhasil', 'Add item successfully!');
+        echo json_encode(array("status" => true));
+    }
+
+    public function ajax_update()
+    {
+        $this->_validate();
+        $data = array(
+            'user' => $this->session->userdata('nama'),
+            'merk' => $this->input->post('merk'),
+            'kelompok' => $this->input->post('kelompok'),
+            'part_number' => $this->input->post('part_number'),
+            'nama' => $this->input->post('nama'),
+            'satuan' => $this->input->post('satuan'),
+            'type' => $this->input->post('type'),
+        );
+        $this->m_side2->update(array('id' => $this->input->post('id')), $data);
+        $this->session->set_flashdata('berhasil', 'Update item successfully!');
+        echo json_encode(array("status" => true));
+    }
+
+    public function ajax_delete($id)
+    {
+        $this->m_side2->delete_by_id($id);
+        echo json_encode(array("status" => true));
+    }
+
+
+    private function _validate()
+    {
+        $data = array();
+        $data['error_string'] = array();
+        $data['inputerror'] = array();
+        $data['status'] = true;
+
+        if ($this->input->post('merk') == '') {
+            $data['inputerror'][] = 'merk';
+            $data['error_string'][] = 'Brand name is required';
+            $data['status'] = false;
+        }
+
+        if ($this->input->post('kelompok') == '') {
+            $data['inputerror'][] = 'kelompok';
+            $data['error_string'][] = 'Category is required';
+            $data['status'] = false;
+        }
+
+        if ($this->input->post('part_number') == '') {
+            $data['inputerror'][] = 'part_number';
+            $data['error_string'][] = 'Part number is required';
+            $data['status'] = false;
+        }
+
+        if ($this->input->post('nama') == '') {
+            $data['inputerror'][] = 'nama';
+            $data['error_string'][] = 'Assy code is required';
+            $data['status'] = false;
+        }
+
+        if ($this->input->post('satuan') == '') {
+            $data['inputerror'][] = 'satuan';
+            $data['error_string'][] = 'Satuan is required';
+            $data['status'] = false;
+        }
+
+        if ($this->input->post('type') == '') {
+            $data['inputerror'][] = 'type';
+            $data['error_string'][] = 'Please select tipe';
+            $data['status'] = false;
+        }
+
+        if ($data['status'] === false) {
+            echo json_encode($data);
+            exit();
+        }
     }
 
     public function approve_system()
