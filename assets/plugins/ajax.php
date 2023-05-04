@@ -369,19 +369,19 @@ var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
 var donutData = {
    labels: [<?php
                if (count($data_user) > 0) {
-                  foreach ($data_user as $data) {
-                     echo "'" . $data->user . "',";
-                  }
+                   foreach ($data_user as $data) {
+                       echo "'" . $data->user . "',";
+                   }
                }
-               ?>],
+   ?>],
    datasets: [{
       data: [<?php
-                  if (count($data_user) > 0) {
-                     foreach ($data_user as $data) {
-                        echo $data->jmlh . ", ";
-                     }
-                  }
-                  ?>],
+      if (count($data_user) > 0) {
+          foreach ($data_user as $data) {
+              echo $data->jmlh . ", ";
+          }
+      }
+   ?>],
       backgroundColor: <?php echo $user_color ?>,
    }]
 }
@@ -402,19 +402,19 @@ var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
 var pieData = {
    labels: [<?php
                if (count($data_brand) > 0) {
-                  foreach ($data_brand as $data) {
-                     echo "'" . $data->merk . "',";
-                  }
+                   foreach ($data_brand as $data) {
+                       echo "'" . $data->merk . "',";
+                   }
                }
-               ?>],
+   ?>],
    datasets: [{
       data: [<?php
-                  if (count($data_brand) > 0) {
-                     foreach ($data_brand as $data) {
-                        echo $data->jmlh . ", ";
-                     }
-                  }
-                  ?>],
+      if (count($data_brand) > 0) {
+          foreach ($data_brand as $data) {
+              echo $data->jmlh . ", ";
+          }
+      }
+   ?>],
       backgroundColor: <?php echo $brand_color ?>,
    }]
 }
@@ -447,12 +447,12 @@ var areaChartData = {
       pointHighlightFill: '#fff',
       pointHighlightStroke: 'rgba(220,220,220,1)',
       data: [<?php
-                  if (count($suratdf) > 0) {
-                     foreach ($suratdf as $data) {
-                        echo $data->total . ", ";
-                     }
-                  }
-                  ?>]
+   if (count($suratdf) > 0) {
+       foreach ($suratdf as $data) {
+           echo $data->total . ", ";
+       }
+   }
+   ?>]
    }, ]
 }
 
@@ -497,12 +497,12 @@ var barChartData = {
          pointHighlightFill: '#fff',
          pointHighlightStroke: 'rgba(60,141,188,1)',
          data: [<?php
-                     if (count($barmobil) > 0) {
-                        foreach ($barmobil as $data) {
-                           echo $data->total . ", ";
-                        }
-                     }
-                     ?>]
+      if (count($barmobil) > 0) {
+          foreach ($barmobil as $data) {
+              echo $data->total . ", ";
+          }
+      }
+   ?>]
       },
       {
          label: 'Motor',
@@ -514,12 +514,12 @@ var barChartData = {
          pointHighlightFill: '#fff',
          pointHighlightStroke: 'rgba(220,220,220,1)',
          data: [<?php
-                     if (count($barmotor) > 0) {
-                        foreach ($barmotor as $data) {
-                           echo $data->total . ", ";
-                        }
-                     }
-                     ?>]
+   if (count($barmotor) > 0) {
+       foreach ($barmotor as $data) {
+           echo $data->total . ", ";
+       }
+   }
+   ?>]
       },
       {
          label: 'Truck',
@@ -531,12 +531,12 @@ var barChartData = {
          pointHighlightFill: '#fff',
          pointHighlightStroke: 'rgba(220,220,220,1)',
          data: [<?php
-                     if (count($bartruck) > 0) {
-                        foreach ($bartruck as $data) {
-                           echo $data->total . ", ";
-                        }
-                     }
-                     ?>]
+   if (count($bartruck) > 0) {
+       foreach ($bartruck as $data) {
+           echo $data->total . ", ";
+       }
+   }
+   ?>]
       },
    ]
 }

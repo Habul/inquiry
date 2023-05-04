@@ -32,7 +32,6 @@ class M_side2 extends CI_Model
             $i++;
         }
 
-        // jika datatable mengirim POST untuk order
         if ($this->input->post('order')) {
             $this->db->order_by($this->column_order[$this->input->post('order')['0']['column']], $this->input->post('order')['0']['dir']);
         } elseif (isset($this->order)) {

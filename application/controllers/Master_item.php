@@ -43,10 +43,10 @@ class Master_item extends CI_Controller
                 $approve = '<i class="fas fa-lock"></i>';
             } elseif ($item->status_it == 2) {
                 $status_it = '<span class="badge badge-danger"><i class="fas fa-times-circle"></i> Reject</span>';
-                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="edit_person(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>';
+                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="approve_it(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>';
             } else {
                 $status_it = '<span> - </span>';
-                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="edit_person(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>';
+                $approve = '<a class="btn-sm btn-info" title="Approve IT ?" onclick="approve_it(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>';
             }
 
             $row = array();
@@ -76,6 +76,15 @@ class Master_item extends CI_Controller
         $this->output->set_output(json_encode($output));
     }
 
+    public function ajax_approve_it($id)
+    {
+        $data = array(
+            'status_it' => '1',
+        );
+        $this->m_side->update(array('id' => $id), $data);
+        echo json_encode(array("status" => true));
+    }
+
     public function ajax_list_item()
     {
         header('Content-Type: application/json');
@@ -94,7 +103,7 @@ class Master_item extends CI_Controller
             $row[] = $item->satuan;
             $row[] = strtoupper($item->type);
 
-            $row[] = '<a class="btn-sm btn-info" title="Approve ?" onclick="edit_person(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>
+            $row[] = '<a class="btn-sm btn-info" title="Approve ?" onclick="approve(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>
             <a class="btn-sm btn-warning" onclick="edit_item(' . "'" . $item->id . "'" . ')" title="Edit"><i class="fa fa-pencil-alt"></i></a>
             <a class="btn-sm btn-danger" onclick="delete_item(' . "'" . $item->id . "'" . ')" title="Delete"><i class="fa fa-trash"></i></a>';
 
@@ -121,7 +130,7 @@ class Master_item extends CI_Controller
     {
         $this->_validate();
         $data = array(
-            'user' => $this->session->userdata('nama'),
+            'user' => ucwords($this->session->userdata('nama')),
             'merk' => $this->input->post('merk'),
             'kelompok' => $this->input->post('kelompok'),
             'part_number' => $this->input->post('part_number'),
@@ -130,7 +139,6 @@ class Master_item extends CI_Controller
             'type' => $this->input->post('type'),
         );
         $this->m_side2->save($data);
-        $this->session->set_flashdata('berhasil', 'Add item successfully!');
         echo json_encode(array("status" => true));
     }
 
@@ -138,7 +146,6 @@ class Master_item extends CI_Controller
     {
         $this->_validate();
         $data = array(
-            'user' => $this->session->userdata('nama'),
             'merk' => $this->input->post('merk'),
             'kelompok' => $this->input->post('kelompok'),
             'part_number' => $this->input->post('part_number'),
@@ -147,7 +154,6 @@ class Master_item extends CI_Controller
             'type' => $this->input->post('type'),
         );
         $this->m_side2->update(array('id' => $this->input->post('id')), $data);
-        $this->session->set_flashdata('berhasil', 'Update item successfully!');
         echo json_encode(array("status" => true));
     }
 
@@ -157,6 +163,14 @@ class Master_item extends CI_Controller
         echo json_encode(array("status" => true));
     }
 
+    public function ajax_approve($id)
+    {
+        $data = array(
+            'status' => '1',
+        );
+        $this->m_side2->update(array('id' => $id), $data);
+        echo json_encode(array("status" => true));
+    }
 
     private function _validate()
     {

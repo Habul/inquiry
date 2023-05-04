@@ -33,15 +33,15 @@
 		});
 
 		$("input").change(function () {
-			$(this).parent().parent().removeClass('is-invalid');
+			$(this).removeClass('is-invalid');
 			$(this).next().empty();
 		});
 		$("textarea").change(function () {
-			$(this).parent().parent().removeClass('is-invalid');
+			$(this).removeClass('is-invalid');
 			$(this).next().empty();
 		});
 		$("select").change(function () {
-			$(this).parent().parent().removeClass('is-invalid');
+			$(this).removeClass('is-invalid');
 			$(this).next().empty();
 		});
 	});
@@ -49,7 +49,7 @@
 	function add_item() {
 		save_method = 'add';
 		$('#form')[0].reset();
-		$('.form-group').removeClass('is-invalid');
+		$('.form-control').removeClass('is-invalid');
 		$('.help-block').empty();
 		$('#modal_form').modal('show');
 		$('.modal-title').text('Create New item');
@@ -58,7 +58,7 @@
 	function edit_item(id) {
 		save_method = 'update';
 		$('#form')[0].reset();
-		$('.form-group').removeClass('is-invalid');
+		$('.form-control').removeClass('is-invalid');
 		$('.help-block').empty();
 
 		$.ajax({
@@ -87,7 +87,6 @@
 	function delete_item(id) {
 		if(confirm('Are you sure delete this data?'))
     {
-        // ajax delete data to database
         $.ajax({
             url : "<?= site_url('master_item/ajax_delete')?>/"+id,
             type: "POST",
@@ -96,7 +95,49 @@
             {
                 $('#modal_form').modal('hide');
                 reload_table();
-					 toastr.error("Confirmed! Item deleted");
+					 toastr.success("Confirmed! Item deleted");
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error deleting data');
+            }
+        });
+    }
+	}
+
+	function approve(id) {
+		if(confirm('Approve ?'))
+    {
+        $.ajax({
+            url : "<?= site_url('master_item/ajax_approve')?>/"+id,
+            type: "POST",
+            dataType: "JSON",
+            success: function(data)
+            {
+                $('#modal_form').modal('hide');
+                reload_table();
+					 toastr.success("Confirmed! Item Approved");
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error deleting data');
+            }
+        });
+    }
+	}
+
+	function approve_it(id) {
+		if(confirm('Approve IT ?'))
+    {
+        $.ajax({
+            url : "<?= site_url('master_item/ajax_approve_it')?>/"+id,
+            type: "POST",
+            dataType: "JSON",
+            success: function(data)
+            {
+                $('#modal_form').modal('hide');
+                reload_table();
+					 toastr.success("Confirmed! Item Approved IT");
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -122,7 +163,7 @@
 			shows = toastr.success("Confirmed! Item Added");
 		} else {
 			url = "<?= site_url('master_item/ajax_update')?>";
-			shows = toastr.warning("Confirmed! Item Added");
+			shows = toastr.success("Confirmed! Item Updated");
 		}
 
 		$.ajax({
@@ -134,12 +175,12 @@
 
 				if (data.status) {
 					$('#modal_form').modal('hide');
-					reload_table();
 					shows;
+					reload_table();
 				} else {
 					for (var i = 0; i < data.inputerror.length; i++) {
-						$('[name="' + data.inputerror[i] + '"]').parent().parent().addClass('is-invalid');
-						$('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[i]);
+						$('[name="' + data.inputerror[i] + '"]').addClass('is-invalid');
+						$('[name="' + data.inputerror[i] + '"]').text(data.error_string[i]);
 					}
 				}
 				$('#btnSave').text('Save');

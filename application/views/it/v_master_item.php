@@ -23,10 +23,10 @@
 						<div class="card-header">
 							<h4 class="card-title">
 								<?php if ($this->session->userdata('level') != "sales") :  ?>
-								<a class="btn btn-success shadow-sm" href="javascript:void(0)" title="Add item" onclick="add_item()">
+								<a class="btn btn-success shadow-sm" title="Add item" onclick="add_item()">
 									<i class="fa fa-plus"></i>&nbsp; Create new item
 								</a>
-								<a class="btn btn-default shadow-sm" href="javascript:void(0)" title="Reload" onclick="reload_table()">
+								<a class="btn btn-default shadow-sm" title="Reload" onclick="reload_table()">
 									<i class="fas fa-sync-alt"></i>&nbsp; Reload
 								</a>
 								<?php elseif ($this->session->userdata('level') != "engineering") : ?>
@@ -58,7 +58,7 @@
 										<th>Satuan</th>
 										<th>Tipe</th>
 										<?php if ($this->session->userdata('level') != "sales") :  ?>
-										<th width="9%"><i class="fas fa-cogs"></i></th>
+										<th width="11%"><i class="fas fa-cogs"></i></th>
 										<?php endif ?>
 									</tr>
 								</thead>
@@ -70,15 +70,15 @@
 						<div class="card-header">
 							<h4 class="card-title"><i class="fa fa-check-square"></i> Master item Approve</h4>
 							<div class="card-tools">
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-warning"
+								<button type="button" class="btn btn-xs btn-icon"
 									data-card-widget="collapse">
 									<i class="fas fa-minus"></i>
 								</button>
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-primary"
+								<button type="button" class="btn btn-xs btn-icon"
 									data-card-widget="maximize">
 									<i class="fas fa-expand"></i>
 								</button>
-								<button type="button" class="btn btn-xs btn-icon btn-circle btn-danger"
+								<button type="button" class="btn btn-xs btn-icon"
 									data-card-widget="remove">
 									<i class="fas fa-times"></i>
 								</button>
@@ -99,7 +99,7 @@
 										<th>Status</th>
 										<th>Status IT</th>
 										<?php if ($this->session->userdata('level') == "admin") :  ?>
-										<th width="5%"><i class="fas fa-cogs"></i></th>
+										<th width="10%"><i class="fas fa-cogs"></i></th>
 										<?php endif ?>
 									</tr>
 								</thead>
@@ -119,52 +119,48 @@
 			<div class="modal-header">
 				<h5 class="col-12 modal-title text-center">Create new item</h5>
 			</div>
-			<div class="modal-body form">
 				<form method="post" id="form">
 					<input type="hidden" value="" name="id" />
-					<div class="form-group mb-3">
+					<div class="modal-body">
+					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<label class="input-group-text pr-5">Brand&nbsp;</label>
 							</div>
-							<input type="text" name="merk" class="form-control" placeholder="Input brand..">
+							<input type="text" name="merk" class="form-control" id="test" placeholder="Input brand..">
 						</div>
 						<span class="help-block"></span>
 					</div>
-					<div class="form-group mb-3">
+					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<label class="input-group-text pr-4">Category&nbsp;&nbsp;&nbsp;</label>
 							</div>
 							<input type="text" name="kelompok" class="form-control" placeholder="Input category..">
-							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="form-group mb-3">
+					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<label class="input-group-text pr-2">Part Number</label>
 							</div>
 							<input type="text" name="part_number" class="form-control" placeholder="Input part number..">
-							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="form-group mb-3">
+					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<label class="input-group-text pr-3">Assy Code&nbsp;&nbsp;&nbsp;</label>
 							</div>
 							<input type="text" name="nama" class="form-control" placeholder="Input assy code..">
-							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="form-group mb-3">
+					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<label class="input-group-text pr-4">Satuan&emsp;&nbsp;&nbsp;</label>
 							</div>
 							<input type="text" name="satuan" class="form-control" placeholder="Input satuan..">
-							<span class="help-block"></span>
 						</div>
 					</div>
 					<div class="form-group mb-0">
@@ -177,7 +173,6 @@
 								<option value="inventory">Inventory</option>
 								<option value="non inventory">Non Inventory</option>
 							</select>
-							<span class="help-block"></span>
 						</div>
 					</div>
 			</div>
@@ -185,30 +180,10 @@
 				<button class="btn btn-default" data-dismiss="modal">Close</button>
 				<button class="btn btn-success" id="btnSave" onclick="save()">Save</button>
 			</div>
+			</div>
 			</form>
 		</div>
 	</div>
 </div>
 <!--End Modals-->
 
-<!-- <div class="modal fade" id="modal_del" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content bg-danger">
-			<div class="modal-header">
-				<h5 class="col-12 modal-title text-center">Delete item
-				</h5>
-			</div>
-			<div class="modal-body del">
-			<form method="post" id="del">
-					<input type="hidden" value="" name="id" />
-					<span>Are you sure delete this data ?</span>
-				</div>
-				<div class="modal-footer justify-content-between">
-					<button class="btn btn-outline-light" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-					<button class="btn btn-outline-light" id="btnDel" onclick="del()"><i class="fa fa-check"></i>
-						Yes</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div> -->
