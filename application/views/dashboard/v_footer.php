@@ -67,7 +67,6 @@
 <script src="<?php echo base_url(); ?>assets/plugins/dropzone/min/dropzone.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
-<?php $this->load->view('it/v_ajax_item'); ?>
 <?php include './assets/plugins/ajax.php'; ?>
 <script>
 	$(document).ready(function() {

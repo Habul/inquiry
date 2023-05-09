@@ -12,8 +12,12 @@
 				"type": "POST"
 			},
 			"columnDefs": [{
-				"targets": [0, 3, 5, 6, 7, 8, 9, 10],
-				"className": "text-center",
+				<?php if ($this->session->userdata('level') == "admin") : ?>
+					"targets": [0, 3, 5, 6, 7, 8, 9, 10],
+				<?php else : ?>
+					"targets": [0, 3, 5, 6, 7, 8, 9],
+				<?php endif; ?>
+				"className": "align-middle text-center",
 			}],
 		});
 
@@ -27,8 +31,12 @@
 				"type": "POST"
 			},
 			"columnDefs": [{
-				"targets": [0, 3, 5, 6, 7, 8],
-				"className": "text-center",
+				<?php if ($this->session->userdata('level') == "admin") : ?>
+					"targets": [0, 3, 5, 6, 7, 8, 9],
+				<?php else : ?>
+					"targets": [0, 3, 5, 6, 7, 8],
+				<?php endif; ?>
+				"className": "align-middle text-center",
 			}],
 		});
 
@@ -160,10 +168,8 @@
 
 		if (save_method == 'add') {
 			url = "<?= site_url('master_item/ajax_add')?>";
-			shows = toastr.success("Confirmed! Item Added");
 		} else {
 			url = "<?= site_url('master_item/ajax_update')?>";
-			shows = toastr.success("Confirmed! Item Updated");
 		}
 
 		$.ajax({
@@ -174,13 +180,20 @@
 			success: function (data) {
 
 				if (data.status) {
+
+					if (save_method == 'add') {
+						shows = toastr.success("Confirmed! Item Added");
+					} else {
+						shows = toastr.success("Confirmed! Item Updated");
+					}
+
 					$('#modal_form').modal('hide');
-					shows;
 					reload_table();
+					shows;
 				} else {
 					for (var i = 0; i < data.inputerror.length; i++) {
 						$('[name="' + data.inputerror[i] + '"]').addClass('is-invalid');
-						$('[name="' + data.inputerror[i] + '"]').text(data.error_string[i]);
+						$('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[i]);
 					}
 				}
 				$('#btnSave').text('Save');

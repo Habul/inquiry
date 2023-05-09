@@ -19,6 +19,7 @@ class Master_item extends CI_Controller
         $this->load->view('dashboard/v_header', $data);
         $this->load->view('it/v_master_item', $data);
         $this->load->view('dashboard/v_footer', $data);
+        $this->load->view('it/v_ajax_item');
     }
 
     public function ajax_list()
@@ -103,9 +104,14 @@ class Master_item extends CI_Controller
             $row[] = $item->satuan;
             $row[] = strtoupper($item->type);
 
-            $row[] = '<a class="btn-sm btn-info" title="Approve ?" onclick="approve(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>
-            <a class="btn-sm btn-warning" onclick="edit_item(' . "'" . $item->id . "'" . ')" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+            if ($this->session->userdata('level') != "sales") {
+                $row[] = '<a class="btn-sm btn-warning" onclick="edit_item(' . "'" . $item->id . "'" . ')" title="Edit"><i class="fa fa-pencil-alt"></i></a>
             <a class="btn-sm btn-danger" onclick="delete_item(' . "'" . $item->id . "'" . ')" title="Delete"><i class="fa fa-trash"></i></a>';
+            }
+
+            if ($this->session->userdata('level') != "engineering") {
+                $row[] = '<a class="btn-sm btn-info" title="Approve ?" onclick="approve(' . "'" . $item->id . "'" . ')"><i class="fas fa-thumbs-up"></i></a>';
+            }
 
             $data[] = $row;
         }
@@ -137,6 +143,7 @@ class Master_item extends CI_Controller
             'nama' => $this->input->post('nama'),
             'satuan' => $this->input->post('satuan'),
             'type' => $this->input->post('type'),
+            'addtime' => date('Y-m-d H:m:s'),
         );
         $this->m_side2->save($data);
         echo json_encode(array("status" => true));
@@ -219,41 +226,5 @@ class Master_item extends CI_Controller
             echo json_encode($data);
             exit();
         }
-    }
-
-    public function approve_system()
-    {
-        $status = $this->input->post('status');
-        for ($i = 0; $i < sizeof($status); $i++) {
-            $where = array(
-                'id' => $status[$i]
-            );
-
-            $data = array(
-                'status' => '1'
-            );
-
-            $this->m_data->update_data($where, $data, 'master_item');
-        }
-        $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
-        redirect(base_url() . 'master_item/data');
-    }
-
-    public function approve_system_it()
-    {
-        $status_it = $this->input->post('status_it');
-        for ($i = 0; $i < sizeof($status_it); $i++) {
-            $where = array(
-                'id' => $status_it[$i]
-            );
-
-            $data = array(
-                'status_it' => '1'
-            );
-
-            $this->m_data->update_data($where, $data, 'master_item');
-        }
-        $this->session->set_flashdata('berhasil', 'Approve system by ' . ucwords($this->session->userdata('nama')) . '!');
-        redirect(base_url() . 'master_item/data');
     }
 }

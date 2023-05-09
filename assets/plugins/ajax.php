@@ -7,8 +7,8 @@ $(document).ready(function() {
    });
 });
 
-$(function() {
-   bsCustomFileInput.init();
+$(function () {
+  bsCustomFileInput.init();
 });
 
 $(function() {
